@@ -443,7 +443,7 @@ header{
 .user-btn{
     margin-right: 20px;
 }
-.search{
+.search , .city-search{
     width: 100%;
     background: #FFFFFF;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -451,6 +451,28 @@ header{
     border: none;
     height: 32px;
     padding-left: 38px;
+}
+.city-search {
+    padding: 5px 0 5px 17px;
+    height: inherit;
+}
+.city-list {
+    list-style: none;
+    padding-left: 5px;
+    column-count: 2;
+}
+.city-wrap{
+    padding-top: 15px;
+}
+.red-link{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #F74952;
+}
+.red-link:hover{
+    color: #F74952;
 }
 .search-wrap{
     padding-top: 15px;
@@ -793,7 +815,7 @@ h1 , .big-red-text{
     margin-left: 5px;
     margin-top: 4px;
 }
-.menu , .login , .otzivi-block , .anket-params-block{
+.menu , .login , .otzivi-block , .anket-params-block , .city-list-wrap{
     background: #fff;
     left: -120%;
     height: 100%;
