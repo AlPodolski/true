@@ -37,7 +37,9 @@ AppAsset::register($this);
                 </span>
             </div>
             <div class="logo">
-                <img src="/img/SexTrue.png" alt="">
+                <a href="/">
+                    <img src="/img/SexTrue.png" alt="">
+                </a>
             </div>
             <div class="user-btn-mobil-menu-wrap">
                     <span class="user-btn">
