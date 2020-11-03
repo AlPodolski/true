@@ -3,6 +3,7 @@ namespace frontend\controllers;
 
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
+use frontend\modules\user\models\Posts;
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
@@ -74,7 +75,17 @@ class SiteController extends Controller
      */
     public function actionIndex($city)
     {
-        return $this->render('index');
+        $prPosts = Posts::find()->asArray()->with('avatar', 'metro')
+            ->limit(3)
+            ->all();
+        $newPosts = Posts::find()->asArray()
+            ->orderBy(['created_at' => SORT_DESC ])
+            ->limit(3)->all();
+
+        return $this->render('index' , [
+            'prPosts' => $prPosts,
+            'newPosts' => $newPosts,
+        ]);
     }
 
     /**

@@ -697,7 +697,7 @@ h1 , .big-red-text{
     border-bottom: 1px solid #F2F2F2;
 }
 .post-marc-block{
-    padding: 22px 0px 24px 15px;
+    padding: 22px 0px 15px 0px;
 }
 .post-marc{
     border-radius: 60px;
@@ -709,7 +709,6 @@ h1 , .big-red-text{
     line-height: 141.4%;
     margin-right: 11px;
     margin-bottom: 16px;
-
 }
 .red-post-marc{
     background: #FFD9E8;
@@ -1279,17 +1278,7 @@ h1 , .big-red-text{
 .single-bottom-info{
     position: inherit;
 }
-.post-top-info{
-    position: relative;
-    padding: 10px 30px;
-    padding-top: 20px;
-    left: 0px;
-    bottom: 0px;
-}
 .single-bottom-info .phone-photo-count{
-    color: #F74952;
-}
-.post-top-info .post-phone{
     color: #F74952;
 }
 .single-bottom-info .post-phone:hover {

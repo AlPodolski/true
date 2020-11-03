@@ -76,7 +76,7 @@ $('.more-search-btn').click(function() {
 
 });
 
-/*$( function() {
+$( function() {
     $( "#slider-range-age" ).slider({
         range: true,
         min: 18,
@@ -139,7 +139,7 @@ $('.more-search-btn').click(function() {
         }
     });
 
-} );*/
+} );
 
 $(document).ready(main);
 
