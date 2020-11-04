@@ -26,7 +26,7 @@ $this->title = 'Девушки Москвы';
                                 <div class="icon count-photo-icon">
                                     <img src="/img/camera1.svg" alt="">
                                 </div>
-                                +30
+                                +<?php echo \frontend\modules\user\models\Posts::countPhoto($post['id'])?>
                             </div>
                             <div class="post-address">
                                 <div class="geo-icon icon">

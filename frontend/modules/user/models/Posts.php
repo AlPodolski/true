@@ -63,6 +63,11 @@ class Posts extends \yii\db\ActiveRecord
         return $this->hasMany(UserMetro::class, ['post_id' => 'id']);
     }
 
+    public static function countPhoto($id)
+    {
+        return Files::find()->where(['related_class' => self::class])->andWhere(['related_id' => $id])->count();
+    }
+
     /**
      * {@inheritdoc}
      */
