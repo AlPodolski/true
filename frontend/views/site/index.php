@@ -61,7 +61,9 @@ $this->title = 'Девушки Москвы';
                                             </defs>
                                         </svg>
                                     </span>
-                                    15 отзывов</span>
+                                    <?php $countReview = \frontend\modules\user\models\Posts::countReview($post['id']) ?>
+
+                                    <?php echo $countReview ?> <?php echo getNumEnding($countReview, ['отзыв','отзыва', 'отзывов']); ?></span>
                             </div>
                         </div>
                         <div class="post-rating">

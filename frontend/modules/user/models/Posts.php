@@ -68,6 +68,11 @@ class Posts extends \yii\db\ActiveRecord
         return Files::find()->where(['related_class' => self::class])->andWhere(['related_id' => $id])->count();
     }
 
+    public static function countReview($id)
+    {
+        return Review::find()->where(['post_id' => $id])->count();
+    }
+
     /**
      * {@inheritdoc}
      */
