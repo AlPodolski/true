@@ -33,7 +33,7 @@ class Review extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['post_id', 'photo_marc', 'service_marc', 'total_marc', 's_klass_marc', 'mbr_marc', 'finish_v_rot_marc'], 'integer'],
+            [['post_id', 'photo_marc',  'total_marc', 'clean'], 'integer'],
             [['text'], 'string'],
         ];
     }
@@ -50,9 +50,6 @@ class Review extends \yii\db\ActiveRecord
             'photo_marc' => 'Photo Marc',
             'service_marc' => 'Service Marc',
             'total_marc' => 'Total Marc',
-            's_klass_marc' => 'S Klass Marc',
-            'mbr_marc' => 'Mbr Marc',
-            'finish_v_rot_marc' => 'Finish V Rot Marc',
         ];
     }
 }
