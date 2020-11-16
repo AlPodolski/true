@@ -18,16 +18,33 @@ class PostRatingHelper
         $photo_marc = self::getAverageRating($reviewCount, ArrayHelper::getColumn($postReview, 'photo_marc'));
         $total_marc = self::getAverageRating($reviewCount, ArrayHelper::getColumn($postReview, 'total_marc'));
         $clean_marc = self::getAverageRating($reviewCount, ArrayHelper::getColumn($postReview, 'clean'));
+        $happy_marc_count = self::countHappy(ArrayHelper::getColumn($postReview, 'is_happy'), 1);
+        $not_happy_marc_count = self::countHappy(ArrayHelper::getColumn($postReview, 'is_happy'), 0);
 
-        $result = array(
+        return array(
             'photo_marc' => $photo_marc,
             'service_marc' => $service_marc,
             'total_marc' => $total_marc,
             'clean_marc' => $clean_marc,
+            'happy_marc_count' => $happy_marc_count,
+            'not_happy_marc_count' => $not_happy_marc_count,
             'total_rating' => self::getTotalRating($photo_marc, $service_marc,$total_marc , $clean_marc)
         );
 
-        return $result;
+    }
+
+    public static function countHappy($marc, $needCount = 1)
+    {
+
+        $count = 0;
+
+        foreach ($marc as $item){
+
+            if ($item == $needCount) $count++;
+
+        }
+
+        return $count;
 
     }
 
