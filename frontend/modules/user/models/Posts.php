@@ -17,6 +17,7 @@ use frontend\models\UserMetro;
  * @property string|null $name
  * @property string|null $phone
  * @property string|null $about
+ * @property string|null $video
  * @property int|null $category
  * @property int|null $selfie
  * @property int|null $check_photo_status
@@ -41,6 +42,7 @@ class Posts extends \yii\db\ActiveRecord
             [['name'], 'string', 'max' => 60],
             [['phone'], 'string', 'max' => 20],
             [['about'], 'string', 'max' => 255],
+            [['video'], 'string', 'max' => 122],
         ];
     }
 

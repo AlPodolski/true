@@ -88,32 +88,48 @@ $this->title = 'Девушки Москвы';
                                 </tr>
                                 <tr><td><?php echo  isset($postRating['clean_marc'] ) ? $postRating['clean_marc']  : "-";?></td>
                                     <td><?php echo  isset($postRating['service_marc'] ) ? $postRating['service_marc']  : "-";?></td>
-                                    <td><?php echo  isset($postRating['happy_marc_count'] ) ? $postRating['happy_marc_count']  : "-";?></td>
                                     <td><?php echo  isset($postRating['not_happy_marc_count'] ) ? $postRating['not_happy_marc_count']  : "-";?></td>
+                                    <td><?php echo  isset($postRating['happy_marc_count'] ) ? $postRating['happy_marc_count']  : "-";?></td>
                                 </tr>
                             </table>
                         </div>
                         <div class="post-marc-block">
-                            <div class="indi-marc post-marc red-post-marc">
-                                <img src="img/user(1)1.png" alt="">
-                                индивидуалка
-                            </div>
-                            <div class="indi-marc post-marc blue-post-marc">
-                                <img src="img/verified1.png" alt="">
-                                фото реальное
-                            </div>
+                            <?php if ($post['category'] == 1) : ?>
+                                <div class="indi-marc post-marc red-post-marc">
+                                    <img src="img/user(1)1.png" alt="">
+                                    индивидуалка
+                                </div>
+                            <?php else : ?>
+                                <div class="indi-marc post-marc red-post-marc">
+                                    <img src="img/star(2)1.png" alt="">
+                                    салон
+                                </div>
+                            <?php endif; ?>
+                            <?php if ($post['check_photo_status'] == 1) : ?>
+                                <div class="indi-marc post-marc blue-post-marc">
+                                    <img src="img/verified1.png" alt="">
+                                    фото реальное
+                                </div>
+                            <?php endif; ?>
                             <div class="indi-marc post-marc blue-post-marc">
                                 <img src="img/photo-camera1.png" alt="">
-                                есть селфи
+                                <?php if (!$post['selfie']) : ?>
+                                    нет
+                                <?php else : ?>
+                                    есть
+                                <?php endif; ?>
+                                селфи
                             </div>
                             <div class="indi-marc post-marc red-post-marc">
                                 <img src="img/video-player1.png" alt="">
-                                нет видео
+                                <?php if (!$post['video']) : ?>
+                                    нет
+                                <?php else : ?>
+                                    есть
+                                <?php endif; ?>
+                                видео
                             </div>
-                            <div class="indi-marc post-marc red-post-marc">
-                                <img src="img/star(2)1.png" alt="">
-                                салон
-                            </div>
+
                         </div>
                     </div>
                     <div class="price">

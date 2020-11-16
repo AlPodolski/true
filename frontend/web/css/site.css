@@ -698,6 +698,7 @@ h1 , .big-red-text{
 }
 .post-marc-block{
     padding: 22px 0px 15px 0px;
+    min-height: 144px;
 }
 .post-marc{
     border-radius: 60px;
