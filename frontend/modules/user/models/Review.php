@@ -38,6 +38,11 @@ class Review extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getServiceMarc()
+    {
+        return $this->hasMany(ServiceReviews::class, ['post_id' => 'id']);
+    }
+
     /**
      * {@inheritdoc}
      */

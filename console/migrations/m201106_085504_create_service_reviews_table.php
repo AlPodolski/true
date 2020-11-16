@@ -3,19 +3,19 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `{{%review_items}}`.
+ * Handles the creation of table `{{%service_reviews}}`.
  */
-class m201105_124030_create_review_items_table extends Migration
+class m201106_085504_create_service_reviews_table extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->createTable('{{%review_marcs}}', [
+        $this->createTable('{{%service_reviews}}', [
             'id' => $this->primaryKey(),
-            'review_id' => $this->tinyInteger(),
             'post_id' => $this->integer(),
+            'service_id' => $this->smallInteger(),
             'marc' => $this->tinyInteger(),
         ]);
     }
@@ -25,6 +25,6 @@ class m201105_124030_create_review_items_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('{{%review_items}}');
+        $this->dropTable('{{%service_reviews}}');
     }
 }

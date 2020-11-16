@@ -11,12 +11,11 @@ class PostRatingHelper
     public static function getPostRating($postId)
     {
 
-        $postReview = Review::find()->where(['post_id' => $postId])->asArray()->all();
+        $postReview = Review::find()->where(['post_id' => $postId])->with('serviceMarc')->asArray()->all();
 
         if (($reviewCount = count($postReview)) == 0 ) return 0;
-
+        $service_marc = self::getAverageServiceRating( ArrayHelper::getColumn($postReview, 'serviceMarc'));
         $photo_marc = self::getAverageRating($reviewCount, ArrayHelper::getColumn($postReview, 'photo_marc'));
-        $service_marc = self::getAverageRating($reviewCount, ArrayHelper::getColumn($postReview, 'service_marc'));
         $total_marc = self::getAverageRating($reviewCount, ArrayHelper::getColumn($postReview, 'total_marc'));
         $clean_marc = self::getAverageRating($reviewCount, ArrayHelper::getColumn($postReview, 'clean'));
 
@@ -25,7 +24,7 @@ class PostRatingHelper
             'service_marc' => $service_marc,
             'total_marc' => $total_marc,
             'clean_marc' => $clean_marc,
-            'total_rating' => self::getTotalRating($photo_marc, $service_marc,$total_marc )
+            'total_rating' => self::getTotalRating($photo_marc, $service_marc,$total_marc , $clean_marc)
         );
 
         return $result;
@@ -42,6 +41,29 @@ class PostRatingHelper
 
         }
 
+        return \round($averageRating / $total , 1);
+
+    }
+    public static function getAverageServiceRating( $marc)
+    {
+        $averageRating = 0;
+        $total = 0;
+
+        foreach ($marc as $item){
+
+            if (\is_array($item)){
+
+                foreach ($item as $value){
+
+                    $total++;
+
+                    $averageRating = $averageRating + $value['marc'];
+
+                }
+
+            }
+
+        }
         return \round($averageRating / $total , 1);
 
     }

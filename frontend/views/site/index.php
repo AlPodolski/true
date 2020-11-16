@@ -86,7 +86,11 @@ $this->title = 'Девушки Москвы';
                                     <th>Жалобы</th>
                                     <th>Довольных гостей</th>
                                 </tr>
-                                <tr><td><?php echo  isset($postRating['clean_marc'] ) ? $postRating['clean_marc']  : "-";?></td><td>7,5</td><td>20</td><td>0</td></tr>
+                                <tr><td><?php echo  isset($postRating['clean_marc'] ) ? $postRating['clean_marc']  : "-";?></td>
+                                    <td><?php echo  isset($postRating['service_marc'] ) ? $postRating['service_marc']  : "-";?></td>
+                                    <td>20</td>
+                                    <td>0</td>
+                                </tr>
                             </table>
                         </div>
                         <div class="post-marc-block">
