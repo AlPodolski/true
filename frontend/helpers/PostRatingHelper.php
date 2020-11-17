@@ -12,7 +12,7 @@ class PostRatingHelper
     public static function getPostRating($postId)
     {
 
-        $postReview = Review::find()->where(['post_id' => $postId])->with('serviceMarc')->asArray()->all();
+        $postReview = Review::find()->where(['post_id' => $postId])->with('serviceMarc', 'author')->asArray()->all();
 
         if (($reviewCount = count($postReview)) == 0 ) return 0;
         $service_marc = self::getAverageServiceRating( ArrayHelper::getColumn($postReview, 'serviceMarc'));
@@ -23,6 +23,7 @@ class PostRatingHelper
         $not_happy_marc_count = self::countHappy(ArrayHelper::getColumn($postReview, 'is_happy'), 0);
 
         return array(
+            'review' => $postReview,
             'photo_marc' => $photo_marc,
             'service_marc' => $service_marc,
             'total_marc' => $total_marc,
