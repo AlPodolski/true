@@ -5,6 +5,7 @@ namespace frontend\helpers;
 
 use frontend\modules\user\models\Review;
 use yii\helpers\ArrayHelper;
+use function Symfony\Component\String\s;
 
 class PostRatingHelper
 {
@@ -50,6 +51,9 @@ class PostRatingHelper
 
     public static function getAverageRating($total, $marc)
     {
+
+        if (!$marc) return 0;
+
         $averageRating = 0;
 
         foreach ($marc as $item){
@@ -99,6 +103,11 @@ class PostRatingHelper
 
         return \round($total / \count($arguments), 1);
 
+    }
+
+    public static function setPercentRating($rating)
+    {
+        return $rating * 10;
     }
 
 }

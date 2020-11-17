@@ -150,72 +150,72 @@ $(document).ready(main);
  * @author David Deutsch
  * @license The MIT License (MIT)
  */
-;/*(function($, window, document, undefined) {
+;(function($, window, document, undefined) {
     'use strict';
 
-    /!**
+    /**
      * Creates the navigation plugin.
      * @class The Navigation Plugin
      * @param {Owl} carousel - The Owl Carousel.
-     *!/
+     */
     var Navigation = function(carousel) {
-        /!**
+        /**
          * Reference to the core.
          * @protected
          * @type {Owl}
-         *!/
+         */
         this._core = carousel;
 
-        /!**
+        /**
          * Indicates whether the plugin is initialized or not.
          * @protected
          * @type {Boolean}
-         *!/
+         */
         this._initialized = false;
 
-        /!**
+        /**
          * The current paging indexes.
          * @protected
          * @type {Array}
-         *!/
+         */
         this._pages = [];
 
-        /!**
+        /**
          * All DOM elements of the user interface.
          * @protected
          * @type {Object}
-         *!/
+         */
         this._controls = {};
 
-        /!**
+        /**
          * Markup for an indicator.
          * @protected
          * @type {Array.<String>}
-         *!/
+         */
         this._templates = [];
 
-        /!**
+        /**
          * The carousel element.
          * @type {jQuery}
-         *!/
+         */
         this.$element = this._core.$element;
 
-        /!**
+        /**
          * Overridden methods of the carousel.
          * @protected
          * @type {Object}
-         *!/
+         */
         this._overrides = {
             next: this._core.next,
             prev: this._core.prev,
             to: this._core.to
         };
 
-        /!**
+        /**
          * All event handlers.
          * @protected
          * @type {Object}
-         *!/
+         */
         this._handlers = {
             'prepared.owl.carousel': $.proxy(function(e) {
                 if (e.namespace && this._core.settings.dotsData) {
@@ -265,11 +265,11 @@ $(document).ready(main);
         this.$element.on(this._handlers);
     };
 
-    /!**
+    /**
      * Default options.
      * @public
      * @todo Rename `slideBy` to `navBy`
-     *!/
+     */
     Navigation.Defaults = {
         nav: false,
         navText: [
@@ -294,10 +294,10 @@ $(document).ready(main);
         dotsContainer: false
     };
 
-    /!**
+    /**
      * Initializes the layout of the plugin and extends the carousel.
      * @protected
-     *!/
+     */
     Navigation.prototype.initialize = function() {
         var override,
             settings = this._core.settings;
@@ -341,7 +341,7 @@ $(document).ready(main);
             this.to(index, settings.dotsSpeed);
         }, this));
 
-        /!*$el.on('focusin', function() {
+        /*$el.on('focusin', function() {
             $(document).off(".carousel");
 
             $(document).on('keydown.carousel', function(e) {
@@ -352,7 +352,7 @@ $(document).ready(main);
                     $el.trigger('next.owl')
                 }
             });
-        });*!/
+        });*/
 
         // override public methods of the carousel
         for (override in this._overrides) {
@@ -360,10 +360,10 @@ $(document).ready(main);
         }
     };
 
-    /!**
+    /**
      * Destroys the plugin.
      * @protected
-     *!/
+     */
     Navigation.prototype.destroy = function() {
         var handler, control, property, override, settings;
         settings = this._core.settings;
@@ -386,10 +386,10 @@ $(document).ready(main);
         }
     };
 
-    /!**
+    /**
      * Updates the internal state.
      * @protected
-     *!/
+     */
     Navigation.prototype.update = function() {
         var i, j, k,
             lower = this._core.clones().length / 2,
@@ -422,11 +422,11 @@ $(document).ready(main);
         }
     };
 
-    /!**
+    /**
      * Draws the user interface.
      * @todo The option `dotsData` wont work.
      * @protected
-     *!/
+     */
     Navigation.prototype.draw = function() {
         var difference,
             settings = this._core.settings,
@@ -459,11 +459,11 @@ $(document).ready(main);
         }
     };
 
-    /!**
+    /**
      * Extends event data.
      * @protected
      * @param {Event} event - The event object which gets thrown.
-     *!/
+     */
     Navigation.prototype.onTrigger = function(event) {
         var settings = this._core.settings;
 
@@ -475,11 +475,11 @@ $(document).ready(main);
         };
     };
 
-    /!**
+    /**
      * Gets the current page position of the carousel.
      * @protected
      * @returns {Number}
-     *!/
+     */
     Navigation.prototype.current = function() {
         var current = this._core.relative(this._core.current());
         return $.grep(this._pages, $.proxy(function(page, index) {
@@ -487,11 +487,11 @@ $(document).ready(main);
         }, this)).pop();
     };
 
-    /!**
+    /**
      * Gets the current succesor/predecessor position.
      * @protected
      * @returns {Number}
-     *!/
+     */
     Navigation.prototype.getPosition = function(successor) {
         var position, length,
             settings = this._core.settings;
@@ -510,31 +510,31 @@ $(document).ready(main);
         return position;
     };
 
-    /!**
+    /**
      * Slides to the next item or page.
      * @public
      * @param {Number} [speed=false] - The time in milliseconds for the transition.
-     *!/
+     */
     Navigation.prototype.next = function(speed) {
         $.proxy(this._overrides.to, this._core)(this.getPosition(true), speed);
     };
 
-    /!**
+    /**
      * Slides to the previous item or page.
      * @public
      * @param {Number} [speed=false] - The time in milliseconds for the transition.
-     *!/
+     */
     Navigation.prototype.prev = function(speed) {
         $.proxy(this._overrides.to, this._core)(this.getPosition(false), speed);
     };
 
-    /!**
+    /**
      * Slides to the specified item or page.
      * @public
      * @param {Number} position - The position of the item or page.
      * @param {Number} [speed] - The time in milliseconds for the transition.
      * @param {Boolean} [standard=false] - Whether to use the standard behaviour or not.
-     *!/
+     */
     Navigation.prototype.to = function(position, speed, standard) {
         var length;
 
@@ -548,9 +548,9 @@ $(document).ready(main);
 
     $.fn.owlCarousel.Constructor.Plugins.Navigation = Navigation;
 
-})(window.Zepto || window.jQuery, window, document);*/
+})(window.Zepto || window.jQuery, window, document);
 
-/*
+
 $('.owl-carousel').owlCarousel({
     margin:10,
     autoplayTimeout:9000,
@@ -558,7 +558,7 @@ $('.owl-carousel').owlCarousel({
     nav : true,
     loop: true,
     items:1
-})*/
+})
 
 function show_otzivi_block(){
 
@@ -588,7 +588,6 @@ function show_anket_params_block(){
     }, 250);
 
 }
-
 function close_anket_params_block(){
 
     $('.anket-params-block').animate({
@@ -598,25 +597,3 @@ function close_anket_params_block(){
     }, 250);
 
 }
-
-$(document).ready(function () {
-
-    $('.city-search').bind("input", function () {
-
-        var city = this.value;
-
-        $.ajax({
-            type: 'POST',
-            url: "/city/search", //Путь к обработчику
-            data: 'city=' + city,
-            response: 'text',
-            dataType: "html",
-            cache: false,
-            success: function (data) {
-                $(".city-wrap").html(data).fadeIn(); //Выводим полученые данные в списке
-            }
-        })
-
-    });
-
-});

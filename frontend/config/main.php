@@ -41,6 +41,7 @@ return [
             'showScriptName' => false,
             'rules' => [
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/' => 'site/index',
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/post/<id:[0-9]+>' => 'post/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/city/search' => 'city/index',
             ],
         ],

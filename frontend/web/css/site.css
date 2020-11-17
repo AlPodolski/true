@@ -719,6 +719,9 @@ h1 , .big-red-text{
     background: #D1EDFE;
     color: #61AFF5;
 }
+.single-bottom-info .post-phone{
+    color: #F74952;
+}
 .price{
     background: #F74952;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -1277,7 +1280,7 @@ h1 , .big-red-text{
     top: 350px;
 }
 .single-bottom-info{
-    position: inherit;
+    position: inherit!important;
 }
 .single-bottom-info .phone-photo-count{
     color: #F74952;
@@ -1312,6 +1315,10 @@ h1 , .big-red-text{
     padding-left: 24px;
     padding-top: 12px;
     padding-bottom: 12px;
+}
+.single-bottom-info .post-top-info{
+    position: inherit!important;
+    bottom: 0;
 }
 .white-btn{
     display: inline-block;

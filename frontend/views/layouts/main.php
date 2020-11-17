@@ -354,30 +354,9 @@ AppAsset::register($this);
                 </div>
             </div>
         </div>
-        <div class="popular-btn-block">
-            <div class="popular-btn popular-btn-selected">Дешевые
-                <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6 0.353513L5.64649 0L3 2.64649L0.353513 0L0 0.353513L2.64649 3L0 5.64649L0.353513 6L3 3.35351L5.64649 6L6 5.64649L3.35351 3L6 0.353513Z" fill="white"/>
-                </svg>
-            </div>
-            <div class="popular-btn">Рядом</div>
-            <div class="popular-btn">Элитные</div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="text-block">
-                    Внимание!!! Мы создали портал который обеденяет
-                    всех любителей индивидуалок и поможет отличить
-                    фейковые анкеты от нормальных. Присоеденяйтесь
-                    к нам и делитесь проверенной информацией о
-                    телефонах и анкетах. Вместе мы сделаем этот рынок
-                    честным. Если вы первый раз на сайте прочитайте
-                    статьи котрые мы для вас подготовили.
-                </div>
-            </div>
-        </div>
+
     </div>
-    <div class="container">
+    <div class="container custom-container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>

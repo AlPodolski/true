@@ -51,6 +51,10 @@ class Posts extends \yii\db\ActiveRecord
         return $this->hasOne(Files::class, ['related_id' => 'id'])->andWhere(['related_class' => self::class])
             ->andWhere(['main' => 1]);
     }
+    public function getAllPhoto()
+    {
+        return $this->hasMany(Files::class, ['related_id' => 'id'])->andWhere(['related_class' => self::class]);
+    }
 
     public function getMetro()
     {
