@@ -129,7 +129,7 @@ $this->registerCssFile('/css/owl.theme.default.min.css');
         </div>
         <div class="d-flex otzivi-block-top-info">
             <div class="post-img">
-                <img src="/img/07e6075f95b802837603338a2b7864361.png" alt="">
+                <img src="<?php echo $post['avatar']['file'] ?>" alt="">
             </div>
             <div class="red-bold-text">
                 <?php echo $countReview ?> <?php echo getNumEnding($countReview, ['отзыв','отзыва', 'отзывов']); ?>
@@ -320,39 +320,55 @@ $this->registerCssFile('/css/owl.theme.default.min.css');
                 Параметры анкеты
             </div>
             <div class="post-img">
-                <img src="/img/07e6075f95b802837603338a2b7864361.png" alt="">
+                <img src="<?php echo $post['avatar']['file'] ?>" alt="">
             </div>
             <div class="red-bold-text">
-                Олег
+                <?php echo $post['name'] ?>
             </div>
         </div>
         <div class="main-params-wrap d-flex">
             <div class="main-param-item">
-                <img src="img/calendar.png" alt="">
-                23
+                <img src="/img/calendar.png" alt="">
+                <?php echo $post['age'] ? $post['age']  : "-";?>
             </div>
             <div class="main-param-item">
-                <img src="img/2-Ruler.png" alt="">
-                175 см
+                <img src="/img/2-Ruler.png" alt="">
+                <?php echo $post['rost'] ? $post['rost']  : "-";?> см
             </div>
             <div class="main-param-item">
-                <img src="img/weight-scale1.png" alt="">
-                55 кг
+                <img src="/img/weight-scale1.png" alt="">
+                <?php echo $post['ves'] ? $post['ves']  : "-";?> кг
             </div>
             <div class="main-param-item">
-                <img src="img/women-brassiere1.png" alt="">
-                4
+                <img src="/img/women-brassiere1.png" alt="">
+                <?php echo $post['ves'] ? $post['ves']  : "-";?>
             </div>
         </div>
         <div class="user-service-block">
-            <div class="user-service-item">
-                    <span class="red-text">
-                        Место встречи:
-                    </span>
-                <span class="grey-text">
-                        Аппартаменты, выезд в дом,сауны, гостиницы.
-                    </span>
-            </div>
+
+            <?php if ($post['place']) : ?>
+
+                <div class="user-service-item">
+                        <span class="red-text">
+                            Место встречи:
+                        </span>
+                    <span class="grey-text">
+
+                        <?php $lastElement = array_pop($post['place']); ?>
+
+                        <?php foreach ($post['place'] as $item) : ?>
+
+                            <?php echo $item['value'] ?>,
+
+                        <?php endforeach; ?>
+
+                        <?php echo $lastElement['value'] ?>.
+
+                        </span>
+                </div>
+
+            <?php endif; ?>
+
             <div class="user-service-item">
                 <span class="red-text">
                     Услуги:
@@ -366,13 +382,8 @@ $this->registerCssFile('/css/owl.theme.default.min.css');
                         Описание:
                     </span>
                 <span class="grey-text">
-                            Если Вы устали от нереализованных фантазий, позвони! Две подружки помогут
-                            тебе позабыть будни серых дней, снять усталость и окунуться в мир
-                            откровенного секса. Звони прямо сейчас! Программа будет
-                            интересной! Мы ждем только Тебя ! Страсть и разврат. .для
-                            искушенных есть особенная программа.Плюс у нас есть минибар
-                            и много интересных игрушек)
-                        </span>
+                    <?php echo $post['about'] ?>
+                </span>
             </div>
         </div>
     </div>

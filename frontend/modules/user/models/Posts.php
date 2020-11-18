@@ -2,6 +2,7 @@
 
 namespace frontend\modules\user\models;
 
+use common\models\Place;
 use frontend\models\Files;
 use frontend\models\Metro;
 use frontend\models\UserMetro;
@@ -59,6 +60,16 @@ class Posts extends \yii\db\ActiveRecord
     public function getMetro()
     {
         return $this->hasMany(Metro::class, ['id' => 'metro_id'])->via('userToMetroRelations');
+    }
+
+    public function getPlace()
+    {
+        return $this->hasMany(Place::class, ['id' => 'place_id'])->via('userToPlaceRelations');
+    }
+
+    public function getUserToPlaceRelations()
+    {
+        return $this->hasMany(UserPlace::class, ['post_id' => 'id']);
     }
 
     /**
