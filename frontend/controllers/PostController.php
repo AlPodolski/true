@@ -13,7 +13,7 @@ class PostController extends Controller
     public function actionIndex($city, $id)
     {
         $post = Posts::find()->where(['id' => $id])
-            ->with('allPhoto', 'metro', 'avatar', 'place')
+            ->with('allPhoto', 'metro', 'avatar', 'place', 'service')
             ->asArray()->one();
 
         $serviceList = ServiceReviewHelper::getPostServiceReview($id);

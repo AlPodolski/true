@@ -368,15 +368,29 @@ $this->registerCssFile('/css/owl.theme.default.min.css');
                 </div>
 
             <?php endif; ?>
+            <?php if ($post['service']) : ?>
 
-            <div class="user-service-item">
-                <span class="red-text">
-                    Услуги:
-                </span>
-                <span class="grey-text">
-                    Кунилингус, ролевые игры, лёгкая доминация, секс классика, Минет без резинки, Минет в резинки, массаж, окончание на грудь.
-                </span>
-            </div>
+                <div class="user-service-item">
+                        <span class="red-text">
+                            Услуги:
+                        </span>
+                    <span class="grey-text">
+
+                        <?php $lastElement = array_pop($post['service']); ?>
+
+                        <?php foreach ($post['service'] as $item) : ?>
+
+                            <?php echo $item['value'] ?>,
+
+                        <?php endforeach; ?>
+
+                        <?php echo $lastElement['value'] ?>.
+
+                        </span>
+                </div>
+
+            <?php endif; ?>
+
             <div class="user-service-item">
                     <span class="red-text">
                         Описание:
