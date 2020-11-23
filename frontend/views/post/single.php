@@ -303,8 +303,201 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
         </div>
     </div>
     <div id="menu1" class="container tab-pane fade"><br>
-        <h3>Menu 1</h3>
-        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <div class="otzivi-block-desc">
+
+            <div class="row">
+                <div class="col-4">
+                    <div class="d-flex otzivi-block-top-info">
+                        <div class="post-img">
+                            <img src="<?php echo $post['avatar']['file'] ?>" alt="">
+                        </div>
+                        <div class="grey-big-text">
+                            <?php if ($postRating) echo $postRating['total_rating']; ?>/10
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div class="rating-block">
+                        <div class="row">
+                            <div class="col-12 rating-item">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="left">
+                                            Фото
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <?php $photoRating = \frontend\helpers\PostRatingHelper::setPercentRating($postRating['photo_marc']) ?>
+                                        <div class="right" >
+                                            <?php echo $photoRating?>%
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="rating-wrap">
+                                            <div class="rating" style="width: <?php echo $photoRating?>%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 rating-item">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="left">
+                                            Сервис
+                                        </div>
+                                    </div>
+                                    <?php $serviceRating = \frontend\helpers\PostRatingHelper::setPercentRating($postRating['service_marc']) ?>
+                                    <div class="col-4">
+                                        <div class="right">
+                                            <?php echo $serviceRating?>%
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="rating-wrap">
+                                            <div class="rating" style="width: <?php echo $serviceRating?>%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 rating-item">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="left">
+                                            Общая
+                                        </div>
+                                    </div>
+                                    <?php $totalRating = \frontend\helpers\PostRatingHelper::setPercentRating($postRating['total_marc']) ?>
+                                    <div class="col-4">
+                                        <div class="right">
+                                            <?php echo $totalRating?>%
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="rating-wrap">
+                                            <div class="rating" style="width: <?php echo $totalRating?>%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <?php foreach ($serviceList as $service) : ?>
+
+                                <?php if ($service['review']) : ?>
+
+                                    <?php $serviceRating = \frontend\helpers\PostRatingHelper::setPercentRating($service['review']) ?>
+
+                                    <div class="col-12 rating-item">
+                                        <div class="row">
+                                            <div class="col-8">
+                                                <div class="left">
+                                                    <?php echo $service['value'] ?>
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="right">
+                                                    <?php echo $serviceRating?>%
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="rating-wrap">
+                                                    <div class="rating" style="width: <?php echo $serviceRating?>%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <?php endif; ?>
+
+                            <?php endforeach; ?>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="red-bold-text">
+                    <?php echo $countReview ?> <?php echo getNumEnding($countReview, ['отзыв','отзыва', 'отзывов']); ?>
+                </div>
+            </div>
+
+            <?php foreach ( $postRating['review'] as $item) : ?>
+
+                <div class="review-block">
+                    <div class="review-item">
+                        <div class="col-12">
+                            <div class="review-item-wrap">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-1">
+                                                <div class="author-img">
+                                                    <img src="<?php echo $item['author']['avatar']['file'] ?>" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="col-2">
+                                                <div class="author-name">
+                                                    <?php echo $item['author']['username'] ?>
+                                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M10.0943 4.77885C10.308 4.99248 10.308 5.33876 10.0943 5.55228L6.42557 9.22115C6.21194 9.43466 5.86577 9.43466 5.65215 9.22115L3.90567 7.47456C3.69205 7.26105 3.69205 6.91476 3.90567 6.70125C4.11919 6.48763 4.46547 6.48763 4.67899 6.70125L6.0388 8.06107L9.32091 4.77885C9.53453 4.56534 9.88081 4.56534 10.0943 4.77885ZM14 7C14 10.8692 10.8687 14 7 14C3.13075 14 0 10.8687 0 7C0 3.13075 3.13129 0 7 0C10.8692 0 14 3.13129 14 7ZM12.9062 7C12.9062 3.73531 10.2643 1.09375 7 1.09375C3.73531 1.09375 1.09375 3.73573 1.09375 7C1.09375 10.2647 3.73573 12.9062 7 12.9062C10.2647 12.9062 12.9062 10.2643 12.9062 7Z" fill="#31DA92"/>
+                                                    </svg>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="date">
+                                                    <div class="date-text">
+
+                                                        <?php
+
+                                                        $day = time() - $item['created_at'];
+
+                                                        $day = (intdiv($day, 3600 * 24));
+
+                                                        ?>
+
+                                                        <?php echo $day ?> <?php echo getNumEnding($day, ['день','дня', 'дней']); ?>
+
+                                                        назад
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12"></div>
+                                </div>
+                                <div class="review-text">
+                                    <?php echo $item['text'] ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <?php endforeach; ?>
+
+            <div data-toggle="modal" data-target="#exampleModal" class="add-review-btn-wrap">
+                <div class="add-review-btn">
+                    <div class="bg">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19.2188 9.21875H10.7812V0.78125C10.7812 0.349766 10.4315 0 10 0C9.56852 0 9.21875 0.349766 9.21875 0.78125V9.21875H0.78125C0.349766 9.21875 0 9.56852 0 10C0 10.4315 0.349766 10.7812 0.78125 10.7812H9.21875V19.2188C9.21875 19.6502 9.56852 20 10 20C10.4315 20 10.7812 19.6502 10.7812 19.2188V10.7812H19.2188C19.6502 10.7812 20 10.4315 20 10C20 9.56852 19.6502 9.21875 19.2188 9.21875Z" fill="white"/>
+                        </svg>
+                        <span class="text">
+                            отзыв
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div id="menu2" class="container tab-pane fade"><br>
         <h3>Menu 2</h3>
