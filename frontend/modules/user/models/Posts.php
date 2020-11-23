@@ -4,6 +4,7 @@ namespace frontend\modules\user\models;
 
 use common\models\Place;
 use common\models\Service;
+use common\models\Sites;
 use frontend\models\Files;
 use frontend\models\Metro;
 use frontend\models\UserMetro;
@@ -76,6 +77,11 @@ class Posts extends \yii\db\ActiveRecord
     public function getService()
     {
         return $this->hasMany(Service::class, ['id' => 'service_id'])->via('userToServiceRelations');
+    }
+
+    public function getSites()
+    {
+        return $this->hasMany(PostSites::class, ['post_id' => 'id'])->with('site');
     }
 
     public function getUserToServiceRelations()

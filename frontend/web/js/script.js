@@ -551,13 +551,32 @@ $(document).ready(main);
 })(window.Zepto || window.jQuery, window, document);
 
 
-$('.owl-carousel').owlCarousel({
+$('.owl-carousel-main').owlCarousel({
     margin:10,
     autoplayTimeout:9000,
     autoplay:true,
     nav : true,
     loop: true,
     items:1
+})
+$('.owl-carousel-bottom').owlCarousel({
+    items: 3,
+    margin: 16,
+    loop: true,
+    nav: true,
+    navText: ['', ''],
+    navElement: 'a href="#"></a',
+    responsive: {
+        1024: {
+            items: 3
+        },
+        768: {
+            items: 3
+        },
+        0: {
+            items: 2
+        }
+    }
 })
 
 function show_otzivi_block(){
@@ -597,3 +616,17 @@ function close_anket_params_block(){
     }, 250);
 
 }
+$( function() {
+
+    var img = $('#bottom-imgs').attr('data-img');
+
+    $('#bottom-imgs').imagesGrid({
+        images: img.split(','),
+        cells: 2,
+        getViewAllText: function(imagesCount) {
+            return 'Все ' + imagesCount + '';
+        },
+        align: true
+    });
+
+});
