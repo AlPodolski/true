@@ -18,7 +18,13 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
             <div class="col-12 col-xl-4 position-relative">
                 <div class="owl-carousel owl-theme owl-carousel-main">
                     <?php foreach ($post['allPhoto'] as $item) : ?>
-                        <img src="<?php echo $item['file'] ?>" alt="">
+
+                        <?php if ($item['type'] != \frontend\models\Files::SELPHY_TYPE) :  ?>
+
+                            <img src="<?php echo $item['file'] ?>" alt="">
+
+                        <?php endif; ?>
+
                     <?php endforeach; ?>
                 </div>
                 <?php if ($post['check_photo_status'] == 1 and $post['category'] == 1) : ?>
@@ -113,11 +119,11 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                             </table>
                         </div>
                         <div class="btn-wrap">
-                            <?php if ($post['selfie']) : ?>
-                                <div class="orange-btn selfi-btn">
-                                    <img src="/img/camera(1)1.png" alt="">Смотеть селфи
-                                </div>
-                            <?php endif; ?>
+
+                            <div class="orange-btn selfi-btn" data-toggle="modal" data-target="#selfy-modal">
+                                <img src="/img/camera(1)1.png" alt="">Смотеть селфи
+                            </div>
+
                             <?php if ($post['video']) : ?>
                                 <div class="white-btn video-btn" data-toggle="modal" data-target="#video-modal">
                                     <img src="/img/play1.png" alt="">Смотреть видео
@@ -234,7 +240,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                 <?php foreach ($post['allPhoto'] as $item) : ?>
 
-                    <?php $imgs[] = $item['file'] ?>
+                    <?php if ($item['type'] != \frontend\models\Files::SELPHY_TYPE) $imgs[] = $item['file']  ?>
 
                 <?php endforeach; ?>
 
@@ -302,7 +308,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
         </div>
     </div>
-    <div id="menu1" class="container tab-pane fade"><br>
+    <div id="menu1" class="container tab-pane fade bottom-gallery"><br>
         <div class="otzivi-block-desc">
 
             <div class="row">
@@ -894,6 +900,35 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                         <source src="<?php echo $post['video'] ?>" type='video/webm; codecs="vp8, vorbis"'>
                     </video>
                 <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="selfy-modal" tabindex="-1" role="dialog" aria-labelledby="selfy-modal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <?php $imgs = array(); ?>
+
+                <?php foreach ($post['allPhoto'] as $item) : ?>
+
+                    <?php
+
+                        if ($item['type'] == \frontend\models\Files::SELPHY_TYPE) $imgs[] = $item['file']
+
+                    ?>
+
+
+                <?php endforeach; ?>
+
+                <div data-img="<?php echo implode(',' , $imgs) ?>" id="selfy-imgs"></div>
+
             </div>
         </div>
     </div>

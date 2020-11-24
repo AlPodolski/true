@@ -12,9 +12,13 @@ use Yii;
  * @property string|null $related_class связанный класс
  * @property string|null $file путь к файлу
  * @property int|null $main является ли изображение главным 0 нет 1 да
+ * @property int|null $type Тип файла
  */
 class Files extends \yii\db\ActiveRecord
 {
+
+    const SELPHY_TYPE = 1;
+
     /**
      * {@inheritdoc}
      */
@@ -29,7 +33,7 @@ class Files extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['related_id', 'main'], 'integer'],
+            [['related_id', 'main', 'type'], 'integer'],
             [['related_class', 'file'], 'string', 'max' => 122],
         ];
     }

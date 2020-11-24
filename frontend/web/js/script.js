@@ -630,3 +630,18 @@ $( function() {
     });
 
 });
+
+$( function() {
+
+    var img = $('#selfy-imgs').attr('data-img');
+
+    $('#selfy-imgs').imagesGrid({
+        images: img.split(','),
+        cells: 2,
+        getViewAllText: function(imagesCount) {
+            return 'Все ' + imagesCount + '';
+        },
+        align: true
+    });
+
+});

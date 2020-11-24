@@ -22,7 +22,6 @@ use frontend\models\UserMetro;
  * @property string|null $about
  * @property string|null $video
  * @property int|null $category
- * @property int|null $selfie
  * @property int|null $check_photo_status
  */
 class Posts extends \yii\db\ActiveRecord
@@ -41,7 +40,7 @@ class Posts extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['city_id', 'user_id', 'created_at', 'updated_at', 'category', 'selfie', 'check_photo_status'], 'integer'],
+            [['city_id', 'user_id', 'created_at', 'updated_at', 'category', 'check_photo_status'], 'integer'],
             [['name'], 'string', 'max' => 60],
             [['phone'], 'string', 'max' => 20],
             [['about'], 'string', 'max' => 255],

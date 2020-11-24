@@ -631,6 +631,9 @@ h1 , .big-red-text{
     line-height: 141.4%;
     color: #000000;
 }
+.imgs-grid-modal{
+    z-index: 10000;
+}
 .icon{
     width: 15px;
     height: 15px;
