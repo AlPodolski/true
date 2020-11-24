@@ -306,7 +306,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
         <div class="otzivi-block-desc">
 
             <div class="row">
-                <div class="col-4">
+                <div class="col-4 bottom-gallery">
                     <div class="d-flex otzivi-block-top-info">
                         <div class="post-img">
                             <img src="<?php echo $post['avatar']['file'] ?>" alt="">
@@ -423,7 +423,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                 </div>
             </div>
 
-            <div class="col-12">
+            <div class="col-12 bottom-gallery">
                 <div class="red-bold-text">
                     <?php echo $countReview ?> <?php echo getNumEnding($countReview, ['отзыв','отзыва', 'отзывов']); ?>
                 </div>
@@ -433,7 +433,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                 <div class="review-block">
                     <div class="review-item">
-                        <div class="col-12">
+                        <div class="col-12 bottom-gallery">
                             <div class="review-item-wrap">
                                 <div class="row">
                                     <div class="col-12">
@@ -499,9 +499,104 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
             </div>
         </div>
     </div>
-    <div id="menu2" class="container tab-pane fade"><br>
-        <h3>Menu 2</h3>
-        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+    <div id="menu2" class="container tab-pane fade bottom-gallery"><br>
+        <div class="desc-params ">
+            <div class="row">
+                <div class="col-4 bottom-gallery">
+                    <div class="d-flex otzivi-block-top-info">
+                        <div class="post-img">
+                            <img src="<?php echo $post['avatar']['file'] ?>" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="red-bold-text">
+                                <?php echo $post['name'] ?>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="main-params-wrap bottom-gallery d-flex">
+                                <div class="main-param-item">
+                                    <img src="/img/calendar.png" alt="">
+                                    <?php echo $post['age'] ? $post['age']  : "-";?>
+                                </div>
+                                <div class="main-param-item">
+                                    <img src="/img/2-Ruler.png" alt="">
+                                    <?php echo $post['rost'] ? $post['rost']  : "-";?> см
+                                </div>
+                                <div class="main-param-item">
+                                    <img src="/img/weight-scale1.png" alt="">
+                                    <?php echo $post['ves'] ? $post['ves']  : "-";?> кг
+                                </div>
+                                <div class="main-param-item">
+                                    <img src="/img/women-brassiere1.png" alt="">
+                                    <?php echo $post['ves'] ? $post['ves']  : "-";?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="user-service-block bottom-gallery">
+
+                <?php if ($post['place']) : ?>
+
+                    <div class="user-service-item">
+                        <span class="red-text">
+                            Место встречи:
+                        </span>
+                        <span class="grey-text">
+
+                        <?php $lastElement = array_pop($post['place']); ?>
+
+                            <?php foreach ($post['place'] as $item) : ?>
+
+                                <?php echo $item['value'] ?>,
+
+                            <?php endforeach; ?>
+
+                            <?php echo $lastElement['value'] ?>.
+
+                        </span>
+                    </div>
+
+                <?php endif; ?>
+                <?php if ($post['service']) : ?>
+
+                    <div class="user-service-item">
+                        <span class="red-text">
+                            Услуги:
+                        </span>
+                        <span class="grey-text">
+
+                        <?php $lastElement = array_pop($post['service']); ?>
+
+                            <?php foreach ($post['service'] as $item) : ?>
+
+                                <?php echo $item['value'] ?>,
+
+                            <?php endforeach; ?>
+
+                            <?php echo $lastElement['value'] ?>.
+
+                        </span>
+                    </div>
+
+                <?php endif; ?>
+
+                <div class="user-service-item">
+                    <span class="red-text">
+                        Описание:
+                    </span>
+                    <span class="grey-text">
+                    <?php echo $post['about'] ?>
+                </span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
     <div class="otzivi-block">
