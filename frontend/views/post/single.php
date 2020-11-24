@@ -119,7 +119,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                                 </div>
                             <?php endif; ?>
                             <?php if ($post['video']) : ?>
-                                <div class="white-btn video-btn">
+                                <div class="white-btn video-btn" data-toggle="modal" data-target="#video-modal">
                                     <img src="/img/play1.png" alt="">Смотреть видео
                                 </div>
                             <?php endif; ?>
@@ -599,7 +599,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
         </div>
     </div>
 </div>
-    <div class="otzivi-block">
+<div class="otzivi-block">
         <div class="back-block" onclick="close_otzivi_block()">
             <img src="/img/back-red.png" alt="">
         </div>
@@ -787,7 +787,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
             </div>
         </div>
     </div>
-    <div class="anket-params-block">
+<div class="anket-params-block">
         <div class="back-block" onclick="close_anket_params_block()">
             <img src="/img/back-red.png" alt="">
         </div>
@@ -877,3 +877,24 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
             </div>
         </div>
     </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="video-modal" tabindex="-1" role="dialog" aria-labelledby="video-modal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <?php if ($post['video']) : ?>
+                    <video controls="controls" class="video">
+                        <source src="<?php echo $post['video'] ?>" type='video/webm; codecs="vp8, vorbis"'>
+                    </video>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</div>

@@ -570,7 +570,10 @@ h1 , .big-red-text{
     padding-bottom: 28px;
     padding-top: 20px;
 }
-.site-item{
+.site-item:last-child{
+    border-bottom: none;
+}
+.modal-header{
     border-bottom: none;
 }
 .bottom-gallery{
@@ -593,6 +596,9 @@ h1 , .big-red-text{
 }
 .otzivi-block-desc .red-bold-text{
     margin-bottom: 15px;
+}
+.video{
+    max-width: 100%;
 }
 .big-text{
     font-family: Ubuntu;
