@@ -634,6 +634,28 @@ h1 , .big-red-text{
 .imgs-grid-modal{
     z-index: 10000;
 }
+.favorite-btn-wrap.favorite .add{
+    display: none;
+}
+.favorite-btn-wrap .added{
+    display: none;
+}
+.favorite-btn-wrap.favorite .added{
+    display: block;
+}
+.favorite-btn-wrap{
+    position: absolute;
+    top: 25px;
+    z-index: 2;
+    right: 25px;
+    box-shadow: 0px 4px 15px rgba(31, 31, 31, 0.21);
+    width: 59px;
+    height: 59px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .icon{
     width: 15px;
     height: 15px;

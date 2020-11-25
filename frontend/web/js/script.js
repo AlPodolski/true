@@ -645,3 +645,21 @@ $( function() {
     });
 
 });
+
+function favorite(object){
+
+    var id = $(object).attr('data-id');
+
+    $.ajax({
+        type: 'POST',
+        url: "/favorite", //Путь к обработчику
+        data: 'id=' + id,
+        response: 'text',
+        dataType: "html",
+        cache: false,
+        success: function (data) {
+            $(object).toggleClass('favorite');
+        }
+    })
+
+}

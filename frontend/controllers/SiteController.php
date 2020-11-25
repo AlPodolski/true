@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use frontend\helpers\FavoriteHelper;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use frontend\modules\user\models\Posts;
@@ -86,6 +87,15 @@ class SiteController extends Controller
             'prPosts' => $prPosts,
             'newPosts' => $newPosts,
         ]);
+    }
+    /**
+     * Displays homepage.
+     *
+     * @return mixed
+     */
+    public function actionFavorite($city)
+    {
+        return FavoriteHelper::Favorite(Yii::$app->request->post('id'));
     }
 
     /**

@@ -147,6 +147,28 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                             <div>Параметры анкеты</div>
                             <div class="show-info show-info-grey"></div>
                         </div>
+
+                        <?php
+
+                            $favoriteClass = '';
+
+                            if(\frontend\helpers\FavoriteHelper::isFavorite($post['id'])) $favoriteClass = 'favorite';
+
+                        ?>
+
+                        <div onclick="favorite(this)" class="favorite-btn-wrap <?php echo $favoriteClass ?>"
+                             data-id="<?php echo $post['id'] ?>">
+
+                            <div class="favorite-btn">
+
+                                <div class="add">
+                                    <img src="/img/heart1.png" alt="">
+                                </div>
+                                <div class="added">
+                                    <img src="/img/heart2.png" alt="">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-3">
                         <div class="desctop-rating-info">
