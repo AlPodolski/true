@@ -11,7 +11,13 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
+    'modules' => [
+        'user' => [
+            'class' => 'frontend\modules\user\User',
+        ],
+    ],
     'components' => [
+
         'request' => [
             'csrfParam' => '_csrf-frontend',
         ],
@@ -44,6 +50,7 @@ return [
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/favorite' => 'site/favorite',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/post/<id:[0-9]+>' => 'post/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/city/search' => 'city/index',
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/review/add' => 'user/review/add',
             ],
         ],
     ],

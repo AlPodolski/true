@@ -12,12 +12,10 @@ use Yii;
  * @property int|null $post_id
  * @property string|null $text
  * @property int|null $photo_marc
- * @property int|null $service_marc
+ * @property int|null $clean
  * @property int|null $total_marc
- * @property int|null $s_klass_marc
- * @property int|null $mbr_marc
  * @property int|null $author
- * @property int|null $finish_v_rot_marc
+ * @property int|null $created_at
  */
 class Review extends \yii\db\ActiveRecord
 {

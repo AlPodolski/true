@@ -643,6 +643,9 @@ h1 , .big-red-text{
 .favorite-btn-wrap.favorite .added{
     display: block;
 }
+.reting-item .form-group{
+    margin-bottom: 0;
+}
 .favorite-btn-wrap{
     position: absolute;
     top: 25px;
@@ -1454,6 +1457,7 @@ h1 , .big-red-text{
     display: inline-block;
     padding: 11px 8px 11px 11px;
     margin-right: 11px;
+    border: none;
 }
 .selfi-btn img , .white-btn img{
     position: relative;

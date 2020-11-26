@@ -5,6 +5,7 @@ namespace frontend\controllers;
 
 use frontend\modules\user\helpers\ServiceReviewHelper;
 use frontend\modules\user\models\Posts;
+use frontend\modules\user\models\ReviewForm;
 use yii\web\Controller;
 
 class PostController extends Controller
@@ -17,9 +18,13 @@ class PostController extends Controller
 
         $serviceList = ServiceReviewHelper::getPostServiceReview($id);
 
+        $postReviewForm = new ReviewForm();
+
         return $this->render('single', [
             'post' => $post,
             'serviceList' => $serviceList,
+            'id' => $id,
+            'postReviewForm' => $postReviewForm,
         ]);
 
     }
