@@ -3,6 +3,7 @@
 /* @var $post array */
 /* @var $serviceList array */
 /* @var $id integer */
+/* @var $serviceReviewFormForm \frontend\modules\user\models\ServiceReviewForm */
 /* @var $postReviewForm \frontend\modules\user\models\ReviewForm */
 
 use kartik\rating\StarRating;
@@ -17,6 +18,8 @@ $this->registerCssFile('/css/owl.theme.default.min.css');
 $this->registerCssFile('https://cdn.jsdelivr.net/gh/taras-d/images-grid/src/images-grid.min.css');
 
 $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
+
+$servicePostList = $post['service'];
 
 ?>
 
@@ -1059,12 +1062,34 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                             </div>
                         </div>
                     </div>
+
+
+                    <?php foreach ($servicePostList as $item) : ?>
                     <div class="col-12 reting-item">
                         <div class="row">
-                            <div class="col-6">Секс классический</div>
-                            <div class="col-6">тут звездочки</div>
+
+                                <div class="col-6"><?php echo $item['value']?></div>
+                                <div class="col-6"><?php
+
+                                    echo $form->field($serviceReviewFormForm, $item['id'])->widget(StarRating::className(), [
+                                        'value' => 8,
+                                        'pluginOptions' =>  [
+                                            'size' => 'xs',
+                                            'min' => 0,
+                                            'max' => 10,
+                                            'step' => 1,
+                                            'readonly' => false,
+                                            'showClear' => false,
+                                            'showCaption' => false,
+                                        ],
+                                    ])->label(false);
+
+                                    ?></div>
+
                         </div>
                     </div>
+
+                    <?php endforeach; ?>
 
 
                     <div class="col-12">
@@ -1077,6 +1102,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                         ?>
 
                     </div>
+
                     <div class="col-12">
                         <div class="send-btn-wrap">
                             <?= \yii\helpers\Html::submitButton('Опубликовать', ['class' => 'orange-btn']) ?>
