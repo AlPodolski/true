@@ -616,6 +616,25 @@ function close_anket_params_block(){
     }, 250);
 
 }
+
+function show_site_price_block(){
+
+    $('.site-price-block').animate({
+
+        left: '0px'
+
+    }, 250);
+
+}
+function close_site_price_block(){
+
+    $('.site-price-block').animate({
+
+        left: '-120%'
+
+    }, 250);
+
+}
 $( function() {
 
     var img = $('#bottom-imgs').attr('data-img');

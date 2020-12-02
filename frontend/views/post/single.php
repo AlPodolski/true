@@ -20,12 +20,12 @@ $this->registerCssFile('https://cdn.jsdelivr.net/gh/taras-d/images-grid/src/imag
 $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
 $servicePostList = $post['service'];
-
+$price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
 ?>
 
     <article class="single position-relative">
         <div class="row">
-            <div class="col-12 col-xl-4 position-relative">
+            <div class="col-12 col-lg-4 col-xl-4 position-relative">
                 <div class="owl-carousel owl-theme owl-carousel-main">
                     <?php foreach ($post['allPhoto'] as $item) : ?>
 
@@ -54,9 +54,9 @@ $servicePostList = $post['service'];
                 </div>
             </div>
             <a href="#" class="back position-absolute"></a>
-            <div class="single-bottom-info position-relative col-xl-8">
-                <div class="row height-100">
-                    <div class="col-9 single-post-info-wrap">
+            <div class="single-bottom-info position-relative  col-xl-8 col-lg-8">
+                <div class="row height-100 single-post-info-row">
+                    <div class="col-12 col-lg-9 single-post-info-wrap">
                         <div class="post-top-info">
                             <div class="phone-photo-count">
                                 <div class="row">
@@ -140,9 +140,9 @@ $servicePostList = $post['service'];
                                 </div>
                             <?php endif; ?>
                         </div>
-                        <div class="red-block " >
+                        <div class="red-block " onclick="show_site_price_block()">
                             <div>На других сайтах цены:</div>
-                            <div class="white-bold-text">от 30 000 руб. - 35 000 руб.</div>
+                            <div class="white-bold-text">от <?php echo $price['min'] ?> руб. - <?php echo $price['max'] ?> руб.</div>
                             <div class="show-info show-info-white"></div>
                         </div>
                         <div onclick="show_otzivi_block()" class="white-block itzivi-block">
@@ -153,7 +153,7 @@ $servicePostList = $post['service'];
                             <div class="show-info show-info-grey"></div>
                         </div>
                         <div onclick="show_anket_params_block()" class="white-block">
-                            <img src="img/pen.png" alt="">
+                            <img src="/img/pen.png" alt="">
                             <div>Параметры анкеты</div>
                             <div class="show-info show-info-grey"></div>
                         </div>
@@ -180,7 +180,7 @@ $servicePostList = $post['service'];
                             </div>
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-3 desctop-rating-info-wrap">
                         <div class="desctop-rating-info">
                             <div class="desctop-rating-info-item">
                                 <div class="desctop-rating-info-item-title">
@@ -227,7 +227,6 @@ $servicePostList = $post['service'];
         <a class="nav-link active " data-toggle="tab" href="#home">
             <span class="">
                 <span class="small-text">На других сайтах цены:</span><br>
-                <?php $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']); ?>
                 <span class="big-text">от <?php echo $price['min'] ?> руб. - <?php echo $price['max'] ?> руб.</span>
             </span>
         </a>
@@ -252,7 +251,7 @@ $servicePostList = $post['service'];
                     <?php echo $countReview ?> <?php echo getNumEnding($countReview, ['отзыв','отзыва', 'отзывов']); ?>
                 </a>
             </li>
-    <li class="nav-item col-4">
+            <li class="nav-item col-4">
                 <a class="nav-link" data-toggle="tab" href="#menu2">
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12.0515 0.961332C11.3459 0.256948 10.2032 0.256948 9.4976 0.961332L8.8583 1.60414L2.05298 8.40584L2.03852 8.42041C2.03502 8.42392 2.03502 8.42764 2.03129 8.42764C2.02406 8.43849 2.01321 8.44923 2.00609 8.46007C2.00609 8.46369 2.00236 8.46369 2.00236 8.4673C1.99513 8.47815 1.99163 8.48538 1.98428 8.49623C1.98078 8.49985 1.98078 8.50335 1.97717 8.50708C1.97355 8.51792 1.96993 8.52516 1.96621 8.536C1.96621 8.53951 1.9627 8.53951 1.9627 8.54323L0.452809 13.0837C0.408516 13.2129 0.442188 13.3561 0.539473 13.452C0.607832 13.5195 0.700032 13.5572 0.795961 13.5569C0.835169 13.5562 0.874038 13.5501 0.911551 13.5388L5.44847 12.0253C5.45197 12.0253 5.45197 12.0253 5.4557 12.0218C5.46711 12.0184 5.47807 12.0135 5.48813 12.0072C5.49095 12.0069 5.49344 12.0056 5.49547 12.0037C5.50621 11.9965 5.52067 11.9891 5.53152 11.9819C5.54225 11.9748 5.55321 11.9639 5.56406 11.9567C5.56767 11.953 5.57117 11.953 5.57117 11.9495C5.5749 11.9458 5.58213 11.9423 5.58575 11.935L13.0304 4.49037C13.7348 3.78474 13.7348 2.64207 13.0304 1.93656L12.0515 0.961332ZM5.33288 11.1764L2.81883 8.66244L9.11117 2.3701L11.6252 4.88403L5.33288 11.1764ZM2.46472 9.33067L4.66103 11.5269L1.36306 12.6249L2.46472 9.33067ZM12.5211 3.98462L12.1382 4.37117L9.62404 1.85701L10.0107 1.47058C10.4336 1.048 11.1191 1.048 11.5422 1.47058L12.5246 2.45304C12.9444 2.87788 12.9428 3.56181 12.5211 3.98462Z" fill="#5C5C5C"/>
@@ -290,7 +289,7 @@ $servicePostList = $post['service'];
 
                         <div class="site-item">
                             <div class="row">
-                                <div class="col-2">
+                                <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4">
                                     <div class="site-img-wrap">
 
                                         <?php if (isset($item['site']['photo']['file'])) : ?>
@@ -305,7 +304,7 @@ $servicePostList = $post['service'];
 
                                     </div>
                                 </div>
-                                <div class="col-8">
+                                <div class="col-xl-8 col-lg-8 col-md-9 col-sm-8" >
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="site-find-date">
@@ -915,6 +914,90 @@ $servicePostList = $post['service'];
             </div>
         </div>
     </div>
+<div class="site-price-block">
+
+    <div class="back-block" onclick="close_site_price_block()">
+        <img src="/img/back-red.png" alt="">
+    </div>
+
+    <div class="owl-carousel owl-theme owl-carousel-main">
+            <?php foreach ($post['allPhoto'] as $item) : ?>
+
+                <?php if ($item['type'] != \frontend\models\Files::SELPHY_TYPE) :  ?>
+
+                    <img src="<?php echo $item['file'] ?>" alt="">
+
+                <?php endif; ?>
+
+            <?php endforeach; ?>
+        </div>
+
+    <div class="sites-wrap">
+
+            <div class="red-bold-text">
+                На других сайтах
+            </div>
+
+            <div class="container">
+
+                <?php foreach ($post['sites'] as $item) : ?>
+
+                    <div class="site-item">
+
+                        <div class="row">
+
+                            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-3">
+                                <div class="site-img-wrap">
+
+                                    <?php if (isset($item['site']['photo']['file'])) : ?>
+
+                                        <img class="site-img" src="<?php echo $item['site']['photo']['file'] ?>" alt="">
+
+                                    <?php else: ?>
+
+                                        <img class="site-img" src="/img/no-image.png" alt="">
+
+                                    <?php endif; ?>
+
+                                </div>
+                            </div>
+
+                            <div class="col-xl-8 col-lg-8 col-md-9 col-sm-9 col-9" >
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="site-find-date">
+                                            <?php echo date('d.m.y' , $item['created_at'] ); ?>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="age-name">
+                                            <?php echo $item['name_on_site'] ?>, <?php echo $item['age'] ?>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+
+                                        <div class="site-price">
+                                            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M6.5 13C4.76379 13 3.13148 12.3239 1.90379 11.0962C0.676102 9.86852 0 8.23621 0 6.5C0 4.76379 0.676127 3.1315 1.90379 1.90379C3.13145 0.676076 4.76379 0 6.5 0C8.23621 0 9.86852 0.676102 11.0962 1.90379C12.3239 3.13148 13 4.76379 13 6.5C13 8.23621 12.3239 9.8685 11.0962 11.0962C9.86855 12.3239 8.23621 13 6.5 13ZM6.5 0.8125C3.3639 0.8125 0.8125 3.3639 0.8125 6.5C0.8125 9.6361 3.3639 12.1875 6.5 12.1875C9.6361 12.1875 12.1875 9.6361 12.1875 6.5C12.1875 3.3639 9.6361 0.8125 6.5 0.8125Z" fill="#F74952"/>
+                                                <path d="M6.5 6.09375C5.93998 6.09375 5.48438 5.63814 5.48438 5.07812C5.48438 4.51811 5.93998 4.0625 6.5 4.0625C7.06002 4.0625 7.51562 4.51811 7.51562 5.07812C7.51562 5.30248 7.6975 5.48438 7.92188 5.48438C8.14625 5.48438 8.32812 5.30248 8.32812 5.07812C8.32812 4.20974 7.71931 3.48136 6.90625 3.29606V2.84375C6.90625 2.6194 6.72438 2.4375 6.5 2.4375C6.27562 2.4375 6.09375 2.6194 6.09375 2.84375V3.29606C5.28069 3.48136 4.67188 4.20974 4.67188 5.07812C4.67188 6.08616 5.49197 6.90625 6.5 6.90625C7.06002 6.90625 7.51562 7.36186 7.51562 7.92188C7.51562 8.48189 7.06002 8.9375 6.5 8.9375C5.93998 8.9375 5.48438 8.48189 5.48438 7.92188C5.48438 7.69752 5.3025 7.51562 5.07812 7.51562C4.85375 7.51562 4.67188 7.69752 4.67188 7.92188C4.67188 8.79026 5.28069 9.51864 6.09375 9.70394V10.1562C6.09375 10.3806 6.27562 10.5625 6.5 10.5625C6.72438 10.5625 6.90625 10.3806 6.90625 10.1562V9.70394C7.71931 9.51864 8.32812 8.79026 8.32812 7.92188C8.32812 6.91384 7.50803 6.09375 6.5 6.09375Z" fill="#F74952"/>
+                                            </svg>
+                                            <?php echo $item['price'] ?> руб/час
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                <?php endforeach; ?>
+
+            </div>
+
+        </div>
+
+</div>
 
 
 <!-- Modal -->
