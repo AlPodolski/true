@@ -6,7 +6,6 @@ namespace frontend\widgets;
 use common\models\City;
 use Yii;
 use yii\base\Widget;
-use function Couchbase\defaultDecoder;
 
 class CurrentCity extends Widget
 {

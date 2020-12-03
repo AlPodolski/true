@@ -49,7 +49,7 @@ class City extends \yii\db\ActiveRecord
 
     public static function getCity($city){
 
-        return City::find()->select('city')->where(['url' => $city])->orWhere(['city' => $city])->asArray()->one();
+        return City::find()->select('city, id')->where(['url' => $city])->orWhere(['city' => $city])->asArray()->one();
 
     }
 }
