@@ -14,13 +14,6 @@ body {
     padding: 70px 15px 20px;
 }
 
-.footer {
-    height: 60px;
-    background-color: #f5f5f5;
-    border-top: 1px solid #ddd;
-    padding-top: 20px;
-}
-
 .jumbotron {
     text-align: center;
     background-color: transparent;
@@ -34,6 +27,9 @@ body {
 .not-set {
     color: #c55;
     font-style: italic;
+}
+.search-wrap .form-group{
+    margin-bottom: 0;
 }
 
 /* add sorting icons to gridview sort links */
@@ -476,10 +472,12 @@ body{
 .main-nav .search-wrap{
     padding-top: 0px;
 }
-.main-nav .search-wrap svg{
-    top: 8px;
-    right: 10px;
+.main-nav .search-wrap button{
+    top: 2px;
+    right: 5px;
     left: inherit;
+    border: none;
+    background: no-repeat;
 }
 .main-nav .user-btn{
     text-align: right;
@@ -529,7 +527,7 @@ body{
 .search-wrap{
     padding-top: 15px;
 }
-.search-wrap svg{
+.search-wrap button{
     position: absolute;
     left: 10px;
     top: 23px;
