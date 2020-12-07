@@ -52,6 +52,8 @@ return [
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/city/search' => 'city/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/search/name' => 'search/name',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/review/add' => 'user/review/add',
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/<param:[a-z-0-9]+>' => 'filter/index',
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/<param:([a-z-0-9]+/)+[a-z-0-9]+>' => 'filter/index',
             ],
         ],
     ],

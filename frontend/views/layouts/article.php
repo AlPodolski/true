@@ -86,32 +86,27 @@
             <div class="post-marc-block">
                 <?php if ($post['category'] == 1) : ?>
                     <div class="indi-marc post-marc red-post-marc">
-                        <img src="img/user(1)1.png" alt="">
+                        <img src="/img/user(1)1.png" alt="">
                         индивидуалка
                     </div>
                 <?php else : ?>
                     <div class="indi-marc post-marc red-post-marc">
-                        <img src="img/star(2)1.png" alt="">
+                        <img src="/img/star(2)1.png" alt="">
                         салон
                     </div>
                 <?php endif; ?>
                 <?php if ($post['check_photo_status'] == 1) : ?>
                     <div class="indi-marc post-marc blue-post-marc">
-                        <img src="img/verified1.png" alt="">
+                        <img src="/img/verified1.png" alt="">
                         фото реальное
                     </div>
                 <?php endif; ?>
                 <div class="indi-marc post-marc blue-post-marc">
-                    <img src="img/photo-camera1.png" alt="">
-                    <?php if (!$post['selfie']) : ?>
-                        нет
-                    <?php else : ?>
-                        есть
-                    <?php endif; ?>
-                    селфи
+                    <img src="/img/photo-camera1.png" alt="">
+
                 </div>
                 <div class="indi-marc post-marc red-post-marc">
-                    <img src="img/video-player1.png" alt="">
+                    <img src="/img/video-player1.png" alt="">
                     <?php if (!$post['video']) : ?>
                         нет
                     <?php else : ?>
