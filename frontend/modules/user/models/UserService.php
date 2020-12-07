@@ -9,6 +9,7 @@ use Yii;
  *
  * @property int|null $post_id
  * @property int|null $service_id
+ * @property int|null $city_id
  */
 class UserService extends \yii\db\ActiveRecord
 {
@@ -26,7 +27,7 @@ class UserService extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['post_id', 'service_id'], 'integer'],
+            [['post_id', 'service_id', 'city_id'], 'integer'],
         ];
     }
 
