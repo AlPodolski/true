@@ -31,8 +31,6 @@ $this->title = 'Девушки Москвы';
 </div>
 <h1> Девушки Москвы </h1>
 
-<div class="container custom-container">
-
     <div class="row">
 
         <?php foreach ($prPosts as $post) : ?>
@@ -141,5 +139,3 @@ $this->title = 'Девушки Москвы';
             <a class="red-btn" href="#">Перейти<img src="img/up-arrow1.png" alt=""></a>
         </div>
     </article>
-
-</div>
