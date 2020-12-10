@@ -585,19 +585,19 @@ $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
                         <span class="red-text">
                             Место встречи:
                         </span>
-                        <span class="grey-text">
+                        <div class="grey-text">
 
                         <?php $lastElement = array_pop($post['place']); ?>
 
                             <?php foreach ($post['place'] as $item) : ?>
 
-                                <?php echo $item['value'] ?>,
+                                <a class="grey-text" href="/mesto/<?php echo $item['url'] ?>">
+                                    <?php echo $item['value'] ?>
+                                </a>
 
                             <?php endforeach; ?>
 
-                            <?php echo $lastElement['value'] ?>.
-
-                        </span>
+                        </div>
                     </div>
 
                 <?php endif; ?>
@@ -607,19 +607,22 @@ $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
                         <span class="red-text">
                             Услуги:
                         </span>
-                        <span class="grey-text">
+                        <div class="grey-text">
 
                         <?php $lastElement = array_pop($post['service']); ?>
 
                             <?php foreach ($post['service'] as $item) : ?>
-
-                                <?php echo $item['value'] ?>,
+                                <a class="grey-text" href="/usluga/<?php echo $item['url']?>">
+                                <?php echo $item['value'] ?>
+                                </a>,
 
                             <?php endforeach; ?>
 
-                            <?php echo $lastElement['value'] ?>.
+                            <a class="grey-text" href="/usluga/<?php echo $lastElement['url'] ?>">
+                                <?php echo $lastElement['value'] ?>
+                            </a>
 
-                        </span>
+                        </div>
                     </div>
 
                 <?php endif; ?>
@@ -865,7 +868,7 @@ $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
                         <span class="red-text">
                             Место встречи:
                         </span>
-                    <span class="grey-text">
+                    <div class="grey-text">
 
                         <?php $lastElement = array_pop($post['place']); ?>
 
@@ -873,11 +876,17 @@ $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
 
                             <?php echo $item['value'] ?>,
 
+                            <a class="grey-text" href="/mesto/<?php echo $item['url']?>">
+                                <?php echo $item['value'] ?>
+                            </a>,
+
                         <?php endforeach; ?>
 
-                        <?php echo $lastElement['value'] ?>.
+                         <a class="grey-text" href="/mesto/<?php echo $lastElement['url']?>">
+                                <?php echo $lastElement['value'] ?>
+                            </a>.
 
-                        </span>
+                        </div>
                 </div>
 
             <?php endif; ?>
@@ -887,19 +896,25 @@ $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
                         <span class="red-text">
                             Услуги:
                         </span>
-                    <span class="grey-text">
+                    <div class="grey-text">
 
                         <?php $lastElement = array_pop($post['service']); ?>
 
                         <?php foreach ($post['service'] as $item) : ?>
 
+                            <a class="grey-text" href="/usluga/<?php echo $item['url']?>">
+                                <?php echo $item['value'] ?>
+                            </a>,
+
                             <?php echo $item['value'] ?>,
 
                         <?php endforeach; ?>
 
-                        <?php echo $lastElement['value'] ?>.
+                        <a class="grey-text" href="/usluga/<?php echo $lastElement['url']?>">
+                            <?php echo $lastElement['value'] ?>
+                        </a>
 
-                        </span>
+                        </div>
                 </div>
 
             <?php endif; ?>

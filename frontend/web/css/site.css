@@ -1835,6 +1835,7 @@ h1 , .big-red-text{
     font-weight: normal;
     font-size: 18px;
     line-height: 141.4%;
+    display: inline-block;
     color: #999999;
 }
 .reting-item{
@@ -1882,8 +1883,6 @@ h1 , .big-red-text{
 .main-params-wrap , .user-service-block {
     padding: 0 22px;
     margin-top: 30px;
-    align-items: center;
-    justify-content: center;
 }
 .red-text {
     font-weight: 500;
@@ -1982,6 +1981,10 @@ h1 , .big-red-text{
     }
 }
 @media (max-width: 769px) {
+    .main-params-wrap, .user-service-block {
+        align-items: center;
+        justify-content: center;
+    }
     .post-marc-block {
         min-height: inherit;
     }
