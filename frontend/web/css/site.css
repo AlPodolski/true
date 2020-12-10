@@ -1882,6 +1882,8 @@ h1 , .big-red-text{
 .main-params-wrap , .user-service-block {
     padding: 0 22px;
     margin-top: 30px;
+    align-items: center;
+    justify-content: center;
 }
 .red-text {
     font-weight: 500;
@@ -1940,6 +1942,32 @@ h1 , .big-red-text{
     border-radius: 35px;
     padding-top: 15px;
 }
+.post{
+    margin-bottom: 20px;
+}
+@media (max-width: 1199px) {
+    .count-photo-icon{
+        top: 3px;
+    }
+    .post .count-photo-icon img{
+        top: -6px;
+    }
+    .post-marc-block{
+        min-height: 133px;
+    }
+    .post .post-marc{
+        padding: 6px 5px;
+    }
+    .post .post-phone , .post .phone-photo-count{
+        font-size: 16px;
+    }
+    .post-address{
+        font-size: 14px;
+    }
+    .post-find-and-otzivi-count-block{
+        font-size: 14px;
+    }
+}
 @media (max-width: 992px) {
     .main-nav .logo {
         padding-right: 0px;
@@ -1954,7 +1982,9 @@ h1 , .big-red-text{
     }
 }
 @media (max-width: 769px) {
-
+    .post-marc-block {
+        min-height: inherit;
+    }
     .single-post-info-wrap {
         padding-top: 20px;
         position: relative;
@@ -1997,7 +2027,33 @@ h1 , .big-red-text{
 }
 
 @media (max-width: 575px) {
+    .main-params-wrap, .user-service-block {
+        padding: 0 6px;
+    }
+    .main-param-item{
+        font-size: 14px;
+        margin-right: 12px;
+        padding: 2px 8px 2px 4px;
+    }
+    .btn-wrap{
+        padding-left: 0px;
+    }
+    .single .post-rating {
+        top: 250px;
+    }
+    .orange-btn , .white-btn{
+        margin-right: 0;
+    }
     .custom-container{
         padding: 0;
+        overflow: hidden;
+    }
+    .popular-btn-block{
+        padding: 0 15px;
+    }
+    .text-block{
+        margin: 10px 15px;
+        margin-top: 15px;
+        margin-bottom: 0;
     }
 }

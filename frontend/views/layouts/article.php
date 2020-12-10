@@ -4,7 +4,7 @@
 
 ?>
 
-<div class="col-xl-4">
+<div class="col-xl-4 col-lg-4 col-md-6 col-12 post-wrap">
     <article class="post">
         <div class="post-img position-relative">
             <a href="/post/<?php echo $post['id'] ?>">

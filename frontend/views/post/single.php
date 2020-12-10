@@ -946,7 +946,7 @@ $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
 
                         <div class="row">
 
-                            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-3">
+                            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-4">
                                 <div class="site-img-wrap">
 
                                     <?php if (isset($item['site']['photo']['file'])) : ?>
@@ -962,7 +962,7 @@ $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
                                 </div>
                             </div>
 
-                            <div class="col-xl-8 col-lg-8 col-md-9 col-sm-9 col-9" >
+                            <div class="col-xl-8 col-lg-8 col-md-9 col-sm-9 col-8" >
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="site-find-date">
