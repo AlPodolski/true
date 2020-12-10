@@ -21,6 +21,15 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
 $servicePostList = $post['service'];
 $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
+
+$osobenostList = $post['osobenost'];
+$strizhkaList = $post['strizhka'];
+$cvetList = $post['cvet'];
+$nacionalnostList = $post['nacionalnost'];
+$rayonList = $post['rayon'];
+$serviceList = $post['service'];
+$placeList = $post['place'];
+
 ?>
 
     <article class="single position-relative">
@@ -601,6 +610,7 @@ $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
                     </div>
 
                 <?php endif; ?>
+
                 <?php if ($post['service']) : ?>
 
                     <div class="user-service-item">
@@ -612,13 +622,143 @@ $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
                         <?php $lastElement = array_pop($post['service']); ?>
 
                             <?php foreach ($post['service'] as $item) : ?>
-                                <a class="grey-text" href="/usluga/<?php echo $item['url']?>">
+                                <a class="grey-text" href="/usluga-<?php echo $item['url']?>">
                                 <?php echo $item['value'] ?>
                                 </a>,
 
                             <?php endforeach; ?>
 
-                            <a class="grey-text" href="/usluga/<?php echo $lastElement['url'] ?>">
+                            <a class="grey-text" href="/usluga-<?php echo $lastElement['url'] ?>">
+                                <?php echo $lastElement['value'] ?>
+                            </a>
+
+                        </div>
+                    </div>
+
+                <?php endif; ?>
+
+                <?php if ($post['rayon']) : ?>
+
+                    <div class="user-service-item">
+                        <span class="red-text">
+                            Район:
+                        </span>
+                        <div class="grey-text">
+
+                        <?php $lastElement = array_pop($post['rayon']); ?>
+
+                            <?php foreach ($post['rayon'] as $item) : ?>
+                                <a class="grey-text" href="/rayon-<?php echo $item['url']?>">
+                                <?php echo $item['value'] ?>
+                                </a>,
+
+                            <?php endforeach; ?>
+
+                            <a class="grey-text" href="/rayon-<?php echo $lastElement['url'] ?>">
+                                <?php echo $lastElement['value'] ?>
+                            </a>
+
+                        </div>
+                    </div>
+
+                <?php endif; ?>
+
+                <?php if ($post['nacionalnost']) : ?>
+
+                    <div class="user-service-item">
+                        <span class="red-text">
+                            Национальность:
+                        </span>
+                        <div class="grey-text">
+
+                        <?php $lastElement = array_pop($post['nacionalnost']); ?>
+
+                            <?php foreach ($post['nacionalnost'] as $item) : ?>
+                                <a class="grey-text" href="/nacionalnost-<?php echo $item['url']?>">
+                                <?php echo $item['value'] ?>
+                                </a>,
+
+                            <?php endforeach; ?>
+
+                            <a class="grey-text" href="/nacionalnost-<?php echo $lastElement['url'] ?>">
+                                <?php echo $lastElement['value'] ?>
+                            </a>
+
+                        </div>
+                    </div>
+
+                <?php endif; ?>
+
+                <?php if ($post['cvet']) : ?>
+
+                    <div class="user-service-item">
+                        <span class="red-text">
+                            Цвет волос:
+                        </span>
+                        <div class="grey-text">
+
+                        <?php $lastElement = array_pop($post['cvet']); ?>
+
+                            <?php foreach ($post['cvet'] as $item) : ?>
+                                <a class="grey-text" href="/cvet-volos-<?php echo $item['url']?>">
+                                <?php echo $item['value'] ?>
+                                </a>,
+
+                            <?php endforeach; ?>
+
+                            <a class="grey-text" href="/cvet-volos-<?php echo $lastElement['url'] ?>">
+                                <?php echo $lastElement['value'] ?>
+                            </a>
+
+                        </div>
+                    </div>
+
+                <?php endif; ?>
+
+                <?php if ($post['strizhka']) : ?>
+
+                    <div class="user-service-item">
+                        <span class="red-text">
+                            Интимная стрижка:
+                        </span>
+                        <div class="grey-text">
+
+                        <?php $lastElement = array_pop($post['strizhka']); ?>
+
+                            <?php foreach ($post['strizhka'] as $item) : ?>
+                                <a class="grey-text" href="/intimnaya-strizhka-<?php echo $item['url']?>">
+                                <?php echo $item['value'] ?>
+                                </a>,
+
+                            <?php endforeach; ?>
+
+                            <a class="grey-text" href="/intimnaya-strizhka-<?php echo $lastElement['url'] ?>">
+                                <?php echo $lastElement['value'] ?>
+                            </a>
+
+                        </div>
+                    </div>
+
+                <?php endif; ?>
+
+                <?php if ($post['osobenost']) : ?>
+
+                    <div class="user-service-item">
+                        <span class="red-text">
+                            Особенности:
+                        </span>
+                        <div class="grey-text">
+
+                        <?php $lastElement = array_pop($post['osobenost']); ?>
+
+                            <?php foreach ($post['osobenost'] as $item) : ?>
+                                <a class="grey-text" href="/osobenost-<?php echo $item['url']?>">
+                                <?php echo $item['value'] ?>
+                                </a>,
+
+                            <?php endforeach; ?>
+
+                            <a class="grey-text" href="/osobenost-<?php echo $lastElement['url'] ?>">
                                 <?php echo $lastElement['value'] ?>
                             </a>
 
@@ -862,7 +1002,7 @@ $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
         </div>
         <div class="user-service-block">
 
-            <?php if ($post['place']) : ?>
+            <?php if ($placeList) : ?>
 
                 <div class="user-service-item">
                         <span class="red-text">
@@ -870,19 +1010,19 @@ $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
                         </span>
                     <div class="grey-text">
 
-                        <?php $lastElement = array_pop($post['place']); ?>
+                        <?php $lastElement = array_pop($placeList); ?>
 
-                        <?php foreach ($post['place'] as $item) : ?>
+                        <?php foreach ($placeList as $item) : ?>
 
                             <?php echo $item['value'] ?>,
 
-                            <a class="grey-text" href="/mesto/<?php echo $item['url']?>">
+                            <a class="grey-text" href="/mesto-<?php echo $item['url']?>">
                                 <?php echo $item['value'] ?>
                             </a>,
 
                         <?php endforeach; ?>
 
-                         <a class="grey-text" href="/mesto/<?php echo $lastElement['url']?>">
+                         <a class="grey-text" href="/mesto-<?php echo $lastElement['url']?>">
                                 <?php echo $lastElement['value'] ?>
                             </a>.
 
@@ -890,7 +1030,8 @@ $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
                 </div>
 
             <?php endif; ?>
-            <?php if ($post['service']) : ?>
+
+            <?php if ($serviceList) : ?>
 
                 <div class="user-service-item">
                         <span class="red-text">
@@ -898,11 +1039,11 @@ $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
                         </span>
                     <div class="grey-text">
 
-                        <?php $lastElement = array_pop($post['service']); ?>
+                        <?php $lastElement = array_pop($serviceList); ?>
 
-                        <?php foreach ($post['service'] as $item) : ?>
+                        <?php foreach ($serviceList as $item) : ?>
 
-                            <a class="grey-text" href="/usluga/<?php echo $item['url']?>">
+                            <a class="grey-text" href="/usluga-<?php echo $item['url']?>">
                                 <?php echo $item['value'] ?>
                             </a>,
 
@@ -910,11 +1051,141 @@ $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
 
                         <?php endforeach; ?>
 
-                        <a class="grey-text" href="/usluga/<?php echo $lastElement['url']?>">
+                        <a class="grey-text" href="/usluga-<?php echo $lastElement['url']?>">
                             <?php echo $lastElement['value'] ?>
                         </a>
 
                         </div>
+                </div>
+
+            <?php endif; ?>
+
+            <?php if ($rayonList) : ?>
+
+                <div class="user-service-item">
+                        <span class="red-text">
+                            Район:
+                        </span>
+                    <div class="grey-text">
+
+                        <?php $lastElement = array_pop($rayonList); ?>
+
+                        <?php foreach ($rayonList as $item) : ?>
+                            <a class="grey-text" href="/rayon-<?php echo $item['url']?>">
+                                <?php echo $item['value'] ?>
+                            </a>,
+
+                        <?php endforeach; ?>
+
+                        <a class="grey-text" href="/rayon-<?php echo $lastElement['url'] ?>">
+                            <?php echo $lastElement['value'] ?>
+                        </a>
+
+                    </div>
+                </div>
+
+            <?php endif; ?>
+
+            <?php if ($nacionalnostList) : ?>
+
+                <div class="user-service-item">
+                        <span class="red-text">
+                            Национальность:
+                        </span>
+                    <div class="grey-text">
+
+                        <?php $lastElement = array_pop($nacionalnostList); ?>
+
+                        <?php foreach ($nacionalnostList as $item) : ?>
+                            <a class="grey-text" href="/nacionalnost-<?php echo $item['url']?>">
+                                <?php echo $item['value'] ?>
+                            </a>,
+
+                        <?php endforeach; ?>
+
+                        <a class="grey-text" href="/nacionalnost-<?php echo $lastElement['url'] ?>">
+                            <?php echo $lastElement['value'] ?>
+                        </a>
+
+                    </div>
+                </div>
+
+            <?php endif; ?>
+
+            <?php if ($cvetList) : ?>
+
+                <div class="user-service-item">
+                        <span class="red-text">
+                            Цвет волос:
+                        </span>
+                    <div class="grey-text">
+
+                        <?php $lastElement = array_pop($cvetList); ?>
+
+                        <?php foreach ($cvetList as $item) : ?>
+                            <a class="grey-text" href="/cvet-volos-<?php echo $item['url']?>">
+                                <?php echo $item['value'] ?>
+                            </a>,
+
+                        <?php endforeach; ?>
+
+                        <a class="grey-text" href="/cvet-volos-<?php echo $lastElement['url'] ?>">
+                            <?php echo $lastElement['value'] ?>
+                        </a>
+
+                    </div>
+                </div>
+
+            <?php endif; ?>
+
+            <?php if ($strizhkaList) : ?>
+
+                <div class="user-service-item">
+                        <span class="red-text">
+                            Интимная стрижка:
+                        </span>
+                    <div class="grey-text">
+
+                        <?php $lastElement = array_pop($strizhkaList); ?>
+
+                        <?php foreach ($strizhkaList as $item) : ?>
+                            <a class="grey-text" href="/intimnaya-strizhka-<?php echo $item['url']?>">
+                                <?php echo $item['value'] ?>
+                            </a>,
+
+                        <?php endforeach; ?>
+
+                        <a class="grey-text" href="/intimnaya-strizhka-<?php echo $lastElement['url'] ?>">
+                            <?php echo $lastElement['value'] ?>
+                        </a>
+
+                    </div>
+                </div>
+
+            <?php endif; ?>
+
+            <?php if ($osobenostList) : ?>
+
+                <div class="user-service-item">
+                        <span class="red-text">
+                            Особенности:
+                        </span>
+                    <div class="grey-text">
+
+                        <?php $lastElement = array_pop($osobenostList); ?>
+
+                        <?php foreach ($osobenostList as $item) : ?>
+                            <a class="grey-text" href="/osobenost-<?php echo $item['url']?>">
+                                <?php echo $item['value'] ?>
+                            </a>,
+
+                        <?php endforeach; ?>
+
+                        <a class="grey-text" href="/osobenost-<?php echo $lastElement['url'] ?>">
+                            <?php echo $lastElement['value'] ?>
+                        </a>
+
+                    </div>
                 </div>
 
             <?php endif; ?>

@@ -2,7 +2,12 @@
 
 namespace frontend\modules\user\models;
 
+use common\models\HairColor;
+use common\models\IntimHair;
+use common\models\National;
+use common\models\Osobenosti;
 use common\models\Place;
+use common\models\Rayon;
 use common\models\Service;
 use common\models\Sites;
 use frontend\models\Files;
@@ -71,6 +76,57 @@ class Posts extends \yii\db\ActiveRecord
     public function getUserToPlaceRelations()
     {
         return $this->hasMany(UserPlace::class, ['post_id' => 'id']);
+    }
+
+
+    public function getRayon()
+    {
+        return $this->hasMany(Rayon::class, ['id' => 'rayon_id'])->via('userToRayonRelations');
+    }
+
+    public function getUserToRayonRelations()
+    {
+        return $this->hasMany(UserRayon::class, ['post_id' => 'id']);
+    }
+
+    public function getNacionalnost()
+    {
+        return $this->hasMany(National::class, ['id' => 'national_id'])->via('userToNacionalnostRelations');
+    }
+
+    public function getUserToNacionalnostRelations()
+    {
+        return $this->hasMany(UserNational::class, ['post_id' => 'id']);
+    }
+
+    public function getCvet()
+    {
+        return $this->hasMany(HairColor::class, ['id' => 'hair_color_id'])->via('userToCvetRelations');
+    }
+
+    public function getUserToCvetRelations()
+    {
+        return $this->hasMany(UserHairColor::class, ['post_id' => 'id']);
+    }
+
+    public function getStrizhka()
+    {
+        return $this->hasMany(IntimHair::class, ['id' => 'color_id'])->via('userToStrizhkaRelations');
+    }
+
+    public function getUserToStrizhkaRelations()
+    {
+        return $this->hasMany(UserIntimHair::class, ['post_id' => 'id']);
+    }
+
+    public function getOsobenost()
+    {
+        return $this->hasMany(Osobenosti::class, ['id' => 'param_id'])->via('userToOsobenostRelations');
+    }
+
+    public function getUserToOsobenostRelations()
+    {
+        return $this->hasMany(UserOsobenosti::class, ['post_id' => 'id']);
     }
 
     public function getService()
