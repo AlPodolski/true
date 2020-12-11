@@ -10,6 +10,8 @@ use Yii;
  * @property int $id
  * @property string|null $url
  * @property string|null $value
+ * @property string|null $value2
+ * @property string|null $value3
  */
 class HairColor extends \yii\db\ActiveRecord
 {
@@ -40,6 +42,8 @@ class HairColor extends \yii\db\ActiveRecord
             'id' => 'ID',
             'url' => 'Url',
             'value' => 'Value',
+            'value2' => 'Value2',
+            'value3' => 'Value3',
         ];
     }
 }

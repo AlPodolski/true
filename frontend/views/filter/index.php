@@ -2,10 +2,20 @@
 
 /* @var $this \yii\web\View */
 /* @var $posts array */
+/* @var $title string */
+/* @var $des string */
+/* @var $h1 string */
+
+$this->title = $title;
+Yii::$app->view->registerMetaTag([
+    'name' => 'description',
+    'content' => $des
+]);
+
 
 ?>
 
-<h1> Заголовок </h1>
+<h1> <?php echo $h1 ?> </h1>
 
 <div class="row">
 

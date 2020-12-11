@@ -4,8 +4,7 @@
 namespace frontend\controllers;
 
 use common\models\City;
-/*use frontend\components\helpers\MetaFilterHelper;
-use frontend\components\MetaBuilder;*/
+use frontend\helpers\MetaBuilder;
 use frontend\helpers\QueryParamsHelper;
 use frontend\modules\user\models\Posts;
 use Yii;
@@ -85,11 +84,11 @@ class FilterController extends Controller
         $uri = Yii::$app->request->url;
 
         if (\strpos($uri, 'page')) $uri = \strstr($uri, '/page', true);
-        /*
-         * Мета теги
+
+
         $title =  MetaBuilder::Build($uri, $city, 'Title');
         $des = MetaBuilder::Build($uri, $city, 'des');
-        $h1 = MetaBuilder::Build($uri, $city, 'h1');*/
+        $h1 = MetaBuilder::Build($uri, $city, 'h1');
 
         return $this->render('index', [
             'posts' => $posts,
@@ -97,6 +96,9 @@ class FilterController extends Controller
             'param' => $param,
             'cityInfo' => $cityInfo,
             'more_posts' => $more_posts,
+            'title' => $title,
+            'des' => $des,
+            'h1' => $h1,
         ]);
     }
 }
