@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use frontend\helpers\MetaBuilder;
 use frontend\helpers\FavoriteHelper;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
@@ -76,6 +77,9 @@ class SiteController extends Controller
      */
     public function actionIndex($city)
     {
+
+        Yii::$app->cache->flush();
+
         $prPosts = Posts::find()->asArray()->with('avatar', 'metro')
             ->limit(3)
             ->all();
@@ -83,9 +87,20 @@ class SiteController extends Controller
             ->orderBy(['created_at' => SORT_DESC ])
             ->limit(3)->all();
 
+        $uri = Yii::$app->request->url;
+
+        if (\strpos($uri, 'page')) $uri = \strstr($uri, 'page', true);
+
+        $title =  MetaBuilder::Build($uri, $city, 'Title');
+        $des = MetaBuilder::Build($uri, $city, 'des');
+        $h1 = MetaBuilder::Build($uri, $city, 'h1');
+
         return $this->render('index' , [
             'prPosts' => $prPosts,
             'newPosts' => $newPosts,
+            'title' => $title,
+            'des' => $des,
+            'h1' => $h1,
         ]);
     }
     /**

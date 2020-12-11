@@ -3,8 +3,15 @@
 /* @var $this yii\web\View */
 /* @var $prPosts array */
 /* @var $newPosts array */
+/* @var $title string */
+/* @var $des string */
+/* @var $h1 string */
 
-$this->title = 'Девушки Москвы';
+$this->title = $title;
+Yii::$app->view->registerMetaTag([
+    'name' => 'description',
+    'content' => $des
+]);
 
 ?>
 <div class="popular-btn-block">
@@ -29,7 +36,7 @@ $this->title = 'Девушки Москвы';
         </div>
     </div>
 </div>
-<h1> Девушки Москвы </h1>
+<h1> <?php echo $h1 ?> </h1>
 
     <div class="row">
 
