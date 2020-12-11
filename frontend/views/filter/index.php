@@ -7,6 +7,7 @@
 /* @var $h1 string */
 
 $this->title = $title;
+
 Yii::$app->view->registerMetaTag([
     'name' => 'description',
     'content' => $des

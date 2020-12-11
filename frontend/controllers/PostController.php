@@ -3,6 +3,7 @@
 
 namespace frontend\controllers;
 
+use common\models\City;
 use frontend\modules\user\helpers\ServiceReviewHelper;
 use frontend\modules\user\models\Posts;
 use frontend\modules\user\models\ReviewForm;
@@ -26,12 +27,15 @@ class PostController extends Controller
 
         $serviceReviewFormForm = new ServiceReviewForm();
 
+        $cityInfo = City::getCity($city);
+
         return $this->render('single', [
             'post' => $post,
             'serviceList' => $serviceList,
             'id' => $id,
             'postReviewForm' => $postReviewForm,
             'serviceReviewFormForm' => $serviceReviewFormForm,
+            'cityInfo' => $cityInfo,
         ]);
 
     }

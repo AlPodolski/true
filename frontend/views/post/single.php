@@ -2,6 +2,7 @@
 
 /* @var $post array */
 /* @var $serviceList array */
+/* @var $cityInfo array */
 /* @var $id integer */
 /* @var $serviceReviewFormForm \frontend\modules\user\models\ServiceReviewForm */
 /* @var $postReviewForm \frontend\modules\user\models\ReviewForm */
@@ -29,6 +30,18 @@ $nacionalnostList = $post['nacionalnost'];
 $rayonList = $post['rayon'];
 $serviceList = $post['service'];
 $placeList = $post['place'];
+
+$title = 'Проститутка '.$post['name'] .' из города '.$cityInfo['city'].' - '.Yii::$app->request->hostName;
+
+$this->title = $title;
+
+$des = 'Проститутка '.$post['name'].' ждет Вашего звонка. Цена от '.$price['min'];
+
+
+Yii::$app->view->registerMetaTag([
+    'name' => 'description',
+    'content' => $des
+]);
 
 ?>
 
@@ -70,6 +83,9 @@ $placeList = $post['place'];
                             <div class="phone-photo-count">
                                 <div class="row">
                                     <div class="col-12">
+                                        <h1><?php echo $post['name'] ?></h1>
+                                    </div>
+                                    <div class="col-12">
                                         <a href="tel:+<?php echo preg_replace("/[^0-9]/", '', $post['phone']) ?>" class="post-phone"><?php echo $post['phone'] ?></a>
                                     </div>
                                     <div class="col-12">
@@ -87,7 +103,7 @@ $placeList = $post['place'];
                                     <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M4.50001 0C2.84583 0 1.5 1.34583 1.5 3.00001C1.5 3.49659 1.62415 3.98895 1.86018 4.42566L4.33595 8.90332C4.36891 8.96302 4.43172 9 4.50001 9C4.5683 9 4.6311 8.96302 4.66406 8.90332L7.14075 4.42419C7.37586 3.98895 7.50001 3.49657 7.50001 2.99999C7.50001 1.34583 6.15418 0 4.50001 0ZM4.50001 4.5C3.67292 4.5 3.00001 3.82709 3.00001 3.00001C3.00001 2.17292 3.67292 1.50001 4.50001 1.50001C5.32709 1.50001 6 2.17292 6 3.00001C6 3.82709 5.32709 4.5 4.50001 4.5Z" fill="white"/>
                                     </svg>
-                                </div>г Москва м. Авиамоторная</div>
+                                </div>г <?php echo $cityInfo['city']?> м. Авиамоторная</div>
                             <div class="post-find-and-otzivi-count-block">
                                 <div class="row">
                                     <div class="col-12 single-date-wrap">
