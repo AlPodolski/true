@@ -140,6 +140,28 @@ class QueryParamsHelper
 
         }
 
+        if (strstr($value, 'proverennye')){
+
+            $id = Posts::find()->select('id')->where(['check_photo_status' => 1])->asArray()->all();
+
+            if($id){
+
+                $result = ArrayHelper::getColumn($id, 'id');
+
+                if (!empty($ids)){
+
+                    $ids = array_intersect($ids, $id);
+
+                }else{
+
+                    $ids = $result;
+
+                }
+
+            }
+
+        }
+
         if ($ids) {
 
             Yii::$app->params['result_id'] = $ids;

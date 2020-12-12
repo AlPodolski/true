@@ -31,8 +31,8 @@ AppAsset::register($this);
         <div class="container">
             <div class="top-menu-wrap">
                 <ul class="top-menu">
-                    <li class="top-menu-item"><a href="#">Индивидуалки</a></li>
-                    <li class="top-menu-item"><a href="#">Проверенные</a></li>
+                    <li class="top-menu-item"><a href="/">Индивидуалки</a></li>
+                    <li class="top-menu-item"><a href="/proverennye">Проверенные</a></li>
                     <li class="top-menu-item"><a href="/cena-ot-6000">Элитные</a></li>
                     <li class="top-menu-item"><a href="#">Форум</a></li>
                 </ul>
