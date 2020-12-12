@@ -17,7 +17,26 @@ return [
         ],
     ],
     'components' => [
-
+        'imageCache' => [
+            'class' => 'iutbay\yii2imagecache\ImageCache',
+            'sourcePath' => '@app/web/uploads',
+            'sourceUrl' => '@web/uploads',
+            'thumbsPath' => '@app/web/thumbs',
+            'extensions' => [
+                'jpg' => 'jpeg',
+                'jpeg' => 'jpeg',
+                'png' => 'png',
+                'gif' => 'gif',
+                'bmp' => 'bmp',
+            ],
+            'sizes' => [
+                'single' => [375, 450],
+                '175_210' => [175, 210],
+                '200' => [200, 200],
+                '59' => [59, 59],
+                '350_420' => [350, 420],
+            ],
+        ],
         'request' => [
             'csrfParam' => '_csrf-frontend',
         ],
@@ -46,6 +65,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'thumbs/<path:.*>' => 'site/thumb',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/' => 'site/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/favorite' => 'site/favorite',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/post/<id:[0-9]+>' => 'post/index',

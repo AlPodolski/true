@@ -2,13 +2,23 @@
 
 /* @var $post array */
 
+use frontend\widgets\PhotoWidget;
+
 ?>
 
 <div class="col-xl-4 col-lg-4 col-md-6 col-12 post-wrap">
     <article class="post">
         <div class="post-img position-relative">
             <a href="/post/<?php echo $post['id'] ?>">
-                <img src="<?php echo $post['avatar']['file'] ?>" alt="">
+                <?php echo PhotoWidget::widget([
+                    'path' => $post['avatar']['file'] ,
+                    'size' => '350_420',
+                    'options' => [
+                        'class' => 'img user-img',
+                        'loading' => 'lazy',
+                        'alt' => $post['name'],
+                    ],
+                ]  ); ?>
             </a>
             <div class="post-top-info">
                 <div class="phone-photo-count">

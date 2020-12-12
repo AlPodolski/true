@@ -10,6 +10,7 @@
 use kartik\rating\StarRating;
 use yii\widgets\ActiveForm;
 use kartik\icons\FontAwesomeAsset;
+use frontend\widgets\PhotoWidget;
 FontAwesomeAsset::register($this);
 
 $this->registerJsFile('/js/owl.carousel.js', ['depends' => ['yii\web\YiiAsset']]);
@@ -53,7 +54,15 @@ Yii::$app->view->registerMetaTag([
 
                         <?php if ($item['type'] != \frontend\models\Files::SELPHY_TYPE) :  ?>
 
-                            <img src="<?php echo $item['file'] ?>" alt="">
+                            <?php echo PhotoWidget::widget([
+                                'path' => $item['file'],
+                                'size' => 'single',
+                                'options' => [
+                                    'class' => 'img user-img',
+                                    'loading' => 'lazy',
+                                    'alt' => $post['name'],
+                                ],
+                            ]  ); ?>
 
                         <?php endif; ?>
 
@@ -294,9 +303,22 @@ Yii::$app->view->registerMetaTag([
 
                 <?php $imgs = array(); ?>
 
+                <?php
+
+                    if (count($post['allPhoto']) == 1) $size = 'single';
+
+                    else $size = '175_210';
+
+                ?>
+
                 <?php foreach ($post['allPhoto'] as $item) : ?>
 
-                    <?php if ($item['type'] != \frontend\models\Files::SELPHY_TYPE) $imgs[] = $item['file']  ?>
+                    <?php if ($item['type'] != \frontend\models\Files::SELPHY_TYPE) {
+
+                        $imgs[] = Yii::$app->imageCache->thumbSrc($item['file'], $size);
+
+                    }
+                   ?>
 
                 <?php endforeach; ?>
 
@@ -323,7 +345,7 @@ Yii::$app->view->registerMetaTag([
 
                                         <?php else: ?>
 
-                                            <img class="site-img" src="/img/no-image.png" alt="">
+                                            <img class="site-img" src="/uploads/no-image.png" alt="">
 
                                         <?php endif; ?>
 
@@ -371,7 +393,16 @@ Yii::$app->view->registerMetaTag([
                 <div class="col-4 bottom-gallery">
                     <div class="d-flex otzivi-block-top-info">
                         <div class="post-img">
-                            <img src="<?php echo $post['avatar']['file'] ?>" alt="">
+                            <?php echo PhotoWidget::widget([
+                                'path' => $post['avatar']['file'],
+                                'size' => '200',
+                                'options' => [
+                                    'class' => 'img user-img',
+                                    'loading' => 'lazy',
+                                    'alt' => $post['name'],
+                                ],
+                            ]  ); ?>
+
                         </div>
                         <div class="grey-big-text">
                             <?php if ($postRating) echo $postRating['total_rating']; ?>/10
@@ -502,7 +533,15 @@ Yii::$app->view->registerMetaTag([
                                         <div class="row">
                                             <div class="col-1">
                                                 <div class="author-img">
-                                                    <img src="<?php echo $item['author']['avatar']['file'] ?>" alt="">
+                                                    <?php echo PhotoWidget::widget([
+                                                        'path' => $item['author']['avatar']['file'] ,
+                                                        'size' => '59',
+                                                        'options' => [
+                                                            'class' => 'img user-img',
+                                                            'loading' => 'lazy',
+                                                            'alt' => $post['name'],
+                                                        ],
+                                                    ]  ); ?>
                                                 </div>
                                             </div>
                                             <div class="col-2">
@@ -567,7 +606,15 @@ Yii::$app->view->registerMetaTag([
                 <div class="col-4 bottom-gallery">
                     <div class="d-flex otzivi-block-top-info">
                         <div class="post-img">
-                            <img src="<?php echo $post['avatar']['file'] ?>" alt="">
+                            <?php echo PhotoWidget::widget([
+                                'path' => $post['avatar']['file'],
+                                'size' => '200',
+                                'options' => [
+                                    'class' => 'img user-img',
+                                    'loading' => 'lazy',
+                                    'alt' => $post['name'],
+                                ],
+                            ]  ); ?>
                         </div>
                     </div>
                 </div>
@@ -801,7 +848,15 @@ Yii::$app->view->registerMetaTag([
         </div>
         <div class="d-flex otzivi-block-top-info">
             <div class="post-img">
-                <img src="<?php echo $post['avatar']['file'] ?>" alt="">
+                <?php echo PhotoWidget::widget([
+                    'path' => $post['avatar']['file'],
+                    'size' => '200',
+                    'options' => [
+                        'class' => 'img user-img',
+                        'loading' => 'lazy',
+                        'alt' => $post['name'],
+                    ],
+                ]  ); ?>
             </div>
             <div class="red-bold-text">
                 <?php echo $countReview ?> <?php echo getNumEnding($countReview, ['отзыв','отзыва', 'отзывов']); ?>
@@ -925,7 +980,15 @@ Yii::$app->view->registerMetaTag([
                                     <div class="row">
                                         <div class="col-3">
                                             <div class="author-img">
-                                                <img src="<?php echo $item['author']['avatar']['file'] ?>" alt="">
+                                                <?php echo PhotoWidget::widget([
+                                                    'path' => $item['author']['avatar']['file'] ,
+                                                    'size' => '59',
+                                                    'options' => [
+                                                        'class' => 'img user-img',
+                                                        'loading' => 'lazy',
+                                                        'alt' => $post['name'],
+                                                    ],
+                                                ]  ); ?>
                                             </div>
                                         </div>
                                         <div class="col-5">
@@ -992,7 +1055,15 @@ Yii::$app->view->registerMetaTag([
                 Параметры анкеты
             </div>
             <div class="post-img">
-                <img src="<?php echo $post['avatar']['file'] ?>" alt="">
+                <?php echo PhotoWidget::widget([
+                    'path' => $post['avatar']['file'],
+                    'size' => '200',
+                    'options' => [
+                        'class' => 'img user-img',
+                        'loading' => 'lazy',
+                        'alt' => $post['name'],
+                    ],
+                ]  ); ?>
             </div>
             <div class="red-bold-text">
                 <?php echo $post['name'] ?>
