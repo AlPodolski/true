@@ -89,90 +89,50 @@ class QueryParamsHelper
 
         }
 
-        if (strstr($value, 'vozrast')) {
+        if (strstr($value, 'cena')){
 
-            $url = str_replace('vozrast-', '', $value);
+            $url = str_replace('cena-', '', $value);
 
-            $age_params = array();
+            $price_params = array();
 
-            if ($url == 'ot-20-let') {
-                $bread_crumbs_params[] = [
-                    'url' => '/vozrast-ot-20-let',
-                    'label' => 'от 20 лет'
-                ];
-                $age_params[] = ['<=', 'birthday', \time() - 24 * 3600 * 365 * 20];
+            if ($url == 'do-1500') $price_params[] = ['<', 'price' , 1500];
+
+            if ($url == 'ot-1500-do-2000') {
+                $price_params[] = ['>=', 'price' , 1500];
+                $price_params[] = ['<=', 'price' , 1999];
+            }
+            if ($url == 'ot-2000-do-3000') {
+                $price_params[] = ['>=', 'price' , 2000];
+                $price_params[] = ['<=', 'price' , 2999];
+            }
+            if ($url == 'ot-3000-do-6000') {
+                $price_params[] = ['>=', 'price' , 3000];
+                $price_params[] = ['<=', 'price' , 6000];
             }
 
-            if ($url == 'ot-30-let') {
-                $bread_crumbs_params[] = [
-                    'url' => '/vozrast-ot-30-let',
-                    'label' => 'от 30 лет'
-                ];
-                $age_params[] = ['<=', 'birthday', \time() - 24 * 3600 * 365 * 30];
+            if ($url == 'ot-6000') {
+                $price_params[] = ['>=', 'price' , 6001];
             }
 
-            if ($url == 'ot-40-let') {
-                $bread_crumbs_params[] = [
-                    'url' => '/vozrast-ot-40-let',
-                    'label' => 'от 40 лет'
-                ];
-                $age_params[] = ['<=', 'birthday', \time() - (24 * 3600 * 365 * 40)];
+            $id = Posts::find()->select('id');
+
+            foreach ($price_params as $price_param){
+                $id->andWhere($price_param);
             }
 
-            if ($url == 'ot-45-let') {
-                $bread_crumbs_params[] = [
-                    'url' => '/vozrast-ot-45-let',
-                    'label' => 'от 45 лет'
-                ];
-                $age_params[] = ['<=', 'birthday', \time() - (24 * 3600 * 365 * 45)];
-            }
+            $id = $id->asArray()->all();
 
-            if ($url == 'ot-50-let') {
-                $bread_crumbs_params[] = [
-                    'url' => '/vozrast-ot-50-let',
-                    'label' => 'от 50 лет'
-                ];
-                $age_params[] = ['<=', 'birthday', \time() - 24 * 3600 * 365 * 50];
-            }
+            if($id){
 
-            if ($url == 'ot-60-let') {
-                $bread_crumbs_params[] = [
-                    'url' => '/vozrast-ot-60-let',
-                    'label' => 'от 60 лет'
-                ];
-                $age_params[] = ['<=', 'birthday', \time() - 24 * 3600 * 365 * 60];
-            }
+                $result = ArrayHelper::getColumn($id, 'id');
 
-            $id = Posts::find();
+                if (!empty($ids)){
 
-            foreach ($age_params as $age_param) {
-                $id->andWhere($age_param);
-            }
+                    $ids = array_intersect($ids, $id);
 
-            $id = $id->asArray()->select('id')->all();
+                }else{
 
-
-            if ($id) {
-
-                if (!empty($ids)) {
-
-                    foreach ($id as $id_item) {
-
-                        $result[] = ArrayHelper::getValue($id_item, 'id');
-
-                    }
-
-                    $ids = array_intersect($ids, $result) ;
-
-                } else {
-
-                    foreach ($id as $id_item) {
-
-                        $result[] = ArrayHelper::getValue($id_item, 'id');
-
-                    }
-
-                    $ids = $id;
+                    $ids = $result;
 
                 }
 
@@ -206,6 +166,7 @@ class QueryParamsHelper
             return $posts;
 
         }
+
     }
 
     public static function prepareUrl($url, $value){

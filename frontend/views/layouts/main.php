@@ -33,7 +33,7 @@ AppAsset::register($this);
                 <ul class="top-menu">
                     <li class="top-menu-item"><a href="#">Индивидуалки</a></li>
                     <li class="top-menu-item"><a href="#">Проверенные</a></li>
-                    <li class="top-menu-item"><a href="#">Элитные</a></li>
+                    <li class="top-menu-item"><a href="/cena-ot-6000">Элитные</a></li>
                     <li class="top-menu-item"><a href="#">Форум</a></li>
                 </ul>
             </div>
@@ -122,7 +122,7 @@ AppAsset::register($this);
                             <ul class="nav">
                                 <li class="nav-item" ><a href="#">Индивидуалки</a></li>
                                 <li class="nav-item" ><a href="#">Проверенные</a></li>
-                                <li class="nav-item" ><a href="#">Элитные</a></li>
+                                <li class="nav-item" ><a href="/cena-ot-6000">Элитные</a></li>
                                 <li class="nav-item" ><a href="#">Форум</a></li>
                             </ul>
                             <div class="color-boll first-color-boll">
