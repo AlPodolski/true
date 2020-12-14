@@ -15,6 +15,9 @@ return [
         'user' => [
             'class' => 'frontend\modules\user\User',
         ],
+        'advert' => [
+            'class' => 'frontend\modules\advert\advert',
+        ],
     ],
     'components' => [
         'imageCache' => [
@@ -34,6 +37,7 @@ return [
                 '175_210' => [175, 210],
                 '200' => [200, 200],
                 '59' => [59, 59],
+                '77' => [77, 77],
                 '350_420' => [350, 420],
             ],
         ],
@@ -72,6 +76,12 @@ return [
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/city/search' => 'city/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/search/name' => 'search/name',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/review/add' => 'user/review/add',
+
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/forum/<id:[0-9]+>' => 'advert/advert/view',
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/forum/ad' => 'advert/advert/ad',
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/forum' => 'advert/advert/list',
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/more-forum' => 'advert/advert/more',
+
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/<param:[a-z-0-9]+>' => 'filter/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/<param:([a-z-0-9]+/)+[a-z-0-9]+>' => 'filter/index',
             ],

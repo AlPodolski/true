@@ -1944,6 +1944,49 @@ h1 , .big-red-text{
 .post{
     margin-bottom: 20px;
 }
+.img{
+    width: 100%;
+}
+.advert-item-text .name{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 141.4%;
+    color: #000000;
+}
+.advert-item{
+    margin-bottom: 20px;
+}
+.text-ab{
+    margin-top: 10px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 30px;
+}
+.text-ab a{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 141.4%;
+    color: #C4C4C4;
+}
+.dialog-photo .img{
+    border-radius: 50%;
+}
+.user-info{
+    margin-bottom: 15px;
+}
+.comments-btn {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 141.4%;
+    text-decoration-line: underline;
+    color: #F74952;
+    margin-top: 10px;
+}
+.comments-btn svg{
+    margin-left: 5px;
+}
 @media (max-width: 1199px) {
     .count-photo-icon{
         top: 3px;
