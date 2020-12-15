@@ -16,7 +16,7 @@ $form = ActiveForm::begin([
 <?= $form->field($commentForm, 'related_id',['options' => ['class' => 'd-none']])->hiddenInput(['value' => $relatedId ])->label(false) ?>
 <?= $form->field($commentForm, 'text' , ['options' => ['class' => 'form-otvet']])->textarea(['placeholder' => 'Напишите что то'])->label(false) ?>
 <?= $form->field($commentForm, 'class' , ['options' => ['class' => 'form-otvet']])->hiddenInput(['value' => $classRelatedModel])->label(false) ?>
-<?php if (Yii::$app->user->isGuest)  $onclick = 'data-toggle="modal" data-target="#modal-in" aria-hidden="true"';
+<?php if (Yii::$app->user->isGuest)  $onclick = 'onclick="get_user_menu()"';
 else $onclick = 'onclick="send_comment(this)"'; ?>
 
     <span class="send-comment-btn" <?php echo $onclick ?> data-id="<?php echo $relatedId; ?>">

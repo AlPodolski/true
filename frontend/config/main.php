@@ -82,6 +82,8 @@ return [
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/forum' => 'advert/advert/list',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/more-forum' => 'advert/advert/more',
 
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/comment' => 'comment/index',
+
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/<param:[a-z-0-9]+>' => 'filter/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/<param:([a-z-0-9]+/)+[a-z-0-9]+>' => 'filter/index',
             ],

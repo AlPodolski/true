@@ -54,6 +54,16 @@ $('.login-icon-close').click(function() {
 
 });
 
+function get_user_menu(){
+
+    $('.login').animate({
+
+        left: '0px'
+
+    }, 250);
+
+}
+
 $('.search-by-params-btn').click(function() {
 
     $('.filter-block').toggleClass('d-none');
@@ -687,4 +697,36 @@ function get_comments_forum(object){
 
     $('#forum-comments-modal').modal('show');
 
+}
+
+function send_comment(object) {
+
+    var formData = new FormData($(".form-wall-comment-" + $(object).attr('data-id'))[0]);
+
+    var id = $(object).attr('data-id');
+
+    $.ajax({
+        url: '/comment',
+        type: 'POST',
+        data: formData,
+        datatype: 'json',
+        // async: false,
+        beforeSend: function () {
+            $('#w0 .form-text').css('display', 'none');
+        },
+        success: function (data) {
+            $(object).closest('.comment-wall-form').siblings('.comments-list').append(data);
+        },
+
+        complete: function () {
+            // success alerts
+        },
+
+        error: function (data) {
+            alert("There may a error on uploading. Try again later");
+        },
+        cache: false,
+        contentType: false,
+        processData: false
+    });
 }
