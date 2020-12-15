@@ -682,3 +682,9 @@ function favorite(object){
     })
 
 }
+
+function get_comments_forum(object){
+
+    $('#forum-comments-modal').modal('show');
+
+}
