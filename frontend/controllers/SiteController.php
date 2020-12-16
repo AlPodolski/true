@@ -294,4 +294,14 @@ class SiteController extends Controller
             'model' => $model
         ]);
     }
+
+    public function actionRobot($city)
+    {
+        $host = $city.'.'.Yii::$app->params['site_name'];
+
+        return $this->renderFile('@app/views/site/robot.php', [
+            'host' => $host
+        ]);
+    }
+
 }
