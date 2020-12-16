@@ -466,7 +466,7 @@ AppAsset::register($this);
             </div>
 
         </div>
-        <div class="search-by-params-btn search-by-params-btn-top">
+        <div class="search-by-params-btn search-by-params-btn-top d-none">
             Поиск по параметрам
             <svg width="8" height="5" viewBox="0 0 8 5" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0)">
