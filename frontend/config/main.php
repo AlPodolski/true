@@ -78,7 +78,7 @@ return [
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/review/add' => 'user/review/add',
 
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/forum/<id:[0-9]+>' => 'advert/advert/view',
-                '<protocol>://<city:[a-z-0-9]+>.<domain>/forum/ad' => 'advert/advert/ad',
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/forum/add' => 'advert/advert/ad',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/forum' => 'advert/advert/list',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/more-forum' => 'advert/advert/more',
 

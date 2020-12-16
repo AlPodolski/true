@@ -25,7 +25,7 @@ class AdvertController extends Controller
 
             Yii::$app->session->setFlash('success', 'Объяление добавлено');
 
-            return $this->redirect('/user');
+            return $this->redirect('/forum');
 
         }
 

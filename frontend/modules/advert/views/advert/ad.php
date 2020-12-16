@@ -12,9 +12,6 @@ $this->title = 'Добавить объявление';
 ?>
 
 <div class="row">
-    <div class="col-3">
-        <?php echo UserSideBarWidget::Widget()  ?>
-    </div>
 
     <div class="col-12 col-xl-9">
 
@@ -32,7 +29,7 @@ $this->title = 'Добавить объявление';
 
             <div class="col-12">
 
-                <div class="form-group">
+                <div class="form-group add-button orange-btn">
                     <?= Html::submitButton('Сохранить', ['class' => 'in-cabinet']) ?>
                 </div>
 

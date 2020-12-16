@@ -11,7 +11,7 @@ use frontend\widgets\PhotoWidget;
     <div class="post_header">
 
         <div class="row">
-            <div class="col-md-1">
+            <div class="col-md-2 col-lg-1 col-sm-2 col-3">
                 <a class="post_image dialog-photo" >
 
                     <?php echo PhotoWidget::widget([
@@ -26,7 +26,7 @@ use frontend\widgets\PhotoWidget;
 
                 </a>
             </div>
-            <div class="col-md-11">
+            <div class="col-md-10 col-lg-11 col-sm-10 col-9 ">
                 <div class="post_header_info">
 
                     <a  class="author red-text">
