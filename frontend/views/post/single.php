@@ -942,7 +942,7 @@ Yii::$app->view->registerMetaTag([
 
                 <?php foreach ($serviceList as $service) : ?>
 
-                    <?php if ($service['review']) : ?>
+                    <?php if (isset($service['review']) and $service['review']) : ?>
 
                     <?php $serviceRating = \frontend\helpers\PostRatingHelper::setPercentRating($service['review']) ?>
 
