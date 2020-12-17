@@ -78,9 +78,6 @@ class FilterController extends Controller
 
         $more_posts = false;
 
-        if(\count($posts) < 4) $more_posts = Posts::find()->limit(8)
-            ->all();
-
         $uri = Yii::$app->request->url;
 
         if (\strpos($uri, 'page')) $uri = \strstr($uri, '/page', true);
@@ -95,7 +92,6 @@ class FilterController extends Controller
             'city' => $city,
             'param' => $param,
             'cityInfo' => $cityInfo,
-            'more_posts' => $more_posts,
             'title' => $title,
             'des' => $des,
             'h1' => $h1,

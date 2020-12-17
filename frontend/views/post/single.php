@@ -307,7 +307,7 @@ Yii::$app->view->registerMetaTag([
 
                     if (count($post['allPhoto']) == 1) $size = 'single';
 
-                    else $size = '175_210';
+                    else $size = '1024';
 
                 ?>
 
