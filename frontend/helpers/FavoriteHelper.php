@@ -69,7 +69,8 @@ class FavoriteHelper
 
         $items = \unserialize($favorite);
 
-        if (\in_array($id, $items)){
+
+        if (\is_array($items) and \in_array($id, $items)){
 
             return true;
 
