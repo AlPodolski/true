@@ -83,6 +83,7 @@ class SiteController extends Controller
 
         $prPosts = Posts::find()->asArray()->with('avatar', 'metro')
             ->limit(3)
+            ->orderBy('id DESC')
             ->all();
         $newPosts = Posts::find()->asArray()
             ->orderBy(['created_at' => SORT_DESC ])

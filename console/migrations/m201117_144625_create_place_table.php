@@ -20,8 +20,8 @@ class m201117_144625_create_place_table extends Migration
 
         $this->execute("
             INSERT INTO `place` (`value`, `url`) VALUES
-            ( 'в апартаментах', 'appartamentu'),
-            ( 'на  выезде', 'viezd'),
+            ( 'Апартаменты', 'appartamentu'),
+            ( 'Выезд', 'viezd'),
             ( 'В машине', 'v-mashine'),
             ( 'В сауне', 'v-sayne'),
             ( 'На дому', 'na-domu'),

@@ -27,10 +27,19 @@ use frontend\models\UserMetro;
  * @property string|null $about
  * @property string|null $video
  * @property int|null $category
+ * @property int|null $price
+ * @property int|null $age
+ * @property int|null $rost
+ * @property int|null $breast
+ * @property int|null $ves
  * @property int|null $check_photo_status
  */
 class Posts extends \yii\db\ActiveRecord
 {
+
+    const INDI_CATEGORY = 1;
+    const SALON_CATEGORY = 2;
+
     /**
      * {@inheritdoc}
      */
@@ -45,7 +54,7 @@ class Posts extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['city_id', 'user_id', 'created_at', 'updated_at', 'category', 'check_photo_status'], 'integer'],
+            [['city_id', 'user_id', 'created_at', 'updated_at', 'category', 'check_photo_status', 'price', 'age', 'rost', 'ves'], 'integer'],
             [['name'], 'string', 'max' => 60],
             [['phone'], 'string', 'max' => 20],
             [['about'], 'string', 'max' => 255],
