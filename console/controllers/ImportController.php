@@ -261,8 +261,6 @@ class ImportController extends Controller
 
             }
 
-            \dd($post);
-
         }
 
     }
