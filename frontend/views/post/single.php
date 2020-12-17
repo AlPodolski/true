@@ -647,7 +647,7 @@ Yii::$app->view->registerMetaTag([
                                 </div>
                                 <div class="main-param-item">
                                     <img src="/img/women-brassiere1.png" alt="">
-                                    <?php echo $post['ves'] ? $post['ves']  : "-";?>
+                                    <?php echo $post['breast'] ? $post['breast']  : "-";?>
                                 </div>
                             </div>
                         </div>
@@ -1094,7 +1094,7 @@ Yii::$app->view->registerMetaTag([
             </div>
             <div class="main-param-item">
                 <img src="/img/women-brassiere1.png" alt="">
-                <?php echo $post['ves'] ? $post['ves']  : "-";?>
+                <?php echo $post['breast'] ? $post['breast']  : "-";?>
             </div>
         </div>
         <div class="user-service-block">
