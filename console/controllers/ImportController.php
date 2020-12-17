@@ -70,6 +70,7 @@ class ImportController extends Controller
                         $userRayon = new UserRayon();
                         $userRayon->post_id = $post->id;
                         $userRayon->rayon_id = $rayonId;
+                        $userRayon->city_id = 1;
                         $userRayon->save();
 
                     }

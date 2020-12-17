@@ -669,7 +669,7 @@ Yii::$app->view->registerMetaTag([
 
                             <?php foreach ($post['place'] as $item) : ?>
 
-                                <a class="grey-text" href="/mesto/<?php echo $item['url'] ?>">
+                                <a class="grey-text" href="/mesto-<?php echo $item['url'] ?>">
                                     <?php echo $item['value'] ?>
                                 </a>
 

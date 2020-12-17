@@ -435,6 +435,7 @@ body{
     justify-content: end;
     align-items: center;
     height: 49px;
+    justify-content: flex-end;
 }
 .main-nav .city{
     line-height: 12px;
