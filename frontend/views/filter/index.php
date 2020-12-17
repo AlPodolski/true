@@ -30,7 +30,9 @@ Yii::$app->view->registerMetaTag([
 
     <?php else : ?>
 
-    <p>По вашему запросу ничего нет</p>
+    <div class="col-12">
+        <p>По вашему запросу ничего нет</p>
+    </div>
 
     <?php endif; ?>
 
