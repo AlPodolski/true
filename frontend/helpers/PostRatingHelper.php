@@ -14,7 +14,7 @@ class PostRatingHelper
 
         $postReview = Review::find()->where(['post_id' => $postId])->with('serviceMarc', 'author')->asArray()->all();
 
-        if (($reviewCount = count($postReview)) == 0 ) return 0;
+        $reviewCount = count($postReview);
         $service_marc = self::getAverageServiceRating( ArrayHelper::getColumn($postReview, 'serviceMarc'));
         $photo_marc = self::getAverageRating($reviewCount, ArrayHelper::getColumn($postReview, 'photo_marc'));
         $total_marc = self::getAverageRating($reviewCount, ArrayHelper::getColumn($postReview, 'total_marc'));
@@ -86,6 +86,7 @@ class PostRatingHelper
             }
 
         }
+        if ($total == 0) return 0;
         return \round($averageRating / $total , 1);
 
     }
@@ -101,7 +102,7 @@ class PostRatingHelper
             $total = $total + $item;
 
         }
-
+        if ($total == 0) return 0;
         return \round($total / \count($arguments), 1);
 
     }
