@@ -20,10 +20,18 @@ Yii::$app->view->registerMetaTag([
 
 <div class="row">
 
+    <?php if (is_array($posts)) : ?>
+
     <?php foreach ($posts as $post) : ?>
 
         <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), ['post' => $post]); ?>
 
     <?php endforeach; ?>
+
+    <?php else : ?>
+
+    <p>По вашему запросу ничего нет</p>
+
+    <?php endif; ?>
 
 </div>
