@@ -17,7 +17,7 @@ class PostController extends Controller
         $post = Posts::find()->where(['id' => $id])
             ->with('allPhoto', 'metro', 'avatar', 'place', 'service',
                 'sites', 'rayon', 'nacionalnost',
-                'cvet', 'strizhka', 'osobenost'
+                'cvet', 'strizhka', 'osobenost', 'selphiCount'
             )
             ->asArray()->one();
 
