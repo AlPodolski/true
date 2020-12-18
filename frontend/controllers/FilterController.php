@@ -34,7 +34,7 @@ class FilterController extends Controller
             }
 
             $posts = $posts->limit(Yii::$app->params['post_limit'])
-                ->with('avatar', 'metro')->asArray();
+                ->with('avatar', 'metro', 'selphiCount')->asArray();
 
             if ($page) $posts = $posts->offset(Yii::$app->params['post_limit'] * 1);
 

@@ -72,6 +72,12 @@ class Posts extends \yii\db\ActiveRecord
         return $this->hasMany(Files::class, ['related_id' => 'id'])->andWhere(['related_class' => self::class]);
     }
 
+    public function getSelphiCount()
+    {
+        return $this->hasMany(Files::class, ['related_id' => 'id'])
+            ->andWhere(['related_class' => self::class])
+            ->andWhere(['type' => Files::SELPHY_TYPE]);
+    }
     public function getMetro()
     {
         return $this->hasMany(Metro::class, ['id' => 'metro_id'])->via('userToMetroRelations');

@@ -81,7 +81,7 @@ class SiteController extends Controller
 
         Yii::$app->cache->flush();
 
-        $prPosts = Posts::find()->asArray()->with('avatar', 'metro')
+        $prPosts = Posts::find()->asArray()->with('avatar', 'metro', 'selphiCount')
             ->limit(3)
             ->orderBy('id DESC')
             ->all();

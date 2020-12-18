@@ -111,10 +111,21 @@ use frontend\widgets\PhotoWidget;
                         фото реальное
                     </div>
                 <?php endif; ?>
-                <div class="indi-marc post-marc blue-post-marc">
-                    <img src="/img/photo-camera1.png" alt="">
+                <?php if ($post['selphiCount']) : ?>
 
-                </div>
+                    <div class="indi-marc post-marc blue-post-marc">
+                        <img src="/img/photo-camera1.png" alt="">
+                        есть селфи
+                    </div>
+
+                <?php else : ?>
+
+                    <div class="indi-marc post-marc red-post-marc">
+                        <img src="/img/photo-camera1-red.png" alt="">
+                        нет селфи
+                    </div>
+
+                <?php endif; ?>
                 <div class="indi-marc post-marc red-post-marc">
                     <img src="/img/video-player1.png" alt="">
                     <?php if (!$post['video']) : ?>

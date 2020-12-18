@@ -164,9 +164,13 @@ Yii::$app->view->registerMetaTag([
                         </div>
                         <div class="btn-wrap">
 
-                            <div class="orange-btn selfi-btn" data-toggle="modal" data-target="#selfy-modal">
-                                <img src="/img/camera(1)1.png" alt="">Смотеть селфи
-                            </div>
+                            <?php if ($post['selphiCount']) :?>
+
+                                <div class="orange-btn selfi-btn" data-toggle="modal" data-target="#selfy-modal">
+                                    <img src="/img/camera(1)1.png" alt="">Смотеть селфи
+                                </div>
+
+                            <?php endif; ?>
 
                             <?php if ($post['video']) : ?>
                                 <div class="white-btn video-btn" data-toggle="modal" data-target="#video-modal">
