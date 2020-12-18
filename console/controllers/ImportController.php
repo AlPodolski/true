@@ -265,4 +265,22 @@ class ImportController extends Controller
         }
 
     }
+
+    public function actionAddCheck()
+    {
+        $posts = Posts::find()->all();
+
+        foreach ($posts as $post){
+
+            if (\rand(0,3) == 3){
+
+                $post->check_photo_status = 1;
+
+                $post->save();
+
+            }
+
+        }
+    }
+
 }
