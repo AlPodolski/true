@@ -96,12 +96,12 @@ use frontend\widgets\PhotoWidget;
             <div class="post-marc-block">
                 <?php if ($post['category'] == 1) : ?>
                     <div class="indi-marc post-marc blue-post-marc">
-                        <img src="/img/user(1)1.png" alt="">
+                        <img src="/img/user(1)1-blue.png" alt="">
                         индивидуалка
                     </div>
                 <?php else : ?>
                     <div class="indi-marc post-marc blue-post-marc">
-                        <img src="/img/star(2)1.png" alt="">
+                        <img src="/img/star(2)1-blue.png" alt="">
                         салон
                     </div>
                 <?php endif; ?>
