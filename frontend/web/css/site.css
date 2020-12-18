@@ -437,6 +437,9 @@ body{
     height: 49px;
     justify-content: flex-end;
 }
+.footer{
+    margin-top: 35px;
+}
 .main-nav .city{
     line-height: 12px;
 }
