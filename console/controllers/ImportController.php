@@ -207,7 +207,7 @@ class ImportController extends Controller
 
                 }
 
-                if (isset($record['mini'])) {
+                if ($record['mini']) {
 
                     $userPhoto = new Files();
 
@@ -221,7 +221,7 @@ class ImportController extends Controller
 
                 }
 
-                if (isset($record['gallery'])) {
+                if ($record['gallery']) {
 
                     $gall = \explode(',', $record['gallery']);
 
