@@ -95,12 +95,12 @@ use frontend\widgets\PhotoWidget;
             </div>
             <div class="post-marc-block">
                 <?php if ($post['category'] == 1) : ?>
-                    <div class="indi-marc post-marc red-post-marc">
+                    <div class="indi-marc post-marc blue-post-marc">
                         <img src="/img/user(1)1.png" alt="">
                         индивидуалка
                     </div>
                 <?php else : ?>
-                    <div class="indi-marc post-marc red-post-marc">
+                    <div class="indi-marc post-marc blue-post-marc">
                         <img src="/img/star(2)1.png" alt="">
                         салон
                     </div>
@@ -126,15 +126,21 @@ use frontend\widgets\PhotoWidget;
                     </div>
 
                 <?php endif; ?>
-                <div class="indi-marc post-marc red-post-marc">
-                    <img src="/img/video-player1.png" alt="">
-                    <?php if (!$post['video']) : ?>
-                        нет
-                    <?php else : ?>
-                        есть
-                    <?php endif; ?>
-                    видео
-                </div>
+                <?php if ($post['video']) : ?>
+
+                    <div class="indi-marc post-marc blue-post-marc">
+                        <img src="/img/video-player1.png" alt="">
+                        есть видео
+                    </div>
+
+                <?php else : ?>
+
+                    <div class="indi-marc post-marc red-post-marc">
+                        <img src="/img/video-player1.png" alt="">
+                        нет видео
+                    </div>
+
+                <?php endif; ?>
 
             </div>
         </div>
