@@ -9,12 +9,14 @@ use common\models\Osobenosti;
 use common\models\Place;
 use common\models\Rayon;
 use common\models\Service;
+use common\models\User;
 use frontend\models\Files;
 use frontend\models\Metro;
 use frontend\models\UserMetro;
-use frontend\modules\user\models\Photo;
 use frontend\modules\user\models\Posts;
 use frontend\modules\user\models\PostSites;
+use frontend\modules\user\models\Review;
+use frontend\modules\user\models\ServiceReviews;
 use frontend\modules\user\models\UserHairColor;
 use frontend\modules\user\models\UserNational;
 use frontend\modules\user\models\UserOsobenosti;
@@ -281,6 +283,88 @@ class ImportController extends Controller
             }
 
         }
+    }
+
+    public function actionAddReview()
+    {
+        $stream = \fopen(Yii::getAlias('@app/files/review.csv'), 'r');
+
+        $csv = Reader::createFromStream($stream);
+        $csv->setDelimiter(';');
+        $csv->setHeaderOffset(0);
+
+        //build a statement
+        $stmt = (new Statement());
+
+        $records = $stmt->process($csv);
+
+        foreach ($records as $record) {
+
+            $post = Posts::find()->where(['name' => $record['name'] ])->with('service')->asArray()->andWhere(['like', 'phone', $record['price']])->one();
+
+            $data = \explode('#@', $record['age']);
+
+            foreach($data as $item){
+
+                $reviewData = \explode('$@', $item);
+
+                if (isset($reviewData[1]) and $reviewData[1] and (int)$reviewData[0] > 0 and $post){
+
+                    $mark = 2 * ((int)$reviewData[0]);
+
+                    if (!$user = User::find()->where(['username' => $reviewData[1]])->asArray()->one()){
+
+                        $user = new User();
+
+                        $user->username = $reviewData[1];
+                        $user->password_hash = Yii::$app->security->generateRandomString(60);
+                        $user->auth_key = Yii::$app->security->generateRandomString();
+                        $user->email = $post['id'].'admin@mail.com';
+                        $user->status = 10;
+                        $user->created_at = $time = \time();
+                        $user->updated_at = $time;
+                        $user->verification_token = Yii::$app->security->generateRandomString(43);
+
+                        $user->save();
+
+                    }
+
+                    $review = new Review();
+
+                    $review->post_id = $post['id'];
+                    $review->text = $reviewData[2];
+                    $review->photo_marc = ($mark - \rand(-2, 0)) ?? $mark;
+                    $review->clean = ($mark - \rand(-2, 0)) ?? $mark;;
+                    $review->author = $user['id'];
+                    $review->total_marc = $mark;
+                    $review->created_at = $post['created_at'] + (\rand(0, 3600 * 24 * 14 ));
+
+                    $review->save();
+
+                    if ($post['service']) {
+
+                        foreach ($post['service'] as $item2){
+
+                            $serviceReview = new ServiceReviews();
+
+                            $serviceReview->post_id = $post['id'];
+                            $serviceReview->service_id =  $item2['id'];
+                            $serviceReview->marc = \rand(1, 10);
+
+                            $serviceReview->save();
+
+                        }
+
+                    }
+
+
+
+                }
+
+            }
+
+        }
+
     }
 
 }
