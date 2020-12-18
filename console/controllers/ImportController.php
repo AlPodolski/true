@@ -337,6 +337,7 @@ class ImportController extends Controller
                     $review->clean = ($mark - \rand(-2, 0)) ?? $mark;;
                     $review->author = $user['id'];
                     $review->total_marc = $mark;
+                    $review->is_happy = \rand(0,1);
                     $review->created_at = $post['created_at'] + (\rand(0, 3600 * 24 * 14 ));
 
                     $review->save();

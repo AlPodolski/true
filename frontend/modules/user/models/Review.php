@@ -16,6 +16,7 @@ use Yii;
  * @property int|null $total_marc
  * @property int|null $author
  * @property int|null $created_at
+ * @property int|null $is_happy
  */
 class Review extends \yii\db\ActiveRecord
 {
@@ -33,7 +34,7 @@ class Review extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['post_id', 'photo_marc',  'total_marc', 'clean', 'author'], 'integer'],
+            [['post_id', 'photo_marc',  'total_marc', 'clean', 'author', 'is_happy'], 'integer'],
             [['text'], 'string'],
         ];
     }
