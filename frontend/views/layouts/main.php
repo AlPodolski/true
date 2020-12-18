@@ -51,7 +51,7 @@ AppAsset::register($this);
                     <li class="top-menu-item"><a href="/">Индивидуалки</a></li>
                     <li class="top-menu-item"><a href="/proverennye">Проверенные</a></li>
                     <li class="top-menu-item"><a href="/cena-ot-6000">Элитные</a></li>
-                    <li class="top-menu-item"><a href="/forum">Форум</a></li>
+                    <li class="top-menu-item d-none"><a href="/forum">Форум</a></li>
                 </ul>
             </div>
         </div>
@@ -140,7 +140,7 @@ AppAsset::register($this);
                                 <li class="nav-item" ><a href="/">Индивидуалки</a></li>
                                 <li class="nav-item" ><a href="/proverennye">Проверенные</a></li>
                                 <li class="nav-item" ><a href="/cena-ot-6000">Элитные</a></li>
-                                <li class="nav-item" ><a href="/forum">Форум</a></li>
+                                <li class="nav-item d-none" ><a href="/forum">Форум</a></li>
                             </ul>
                             <div class="color-boll first-color-boll">
 
@@ -215,7 +215,7 @@ AppAsset::register($this);
                             <li class="nav-item" ><a href="/">Индивидуалки</a></li>
                             <li class="nav-item" ><a href="/proverennye">Проверенные</a></li>
                             <li class="nav-item" ><a href="/cena-ot-6000">Элитные</a></li>
-                            <li class="nav-item" ><a href="/forum">Форум</a></li>
+                            <li class="nav-item d-none" ><a href="/forum">Форум</a></li>
                         </ul>
                         <div class="color-boll first-color-boll">
 
