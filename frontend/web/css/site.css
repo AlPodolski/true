@@ -773,7 +773,7 @@ h1 , .big-red-text{
     margin-left: 30px;
 }
 .black-gradient{
-    background: linear-gradient(3.01deg, rgba(0, 0, 0, 0.79) 4.2%, rgba(0, 0, 0, 0) 101.31%);
+    background: linear-gradient(3.01deg, rgb(0, 0, 0) 4.2%, rgba(0, 0, 0, 0) 90.31%);
     border-radius: 0px;
     position: absolute;
     height: 200px;
