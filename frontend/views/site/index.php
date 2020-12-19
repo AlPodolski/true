@@ -14,14 +14,10 @@ Yii::$app->view->registerMetaTag([
 ]);
 
 ?>
-<div class="popular-btn-block d-none">
-    <div class="popular-btn popular-btn-selected">Дешевые
-        <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M6 0.353513L5.64649 0L3 2.64649L0.353513 0L0 0.353513L2.64649 3L0 5.64649L0.353513 6L3 3.35351L5.64649 6L6 5.64649L3.35351 3L6 0.353513Z" fill="white"/>
-        </svg>
-    </div>
-    <div class="popular-btn">Рядом</div>
-    <div class="popular-btn">Элитные</div>
+<div class="popular-btn-block">
+    <a href="/cena-do-1500" class="popular-btn">Дешевые</a>
+    <a class="popular-btn" href="/video">С видео</a>
+    <a class="popular-btn" href="/cena-ot-6000">Элитные</a>
 </div>
 <div class="row">
     <div class="col-12">
@@ -63,7 +59,7 @@ Yii::$app->view->registerMetaTag([
     </div>
     <article class="post">
         <div class="post-img position-relative">
-            <img src="img/7641051.png" alt="">
+            <img src="/img/7641051.png" alt="">
             <div class="post-rating">
                 <div class="star-bg">
                 </div>
@@ -75,10 +71,13 @@ Yii::$app->view->registerMetaTag([
             </div>
         </div>
         <div class="red-btn-wrap">
-            <a class="red-btn" href="#">Перейти<img src="img/up-arrow1.png" alt=""></a>
+            <a class="red-btn" href="#">Перейти<img src="/img/up-arrow1.png" alt=""></a>
         </div>
     </article>
     <div class="col-12">
+        <p class="big-red-text">
+            Новые анкеты индивидуалок
+        </p>
         <p class="black-text">
             Самый свежак номеров которые только появились на сайте
         </p>
@@ -97,7 +96,7 @@ Yii::$app->view->registerMetaTag([
             </div>
         </div>
         <div class="red-btn-wrap">
-            <a class="red-btn" href="#">Перейти<img src="img/up-arrow1.png" alt=""></a>
+            <a class="red-btn" href="#">Перейти<img src="/img/up-arrow1.png" alt=""></a>
         </div>
     </article>
     <div class="col-12">
@@ -108,28 +107,28 @@ Yii::$app->view->registerMetaTag([
     </div>
     <article class="post map">
         <div class="post-img position-relative">
-            <img src="img/map.png" alt="">
+            <img src="/img/map.png" alt="">
             <div class="post-rating">
                 <div class="geo-bg">
                 </div>
             </div>
             <div class="pin-wrap">
                 <div class="pin" style="top: 250px;left: 100px;">
-                    <img src="img/pin.png" alt="">
+                    <img src="/img/pin.png" alt="">
                 </div>
                 <div class="pin" style="top: 367px;left: 100px;">
-                    <img src="img/pin.png" alt="">
+                    <img src="/img/pin.png" alt="">
                 </div>
                 <div class="pin" style="top: 357px;left: 130px;">
-                    <img src="img/pin.png" alt="">
+                    <img src="/img/pin.png" alt="">
                 </div>
                 <div class="pin" style="top: 315px;left: 130px;">
-                    <img src="img/pin.png" alt="">
+                    <img src="/img/pin.png" alt="">
                 </div>
             </div>
             <div class="user-on-map position-absolute d-flex">
                 <div class="user-map-img">
-                    <img src="img/small-girl-map.png" alt="">
+                    <img src="/img/small-girl-map.png" alt="">
                 </div>
                 <div class="user-map-info">
                     <div class="name">Лариса</div>
@@ -143,6 +142,6 @@ Yii::$app->view->registerMetaTag([
             </div>
         </div>
         <div class="red-btn-wrap">
-            <a class="red-btn" href="#">Перейти<img src="img/up-arrow1.png" alt=""></a>
+            <a class="red-btn" href="#">Поиск<img src="/img/up-arrow1.png" alt=""></a>
         </div>
     </article>

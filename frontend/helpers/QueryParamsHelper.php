@@ -162,6 +162,28 @@ class QueryParamsHelper
 
         }
 
+        if (strstr($value, 'video')){
+
+            $id = Posts::find()->select('id')->where(['IS NOT', 'video', null])->asArray()->all();
+
+            if($id){
+
+                $result = ArrayHelper::getColumn($id, 'id');
+
+                if (!empty($ids)){
+
+                    $ids = array_intersect($ids, $id);
+
+                }else{
+
+                    $ids = $result;
+
+                }
+
+            }
+
+        }
+
         if ($ids) {
 
             Yii::$app->params['result_id'] = $ids;

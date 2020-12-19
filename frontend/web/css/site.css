@@ -571,7 +571,7 @@ body{
     display: inline-block;
     margin-top: 15px;
 }
-.popular-btn-selected{
+.popular-btn:hover{
     background: #F74952;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     color: #fff;
@@ -1472,7 +1472,7 @@ h1 , .big-red-text{
     display: block;
 }
 .single .post-rating{
-    top: 350px;
+    top: 310px;
     right: 30px;
 }
 .photo-count{
@@ -1664,7 +1664,7 @@ h1 , .big-red-text{
     margin-top: 15px;
 }
 .owl-dots{
-    bottom: 60px;
+    bottom: 30px;
 }
 .single-post-info-row{
     padding: 0 15px;
@@ -2137,6 +2137,7 @@ h1 , .big-red-text{
     }
     .post-marc-block {
         min-height: inherit;
+        padding: 22px 0px 15px 10px;
     }
     .single-post-info-wrap {
         padding-top: 20px;

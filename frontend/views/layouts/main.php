@@ -498,7 +498,7 @@ AppAsset::register($this);
         </div>
         <div class="row metro-search-btn-wrap">
             <div class="col-6">
-                <div class="metro-search-btn">
+                <div class="metro-search-btn" data-toggle="modal" data-target="#metroModal">
                     <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5.50011 1.34985C2.46255 1.34985 0 3.83578 0 6.90235C0 8.56513 0.717582 9.64956 0.717582 9.64956L10.2803 9.65002C10.2803 9.65002 11 8.46486 11 6.90224C11 3.83578 8.53745 1.34985 5.50011 1.34985ZM9.87695 8.97359L1.14069 8.96978C1.14069 8.96978 0.675168 8.0882 0.675168 6.88483C0.675168 4.1971 2.84359 2.0181 5.51856 2.0181C8.19341 2.0181 10.3619 4.19698 10.3619 6.88483C10.3621 8.1018 9.87695 8.97359 9.87695 8.97359Z" fill="#F74952"/>
                         <path d="M7.05446 2.8243L6.98542 2.82419L5.51833 5.69898L3.99845 2.79964L1.91751 8.03737H1.37973V8.45805H4.3259V8.03737H3.74132L4.3259 6.40042L5.51833 8.45805L6.66409 6.40042L7.24855 8.03737H6.66409V8.45805H9.58674V8.03737H9.08042L7.05446 2.8243Z" fill="#F74952"/>
@@ -507,7 +507,7 @@ AppAsset::register($this);
                 </div>
             </div>
             <div class="col-6">
-                <div class="search-by-params-btn search-by-params-btn-bottom">
+                <div class="search-by-params-btn search-by-params-btn-bottom d-none">
                     Поиск по параметрам
                     <svg width="8" height="5" viewBox="0 0 8 5" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0)">
