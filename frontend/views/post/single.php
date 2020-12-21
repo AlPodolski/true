@@ -44,6 +44,10 @@ Yii::$app->view->registerMetaTag([
     'content' => $des
 ]);
 
+$this->params['breadcrumbs'][] = array(
+    'label'=> $post['name'],
+);
+
 ?>
 
     <article class="single position-relative">

@@ -47,6 +47,9 @@ class QueryParamsHelper
                         $id = $className::find()->where(['url' => $url])->asArray()->one();
 
                         if (isset($id['value'])){
+                            Yii::$app->params['breadcrumbs'][] = array(
+                                'label'=> $id['value'],
+                            );
                             $bread_crumbs_params[] = [
                                 'url' => '/' . $value,
                                 'label' => $id['value']
@@ -95,22 +98,39 @@ class QueryParamsHelper
 
             $price_params = array();
 
-            if ($url == 'do-1500') $price_params[] = ['<', 'price' , 1500];
+            if ($url == 'do-1500') {
+                Yii::$app->params['breadcrumbs'][] = array(
+                    'label'=> 'до 1500',
+                );
+                $price_params[] = ['<', 'price' , 1500];
+            }
 
             if ($url == 'ot-1500-do-2000') {
                 $price_params[] = ['>=', 'price' , 1500];
                 $price_params[] = ['<=', 'price' , 1999];
+                Yii::$app->params['breadcrumbs'][] = array(
+                    'label'=> 'от 1500 до 2000',
+                );
             }
             if ($url == 'ot-2000-do-3000') {
                 $price_params[] = ['>=', 'price' , 2000];
                 $price_params[] = ['<=', 'price' , 2999];
+                Yii::$app->params['breadcrumbs'][] = array(
+                    'label'=> 'от 2000 до 3000',
+                );
             }
             if ($url == 'ot-3000-do-6000') {
                 $price_params[] = ['>=', 'price' , 3000];
                 $price_params[] = ['<=', 'price' , 6000];
+                Yii::$app->params['breadcrumbs'][] = array(
+                    'label'=> 'от 3000 до 6000',
+                );
             }
 
             if ($url == 'ot-6000') {
+                Yii::$app->params['breadcrumbs'][] = array(
+                    'label'=> 'от 6000',
+                );
                 $price_params[] = ['>=', 'price' , 6001];
             }
 
@@ -144,6 +164,10 @@ class QueryParamsHelper
 
             $id = Posts::find()->select('id')->where(['check_photo_status' => 1])->asArray()->all();
 
+            Yii::$app->params['breadcrumbs'][] = array(
+                'label'=> 'проверенные',
+            );
+
             if($id){
 
                 $result = ArrayHelper::getColumn($id, 'id');
@@ -163,6 +187,10 @@ class QueryParamsHelper
         }
 
         if (strstr($value, 'video')){
+
+            Yii::$app->params['breadcrumbs'][] = array(
+                'label'=> 'видео',
+            );
 
             $id = Posts::find()->select('id')->where(['IS NOT', 'video', null])->asArray()->all();
 
