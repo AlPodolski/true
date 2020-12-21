@@ -536,9 +536,9 @@ AppAsset::register($this);
                 'options' => ['class' => 'breadcrumb', 'style' => ''],
             ]);
         ?>
+    </div>
         <?= Alert::widget() ?>
         <?= $content ?>
-    </div>
 </main>
 
 

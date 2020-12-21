@@ -2115,7 +2115,19 @@ h1{
 .breadcrumb .separete{
     margin-right: 15px;
 }
+.red-btn-wrap{
+    margin-bottom: 15px;
+}
+.mobile-map{
+    display: none;
+}
 @media (max-width: 1199px) {
+    .mobile-map{
+        display: block;
+    }
+    .desc-map{
+        display: none;
+    }
     .add-advert-wrap{
         right: 30px;
     }

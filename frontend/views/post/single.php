@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = array(
 );
 
 ?>
-
+<div class="container custom-container">
     <article class="single position-relative">
         <div class="row">
             <div class="col-12 col-lg-4 col-xl-4 position-relative">
@@ -1589,4 +1589,5 @@ $this->params['breadcrumbs'][] = array(
             </div>
         </div>
     </div>
+</div>
 </div>
