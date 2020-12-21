@@ -439,6 +439,7 @@ body{
 }
 .footer{
     margin-top: 35px;
+    height: 1px;
 }
 .main-nav .city{
     line-height: 12px;
