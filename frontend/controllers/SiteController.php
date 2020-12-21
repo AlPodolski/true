@@ -83,9 +83,16 @@ class SiteController extends Controller
 
         $prPosts = Posts::find()->asArray()->with('avatar', 'metro', 'selphiCount')
             ->limit(3)
-            ->orderBy('id DESC')
+            ->orderBy(['rand()' => SORT_DESC])
             ->all();
+
+        $checkPosts = Posts::find()->asArray()
+            ->with('avatar', 'metro', 'selphiCount')
+            ->orderBy(['check_photo_status' => 1])
+            ->limit(3)->all();
+
         $newPosts = Posts::find()->asArray()
+            ->with('avatar', 'metro', 'selphiCount')
             ->orderBy(['created_at' => SORT_DESC ])
             ->limit(3)->all();
 
@@ -100,6 +107,7 @@ class SiteController extends Controller
         return $this->render('index' , [
             'prPosts' => $prPosts,
             'newPosts' => $newPosts,
+            'checkPosts' => $checkPosts,
             'title' => $title,
             'des' => $des,
             'h1' => $h1,

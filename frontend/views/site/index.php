@@ -3,6 +3,7 @@
 /* @var $this yii\web\View */
 /* @var $prPosts array */
 /* @var $newPosts array */
+/* @var $checkPosts array */
 /* @var $title string */
 /* @var $des string */
 /* @var $h1 string */
@@ -60,23 +61,20 @@ Yii::$app->view->registerMetaTag([
         </div>
     </div>
 
-    <article class="post">
-        <div class="post-img position-relative">
-            <img src="/img/7641051.png" alt="">
-            <div class="post-rating">
-                <div class="star-bg">
-                </div>
-                3,2
-            </div>
-            <div class="check-label">
-                проверенная
-                индивидуалка
-            </div>
+    <div class="row">
+
+        <?php foreach ($checkPosts as $post) : ?>
+
+            <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article-promo.php'), ['post' => $post]); ?>
+
+        <?php endforeach; ?>
+
+        <div class="red-btn-wrap col-12">
+            <a class="red-btn" href="#">Перейти<img src="/img/up-arrow1.png"></a>
         </div>
-        <div class="red-btn-wrap">
-            <a class="red-btn" href="#">Перейти<img src="/img/up-arrow1.png" alt=""></a>
-        </div>
-    </article>
+
+    </div>
+
     <div class="row">
         <div class="col-12">
             <p class="big-red-text">
@@ -87,23 +85,21 @@ Yii::$app->view->registerMetaTag([
             </p>
         </div>
     </div>
-    <article class="post">
-        <div class="post-img position-relative">
-            <img src="img/resize1.png" alt="">
-            <div class="post-rating">
-                <div class="star-bg">
-                </div>
-                3,2
-            </div>
-            <div class="check-label">
-                проверенная
-                индивидуалка
-            </div>
+
+    <div class="row">
+
+        <?php foreach ($newPosts as $post) : ?>
+
+            <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article-promo.php'), ['post' => $post]); ?>
+
+        <?php endforeach; ?>
+
+        <div class="red-btn-wrap col-12">
+            <a class="red-btn" href="#">Перейти<img src="/img/up-arrow1.png"></a>
         </div>
-        <div class="red-btn-wrap">
-            <a class="red-btn" href="#">Перейти<img src="/img/up-arrow1.png" alt=""></a>
-        </div>
-    </article>
+
+    </div>
+
     <div class="row">
         <div class="col-12">
             <p class="big-red-text">
