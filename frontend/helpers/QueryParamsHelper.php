@@ -185,6 +185,7 @@ class QueryParamsHelper
             }
 
         }
+
         if (strstr($value, 'novie')){
 
             $id = Posts::find()->select('id')->orderBy(['created_at' => SORT_DESC ])->asArray()->all();
