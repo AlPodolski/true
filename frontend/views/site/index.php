@@ -32,7 +32,7 @@ Yii::$app->view->registerMetaTag([
         </div>
     </div>
 </div>
-<h1> <?php echo $h1 ?> </h1>
+<h1> Проститутки Москвы </h1>
 
     <div class="row">
 

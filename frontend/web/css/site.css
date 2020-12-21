@@ -1401,7 +1401,6 @@ h1 , .big-red-text{
     font-weight: 500;
     font-size: 18px;
     line-height: 21px;
-    /* identical to box height */
     text-decoration-line: underline;
     color: #F74952;
     text-align: center;
@@ -1417,6 +1416,9 @@ h1 , .big-red-text{
 }
 .single-tabs .nav-link:hover{
     border: none;
+}
+h1{
+    text-align: left;
 }
 .back{
     background: url("../img/back.png");
@@ -2151,6 +2153,9 @@ h1 , .big-red-text{
     }
 }
 @media (max-width: 769px) {
+    h1{
+        text-align: center;
+    }
     .text-ab{
         padding-bottom: 15px;
     }
