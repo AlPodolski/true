@@ -44,19 +44,22 @@ Yii::$app->view->registerMetaTag([
 
     </div>
 
-    <div class="col-12">
-        <p class="big-red-text">
-            Проверенные проститутки с
-            высоким рейтингом
-        </p>
+    <div class="row">
+        <div class="col-12">
+            <p class="big-red-text">
+                Проверенные проститутки с
+                высоким рейтингом
+            </p>
 
-        <p class="black-text">
-            Рейтинг составляется на основе алгоритма
-            и ручной модерации мы выбираем только
-            качественные анкеты со всего интернета
-            что бы показать их вам.
-        </p>
+            <p class="black-text">
+                Рейтинг составляется на основе алгоритма
+                и ручной модерации мы выбираем только
+                качественные анкеты со всего интернета
+                что бы показать их вам.
+            </p>
+        </div>
     </div>
+
     <article class="post">
         <div class="post-img position-relative">
             <img src="/img/7641051.png" alt="">
@@ -74,13 +77,15 @@ Yii::$app->view->registerMetaTag([
             <a class="red-btn" href="#">Перейти<img src="/img/up-arrow1.png" alt=""></a>
         </div>
     </article>
-    <div class="col-12">
-        <p class="big-red-text">
-            Новые анкеты индивидуалок
-        </p>
-        <p class="black-text">
-            Самый свежак номеров которые только появились на сайте
-        </p>
+    <div class="row">
+        <div class="col-12">
+            <p class="big-red-text">
+                Новые анкеты индивидуалок
+            </p>
+            <p class="black-text">
+                Самый свежак номеров которые только появились на сайте
+            </p>
+        </div>
     </div>
     <article class="post">
         <div class="post-img position-relative">
@@ -99,11 +104,13 @@ Yii::$app->view->registerMetaTag([
             <a class="red-btn" href="#">Перейти<img src="/img/up-arrow1.png" alt=""></a>
         </div>
     </article>
-    <div class="col-12">
-        <p class="big-red-text">
-            Индивидуалки рядом
-            со мной
-        </p>
+    <div class="row">
+        <div class="col-12">
+            <p class="big-red-text">
+                Индивидуалки рядом
+                со мной
+            </p>
+        </div>
     </div>
     <article class="post map">
         <div class="post-img position-relative">

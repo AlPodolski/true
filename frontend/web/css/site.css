@@ -601,9 +601,8 @@ h1 , .big-red-text{
     font-size: 18px;
     line-height: 21px;
     color: #F74952;
-    margin-top: 15px;
-    text-align: center;
-    margin-bottom: 15px;
+    margin-top: 0px;
+    margin-bottom: 20px;
 }
 .single-tabs .nav-item  .nav-link.active{
     color: #F74952;
@@ -2153,7 +2152,7 @@ h1{
     }
 }
 @media (max-width: 769px) {
-    h1{
+    h1 , .big-red-text{
         text-align: center;
     }
     .text-ab{
