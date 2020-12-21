@@ -1,12 +1,13 @@
 <?php
 
 /* @var $post array */
+/* @var $countPost integer */
 
 use frontend\widgets\PhotoWidget;
 
 ?>
 
-<div class="col-xl-4 col-lg-4 col-md-6 col-12 post-wrap">
+<div class="col-xl-4 col-lg-4 col-md-6 col-12 post-wrap <?php echo isset($countPost) ? 'post-num-'.$countPost : "";?>">
     <article class="post">
         <div class="post-img position-relative">
             <a href="/post/<?php echo $post['id'] ?>">

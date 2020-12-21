@@ -37,9 +37,16 @@ Yii::$app->view->registerMetaTag([
 
     <div class="row">
 
+        <?php $i = 0 ?>
+
         <?php foreach ($prPosts as $post) : ?>
 
-            <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), ['post' => $post]); ?>
+            <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), [
+                    'post'  => $post,
+                'countPost' => $i,
+            ]); ?>
+
+            <?php $i++?>
 
         <?php endforeach; ?>
 
@@ -63,9 +70,16 @@ Yii::$app->view->registerMetaTag([
 
     <div class="row">
 
+        <?php $i = 0 ?>
+
         <?php foreach ($checkPosts as $post) : ?>
 
-            <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article-promo.php'), ['post' => $post]); ?>
+            <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article-promo.php'), [
+                    'post'      => $post,
+                    'countPost' => $i,
+            ]); ?>
+
+            <?php $i++?>
 
         <?php endforeach; ?>
 
@@ -88,9 +102,16 @@ Yii::$app->view->registerMetaTag([
 
     <div class="row">
 
+        <?php $i = 0 ?>
+
         <?php foreach ($newPosts as $post) : ?>
 
-            <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article-promo.php'), ['post' => $post]); ?>
+            <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article-promo.php'), [
+                        'post'  => $post,
+                    'countPost' => $i,
+            ]); ?>
+
+            <?php $i++?>
 
         <?php endforeach; ?>
 
