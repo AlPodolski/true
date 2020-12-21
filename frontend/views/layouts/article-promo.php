@@ -8,6 +8,7 @@ use frontend\widgets\PhotoWidget;
 
 <div class="col-xl-4 col-lg-4 col-md-6 col-12 post-wrap">
     <div class="post-img position-relative">
+        <a href="/post/<?php echo $post['id']?>">
         <?php echo PhotoWidget::widget([
             'path' => $post['avatar']['file'] ,
             'size' => '350_420',
@@ -17,6 +18,7 @@ use frontend\widgets\PhotoWidget;
                 'alt' => $post['name'],
             ],
         ]  ); ?>
+        </a>
         <?php $postRating = \frontend\helpers\PostRatingHelper::getPostRating($post['id']) ?>
         <div class="post-rating">
             <div class="star-bg">

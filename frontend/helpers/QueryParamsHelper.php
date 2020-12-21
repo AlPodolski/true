@@ -185,6 +185,31 @@ class QueryParamsHelper
             }
 
         }
+        if (strstr($value, 'novie')){
+
+            $id = Posts::find()->select('id')->orderBy(['created_at' => SORT_DESC ])->asArray()->all();
+
+            Yii::$app->params['breadcrumbs'][] = array(
+                'label'=> 'Новые анкеты',
+            );
+
+            if($id){
+
+                $result = ArrayHelper::getColumn($id, 'id');
+
+                if (!empty($ids)){
+
+                    $ids = array_intersect($ids, $id);
+
+                }else{
+
+                    $ids = $result;
+
+                }
+
+            }
+
+        }
 
         if (strstr($value, 'video')){
 

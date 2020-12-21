@@ -604,6 +604,9 @@ h1 , .big-red-text{
     margin-top: 0px;
     margin-bottom: 20px;
 }
+.text-block{
+    margin-bottom: 15px;
+}
 .single-tabs .nav-item  .nav-link.active{
     color: #F74952;
 }

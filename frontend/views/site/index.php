@@ -70,7 +70,7 @@ Yii::$app->view->registerMetaTag([
         <?php endforeach; ?>
 
         <div class="red-btn-wrap col-12">
-            <a class="red-btn" href="#">Перейти<img src="/img/up-arrow1.png"></a>
+            <a class="red-btn" href="/proverennye">Перейти<img src="/img/up-arrow1.png"></a>
         </div>
 
     </div>
@@ -95,7 +95,7 @@ Yii::$app->view->registerMetaTag([
         <?php endforeach; ?>
 
         <div class="red-btn-wrap col-12">
-            <a class="red-btn" href="#">Перейти<img src="/img/up-arrow1.png"></a>
+            <a class="red-btn" href="/">Перейти<img src="/img/up-arrow1.png"></a>
         </div>
 
     </div>
