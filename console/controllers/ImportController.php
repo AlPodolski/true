@@ -33,7 +33,7 @@ class ImportController extends Controller
 {
     public function actionIndex()
     {
-        $stream = \fopen(Yii::getAlias('@app/files/import_rachcom_17_12_2020.csv'), 'r');
+        $stream = \fopen(Yii::getAlias('@app/files/prostitutkimoskvylucky_posts_21_12_2020.csv'), 'r');
 
         $csv = Reader::createFromStream($stream);
         $csv->setDelimiter(';');
@@ -44,223 +44,302 @@ class ImportController extends Controller
 
         $records = $stmt->process($csv);
 
+        $placeList = Place::find()->asArray()->all();
+        $serviceList = Service::find()->asArray()->all();
+
         foreach ($records as $record) {
 
-            $post  = new Posts();
+            if ($record['phone']) {
 
-            $post->city_id = 1;
-            $post->created_at = \time() - ((3600 * 24) * \rand(0, 365));
-            $post->name = $record['name'];
-            $post->phone = $record['phone'];
-            $post->about = $record['anket-about'];
-            $post->check_photo_status = 0;
-            $post->price = $record['price'];
-            $post->age = $record['age'];
-            $post->rost = $record['rost'];
-            $post->breast = $record['grud'];
-            $post->ves = $record['weight'];
-            $post->category = Posts::INDI_CATEGORY;
+                if ($post = Posts::find()->where(['like', 'phone', $record['phone']])->one()) {
 
-            if ($post->save()){
+                    $postSite = new PostSites();
 
-                if ($record['rayon']){
+                    $postSite->post_id = $post->id;
+                    $postSite->site_id = 2;
+                    $postSite->price = $post->price;
+                    $postSite->created_at = $post->created_at;
+                    $postSite->name_on_site = $post->name;
+                    $postSite->age = $post->age;
 
-                    $rayonId = ArrayHelper::getValue(Rayon::find()->where(['value' => $record['rayon']])->asArray()->one(), 'id');
+                    $postSite->save();
 
-                    if ($rayonId){
+                    $post->video = \str_replace('files', '/uploads/aa2', $record['video']);
 
-                        $userRayon = new UserRayon();
-                        $userRayon->post_id = $post->id;
-                        $userRayon->rayon_id = $rayonId;
-                        $userRayon->city_id = 1;
-                        $userRayon->save();
-
-                    }
+                    $post->save();
 
                 }
+                else
+                    {
 
-                if ($record['metro']){
+                    $post = new Posts();
 
-                    $id = ArrayHelper::getValue(Metro::find()->where(['value' => $record['metro']])->asArray()->one(), 'id');
+                    $post->city_id = 1;
+                    $post->created_at = \time() - ((3600 * 24) * \rand(0, 365));
+                    $post->name = $record['name'];
+                    $post->updated_at = 1;
+                    $post->phone = $record['phone'];
+                    $post->about = $record['anket-about'];
+                    $post->check_photo_status = 0;
+                    $post->price = (int)$record['price'];
+                    $post->age = $record['age'];
+                    $post->rost = $record['rost'];
+                    $post->breast = $record['grud'];
+                    $post->ves = $record['weight'];
+                    $post->category = Posts::INDI_CATEGORY;
 
-                    if ($id){
+                    if ($record['cheked'] == 1) $post->check_photo_status = 1;
 
-                        $userRayon = new UserMetro();
-                        $userRayon->post_id = $post->id;
-                        $userRayon->metro_id = $id;
-                        $userRayon->city_id = 1;
-                        $userRayon->save();
+                    if ($post->save()) {
 
-                    }
+                        if ($record['rayon']) {
 
-                }
-                if ($record['hair']){
+                            $rayonId = ArrayHelper::getValue(Rayon::find()->where(['value' => $record['rayon']])->asArray()->one(), 'id');
 
-                    $id = ArrayHelper::getValue(HairColor::find()->where(['value' => $record['hair']])->asArray()->one(), 'id');
+                            if ($rayonId) {
 
-                    if ($id){
+                                $userRayon = new UserRayon();
+                                $userRayon->post_id = $post->id;
+                                $userRayon->rayon_id = $rayonId;
+                                $userRayon->city_id = 1;
+                                $userRayon->save();
 
-                        $userRayon = new UserHairColor();
-                        $userRayon->post_id = $post->id;
-                        $userRayon->hair_color_id = $id;
-                        $userRayon->city_id = 1;
-                        $userRayon->save();
-
-                    }
-
-                }
-                if ($record['ethnik']){
-
-                    $id = ArrayHelper::getValue(National::find()->where(['value' => $record['ethnik']])->asArray()->one(), 'id');
-
-                    if ($id){
-
-                        $userRayon = new UserNational();
-                        $userRayon->post_id = $post->id;
-                        $userRayon->national_id = $id;
-                        $userRayon->city_id = 1;
-                        $userRayon->save();
-
-                    }
-
-                }
-                if ($record['mesto']){
-
-                    $placeAr = \explode(',', $record['mesto']);
-
-                    foreach ($placeAr as $item){
-
-                        $id = ArrayHelper::getValue(Place::find()->where(['value' => $item])->asArray()->one(), 'id');
-
-                        if ($id){
-
-                            $userRayon = new UserPlace();
-                            $userRayon->post_id = $post->id;
-                            $userRayon->place_id = $id;
-                            $userRayon->city_id = 1;
-                            $userRayon->save();
+                            }
 
                         }
 
-                    }
+                        if ($record['metro']) {
 
-                }
-                if ($record['mass']){
+                            $id = ArrayHelper::getValue(Metro::find()->where(['value' => $record['metro']])->asArray()->one(), 'id');
 
-                    $Ar = \explode(',', $record['mass']);
+                            if ($id) {
 
-                    foreach ($Ar as $item){
+                                $userRayon = new UserMetro();
+                                $userRayon->post_id = $post->id;
+                                $userRayon->metro_id = $id;
+                                $userRayon->city_id = 1;
+                                $userRayon->save();
 
-                        $id = ArrayHelper::getValue(Service::find()->where(['value' => $item])->asArray()->one(), 'id');
-
-                        if ($id){
-
-                            $userRayon = new UserService();
-                            $userRayon->post_id = $post->id;
-                            $userRayon->service_id = $id;
-                            $userRayon->city_id = 1;
-                            $userRayon->save();
+                            }
 
                         }
 
-                    }
+                        if ($record['hair']) {
 
-                }
-                if ($record['osob']){
+                            $id = ArrayHelper::getValue(HairColor::find()->where(['value' => $record['hair']])->asArray()->one(), 'id');
 
-                    $Ar = \explode(',', $record['osob']);
+                            if ($id) {
 
-                    foreach ($Ar as $item){
+                                $userRayon = new UserHairColor();
+                                $userRayon->post_id = $post->id;
+                                $userRayon->hair_color_id = $id;
+                                $userRayon->city_id = 1;
+                                $userRayon->save();
 
-                        $id = ArrayHelper::getValue(Osobenosti::find()->where(['value' => $item])->asArray()->one(), 'id');
-
-                        if ($id){
-
-                            $userRayon = new UserOsobenosti();
-                            $userRayon->post_id = $post->id;
-                            $userRayon->param_id = $id;
-                            $userRayon->city_id = 1;
-                            $userRayon->save();
+                            }
 
                         }
 
-                    }
+                        if ($record['ethnik']) {
 
-                }
-                if ($record['serv']){
+                            $id = ArrayHelper::getValue(National::find()->where(['value' => $record['ethnik']])->asArray()->one(), 'id');
 
-                    $Ar = \explode(',', $record['serv']);
+                            if ($id) {
 
-                    foreach ($Ar as $item){
+                                $userRayon = new UserNational();
+                                $userRayon->post_id = $post->id;
+                                $userRayon->national_id = $id;
+                                $userRayon->city_id = 1;
+                                $userRayon->save();
 
-                        $id = ArrayHelper::getValue(Service::find()->where(['value' => $item])->asArray()->one(), 'id');
-
-                        if ($id){
-
-                            $userRayon = new UserService();
-                            $userRayon->post_id = $post->id;
-                            $userRayon->service_id = $id;
-                            $userRayon->city_id = 1;
-                            $userRayon->save();
+                            }
 
                         }
 
-                    }
+                        if (isset($record['mesto']) and $record['mesto']) {
 
-                }
+                            $placeAr = \explode(',', $record['mesto']);
 
-                if ($record['mini']) {
+                            foreach ($placeAr as $item) {
 
-                    $userPhoto = new Files();
+                                $id = ArrayHelper::getValue(Place::find()->where(['value' => $item])->asArray()->one(), 'id');
 
-                    $userPhoto->related_id = $post->id;
-                    $userPhoto->file = \str_replace('files', '/uploads/aa1', $record['mini']);
-                    $userPhoto->main = 1;
-                    $userPhoto->type = 0;
-                    $userPhoto->related_class = Posts::class;
+                                if ($id) {
 
-                    $userPhoto->save();
+                                    $userRayon = new UserPlace();
+                                    $userRayon->post_id = $post->id;
+                                    $userRayon->place_id = $id;
+                                    $userRayon->city_id = 1;
+                                    $userRayon->save();
 
-                }
+                                }
 
-                if ($record['gallery']) {
+                            }
 
-                    $gall = \explode(',', $record['gallery']);
+                        }else{
 
-                    if ($gall) {
+                            foreach ($placeList as $placeItem){
 
-                        foreach ($gall as $gallitem) {
+                                if (\rand(0,2) == 2){
 
-                            if ($gallitem) {
+                                    $userRayon = new UserPlace();
+                                    $userRayon->post_id = $post->id;
+                                    $userRayon->place_id = $placeItem['id'];
+                                    $userRayon->city_id = 1;
+                                    $userRayon->save();
 
-                                $userPhoto = new Files();
+                                }
 
-                                $userPhoto->related_id = $post->id;
-                                $userPhoto->file = \str_replace('files', '/uploads/aa1', $gallitem);
-                                $userPhoto->main = 1;
-                                $userPhoto->type = 0;
-                                $userPhoto->related_class = Posts::class;
+                            }
 
-                                $userPhoto->save();
+                        }
+
+                        if (isset($record['mass']) and $record['mass']) {
+
+                            $Ar = \explode(',', $record['mass']);
+
+                            foreach ($Ar as $item) {
+
+                                $id = ArrayHelper::getValue(Service::find()->where(['value' => $item])->asArray()->one(), 'id');
+
+                                if ($id) {
+
+                                    $userRayon = new UserService();
+                                    $userRayon->post_id = $post->id;
+                                    $userRayon->service_id = $id;
+                                    $userRayon->city_id = 1;
+                                    $userRayon->save();
+
+                                }
+
+                            }
+
+                        }
+
+                        if (isset($record['osob']) and $record['osob']) {
+
+                            $Ar = \explode(',', $record['osob']);
+
+                            foreach ($Ar as $item) {
+
+                                $id = ArrayHelper::getValue(Osobenosti::find()->where(['value' => $item])->asArray()->one(), 'id');
+
+                                if ($id) {
+
+                                    $userRayon = new UserOsobenosti();
+                                    $userRayon->post_id = $post->id;
+                                    $userRayon->param_id = $id;
+                                    $userRayon->city_id = 1;
+                                    $userRayon->save();
+
+                                }
+
+                            }
+
+                        }
+
+                        if (isset($record['serv']) and $record['serv']) {
+
+                            $Ar = \explode(',', $record['serv']);
+
+                            foreach ($Ar as $item) {
+
+                                $id = ArrayHelper::getValue(Service::find()->where(['value' => $item])->asArray()->one(), 'id');
+
+                                if ($id) {
+
+                                    $userRayon = new UserService();
+                                    $userRayon->post_id = $post->id;
+                                    $userRayon->service_id = $id;
+                                    $userRayon->city_id = 1;
+                                    $userRayon->save();
+
+                                }
+
+                            }
+
+                        }else{
+
+                            foreach ($serviceList as $serviceItem){
+
+                                if (\rand(0, 4) == 3){
+
+                                    $userRayon = new UserService();
+                                    $userRayon->post_id = $post->id;
+                                    $userRayon->service_id = $serviceItem['id'];
+                                    $userRayon->city_id = 1;
+                                    $userRayon->save();
+
+                                }
+
+                            }
+
+                        }
+
+                        if ($record['mini']) {
+
+                            $userPhoto = new Files();
+
+                            $userPhoto->related_id = $post->id;
+                            $userPhoto->file = \str_replace('files', '/uploads/aa2', $record['mini']);
+                            $userPhoto->main = 1;
+                            $userPhoto->type = 0;
+                            $userPhoto->related_class = Posts::class;
+
+                            $userPhoto->save();
+
+                        }
+
+                        if ($record['gallery']) {
+
+                            $gall = \explode(',', $record['gallery']);
+
+                            if ($gall) {
+
+                                if (!$record['mini']){
+
+                                    $mini = \array_shift($gall);
+
+                                    $userPhoto = new Files();
+
+                                    $userPhoto->related_id = $post->id;
+                                    $userPhoto->file = \str_replace('files', '/uploads/aa2', $mini);
+                                    $userPhoto->main = 1;
+                                    $userPhoto->type = 0;
+                                    $userPhoto->related_class = Posts::class;
+
+                                    $userPhoto->save();
+
+                                }
+
+                                foreach ($gall as $gallitem) {
+
+                                    if ($gallitem) {
+
+                                        $userPhoto = new Files();
+
+                                        $userPhoto->related_id = $post->id;
+                                        $userPhoto->file = \str_replace('files', '/uploads/aa2', $gallitem);
+                                        $userPhoto->main = 0;
+                                        $userPhoto->type = 0;
+                                        $userPhoto->related_class = Posts::class;
+
+                                        $userPhoto->save();
+
+                                    }
+
+                                }
 
                             }
 
                         }
 
                     }
+                    else {
+                        \d($post->getErrors());
+                    }
 
                 }
-
-                $postSite = new PostSites();
-
-                $postSite->post_id = $post->id;
-                $postSite->site_id = 1;
-                $postSite->price = $post->price;
-                $postSite->created_at = $post->created_at;
-                $postSite->name_on_site = $post->name;
-                $postSite->age = $post->age;
-
-                $postSite->save();
 
             }
 
@@ -272,9 +351,9 @@ class ImportController extends Controller
     {
         $posts = Posts::find()->all();
 
-        foreach ($posts as $post){
+        foreach ($posts as $post) {
 
-            if (\rand(0,3) == 3){
+            if (\rand(0, 3) == 3) {
 
                 $post->check_photo_status = 1;
 
@@ -300,26 +379,26 @@ class ImportController extends Controller
 
         foreach ($records as $record) {
 
-            $post = Posts::find()->where(['name' => $record['name'] ])->with('service')->asArray()->andWhere(['like', 'phone', $record['price']])->one();
+            $post = Posts::find()->where(['name' => $record['name']])->with('service')->asArray()->andWhere(['like', 'phone', $record['price']])->one();
 
             $data = \explode('#@', $record['age']);
 
-            foreach($data as $item){
+            foreach ($data as $item) {
 
                 $reviewData = \explode('$@', $item);
 
-                if (isset($reviewData[1]) and $reviewData[1] and (int)$reviewData[0] > 0 and $post){
+                if (isset($reviewData[1]) and $reviewData[1] and (int)$reviewData[0] > 0 and $post) {
 
                     $mark = 2 * ((int)$reviewData[0]);
 
-                    if (!$user = User::find()->where(['username' => $reviewData[1]])->asArray()->one()){
+                    if (!$user = User::find()->where(['username' => $reviewData[1]])->asArray()->one()) {
 
                         $user = new User();
 
                         $user->username = $reviewData[1];
                         $user->password_hash = Yii::$app->security->generateRandomString(60);
                         $user->auth_key = Yii::$app->security->generateRandomString();
-                        $user->email = $post['id'].'admin@mail.com';
+                        $user->email = $post['id'] . 'admin@mail.com';
                         $user->status = 10;
                         $user->created_at = $time = \time();
                         $user->updated_at = $time;
@@ -337,19 +416,19 @@ class ImportController extends Controller
                     $review->clean = ($mark - \rand(-2, 0)) ?? $mark;;
                     $review->author = $user['id'];
                     $review->total_marc = $mark;
-                    $review->is_happy = \rand(0,1);
-                    $review->created_at = $post['created_at'] + (\rand(0, 3600 * 24 * 14 ));
+                    $review->is_happy = \rand(0, 1);
+                    $review->created_at = $post['created_at'] + (\rand(0, 3600 * 24 * 14));
 
                     $review->save();
 
                     if ($post['service']) {
 
-                        foreach ($post['service'] as $item2){
+                        foreach ($post['service'] as $item2) {
 
                             $serviceReview = new ServiceReviews();
 
                             $serviceReview->post_id = $post['id'];
-                            $serviceReview->service_id =  $item2['id'];
+                            $serviceReview->service_id = $item2['id'];
                             $serviceReview->marc = \rand(1, 10);
 
                             $serviceReview->save();
@@ -357,7 +436,6 @@ class ImportController extends Controller
                         }
 
                     }
-
 
 
                 }
