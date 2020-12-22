@@ -494,7 +494,7 @@ class ImportController extends Controller
 
             if($post['video']){
 
-                $post->video = \str_replace('aa2', 'aa3', $post->file);
+                $post->video = \str_replace('aa2', 'aa3', $post->video);
 
                 $post->save();
 
