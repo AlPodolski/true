@@ -466,4 +466,25 @@ class ImportController extends Controller
         }
     }
 
+    public function actionGal()
+    {
+        $posts = Posts::find()->where(['updated_at' => 1])->asArray()->all();
+
+        foreach ($posts as $post){
+
+            if ($files = Files::find()->where(['related_id' => $post['id'], 'related_class' => Posts::class])->all()){
+
+                foreach ($files as $file){
+
+                    $file->file = \str_replace('aa2', 'aa3', $file->file);
+
+                    $file->save();
+
+                }
+
+            }
+
+        }
+    }
+
 }
