@@ -446,4 +446,24 @@ class ImportController extends Controller
 
     }
 
+    public function actionAddToSites()
+    {
+        $posts = Posts::find()->where(['updated_at' => 1])->asArray()->all();
+
+        foreach ($posts as $post){
+
+            $postSite = new PostSites();
+
+            $postSite->post_id = $post['id'];
+            $postSite->site_id = 2;
+            $postSite->price = $post['price'];
+            $postSite->created_at = $post['created_at'];
+            $postSite->name_on_site = $post['name'];
+            $postSite->age = $post['age'];
+
+            $postSite->save();
+
+        }
+    }
+
 }
