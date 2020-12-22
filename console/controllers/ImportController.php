@@ -486,5 +486,21 @@ class ImportController extends Controller
 
         }
     }
+    public function actionVideo()
+    {
+        $posts = Posts::find()->where(['updated_at' => 1])->all();
+
+        foreach ($posts as $post){
+
+            if($post['video']){
+
+                $post->video = \str_replace('aa2', 'aa3', $post->file);
+
+                $post->save();
+
+            }
+
+        }
+    }
 
 }
