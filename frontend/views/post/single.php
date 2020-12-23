@@ -4,6 +4,7 @@
 /* @var $serviceList array */
 /* @var $cityInfo array */
 /* @var $id integer */
+/* @var $backUrl string */
 /* @var $serviceReviewFormForm \frontend\modules\user\models\ServiceReviewForm */
 /* @var $postReviewForm \frontend\modules\user\models\ReviewForm */
 
@@ -88,7 +89,11 @@ $this->params['breadcrumbs'][] = array(
                     ?>
                 </div>
             </div>
-            <a href="#" class="back position-absolute"></a>
+            <?php if($backUrl) : ?>
+
+                <a href="<?php echo $backUrl ?>" class="back position-absolute"></a>
+
+            <?php endif; ?>
             <div class="single-bottom-info position-relative  col-xl-8 col-lg-8">
                 <div class="row height-100 single-post-info-row">
                     <div class="col-12 col-lg-9 single-post-info-wrap">
