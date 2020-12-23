@@ -545,15 +545,29 @@ $this->params['breadcrumbs'][] = array(
                                             <div class="row">
                                                 <div class="col-1">
                                                     <div class="author-img">
-                                                        <?php echo PhotoWidget::widget([
-                                                            'path' => $item['author']['avatar']['file'] ,
-                                                            'size' => '59',
-                                                            'options' => [
-                                                                'class' => 'img user-img',
-                                                                'loading' => 'lazy',
-                                                                'alt' => $post['name'],
-                                                            ],
-                                                        ]  ); ?>
+
+                                                        <?php if (isset($item['author']['avatar']['file']) and $item['author']['avatar']['file']) : ?>
+                                                            <?php echo PhotoWidget::widget([
+                                                                'path' => $item['author']['avatar']['file'] ,
+                                                                'size' => '59',
+                                                                'options' => [
+                                                                    'class' => 'img user-img',
+                                                                    'loading' => 'lazy',
+                                                                    'alt' => $item['author']['username'],
+                                                                ],
+                                                            ]  ); ?>
+                                                        <?php else : ?>
+
+                                                            <div class="no-photo">
+                                                                <?php
+
+                                                                echo $item['author']['username'][0].$item['author']['username'][1];
+
+                                                                ?>
+                                                            </div>
+
+                                                        <?php endif; ?>
+
                                                     </div>
                                                 </div>
                                                 <div class="col-2">
@@ -996,15 +1010,27 @@ $this->params['breadcrumbs'][] = array(
                                         <div class="row">
                                             <div class="col-3">
                                                 <div class="author-img">
-                                                    <?php echo PhotoWidget::widget([
-                                                        'path' => $item['author']['avatar']['file'] ,
-                                                        'size' => '59',
-                                                        'options' => [
-                                                            'class' => 'img user-img',
-                                                            'loading' => 'lazy',
-                                                            'alt' => $post['name'],
-                                                        ],
-                                                    ]  ); ?>
+                                                    <?php if (isset($item['author']['avatar']['file']) and $item['author']['avatar']['file']) : ?>
+                                                        <?php echo PhotoWidget::widget([
+                                                            'path' => $item['author']['avatar']['file'] ,
+                                                            'size' => '59',
+                                                            'options' => [
+                                                                'class' => 'img user-img',
+                                                                'loading' => 'lazy',
+                                                                'alt' => $item['author']['username'],
+                                                            ],
+                                                        ]  ); ?>
+                                                    <?php else : ?>
+
+                                                        <div class="no-photo">
+                                                            <?php
+
+                                                            echo $item['author']['username'][0].$item['author']['username'][1];
+
+                                                            ?>
+                                                        </div>
+
+                                                    <?php endif; ?>
                                                 </div>
                                             </div>
                                             <div class="col-5">
