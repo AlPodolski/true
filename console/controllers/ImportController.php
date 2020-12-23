@@ -497,6 +497,7 @@ class ImportController extends Controller
 
         }
     }
+
     public function actionVideo()
     {
         $posts = Posts::find()->where(['updated_at' => 1])->all();
@@ -512,6 +513,32 @@ class ImportController extends Controller
             }
 
         }
+    }
+
+    public function actionAddServiceMarc()
+    {
+        $reviews = Review::find()->with('post')->asArray()->all();
+
+        foreach ($reviews as $review){
+
+            if ($review['post']['service']){
+
+                foreach ($review['post']['service'] as $item){
+
+                    $serviceReview = new ServiceReviews();
+
+                    $serviceReview->post_id = $review['post']['id'];
+                    $serviceReview->service_id = $item['id'];
+                    $serviceReview->marc = \rand(1, 10);
+                    $serviceReview->save();
+
+                }
+
+            }
+
+
+        }
+
     }
 
 }

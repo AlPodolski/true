@@ -64,5 +64,9 @@ class Review extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::class, ['id' => 'author'])->with('avatar');
     }
+    public function getPost()
+    {
+        return $this->hasOne(Posts::class, ['id' => 'author'])->with('service');
+    }
 
 }

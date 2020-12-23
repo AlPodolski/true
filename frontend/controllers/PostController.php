@@ -23,7 +23,7 @@ class PostController extends Controller
             )
             ->asArray()->one();
 
-        $serviceList = ServiceReviewHelper::getPostServiceReview($id);
+        $serviceListReview = ServiceReviewHelper::getPostServiceReview($id);
 
         $postReviewForm = new ReviewForm();
 
@@ -35,7 +35,7 @@ class PostController extends Controller
 
         return $this->render('single', [
             'post' => $post,
-            'serviceList' => $serviceList,
+            'serviceListReview' => $serviceListReview,
             'id' => $id,
             'postReviewForm' => $postReviewForm,
             'serviceReviewFormForm' => $serviceReviewFormForm,

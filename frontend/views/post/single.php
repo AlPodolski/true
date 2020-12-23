@@ -2,6 +2,7 @@
 
 /* @var $post array */
 /* @var $serviceList array */
+/* @var $serviceListReview array */
 /* @var $cityInfo array */
 /* @var $id integer */
 /* @var $backUrl string */
@@ -492,7 +493,9 @@ $this->params['breadcrumbs'][] = array(
                                 </div>
                             </div>
 
-                            <?php foreach ($serviceList as $service) : ?>
+                            <?php foreach ($serviceListReview as $service) : ?>
+
+
 
                                 <?php if (isset($service['review']) and $service['review']) : ?>
 
@@ -967,7 +970,7 @@ $this->params['breadcrumbs'][] = array(
                     </div>
                 </div>
 
-                <?php foreach ($serviceList as $service) : ?>
+                <?php foreach ($serviceListReview as $service) : ?>
 
                     <?php if (isset($service['review']) and $service['review']) : ?>
 
