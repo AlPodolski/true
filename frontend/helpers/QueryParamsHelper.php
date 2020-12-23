@@ -218,7 +218,7 @@ class QueryParamsHelper
                 'label'=> 'анкеты видео',
             );
 
-            $id = Posts::find()->select('id')->where(['IS NOT', 'video', ''])->asArray()->all();
+            $id = Posts::find()->select('id')->where(['<>', 'video', ''])->asArray()->all();
 
             if($id){
 
