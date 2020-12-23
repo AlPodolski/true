@@ -121,13 +121,4 @@ Yii::$app->view->registerMetaTag([
         </div>
 
     </div>
-
-    <div class="row">
-        <div class="col-12">
-            <p class="big-red-text">
-                Индивидуалки рядом
-                со мной
-            </p>
-        </div>
-    </div>
 </div>
