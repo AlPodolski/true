@@ -18,6 +18,7 @@ use frontend\modules\user\models\PostSites;
 use frontend\modules\user\models\Review;
 use frontend\modules\user\models\ServiceReviews;
 use frontend\modules\user\models\UserHairColor;
+use frontend\modules\user\models\UserIntimHair;
 use frontend\modules\user\models\UserNational;
 use frontend\modules\user\models\UserOsobenosti;
 use frontend\modules\user\models\UserPlace;
@@ -539,6 +540,27 @@ class ImportController extends Controller
 
         }
 
+    }
+
+    public function actionDrop()
+    {
+        $posts = Posts::find()->where(['updated_at' => 2])->all();
+
+        foreach ($posts as $post){
+
+            UserMetro::deleteAll(['post_id' => $post->id]);
+            UserRayon::deleteAll(['post_id' => $post->id]);
+            UserHairColor::deleteAll(['post_id' => $post->id]);
+            UserIntimHair::deleteAll(['post_id' => $post->id]);
+            UserNational::deleteAll(['post_id' => $post->id]);
+            UserOsobenosti::deleteAll(['post_id' => $post->id]);
+            UserPlace::deleteAll(['post_id' => $post->id]);
+            UserService::deleteAll(['post_id' => $post->id]);
+            Files::deleteAll(['related_id' => $post->id, 'related_class' => Posts::class]);
+
+            $post->delete();
+
+        }
     }
 
 }

@@ -799,12 +799,14 @@ h1 , .big-red-text{
     top: 8px;
     background: #F74952;
     margin-left: 15px;
+    width: 21px;
+    height: 21px;
 }
 .count-photo-icon img{
-    width: 10px;
+    width: 12px;
     position: relative;
-    top: -12px;
-    left: 2px;
+    top: -9px;
+    left: 4px;
 }
 .post-phone:hover{
     color: #fff;
