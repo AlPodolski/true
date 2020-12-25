@@ -45,7 +45,7 @@ class SiteController extends Controller
      *
      * @return mixed
      */
-    public function actionIndex($city)
+    public function actionIndex($city , $page = false)
     {
 
         Yii::$app->cache->flush();
