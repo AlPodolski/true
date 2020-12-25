@@ -1,3 +1,242 @@
+
+function show_otzivi_block(){
+
+    $('.otzivi-block').animate({
+
+        left: '0px'
+
+    }, 250);
+
+}
+function close_otzivi_block(){
+
+    $('.otzivi-block').animate({
+
+        left: '-120%'
+
+    }, 250);
+
+}
+
+function show_anket_params_block(){
+
+    $('.anket-params-block').animate({
+
+        left: '0px'
+
+    }, 250);
+
+}
+function close_anket_params_block(){
+
+    $('.anket-params-block').animate({
+
+        left: '-120%'
+
+    }, 250);
+
+}
+
+function show_site_price_block(){
+
+    $('.site-price-block').animate({
+
+        left: '0px'
+
+    }, 250);
+
+}
+function close_site_price_block(){
+
+    $('.site-price-block').animate({
+
+        left: '-120%'
+
+    }, 250);
+
+}
+
+function debounce(func, wait, immediate) {
+    var timeout;
+    return function() {
+        var context = this, args = arguments;
+        var later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+}
+
+function inView($elem) {
+    var $window = $(window);
+
+    var docViewTop = $window.scrollTop();
+    var docViewBottom = docViewTop + $window.height();
+
+    var elemTop = $elem.offset().top;
+    var elemBottom = elemTop + $elem.height();
+
+    return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+}
+
+var changeURL = debounce(function() {
+    $('[data-url]').each(function() {
+        if (inView($(this))) {
+
+            if(window.location.pathname != $(this).attr('data-url')){
+
+                window.history.pushState('', document.title, $(this).attr('data-url'));
+
+                console.log(window.location.pathname);
+
+                yaCounter57612607.hit($(this).attr('data-url'));
+
+            }
+        }
+    });
+}, 1);
+
+$( function() {
+
+    var img = $('#bottom-imgs').attr('data-img');
+
+    $('#bottom-imgs').imagesGrid({
+        images: img.split(','),
+        cells: 2,
+        getViewAllText: function(imagesCount) {
+            return 'Все ' + imagesCount + '';
+        },
+        align: true
+    });
+
+});
+
+$( function() {
+
+    var img = $('#selfy-imgs').attr('data-img');
+
+    $('#selfy-imgs').imagesGrid({
+        images: img.split(','),
+        cells: 2,
+        getViewAllText: function(imagesCount) {
+            return 'Все ' + imagesCount + '';
+        },
+        align: true
+    });
+
+});
+
+function favorite(object){
+
+    var id = $(object).attr('data-id');
+
+    $.ajax({
+        type: 'POST',
+        url: "/favorite", //Путь к обработчику
+        data: 'id=' + id,
+        response: 'text',
+        dataType: "html",
+        cache: false,
+        success: function (data) {
+            $(object).toggleClass('favorite');
+        }
+    })
+
+}
+
+function get_comments_forum(object){
+
+    $('#forum-comments-modal').modal('show');
+
+}
+
+function send_comment(object) {
+
+    var formData = new FormData($(".form-wall-comment-" + $(object).attr('data-id'))[0]);
+
+    var id = $(object).attr('data-id');
+
+    $.ajax({
+        url: '/comment',
+        type: 'POST',
+        data: formData,
+        datatype: 'json',
+        // async: false,
+        beforeSend: function () {
+            $('#w0 .form-text').css('display', 'none');
+        },
+        success: function (data) {
+            $(object).closest('.comment-wall-form').siblings('.comments-list').append(data);
+        },
+
+        complete: function () {
+            // success alerts
+        },
+
+        error: function (data) {
+            alert("There may a error on uploading. Try again later");
+        },
+        cache: false,
+        contentType: false,
+        processData: false
+    });
+}
+
+$(window).scroll(function () {
+
+    var target = $('.pager');
+    var targetPos = target.offset().top;
+    var winHeight = $(window).height();
+    var scrollToElem = targetPos - winHeight;
+
+    var winScrollTop = $(this).scrollTop();
+
+    var page = $(target).attr('data-page');
+
+    var url = $(target).attr('data-url');
+    var request = $(target).attr('data-reqest');
+
+    var accept = $(target).attr('data-accept');
+
+    changeURL();
+
+    if (winScrollTop > (scrollToElem - 100)) {
+
+        $.ajax({
+            type: 'POST',
+            url: '' + url,
+            data: 'page=' + page + '&req=' + request,
+            async: false,
+            dataType: "html",
+            headers: {
+                "Accept": accept,
+            },
+            cache: false,
+            success: function (data) {
+
+                if (data !== '') {
+
+                    $('.content').append(data);
+
+                    page = $(target).attr('data-page', Number(page) + 1);
+
+                    wall_photo_items();
+
+                } else {
+
+                    $(target).remove();
+                    $('.dots').remove();
+
+                }
+
+            }
+        })
+    }
+});
 var main = function() {
 
     $('.mobil-menu').click(function() {
@@ -561,6 +800,7 @@ $(document).ready(main);
 })(window.Zepto || window.jQuery, window, document);
 
 
+
 $('.owl-carousel-main').owlCarousel({
     margin:10,
     autoplayTimeout:9000,
@@ -588,145 +828,3 @@ $('.owl-carousel-bottom').owlCarousel({
         }
     }
 })
-
-function show_otzivi_block(){
-
-    $('.otzivi-block').animate({
-
-        left: '0px'
-
-    }, 250);
-
-}
-function close_otzivi_block(){
-
-    $('.otzivi-block').animate({
-
-        left: '-120%'
-
-    }, 250);
-
-}
-
-function show_anket_params_block(){
-
-    $('.anket-params-block').animate({
-
-        left: '0px'
-
-    }, 250);
-
-}
-function close_anket_params_block(){
-
-    $('.anket-params-block').animate({
-
-        left: '-120%'
-
-    }, 250);
-
-}
-
-function show_site_price_block(){
-
-    $('.site-price-block').animate({
-
-        left: '0px'
-
-    }, 250);
-
-}
-function close_site_price_block(){
-
-    $('.site-price-block').animate({
-
-        left: '-120%'
-
-    }, 250);
-
-}
-$( function() {
-
-    var img = $('#bottom-imgs').attr('data-img');
-
-    $('#bottom-imgs').imagesGrid({
-        images: img.split(','),
-        cells: 2,
-        getViewAllText: function(imagesCount) {
-            return 'Все ' + imagesCount + '';
-        },
-        align: true
-    });
-
-});
-
-$( function() {
-
-    var img = $('#selfy-imgs').attr('data-img');
-
-    $('#selfy-imgs').imagesGrid({
-        images: img.split(','),
-        cells: 2,
-        getViewAllText: function(imagesCount) {
-            return 'Все ' + imagesCount + '';
-        },
-        align: true
-    });
-
-});
-
-function favorite(object){
-
-    var id = $(object).attr('data-id');
-
-    $.ajax({
-        type: 'POST',
-        url: "/favorite", //Путь к обработчику
-        data: 'id=' + id,
-        response: 'text',
-        dataType: "html",
-        cache: false,
-        success: function (data) {
-            $(object).toggleClass('favorite');
-        }
-    })
-
-}
-
-function get_comments_forum(object){
-
-    $('#forum-comments-modal').modal('show');
-
-}
-
-function send_comment(object) {
-
-    var formData = new FormData($(".form-wall-comment-" + $(object).attr('data-id'))[0]);
-
-    var id = $(object).attr('data-id');
-
-    $.ajax({
-        url: '/comment',
-        type: 'POST',
-        data: formData,
-        datatype: 'json',
-        // async: false,
-        beforeSend: function () {
-            $('#w0 .form-text').css('display', 'none');
-        },
-        success: function (data) {
-            $(object).closest('.comment-wall-form').siblings('.comments-list').append(data);
-        },
-
-        complete: function () {
-            // success alerts
-        },
-
-        error: function (data) {
-            alert("There may a error on uploading. Try again later");
-        },
-        cache: false,
-        contentType: false,
-        processData: false
-    });
-}

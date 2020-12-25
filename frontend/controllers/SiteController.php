@@ -26,37 +26,6 @@ class SiteController extends Controller
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['logout', 'signup'],
-                'rules' => [
-                    [
-                        'actions' => ['signup'],
-                        'allow' => true,
-                        'roles' => ['?'],
-                    ],
-                    [
-                        'actions' => ['logout'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
-        ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function actions()
     {
         return [
@@ -80,6 +49,32 @@ class SiteController extends Controller
     {
 
         Yii::$app->cache->flush();
+
+        if (Yii::$app->request->isPost){
+
+            $posts = Posts::find()->asArray()->with('avatar', 'metro', 'selphiCount')
+                ->limit(Yii::$app->params['post_limit'])
+                ->orderBy(['rand()' => SORT_DESC]);
+
+            $posts->offset(Yii::$app->params['post_limit'] * Yii::$app->request->post('page'));
+
+            $posts = $posts->all();
+
+            $page = Yii::$app->request->post('page') + 1;
+
+            if ($posts) echo '<div data-url="/page-'.$page.'" class="col-12"></div>';
+
+            foreach ($posts as $post){
+
+                echo $this->renderFile('@app/views/layouts/article.php', [
+                    'post' => $post,
+                ]);
+
+            }
+
+            exit();
+
+        }
 
         $prPosts = Posts::find()->asArray()->with('avatar', 'metro', 'selphiCount')
             ->limit(3)

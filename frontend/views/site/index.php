@@ -121,4 +121,11 @@ Yii::$app->view->registerMetaTag([
         </div>
 
     </div>
+
+    <div class="row content"></div>
+
+    <div class="row">
+        <div class="col-12 pager" data-page="1" data-url="<?php echo Yii::$app->request->url ?>" data-reqest="<?php echo Yii::$app->request->url ?>"></div>
+    </div>
+
 </div>
