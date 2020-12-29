@@ -90,69 +90,147 @@ class QueryParamsHelper
 
             }
 
-        }
+            if (strstr($value, 'cena')){
 
-        if (strstr($value, 'cena')){
+                $url = str_replace('cena-', '', $value);
 
-            $url = str_replace('cena-', '', $value);
+                $price_params = array();
 
-            $price_params = array();
+                if ($url == 'do-1500') {
+                    Yii::$app->params['breadcrumbs'][] = array(
+                        'label'=> 'цена до 1500',
+                    );
+                    $price_params[] = ['<', 'price' , 1500];
+                }
 
-            if ($url == 'do-1500') {
+                if ($url == 'ot-1500-do-2000') {
+                    $price_params[] = ['>=', 'price' , 1500];
+                    $price_params[] = ['<=', 'price' , 1999];
+                    Yii::$app->params['breadcrumbs'][] = array(
+                        'label'=> 'цена от 1500 до 2000',
+                    );
+                }
+                if ($url == 'ot-2000-do-3000') {
+                    $price_params[] = ['>=', 'price' , 2000];
+                    $price_params[] = ['<=', 'price' , 2999];
+                    Yii::$app->params['breadcrumbs'][] = array(
+                        'label'=> 'цена от 2000 до 3000',
+                    );
+                }
+                if ($url == 'ot-3000-do-6000') {
+                    $price_params[] = ['>=', 'price' , 3000];
+                    $price_params[] = ['<=', 'price' , 6000];
+                    Yii::$app->params['breadcrumbs'][] = array(
+                        'label'=> 'цена от 3000 до 6000',
+                    );
+                }
+
+                if ($url == 'ot-6000') {
+                    Yii::$app->params['breadcrumbs'][] = array(
+                        'label'=> 'цена от 6000',
+                    );
+                    $price_params[] = ['>=', 'price' , 6001];
+                }
+
+                $id = Posts::find()->select('id');
+
+                foreach ($price_params as $price_param){
+                    $id->andWhere($price_param);
+                }
+
+                $id = $id->asArray()->all();
+
+                if($id){
+
+                    $result = ArrayHelper::getColumn($id, 'id');
+
+                    if (!empty($ids)){
+
+                        $ids = array_intersect($ids, $id);
+
+                    }else{
+
+                        $ids = $result;
+
+                    }
+
+                }
+
+            }
+
+            if (strstr($value, 'proverennye')){
+
+                $id = Posts::find()->select('id')->where(['check_photo_status' => 1])->asArray()->all();
+
                 Yii::$app->params['breadcrumbs'][] = array(
-                    'label'=> 'цена до 1500',
+                    'label'=> 'проверенные',
                 );
-                $price_params[] = ['<', 'price' , 1500];
+
+                if($id){
+
+                    $result = ArrayHelper::getColumn($id, 'id');
+
+                    if (!empty($ids)){
+
+                        $ids = array_intersect($ids, $id);
+
+                    }else{
+
+                        $ids = $result;
+
+                    }
+
+                }
+
             }
 
-            if ($url == 'ot-1500-do-2000') {
-                $price_params[] = ['>=', 'price' , 1500];
-                $price_params[] = ['<=', 'price' , 1999];
+            if (strstr($value, 'novie')){
+
+                $id = Posts::find()->select('id')->orderBy(['created_at' => SORT_DESC ])->asArray()->all();
+
                 Yii::$app->params['breadcrumbs'][] = array(
-                    'label'=> 'цена от 1500 до 2000',
+                    'label'=> 'Новые анкеты',
                 );
+
+                if($id){
+
+                    $result = ArrayHelper::getColumn($id, 'id');
+
+                    if (!empty($ids)){
+
+                        $ids = array_intersect($ids, $id);
+
+                    }else{
+
+                        $ids = $result;
+
+                    }
+
+                }
+
             }
-            if ($url == 'ot-2000-do-3000') {
-                $price_params[] = ['>=', 'price' , 2000];
-                $price_params[] = ['<=', 'price' , 2999];
+
+            if (strstr($value, 'video')){
+
                 Yii::$app->params['breadcrumbs'][] = array(
-                    'label'=> 'цена от 2000 до 3000',
+                    'label'=> 'анкеты видео',
                 );
-            }
-            if ($url == 'ot-3000-do-6000') {
-                $price_params[] = ['>=', 'price' , 3000];
-                $price_params[] = ['<=', 'price' , 6000];
-                Yii::$app->params['breadcrumbs'][] = array(
-                    'label'=> 'цена от 3000 до 6000',
-                );
-            }
 
-            if ($url == 'ot-6000') {
-                Yii::$app->params['breadcrumbs'][] = array(
-                    'label'=> 'цена от 6000',
-                );
-                $price_params[] = ['>=', 'price' , 6001];
-            }
+                $id = Posts::find()->select('id')->where(['<>', 'video', ''])->asArray()->all();
 
-            $id = Posts::find()->select('id');
+                if($id){
 
-            foreach ($price_params as $price_param){
-                $id->andWhere($price_param);
-            }
+                    $result = ArrayHelper::getColumn($id, 'id');
 
-            $id = $id->asArray()->all();
+                    if (!empty($ids)){
 
-            if($id){
+                        $ids = array_intersect($ids, $id);
 
-                $result = ArrayHelper::getColumn($id, 'id');
+                    }else{
 
-                if (!empty($ids)){
+                        $ids = $result;
 
-                    $ids = array_intersect($ids, $id);
-
-                }else{
-
-                    $ids = $result;
+                    }
 
                 }
 
@@ -160,83 +238,6 @@ class QueryParamsHelper
 
         }
 
-        if (strstr($value, 'proverennye')){
-
-            $id = Posts::find()->select('id')->where(['check_photo_status' => 1])->asArray()->all();
-
-            Yii::$app->params['breadcrumbs'][] = array(
-                'label'=> 'проверенные',
-            );
-
-            if($id){
-
-                $result = ArrayHelper::getColumn($id, 'id');
-
-                if (!empty($ids)){
-
-                    $ids = array_intersect($ids, $id);
-
-                }else{
-
-                    $ids = $result;
-
-                }
-
-            }
-
-        }
-
-        if (strstr($value, 'novie')){
-
-            $id = Posts::find()->select('id')->orderBy(['created_at' => SORT_DESC ])->asArray()->all();
-
-            Yii::$app->params['breadcrumbs'][] = array(
-                'label'=> 'Новые анкеты',
-            );
-
-            if($id){
-
-                $result = ArrayHelper::getColumn($id, 'id');
-
-                if (!empty($ids)){
-
-                    $ids = array_intersect($ids, $id);
-
-                }else{
-
-                    $ids = $result;
-
-                }
-
-            }
-
-        }
-
-        if (strstr($value, 'video')){
-
-            Yii::$app->params['breadcrumbs'][] = array(
-                'label'=> 'анкеты видео',
-            );
-
-            $id = Posts::find()->select('id')->where(['<>', 'video', ''])->asArray()->all();
-
-            if($id){
-
-                $result = ArrayHelper::getColumn($id, 'id');
-
-                if (!empty($ids)){
-
-                    $ids = array_intersect($ids, $id);
-
-                }else{
-
-                    $ids = $result;
-
-                }
-
-            }
-
-        }
 
         if ($ids) {
 
