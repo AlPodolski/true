@@ -23,6 +23,10 @@ AppAsset::register($this);
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <link rel="preload" href="/fonts/ubuntu.woff2" as="font" crossorigin="anonymous">
+    <link rel="preload" href="/fonts/ubuntumedium.woff2" as="font" crossorigin="anonymous">
+    <link rel="preload" href="/fonts/ubuntubold.woff2" as="font" crossorigin="anonymous">
+    <link rel="preload" href="/fonts/ubuntulight.woff2" as="font" crossorigin="anonymous">
     <link rel="apple-touch-icon" sizes="57x57" href="/img/favicons/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/img/favicons/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/img/favicons/apple-icon-72x72.png">
