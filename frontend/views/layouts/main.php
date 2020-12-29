@@ -50,7 +50,7 @@ AppAsset::register($this);
                 <ul class="top-menu">
                     <li class="top-menu-item"><a href="/">Индивидуалки</a></li>
                     <li class="top-menu-item"><a href="/proverennye">Проверенные</a></li>
-                    <li class="top-menu-item"><a href="/cena-ot-6000">Элитные</a></li>
+                    <li class="top-menu-item"><a href="/mesto-viezd">Элитные</a></li>
                     <li class="top-menu-item d-none"><a href="/forum">Форум</a></li>
                 </ul>
             </div>

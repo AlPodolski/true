@@ -97,7 +97,7 @@ $this->params['breadcrumbs'][] = array(
             <?php endif; ?>
             <div class="single-bottom-info position-relative  col-xl-8 col-lg-8">
                 <div class="row height-100 single-post-info-row">
-                    <div class="col-12 col-lg-9 single-post-info-wrap">
+                    <div class="col-12 col-md-9 col-lg-9 single-post-info-wrap">
                         <div class="post-top-info">
                             <div class="phone-photo-count">
                                 <div class="row">
@@ -113,6 +113,7 @@ $this->params['breadcrumbs'][] = array(
                                         </div>
                                         <span class="photo-count">
                                             +<?php echo \frontend\modules\user\models\Posts::countPhoto($post['id'])?>
+                                             фото
                                         </span>
                                     </div>
                                 </div>

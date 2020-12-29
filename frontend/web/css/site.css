@@ -1580,7 +1580,7 @@ h1{
 }
 .single-post-info-wrap .count-photo-icon{
     margin-left: 0px;
-    top: 11px;
+    top: 5px;
 }
 .single-tabs .nav-item .nav-link svg{
     margin-right: 10px;
@@ -2370,6 +2370,9 @@ h1{
 }
 
 @media (max-width: 575px) {
+    .white-btn{
+        border: 2px solid;
+    }
     .main-text{
         padding: 0 30px;
     }
@@ -2422,5 +2425,10 @@ h1{
         margin: 10px 15px;
         margin-top: 15px;
         margin-bottom: 0;
+    }
+}
+@media (max-width: 360px) {
+    .btn-wrap {
+        padding-left: 15px;
     }
 }
