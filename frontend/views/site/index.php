@@ -56,7 +56,7 @@ Yii::$app->view->registerMetaTag([
     </div>
 
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 main-text">
             <p class="big-red-text">
                 Проверенные проститутки с
                 высоким рейтингом
@@ -93,7 +93,7 @@ Yii::$app->view->registerMetaTag([
     </div>
 
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 main-text">
             <p class="big-red-text">
                 Новые анкеты индивидуалок
             </p>

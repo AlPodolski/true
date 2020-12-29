@@ -935,6 +935,9 @@ h1 , .big-red-text{
 .post-phone:hover{
     color: #fff;
 }
+.city , .metro-search-btn-wrap-top , .user-btn{
+    cursor: pointer;
+}
 .post-rating {
     position: absolute;
     width: 49px;
@@ -2367,6 +2370,9 @@ h1{
 }
 
 @media (max-width: 575px) {
+    .main-text{
+        padding: 0 30px;
+    }
     .breadcrumb{
         padding-left: 15px;
     }

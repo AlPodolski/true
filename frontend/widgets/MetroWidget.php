@@ -15,7 +15,7 @@ class MetroWidget extends Widget
 
         if (isset(Yii::$app->controller->actionParams['city'])
             and $city = City::getCity(Yii::$app->controller->actionParams['city'])
-            and $metro = Metro::find()->where(['city_id' => $city['id']])->asArray()->all()
+            and $metro = Metro::find()->where(['city_id' => $city['id']])->asArray()->orderBy('value')->all()
         ) {
 
             return $this->render('metro', ['metro' => $metro]);
