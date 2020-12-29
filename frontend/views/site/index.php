@@ -19,7 +19,7 @@ Yii::$app->view->registerMetaTag([
 <div class="popular-btn-block">
     <a href="/cena-do-1500" class="popular-btn">Дешевые</a>
     <a class="popular-btn" href="/video">С видео</a>
-    <a class="popular-btn" href="/cena-ot-6000">Элитные</a>
+    <a class="popular-btn" href="/mesto-viezd">Выезд</a>
 </div>
 <div class="row">
     <div class="col-12">
