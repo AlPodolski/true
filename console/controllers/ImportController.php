@@ -34,7 +34,7 @@ class ImportController extends Controller
 {
     public function actionIndex()
     {
-        $stream = \fopen(Yii::getAlias('@app/files/prostitutkimoskvytoday_posts_21_12_2020.csv'), 'r');
+        $stream = \fopen(Yii::getAlias('@app/files/intim_city_29.12.2020.csv'), 'r');
 
         $csv = Reader::createFromStream($stream);
         $csv->setDelimiter(';');
@@ -57,13 +57,13 @@ class ImportController extends Controller
                     $postSite = new PostSites();
 
                     $postSite->post_id = $post->id;
-                    $postSite->site_id = 2;
+                    $postSite->site_id = 4;
                     $postSite->price = $post->price;
                     $postSite->created_at = $post->created_at;
                     $postSite->name_on_site = $record['name'];
                     $postSite->age = $record['age'];
 
-                    if ($record['video']) $post->video = \str_replace('files', '/uploads/aa3', $record['video']);
+                    if ($record['video']) $post->video = \str_replace('files', '/uploads/aa4', $record['video']);
 
                     $postSite->save();
 
@@ -77,7 +77,7 @@ class ImportController extends Controller
                     $post->city_id = 1;
                     $post->created_at = \time() - ((3600 * 24) * \rand(0, 365));
                     $post->name = $record['name'];
-                    $post->updated_at = 1;
+                    $post->updated_at = 4;
                     $post->phone = $record['phone'];
                     $post->about = $record['anket-about'];
                     $post->check_photo_status = 0;
@@ -88,7 +88,7 @@ class ImportController extends Controller
                     $post->ves = $record['weight'];
                     $post->category = Posts::SALON_CATEGORY;
 
-                    if ($record['video']) $post->video = \str_replace('files', '/uploads/aa3', $record['video']);
+                    if ($record['video']) $post->video = \str_replace('files', '/uploads/aa4', $record['video']);
 
                     if (isset($record['cheked']) and $record['cheked'] == 1) $post->check_photo_status = 1;
 
@@ -97,7 +97,7 @@ class ImportController extends Controller
                         $postSite = new PostSites();
 
                         $postSite->post_id = $post->id;
-                        $postSite->site_id = 2;
+                        $postSite->site_id = 4;
                         $postSite->price = $post->price;
                         $postSite->created_at = $post->created_at;
                         $postSite->name_on_site = $post->name;
@@ -121,17 +121,27 @@ class ImportController extends Controller
 
                         }
 
-                        if (isset($record['metro']) and ['metro']) {
+                        if (isset($record['metro']) and $record['metro']) {
 
-                            $id = ArrayHelper::getValue(Metro::find()->where(['value' => $record['metro']])->asArray()->one(), 'id');
+                            $metro = \explode(',', $record['metro']);
 
-                            if ($id) {
+                            if ($metro) {
 
-                                $userRayon = new UserMetro();
-                                $userRayon->post_id = $post->id;
-                                $userRayon->metro_id = $id;
-                                $userRayon->city_id = 1;
-                                $userRayon->save();
+                                foreach ($metro as $metroItem){
+
+                                    $id = ArrayHelper::getValue(Metro::find()->where(['value' => $metroItem])->asArray()->one(), 'id');
+
+                                    if ($id) {
+
+                                        $userRayon = new UserMetro();
+                                        $userRayon->post_id = $post->id;
+                                        $userRayon->metro_id = $id;
+                                        $userRayon->city_id = 1;
+                                        $userRayon->save();
+
+                                    }
+
+                                }
 
                             }
 
@@ -153,9 +163,9 @@ class ImportController extends Controller
 
                         }
 
-                        if (isset($record['ethnik']) and $record['ethnik']) {
+                        if (isset($record['etik']) and $record['etik']) {
 
-                            $id = ArrayHelper::getValue(National::find()->where(['value' => $record['ethnik']])->asArray()->one(), 'id');
+                            $id = ArrayHelper::getValue(National::find()->where(['value' => $record['etik']])->asArray()->one(), 'id');
 
                             if ($id) {
 
@@ -296,7 +306,7 @@ class ImportController extends Controller
                             $userPhoto = new Files();
 
                             $userPhoto->related_id = $post->id;
-                            $userPhoto->file = \str_replace('files', '/uploads/aa3', $record['mini']);
+                            $userPhoto->file = \str_replace('files', '/uploads/aa4', $record['mini']);
                             $userPhoto->main = 1;
                             $userPhoto->type = 0;
                             $userPhoto->related_class = Posts::class;
@@ -318,7 +328,7 @@ class ImportController extends Controller
                                     $userPhoto = new Files();
 
                                     $userPhoto->related_id = $post->id;
-                                    $userPhoto->file = \str_replace('files', '/uploads/aa3', $mini);
+                                    $userPhoto->file = \str_replace('files', '/uploads/aa4', $mini);
                                     $userPhoto->main = 1;
                                     $userPhoto->type = 0;
                                     $userPhoto->related_class = Posts::class;
@@ -334,7 +344,7 @@ class ImportController extends Controller
                                         $userPhoto = new Files();
 
                                         $userPhoto->related_id = $post->id;
-                                        $userPhoto->file = \str_replace('files', '/uploads/aa3', $gallitem);
+                                        $userPhoto->file = \str_replace('files', '/uploads/aa4', $gallitem);
                                         $userPhoto->main = 0;
                                         $userPhoto->type = 0;
                                         $userPhoto->related_class = Posts::class;
@@ -360,7 +370,7 @@ class ImportController extends Controller
                     $post->city_id = 1;
                     $post->created_at = \time() - ((3600 * 24) * \rand(0, 365));
                     $post->name = $record['name'];
-                    $post->updated_at = 1;
+                    $post->updated_at = 4;
                     $post->phone = $record['phone'];
                     $post->about = $record['anket-about'];
                     $post->check_photo_status = 0;
@@ -371,7 +381,7 @@ class ImportController extends Controller
                     $post->ves = $record['weight'];
                     $post->category = Posts::INDI_CATEGORY;
 
-                        if ($record['video']) $post->video = \str_replace('files', '/uploads/aa3', $record['video']);
+                        if ($record['video']) $post->video = \str_replace('files', '/uploads/aa4', $record['video']);
 
                     if (isset($record['cheked']) and $record['cheked'] == 1) $post->check_photo_status = 1;
 
@@ -380,7 +390,7 @@ class ImportController extends Controller
                         $postSite = new PostSites();
 
                         $postSite->post_id = $post->id;
-                        $postSite->site_id = 2;
+                        $postSite->site_id = 4;
                         $postSite->price = $post->price;
                         $postSite->created_at = $post->created_at;
                         $postSite->name_on_site = $post->name;
@@ -404,17 +414,27 @@ class ImportController extends Controller
 
                         }
 
-                        if (isset($record['metro']) and ['metro']) {
+                        if (isset($record['metro']) and $record['metro']) {
 
-                            $id = ArrayHelper::getValue(Metro::find()->where(['value' => $record['metro']])->asArray()->one(), 'id');
+                            $metro = \explode(',', $record['metro']);
 
-                            if ($id) {
+                            if ($metro) {
 
-                                $userRayon = new UserMetro();
-                                $userRayon->post_id = $post->id;
-                                $userRayon->metro_id = $id;
-                                $userRayon->city_id = 1;
-                                $userRayon->save();
+                                foreach ($metro as $metroItem){
+
+                                    $id = ArrayHelper::getValue(Metro::find()->where(['value' => $metroItem])->asArray()->one(), 'id');
+
+                                    if ($id) {
+
+                                        $userRayon = new UserMetro();
+                                        $userRayon->post_id = $post->id;
+                                        $userRayon->metro_id = $id;
+                                        $userRayon->city_id = 1;
+                                        $userRayon->save();
+
+                                    }
+
+                                }
 
                             }
 
@@ -436,9 +456,9 @@ class ImportController extends Controller
 
                         }
 
-                        if (isset($record['ethnik']) and $record['ethnik']) {
+                        if (isset($record['etik']) and $record['etik']) {
 
-                            $id = ArrayHelper::getValue(National::find()->where(['value' => $record['ethnik']])->asArray()->one(), 'id');
+                            $id = ArrayHelper::getValue(National::find()->where(['value' => $record['etik']])->asArray()->one(), 'id');
 
                             if ($id) {
 
@@ -577,7 +597,7 @@ class ImportController extends Controller
                             $userPhoto = new Files();
 
                             $userPhoto->related_id = $post->id;
-                            $userPhoto->file = \str_replace('files', '/uploads/aa3', $record['mini']);
+                            $userPhoto->file = \str_replace('files', '/uploads/aa4', $record['mini']);
                             $userPhoto->main = 1;
                             $userPhoto->type = 0;
                             $userPhoto->related_class = Posts::class;
@@ -599,7 +619,7 @@ class ImportController extends Controller
                                     $userPhoto = new Files();
 
                                     $userPhoto->related_id = $post->id;
-                                    $userPhoto->file = \str_replace('files', '/uploads/aa3', $mini);
+                                    $userPhoto->file = \str_replace('files', '/uploads/aa4', $mini);
                                     $userPhoto->main = 1;
                                     $userPhoto->type = 0;
                                     $userPhoto->related_class = Posts::class;
@@ -615,7 +635,7 @@ class ImportController extends Controller
                                         $userPhoto = new Files();
 
                                         $userPhoto->related_id = $post->id;
-                                        $userPhoto->file = \str_replace('files', '/uploads/aa3', $gallitem);
+                                        $userPhoto->file = \str_replace('files', '/uploads/aa4', $gallitem);
                                         $userPhoto->main = 0;
                                         $userPhoto->type = 0;
                                         $userPhoto->related_class = Posts::class;
@@ -751,7 +771,7 @@ class ImportController extends Controller
             $postSite = new PostSites();
 
             $postSite->post_id = $post['id'];
-            $postSite->site_id = 2;
+            $postSite->site_id = 4;
             $postSite->price = $post['price'];
             $postSite->created_at = $post['created_at'];
             $postSite->name_on_site = $post['name'];

@@ -2262,6 +2262,9 @@ h1{
 .mobile-map{
     display: none;
 }
+input::-webkit-input-placeholder {
+    color: #fff;
+}
 @media (max-width: 1199px) {
     .mobile-map{
         display: block;
