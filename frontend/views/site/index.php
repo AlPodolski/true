@@ -38,6 +38,8 @@ Yii::$app->view->registerMetaTag([
 
     <div class="row">
 
+        <div data-url="/" class="col-12"></div>
+
         <?php $i = 0 ?>
 
         <?php foreach ($prPosts as $post) : ?>

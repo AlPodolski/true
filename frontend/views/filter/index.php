@@ -5,6 +5,7 @@
 /* @var $title string */
 /* @var $des string */
 /* @var $h1 string */
+/* @var $param string */
 
 $this->title = $title;
 
@@ -19,6 +20,8 @@ Yii::$app->view->registerMetaTag([
 <h1> <?php echo $h1 ?> </h1>
 
 <div class="row">
+
+    <?php echo '<div data-url="/'.$param.'" class="col-12"></div>'; ?>
 
     <?php if (is_array($posts)) : ?>
 

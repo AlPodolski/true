@@ -38,6 +38,8 @@ class FilterController extends Controller
 
             if ($page) $posts = $posts->offset(Yii::$app->params['post_limit'] * 1);
 
+            if (strpos($param, 'page')) $param = strstr($param, '/page' , true);
+
             if (Yii::$app->request->isPost){
 
                 $posts->offset(Yii::$app->params['post_limit'] * Yii::$app->request->post('page'));
@@ -47,8 +49,6 @@ class FilterController extends Controller
                 if (\count($posts)) {
 
                     $page = Yii::$app->request->post('page') + 1;
-
-                    if (strpos($param, 'page')) $param = strstr($param, '/page' , true);
 
                     echo '<div data-url="/'.$param.'/page-'.$page.'" class="col-12"></div>';
 
