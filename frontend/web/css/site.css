@@ -432,7 +432,7 @@ a.desc:after {
     font-style: italic;
     font-display:swap
 }
-.post-img{
+.post .post-img{
     min-height: 420px;
 }
 body{
@@ -2296,6 +2296,9 @@ input::-webkit-input-placeholder {
     color: #fff;
 }
 @media (max-width: 1199px) {
+    .post .post-img{
+        min-height: 348px;
+    }
     .mobile-map{
         display: block;
     }
@@ -2328,6 +2331,9 @@ input::-webkit-input-placeholder {
     }
 }
 @media (max-width: 992px) {
+    .post .post-img{
+        min-height: 396px;
+    }
     .post-num-2{
         display: none;
     }
@@ -2344,6 +2350,9 @@ input::-webkit-input-placeholder {
     }
 }
 @media (max-width: 769px) {
+    .post .post-img{
+        min-height: 612px;
+    }
     .post-num-1{
         display: none;
     }
@@ -2403,6 +2412,9 @@ input::-webkit-input-placeholder {
 }
 
 @media (max-width: 575px) {
+    .post .post-img{
+        min-height: 350px;
+    }
     .white-btn{
         border: 2px solid;
     }
