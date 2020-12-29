@@ -48,13 +48,10 @@ class SiteController extends Controller
     public function actionIndex($city , $page = false)
     {
 
-        Yii::$app->cache->flush();
-
         if (Yii::$app->request->isPost){
 
             $posts = Posts::find()->asArray()->with('avatar', 'metro', 'selphiCount')
-                ->limit(Yii::$app->params['post_limit'])
-                ->orderBy(['rand()' => SORT_DESC]);
+                ->limit(Yii::$app->params['post_limit']);
 
             $posts->offset(Yii::$app->params['post_limit'] * Yii::$app->request->post('page'));
 
@@ -78,7 +75,6 @@ class SiteController extends Controller
 
         $prPosts = Posts::find()->asArray()->with('avatar', 'metro', 'selphiCount')
             ->limit(3)
-            ->orderBy(['rand()' => SORT_DESC])
             ->all();
 
         $checkPosts = Posts::find()->asArray()
