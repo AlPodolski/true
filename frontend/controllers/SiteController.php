@@ -1,10 +1,12 @@
 <?php
+
 namespace frontend\controllers;
 
 use frontend\helpers\MetaBuilder;
 use frontend\helpers\FavoriteHelper;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
+use frontend\modules\user\components\behavior\LastVisitTimeUpdate;
 use frontend\modules\user\models\Posts;
 use Yii;
 use yii\base\InvalidArgumentException;
@@ -41,14 +43,34 @@ class SiteController extends Controller
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => 'yii\filters\PageCache',
+                'only' => ['index'],
+                'duration' => 3600 * 24,
+                'variations' => [
+                    Yii::$app->request->url,
+                    Yii::$app->request->post('page'),
+                    Yii::$app->request->hostInfo,
+                ],
+            ],
+        ];
+
+    }
+
+    /**
      * Displays homepage.
      *
      * @return mixed
      */
-    public function actionIndex($city , $page = false)
+    public function actionIndex($city, $page = false)
     {
 
-        if (Yii::$app->request->isPost){
+        if (Yii::$app->request->isPost) {
 
             $posts = Posts::find()->asArray()->with('avatar', 'metro', 'selphiCount')
                 ->limit(Yii::$app->params['post_limit']);
@@ -59,9 +81,9 @@ class SiteController extends Controller
 
             $page = Yii::$app->request->post('page') + 1;
 
-            if ($posts) echo '<div data-url="/page-'.$page.'" class="col-12"></div>';
+            if ($posts) echo '<div data-url="/page-' . $page . '" class="col-12"></div>';
 
-            foreach ($posts as $post){
+            foreach ($posts as $post) {
 
                 echo $this->renderFile('@app/views/layouts/article.php', [
                     'post' => $post,
@@ -85,18 +107,18 @@ class SiteController extends Controller
 
         $newPosts = Posts::find()->asArray()
             ->with('avatar', 'metro', 'selphiCount')
-            ->orderBy(['created_at' => SORT_DESC ])
+            ->orderBy(['created_at' => SORT_DESC])
             ->limit(3)->cache(3600)->all();
 
         $uri = Yii::$app->request->url;
 
         if (\strpos($uri, 'page')) $uri = \strstr($uri, 'page', true);
 
-        $title =  MetaBuilder::Build($uri, $city, 'Title');
+        $title = MetaBuilder::Build($uri, $city, 'Title');
         $des = MetaBuilder::Build($uri, $city, 'des');
         $h1 = MetaBuilder::Build($uri, $city, 'h1');
 
-        return $this->render('index' , [
+        return $this->render('index', [
             'prPosts' => $prPosts,
             'newPosts' => $newPosts,
             'checkPosts' => $checkPosts,
@@ -105,6 +127,7 @@ class SiteController extends Controller
             'h1' => $h1,
         ]);
     }
+
     /**
      * Displays homepage.
      *
@@ -254,8 +277,8 @@ class SiteController extends Controller
      * Verify email address
      *
      * @param string $token
-     * @throws BadRequestHttpException
      * @return yii\web\Response
+     * @throws BadRequestHttpException
      */
     public function actionVerifyEmail($token)
     {
@@ -298,7 +321,7 @@ class SiteController extends Controller
 
     public function actionRobot($city)
     {
-        $host = $city.'.'.Yii::$app->params['site_name'];
+        $host = $city . '.' . Yii::$app->params['site_name'];
 
         return $this->renderFile('@app/views/site/robot.php', [
             'host' => $host
