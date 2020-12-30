@@ -2,6 +2,7 @@
 
 namespace frontend\models;
 
+use frontend\modules\user\models\Review;
 use Yii;
 
 /**
@@ -49,4 +50,20 @@ class Metro extends \yii\db\ActiveRecord
             'city_id' => 'City ID',
         ];
     }
+
+    public static function getMetro($cityId)
+    {
+        $data = Yii::$app->cache->get('metro_'.$cityId);
+
+        if ($data === false) {
+            // $data нет в кэше, вычисляем заново
+            $data = Metro::find()->where(['city_id' => $cityId])->asArray()->orderBy('value')->all();
+
+            // Сохраняем значение $data в кэше. Данные можно получить в следующий раз.
+            Yii::$app->cache->set('metro_'.$cityId, $data);
+        }
+
+        return $data;
+    }
+
 }
