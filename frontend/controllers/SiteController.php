@@ -102,6 +102,7 @@ class SiteController extends Controller
 
         $checkBlock['block']['post'] = Posts::find()->asArray()
             ->orderBy(['check_photo_status' => 1])
+            ->with('avatar')
             ->cache(3600)->one();
 
         $checkBlock['block']['header'] = 'Проверенные проститутки с высоким рейтингом';
