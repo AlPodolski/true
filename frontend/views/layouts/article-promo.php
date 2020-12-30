@@ -7,7 +7,7 @@ use frontend\widgets\PhotoWidget;
 
 ?>
 
-<div class="col-xl-4 col-lg-4 col-md-6 col-12 post-wrap <?php echo isset($countPost) ? 'post-num-'.$countPost : "";?>">
+<div class="col-xl-4 col-lg-4 col-md-6 col-12 post-wrap <?php echo isset($countPost) ? 'post-num-'.$countPost : "";?> post">
     <div class="post-img position-relative">
         <a href="/<?php echo $post['url']?>">
         <?php echo PhotoWidget::widget([

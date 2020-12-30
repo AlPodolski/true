@@ -568,6 +568,12 @@ body{
     color: #F74952;
     display: block;
 }
+.post-wrap .big-red-text{
+    margin-top: 15px;
+}
+.post-wrap .black-text{
+    min-height: 155px;
+}
 .red-link:hover{
     color: #F74952;
 }
@@ -2470,7 +2476,6 @@ input::-webkit-input-placeholder {
     .text-block{
         margin: 10px 15px;
         margin-top: 15px;
-        margin-bottom: 0;
     }
 }
 @media (max-width: 360px) {
