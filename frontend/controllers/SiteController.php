@@ -74,18 +74,19 @@ class SiteController extends Controller
         }
 
         $prPosts = Posts::find()->asArray()->with('avatar', 'metro', 'selphiCount')
-            ->limit(3)
+            ->limit(3)->cache(3600)
             ->all();
 
         $checkPosts = Posts::find()->asArray()
             ->with('avatar', 'metro', 'selphiCount')
             ->orderBy(['check_photo_status' => 1])
+            ->cache(3600)
             ->limit(3)->all();
 
         $newPosts = Posts::find()->asArray()
             ->with('avatar', 'metro', 'selphiCount')
             ->orderBy(['created_at' => SORT_DESC ])
-            ->limit(3)->all();
+            ->limit(3)->cache(3600)->all();
 
         $uri = Yii::$app->request->url;
 
