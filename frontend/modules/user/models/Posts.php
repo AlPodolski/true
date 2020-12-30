@@ -13,6 +13,7 @@ use common\models\Sites;
 use frontend\models\Files;
 use frontend\models\Metro;
 use frontend\models\UserMetro;
+use Yii;
 
 /**
  * This is the model class for table "posts".
@@ -168,12 +169,36 @@ class Posts extends \yii\db\ActiveRecord
 
     public static function countPhoto($id)
     {
-        return Files::find()->where(['related_class' => self::class])->andWhere(['related_id' => $id])->count();
+
+        $data = Yii::$app->cache->get('count_photo'.$id);
+
+        if ($data === false) {
+            // $data нет в кэше, вычисляем заново
+            $data = Files::find()->where(['related_class' => self::class])->andWhere(['related_id' => $id])->count();
+
+            // Сохраняем значение $data в кэше. Данные можно получить в следующий раз.
+            Yii::$app->cache->set('count_photo'.$id, $data);
+        }
+
+        return $data;
+
     }
 
     public static function countReview($id)
     {
-        return Review::find()->where(['post_id' => $id])->count();
+
+        $data = Yii::$app->cache->get('review_count_'.$id);
+
+        if ($data === false) {
+            // $data нет в кэше, вычисляем заново
+            $data = Review::find()->where(['post_id' => $id])->count();
+
+            // Сохраняем значение $data в кэше. Данные можно получить в следующий раз.
+            Yii::$app->cache->set('review_count_'.$id, $data);
+        }
+
+        return $data;
+
     }
 
     /**

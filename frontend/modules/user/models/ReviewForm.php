@@ -47,6 +47,7 @@ class ReviewForm extends Model
         $review->created_at = \time();
 
         Yii::$app->cache->delete('review_'.$this->post_id);
+        Yii::$app->cache->delete('review_count_'.$this->post_id);
 
         if ($review->save()) return $review;
 
