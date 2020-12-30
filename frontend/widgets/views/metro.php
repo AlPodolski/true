@@ -4,10 +4,10 @@
 
 ?>
 
-<ul class="city-list">
+<div class="city-list">
 
 <?php foreach ($metro as $item) : ?>
-    <li><a class="red-link" href="/metro-<?php echo $item['url']?>"><?php echo $item['value']?></a></li>
+    <a class="red-link" href="/metro-<?php echo $item['url']?>"><?php echo $item['value']?></a>
 <?php endforeach; ?>
 
-</ul>
+</div>

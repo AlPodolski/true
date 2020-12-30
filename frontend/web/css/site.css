@@ -566,6 +566,7 @@ body{
     font-size: 14px;
     line-height: 16px;
     color: #F74952;
+    display: block;
 }
 .red-link:hover{
     color: #F74952;
