@@ -40,7 +40,7 @@ use frontend\widgets\PhotoWidget;
     </div>
 
     <div class="price">
-        <a class="price" href="/<?php echo $post['url']?>">
+        <a class="price-text" href="/<?php echo $post['url']?>">
             Перейти
             <img src="/img/up-arrow1.png">
         </a>

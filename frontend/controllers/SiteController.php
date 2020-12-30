@@ -43,7 +43,7 @@ class SiteController extends Controller
     }
 
 
-    public function behaviors()
+/*    public function behaviors()
     {
         return [
             [
@@ -58,7 +58,7 @@ class SiteController extends Controller
             ],
         ];
 
-    }
+    }*/
 
     /**
      * Displays homepage.

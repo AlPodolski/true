@@ -573,8 +573,12 @@ body{
     text-align: center;
 }
 .post-wrap .black-text{
-    min-height: 155px;
+    min-height: 154px;
     padding: 0 5px;
+}
+.price-text{
+    color: #fff;
+    text-align: center;
 }
 .red-link:hover{
     color: #F74952;
