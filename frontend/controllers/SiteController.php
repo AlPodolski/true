@@ -43,7 +43,7 @@ class SiteController extends Controller
     }
 
 
-/*    public function behaviors()
+    public function behaviors()
     {
         return [
             [
@@ -58,7 +58,7 @@ class SiteController extends Controller
             ],
         ];
 
-    }*/
+    }
 
     /**
      * Displays homepage.
@@ -67,8 +67,6 @@ class SiteController extends Controller
      */
     public function actionIndex($city, $page = false)
     {
-
-        Yii::$app->cache->flush();
 
         if (Yii::$app->request->isPost) {
 
