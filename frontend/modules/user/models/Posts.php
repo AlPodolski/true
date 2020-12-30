@@ -65,32 +65,32 @@ class Posts extends \yii\db\ActiveRecord
     public function getAvatar()
     {
         return $this->hasOne(Files::class, ['related_id' => 'id'])->andWhere(['related_class' => self::class])
-            ->andWhere(['main' => 1]);
+            ->andWhere(['main' => 1])->cache(3600);
     }
     public function getAllPhoto()
     {
-        return $this->hasMany(Files::class, ['related_id' => 'id'])->andWhere(['related_class' => self::class]);
+        return $this->hasMany(Files::class, ['related_id' => 'id'])->andWhere(['related_class' => self::class])->cache(3600;
     }
 
     public function getSelphiCount()
     {
         return $this->hasMany(Files::class, ['related_id' => 'id'])
-            ->andWhere(['related_class' => self::class])
+            ->andWhere(['related_class' => self::class])->cache(3600
             ->andWhere(['type' => Files::SELPHY_TYPE]);
     }
     public function getMetro()
     {
-        return $this->hasMany(Metro::class, ['id' => 'metro_id'])->via('userToMetroRelations');
+        return $this->hasMany(Metro::class, ['id' => 'metro_id'])->via('userToMetroRelations')->cache(3600;
     }
 
     public function getPlace()
     {
-        return $this->hasMany(Place::class, ['id' => 'place_id'])->via('userToPlaceRelations');
+        return $this->hasMany(Place::class, ['id' => 'place_id'])->via('userToPlaceRelations')->cache(3600;
     }
 
     public function getUserToPlaceRelations()
     {
-        return $this->hasMany(UserPlace::class, ['post_id' => 'id']);
+        return $this->hasMany(UserPlace::class, ['post_id' => 'id'])->cache(3600;
     }
 
 
