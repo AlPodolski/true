@@ -575,6 +575,10 @@ body{
 .price-text{
     color: #fff;
 }
+.price-text:hover{
+    color: #fff;
+    text-decoration: none;
+}
 .post-wrap .black-text{
     min-height: 152px;
     padding: 0 5px;
