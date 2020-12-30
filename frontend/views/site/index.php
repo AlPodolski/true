@@ -44,12 +44,16 @@ Yii::$app->view->registerMetaTag([
 
         <?php foreach ($prPosts as $post) : ?>
 
-            <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), [
-                    'post'  => $post,
-                'countPost' => $i,
-            ]); ?>
+            <?php if (isset($post['id'])) : ?>
 
-            <?php $i++?>
+                <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), [
+                        'post'  => $post,
+                    'countPost' => $i,
+                ]); ?>
+
+                <?php $i++?>
+
+            <?php endif; ?>
 
         <?php endforeach; ?>
 
