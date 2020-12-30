@@ -90,7 +90,7 @@ class Posts extends \yii\db\ActiveRecord
 
     public function getUserToPlaceRelations()
     {
-        return $this->hasMany(UserPlace::class, ['post_id' => 'id'])->cache(3600;
+        return $this->hasMany(UserPlace::class, ['post_id' => 'id'])->cache(3600);
     }
 
 
