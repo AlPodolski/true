@@ -49,7 +49,17 @@ class City extends \yii\db\ActiveRecord
 
     public static function getCity($city){
 
-        return City::find()->select('city, id')->where(['url' => $city])->orWhere(['city' => $city])->asArray()->one();
+        $data = Yii::$app->cache->get('city_info_'.$city);
+
+        if ($data === false) {
+            // $data нет в кэше, вычисляем заново
+            $data = City::find()->select('city, id')->where(['url' => $city])->orWhere(['city' => $city])->asArray()->one();
+
+            // Сохраняем значение $data в кэше. Данные можно получить в следующий раз.
+            Yii::$app->cache->set('city_info_'.$city, $data);
+        }
+
+        return $data;
 
     }
 }
