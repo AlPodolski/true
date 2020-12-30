@@ -570,9 +570,11 @@ body{
 }
 .post-wrap .big-red-text{
     margin-top: 15px;
+    text-align: center;
 }
 .post-wrap .black-text{
     min-height: 155px;
+    padding: 0 5px;
 }
 .red-link:hover{
     color: #F74952;

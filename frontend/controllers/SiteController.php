@@ -68,6 +68,8 @@ class SiteController extends Controller
     public function actionIndex($city, $page = false)
     {
 
+        Yii::$app->cache->flush();
+
         if (Yii::$app->request->isPost) {
 
             $posts = Posts::find()->asArray()->with('avatar', 'metro', 'selphiCount')
@@ -94,12 +96,11 @@ class SiteController extends Controller
         }
 
         $prPosts = Posts::find()->asArray()->with('avatar', 'metro', 'selphiCount')
-      //      ->where(['in', 'id', array('25', '29', '31', '34', '35', '41', '44', '67', '69', '68', '84', '86', '89', '90', '95','94')])
+            ->where(['in', 'id', array('25', '29', '31', '34', '35', '41', '44', '67', '69', '68', '84', '86', '89', '90', '95','94')])
             ->limit(11)->cache(3600)
             ->all();
 
         $checkBlock['block']['post'] = Posts::find()->asArray()
-            ->with('avatar')
             ->orderBy(['check_photo_status' => 1])
             ->cache(3600)->one();
 
