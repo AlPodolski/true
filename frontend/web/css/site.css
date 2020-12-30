@@ -572,6 +572,9 @@ body{
     margin-top: 15px;
     text-align: center;
 }
+.price-text{
+    color: #fff;
+}
 .post-wrap .black-text{
     min-height: 152px;
     padding: 0 5px;
