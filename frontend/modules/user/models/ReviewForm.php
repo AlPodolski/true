@@ -3,6 +3,7 @@
 
 namespace frontend\modules\user\models;
 
+use Yii;
 use yii\base\Model;
 
 class ReviewForm extends Model
@@ -44,6 +45,8 @@ class ReviewForm extends Model
         $review->author = $this->author_id;
         $review->total_marc = $this->total;
         $review->created_at = \time();
+
+        Yii::$app->cache->delete('review_'.$this->post_id);
 
         if ($review->save()) return $review;
 

@@ -3,7 +3,9 @@
 
 namespace frontend\helpers;
 
+use common\models\City;
 use frontend\modules\user\models\Review;
+use Yii;
 use yii\helpers\ArrayHelper;
 use function Symfony\Component\String\s;
 
@@ -12,7 +14,7 @@ class PostRatingHelper
     public static function getPostRating($postId)
     {
 
-        $postReview = Review::find()->where(['post_id' => $postId])->with('serviceMarc', 'author')->asArray()->all();
+        $postReview = self::getReview($postId);
 
         $reviewCount = count($postReview);
         $service_marc = self::getAverageServiceRating( ArrayHelper::getColumn($postReview, 'serviceMarc'));
@@ -33,6 +35,21 @@ class PostRatingHelper
             'total_rating' => self::getTotalRating($photo_marc, $service_marc,$total_marc , $clean_marc)
         );
 
+    }
+
+    public static function getReview($postId)
+    {
+        $data = Yii::$app->cache->get('review_'.$postId);
+
+        if ($data === false) {
+            // $data нет в кэше, вычисляем заново
+            $data = Review::find()->where(['post_id' => $postId])->with('serviceMarc', 'author')->asArray()->all();
+
+            // Сохраняем значение $data в кэше. Данные можно получить в следующий раз.
+            Yii::$app->cache->set('review_'.$postId, $data);
+        }
+
+        return $data;
     }
 
     public static function countHappy($marc, $needCount = 1)
