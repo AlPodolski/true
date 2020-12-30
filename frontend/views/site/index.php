@@ -40,94 +40,25 @@ Yii::$app->view->registerMetaTag([
 
         <div data-url="/" class="col-12"></div>
 
-        <?php $i = 0 ?>
-
         <?php foreach ($prPosts as $post) : ?>
 
             <?php if (isset($post['id'])) : ?>
 
                 <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), [
                         'post'  => $post,
-                    'countPost' => $i,
                 ]); ?>
 
-                <?php $i++?>
+            <?php elseif (isset($post['block'])) : ?>
+
+                <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article-promo.php'), [
+                    'post'      => $post['block'],
+                ]); ?>
 
             <?php endif; ?>
 
         <?php endforeach; ?>
 
     </div>
-
-    <div class="row">
-        <div class="col-12 main-text">
-            <p class="big-red-text">
-                Проверенные проститутки с
-                высоким рейтингом
-            </p>
-
-            <p class="black-text">
-                Рейтинг составляется на основе алгоритма
-                и ручной модерации мы выбираем только
-                качественные анкеты со всего интернета
-                что бы показать их вам.
-            </p>
-        </div>
-    </div>
-
-    <div class="row">
-
-        <?php $i = 0 ?>
-
-        <?php foreach ($checkPosts as $post) : ?>
-
-            <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article-promo.php'), [
-                    'post'      => $post,
-                    'countPost' => $i,
-            ]); ?>
-
-            <?php $i++?>
-
-        <?php endforeach; ?>
-
-        <div class="red-btn-wrap col-12">
-            <a class="red-btn" href="/proverennye">Перейти<img src="/img/up-arrow1.png"></a>
-        </div>
-
-    </div>
-
-    <div class="row">
-        <div class="col-12 main-text">
-            <p class="big-red-text">
-                Новые анкеты индивидуалок
-            </p>
-            <p class="black-text">
-                Самый свежак номеров которые только появились на сайте
-            </p>
-        </div>
-    </div>
-
-    <div class="row">
-
-        <?php $i = 0 ?>
-
-        <?php foreach ($newPosts as $post) : ?>
-
-            <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article-promo.php'), [
-                        'post'  => $post,
-                    'countPost' => $i,
-            ]); ?>
-
-            <?php $i++?>
-
-        <?php endforeach; ?>
-
-        <div class="red-btn-wrap col-12">
-            <a class="red-btn" href="/novie">Перейти<img src="/img/up-arrow1.png"></a>
-        </div>
-
-    </div>
-
 
     <div class="row content"></div>
     <svg class="filter" version="1.1">

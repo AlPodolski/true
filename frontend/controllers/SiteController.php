@@ -43,7 +43,7 @@ class SiteController extends Controller
     }
 
 
-/*    public function behaviors()
+    public function behaviors()
     {
         return [
             [
@@ -58,7 +58,7 @@ class SiteController extends Controller
             ],
         ];
 
-    }*/
+    }
 
     /**
      * Displays homepage.
@@ -94,20 +94,23 @@ class SiteController extends Controller
         }
 
         $prPosts = Posts::find()->asArray()->with('avatar', 'metro', 'selphiCount')
-            ->where(['in', 'id', array('25', '29', '31', '34', '35', '41', '44', '67', '69', '68', '84', '86', '89', '90', '95','94')])
-            ->limit(3)->cache(3600)
+      //      ->where(['in', 'id', array('25', '29', '31', '34', '35', '41', '44', '67', '69', '68', '84', '86', '89', '90', '95','94')])
+            ->limit(11)->cache(3600)
             ->all();
 
-        $checkPosts = Posts::find()->asArray()
-            ->with('avatar', 'metro', 'selphiCount')
+        $checkBlock['block']['post'] = Posts::find()->asArray()
+            ->with('avatar')
             ->orderBy(['check_photo_status' => 1])
-            ->cache(3600)
-            ->limit(3)->all();
+            ->cache(3600)->one();
 
-        $newPosts = Posts::find()->asArray()
-            ->with('avatar', 'metro', 'selphiCount')
-            ->orderBy(['created_at' => SORT_DESC])
-            ->limit(3)->cache(3600)->all();
+        $checkBlock['block']['header'] = 'Проверенные проститутки с высоким рейтингом';
+        $checkBlock['block']['text'] = 'Рейтинг составляется на основе алгоритма
+                и ручной модерации мы выбираем только
+                качественные анкеты со всего интернета
+                что бы показать их вам.';
+        $checkBlock['block']['url'] = 'proverennye';
+
+        $prPosts[] = $checkBlock;
 
         $uri = Yii::$app->request->url;
 
@@ -117,10 +120,10 @@ class SiteController extends Controller
         $des = MetaBuilder::Build($uri, $city, 'des');
         $h1 = MetaBuilder::Build($uri, $city, 'h1');
 
+        \shuffle($prPosts);
+
         return $this->render('index', [
             'prPosts' => $prPosts,
-            'newPosts' => $newPosts,
-            'checkPosts' => $checkPosts,
             'title' => $title,
             'des' => $des,
             'h1' => $h1,
