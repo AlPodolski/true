@@ -164,7 +164,7 @@ class Posts extends \yii\db\ActiveRecord
      */
     public function getUserToMetroRelations()
     {
-        return $this->hasMany(UserMetro::class, ['post_id' => 'id']);
+        return $this->hasMany(UserMetro::class, ['post_id' => 'id'])->cache(3600);
     }
 
     public static function countPhoto($id)
