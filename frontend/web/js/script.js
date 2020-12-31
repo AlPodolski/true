@@ -93,8 +93,6 @@ var changeURL = debounce(function() {
 
                 console.log(window.location.pathname);
 
-                yaCounter57612607.hit($(this).attr('data-url'));
-
             }
         }
     });
