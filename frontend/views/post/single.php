@@ -34,11 +34,13 @@ $rayonList = $post['rayon'];
 $serviceList = $post['service'];
 $placeList = $post['place'];
 
-$title = 'Проститутка '.$post['name'] .' из города '.$cityInfo['city'].' - '.Yii::$app->request->hostName;
+$title = 'Проститутка '.$post['name'] .' из '.$cityInfo['city2'].' ждет твоего звонка на '.Yii::$app->request->hostName;
 
 $this->title = $title;
 
-$des = 'Проститутка '.$post['name'].' ждет Вашего звонка. Цена от '.$price['min'];
+if($post['about']) $des = $post['about'];
+
+else $des = 'Проститутка '.$post['name'].' ждет Вашего звонка. Цена от '.$price['min'];
 
 
 Yii::$app->view->registerMetaTag([

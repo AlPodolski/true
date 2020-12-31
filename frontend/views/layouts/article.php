@@ -10,6 +10,12 @@ use frontend\widgets\PhotoWidget;
 <div class="col-xl-4 col-lg-4 col-md-6 col-12 post-wrap <?php echo isset($countPost) ? 'post-num-'.$countPost : "";?>">
     <article class="post">
         <div class="post-img position-relative">
+            <?php if ($post['check_photo_status'] == 1 and $post['category'] == 1) : ?>
+                <div class="check-label">
+                    проверенная
+                    индивидуалка
+                </div>
+            <?php endif ?>
             <a href="/post/<?php echo $post['id'] ?>">
                 <?php echo PhotoWidget::widget([
                     'path' => $post['avatar']['file'] ,
