@@ -18,6 +18,8 @@ class RequestHelper
 
             $ref = \str_replace($protocol.'://', '',Yii::$app->request->headers['referer']);
 
+            $ref = \str_replace('https://', '', $ref);
+
             return \str_replace(Yii::$app->request->headers['host'], '', $ref) ?? '/';
 
         }
