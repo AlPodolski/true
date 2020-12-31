@@ -20,7 +20,7 @@ $this->registerJsFile('https://cdn.jsdelivr.net/gh/taras-d/images-grid/src/image
 $this->registerCssFile('/css/owl.carousel.min.css');
 $this->registerCssFile('/css/owl.theme.default.min.css');
 $this->registerCssFile('https://cdn.jsdelivr.net/gh/taras-d/images-grid/src/images-grid.min.css');
-
+$this->registerJsFile('/js/single.js', ['depends' => ['yii\web\YiiAsset']]);
 $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
 $servicePostList = $post['service'];
