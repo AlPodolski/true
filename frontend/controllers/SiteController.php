@@ -99,7 +99,7 @@ class SiteController extends Controller
             ->all();
 
         $checkBlock['block']['post'] = Posts::find()->asArray()
-            ->orderBy(['check_photo_status' => 1])
+            ->where(['id' => 34])
             ->with('avatar')
             ->cache(3600)->one();
 
