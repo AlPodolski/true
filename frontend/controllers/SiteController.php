@@ -94,7 +94,6 @@ class SiteController extends Controller
         }
 
         $prPosts = Posts::find()->asArray()->with('avatar', 'metro', 'selphiCount')
-            ->where(['in', 'id', array('25', '29', '31', '34', '35', '41', '44', '67', '69', '68', '84', '86', '89', '90', '95','94')])
             ->limit(11)->cache(3600)
             ->all();
 
