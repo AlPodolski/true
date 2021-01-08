@@ -53,7 +53,9 @@ class FilterController extends Controller
             }
 
             $posts = $posts->limit(Yii::$app->params['post_limit'])
-                ->with('avatar', 'metro', 'selphiCount')->asArray();
+                ->with('avatar', 'metro', 'selphiCount')
+                ->andWhere(['city_id' => $cityInfo['id']])
+                ->asArray();
 
             if ($page) $posts = $posts->offset(Yii::$app->params['post_limit'] * 1);
 

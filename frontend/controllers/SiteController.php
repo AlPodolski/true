@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\City;
 use frontend\helpers\MetaBuilder;
 use frontend\helpers\FavoriteHelper;
 use frontend\models\ResendVerificationEmailForm;
@@ -68,9 +69,14 @@ class SiteController extends Controller
     public function actionIndex($city, $page = false)
     {
 
+        $cityInfo = City::getCity($city);
+
         if (Yii::$app->request->isPost) {
 
-            $posts = Posts::find()->asArray()->with('avatar', 'metro', 'selphiCount')
+            $posts = Posts::find()
+                ->asArray()
+                ->with('avatar', 'metro', 'selphiCount')
+                ->where(['city_id' => $cityInfo['id']])
                 ->limit(Yii::$app->params['post_limit']);
 
             $posts->offset(Yii::$app->params['post_limit'] * Yii::$app->request->post('page'));
@@ -93,7 +99,9 @@ class SiteController extends Controller
 
         }
 
-        $prPosts = Posts::find()->asArray()->with('avatar', 'metro', 'selphiCount')
+        $prPosts = Posts::find()->asArray()
+            ->with('avatar', 'metro', 'selphiCount')
+            ->where(['city_id' => $cityInfo['id']])
             ->limit(11)->cache(3600)
             ->all();
 
