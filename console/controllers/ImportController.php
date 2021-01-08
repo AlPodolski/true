@@ -2,6 +2,7 @@
 
 namespace console\controllers;
 
+use dastanaron\translit\Translit;
 use common\models\City;
 use common\models\HairColor;
 use common\models\National;
@@ -34,12 +35,12 @@ class ImportController extends Controller
 {
     public function actionIndex()
     {
-        $stream = \fopen(Yii::getAlias('@app/files/intim_city_29.12.2020.csv'), 'r');
+        $stream = \fopen(Yii::getAlias('@app/files/rach-com-city.csv'), 'r');
 
         $csv = Reader::createFromStream($stream);
         $csv->setDelimiter(';');
         $csv->setHeaderOffset(0);
-
+        $translit = new Translit();
         //build a statement
         $stmt = (new Statement());
 
@@ -50,34 +51,38 @@ class ImportController extends Controller
 
         foreach ($records as $record) {
 
-            if ($record['phone']) {
+            $city = City::find()->where(['city' => $record['city']])->asArray()->one();
+
+            if ($record['phone'] and isset($city['id'])) {
 
                 if ($post = Posts::find()->where(['like', 'phone', $record['phone']])->andWhere(['name' => $record['name']])->one()) {
 
                     $postSite = new PostSites();
 
                     $postSite->post_id = $post->id;
-                    $postSite->site_id = 4;
+                    $postSite->site_id = 1;
                     $postSite->price = $post->price;
                     $postSite->created_at = $post->created_at;
                     $postSite->name_on_site = $record['name'];
                     $postSite->age = $record['age'];
 
-                    if ($record['video']) $post->video = \str_replace('files', '/uploads/aa4', $record['video']);
+                    if (isset($record['video']) and $record['video']) $post->video = \str_replace('files', '/uploads/aa5', $record['video']);
 
                     $postSite->save();
 
                     $post->save();
 
                 }
-                elseif ($post = Posts::find()->where(['like', 'phone', $record['phone']])->andWhere(['<>', 'name', $record['name']])->one()){
+                elseif ($post = Posts::find()->where(['like', 'phone', $record['phone']])
+                    ->andWhere(['<>', 'name', $record['name']])
+                    ->one()){
 
                     $post = new Posts();
 
-                    $post->city_id = 1;
+                    $post->city_id = $city['id'];
                     $post->created_at = \time() - ((3600 * 24) * \rand(0, 365));
                     $post->name = $record['name'];
-                    $post->updated_at = 4;
+                    $post->updated_at = 5;
                     $post->phone = $record['phone'];
                     $post->about = $record['anket-about'];
                     $post->check_photo_status = 0;
@@ -88,7 +93,7 @@ class ImportController extends Controller
                     $post->ves = $record['weight'];
                     $post->category = Posts::SALON_CATEGORY;
 
-                    if ($record['video']) $post->video = \str_replace('files', '/uploads/aa4', $record['video']);
+                    if (isset($record['video']) and $record['video']) $post->video = \str_replace('files', '/uploads/aa5', $record['video']);
 
                     if (isset($record['cheked']) and $record['cheked'] == 1) $post->check_photo_status = 1;
 
@@ -97,7 +102,7 @@ class ImportController extends Controller
                         $postSite = new PostSites();
 
                         $postSite->post_id = $post->id;
-                        $postSite->site_id = 4;
+                        $postSite->site_id = 1;
                         $postSite->price = $post->price;
                         $postSite->created_at = $post->created_at;
                         $postSite->name_on_site = $post->name;
@@ -107,14 +112,33 @@ class ImportController extends Controller
 
                         if (isset($record['rayon']) and $record['rayon']) {
 
-                            $rayonId = ArrayHelper::getValue(Rayon::find()->where(['value' => $record['rayon']])->asArray()->one(), 'id');
+                            $rayonId = ArrayHelper::getValue(Rayon::find()
+                                ->where(['value' => $record['rayon']])
+                                ->andWhere(['city_id' => $city['id']])
+                                ->asArray()->one(), 'id');
 
                             if ($rayonId) {
 
                                 $userRayon = new UserRayon();
                                 $userRayon->post_id = $post->id;
                                 $userRayon->rayon_id = $rayonId;
-                                $userRayon->city_id = 1;
+                                $userRayon->city_id = $city['id'];
+                                $userRayon->save();
+
+                            }else{
+
+                                $rayonId = new Rayon();
+
+                                $rayonId->value = $record['rayon'];
+                                $rayonId->city_id = $city['id'];
+                                $rayonId->url = \trim($translit->translit($record['rayon'], true, 'ru-en'));
+
+                                $rayonId->save();
+
+                                $userRayon = new UserRayon();
+                                $userRayon->post_id = $post->id;
+                                $userRayon->rayon_id = $rayonId->id;
+                                $userRayon->city_id = $city['id'];
                                 $userRayon->save();
 
                             }
@@ -136,7 +160,23 @@ class ImportController extends Controller
                                         $userRayon = new UserMetro();
                                         $userRayon->post_id = $post->id;
                                         $userRayon->metro_id = $id;
-                                        $userRayon->city_id = 1;
+                                        $userRayon->city_id = $city['id'];
+                                        $userRayon->save();
+
+                                    }else{
+
+                                        $metro = new Metro();
+
+                                        $metro->value = $metroItem;
+                                        $metro->city_id = $city['id'];
+                                        $metro->url = \trim($translit->translit($metroItem, true, 'ru-en'));
+
+                                        $metro->save();
+
+                                        $userRayon = new UserMetro();
+                                        $userRayon->post_id = $post->id;
+                                        $userRayon->metro_id = $id;
+                                        $userRayon->city_id = $city['id'];
                                         $userRayon->save();
 
                                     }
@@ -156,7 +196,7 @@ class ImportController extends Controller
                                 $userRayon = new UserHairColor();
                                 $userRayon->post_id = $post->id;
                                 $userRayon->hair_color_id = $id;
-                                $userRayon->city_id = 1;
+                                $userRayon->city_id = $city['id'];
                                 $userRayon->save();
 
                             }
@@ -172,7 +212,7 @@ class ImportController extends Controller
                                 $userRayon = new UserNational();
                                 $userRayon->post_id = $post->id;
                                 $userRayon->national_id = $id;
-                                $userRayon->city_id = 1;
+                                $userRayon->city_id = $city['id'];
                                 $userRayon->save();
 
                             }
@@ -192,14 +232,15 @@ class ImportController extends Controller
                                     $userRayon = new UserPlace();
                                     $userRayon->post_id = $post->id;
                                     $userRayon->place_id = $id;
-                                    $userRayon->city_id = 1;
+                                    $userRayon->city_id = $city['id'];
                                     $userRayon->save();
 
                                 }
 
                             }
 
-                        }else{
+                        }
+                        else{
 
                             foreach ($placeList as $placeItem){
 
@@ -208,7 +249,7 @@ class ImportController extends Controller
                                     $userRayon = new UserPlace();
                                     $userRayon->post_id = $post->id;
                                     $userRayon->place_id = $placeItem['id'];
-                                    $userRayon->city_id = 1;
+                                    $userRayon->city_id = $city['id'];
                                     $userRayon->save();
 
                                 }
@@ -230,7 +271,7 @@ class ImportController extends Controller
                                     $userRayon = new UserService();
                                     $userRayon->post_id = $post->id;
                                     $userRayon->service_id = $id;
-                                    $userRayon->city_id = 1;
+                                    $userRayon->city_id = $city['id'];
                                     $userRayon->save();
 
                                 }
@@ -252,7 +293,7 @@ class ImportController extends Controller
                                     $userRayon = new UserOsobenosti();
                                     $userRayon->post_id = $post->id;
                                     $userRayon->param_id = $id;
-                                    $userRayon->city_id = 1;
+                                    $userRayon->city_id = $city['id'];
                                     $userRayon->save();
 
                                 }
@@ -274,7 +315,7 @@ class ImportController extends Controller
                                     $userRayon = new UserService();
                                     $userRayon->post_id = $post->id;
                                     $userRayon->service_id = $id;
-                                    $userRayon->city_id = 1;
+                                    $userRayon->city_id = $city['id'];
                                     $userRayon->save();
 
                                 }
@@ -292,7 +333,7 @@ class ImportController extends Controller
                                     $userRayon = new UserService();
                                     $userRayon->post_id = $post->id;
                                     $userRayon->service_id = $serviceItem['id'];
-                                    $userRayon->city_id = 1;
+                                    $userRayon->city_id = $city['id'];
                                     $userRayon->save();
 
                                 }
@@ -306,7 +347,7 @@ class ImportController extends Controller
                             $userPhoto = new Files();
 
                             $userPhoto->related_id = $post->id;
-                            $userPhoto->file = \str_replace('files', '/uploads/aa4', $record['mini']);
+                            $userPhoto->file = \str_replace('files', '/uploads/aa5', $record['mini']);
                             $userPhoto->main = 1;
                             $userPhoto->type = 0;
                             $userPhoto->related_class = Posts::class;
@@ -328,7 +369,7 @@ class ImportController extends Controller
                                     $userPhoto = new Files();
 
                                     $userPhoto->related_id = $post->id;
-                                    $userPhoto->file = \str_replace('files', '/uploads/aa4', $mini);
+                                    $userPhoto->file = \str_replace('files', '/uploads/aa5', $mini);
                                     $userPhoto->main = 1;
                                     $userPhoto->type = 0;
                                     $userPhoto->related_class = Posts::class;
@@ -344,7 +385,7 @@ class ImportController extends Controller
                                         $userPhoto = new Files();
 
                                         $userPhoto->related_id = $post->id;
-                                        $userPhoto->file = \str_replace('files', '/uploads/aa4', $gallitem);
+                                        $userPhoto->file = \str_replace('files', '/uploads/aa5', $gallitem);
                                         $userPhoto->main = 0;
                                         $userPhoto->type = 0;
                                         $userPhoto->related_class = Posts::class;
@@ -367,10 +408,10 @@ class ImportController extends Controller
 
                     $post = new Posts();
 
-                    $post->city_id = 1;
+                    $post->city_id = $city['id'];
                     $post->created_at = \time() - ((3600 * 24) * \rand(0, 365));
                     $post->name = $record['name'];
-                    $post->updated_at = 4;
+                    $post->updated_at = 5;
                     $post->phone = $record['phone'];
                     $post->about = $record['anket-about'];
                     $post->check_photo_status = 0;
@@ -381,7 +422,7 @@ class ImportController extends Controller
                     $post->ves = $record['weight'];
                     $post->category = Posts::INDI_CATEGORY;
 
-                        if ($record['video']) $post->video = \str_replace('files', '/uploads/aa4', $record['video']);
+                    if (isset($record['video']) and $record['video']) $post->video = \str_replace('files', '/uploads/aa5', $record['video']);
 
                     if (isset($record['cheked']) and $record['cheked'] == 1) $post->check_photo_status = 1;
 
@@ -390,7 +431,7 @@ class ImportController extends Controller
                         $postSite = new PostSites();
 
                         $postSite->post_id = $post->id;
-                        $postSite->site_id = 4;
+                        $postSite->site_id = 1;
                         $postSite->price = $post->price;
                         $postSite->created_at = $post->created_at;
                         $postSite->name_on_site = $post->name;
@@ -400,14 +441,33 @@ class ImportController extends Controller
 
                         if (isset($record['rayon']) and $record['rayon']) {
 
-                            $rayonId = ArrayHelper::getValue(Rayon::find()->where(['value' => $record['rayon']])->asArray()->one(), 'id');
+                            $rayonId = ArrayHelper::getValue(Rayon::find()
+                                ->where(['value' => $record['rayon']])
+                                ->andWhere(['city_id' => $city['id']])
+                                ->asArray()->one(), 'id');
 
                             if ($rayonId) {
 
                                 $userRayon = new UserRayon();
                                 $userRayon->post_id = $post->id;
                                 $userRayon->rayon_id = $rayonId;
-                                $userRayon->city_id = 1;
+                                $userRayon->city_id = $city['id'];
+                                $userRayon->save();
+
+                            }else{
+
+                                $rayonId = new Rayon();
+
+                                $rayonId->value = $record['rayon'];
+                                $rayonId->city_id = $city['id'];
+                                $rayonId->url = \trim($translit->translit($record['rayon'], true, 'ru-en'));
+
+                                $rayonId->save();
+
+                                $userRayon = new UserRayon();
+                                $userRayon->post_id = $post->id;
+                                $userRayon->rayon_id = $rayonId->id;
+                                $userRayon->city_id = $city['id'];
                                 $userRayon->save();
 
                             }
@@ -422,14 +482,33 @@ class ImportController extends Controller
 
                                 foreach ($metro as $metroItem){
 
-                                    $id = ArrayHelper::getValue(Metro::find()->where(['value' => $metroItem])->asArray()->one(), 'id');
+                                    $id = ArrayHelper::getValue(Metro::find()
+                                        ->where(['value' => $metroItem])
+                                        ->andWhere(['city_id' => $city['id']])
+                                        ->asArray()->one(), 'id');
 
                                     if ($id) {
 
                                         $userRayon = new UserMetro();
                                         $userRayon->post_id = $post->id;
                                         $userRayon->metro_id = $id;
-                                        $userRayon->city_id = 1;
+                                        $userRayon->city_id = $city['id'];
+                                        $userRayon->save();
+
+                                    }else{
+
+                                        $metro = new Metro();
+
+                                        $metro->value = $metroItem;
+                                        $metro->city_id = $city['id'];
+                                        $metro->url = \trim($translit->translit($metroItem, true, 'ru-en'));
+
+                                        $metro->save();
+
+                                        $userRayon = new UserMetro();
+                                        $userRayon->post_id = $post->id;
+                                        $userRayon->metro_id = $metro->id;
+                                        $userRayon->city_id = $city['id'];
                                         $userRayon->save();
 
                                     }
@@ -437,6 +516,7 @@ class ImportController extends Controller
                                 }
 
                             }
+
 
                         }
 
@@ -449,7 +529,7 @@ class ImportController extends Controller
                                 $userRayon = new UserHairColor();
                                 $userRayon->post_id = $post->id;
                                 $userRayon->hair_color_id = $id;
-                                $userRayon->city_id = 1;
+                                $userRayon->city_id = $city['id'];
                                 $userRayon->save();
 
                             }
@@ -465,7 +545,7 @@ class ImportController extends Controller
                                 $userRayon = new UserNational();
                                 $userRayon->post_id = $post->id;
                                 $userRayon->national_id = $id;
-                                $userRayon->city_id = 1;
+                                $userRayon->city_id = $city['id'];
                                 $userRayon->save();
 
                             }
@@ -485,7 +565,7 @@ class ImportController extends Controller
                                     $userRayon = new UserPlace();
                                     $userRayon->post_id = $post->id;
                                     $userRayon->place_id = $id;
-                                    $userRayon->city_id = 1;
+                                    $userRayon->city_id = $city['id'];
                                     $userRayon->save();
 
                                 }
@@ -501,7 +581,7 @@ class ImportController extends Controller
                                     $userRayon = new UserPlace();
                                     $userRayon->post_id = $post->id;
                                     $userRayon->place_id = $placeItem['id'];
-                                    $userRayon->city_id = 1;
+                                    $userRayon->city_id = $city['id'];
                                     $userRayon->save();
 
                                 }
@@ -523,7 +603,7 @@ class ImportController extends Controller
                                     $userRayon = new UserService();
                                     $userRayon->post_id = $post->id;
                                     $userRayon->service_id = $id;
-                                    $userRayon->city_id = 1;
+                                    $userRayon->city_id = $city['id'];
                                     $userRayon->save();
 
                                 }
@@ -545,7 +625,7 @@ class ImportController extends Controller
                                     $userRayon = new UserOsobenosti();
                                     $userRayon->post_id = $post->id;
                                     $userRayon->param_id = $id;
-                                    $userRayon->city_id = 1;
+                                    $userRayon->city_id = $city['id'];
                                     $userRayon->save();
 
                                 }
@@ -567,7 +647,7 @@ class ImportController extends Controller
                                     $userRayon = new UserService();
                                     $userRayon->post_id = $post->id;
                                     $userRayon->service_id = $id;
-                                    $userRayon->city_id = 1;
+                                    $userRayon->city_id = $city['id'];
                                     $userRayon->save();
 
                                 }
@@ -583,7 +663,7 @@ class ImportController extends Controller
                                     $userRayon = new UserService();
                                     $userRayon->post_id = $post->id;
                                     $userRayon->service_id = $serviceItem['id'];
-                                    $userRayon->city_id = 1;
+                                    $userRayon->city_id = $city['id'];
                                     $userRayon->save();
 
                                 }
@@ -597,7 +677,7 @@ class ImportController extends Controller
                             $userPhoto = new Files();
 
                             $userPhoto->related_id = $post->id;
-                            $userPhoto->file = \str_replace('files', '/uploads/aa4', $record['mini']);
+                            $userPhoto->file = \str_replace('files', '/uploads/aa5', $record['mini']);
                             $userPhoto->main = 1;
                             $userPhoto->type = 0;
                             $userPhoto->related_class = Posts::class;
@@ -619,7 +699,7 @@ class ImportController extends Controller
                                     $userPhoto = new Files();
 
                                     $userPhoto->related_id = $post->id;
-                                    $userPhoto->file = \str_replace('files', '/uploads/aa4', $mini);
+                                    $userPhoto->file = \str_replace('files', '/uploads/aa5', $mini);
                                     $userPhoto->main = 1;
                                     $userPhoto->type = 0;
                                     $userPhoto->related_class = Posts::class;
@@ -635,7 +715,7 @@ class ImportController extends Controller
                                         $userPhoto = new Files();
 
                                         $userPhoto->related_id = $post->id;
-                                        $userPhoto->file = \str_replace('files', '/uploads/aa4', $gallitem);
+                                        $userPhoto->file = \str_replace('files', '/uploads/aa5', $gallitem);
                                         $userPhoto->main = 0;
                                         $userPhoto->type = 0;
                                         $userPhoto->related_class = Posts::class;
@@ -658,6 +738,7 @@ class ImportController extends Controller
                 }
 
             }
+
 
         }
 
