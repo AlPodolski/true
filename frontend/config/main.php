@@ -70,6 +70,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/cust' => 'site/cust',
                 'thumbs/<path:.*>' => 'site/thumb',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/' => 'site/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/page-<page:[0-9]+>' => 'site/index',
