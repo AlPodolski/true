@@ -1106,7 +1106,7 @@ class ImportController extends Controller
 
             $meta_model = new Webmaster();
 
-            $meta_model->city = $city['id'];
+            $meta_model->city_id = $city['id'];
             $meta_model->tag = $meta2;
 
             $meta_model->save();
