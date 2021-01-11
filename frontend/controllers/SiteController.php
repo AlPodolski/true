@@ -7,6 +7,7 @@ use frontend\helpers\MetaBuilder;
 use frontend\helpers\FavoriteHelper;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
+use frontend\models\Webmaster;
 use frontend\modules\user\components\behavior\LastVisitTimeUpdate;
 use frontend\modules\user\models\Posts;
 use Yii;
@@ -99,6 +100,8 @@ class SiteController extends Controller
 
         }
 
+        $webmaster = Webmaster::getTag($cityInfo['id']);
+
         $prPosts = Posts::find()->asArray()
             ->with('avatar', 'metro', 'selphiCount')
             ->where(['city_id' => $cityInfo['id']])
@@ -134,6 +137,7 @@ class SiteController extends Controller
             'title' => $title,
             'des' => $des,
             'h1' => $h1,
+            'webmaster' => $webmaster,
         ]);
     }
 

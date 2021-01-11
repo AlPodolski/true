@@ -4,14 +4,23 @@
 /* @var $prPosts array */
 /* @var $newPosts array */
 /* @var $checkPosts array */
+/* @var $webmaster array */
 /* @var $title string */
 /* @var $des string */
 /* @var $h1 string */
 
 $this->title = $title;
+
 Yii::$app->view->registerMetaTag([
     'name' => 'description',
     'content' => $des
+]);
+
+if (isset($webmaster))
+
+Yii::$app->view->registerMetaTag([
+    'name' => 'yandex-verification',
+    'content' => $webmaster['tag']
 ]);
 
 ?>
