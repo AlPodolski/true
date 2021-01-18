@@ -1123,4 +1123,28 @@ class ImportController extends Controller
         }
     }
 
+    public function actionAddService()
+    {
+        $newService = array('Cекс по телефону', 'Виртуальный секс', 'Игрушки', 'Клизма', 'Легкое подчинение',
+            'Лесби откровенное', 'Порка', 'Профессиональный', 'Расслабляющий', 'Секс групповой', 'Секс лесбийский',
+            'Стриптиз профи', 'Трамплинг', 'Услуги семейной паре', 'Фетиш', 'Фингеринг', 'Фото/видео съемка',
+            'Целуюсь');
+
+        foreach ($newService as $item){
+
+            $translit = new Translit();
+
+            if (!Service::find()->where(['value' => $item])->count()){
+
+                $service = new Service();
+                $service->value = $item;
+                $service->url = \str_replace(' ', '-', \strtolower($translit->translit($item, false, 'ru-en')) );
+                $service->save();
+
+            }
+
+        }
+
+    }
+
 }
