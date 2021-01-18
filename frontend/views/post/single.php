@@ -727,18 +727,25 @@ $this->params['breadcrumbs'][] = array(
                         </span>
                         <div class="grey-text">
 
-                        <?php $lastElement = array_pop($post['service']); ?>
-
                             <?php foreach ($post['service'] as $item) : ?>
+
                                 <a class="grey-text" href="/usluga-<?php echo $item['url']?>">
-                                <?php echo $item['value'] ?>
-                                </a>,
+                                    <?php echo $item['value'] ?>
+                                </a>
+
+                            <?php foreach ($post['serviceDesc'] as $itemDesc) : ?>
+
+                                <?php if ($itemDesc['service_id'] == $item['id'] ) : ?>
+
+                                    <span class="service_desc">(<?php echo $itemDesc['text']; ?>)</span>
+
+                                <?php endif; ?>
 
                             <?php endforeach; ?>
 
-                            <a class="grey-text" href="/usluga-<?php echo $lastElement['url'] ?>">
-                                <?php echo $lastElement['value'] ?>
-                            </a>
+                            <?php if ($item != end($post['service'])) echo ', ' ?>
+
+                            <?php endforeach; ?>
 
                         </div>
                     </div>
@@ -1187,21 +1194,25 @@ $this->params['breadcrumbs'][] = array(
                         </span>
                     <div class="grey-text">
 
-                        <?php $lastElement = array_pop($serviceList); ?>
-
-                        <?php foreach ($serviceList as $item) : ?>
+                        <?php foreach ($post['service'] as $item) : ?>
 
                             <a class="grey-text" href="/usluga-<?php echo $item['url']?>">
                                 <?php echo $item['value'] ?>
-                            </a>,
+                            </a>
 
-                            <?php echo $item['value'] ?>,
+                            <?php foreach ($post['serviceDesc'] as $itemDesc) : ?>
+
+                                <?php if ($itemDesc['service_id'] == $item['id'] ) : ?>
+
+                                    <span class="service_desc">(<?php echo $itemDesc['text']; ?>)</span>
+
+                                <?php endif; ?>
+
+                            <?php endforeach; ?>
+
+                            <?php if ($item != end($post['service'])) echo ', ' ?>
 
                         <?php endforeach; ?>
-
-                        <a class="grey-text" href="/usluga-<?php echo $lastElement['url']?>">
-                            <?php echo $lastElement['value'] ?>
-                        </a>
 
                         </div>
                 </div>

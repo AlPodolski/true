@@ -146,7 +146,8 @@ class Posts extends \yii\db\ActiveRecord
 
     public function getService()
     {
-        return $this->hasMany(Service::class, ['id' => 'service_id'])->via('userToServiceRelations');
+        return $this->hasMany(Service::class, ['id' => 'service_id'])
+            ->via('userToServiceRelations');
     }
 
     public function getSites()
@@ -157,6 +158,11 @@ class Posts extends \yii\db\ActiveRecord
     public function getUserToServiceRelations()
     {
         return $this->hasMany(UserService::class, ['post_id' => 'id']);
+    }
+
+    public function getServiceDesc()
+    {
+        return $this->hasMany(ServiceDesc::class, ['post_id' => 'id']);
     }
 
     /**
