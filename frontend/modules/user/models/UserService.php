@@ -41,4 +41,10 @@ class UserService extends \yii\db\ActiveRecord
             'service_id' => 'Service ID',
         ];
     }
+
+    public function getPost()
+    {
+        return $this->hasMany(Posts::class, ['id' => 'post_id']);
+    }
+
 }

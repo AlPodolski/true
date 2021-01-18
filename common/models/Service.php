@@ -2,7 +2,9 @@
 
 namespace common\models;
 
+use frontend\modules\user\models\Posts;
 use frontend\modules\user\models\ServiceReviews;
+use frontend\modules\user\models\UserService;
 
 /**
  * This is the model class for table "service".
@@ -48,6 +50,11 @@ class Service extends \yii\db\ActiveRecord
     public function getUserService()
     {
         return $this->hasMany(ServiceReviews::class, ['service_id' => 'id'])->andWhere();
+    }
+
+    public function getPosts()
+    {
+        return $this->hasMany(UserService::class, ['service_id' => 'id']);
     }
 
 }

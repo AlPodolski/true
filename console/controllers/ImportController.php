@@ -19,6 +19,7 @@ use frontend\models\Webmaster;
 use frontend\modules\user\models\Posts;
 use frontend\modules\user\models\PostSites;
 use frontend\modules\user\models\Review;
+use frontend\modules\user\models\ServiceDesc;
 use frontend\modules\user\models\ServiceReviews;
 use frontend\modules\user\models\UserHairColor;
 use frontend\modules\user\models\UserIntimHair;
@@ -1149,6 +1150,72 @@ class ImportController extends Controller
                         $userService->city_id = $post['city_id'];
 
                         $userService->save();
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+    public function actionAddServiceComments()
+    {
+        $stream = \fopen(Yii::getAlias('@app/files/comments_for_service.csv'), 'r');
+
+        $csv = Reader::createFromStream($stream);
+        $csv->setDelimiter(';');
+        $csv->setHeaderOffset(0);
+        $translit = new Translit();
+        //build a statement
+        $stmt = (new Statement());
+
+        $records = $stmt->process($csv);
+
+        $values = array();
+
+        foreach ($records as $record){
+
+            $values[] = $record;
+
+        }
+        $arr = array();
+        foreach ($values as $value){
+
+            foreach ($values as $item){
+
+                if ($value['key'] == $item['key']) {
+
+                    if (isset($arr[$item['key']]) and \is_array($arr[$item['key']])){
+
+                        if (!\in_array($value['value'], $arr[$item['key']])) $arr[$item['key']][] = $value['value'];
+
+                    }else $arr[$item['key']][] = $value['value'];
+
+
+                }
+
+            }
+
+        }
+
+        foreach ($arr as $key => $value){
+
+            if ($service = Service::find()->where(['value' => $key])->with('posts')->asArray()->one()){
+
+                foreach($service['posts'] as $item){
+
+                    if (\rand(0,1) == 1){
+
+                        $serviceDesc = new ServiceDesc();
+                        $serviceDesc->post_id = $item['post_id'];
+                        $serviceDesc->service_id = $item['service_id'];
+
+                        $serviceDesc->text = $value[\array_rand($value)];
+
+                        $serviceDesc->save();
 
                     }
 
