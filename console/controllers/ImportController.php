@@ -1126,20 +1126,33 @@ class ImportController extends Controller
     public function actionAddService()
     {
         $newService = array('Cекс по телефону', 'Виртуальный секс', 'Игрушки', 'Клизма', 'Легкое подчинение',
-            'Лесби откровенное', 'Порка', 'Профессиональный', 'Расслабляющий', 'Секс групповой', 'Секс лесбийский',
+            'Лесби откровенное', 'Порка', 'Профессиональный массаж', 'Расслабляющий массаж', 'Секс групповой', 'Секс лесбийский',
             'Стриптиз профи', 'Трамплинг', 'Услуги семейной паре', 'Фетиш', 'Фингеринг', 'Фото/видео съемка',
             'Целуюсь');
+
+        $posts = Posts::find()->asArray()->all();
 
         foreach ($newService as $item){
 
             $translit = new Translit();
 
-            if (!Service::find()->where(['value' => $item])->count()){
+            if ($service = Service::find()->where(['value' => $item])->asArray()->one()){
 
-                $service = new Service();
-                $service->value = $item;
-                $service->url = \str_replace(' ', '-', \strtolower($translit->translit($item, false, 'ru-en')) );
-                $service->save();
+                foreach ($posts as $post){
+
+                    if (\rand(0,2) == 1){
+
+                        $userService = new UserService();
+
+                        $userService->service_id = $service['id'];
+                        $userService->post_id = $post['id'];
+                        $userService->city_id = $post['city_id'];
+
+                        $userService->save();
+
+                    }
+
+                }
 
             }
 
