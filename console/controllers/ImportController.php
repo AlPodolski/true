@@ -35,9 +35,14 @@ use yii\helpers\ArrayHelper;
 
 class ImportController extends Controller
 {
+
+    public $siteId;
+    public $path;
+    public $update;
+
     public function actionIndex()
     {
-        $stream = \fopen(Yii::getAlias('@app/files/rach-com-city.csv'), 'r');
+        $stream = \fopen(Yii::getAlias('@app/files/intim_city_15_01_2021.csv'), 'r');
 
         $csv = Reader::createFromStream($stream);
         $csv->setDelimiter(';');
@@ -51,9 +56,13 @@ class ImportController extends Controller
         $placeList = Place::find()->asArray()->all();
         $serviceList = Service::find()->asArray()->all();
 
+        $this->siteId = 4;
+        $this->update = 6;
+        $this->path = '/uploads/aa6';
+
         foreach ($records as $record) {
 
-            $city = City::find()->where(['city' => $record['city']])->asArray()->one();
+            $city = City::find()->where(['city' => $record['rayon']])->asArray()->one();
 
             if ($record['phone'] and isset($city['id'])) {
 
@@ -62,13 +71,13 @@ class ImportController extends Controller
                     $postSite = new PostSites();
 
                     $postSite->post_id = $post->id;
-                    $postSite->site_id = 1;
+                    $postSite->site_id = $this->siteId;
                     $postSite->price = $post->price;
                     $postSite->created_at = $post->created_at;
                     $postSite->name_on_site = $record['name'];
                     $postSite->age = $record['age'];
 
-                    if (isset($record['video']) and $record['video']) $post->video = \str_replace('files', '/uploads/aa5', $record['video']);
+                    if (isset($record['video']) and $record['video']) $post->video = \str_replace('files', $this->path, $record['video']);
 
                     $postSite->save();
 
@@ -84,7 +93,7 @@ class ImportController extends Controller
                     $post->city_id = $city['id'];
                     $post->created_at = \time() - ((3600 * 24) * \rand(0, 365));
                     $post->name = $record['name'];
-                    $post->updated_at = 5;
+                    $post->updated_at = $this->update;
                     $post->phone = $record['phone'];
                     $post->about = $record['anket-about'];
                     $post->check_photo_status = 0;
@@ -95,7 +104,7 @@ class ImportController extends Controller
                     $post->ves = $record['weight'];
                     $post->category = Posts::SALON_CATEGORY;
 
-                    if (isset($record['video']) and $record['video']) $post->video = \str_replace('files', '/uploads/aa5', $record['video']);
+                    if (isset($record['video']) and $record['video']) $post->video = \str_replace('files', $this->path, $record['video']);
 
                     if (isset($record['cheked']) and $record['cheked'] == 1) $post->check_photo_status = 1;
 
@@ -104,7 +113,7 @@ class ImportController extends Controller
                         $postSite = new PostSites();
 
                         $postSite->post_id = $post->id;
-                        $postSite->site_id = 1;
+                        $postSite->site_id = $this->siteId;
                         $postSite->price = $post->price;
                         $postSite->created_at = $post->created_at;
                         $postSite->name_on_site = $post->name;
@@ -349,7 +358,7 @@ class ImportController extends Controller
                             $userPhoto = new Files();
 
                             $userPhoto->related_id = $post->id;
-                            $userPhoto->file = \str_replace('files', '/uploads/aa5', $record['mini']);
+                            $userPhoto->file = \str_replace('files', $this->path, $record['mini']);
                             $userPhoto->main = 1;
                             $userPhoto->type = 0;
                             $userPhoto->related_class = Posts::class;
@@ -371,7 +380,7 @@ class ImportController extends Controller
                                     $userPhoto = new Files();
 
                                     $userPhoto->related_id = $post->id;
-                                    $userPhoto->file = \str_replace('files', '/uploads/aa5', $mini);
+                                    $userPhoto->file = \str_replace('files', $this->path, $mini);
                                     $userPhoto->main = 1;
                                     $userPhoto->type = 0;
                                     $userPhoto->related_class = Posts::class;
@@ -387,7 +396,7 @@ class ImportController extends Controller
                                         $userPhoto = new Files();
 
                                         $userPhoto->related_id = $post->id;
-                                        $userPhoto->file = \str_replace('files', '/uploads/aa5', $gallitem);
+                                        $userPhoto->file = \str_replace('files', $this->path, $gallitem);
                                         $userPhoto->main = 0;
                                         $userPhoto->type = 0;
                                         $userPhoto->related_class = Posts::class;
@@ -413,7 +422,7 @@ class ImportController extends Controller
                     $post->city_id = $city['id'];
                     $post->created_at = \time() - ((3600 * 24) * \rand(0, 365));
                     $post->name = $record['name'];
-                    $post->updated_at = 5;
+                    $post->updated_at = $this->update;
                     $post->phone = $record['phone'];
                     $post->about = $record['anket-about'];
                     $post->check_photo_status = 0;
@@ -424,7 +433,7 @@ class ImportController extends Controller
                     $post->ves = $record['weight'];
                     $post->category = Posts::INDI_CATEGORY;
 
-                    if (isset($record['video']) and $record['video']) $post->video = \str_replace('files', '/uploads/aa5', $record['video']);
+                    if (isset($record['video']) and $record['video']) $post->video = \str_replace('files', $this->path, $record['video']);
 
                     if (isset($record['cheked']) and $record['cheked'] == 1) $post->check_photo_status = 1;
 
@@ -433,7 +442,7 @@ class ImportController extends Controller
                         $postSite = new PostSites();
 
                         $postSite->post_id = $post->id;
-                        $postSite->site_id = 1;
+                        $postSite->site_id = $this->siteId;
                         $postSite->price = $post->price;
                         $postSite->created_at = $post->created_at;
                         $postSite->name_on_site = $post->name;
@@ -679,7 +688,7 @@ class ImportController extends Controller
                             $userPhoto = new Files();
 
                             $userPhoto->related_id = $post->id;
-                            $userPhoto->file = \str_replace('files', '/uploads/aa5', $record['mini']);
+                            $userPhoto->file = \str_replace('files', $this->path, $record['mini']);
                             $userPhoto->main = 1;
                             $userPhoto->type = 0;
                             $userPhoto->related_class = Posts::class;
@@ -701,7 +710,7 @@ class ImportController extends Controller
                                     $userPhoto = new Files();
 
                                     $userPhoto->related_id = $post->id;
-                                    $userPhoto->file = \str_replace('files', '/uploads/aa5', $mini);
+                                    $userPhoto->file = \str_replace('files', $this->path, $mini);
                                     $userPhoto->main = 1;
                                     $userPhoto->type = 0;
                                     $userPhoto->related_class = Posts::class;
@@ -717,7 +726,7 @@ class ImportController extends Controller
                                         $userPhoto = new Files();
 
                                         $userPhoto->related_id = $post->id;
-                                        $userPhoto->file = \str_replace('files', '/uploads/aa5', $gallitem);
+                                        $userPhoto->file = \str_replace('files', $this->path, $gallitem);
                                         $userPhoto->main = 0;
                                         $userPhoto->type = 0;
                                         $userPhoto->related_class = Posts::class;
