@@ -16,7 +16,7 @@ $this->registerJsFile('https://cdn.jsdelivr.net/gh/taras-d/images-grid/src/image
 $this->registerCssFile('/css/owl.carousel.min.css');
 $this->registerCssFile('/css/owl.theme.default.min.css');
 $this->registerCssFile('https://cdn.jsdelivr.net/gh/taras-d/images-grid/src/images-grid.min.css');
-$this->registerJsFile('/js/single.js?v=1', ['depends' => ['yii\web\YiiAsset']]);
+$this->registerJsFile('/js/single.js?v=2', ['depends' => ['yii\web\YiiAsset']]);
 
 $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
 

@@ -458,6 +458,8 @@ $( function() {
 
     add_img_grid();
 
+    get_more_post_single();
+
 })
 
 $( function() {
@@ -479,7 +481,58 @@ $( function() {
 
 });
 
+function get_more_post_single(){
 
+    var id;
+
+    $('[data-post-id]').each(function() {
+
+        id = id + $(this).attr('data-post-id') + ',';
+
+    });
+
+    $.ajax({
+        type: 'POST',
+        url: '/post/more',
+        data: 'id='+id,
+        async:true,
+        dataType: "html",
+        cache: false,
+        success: function (data){
+
+            if(data !== ''){
+
+                $('.single-content').append(data);
+
+                page++;
+
+                $('.content').attr('data-page' , page);
+
+                var singleGallery = $('.owl-carousel-main');
+                singleGallery.owlCarousel({
+                    items: 1,
+                    margin: 16,
+                    loop: true,
+                    nav: true,
+                    navText: ['', ''],
+                    navElement: 'a></a',
+                });
+
+                add_img_grid();
+
+            }else{
+
+                $('.img-pre').remove();
+
+            }
+
+
+            // window.history.pushState("object or string", "Title", "/page-2");
+
+        },
+    })
+
+}
 
 $(window).scroll(function(){
 
