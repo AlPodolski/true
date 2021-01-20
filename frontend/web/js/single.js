@@ -539,7 +539,7 @@ function get_more_post_single(){
 
             }else{
 
-                $('.img-pre').remove();
+                $('.dots').remove();
 
             }
 
@@ -605,7 +605,7 @@ $(window).scroll(function(){
 
                 }else{
 
-                    $('.img-pre').remove();
+                    $('.dots').remove();
 
                 }
 
