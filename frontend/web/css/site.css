@@ -1615,6 +1615,9 @@ h1 , .big-red-text{
     overflow: hidden;
     margin-bottom: 50px;
 }
+.single-content .tab-content{
+    margin-bottom: 50px;
+}
 .single-tabs .nav-link:hover{
     border: none;
 }

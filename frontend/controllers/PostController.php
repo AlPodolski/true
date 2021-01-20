@@ -5,10 +5,9 @@ namespace frontend\controllers;
 
 use common\models\City;
 use frontend\helpers\RequestHelper;
+use frontend\models\Files;
 use frontend\modules\user\helpers\ServiceReviewHelper;
 use frontend\modules\user\models\Posts;
-use frontend\modules\user\models\ReviewForm;
-use frontend\modules\user\models\ServiceReviewForm;
 use Yii;
 use yii\web\Controller;
 
@@ -25,10 +24,6 @@ class PostController extends Controller
 
         $serviceListReview = ServiceReviewHelper::getPostServiceReview($id);
 
-        $postReviewForm = new ReviewForm();
-
-        $serviceReviewFormForm = new ServiceReviewForm();
-
         $cityInfo = City::getCity($city);
 
         $backUrl = RequestHelper::getBackUrl($protocol);
@@ -37,11 +32,81 @@ class PostController extends Controller
             'post' => $post,
             'serviceListReview' => $serviceListReview,
             'id' => $id,
-            'postReviewForm' => $postReviewForm,
-            'serviceReviewFormForm' => $serviceReviewFormForm,
             'cityInfo' => $cityInfo,
             'backUrl' => $backUrl,
         ]);
 
     }
+
+    public function actionMore($city)
+    {
+
+        if (Yii::$app->request->isPost){
+
+            $id = \explode(',', Yii::$app->request->post('id'));
+
+            $post = Posts::find()->where(['not in', 'id' , $id])
+                ->with('allPhoto', 'metro', 'avatar', 'place', 'service',
+                    'sites', 'rayon', 'nacionalnost',
+                    'cvet', 'strizhka', 'osobenost', 'selphiCount', 'serviceDesc'
+                )
+                ->asArray()->one();
+
+            $cityInfo = City::getCity($city);
+
+            $serviceListReview = ServiceReviewHelper::getPostServiceReview($id);
+
+            $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
+
+            return $this->renderFile(Yii::getAlias('@app/views/post/item.php'), [
+                    'post'           => $post,
+                'cityInfo'           => $cityInfo,
+                 'serviceListReview' => $serviceListReview,
+                             'price' => $price
+            ]);
+
+        }
+
+        return $this->redirect('/');
+
+    }
+
+    public function actionGet($city)
+    {
+        if (Yii::$app->request->isPost){
+
+            $params = Yii::$app->request->post();
+
+            switch ($params['target']) {
+
+                case "selfy":
+
+                    $data = Files::find()->where(['related_id' => $params['id'],
+                        'type' => Files::SELPHY_TYPE,
+                        'related_class' => Posts::class
+                        ])
+                        ->select('file')
+                        ->asArray()->all();
+
+                    break;
+
+                case "video":
+
+                    $data = Posts::find()->where(['id' => $params['id']])->select('video')->asArray()->one();
+
+                    break;
+
+            }
+
+            return $this->renderFile(Yii::getAlias('@app/views/post/'.$params['target'].'.php'), [
+                'data' => $data
+            ]);
+
+        }
+
+        return $this->redirect('/');
+
+    }
+
+
 }

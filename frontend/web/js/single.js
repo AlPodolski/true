@@ -435,3 +435,146 @@ $('.owl-carousel-bottom').owlCarousel({
         }
     }
 })
+
+function add_img_grid(){
+    $('.img-grids').each(function(i){
+        if($(this).length > 0){
+
+            var img = $(this).attr('data-img');
+
+            $(this).imagesGrid({
+                images: img.split(','),
+                cells: 2,
+                getViewAllText: function(imagesCount) {
+                    return 'Все ' + imagesCount + '';
+                },
+                align: true
+            });
+        }
+    });
+}
+
+$( function() {
+
+    add_img_grid();
+
+})
+
+$( function() {
+
+    if ($('#selfy-imgs').length > 0){
+
+        var img = $('#selfy-imgs').attr('data-img');
+
+        $('#selfy-imgs').imagesGrid({
+            images: img.split(','),
+            cells: 2,
+            getViewAllText: function(imagesCount) {
+                return 'Все ' + imagesCount + '';
+            },
+            align: true
+        });
+
+    }
+
+});
+
+
+
+$(window).scroll(function(){
+
+    changeURL();
+
+    var target = $('.footer');
+    var targetPos = target.offset().top;
+    var winHeight = $(window).height();
+    var scrollToElem = targetPos - winHeight;
+
+    var winScrollTop = $(this).scrollTop();
+
+    var page = Number($('.content').attr('data-page'));
+
+    var id = '';
+
+    if(winScrollTop > scrollToElem){
+
+        $(target).removeClass('footer');
+
+        $('[data-post-id]').each(function() {
+
+            id = id + $(this).attr('data-post-id') + ',';
+
+        });
+
+        $.ajax({
+            type: 'POST',
+            url: '/post/more',
+            data: 'id='+id,
+            async:true,
+            dataType: "html",
+            cache: false,
+            success: function (data){
+
+                if(data !== ''){
+
+                    $('.single-content').append(data);
+
+                    $(target).addClass('footer');
+
+                    page++;
+
+                    $('.content').attr('data-page' , page);
+
+                    var singleGallery = $('.owl-carousel-main');
+                    singleGallery.owlCarousel({
+                        items: 1,
+                        margin: 16,
+                        loop: true,
+                        nav: true,
+                        navText: ['', ''],
+                        navElement: 'a></a',
+                    });
+
+                    add_img_grid();
+
+                }else{
+
+                    $('.img-pre').remove();
+
+                }
+
+
+                // window.history.pushState("object or string", "Title", "/page-2");
+
+            },
+        })
+    }
+});
+
+function get_modal(object){
+
+    var target = $(object).attr('data-target');
+    var id = $(object).attr('data-id');
+
+    $.ajax({
+        type: 'POST',
+        url: '/post/get',
+        data: 'target='+target+'&id='+id,
+        async:true,
+        dataType: "html",
+        cache: false,
+        success: function (data){
+
+            $('#info-modal .modal-body').html(data);
+
+            $('#info-modal').modal('show');
+
+            if(target == 'selfy'){
+
+                add_img_grid();
+
+            }
+
+        },
+    })
+}

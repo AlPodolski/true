@@ -98,48 +98,6 @@ var changeURL = debounce(function() {
     });
 }, 1);
 
-$( function() {
-
-    if($('#bottom-imgs').length > 0){
-
-        var img = $('#bottom-imgs').attr('data-img');
-
-        $('#bottom-imgs').imagesGrid({
-            images: img.split(','),
-            cells: 2,
-            getViewAllText: function(imagesCount) {
-                return 'Все ' + imagesCount + '';
-            },
-            align: true
-        });
-
-    }
-
-
-
-});
-
-$( function() {
-
-    if ($('#selfy-imgs').length > 0){
-
-        var img = $('#selfy-imgs').attr('data-img');
-
-        $('#selfy-imgs').imagesGrid({
-            images: img.split(','),
-            cells: 2,
-            getViewAllText: function(imagesCount) {
-                return 'Все ' + imagesCount + '';
-            },
-            align: true
-        });
-
-    }
-
-
-
-});
-
 function favorite(object){
 
     var id = $(object).attr('data-id');
