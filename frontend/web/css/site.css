@@ -2504,6 +2504,9 @@ input::-webkit-input-placeholder {
 }
 @media (max-width: 360px) {
     .btn-wrap {
-        padding-left: 15px;
+        padding-left: 10px;
+    }
+    .orange-btn , .white-btn{
+        font-size: 14px;
     }
 }

@@ -460,6 +460,27 @@ $( function() {
 
     get_more_post_single();
 
+
+    $('.owl-carousel-bottom').owlCarousel({
+        items: 3,
+        margin: 16,
+        loop: true,
+        nav: true,
+        navText: ['', ''],
+        navElement: 'a href="#"></a',
+        responsive: {
+            1024: {
+                items: 3
+            },
+            768: {
+                items: 3
+            },
+            0: {
+                items: 2
+            }
+        }
+    })
+
 })
 
 $( function() {
@@ -503,10 +524,6 @@ function get_more_post_single(){
             if(data !== ''){
 
                 $('.single-content').append(data);
-
-                page++;
-
-                $('.content').attr('data-page' , page);
 
                 var singleGallery = $('.owl-carousel-main');
                 singleGallery.owlCarousel({
@@ -573,10 +590,6 @@ $(window).scroll(function(){
                     $('.single-content').append(data);
 
                     $(target).addClass('footer');
-
-                    page++;
-
-                    $('.content').attr('data-page' , page);
 
                     var singleGallery = $('.owl-carousel-main');
                     singleGallery.owlCarousel({

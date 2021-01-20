@@ -18,18 +18,18 @@ function close_otzivi_block(){
 
 }
 
-function show_anket_params_block(){
+function show_anket_params_block(object){
 
-    $('.anket-params-block').animate({
+    $('.anket-params-block-'+$(object).attr('data-id')).animate({
 
         left: '0px'
 
     }, 250);
 
 }
-function close_anket_params_block(){
+function close_anket_params_block(object){
 
-    $('.anket-params-block').animate({
+    $('.anket-params-block-'+$(object).attr('data-id')).animate({
 
         left: '-120%'
 
@@ -37,7 +37,16 @@ function close_anket_params_block(){
 
 }
 
-function show_site_price_block(){
+function show_site_price_block(object){
+
+    $('.owl-carousel-main').owlCarousel({
+        margin:10,
+        autoplayTimeout:9000,
+        autoplay:true,
+        nav : true,
+        loop: true,
+        items:1
+    })
 
     $('.site-price-block').animate({
 

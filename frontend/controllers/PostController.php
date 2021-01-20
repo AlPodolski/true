@@ -99,7 +99,7 @@ class PostController extends Controller
             }
 
             return $this->renderFile(Yii::getAlias('@app/views/post/'.$params['target'].'.php'), [
-                'data' => $data
+                'data' => $data,
             ]);
 
         }
