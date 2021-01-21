@@ -460,7 +460,6 @@ $( function() {
 
     get_more_post_single();
 
-
     $('.owl-carousel-bottom').owlCarousel({
         items: 3,
         margin: 16,
@@ -638,6 +637,13 @@ function get_modal(object){
             if(target == 'selfy'){
 
                 add_img_grid();
+
+            }
+            if(target == 'comment-form'){
+
+                $('.form-comment .review-modal-body .reting-item .form-group').each(function() {
+                    $(this).rating({ size: "xs", min: 0, max: 10, step: 1, readonly: false, showClear: false, showCaption: false, language: "en", theme: "krajee-fas" });
+                });
 
             }
 

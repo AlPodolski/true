@@ -602,7 +602,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
             <?php endif; ?>
 
-            <div data-toggle="modal" data-target="#exampleModal" class="add-review-btn-wrap">
+            <div data-toggle="modal" data-target="comment-form" data-id="<?php echo $post['id'] ?>" onclick="get_modal(this)" class="add-review-btn-wrap">
                 <div class="add-review-btn">
                     <div class="bg">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

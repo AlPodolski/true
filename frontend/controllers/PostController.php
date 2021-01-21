@@ -96,6 +96,17 @@ class PostController extends Controller
 
                     break;
 
+                case "comment-form":
+
+                    $post = Posts::find()->where(['id' => $params['id']])
+                        ->with( 'service'
+                        )
+                        ->asArray()->one();
+
+                    $data['post'] = $post;
+
+                    break;
+
             }
 
             return $this->renderFile(Yii::getAlias('@app/views/post/'.$params['target'].'.php'), [
