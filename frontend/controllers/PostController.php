@@ -68,7 +68,7 @@ class PostController extends Controller
 
             $cityInfo = City::getCity($city);
 
-            $serviceListReview = ServiceReviewHelper::getPostServiceReview($id);
+            $serviceListReview = ServiceReviewHelper::getPostServiceReview($post['id']);
 
             $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
 
