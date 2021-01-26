@@ -217,7 +217,7 @@ class FindController extends Controller
 
         }
 
-        $posts = Posts::find();
+        $posts = Posts::find()->limit(Yii::$app->params['post_limit']);
             if ($ids) $posts = $posts->andWhere(['in', 'id', $ids]);
 
             $posts = $posts->andWhere(['>=' , 'age', $params['age-from']])
@@ -235,6 +235,36 @@ class FindController extends Controller
         if ($params['check-photo']) $posts = $posts->andWhere(['check_photo_status' => 1]);
         if ($params['video']) $posts = $posts->andWhere(['<>' , 'video' , '']);
         if ($params['new']) $posts = $posts->orderBy('id DESC');
+
+        if (Yii::$app->request->isPost){
+
+            $posts->offset(Yii::$app->params['post_limit'] * Yii::$app->request->post('page'));
+
+            $posts = $posts->all();
+
+            if (\count($posts)) {
+
+                $page = Yii::$app->request->post('page') + 1;
+
+                echo '<div data-url="/'.Yii::$app->request->url.'/page-'.$page.'" class="col-12"></div>';
+
+            }
+
+            if (Yii::$app->user->isGuest) $class = 'col-6 col-sm-6 col-md-4 col-lg-3';
+            else $class = 'col-6 col-sm-6 col-md-4 col-lg-4';
+
+            foreach ($posts as $post){
+
+                echo $this->renderFile('@app/views/layouts/article.php', [
+                    'post' => $post,
+                    'cssClass' => $class,
+                ]);
+
+            }
+
+            exit();
+
+        }
 
         $posts = $posts
             ->with('avatar', 'metro', 'selphiCount')
