@@ -251,7 +251,7 @@
         </div>
     </div>
     <div class="col-6">
-        <div class="search-by-params-btn search-by-params-btn-bottom d-none">
+        <div class="search-by-params-btn search-by-params-btn-bottom">
             Поиск по параметрам
             <svg width="8" height="5" viewBox="0 0 8 5" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0)">

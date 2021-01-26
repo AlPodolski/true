@@ -1,7 +1,7 @@
 
-function show_otzivi_block(){
+function show_otzivi_block(object){
 
-    $('.otzivi-block').animate({
+    $('.otzivi-block-'+$(object).attr('data-id')).animate({
 
         left: '0px'
 
@@ -48,7 +48,7 @@ function show_site_price_block(object){
         items:1
     })
 
-    $('.site-price-block').animate({
+    $('.site-price-block-'+$(object).attr('data-id')).animate({
 
         left: '0px'
 
