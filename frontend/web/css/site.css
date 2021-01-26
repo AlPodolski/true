@@ -2326,6 +2326,13 @@ h1{
 input::-webkit-input-placeholder {
     color: #fff;
 }
+.show-anket-count{
+    margin: 0 auto;
+    display: block;
+    margin-top: 25px;
+    background: #fff;
+    border: none;
+}
 @media (max-width: 1199px) {
     .post .post-img{
         min-height: 348px;

@@ -273,7 +273,6 @@ class QueryParamsHelper
         if ($url == $value) return $url;
 
         return str_replace($url. '-', '', $value);
-
-
     }
+
 }

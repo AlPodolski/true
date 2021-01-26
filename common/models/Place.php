@@ -42,4 +42,20 @@ class Place extends \yii\db\ActiveRecord
             'url' => 'Url',
         ];
     }
+
+    public static function getPlace()
+    {
+        $data = Yii::$app->cache->get('place_list');
+
+        if ($data === false) {
+            // $data нет в кэше, вычисляем заново
+            $data = Place::find()->asArray()->all();
+
+            // Сохраняем значение $data в кэше. Данные можно получить в следующий раз.
+            Yii::$app->cache->set('place_list', $data);
+        }
+
+        return $data;
+    }
+
 }
