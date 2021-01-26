@@ -2453,6 +2453,12 @@ input::-webkit-input-placeholder {
     .slider-item .ui-slider{
         width: 120px;
     }
+    .right-property-column {
+        padding-left: 15px;
+    }
+    .filter-block{
+        max-width: 320px;
+    }
     .post .post-img{
         min-height: 350px;
     }
