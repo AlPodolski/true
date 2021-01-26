@@ -113,7 +113,7 @@
 
         <div class="dop-block d-none">
             <div class="row">
-                <div class="col-6">
+                <div class="col-12 col-sm-6">
                     <div class="checbox black-check-box">
                         <input type="checkbox" name="check-photo" id="check-photo" class="custom-checkbox">
                         <label for="check-photo"><span>Фото проверено</span></label>
@@ -127,7 +127,7 @@
                         <label for="bez-retushi"><span>Фото без ретуши</span></label>
                     </div>
                 </div>
-                <div class="col-6 right-property-column">
+                <div class="col-12 col-sm-6 right-property-column">
                     <div class="checbox black-check-box">
                         <input type="checkbox" name="new" id="new" class="custom-checkbox">
                         <label for="new"><span>Новые на сайте</span></label>
@@ -150,7 +150,7 @@
 
         <div class="more-search-block d-none">
             <div class="row">
-                <div class="col-12 col-sm-6">
+                <div class="col-6">
                     <?php if ($service) : ?>
                     <select name="service" class="red-select">
                         <option value="">Услуги</option>
@@ -194,7 +194,7 @@
 
                     </select>
                 </div>
-                <div class="col-12 col-sm-6 right-property-column">
+                <div class="col-6 right-property-column">
                     <select name="service" class="red-select">
                         <option value="">Интим стрижка</option>
 
