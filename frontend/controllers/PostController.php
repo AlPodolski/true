@@ -13,6 +13,18 @@ use yii\web\Controller;
 
 class PostController extends Controller
 {
+
+    /**
+     * @inheritdoc
+     */
+    public function beforeAction($action)
+    {
+
+        $this->enableCsrfValidation = false;
+
+        return parent::beforeAction($action);
+    }
+
     public function actionIndex($protocol,$city, $id)
     {
         $post = Posts::find()->where(['id' => $id])
@@ -40,6 +52,8 @@ class PostController extends Controller
 
     public function actionMore($city)
     {
+
+        $this->enableCsrfValidation = false;
 
         if (Yii::$app->request->isPost){
 

@@ -18,8 +18,11 @@ use yii\web\Controller;
 
 class FindController extends Controller
 {
+
     public function actionIndex($city)
     {
+
+        $this->enableCsrfValidation = false;
 
         $params = Yii::$app->request->get();
 
