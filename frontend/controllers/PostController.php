@@ -63,7 +63,7 @@ class PostController extends Controller
                 ->with('allPhoto', 'metro', 'avatar', 'place', 'service',
                     'sites', 'rayon', 'nacionalnost',
                     'cvet', 'strizhka', 'osobenost', 'selphiCount', 'serviceDesc'
-                )
+                )->limit(1)
                 ->asArray()->one();
 
             $cityInfo = City::getCity($city);
