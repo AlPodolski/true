@@ -33,7 +33,7 @@ class FindController extends Controller
 
             $filter = true;
 
-            $id = UserMetro::find()->where(['id' => $params['metro']])->select('post_id')->asArray()->all();
+            $id = UserMetro::find()->where(['metro_id' => $params['metro']])->select('post_id')->asArray()->all();
 
             if ($id) {
 
