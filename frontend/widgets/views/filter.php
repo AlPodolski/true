@@ -150,7 +150,7 @@
 
         <div class="more-search-block d-none">
             <div class="row">
-                <div class="col-6">
+                <div class="col-12 col-sm-6">
                     <?php if ($service) : ?>
                     <select name="service" class="red-select">
                         <option value="">Услуги</option>
@@ -194,7 +194,7 @@
 
                     </select>
                 </div>
-                <div class="col-6 right-property-column">
+                <div class="col-12 col-sm-6 right-property-column">
                     <select name="service" class="red-select">
                         <option value="">Интим стрижка</option>
 
@@ -265,4 +265,4 @@
             </svg>
         </div>
     </div>
-</div>
+</div>7

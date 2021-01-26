@@ -2450,6 +2450,9 @@ input::-webkit-input-placeholder {
 }
 
 @media (max-width: 575px) {
+    .slider-item .ui-slider{
+        width: 120px;
+    }
     .post .post-img{
         min-height: 350px;
     }
