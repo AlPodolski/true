@@ -2333,6 +2333,16 @@ input::-webkit-input-placeholder {
     background: #fff;
     border: none;
 }
+.social-in .auth-clients{
+    text-align: center;
+    padding-top: 15px;
+    padding-left: 0;
+    margin: 0;
+}
+.social-in .auth-clients li{
+    float: none;
+    margin: 0;
+}
 @media (max-width: 1199px) {
     .post .post-img{
         min-height: 348px;

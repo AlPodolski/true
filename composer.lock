@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b791f21cac29cd393330879923cabd98",
+    "content-hash": "07becaf5ff35d38d388d7edb8f9830ed",
     "packages": [
         {
             "name": "bower-asset/inputmask",
@@ -32,7 +32,7 @@
             "version": "3.5.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jquery/jquery-dist.git",
+                "url": "git@github.com:jquery/jquery-dist.git",
                 "reference": "4c0e4becb8263bb5b3e6dadc448d8e7305ef8215"
             },
             "dist": {
@@ -461,12 +461,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-icons.git",
-                "reference": "6b3515a7021842b704b76ffab5bb80689233c85c"
+                "reference": "cb95e3baa367019dcf681fb1cc7f429d4db9d401"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-icons/zipball/6b3515a7021842b704b76ffab5bb80689233c85c",
-                "reference": "6b3515a7021842b704b76ffab5bb80689233c85c",
+                "url": "https://api.github.com/repos/kartik-v/yii2-icons/zipball/cb95e3baa367019dcf681fb1cc7f429d4db9d401",
+                "reference": "cb95e3baa367019dcf681fb1cc7f429d4db9d401",
                 "shasum": ""
             },
             "require": {
@@ -505,7 +505,7 @@
                 "yii",
                 "yii2"
             ],
-            "time": "2021-01-01T07:07:59+00:00"
+            "time": "2021-01-22T04:58:27+00:00"
         },
         {
             "name": "kartik-v/yii2-krajee-base",
@@ -689,10 +689,10 @@
         },
         {
             "name": "npm-asset/bootstrap",
-            "version": "4.5.3",
+            "version": "4.6.0",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/bootstrap/-/bootstrap-4.5.3.tgz"
+                "url": "https://registry.npmjs.org/bootstrap/-/bootstrap-4.6.0.tgz"
             },
             "type": "npm-asset",
             "license": [
@@ -701,16 +701,16 @@
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v6.2.4",
+            "version": "v6.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "56f0ab23f54c4ccbb0d5dcc67ff8552e0c98d59e"
+                "reference": "698a6a9f54d7eb321274de3ad19863802c879fb7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/56f0ab23f54c4ccbb0d5dcc67ff8552e0c98d59e",
-                "reference": "56f0ab23f54c4ccbb0d5dcc67ff8552e0c98d59e",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/698a6a9f54d7eb321274de3ad19863802c879fb7",
+                "reference": "698a6a9f54d7eb321274de3ad19863802c879fb7",
                 "shasum": ""
             },
             "require": {
@@ -758,20 +758,20 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2020-12-08T18:02:06+00:00"
+            "time": "2021-01-12T09:35:59+00:00"
         },
         {
             "name": "symfony/polyfill-iconv",
-            "version": "v1.20.0",
+            "version": "v1.22.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-iconv.git",
-                "reference": "c536646fdb4f29104dd26effc2fdcb9a5b085024"
+                "reference": "b34bfb8c4c22650ac080d2662ae3502e5f2f4ae6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-iconv/zipball/c536646fdb4f29104dd26effc2fdcb9a5b085024",
-                "reference": "c536646fdb4f29104dd26effc2fdcb9a5b085024",
+                "url": "https://api.github.com/repos/symfony/polyfill-iconv/zipball/b34bfb8c4c22650ac080d2662ae3502e5f2f4ae6",
+                "reference": "b34bfb8c4c22650ac080d2662ae3502e5f2f4ae6",
                 "shasum": ""
             },
             "require": {
@@ -783,7 +783,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.20-dev"
+                    "dev-main": "1.22-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -821,20 +821,20 @@
                 "portable",
                 "shim"
             ],
-            "time": "2020-10-23T14:02:19+00:00"
+            "time": "2021-01-07T16:49:33+00:00"
         },
         {
             "name": "symfony/polyfill-intl-idn",
-            "version": "v1.20.0",
+            "version": "v1.22.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-idn.git",
-                "reference": "3b75acd829741c768bc8b1f84eb33265e7cc5117"
+                "reference": "0eb8293dbbcd6ef6bf81404c9ce7d95bcdf34f44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-intl-idn/zipball/3b75acd829741c768bc8b1f84eb33265e7cc5117",
-                "reference": "3b75acd829741c768bc8b1f84eb33265e7cc5117",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-idn/zipball/0eb8293dbbcd6ef6bf81404c9ce7d95bcdf34f44",
+                "reference": "0eb8293dbbcd6ef6bf81404c9ce7d95bcdf34f44",
                 "shasum": ""
             },
             "require": {
@@ -848,7 +848,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.20-dev"
+                    "dev-main": "1.22-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -891,20 +891,20 @@
                 "portable",
                 "shim"
             ],
-            "time": "2020-10-23T14:02:19+00:00"
+            "time": "2021-01-07T16:49:33+00:00"
         },
         {
             "name": "symfony/polyfill-intl-normalizer",
-            "version": "v1.20.0",
+            "version": "v1.22.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-normalizer.git",
-                "reference": "727d1096295d807c309fb01a851577302394c897"
+                "reference": "6e971c891537eb617a00bb07a43d182a6915faba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-intl-normalizer/zipball/727d1096295d807c309fb01a851577302394c897",
-                "reference": "727d1096295d807c309fb01a851577302394c897",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-normalizer/zipball/6e971c891537eb617a00bb07a43d182a6915faba",
+                "reference": "6e971c891537eb617a00bb07a43d182a6915faba",
                 "shasum": ""
             },
             "require": {
@@ -916,7 +916,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.20-dev"
+                    "dev-main": "1.22-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -958,20 +958,20 @@
                 "portable",
                 "shim"
             ],
-            "time": "2020-10-23T14:02:19+00:00"
+            "time": "2021-01-07T17:09:11+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.20.0",
+            "version": "v1.22.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "39d483bdf39be819deabf04ec872eb0b2410b531"
+                "reference": "f377a3dd1fde44d37b9831d68dc8dea3ffd28e13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/39d483bdf39be819deabf04ec872eb0b2410b531",
-                "reference": "39d483bdf39be819deabf04ec872eb0b2410b531",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/f377a3dd1fde44d37b9831d68dc8dea3ffd28e13",
+                "reference": "f377a3dd1fde44d37b9831d68dc8dea3ffd28e13",
                 "shasum": ""
             },
             "require": {
@@ -983,7 +983,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.20-dev"
+                    "dev-main": "1.22-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -1021,20 +1021,20 @@
                 "portable",
                 "shim"
             ],
-            "time": "2020-10-23T14:02:19+00:00"
+            "time": "2021-01-07T16:49:33+00:00"
         },
         {
             "name": "symfony/polyfill-php72",
-            "version": "v1.20.0",
+            "version": "v1.22.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php72.git",
-                "reference": "cede45fcdfabdd6043b3592e83678e42ec69e930"
+                "reference": "cc6e6f9b39fe8075b3dabfbaf5b5f645ae1340c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/cede45fcdfabdd6043b3592e83678e42ec69e930",
-                "reference": "cede45fcdfabdd6043b3592e83678e42ec69e930",
+                "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/cc6e6f9b39fe8075b3dabfbaf5b5f645ae1340c9",
+                "reference": "cc6e6f9b39fe8075b3dabfbaf5b5f645ae1340c9",
                 "shasum": ""
             },
             "require": {
@@ -1043,7 +1043,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.20-dev"
+                    "dev-main": "1.22-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -1080,7 +1080,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2020-10-23T14:02:19+00:00"
+            "time": "2021-01-07T16:49:33+00:00"
         },
         {
             "name": "yiisoft/yii2",
@@ -1181,6 +1181,77 @@
                 "yii2"
             ],
             "time": "2020-12-23T15:44:43+00:00"
+        },
+        {
+            "name": "yiisoft/yii2-authclient",
+            "version": "2.2.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/yii2-authclient.git",
+                "reference": "f38a0c931c1ae6459a8e221fc693ee31a4c1bab6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/yii2-authclient/zipball/f38a0c931c1ae6459a8e221fc693ee31a4c1bab6",
+                "reference": "f38a0c931c1ae6459a8e221fc693ee31a4c1bab6",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "~2.0.13",
+                "yiisoft/yii2-httpclient": "~2.0.5"
+            },
+            "require-dev": {
+                "cweagans/composer-patches": "^1.7",
+                "phpunit/phpunit": "4.8.34"
+            },
+            "suggest": {
+                "web-token/jwt-checker": "required for JWS, JWT or JWK related flows like OpenIDConnect",
+                "web-token/jwt-key-mgmt": "required for JWS, JWT or JWK related flows like OpenIDConnect",
+                "web-token/jwt-signature": "required for JWS, JWT or JWK related flows like OpenIDConnect",
+                "web-token/jwt-signature-algorithm-ecdsa": "required for JWS, JWT or JWK related flows like OpenIDConnect",
+                "web-token/jwt-signature-algorithm-hmac": "required for JWS, JWT or JWK related flows like OpenIDConnect",
+                "web-token/jwt-signature-algorithm-rsa": "required for JWS, JWT or JWK related flows like OpenIDConnect"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                },
+                "patches": {
+                    "phpunit/phpunit-mock-objects": {
+                        "Fix PHP 7 and 8 compatibility": "https://yiisoft.github.io/phpunit-patches/phpunit_mock_objects.patch"
+                    },
+                    "phpunit/phpunit": {
+                        "Fix PHP 7 compatibility": "https://yiisoft.github.io/phpunit-patches/phpunit_php7.patch",
+                        "Fix PHP 8 compatibility": "https://yiisoft.github.io/phpunit-patches/phpunit_php8.patch"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "yii\\authclient\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Paul Klimov",
+                    "email": "klimov.paul@gmail.com"
+                }
+            ],
+            "description": "External authentication via OAuth and OpenID for the Yii framework",
+            "keywords": [
+                "OpenID Connect",
+                "OpenId",
+                "api",
+                "auth",
+                "oauth",
+                "yii2"
+            ],
+            "time": "2020-11-13T10:11:46+00:00"
         },
         {
             "name": "yiisoft/yii2-bootstrap4",
@@ -1317,6 +1388,67 @@
             "time": "2020-06-24T00:04:01+00:00"
         },
         {
+            "name": "yiisoft/yii2-httpclient",
+            "version": "2.0.13",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/yii2-httpclient.git",
+                "reference": "470e9066ae780f0ca20827d3f6f84eca6bbb0991"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/yii2-httpclient/zipball/470e9066ae780f0ca20827d3f6f84eca6bbb0991",
+                "reference": "470e9066ae780f0ca20827d3f6f84eca6bbb0991",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "~2.0.13"
+            },
+            "require-dev": {
+                "cweagans/composer-patches": "^1.7",
+                "phpunit/phpunit": "4.8.34"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                },
+                "composer-exit-on-patch-failure": true,
+                "patches": {
+                    "phpunit/phpunit-mock-objects": {
+                        "Fix PHP 7 and 8 compatibility": "https://yiisoft.github.io/phpunit-patches/phpunit_mock_objects.patch"
+                    },
+                    "phpunit/phpunit": {
+                        "Fix PHP 7 compatibility": "https://yiisoft.github.io/phpunit-patches/phpunit_php7.patch",
+                        "Fix PHP 8 compatibility": "https://yiisoft.github.io/phpunit-patches/phpunit_php8.patch"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "yii\\httpclient\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Paul Klimov",
+                    "email": "klimov.paul@gmail.com"
+                }
+            ],
+            "description": "HTTP client extension for the Yii framework",
+            "keywords": [
+                "curl",
+                "http",
+                "httpclient",
+                "yii2"
+            ],
+            "time": "2020-12-23T16:52:14+00:00"
+        },
+        {
             "name": "yiisoft/yii2-jui",
             "version": "2.0.7",
             "source": {
@@ -1416,23 +1548,23 @@
     "packages-dev": [
         {
             "name": "behat/gherkin",
-            "version": "v4.6.2",
+            "version": "v4.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/Gherkin.git",
-                "reference": "51ac4500c4dc30cbaaabcd2f25694299df666a31"
+                "reference": "987bcdc3d29ba433e6bd4b1db4ae59737ba3dacd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/Gherkin/zipball/51ac4500c4dc30cbaaabcd2f25694299df666a31",
-                "reference": "51ac4500c4dc30cbaaabcd2f25694299df666a31",
+                "url": "https://api.github.com/repos/Behat/Gherkin/zipball/987bcdc3d29ba433e6bd4b1db4ae59737ba3dacd",
+                "reference": "987bcdc3d29ba433e6bd4b1db4ae59737ba3dacd",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.1"
+                "php": ">=5.6"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.5|~5",
+                "phpunit/phpunit": "~5.7|~6|~7",
                 "symfony/phpunit-bridge": "~2.7|~3|~4",
                 "symfony/yaml": "~2.3|~3|~4"
             },
@@ -1461,7 +1593,7 @@
                     "homepage": "http://everzet.com"
                 }
             ],
-            "description": "Gherkin DSL parser for PHP 5.3",
+            "description": "Gherkin DSL parser for PHP",
             "homepage": "http://behat.org/",
             "keywords": [
                 "BDD",
@@ -1471,20 +1603,20 @@
                 "gherkin",
                 "parser"
             ],
-            "time": "2020-03-17T14:03:26+00:00"
+            "time": "2021-01-26T16:24:32+00:00"
         },
         {
             "name": "codeception/codeception",
-            "version": "4.1.14",
+            "version": "4.1.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeception/Codeception.git",
-                "reference": "bf2d7861cc6cf4e118a21c6945f482a5c822636c"
+                "reference": "daf4fe110b33855252009a0dcab87ce8bcf7c009"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/bf2d7861cc6cf4e118a21c6945f482a5c822636c",
-                "reference": "bf2d7861cc6cf4e118a21c6945f482a5c822636c",
+                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/daf4fe110b33855252009a0dcab87ce8bcf7c009",
+                "reference": "daf4fe110b33855252009a0dcab87ce8bcf7c009",
                 "shasum": ""
             },
             "require": {
@@ -1556,7 +1688,7 @@
                 "functional testing",
                 "unit testing"
             ],
-            "time": "2020-12-28T19:16:28+00:00"
+            "time": "2021-01-26T07:25:32+00:00"
         },
         {
             "name": "codeception/lib-asserts",
@@ -1610,16 +1742,16 @@
         },
         {
             "name": "codeception/lib-innerbrowser",
-            "version": "1.3.5",
+            "version": "1.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeception/lib-innerbrowser.git",
-                "reference": "956101b060a0d898a1ed8c106fd4d81adf25fd87"
+                "reference": "41b79ba6761001bdb1f373a347400180693ad4e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeception/lib-innerbrowser/zipball/956101b060a0d898a1ed8c106fd4d81adf25fd87",
-                "reference": "956101b060a0d898a1ed8c106fd4d81adf25fd87",
+                "url": "https://api.github.com/repos/Codeception/lib-innerbrowser/zipball/41b79ba6761001bdb1f373a347400180693ad4e7",
+                "reference": "41b79ba6761001bdb1f373a347400180693ad4e7",
                 "shasum": ""
             },
             "require": {
@@ -1662,7 +1794,7 @@
             "keywords": [
                 "codeception"
             ],
-            "time": "2021-01-02T18:59:34+00:00"
+            "time": "2021-01-17T11:21:09+00:00"
         },
         {
             "name": "codeception/module-asserts",
@@ -2911,16 +3043,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "8.5.13",
+            "version": "8.5.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "8e86be391a58104ef86037ba8a846524528d784e"
+                "reference": "c25f79895d27b6ecd5abfa63de1606b786a461a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/8e86be391a58104ef86037ba8a846524528d784e",
-                "reference": "8e86be391a58104ef86037ba8a846524528d784e",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c25f79895d27b6ecd5abfa63de1606b786a461a3",
+                "reference": "c25f79895d27b6ecd5abfa63de1606b786a461a3",
                 "shasum": ""
             },
             "require": {
@@ -2990,7 +3122,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2020-12-01T04:53:52+00:00"
+            "time": "2021-01-17T07:37:30+00:00"
         },
         {
             "name": "psr/container",
@@ -4259,16 +4391,16 @@
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.20.0",
+            "version": "v1.22.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "f4ba089a5b6366e453971d3aad5fe8e897b37f41"
+                "reference": "c6c942b1ac76c82448322025e084cadc56048b4e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/f4ba089a5b6366e453971d3aad5fe8e897b37f41",
-                "reference": "f4ba089a5b6366e453971d3aad5fe8e897b37f41",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/c6c942b1ac76c82448322025e084cadc56048b4e",
+                "reference": "c6c942b1ac76c82448322025e084cadc56048b4e",
                 "shasum": ""
             },
             "require": {
@@ -4280,7 +4412,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.20-dev"
+                    "dev-main": "1.22-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -4317,20 +4449,20 @@
                 "polyfill",
                 "portable"
             ],
-            "time": "2020-10-23T14:02:19+00:00"
+            "time": "2021-01-07T16:49:33+00:00"
         },
         {
             "name": "symfony/polyfill-intl-grapheme",
-            "version": "v1.20.0",
+            "version": "v1.22.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-grapheme.git",
-                "reference": "c7cf3f858ec7d70b89559d6e6eb1f7c2517d479c"
+                "reference": "267a9adeb8ecb8071040a740930e077cdfb987af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-intl-grapheme/zipball/c7cf3f858ec7d70b89559d6e6eb1f7c2517d479c",
-                "reference": "c7cf3f858ec7d70b89559d6e6eb1f7c2517d479c",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-grapheme/zipball/267a9adeb8ecb8071040a740930e077cdfb987af",
+                "reference": "267a9adeb8ecb8071040a740930e077cdfb987af",
                 "shasum": ""
             },
             "require": {
@@ -4342,7 +4474,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.20-dev"
+                    "dev-main": "1.22-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -4381,20 +4513,20 @@
                 "portable",
                 "shim"
             ],
-            "time": "2020-10-23T14:02:19+00:00"
+            "time": "2021-01-07T16:49:33+00:00"
         },
         {
             "name": "symfony/polyfill-php73",
-            "version": "v1.20.0",
+            "version": "v1.22.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php73.git",
-                "reference": "8ff431c517be11c78c48a39a66d37431e26a6bed"
+                "reference": "a678b42e92f86eca04b7fa4c0f6f19d097fb69e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php73/zipball/8ff431c517be11c78c48a39a66d37431e26a6bed",
-                "reference": "8ff431c517be11c78c48a39a66d37431e26a6bed",
+                "url": "https://api.github.com/repos/symfony/polyfill-php73/zipball/a678b42e92f86eca04b7fa4c0f6f19d097fb69e2",
+                "reference": "a678b42e92f86eca04b7fa4c0f6f19d097fb69e2",
                 "shasum": ""
             },
             "require": {
@@ -4403,7 +4535,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.20-dev"
+                    "dev-main": "1.22-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -4443,20 +4575,20 @@
                 "portable",
                 "shim"
             ],
-            "time": "2020-10-23T14:02:19+00:00"
+            "time": "2021-01-07T16:49:33+00:00"
         },
         {
             "name": "symfony/polyfill-php80",
-            "version": "v1.20.0",
+            "version": "v1.22.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php80.git",
-                "reference": "e70aa8b064c5b72d3df2abd5ab1e90464ad009de"
+                "reference": "dc3063ba22c2a1fd2f45ed856374d79114998f91"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/e70aa8b064c5b72d3df2abd5ab1e90464ad009de",
-                "reference": "e70aa8b064c5b72d3df2abd5ab1e90464ad009de",
+                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/dc3063ba22c2a1fd2f45ed856374d79114998f91",
+                "reference": "dc3063ba22c2a1fd2f45ed856374d79114998f91",
                 "shasum": ""
             },
             "require": {
@@ -4465,7 +4597,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.20-dev"
+                    "dev-main": "1.22-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -4509,7 +4641,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2020-10-23T14:02:19+00:00"
+            "time": "2021-01-07T16:49:33+00:00"
         },
         {
             "name": "symfony/service-contracts",

@@ -10,6 +10,7 @@ return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'language' => 'ru-RU',
     'controllerNamespace' => 'frontend\controllers',
     'modules' => [
         'user' => [
@@ -49,6 +50,17 @@ return [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
+        ],
+        'authClientCollection' => [
+            'class' => 'yii\authclient\Collection',
+            'clients' => [
+                'vkontakte' => [
+                    'class' => 'frontend\components\Vk',
+                    'clientId' => '7741906',
+                    'clientSecret' => '5O2GJBLcC1EG8D1BHT2m',
+                ],
+                // etc.
+            ],
         ],
         'session' => [
             // this is the name of the session cookie used for login on the frontend

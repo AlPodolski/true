@@ -8,7 +8,7 @@ use frontend\helpers\FavoriteHelper;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use frontend\models\Webmaster;
-use frontend\modules\user\components\behavior\LastVisitTimeUpdate;
+use frontend\components\AuthHandler;
 use frontend\modules\user\models\Posts;
 use Yii;
 use yii\base\InvalidArgumentException;
@@ -36,6 +36,11 @@ class SiteController extends Controller
             'error' => [
                 'class' => 'yii\web\ErrorAction',
             ],
+            'auth' => [
+                'class' => 'frontend\components\AuthAction',
+                'city' => Yii::$app->controller->actionParams['city'],
+                'successCallback' => [$this, 'onAuthSuccess'],
+            ],
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
@@ -61,6 +66,11 @@ class SiteController extends Controller
         ];
 
     }*/
+
+    public function onAuthSuccess($client)
+    {
+        (new AuthHandler($client))->handle();
+    }
 
     /**
      * Displays homepage.
