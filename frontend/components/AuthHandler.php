@@ -105,9 +105,7 @@ class AuthHandler
             'password_hash' => Yii::$app->security->generatePasswordHash(Yii::$app->security->generateRandomString()),
             'created_at' => $time = time(),
             'updated_at' => $time,
-            'fake' => 1,
             'status' => 10,
-            'sort' => time(),
             'city' => $city,
         ]);
     }
