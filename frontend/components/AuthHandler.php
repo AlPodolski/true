@@ -106,7 +106,7 @@ class AuthHandler
             'created_at' => $time = time(),
             'updated_at' => $time,
             'status' => 10,
-            'city' => $city,
+            'city_ud' => $city,
         ]);
     }
 
