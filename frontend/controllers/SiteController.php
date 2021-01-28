@@ -82,8 +82,6 @@ class SiteController extends Controller
 
         $cityInfo = City::getCity($city);
 
-        Yii::$app->cache->flush();
-
         if (Yii::$app->request->isPost) {
 
             $posts = Posts::find()
