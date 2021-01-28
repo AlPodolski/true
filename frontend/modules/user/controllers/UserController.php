@@ -35,9 +35,7 @@ class UserController extends Controller
         } else {
             $model->password = '';
 
-            return $this->render('login', [
-                'model' => $model,
-            ]);
+            return $this->goHome();
         }
     }
 
@@ -71,9 +69,7 @@ class UserController extends Controller
             return $this->goHome();
         }
 
-        return $this->render('signup', [
-            'model' => $model,
-        ]);
+        return $this->goHome();
     }
 
     /**

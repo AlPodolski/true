@@ -30,6 +30,7 @@ class SignupForm extends Model
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
+            ['email', 'unique', 'targetClass' => 'common\models\User', 'message' => 'Такая почта уже используется'],
 
             ['city_id', 'integer'],
 

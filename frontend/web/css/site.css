@@ -1339,6 +1339,9 @@ h1 , .big-red-text{
 .register .in-btn{
     margin: 0 auto;
 }
+.alert{
+    margin-top: 15px;
+}
 .pass-input{
     background: url("../img/zamok.png"), hsla(0, 0%, 100%, 0);
     background-repeat: no-repeat;

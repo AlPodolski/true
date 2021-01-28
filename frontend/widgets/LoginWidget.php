@@ -18,7 +18,7 @@ class LoginWidget extends Widget
         $login = new LoginForm();
 
         $form = ActiveForm::begin(['id' => 'login-form' ,
-            'action' => '/user/login' ,
+            'action' => '/login' ,
             'options' => [
                     'class' => 'login-form'
             ]]); ?>
