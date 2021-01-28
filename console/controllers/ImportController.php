@@ -43,7 +43,7 @@ class ImportController extends Controller
 
     public function actionIndex()
     {
-        $stream = \fopen(Yii::getAlias('@app/files/intim_city_15_01_2021.csv'), 'r');
+        $stream = \fopen(Yii::getAlias('@app/files/mosdosugs_import_28_01_2021.csv'), 'r');
 
         $csv = Reader::createFromStream($stream);
         $csv->setDelimiter(';');
@@ -57,9 +57,9 @@ class ImportController extends Controller
         $placeList = Place::find()->asArray()->all();
         $serviceList = Service::find()->asArray()->all();
 
-        $this->siteId = 4;
-        $this->update = 6;
-        $this->path = '/uploads/aa6';
+        $this->siteId = 5;
+        $this->update = 7;
+        $this->path = '/uploads/aa7';
 
         foreach ($records as $record) {
 
@@ -412,6 +412,34 @@ class ImportController extends Controller
 
                         }
 
+                        if ($record['selphi']) {
+
+                            $sel = \explode(',', $record['selphi']);
+
+                            if ($gall) {
+
+                                foreach ($sel as $selitem) {
+
+                                    if ($selitem) {
+
+                                        $userPhoto = new Files();
+
+                                        $userPhoto->related_id = $post->id;
+                                        $userPhoto->file = \str_replace('files', $this->path, $selitem);
+                                        $userPhoto->main = 0;
+                                        $userPhoto->type = Files::SELPHY_TYPE;
+                                        $userPhoto->related_class = Posts::class;
+
+                                        $userPhoto->save();
+
+                                    }
+
+                                }
+
+                            }
+
+                        }
+
                     }
 
                 }
@@ -742,6 +770,34 @@ class ImportController extends Controller
 
                         }
 
+                        if ($record['selphi']) {
+
+                            $sel = \explode(',', $record['selphi']);
+
+                            if ($gall) {
+
+                                foreach ($sel as $selitem) {
+
+                                    if ($selitem) {
+
+                                        $userPhoto = new Files();
+
+                                        $userPhoto->related_id = $post->id;
+                                        $userPhoto->file = \str_replace('files', $this->path, $selitem);
+                                        $userPhoto->main = 0;
+                                        $userPhoto->type = Files::SELPHY_TYPE;
+                                        $userPhoto->related_class = Posts::class;
+
+                                        $userPhoto->save();
+
+                                    }
+
+                                }
+
+                            }
+
+                        }
+
                     }
                     else {
                         \d($post->getErrors());
@@ -750,7 +806,6 @@ class ImportController extends Controller
                 }
 
             }
-
 
         }
 
