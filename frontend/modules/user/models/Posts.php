@@ -197,7 +197,7 @@ class Posts extends \yii\db\ActiveRecord
 
         if ($data === false) {
             // $data нет в кэше, вычисляем заново
-            $data = Review::find()->where(['post_id' => $id])->count();
+            $data = Review::find()->where(['post_id' => $id])->andWhere(['<>', 'text', ''])->count();
 
             // Сохраняем значение $data в кэше. Данные можно получить в следующий раз.
             Yii::$app->cache->set('review_count_'.$id, $data);

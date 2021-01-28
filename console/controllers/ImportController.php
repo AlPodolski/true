@@ -1227,4 +1227,42 @@ class ImportController extends Controller
 
     }
 
+    public function actionAddRandomReview()
+    {
+        $posts = Posts::find()->asArray()->all();
+
+        foreach ($posts as $post){
+
+            if (!Review::find()->where(['post_id' => $post['id']])->count()){
+
+                $review = new Review();
+
+                $review->post_id = $post['id'];
+                $review->photo_marc = \rand(4,10);
+                $review->total_marc = \rand(5,10);
+                $review->clean = \rand(2,10);
+                $review->is_happy = \rand(0,1);
+
+                $review->save();
+
+                $service = UserService::find()->where(['post_id' => $post['id']])->asArray()->all();
+
+                foreach ($service as $serviceItem){
+
+                    $servRev = new ServiceReviews();
+
+                    $servRev->post_id = $post['id'];
+                    $servRev->service_id = $serviceItem['service_id'];
+                    $servRev->marc = \rand(3,10);
+
+                    $servRev->save();
+
+                }
+
+
+            }
+
+        }
+    }
+
 }

@@ -41,7 +41,7 @@ class Review extends \yii\db\ActiveRecord
 
     public function getServiceMarc()
     {
-        return $this->hasMany(ServiceReviews::class, ['post_id' => 'id']);
+        return $this->hasMany(ServiceReviews::class, ['post_id' => 'post_id']);
     }
 
     /**

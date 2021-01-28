@@ -266,11 +266,30 @@ $('.login-icon-close').click(function() {
 
     }, 200);
 
+});$('.register-icon-close').click(function() {
+
+    $('body').css('overflow' , 'inherit');
+
+    $('.register').animate({
+
+        left: '-120%'
+
+    }, 200);
+
 });
 
 function get_user_menu(){
 
     $('.login').animate({
+
+        left: '0px'
+
+    }, 250);
+
+}
+function get_register_btn(){
+
+    $('.register').animate({
 
         left: '0px'
 

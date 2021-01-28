@@ -310,6 +310,45 @@ AppAsset::register($this);
             ?>
         </div>
     </div>
+    <div class="register">
+        <div class="register-icon-close">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0)">
+                    <path d="M32 3.77081L28.2292 0L16 12.2291L3.77081 0L0 3.77081L12.2291 16L0 28.2292L3.77081 32L16 19.7709L28.2291 32L31.9999 28.2292L19.7709 16L32 3.77081Z" fill="white"/>
+                </g>
+                <defs>
+                    <clipPath id="clip0">
+                        <rect width="32" height="32" fill="white"/>
+                    </clipPath>
+                </defs>
+            </svg>
+        </div>
+        <div class="color-boll first-color-boll">
+
+        </div>
+        <div class="color-boll second-color-boll">
+
+        </div>
+        <div class="color-boll color-boll-3">
+
+        </div>
+        <div class="color-boll color-boll-4">
+
+        </div>
+        <div class="color-boll color-boll-5">
+        </div>
+        <div class="color-boll color-boll-6">
+        </div>
+        <div class="color-boll color-boll-7">
+        </div>
+        <div class="login-form-wrap">
+            <?php
+
+                echo \frontend\widgets\RegisterWidget::run();
+
+            ?>
+        </div>
+    </div>
 </header>
 <main>
     <div class="container">

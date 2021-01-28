@@ -524,6 +524,8 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                 foreach ( $postRating['review'] as $item) : ?>
 
+                <?php if($item['text']) : ?>
+
                     <div class="review-block">
                         <div class="review-item">
                             <div class="col-12 bottom-gallery">
@@ -597,6 +599,8 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                             </div>
                         </div>
                     </div>
+
+                <?php endif; ?>
 
                 <?php endforeach; ?>
 
@@ -996,6 +1000,8 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
             <?php foreach ( $postRating['review'] as $item) : ?>
 
+            <?php if ($item['text']) :?>
+
                 <div class="review-block">
                     <div class="review-item">
                         <div class="col-12">
@@ -1067,6 +1073,8 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                         </div>
                     </div>
                 </div>
+
+            <?php endif; ?>
 
             <?php endforeach; ?>
 

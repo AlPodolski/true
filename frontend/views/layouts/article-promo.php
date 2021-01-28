@@ -20,15 +20,7 @@ use frontend\widgets\PhotoWidget;
             ],
         ]  ); ?>
         </a>
-        <?php $postRating = \frontend\helpers\PostRatingHelper::getPostRating($post['post']['id']) ?>
-        <div class="post-rating">
-            <div class="star-bg">
-            </div>
-            <?php
-            if ($postRating) echo $postRating['total_rating'];
-            else echo 0
-            ?>
-        </div>
+
 
     </div>
 

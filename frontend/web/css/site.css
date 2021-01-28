@@ -1176,7 +1176,7 @@ h1 , .big-red-text{
     margin-left: 5px;
     margin-top: 4px;
 }
-.menu , .login , .otzivi-block , .anket-params-block , .city-list-wrap , .site-price-block{
+.menu , .login , .otzivi-block , .anket-params-block , .city-list-wrap , .site-price-block , .register{
     background: #fff;
     left: -120%;
     height: 100%;
@@ -1187,7 +1187,7 @@ h1 , .big-red-text{
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
-.icon-close , .login-icon-close{
+.icon-close , .login-icon-close , .register-icon-close{
     text-align: right;
     padding-right: 10px;
     padding-top: 10px;
@@ -1195,6 +1195,11 @@ h1 , .big-red-text{
     right: 0;
     z-index: 1;
     top: 25px;
+}
+#form-signup .register-btn{
+    background: none;
+    border: none;
+    text-align: left;
 }
 .mobil-menu{
     text-align: right;
@@ -1275,7 +1280,7 @@ h1 , .big-red-text{
     top: 100px;
     background: linear-gradient(174.71deg, #F74952 22.27%, #F0C612 203.38%);
 }
-.login{
+.login , .register{
     background: linear-gradient(149.15deg, #F74952 42.26%, #F0C612 100%);
 }
 .login-form-wrap{
@@ -1326,7 +1331,14 @@ h1 , .big-red-text{
     background-repeat: no-repeat;
     background-position-y: center;
 }
-
+.user-input{
+    background: url("../img/user.png"), hsla(0, 0%, 100%, 0);
+    background-repeat: no-repeat;
+    background-position-y: center;
+}
+.register .in-btn{
+    margin: 0 auto;
+}
 .pass-input{
     background: url("../img/zamok.png"), hsla(0, 0%, 100%, 0);
     background-repeat: no-repeat;

@@ -26,7 +26,7 @@ class LoginWidget extends Widget
         <div class="login-text">Войти</div>
 
         <?= $form->field($login, 'email')
-        ->textInput(['autofocus' => true, 'placeholder' => 'Email', 'class' => 'form-input email-input'])
+        ->textInput(['autofocus' => false, 'placeholder' => 'Email', 'class' => 'form-input email-input'])
         ->label(false) ?>
 
         <?= $form->field($login, 'password')
@@ -46,7 +46,7 @@ class LoginWidget extends Widget
 
         <div class="login-register-btns">
             <?= Html::submitButton('Войти', ['class' => 'in-btn', 'name' => 'login-button']) ?>
-            <a href="#" class="register-btn">Регистрация</a>
+            <a href="#" class="register-btn" onclick="get_register_btn()">Регистрация</a>
         </div>
 
         <div class="reset-pass-block">
