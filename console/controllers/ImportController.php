@@ -59,7 +59,7 @@ class ImportController extends Controller
 
         $this->siteId = 5;
         $this->update = 7;
-        $this->path = '/uploads/aa7';
+        $this->path = '/uploads/aa7/files';
 
         foreach ($records as $record) {
 
