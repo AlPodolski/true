@@ -77,6 +77,7 @@ class SiteController extends Controller
                 ->asArray()
                 ->with('avatar', 'metro', 'selphiCount')
                 ->where(['city_id' => $cityInfo['id']])
+                ->orderBy(['rand()' => SORT_DESC])
                 ->limit(Yii::$app->params['post_limit']);
 
             $posts->offset(Yii::$app->params['post_limit'] * Yii::$app->request->post('page'));
@@ -105,6 +106,7 @@ class SiteController extends Controller
             ->with('avatar', 'metro', 'selphiCount')
             ->where(['city_id' => $cityInfo['id']])
             ->limit(11)->cache(3600)
+            ->orderBy(['rand()' => SORT_DESC])
             ->all();
 
         $checkBlock['block']['post'] = Posts::find()->asArray()

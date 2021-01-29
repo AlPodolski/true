@@ -64,6 +64,7 @@ class PostController extends Controller
                     'sites', 'rayon', 'nacionalnost',
                     'cvet', 'strizhka', 'osobenost', 'selphiCount', 'serviceDesc'
                 )->limit(1)
+                ->orderBy(['rand()' => SORT_DESC])
                 ->asArray()->one();
 
             $cityInfo = City::getCity($city);
