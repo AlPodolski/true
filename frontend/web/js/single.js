@@ -567,8 +567,6 @@ $(window).scroll(function(){
 
     if(winScrollTop > scrollToElem){
 
-        $(target).removeClass('footer');
-
         $('[data-post-id]').each(function() {
 
             id = id + $(this).attr('data-post-id') + ',';
@@ -588,8 +586,6 @@ $(window).scroll(function(){
 
                     $('.single-content').append(data);
 
-                    $(target).addClass('footer');
-
                     var singleGallery = $('.owl-carousel-main');
                     singleGallery.owlCarousel({
                         items: 1,
@@ -605,6 +601,7 @@ $(window).scroll(function(){
                 }else{
 
                     $('.dots').remove();
+                    $(target).remove();
 
                 }
 
