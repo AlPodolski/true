@@ -565,7 +565,7 @@ $(window).scroll(function(){
 
     var id = '';
 
-    if(winScrollTop > scrollToElem - 150){
+    if(winScrollTop > scrollToElem - 250) {
 
         $('[data-post-id]').each(function() {
 
@@ -580,11 +580,16 @@ $(window).scroll(function(){
             async:true,
             dataType: "html",
             cache: false,
+            beforeSend: function() {
+                $(target).removeClass('footer');
+            },
             success: function (data){
 
                 if(data !== ''){
 
                     $('.single-content').append(data);
+
+                    $(target).addClass('footer');
 
                     var singleGallery = $('.owl-carousel-main');
                     singleGallery.owlCarousel({
@@ -601,7 +606,6 @@ $(window).scroll(function(){
                 }else{
 
                     $('.dots').remove();
-                    $(target).remove();
 
                 }
 
