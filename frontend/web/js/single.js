@@ -565,7 +565,7 @@ $(window).scroll(function(){
 
     var id = '';
 
-    if(winScrollTop > scrollToElem){
+    if(winScrollTop > scrollToElem - 150){
 
         $('[data-post-id]').each(function() {
 
