@@ -869,7 +869,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
         </div>
     </div>
 </div>
-<div class="otzivi-block">
+<div class="otzivi-block otzivi-block-<?php echo $post['id'] ?>">
         <div class="back-block" onclick="close_otzivi_block()">
             <img src="/img/back-red.png" alt="">
         </div>
