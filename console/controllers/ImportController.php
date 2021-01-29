@@ -61,11 +61,11 @@ class ImportController extends Controller
         $this->update = 7;
         $this->path = '/uploads/aa7/files';
 
+        $city = City::find()->where(['city' => 'москва'])->asArray()->one();
+
         foreach ($records as $record) {
 
-            $city = City::find()->where(['city' => $record['rayon']])->asArray()->one();
-
-            if ($record['phone'] and isset($city['id'])) {
+            if ($record['phone']) {
 
                 if ($post = Posts::find()->where(['like', 'phone', $record['phone']])->andWhere(['name' => $record['name']])->one()) {
 
@@ -458,8 +458,11 @@ class ImportController extends Controller
                     $post->price = (int)$record['price'];
                     $post->age = $record['age'];
                     $post->rost = $record['rost'];
-                    $post->breast = $record['grud'];
-                    $post->ves = $record['weight'];
+
+                    if ($record['grud'])$post->breast = $record['grud'];
+
+                    if ($record['weight']) $post->ves = $record['weight'];
+
                     $post->category = Posts::INDI_CATEGORY;
 
                     if (isset($record['video']) and $record['video']) $post->video = \str_replace('files', $this->path, $record['video']);
