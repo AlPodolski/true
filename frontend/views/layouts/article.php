@@ -85,21 +85,7 @@ use frontend\widgets\PhotoWidget;
             <div class="black-gradient"></div>
         </div>
         <div class="bottom-info">
-            <div class="post-info-table-wrapper">
-                <table class="post-info-table ">
-                    <tr>
-                        <th>Чистота</th>
-                        <th>Качество услуг</th>
-                        <th>Жалобы</th>
-                        <th>Довольных гостей</th>
-                    </tr>
-                    <tr><td><?php echo  isset($postRating['clean_marc'] ) ? $postRating['clean_marc']  : "-";?></td>
-                        <td><?php echo  isset($postRating['service_marc'] ) ? $postRating['service_marc']  : "-";?></td>
-                        <td><?php echo  isset($postRating['not_happy_marc_count'] ) ? $postRating['not_happy_marc_count']  : "-";?></td>
-                        <td><?php echo  isset($postRating['happy_marc_count'] ) ? $postRating['happy_marc_count']  : "-";?></td>
-                    </tr>
-                </table>
-            </div>
+
             <div class="post-marc-block">
                 <?php if ($post['category'] == 1) : ?>
                     <div class="indi-marc post-marc blue-post-marc">

@@ -2431,7 +2431,7 @@ input::-webkit-input-placeholder {
     }
     .post-marc-block {
         min-height: inherit;
-        padding: 22px 0px 15px 10px;
+        padding: 22px 0px 5px 10px;
     }
     .single-post-info-wrap {
         padding-top: 20px;
