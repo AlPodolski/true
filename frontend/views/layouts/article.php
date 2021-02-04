@@ -82,7 +82,7 @@ use frontend\widgets\PhotoWidget;
                 else echo 0
                 ?>
             </div>
-            <div class="black-gradient"></div>
+            <a class="black-gradient" href="/post/<?php echo $post['id'] ?>"></a>
         </div>
         <div class="bottom-info">
 

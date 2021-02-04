@@ -852,6 +852,7 @@ h1 , .big-red-text{
     width: 100%;
     bottom: 0;
     z-index: 1;
+    left: 0px;
 }
 .count-photo-icon{
     top: 8px;
