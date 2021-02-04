@@ -309,7 +309,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                 <?php foreach ($post['allPhoto'] as $item) : ?>
 
-                    <?php if ($item['type'] != \frontend\models\Files::SELPHY_TYPE and file_exists(Yii::getAlias('@webroot').$item['file']) ) {
+                    <?php if ($item['file'] and $item['type'] != \frontend\models\Files::SELPHY_TYPE and file_exists(Yii::getAlias('@webroot').$item['file']) ) {
 
                         $imgs[] = Yii::$app->imageCache->thumbSrc($item['file'], $size);
 
