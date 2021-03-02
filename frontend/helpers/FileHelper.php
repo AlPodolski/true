@@ -27,6 +27,23 @@ class FileHelper
 
     }
 
+    public static function saveVideo($file, $extension)
+    {
+        $saveFileName = \md5($file).\time().'.'.$extension;
+
+        $dir_hash = self::generateDirNameHash($saveFileName).'/';
+
+        $dir = Yii::$app->params['photo_path'].$dir_hash;
+
+        if ($save_dir = self::prepareDir(Yii::getAlias('@webroot').$dir) and move_uploaded_file($file, $save_dir.$saveFileName)){
+
+            return $dir.$saveFileName;
+
+        }
+
+        return false;
+    }
+
     public static function regenerateImg($img, $width , $save_path){
 
         return Image::resize ($img, $width, 9999)->save($save_path, ['quality' => 78]);

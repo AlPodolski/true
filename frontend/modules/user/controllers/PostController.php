@@ -9,6 +9,7 @@ use frontend\models\UserMetro;
 use frontend\modules\user\helpers\SavePostRelationHelper;
 use frontend\modules\user\models\forms\AvatarForm;
 use frontend\modules\user\models\forms\PhotoForm;
+use frontend\modules\user\models\forms\VideoForm;
 use frontend\modules\user\models\Posts;
 use frontend\modules\user\models\UserHairColor;
 use frontend\modules\user\models\UserIntimHair;
@@ -37,6 +38,7 @@ class PostController extends Controller
 
         $avatarForm = new AvatarForm();
         $photoForm = new PhotoForm();
+        $videoForm = new VideoForm();
 
         $userNational = new \frontend\modules\user\models\UserNational();
         $userMetro = new \frontend\models\UserMetro();
@@ -85,6 +87,22 @@ class PostController extends Controller
                         $file->related_class = Posts::class;
                         $file->file = $avatar;
                         $file->save();
+
+                    }
+
+                }
+
+                $videoForm->video = UploadedFile::getInstance($videoForm, 'video');
+
+                if ($videoForm->video && $videoForm->validate()) {
+
+                    $video = $videoForm->upload();
+
+                    if ($video){
+
+                        $post->video = $video;
+
+                        $post->save();
 
                     }
 

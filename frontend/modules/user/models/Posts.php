@@ -58,7 +58,7 @@ class Posts extends \yii\db\ActiveRecord
             [['city_id', 'user_id', 'created_at', 'updated_at', 'category', 'check_photo_status', 'price', 'age', 'rost', 'ves', 'breast'], 'integer'],
             [['name'], 'string', 'max' => 60],
             [['phone'], 'string', 'max' => 20 ],
-            [['name', 'phone', 'price'],'required' ],
+            [['name', 'phone', 'price'],'required'],
             [['video'], 'string', 'max' => 122],
             [['about'], 'string'],
         ];

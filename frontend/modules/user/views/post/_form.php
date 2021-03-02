@@ -7,6 +7,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 
+$videoForm = new \frontend\modules\user\models\forms\VideoForm();
 $avatarForm = new \frontend\modules\user\models\forms\AvatarForm();
 $photoForm = new \frontend\modules\user\models\forms\PhotoForm();
 $userNational = new \frontend\modules\user\models\UserNational();
@@ -116,7 +117,7 @@ $form = ActiveForm::begin([
 
                         </div>
 
-                        <?= $form->field($post, 'video')
+                        <?= $form->field($videoForm, 'video')
                             ->fileInput(['maxlength' => true,
                                 'accept' => 'video/*',
                                 'multiple' => false,
