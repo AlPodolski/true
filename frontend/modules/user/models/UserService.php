@@ -38,7 +38,7 @@ class UserService extends \yii\db\ActiveRecord
     {
         return [
             'post_id' => 'Post ID',
-            'service_id' => 'Service ID',
+            'service_id' => 'Услуги',
         ];
     }
 

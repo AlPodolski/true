@@ -38,7 +38,7 @@ class UserOsobenosti extends \yii\db\ActiveRecord
     {
         return [
             'post_id' => 'Post ID',
-            'param_id' => 'Param ID',
+            'param_id' => 'Особености',
             'city_id' => 'City ID',
         ];
     }

@@ -38,7 +38,7 @@ class UserNational extends \yii\db\ActiveRecord
     {
         return [
             'post_id' => 'User ID',
-            'national_id' => 'National ID',
+            'national_id' => 'Национальность',
             'city_id' => 'City ID',
         ];
     }

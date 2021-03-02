@@ -19,6 +19,9 @@ class Files extends \yii\db\ActiveRecord
 
     const SELPHY_TYPE = 1;
 
+    const MAIN_PHOTO = 1;
+    const NOT_MAIN_PHOTO = 0;
+
     /**
      * {@inheritdoc}
      */

@@ -37,7 +37,7 @@ class UserRayon extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'rayon_id' => 'Rayon ID',
+            'rayon_id' => 'Район',
             'post_id' => 'Post ID',
             'city_id' => 'City ID',
         ];

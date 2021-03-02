@@ -40,7 +40,7 @@ class UserMetro extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'post_id' => 'Post ID',
-            'metro_id' => 'Metro ID',
+            'metro_id' => 'Метро',
         ];
     }
 }

@@ -38,7 +38,7 @@ class UserPlace extends \yii\db\ActiveRecord
     {
         return [
             'post_id' => 'Post ID',
-            'place_id' => 'Place ID',
+            'place_id' => 'Место',
         ];
     }
 }

@@ -55,10 +55,12 @@ class Posts extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['city_id', 'user_id', 'created_at', 'updated_at', 'category', 'check_photo_status', 'price', 'age', 'rost', 'ves'], 'integer'],
+            [['city_id', 'user_id', 'created_at', 'updated_at', 'category', 'check_photo_status', 'price', 'age', 'rost', 'ves', 'breast'], 'integer'],
             [['name'], 'string', 'max' => 60],
-            [['phone'], 'string', 'max' => 20],
+            [['phone'], 'string', 'max' => 20 ],
+            [['name', 'phone', 'price'],'required' ],
             [['video'], 'string', 'max' => 122],
+            [['about'], 'string'],
         ];
     }
 
@@ -218,12 +220,17 @@ class Posts extends \yii\db\ActiveRecord
             'user_id' => 'User ID',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
-            'name' => 'Name',
-            'phone' => 'Phone',
-            'about' => 'About',
+            'name' => 'Имя',
+            'phone' => 'Телефон',
+            'about' => 'О себе',
             'category' => 'Category',
             'selfie' => 'Selfie',
             'check_photo_status' => 'Check Photo Status',
+            'age' => 'Возраст',
+            'rost' => 'Рост',
+            'breast' => 'Грудь',
+            'ves' => 'Вес',
+            'price' => 'Цена',
         ];
     }
 }

@@ -38,7 +38,7 @@ class UserHairColor extends \yii\db\ActiveRecord
     {
         return [
             'post_id' => 'Post ID',
-            'hair_color_id' => 'Hair Color ID',
+            'hair_color_id' => 'Цвет волос',
             'city_id' => 'City ID',
         ];
     }

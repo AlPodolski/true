@@ -34,7 +34,8 @@
         "codeception/module-filesystem": "^1.0",
         "codeception/verify": "~0.5.0 || ~1.1.0",
         "symfony/browser-kit": ">=2.7 <=4.2.4",
-        "iutbay/yii2-imagecache" : "*"
+        "iutbay/yii2-imagecache" : "*",
+        "kartik-v/yii2-widget-select2": "@dev"
     },
     "config": {
         "process-timeout": 1800,

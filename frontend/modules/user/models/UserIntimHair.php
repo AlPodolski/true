@@ -38,7 +38,7 @@ class UserIntimHair extends \yii\db\ActiveRecord
     {
         return [
             'post_id' => 'Post ID',
-            'color_id' => 'Color ID',
+            'color_id' => 'Интимная стрижка',
             'city_id' => 'City ID',
         ];
     }

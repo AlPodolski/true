@@ -46,4 +46,19 @@ class Osobenosti extends \yii\db\ActiveRecord
             'value3' => 'Value3',
         ];
     }
+
+    public static function getAll()
+    {
+        $data = Yii::$app->cache->get('osobenosti_list');
+
+        if ($data === false) {
+            // $data нет в кэше, вычисляем заново
+            $data = self::find()->asArray()->all();
+
+            // Сохраняем значение $data в кэше. Данные можно получить в следующий раз.
+            Yii::$app->cache->set('osobenosti_list', $data);
+        }
+
+        return $data;
+    }
 }
