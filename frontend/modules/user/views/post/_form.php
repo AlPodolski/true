@@ -17,7 +17,7 @@ $form = ActiveForm::begin([
     <div class="container">
         <div class="row">
 
-            <div class="col-4">
+            <div class="col-12 col-md-4">
                 <div class="row">
                     <div class="col-12 main-photo">
 
@@ -179,50 +179,50 @@ $form = ActiveForm::begin([
 
             </div>
 
-            <div class="col-8">
+            <div class="col-12 col-md-8">
 
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-12 col-sm-6">
                         <?= $form->field($post, 'name')->textInput() ?>
                     </div>
-                    <div class="col-6">
+                    <div class="col-12 col-sm-6">
                         <?= $form->field($post, 'phone')->textInput() ?>
                     </div>
                     <div class="col-12">
                         <?= $form->field($post, 'about')->textarea() ?>
                     </div>
-                    <div class="col-6">
+                    <div class="col-12 col-sm-6">
                         <?= $form->field($post, 'price')->textInput() ?>
                     </div>
-                    <div class="col-6">
+                    <div class="col-12 col-sm-6">
                         <?= $form->field($post, 'age')->textInput() ?>
                     </div>
-                    <div class="col-6">
+                    <div class="col-12 col-sm-6">
                         <?= $form->field($post, 'rost')->textInput() ?>
                     </div>
-                    <div class="col-6">
+                    <div class="col-12 col-sm-6">
                         <?= $form->field($post, 'breast')->textInput() ?>
                     </div>
-                    <div class="col-6">
+                    <div class="col-12 col-sm-6">
                         <?= $form->field($post, 'ves')->textInput() ?>
                     </div>
 
-                    <div class="col-6">
+                    <div class="col-12 col-sm-6">
                         <?= $form->field($userNational, 'national_id')
                             ->dropDownList(\yii\helpers\ArrayHelper::map(\common\models\National::getAll() , 'id' , 'value')) ?>
                     </div>
 
-                    <div class="col-6">
+                    <div class="col-12 col-sm-6">
                         <?= $form->field($userHairColor, 'hair_color_id')
                             ->dropDownList(\yii\helpers\ArrayHelper::map(\common\models\HairColor::getAll(), 'id' , 'value')) ?>
                     </div>
 
-                    <div class="col-6">
+                    <div class="col-12 col-sm-6">
                         <?= $form->field($userIntimHair, 'color_id')
                             ->dropDownList(\yii\helpers\ArrayHelper::map(\common\models\IntimHair::getAll(), 'id' , 'value')) ?>
                     </div>
 
-                    <div class="col-6">
+                    <div class="col-12 col-sm-6">
 
                         <?= $form->field($userMetro, 'metro_id')->widget(\kartik\select2\Select2::classname(), [
                             'data' => ArrayHelper::map(\frontend\models\Metro::getMetro($city['id']), 'id' , 'value'),
@@ -235,7 +235,7 @@ $form = ActiveForm::begin([
                         ]) ?>
 
                     </div>
-                    <div class="col-6">
+                    <div class="col-12 col-sm-6">
 
                         <?= $form->field($userRayon, 'rayon_id')->widget(\kartik\select2\Select2::classname(), [
                             'data' => ArrayHelper::map(\common\models\Rayon::getAll($city['id']), 'id' , 'value'),
@@ -248,7 +248,7 @@ $form = ActiveForm::begin([
                         ]) ?>
                     </div>
 
-                    <div class="col-6">
+                    <div class="col-12 col-sm-6">
 
                         <?= $form->field($userOsobenosti, 'param_id')->widget(\kartik\select2\Select2::classname(), [
                             'data' => ArrayHelper::map(\common\models\Osobenosti::getAll(), 'id' , 'value'),
@@ -261,7 +261,7 @@ $form = ActiveForm::begin([
                         ]) ?>
                     </div>
 
-                    <div class="col-6">
+                    <div class="col-12 col-sm-6">
 
                         <?= $form->field($userService, 'service_id')->widget(\kartik\select2\Select2::classname(), [
                             'data' => ArrayHelper::map(\common\models\Service::getService(), 'id' , 'value'),
@@ -274,7 +274,7 @@ $form = ActiveForm::begin([
                         ]) ?>
                         </div>
 
-                    <div class="col-6">
+                    <div class="col-12 col-sm-6">
 
                         <?= $form->field($userPlace, 'place_id')->widget(\kartik\select2\Select2::classname(), [
                             'data' => ArrayHelper::map(\common\models\Place::getPlace(), 'id' , 'value'),
