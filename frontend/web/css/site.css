@@ -2591,6 +2591,9 @@ input::-webkit-input-placeholder {
     }
 }
 @media (max-width: 992px) {
+    .white-cabinet-block{
+        margin-bottom: 0px;
+    }
     .post .post-img{
         min-height: 396px;
     }
@@ -2610,6 +2613,14 @@ input::-webkit-input-placeholder {
     }
 }
 @media (max-width: 769px) {
+    .user-menu-item{
+        width: 109px;
+        height: 134px;
+        margin-bottom: 5px;
+    }
+    .user-menu-item-wrap{
+        padding: 0 5px;
+    }
     .post .post-img{
         min-height: 612px;
     }

@@ -10,17 +10,17 @@ $this->title = 'Кабинет';
 ?>
 <div class="container margin-top-20">
     <div class="row">
-        <div class="col-5">
+        <div class="col-12 col-md-12 col-lg-6 col-xl-5">
             <div class="white-cabinet-block cabinet-nav-block">
                 <div class="row">
                     <div class="col-12 user-info">
                         <div class="row">
-                            <div class="col-3">
+                            <div class="col-6 col-md-3 col-lg-6 col-xl-3">
                                 <div class="user-name-short">
                                     <?php echo mb_substr($user['username'], 0, 2) ; ?>
                                 </div>
                             </div>
-                            <div class="col-9">
+                            <div class="col-6 col-md-9 col-lg-6 col-xl-9">
                                 <div class="user-name-full">
                                     <?php echo $user['username'] ?>
                                 </div>
@@ -29,7 +29,7 @@ $this->title = 'Кабинет';
                     </div>
                     <div class="col-12 user-menu">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-6 col-sm-3 user-menu-item-wrap col-md-3 col-lg-6 ">
                                 <div class="user-menu-item ">
                                     <div class="user-menu-item-icon">
                                         <svg width="33" height="43" viewBox="0 0 33 43" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -63,14 +63,14 @@ $this->title = 'Кабинет';
                                         </svg>
                                     </div>
                                     <div class="user-menu-item-count red-text">
-                                        3
+                                        <?php echo \count($posts); ?>
                                     </div>
                                     <div class="user-menu-item-text grey-text">
                                         Мои анкеты
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-6 col-sm-3 user-menu-item-wrap col-md-3 col-lg-6">
                                 <div class="user-menu-item">
                                     <div class="user-menu-item-icon">
                                         <svg width="27" height="31" viewBox="0 0 27 31" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -93,14 +93,14 @@ $this->title = 'Кабинет';
                                         </svg>
                                     </div>
                                     <div class="user-menu-item-count red-text">
-                                        3
+                                        0
                                     </div>
                                     <div class="user-menu-item-text grey-text">
                                         Черный список
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-6 col-sm-3 user-menu-item-wrap col-md-3 col-lg-6">
                                 <div class="user-menu-item">
                                     <div class="user-menu-item-icon">
                                         <svg width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -123,14 +123,14 @@ $this->title = 'Кабинет';
                                     </svg>
                                     </div>
                                     <div class="user-menu-item-count red-text">
-                                        3
+                                        0
                                     </div>
                                     <div class="user-menu-item-text grey-text">
                                         Сообщения
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-6 col-sm-3 user-menu-item-wrap col-md-3 col-lg-6">
                                 <div class="user-menu-item">
                                     <div class="user-menu-item-icon">
                                         <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -146,7 +146,7 @@ $this->title = 'Кабинет';
                                     </svg>
                                     </div>
                                     <div class="user-menu-item-count red-text">
-                                        3
+                                        0
                                     </div>
                                     <div class="user-menu-item-text grey-text">
                                         Баланс
@@ -159,14 +159,14 @@ $this->title = 'Кабинет';
                 </div>
             </div>
         </div>
-        <div class="col-7">
+        <div class="col-12 col-md-12 col-lg-6 col-xl-7">
             <div class="row">
 
                 <div class="col-12 black-text">
                     Мои анкеты
                 </div>
 
-                <div class="col-6">
+                <div class="col-12 col-md-4 col-lg-6">
                     <div class="white-cabinet-block cabinet-nav-block margin-top-20 d-flex items-center nav-cabinet-block">
 
                         <div class="plus-wrap d-flex items-center">
@@ -189,7 +189,7 @@ $this->title = 'Кабинет';
 
                 <?php foreach ($posts as $post) : ?>
 
-                    <div class="col-6">
+                    <div class="col-12 col-md-4 col-lg-6 col-sm-6">
 
                         <div class="white-cabinet-block cabinet-nav-block margin-top-20 d-flex items-center nav-cabinet-block">
 
