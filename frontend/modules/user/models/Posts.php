@@ -14,6 +14,7 @@ use frontend\models\Files;
 use frontend\models\Metro;
 use frontend\models\UserMetro;
 use Yii;
+use yii\db\ActiveQuery;
 
 /**
  * This is the model class for table "posts".
@@ -64,14 +65,20 @@ class Posts extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getAvatar()
+    public function getAvatar() : ActiveQuery
     {
         return $this->hasOne(Files::class, ['related_id' => 'id'])->andWhere(['related_class' => self::class])
-            ->andWhere(['main' => 1])->cache(3600);
+            ->andWhere(['main' => 1]);
     }
-    public function getAllPhoto()
+    public function getAllPhoto() : ActiveQuery
     {
-        return $this->hasMany(Files::class, ['related_id' => 'id'])->andWhere(['related_class' => self::class])->cache(3600);
+        return $this->hasMany(Files::class, ['related_id' => 'id'])->andWhere(['related_class' => self::class]);
+    }
+
+    public function getGal() : ActiveQuery
+    {
+        return $this->hasMany(Files::class, ['related_id' => 'id'])
+            ->andWhere(['related_class' => self::class])->andWhere(['main' => Files::NOT_MAIN_PHOTO]);
     }
 
     public function getSelphiCount()

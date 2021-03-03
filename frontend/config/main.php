@@ -37,6 +37,7 @@ return [
                 'single' => [375, 450],
                 '1024' => [1024, 1024],
                 '175_210' => [175, 210],
+                '100_100' => [100, 100],
                 '200' => [200, 200],
                 '59' => [59, 59],
                 '77' => [77, 77],
@@ -109,6 +110,7 @@ return [
 
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet' => 'user/cabinet/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/post/add' => 'user/post/add',
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/post/edit/<id:[0-9]+>' => 'user/post/edit',
 
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/<param:[a-z-0-9]+>' => 'filter/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/<param:([a-z-0-9]+/)+[a-z-0-9]+>' => 'filter/index',

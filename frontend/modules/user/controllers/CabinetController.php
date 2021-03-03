@@ -2,6 +2,7 @@
 
 namespace frontend\modules\user\controllers;
 
+use frontend\modules\user\models\Posts;
 use Yii;
 
 class CabinetController extends \yii\web\Controller
@@ -20,9 +21,13 @@ class CabinetController extends \yii\web\Controller
 
         $user = Yii::$app->user->identity;
 
+        $posts = Posts::find()->where(['user_id' => Yii::$app->user->id])->with('avatar')->all();
+
         return $this->render('index', [
-            'user' => $user
+            'user'  => $user,
+            'posts' => $posts,
         ]);
+
     }
 
 }

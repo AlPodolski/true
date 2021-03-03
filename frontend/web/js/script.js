@@ -15,6 +15,10 @@
                 if (l.length > 0) {
                     var a = l[0], o = new FileReader;
                     o.addEventListener("load", function (l) {
+                        var fileField = document.getElementById('cabinet-main-img');
+                        fileField.remove();
+                        var cabinetLabel = document.getElementById('cabinet-main-img-label');
+                        cabinetLabel.classList.remove('exist-img');
                         var o = l.target;
                         a.type.match("image") ? (e(i.preview_box).css("background-image", "url(" + o.result + ")"), e(i.preview_box).css("background-size", "cover"), e(i.preview_box).css("background-position", "center center")) : a.type.match("audio") ? e(i.preview_box).html("<audio controls><source src='" + o.result + "' type='" + a.type + "' />Your browser does not support the audio element.</audio>") : alert("This file type is not supported yet.")
                     }), 0 == i.no_label && e(i.label_field).html(i.label_selected), o.readAsDataURL(a), i.success_callback && i.success_callback()
@@ -63,6 +67,7 @@ $(document).ready(function() {
 
     $("#addpost-video").on('change', function () {
 
+        $("#change-video-label").text('');
         $("#preview-video-label").text('Видео выбрано');
 
     });

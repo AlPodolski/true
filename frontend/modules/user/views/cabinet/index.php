@@ -1,6 +1,11 @@
 <?php
 
 /* @var $user \common\models\User */
+/* @var $posts \frontend\modules\user\models\Posts[] */
+
+use frontend\widgets\PhotoWidget;
+
+$this->title = 'Кабинет';
 
 ?>
 <div class="container margin-top-20">
@@ -166,11 +171,11 @@
 
                         <div class="plus-wrap d-flex items-center">
                             <a href="/cabinet/post/add">
-                            <span class="plus d-flex items-center">
+                                <span class="plus d-flex items-center">
                                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M11.4 5.4H6.60004V0.599963C6.60004 0.268835 6.3312 0 5.99996 0C5.66884 0 5.4 0.268835 5.4 0.599963V5.4H0.599963C0.268835 5.4 0 5.66884 0 5.99996C0 6.3312 0.268835 6.60004 0.599963 6.60004H5.4V11.4C5.4 11.7312 5.66884 12 5.99996 12C6.3312 12 6.60004 11.7312 6.60004 11.4V6.60004H11.4C11.7312 6.60004 12 6.3312 12 5.99996C12 5.66884 11.7312 5.4 11.4 5.4Z" fill="white"/>
                                     </svg>
-                            </span>
+                                </span>
                             </a>
                         </div>
                         <div class="red-text text-center margin-top-20">
@@ -181,6 +186,42 @@
 
                     </div>
                 </div>
+
+                <?php foreach ($posts as $post) : ?>
+
+                    <div class="col-6">
+
+                        <div class="white-cabinet-block cabinet-nav-block margin-top-20 d-flex items-center nav-cabinet-block">
+
+                            <?php echo PhotoWidget::widget([
+                                'path' => $post['avatar']['file'] ,
+                                'size' => '100_100',
+                                'options' => [
+                                    'class' => 'img user-img cabinet-img',
+                                    'loading' => 'lazy',
+                                    'alt' => $post['name'],
+                                ],
+                            ]  ); ?>
+
+                            <div class="user-name-full">
+                                <?= $post['name'] ?>
+                            </div>
+
+                            <div class="edit-block margin-top-20">
+
+                                <a href="/cabinet/post/edit/<?= $post['id'] ?>" class="edit-anket edit-block-item d-flex items-center">
+                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16.531 0L2.62518 13.9058L0 22L8.0942 19.3749L22 5.46902L16.531 0ZM20.177 5.46902L18.354 7.29205L14.7079 3.64603L16.5309 1.82299L20.177 5.46902ZM3.47888 15.452L6.54801 18.5212L5.17146 18.9676L3.03239 16.8285L3.47888 15.452ZM4.10197 14.2521L13.7964 4.55757L15.1637 5.92483L5.46919 15.6193L4.10197 14.2521ZM6.38069 16.5308L16.0752 6.83624L17.4425 8.20351L7.74795 17.8981L6.38069 16.5308ZM2.58599 18.2051L3.79496 19.4141L2.00565 19.9943L2.58599 18.2051Z" fill="white"/>
+                                    </svg>
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                <?php endforeach; ?>
 
             </div>
         </div>

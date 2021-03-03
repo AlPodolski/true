@@ -7,18 +7,6 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 
-$videoForm = new \frontend\modules\user\models\forms\VideoForm();
-$avatarForm = new \frontend\modules\user\models\forms\AvatarForm();
-$photoForm = new \frontend\modules\user\models\forms\PhotoForm();
-$userNational = new \frontend\modules\user\models\UserNational();
-$userMetro = new \frontend\models\UserMetro();
-$userPlace = new \frontend\modules\user\models\UserPlace();
-$userHairColor = new \frontend\modules\user\models\UserHairColor();
-$userIntimHair = new \frontend\modules\user\models\UserIntimHair();
-$userRayon = new \frontend\modules\user\models\UserRayon();
-$userOsobenosti = new \frontend\modules\user\models\UserOsobenosti();
-$userService = new \frontend\modules\user\models\UserService();
-
 $this->registerJsFile('/js/jquery.maskedinput.js', ['depends' => [yii\web\YiiAsset::className()]]);
 
 $form = ActiveForm::begin([
@@ -33,11 +21,11 @@ $form = ActiveForm::begin([
                 <div class="row">
                     <div class="col-12 main-photo">
 
-                        <label for="addpost-image" class="<?php if (isset($model->img)) echo 'exist-img' ?> img-label no-img-bg main-img">
+                        <label for="addpost-image" id="cabinet-main-img-label" class="<?php if (isset($post['avatar']['file'])) echo 'exist-img' ?> img-label no-img-bg main-img">
 
-                            <?php if (isset($model->img)) : ?>
+                            <?php if (isset($post['avatar']['file'])) : ?>
 
-                                <img class="main-img" src="<?php echo Yii::$app->params['desc_path'].$model->img ?>">
+                                <img id="cabinet-main-img" src="<?php echo $post['avatar']['file'] ?>">
 
                             <?php endif; ?>
 
@@ -67,23 +55,60 @@ $form = ActiveForm::begin([
                         <div class="row">
 
                             <div class="col-12">
-                                <div class="gallery-wrap d-flex items-center " id="preview">
+
+                                <?php if (isset($photoForm->photo) and $photoForm->photo) : ?>
+
+                                <div class="gallery-wrap d-flex items-center ">
+
+                                    <?php foreach ($photoForm->photo as $photoItem) : ?>
+
+                                        <div class="small-no-img">
+
+                                            <label for="addpost-photo" class="img-label ">
+
+                                                <img class="preview" src="<?php echo $photoItem['file'] ?>" alt="">
+
+                                            </label>
+
+                                        </div>
+
+                                    <?php endforeach; ?>
+
                                     <div class="no-img-bg small-no-img">
                                         <label for="addpost-photo" class="img-label small-no-img-label">
 
                                         </label>
                                     </div>
+
+                                </div>
+
+                                    <div class="gallery-wrap d-flex items-center " id="preview">
+                                    </div>
+
+                                <?php else : ?>
+
+                                    <div class="gallery-wrap d-flex items-center " id="preview">
                                     <div class="no-img-bg small-no-img">
                                         <label for="addpost-photo" class="img-label small-no-img-label">
 
                                         </label>
                                     </div>
+
+                                    <div class="no-img-bg small-no-img">
+                                        <label for="addpost-photo" class="img-label small-no-img-label">
+
+                                        </label>
+                                    </div>
+
                                     <div class="no-img-bg small-no-img">
                                         <label for="addpost-photo" class="img-label small-no-img-label">
 
                                         </label>
                                     </div>
                                 </div>
+
+                                <?php endif; ?>
+
                             </div>
 
                         </div>
@@ -106,13 +131,35 @@ $form = ActiveForm::begin([
                         <div class="row">
 
                             <div class="col-12">
-                                <div class="gallery-wrap d-flex items-center " id="preview">
-                                    <div class="no-img-bg small-no-img no-video">
-                                        <label id="preview-video-label" for="addpost-video" class="img-label small-no-img-label">
 
+                                <?php if ($post['video']) : ?>
+
+                                    <div class="gallery-wrap d-flex items-center" id="preview">
+
+                                        <label id="preview-video-label" for="addpost-video" class="img-label">
+                                            <video controls="controls">
+                                                <source src="<?php echo $post['video'] ?>" >
+                                            </video>
                                         </label>
+
+                                        <label id="change-video-label" for="addpost-video" class="img-label">
+                                            Изменить видео
+                                        </label>
+
                                     </div>
-                                </div>
+
+                                <?php else : ?>
+
+                                    <div class="gallery-wrap d-flex items-center " id="preview">
+                                        <div class="no-img-bg small-no-img no-video">
+                                            <label id="preview-video-label" for="addpost-video" class="img-label small-no-img-label">
+
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                <?php endif; ?>
+
                             </div>
 
                         </div>
@@ -145,19 +192,19 @@ $form = ActiveForm::begin([
                         <?= $form->field($post, 'about')->textarea() ?>
                     </div>
                     <div class="col-6">
-                        <?= $form->field($post, 'price')->textInput(['value' => 3000]) ?>
+                        <?= $form->field($post, 'price')->textInput() ?>
                     </div>
                     <div class="col-6">
-                        <?= $form->field($post, 'age')->textInput(['value' => 18]) ?>
+                        <?= $form->field($post, 'age')->textInput() ?>
                     </div>
                     <div class="col-6">
-                        <?= $form->field($post, 'rost')->textInput(['value' => 160]) ?>
+                        <?= $form->field($post, 'rost')->textInput() ?>
                     </div>
                     <div class="col-6">
-                        <?= $form->field($post, 'breast')->textInput(['value' => 3]) ?>
+                        <?= $form->field($post, 'breast')->textInput() ?>
                     </div>
                     <div class="col-6">
-                        <?= $form->field($post, 'ves')->textInput(['value' => 50]) ?>
+                        <?= $form->field($post, 'ves')->textInput() ?>
                     </div>
 
                     <div class="col-6">

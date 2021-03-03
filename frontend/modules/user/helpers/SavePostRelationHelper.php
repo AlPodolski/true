@@ -30,6 +30,7 @@ class SavePostRelationHelper
 
             $object->$paramName = $params;
             $object->post_id = $postId;
+            $object->city_id = $cityId;
 
             $object->save();
 
