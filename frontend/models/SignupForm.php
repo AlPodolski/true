@@ -42,12 +42,12 @@ class SignupForm extends Model
     /**
      * Signs user up.
      *
-     * @return bool whether the creating new account was successful and email was sent
+     * @return User | false
      */
     public function signup()
     {
         if (!$this->validate()) {
-            return null;
+            return false;
         }
         
         $user = new User();
@@ -57,7 +57,9 @@ class SignupForm extends Model
         $user->setPassword($this->password);
         $user->generateAuthKey();
         $user->generateEmailVerificationToken();
-        return $user->save() && $this->sendEmail($user);
+        if ($user->save() && $this->sendEmail($user)) return $user;
+
+        return false;
 
     }
 
@@ -76,7 +78,7 @@ class SignupForm extends Model
             )
             ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
             ->setTo($this->email)
-            ->setSubject('Account registration at ' . Yii::$app->name)
+            ->setSubject('Регистрация на сайте ' . Yii::$app->name)
             ->send();
     }
 }

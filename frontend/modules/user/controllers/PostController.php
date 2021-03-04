@@ -52,6 +52,7 @@ class PostController extends Controller
         $city = City::getCity($city);
 
         if ($post->load(Yii::$app->request->post())
+            and Yii::$app->user->identity['status'] == \common\models\User::STATUS_ACTIVE
             and $userNational->load(Yii::$app->request->post())
             and $userMetro->load(Yii::$app->request->post())
             and $userPlace->load(Yii::$app->request->post())
@@ -196,7 +197,7 @@ class PostController extends Controller
 
         $post = Posts::find()->where(['id' => $id])->with('avatar', 'gal')->one();
 
-        if (!$post or $post['user_id'] != Yii::$app->user->id) {
+        if (!$post or $post['user_id'] != Yii::$app->user->id or Yii::$app->user->identity['status'] == \common\models\User::STATUS_INACTIVE) {
 
             Yii::$app->session->addFlash('warning' , 'Отказано в доступе');
 

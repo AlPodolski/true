@@ -64,9 +64,9 @@ class UserController extends Controller
 
         $model->city_id = $cityInfo['id'];
 
-        if ($model->load(Yii::$app->request->post()) && $model->signup()) {
+        if ($model->load(Yii::$app->request->post()) && $user = $model->signup() and Yii::$app->user->login($user)) {
             Yii::$app->session->setFlash('success', 'Благодарим за регистрацию, для активации аккаунта перейдите по ссылке в письме ');
-            return $this->goHome();
+            return $this->redirect('/cabinet');
         }
 
         return $this->goHome();
@@ -137,8 +137,8 @@ class UserController extends Controller
         }
         if ($user = $model->verifyEmail()) {
             if (Yii::$app->user->login($user)) {
-                Yii::$app->session->setFlash('success', 'Your email has been confirmed!');
-                return $this->goHome();
+                Yii::$app->session->setFlash('success', 'Ваша почта подтверждена!');
+                return $this->redirect('/cabinet');
             }
         }
 
