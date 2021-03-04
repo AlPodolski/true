@@ -12,9 +12,21 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <div class="form-group">
+        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+    </div>
+
     <?= $form->field($model, 'city_id')->textInput() ?>
 
     <?= $form->field($model, 'user_id')->textInput() ?>
+
+    <?= $form->field($model, 'status')->dropDownList(
+            [
+                    \frontend\modules\user\models\Posts::POST_ON_MODARATION_STATUS => 'Ожидает проверки',
+                    \frontend\modules\user\models\Posts::POST_ON_PUPLICATION_STATUS => 'Публикуется',
+                    \frontend\modules\user\models\Posts::POST_DONT_PUBLICATION_STATUS => 'Не публикуется',
+            ])
+    ?>
 
     <?= $form->field($model, 'created_at')->textInput() ?>
 
@@ -41,6 +53,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'breast')->textInput() ?>
 
     <?= $form->field($model, 'ves')->textInput() ?>
+
+
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

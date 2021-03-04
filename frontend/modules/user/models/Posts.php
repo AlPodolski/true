@@ -36,12 +36,17 @@ use yii\helpers\ArrayHelper;
  * @property int|null $breast
  * @property int|null $ves
  * @property int|null $check_photo_status
+ * @property int|null $status
  */
 class Posts extends \yii\db\ActiveRecord
 {
 
     const INDI_CATEGORY = 1;
     const SALON_CATEGORY = 2;
+
+    const POST_ON_MODARATION_STATUS = 0;
+    const POST_ON_PUPLICATION_STATUS = 1;
+    const POST_DONT_PUBLICATION_STATUS = 2;
 
     /**
      * {@inheritdoc}
@@ -57,7 +62,7 @@ class Posts extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['city_id', 'user_id', 'created_at', 'updated_at', 'category', 'check_photo_status', 'price', 'age', 'rost', 'ves', 'breast'], 'integer'],
+            [['city_id', 'user_id', 'created_at', 'updated_at', 'category', 'check_photo_status', 'price', 'age', 'rost', 'ves', 'breast', 'status'], 'integer'],
             [['name'], 'string', 'max' => 60],
             [['phone'], 'string', 'max' => 20 ],
             [['name', 'phone', 'price'],'required'],
@@ -248,6 +253,7 @@ class Posts extends \yii\db\ActiveRecord
             'breast' => 'Грудь',
             'ves' => 'Вес',
             'price' => 'Цена',
+            'status' => 'Статус',
         ];
     }
 }

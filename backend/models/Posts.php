@@ -17,7 +17,8 @@ class Posts extends PostsModel
     public function rules()
     {
         return [
-            [['id', 'city_id', 'user_id', 'created_at', 'updated_at', 'category', 'check_photo_status', 'price', 'age', 'rost', 'breast', 'ves'], 'integer'],
+            [['id', 'city_id', 'user_id', 'created_at', 'updated_at', 'category',
+                'check_photo_status', 'price', 'age', 'rost', 'breast', 'ves', 'status'], 'integer'],
             [['name', 'phone', 'about', 'video'], 'safe'],
         ];
     }
