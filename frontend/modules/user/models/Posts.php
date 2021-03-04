@@ -15,6 +15,7 @@ use frontend\models\Metro;
 use frontend\models\UserMetro;
 use Yii;
 use yii\db\ActiveQuery;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "posts".
@@ -79,6 +80,15 @@ class Posts extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Files::class, ['related_id' => 'id'])
             ->andWhere(['related_class' => self::class])->andWhere(['main' => Files::NOT_MAIN_PHOTO]);
+    }
+
+    public function getUserAvatar(){
+
+        return ArrayHelper::getValue(Files::find()
+            ->where(['main' => 1])
+            ->andWhere(['related_id' => $this->id, 'related_class' => Posts::class])
+            ->asArray()->one(), 'file');
+
     }
 
     public function getSelphiCount()

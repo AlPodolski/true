@@ -22,6 +22,7 @@ use yii\web\IdentityInterface;
  * @property integer $created_at
  * @property integer $updated_at
  * @property integer $city_id
+ * @property integer $role
  * @property string $password write-only password
  */
 class User extends ActiveRecord implements IdentityInterface
@@ -30,6 +31,8 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_INACTIVE = 9;
     const STATUS_ACTIVE = 10;
 
+    const USER_ROLE = 0;
+    const ADMIN_ROLE = 1;
 
     /**
      * {@inheritdoc}
@@ -56,6 +59,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             ['city_id', 'integer'],
+            ['role', 'integer'],
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
         ];
@@ -96,6 +100,17 @@ class User extends ActiveRecord implements IdentityInterface
     public static function findByEmail($email)
     {
         return static::findOne(['email' => $email]);
+    }
+
+    /**
+     * Finds user by username
+     *
+     * @param $email
+     * @return static|null
+     */
+    public static function findAdmin(string $email) : User
+    {
+        return static::findOne(['email' => $email, 'role' => User::ADMIN_ROLE]);
     }
 
     /**

@@ -8,6 +8,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 
 $this->registerJsFile('/js/jquery.maskedinput.js', ['depends' => [yii\web\YiiAsset::className()]]);
+$this->registerJsFile('/js/form_cabinet.js', ['depends' => [yii\web\YiiAsset::className()]]);
 
 $form = ActiveForm::begin([
     'id' => 'login-form',

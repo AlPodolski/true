@@ -22,7 +22,9 @@
         "kartik-v/yii2-icons": "@dev",
         "league/csv": "*",
         "dastanaron/yii2-translit": "*",
-        "yiisoft/yii2-authclient": "~2.2.0"
+        "yiisoft/yii2-authclient": "~2.2.0",
+        "bower-asset/fontawesome": "5.3.1",
+        "bower-asset/admin-lte": "3.0.2"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

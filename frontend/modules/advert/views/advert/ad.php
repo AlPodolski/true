@@ -5,7 +5,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 $this->registerJsFile('/files/js/prev.js', ['depends' => [\frontend\assets\AppAsset::className()]]);
-$this->registerJsFile('/files/js/cabinet.js', ['depends' => [\frontend\assets\AppAsset::className()]]);
+$this->registerJsFile('/files/js/form_cabinet.js', ['depends' => [\frontend\assets\AppAsset::className()]]);
 
 $this->title = 'Добавить объявление';
 

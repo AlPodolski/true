@@ -62,16 +62,42 @@ class LoginForm extends Model
         
         return false;
     }
+    /**
+     * Logs in a user using the provided username and password.
+     *
+     * @return bool whether the user is logged in successfully
+     */
+    public function loginAdmin() : bool
+    {
+        if ($this->validate()) {
+            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
+        }
+
+        return false;
+    }
 
     /**
      * Finds user by [[username]]
      *
      * @return User|null
      */
-    protected function getUser()
+    protected function getUser() : User
     {
         if ($this->_user === null) {
             $this->_user = User::findByEmail($this->email);
+        }
+
+        return $this->_user;
+    }
+    /**
+     * Finds user by [[username]]
+     *
+     * @return User|null
+     */
+    protected function getAdmin() : User
+    {
+        if ($this->_user === null) {
+            $this->_user = User::findAdmin($this->email);
         }
 
         return $this->_user;
