@@ -4,9 +4,10 @@
 /* @var $user_id integer */
 
 ?>
-<li onclick="get_dialog(this)" data-to="<?php echo $dialog['companion']['user_id'] ?>" data-dialog-id="<?php echo $dialog->lastMessage['chat_id']; ?>"
+<li onclick="get_dialog(this)" data-to="<?php echo $dialog['companion']['user_id'] ?>"
+    data-dialog-id="<?php echo $dialog->lastMessage['chat_id']; ?>"
     class="dialog_item <?php if ($dialog->lastMessage['status'] == 0 and $dialog['lastMessage']['from'] != $user_id)
-        echo 'not-read-dialog'; ?> " >
+        echo 'not-read-dialog'; ?> ">
     <div class="row">
         <div class="col-2 col-md-1 dialog-photo-wrap">
             <div class="dialog-photo ">

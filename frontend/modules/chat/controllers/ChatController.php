@@ -124,11 +124,9 @@ class ChatController extends Controller
 
             if ($model->validate()) {
 
-                $dialog_id = $model->save();
+                $model->save();
 
             }
-
-
 
         }
 

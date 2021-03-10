@@ -2268,6 +2268,36 @@ select{
     border-left: 1px solid #dfdfdf;
     flex-direction: column;
 }
+.right-message{
+    text-align:right;
+    color: #7C7C7C;
+}
+.right-message .message-wrap{
+    background: #F2F2F2;
+    color: #7C7C7C;
+}
+.right-message .message-date{
+    background: #F2F2F2;
+    color: #7C7C7C;
+}
+.chat-wrap {
+    max-height: 550px;
+    overflow-y: scroll;
+    position: relative;
+    right: -12px;
+    padding-right: 10px;
+}
+.chat {
+    display: flex;
+    flex-direction: column-reverse;
+}
+.chat-wrap {
+    max-height: 550px;
+    overflow-y: scroll;
+    position: relative;
+    right: -12px;
+    padding-right: 10px;
+}
 .chat-block , .comment-wall-form{
     padding-left: 15px;
 }

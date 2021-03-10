@@ -42,7 +42,7 @@ function send_message(object){
         // async: false,
         success: function (data) {
 
-            add_message(img, name, id, text);
+            add_message(text);
 
             $('#message-form textarea').val('');
 
@@ -52,6 +52,24 @@ function send_message(object){
             alert("Ошибка");
         },
     });
+
+}
+
+function add_message(text){
+
+    $('.chat').prepend('<div class="wall-tem right-message">\n' +
+        '    <div class="post_header">\n' +
+        '        <div class="post_header_info">\n' +
+        '            <div class="post-text">\n' +
+        '                <span class="message-wrap">\n' +
+        '                    '+text +
+        '                </span>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '    </div>\n' +
+        '    <div style="clear: both">\n' +
+        '    </div>\n' +
+        '</div>');
 
 }
 
