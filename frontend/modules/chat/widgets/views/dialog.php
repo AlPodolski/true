@@ -88,26 +88,6 @@ $photoModel = new \frontend\modules\chat\models\forms\SendPhotoForm();
 
     <?= $form->field($messageForm, 'text' , ['options' => ['class' => 'form-otvet']])->textarea(['placeholder' => 'Напишите что то'])->label(false) ?>
 
-    <?php echo PhotoWidget::widget([
-        'path' => $user['userAvatarRelations']['file'],
-        'size' => 'dialog',
-        'options' => [
-            'class' => 'img d-none user-img',
-            'loading' => 'lazy',
-            'alt' => $user['username'],
-        ],
-    ]  ); ?>
-
-    <?php echo PhotoWidget::widget([
-        'path' => $userTo['userAvatarRelations']['file'],
-        'size' => 'dialog',
-        'options' => [
-            'class' => 'img d-none user-img user-to',
-            'loading' => 'lazy',
-            'alt' => $userTo['username'],
-        ],
-    ]  ); ?>
-
     <span
           data-name="<?php echo $user['username'];  ?>"
           data-user-id="<?php echo $user['id'];  ?>"

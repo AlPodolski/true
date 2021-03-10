@@ -1,6 +1,7 @@
 function get_dialog(object){
 
     var dialog_id = $(object).attr('data-dialog-id');
+    var to = $(object).attr('data-to');
 
     if(!$(object).closest('.dialog_list-wrap').hasClass('dialog_list-wrap-with-dialog')){
 
@@ -11,7 +12,7 @@ function get_dialog(object){
     $.ajax({
         type: 'POST',
         url: "/cabinet/chat/get", //Путь к обработчику
-        data: 'id=' + dialog_id,
+        data: 'dialog_id=' + dialog_id+'&to='+to,
         response: 'text',
         dataType: "html",
         cache: false,
@@ -21,6 +22,36 @@ function get_dialog(object){
 
         }
     })
+
+}
+
+function send_message(object){
+
+    var dialog_id = $(object).attr('data-dialog-id');
+    var to = $(object).attr('data-user-id-to');
+
+    var text = $('#sendmessageform-text').val();
+
+    var sendData = 'dialog_id='+dialog_id+'&to='+to+'&text='+text;
+
+    $.ajax({
+        url: '/cabinet/chat/send',
+        type: 'POST',
+        data: sendData,
+        datatype:'json',
+        // async: false,
+        success: function (data) {
+
+            add_message(img, name, id, text);
+
+            $('#message-form textarea').val('');
+
+        },
+
+        error: function (data) {
+            alert("Ошибка");
+        },
+    });
 
 }
 

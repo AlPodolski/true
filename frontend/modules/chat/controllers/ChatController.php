@@ -3,25 +3,31 @@
 namespace frontend\modules\chat\controllers;
 
 use common\models\User;
-use frontend\components\helpers\SaveFileHelper;
-use frontend\components\helpers\SocketHelper;
-use frontend\components\helpers\VipHelper;
 use frontend\models\Files;
 use frontend\modules\chat\models\Chat;
 use frontend\modules\chat\models\forms\SendMessageForm;
 use frontend\modules\chat\models\forms\SendPhotoForm;
 use frontend\modules\chat\models\Message;
 use frontend\modules\chat\models\relation\UserDialog;
-use frontend\modules\user\components\behavior\LastVisitTimeUpdate;
-use frontend\modules\user\models\Profile;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
-use frontend\components\helpers\CheckVipDialogHelper;
 use yii\web\UploadedFile;
 
 class ChatController extends Controller
 {
+
+    /**
+     * @inheritdoc
+     */
+    public function beforeAction($action)
+    {
+
+        $this->enableCsrfValidation = false;
+
+        return parent::beforeAction($action);
+
+    }
 
     public function behaviors()
     {
@@ -73,10 +79,10 @@ class ChatController extends Controller
     public function actionGet($city)
     {
 
-        if (Yii::$app->request->isPost and $dialog_id = Yii::$app->request->post('id')) {
+        if (Yii::$app->request->isPost) {
 
-            $userToId = ArrayHelper::getColumn(UserDialog::find()->where(['dialog_id' => $dialog_id])
-                ->andWhere(['<>' , 'user_id', Yii::$app->user->id])->asArray()->one(), 'user_id');
+            $dialog_id = Yii::$app->request->post('dialog_id');
+            $userToId = Yii::$app->request->post('to');
 
             $user = User::find()->where(['id' => Yii::$app->user->id])
                 ->with('avatar')
@@ -87,6 +93,7 @@ class ChatController extends Controller
                 ->with('avatar')
                 ->asArray()
                 ->one();
+
 
             return $this->renderFile(Yii::getAlias('@app/modules/chat/views/chat/get-dialog.php'), [
                 'dialog_id' => $dialog_id,
@@ -103,46 +110,28 @@ class ChatController extends Controller
 
     public function actionSend($city)
     {
-
-
         if (Yii::$app->request->isPost) {
 
             $model = new SendMessageForm();
 
             $model->from_id = Yii::$app->user->id;
             $model->created_at = \time();
+            $model->to = Yii::$app->request->post('to');
+            $model->text = Yii::$app->request->post('text');
+            $model->chat_id = Yii::$app->request->post('dialog_id');
 
             $model->load(Yii::$app->request->post());
 
-            if (!\in_array(Yii::$app->user->id, Yii::$app->params['admin_id'])
-                and !\in_array($model->user_id, Yii::$app->params['admin_id'])
-                and !VipHelper::checkVip(Yii::$app->user->identity['vip_status_work'])) {
-
-                if ($model->chat_id == '') {
-
-                    if (!CheckVipDialogHelper::checkLimitDialog(Yii::$app->user->id, Yii::$app->params['dialog_day_limit'])) return 'Превышен лимит диалогов';
-
-                } else {
-
-                    if (!CheckVipDialogHelper::checkExistDialogId(Yii::$app->user->id, $model->chat_id) and
-                        !CheckVipDialogHelper::checkLimitDialog(Yii::$app->user->id, Yii::$app->params['dialog_day_limit'])
-                    ) return 'Превышен лимит диалогов';
-
-                }
-
-            }
-
             if ($model->validate()) {
 
-                if ($dialog_id = $model->save() and !CheckVipDialogHelper::checkExistDialogId(Yii::$app->user->id, $dialog_id)) {
-
-                    CheckVipDialogHelper::addDialogIdToDay(Yii::$app->user->id, $dialog_id);
-
-                }
+                $dialog_id = $model->save();
 
             }
 
+
+
         }
+
     }
 
     public function actionSendPhoto()

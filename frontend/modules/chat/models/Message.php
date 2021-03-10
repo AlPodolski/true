@@ -15,9 +15,7 @@ use Yii;
  * @property int|null $created_at
  * @property int|null $status Отражает состояние сообщения, прочитано или нет
  * @property int $id
- * @property string $class
- * @property string $related_id
- * @property integer $type
+ * @property integer $to
  */
 class Message extends \yii\db\ActiveRecord
 {
@@ -39,9 +37,9 @@ class Message extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['from'], 'required'],
-            [['chat_id', 'from', 'created_at', 'status', 'related_id', 'type'], 'integer'],
-            [['message', 'class'], 'string'],
+            [['from', 'to'], 'required'],
+            [['chat_id', 'from', 'created_at', 'status', 'to'], 'integer'],
+            [['message'], 'string'],
         ];
     }
 
