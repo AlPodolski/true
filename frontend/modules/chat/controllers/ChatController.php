@@ -82,6 +82,7 @@ class ChatController extends Controller
         if (Yii::$app->request->isPost) {
 
             $dialog_id = Yii::$app->request->post('dialog_id');
+
             $userToId = Yii::$app->request->post('to');
 
             $user = User::find()->where(['id' => Yii::$app->user->id])

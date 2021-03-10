@@ -42,7 +42,7 @@ class GetDialogsHelper
 
     public static function serRead($chat_id, $user_id){
 
-        Message::updateAll(['status' => 1], [ 'and',  ['chat_id' => $chat_id] , ['<>', 'from' ,$user_id ]]);
+        Message::updateAll(['status' => 1], [ 'and',  ['chat_id' => $chat_id] , ['=', 'to' ,$user_id ]]);
 
     }
 

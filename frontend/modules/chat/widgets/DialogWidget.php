@@ -4,6 +4,7 @@
 namespace frontend\modules\chat\widgets;
 
 use frontend\modules\chat\components\helpers\GetDialogsHelper;
+use Yii;
 use yii\base\Widget;
 
 class DialogWidget extends Widget
@@ -19,7 +20,7 @@ class DialogWidget extends Widget
 
         $dialog = GetDialogsHelper::getDialog($this->dialog_id);
 
-        GetDialogsHelper::serRead($dialog['dialog_id'], $this->user['id']);
+        GetDialogsHelper::serRead($dialog['dialog_id'], Yii::$app->user->id);
 
         return $this->render('dialog', [
             'dialog' => $dialog,
