@@ -19,6 +19,9 @@ return [
         'advert' => [
             'class' => 'frontend\modules\advert\advert',
         ],
+        'chat' => [
+            'class' => 'frontend\modules\chat\Chat',
+        ],
     ],
     'components' => [
         'imageCache' => [
@@ -111,6 +114,9 @@ return [
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet' => 'user/cabinet/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/post/add' => 'user/post/add',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/post/edit/<id:[0-9]+>' => 'user/post/edit',
+
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/chat' => 'chat/chat/index',
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/chat/get' => 'chat/chat/get',
 
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/site/verify-email' => 'user/user/verify-email',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/site/request-password-reset' => 'user/user/request-password-reset',

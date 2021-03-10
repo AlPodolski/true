@@ -2256,6 +2256,70 @@ select{
     display: inline-block;
     color: #999999;
 }
+.dialog_list-wrap-with-dialog .dialog_list {
+    display: flex;
+    flex: 0 0 40%;
+    max-width: 40%;
+}
+.dialog_list-wrap-with-dialog .dialog {
+    display: flex;
+    flex: 0 0 60%;
+    max-width: 60%;
+    border-left: 1px solid #dfdfdf;
+    flex-direction: column;
+}
+.chat-block , .comment-wall-form{
+    padding-left: 15px;
+}
+.message-date{
+    color:#fff;
+    font-size: 10px;
+    margin-left: 10px;
+}
+.chat-block{
+    flex: 1 0 auto;
+}
+#sendmessageform-text{
+    height: 39px;
+    border: none;
+    margin-top: 10px;
+}
+#sendmessageform-text:focus{
+    border: none;
+    box-shadow: none;
+}
+.message-send-btn{
+    margin-left: 15px;
+    padding: 8px;
+    height: 40px;
+    margin-top: auto;
+}
+.field-sendmessageform-text{
+    flex: 1 0 auto;
+}
+.comment-wall-form {
+    border-top: 1px solid #DFDFDF;
+}
+.post-text {
+    line-height: 60px;
+}
+.message-wrap{
+    background: #F74952;
+    border-radius: 47px;
+    color: #fff;
+    padding: 15px 18px;
+}
+.dialog_item_ul{
+    width: 100%;
+}
+.dialog-name{
+    margin-bottom: 5px;
+    margin-top: 3px;
+}
+.nim-dialog--inner-text{
+    font-weight: 100;
+    font-size: 15px;
+}
 .reting-item{
     margin-bottom: 30px;
 }
@@ -2268,6 +2332,14 @@ select{
 }
 .send-btn-wrap .orange-btn{
     padding: 7px 20px;
+}
+.dialog_item{
+    padding-bottom: 15px;
+    border-bottom: 1px solid #DFDFDF;
+    padding-top: 15px;
+}
+.dialog_item:last-child{
+    border-bottom: none;
 }
 .review-textarea{
     width: 100%;
@@ -2554,6 +2626,27 @@ input::-webkit-input-placeholder {
 }
 .user-menu-item-text{
     font-size: 14px;
+}
+.dialog_list-wrap{
+    background: #FFFFFF;
+    border: 1px solid #EDEDED;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.06);
+    border-radius: 5px;
+    padding: 10px 10px;
+    min-height: 527px;
+}
+.dialog_item_ul{
+    padding-left: 0;
+    list-style: none;
+    margin-bottom: 0;
+}
+.dialog_list-wrap-with-dialog .dialog-photo-wrap{
+    max-width: 95px;
+    flex: 20%;
+}
+.dialog_list-wrap-with-dialog .nim-dialog--content{
+    flex: 80%;
 }
 @media (max-width: 1199px) {
     .post .post-img{

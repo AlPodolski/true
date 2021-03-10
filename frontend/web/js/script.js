@@ -1,4 +1,28 @@
+function get_dialog(object){
 
+    var dialog_id = $(object).attr('data-dialog-id');
+
+    if(!$(object).closest('.dialog_list-wrap').hasClass('dialog_list-wrap-with-dialog')){
+
+        $(object).closest('.dialog_list-wrap').addClass('dialog_list-wrap-with-dialog d-flex' );
+
+    }
+
+    $.ajax({
+        type: 'POST',
+        url: "/cabinet/chat/get", //Путь к обработчику
+        data: 'id=' + dialog_id,
+        response: 'text',
+        dataType: "html",
+        cache: false,
+        success: function (data) {
+
+            $('.dialog').html(data)
+
+        }
+    })
+
+}
 
 function show_otzivi_block(object){
 
