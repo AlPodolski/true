@@ -28,6 +28,8 @@ function get_dialog(object){
 
             $('.dialog').html(data)
 
+            $('.chat-wrap').scrollTop($('.chat-wrap').height() + 99999999);
+
         }
     })
 }
@@ -58,6 +60,8 @@ function send_message(object){
             add_message(text);
 
             $('#message-form textarea').val('');
+
+            $('.chat-wrap').scrollTop($('.chat-wrap').height() + 99999999);
 
         },
 
