@@ -2287,6 +2287,10 @@ select{
     right: -12px;
     padding-right: 10px;
 }
+.selected-dialog .nim-dialog--inner-text{
+    color:#000;
+    font-weight: bold;
+}
 .chat {
     display: flex;
     flex-direction: column-reverse;

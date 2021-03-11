@@ -9,6 +9,10 @@ function get_dialog(object){
 
     }
 
+    $('.dialog_item').each(function() {
+        $(this).removeClass('selected-dialog');
+    });
+
     $.ajax({
         type: 'POST',
         url: "/cabinet/chat/get", //Путь к обработчику
@@ -17,6 +21,8 @@ function get_dialog(object){
         dataType: "html",
         cache: false,
         success: function (data) {
+
+            $(object).addClass('selected-dialog');
 
             $('.dialog').html(data)
 

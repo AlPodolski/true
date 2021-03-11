@@ -27,6 +27,11 @@ class GetDialogsHelper
 
     }
 
+    public static function getCountNotRead($chat_id, $from_id)
+    {
+        return Message::find()->where(['chat_id' => $chat_id, 'from' => $from_id, 'status' => 0])->count();
+    }
+
     public static function getNotReadCount($user_id){
 
         return Message::find()->where(['status' => 0])

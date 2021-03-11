@@ -1,4 +1,5 @@
 <?php
+use frontend\modules\chat\components\helpers\GetDialogsHelper;
 
 /* @var $dialog array */
 /* @var $user_id integer */
@@ -42,6 +43,7 @@
                                 <a class="grey-text">
 
                                     <span class="nim-dialog--inner-text <?php if ($dialog->lastMessage['status'] != 0) echo 'read-dialog'; ?> ">
+
                                         <?php if (isset($dialog->lastMessage['class'])) : ?>
 
                                             <?php if ($dialog->lastMessage['class'] == \frontend\models\Files::class) : ?>
@@ -59,6 +61,15 @@
                                     </span>
 
                                 </a>
+
+                                <?php
+
+                                if ($notReadCount = GetDialogsHelper::getCountNotRead($dialog->lastMessage['chat_id'], $dialog['companion']['author']['id'])) : ?>
+
+                                    <span class="red-text"> +<?php echo $notReadCount ?></span>
+
+                                <?php endif; ?>
+
                             </div>
                         </div>
                     </div>
