@@ -13,6 +13,8 @@ function get_dialog(object){
         $(this).removeClass('selected-dialog');
     });
 
+    $('.dialog').html('')
+
     $.ajax({
         type: 'POST',
         url: "/cabinet/chat/get", //Путь к обработчику
@@ -28,6 +30,11 @@ function get_dialog(object){
 
         }
     })
+}
+
+function close_chat(){
+
+    $('.dialog_list-wrap').removeClass('dialog_list-wrap-with-dialog d-flex');
 
 }
 

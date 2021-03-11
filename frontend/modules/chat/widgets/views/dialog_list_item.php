@@ -10,7 +10,7 @@ use frontend\modules\chat\components\helpers\GetDialogsHelper;
     class="dialog_item <?php if ($dialog->lastMessage['status'] == 0 and $dialog['lastMessage']['from'] != $user_id)
         echo 'not-read-dialog'; ?> ">
     <div class="row">
-        <div class="col-2 col-md-1 dialog-photo-wrap">
+        <div class="col-3 col-md-2 col-lg-1 dialog-photo-wrap">
             <div class="dialog-photo ">
 
                 <?php if (file_exists(Yii::getAlias('@webroot') . $dialog->companion['author']['avatar']['file']) and $dialog->companion['author']['avatar']['file']) : ?>
@@ -27,7 +27,7 @@ use frontend\modules\chat\components\helpers\GetDialogsHelper;
 
             </div>
         </div>
-        <div class="col-10 col-md-11 nim-dialog--content position-relative">
+        <div class="col-9 col-md-10 col-lg-11 nim-dialog--content position-relative">
             <div class="dialog-text">
                 <div class="row">
                     <div class="col-12">

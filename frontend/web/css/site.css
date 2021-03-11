@@ -2260,13 +2260,15 @@ select{
     display: flex;
     flex: 0 0 40%;
     max-width: 40%;
+    transition: all 1s ease-out;
+    border-right: 1px solid #dfdfdf;
 }
 .dialog_list-wrap-with-dialog .dialog {
     display: flex;
     flex: 0 0 60%;
     max-width: 60%;
-    border-left: 1px solid #dfdfdf;
     flex-direction: column;
+    transition: all 1s ease-out;
 }
 .right-message{
     text-align:right;
@@ -2669,6 +2671,7 @@ input::-webkit-input-placeholder {
     border-radius: 5px;
     padding: 10px 10px;
     min-height: 527px;
+    overflow: hidden;
 }
 .dialog_item_ul{
     padding-left: 0;
@@ -2681,6 +2684,9 @@ input::-webkit-input-placeholder {
 }
 .dialog_list-wrap-with-dialog .nim-dialog--content{
     flex: 80%;
+}
+.close-chat {
+    display:none;
 }
 @media (max-width: 1199px) {
     .post .post-img{
@@ -2718,6 +2724,13 @@ input::-webkit-input-placeholder {
     }
 }
 @media (max-width: 992px) {
+    .dialog_list-wrap-with-dialog .dialog-photo-wrap{
+        flex: 30%;
+        max-width: 95px;
+    }
+    .dialog_list-wrap-with-dialog .nim-dialog--content {
+        flex: 70%;
+    }
     .white-cabinet-block{
         margin-bottom: 0px;
     }
@@ -2740,6 +2753,29 @@ input::-webkit-input-placeholder {
     }
 }
 @media (max-width: 769px) {
+    .close-chat {
+        display:block;
+    }
+    .dialog_list-wrap-with-dialog .dialog_list{
+        display: none;
+    }
+    .dialog_list-wrap-with-dialog .dialog{
+        flex: 0 0 100%;
+        max-width: 100%;
+        display: flex;
+    }
+    .close-chat {
+        margin-bottom: 15px;
+    }
+    .chat-block, .comment-wall-form {
+        padding-left: 0px;
+    }
+    .dialog{
+        display:none;
+    }
+    .chat-wrap{
+        right: 0;
+    }
     .user-menu-item{
         width: 109px;
         height: 134px;
@@ -2810,6 +2846,7 @@ input::-webkit-input-placeholder {
 }
 
 @media (max-width: 575px) {
+
     .slider-item .ui-slider{
         width: 120px;
     }
@@ -2876,6 +2913,11 @@ input::-webkit-input-placeholder {
     .text-block{
         margin: 10px 15px;
         margin-top: 15px;
+    }
+}
+@media (max-width: 450px) {
+    .field-sendmessageform-text {
+        max-width: 65%;
     }
 }
 @media (max-width: 360px) {
