@@ -8,7 +8,6 @@ use Yii;
  * This is the model class for table "chat".
  *
  * @property int $id
- * @property int|null $timestamp
  */
 class Chat extends \yii\db\ActiveRecord
 {
@@ -26,7 +25,7 @@ class Chat extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['timestamp'], 'integer'],
+
         ];
     }
 
@@ -37,7 +36,6 @@ class Chat extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'timestamp' => 'Timestamp',
         ];
     }
 }

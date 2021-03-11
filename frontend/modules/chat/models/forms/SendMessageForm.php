@@ -46,8 +46,6 @@ class SendMessageForm extends Model
 
             if ($message->save()) return $this->chat_id;
 
-            \d($message->getErrors());
-
         } else {
 
             $userDialogs = UserDialog::find()->where(['user_id' => $this->from_id])->select('dialog_id')->asArray()->all();
@@ -74,7 +72,6 @@ class SendMessageForm extends Model
             }
 
             $dialog = new Chat();
-            $dialog->timestamp = \time();
 
             $dialog->save();
 
@@ -85,7 +82,7 @@ class SendMessageForm extends Model
             $userDialog->save();
 
             $userDialog = new UserDialog();
-            $userDialog->user_id = $this->user_id;
+            $userDialog->user_id = $this->to;
             $userDialog->dialog_id = $dialog->id;
 
             $userDialog->save();

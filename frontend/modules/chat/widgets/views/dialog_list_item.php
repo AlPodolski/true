@@ -6,17 +6,17 @@ use frontend\modules\chat\components\helpers\GetDialogsHelper;
 
 ?>
 <li onclick="get_dialog(this)" data-to="<?php echo $dialog['companion']['user_id'] ?>"
-    data-dialog-id="<?php echo $dialog->lastMessage['chat_id']; ?>"
-    class="dialog_item <?php if ($dialog->lastMessage['status'] == 0 and $dialog['lastMessage']['from'] != $user_id)
+    data-dialog-id="<?php echo $dialog['lastMessage']['chat_id']; ?>"
+    class="dialog_item <?php if ($dialog['lastMessage']['status'] == 0 and $dialog['lastMessage']['from'] != $user_id)
         echo 'not-read-dialog'; ?> ">
     <div class="row">
         <div class="col-3 col-md-2 col-lg-1 dialog-photo-wrap">
             <div class="dialog-photo ">
 
-                <?php if (file_exists(Yii::getAlias('@webroot') . $dialog->companion['author']['avatar']['file']) and $dialog->companion['author']['avatar']['file']) : ?>
+                <?php if (file_exists(Yii::getAlias('@webroot') . $dialog['companion']['author']['avatar']['file']) and $dialog->companion['author']['avatar']['file']) : ?>
 
                     <img loading="lazy" class="img"
-                         srcset="<?= Yii::$app->imageCache->thumbSrc($dialog->companion['author']['avatarRelation']['file'], 'dialog') ?>"
+                         srcset="<?= Yii::$app->imageCache->thumbSrc($dialog['companion']['author']['avatarRelation']['file'], 'dialog') ?>"
                          alt="">
 
                 <?php else : ?>
@@ -44,9 +44,9 @@ use frontend\modules\chat\components\helpers\GetDialogsHelper;
 
                                     <span class="nim-dialog--inner-text <?php if ($dialog->lastMessage['status'] != 0) echo 'read-dialog'; ?> ">
 
-                                        <?php if (isset($dialog->lastMessage['class'])) : ?>
+                                        <?php if (isset($dialog['lastMessage']['class'])) : ?>
 
-                                            <?php if ($dialog->lastMessage['class'] == \frontend\models\Files::class) : ?>
+                                            <?php if ($dialog['lastMessage']['class'] == \frontend\models\Files::class) : ?>
 
                                                 <i class="fas fa-camera"></i>
 
@@ -54,7 +54,7 @@ use frontend\modules\chat\components\helpers\GetDialogsHelper;
 
                                         <?php else : ?>
 
-                                            <?php echo $dialog->lastMessage['message'] ?>
+                                            <?php echo $dialog['lastMessage']['message'] ?>
 
                                         <?php endif; ?>
 
@@ -64,7 +64,7 @@ use frontend\modules\chat\components\helpers\GetDialogsHelper;
 
                                 <?php
 
-                                if ($notReadCount = GetDialogsHelper::getCountNotRead($dialog->lastMessage['chat_id'], $dialog['companion']['author']['id'])) : ?>
+                                if ($notReadCount = GetDialogsHelper::getCountNotRead($dialog['lastMessage']['chat_id'], $dialog['companion']['author']['id'])) : ?>
 
                                     <span class="red-text"> +<?php echo $notReadCount ?></span>
 

@@ -26,7 +26,7 @@ function get_dialog(object){
 
             $(object).addClass('selected-dialog');
 
-            $('.dialog').html(data)
+            $('.dialog').html(data);
 
             $('.chat-wrap').scrollTop($('.chat-wrap').height() + 99999999);
 
