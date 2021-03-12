@@ -11,7 +11,11 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+        'chat' => [
+            'class' => 'frontend\modules\chat\Chat',
+        ],
+    ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
@@ -42,6 +46,9 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/chat' => 'chat/chat/index',
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/chat/get' => 'chat/chat/get',
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/chat/send' => 'chat/chat/send',
             ],
         ],
 

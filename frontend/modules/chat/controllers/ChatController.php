@@ -45,37 +45,6 @@ class ChatController extends Controller
         ]);
     }
 
-    public function actionChat($city, $id)
-    {
-
-        $usersInDialog = ArrayHelper::getColumn(UserDialog::find()->where(['dialog_id' => $id])
-            ->select('user_id')
-            ->asArray()->all(), 'user_id');
-
-        if (!\in_array(Yii::$app->user->id, $usersInDialog)) return $this->goHome();
-
-        $user = Profile::find()->where(['id' => Yii::$app->user->id])->with('userAvatarRelations')->asArray()->one();
-
-        $recepient_id = UserDialog::find()->where(['dialog_id' => $id])
-            ->andWhere(['<>', 'user_id', Yii::$app->user->id])
-            ->select('user_id')
-            ->asArray()->one();
-
-        $userTo = Profile::find()
-            ->where(['id' => $recepient_id['user_id']])
-            ->with('userAvatarRelations')
-            ->with('privacyParams')
-            ->asArray()
-            ->one();
-
-        return $this->render('dialog', [
-            'dialog_id' => $id,
-            'user' => $user,
-            'userTo' => $userTo,
-            'limitExist' => $limitExist,
-        ]);
-    }
-
     public function actionGet($city)
     {
 
@@ -96,7 +65,7 @@ class ChatController extends Controller
                 ->one();
 
 
-            return $this->renderFile(Yii::getAlias('@app/modules/chat/views/chat/get-dialog.php'), [
+            return $this->renderFile(Yii::getAlias('@frontend/modules/chat/views/chat/get-dialog.php'), [
                 'dialog_id' => $dialog_id,
                 'user' => $user,
                 'userTo' => $userTo,

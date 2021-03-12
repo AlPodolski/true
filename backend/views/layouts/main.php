@@ -65,6 +65,12 @@ FontAwesomeAsset::register($this);
                                     <p>Анкеты</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="/chat" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Тикеты</p>
+                                </a>
+                            </li>
 
                         </ul>
                     </li>

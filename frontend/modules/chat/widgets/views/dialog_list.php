@@ -12,7 +12,7 @@
 
             <?php foreach ($dialogs as $dialog) : ?>
 
-                <?php echo $this->renderFile(Yii::getAlias('@app/modules/chat/widgets/views/dialog_list_item.php'), [
+                <?php echo $this->renderFile(Yii::getAlias('@frontend/modules/chat/widgets/views/dialog_list_item.php'), [
                     'dialog' => $dialog,
                     'user_id' => $user_id
                 ]);
