@@ -101,7 +101,9 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                                 </div>г <?php echo $cityInfo['city']?>
 
                                 <?php if (isset($post['metro'][0]['value'])) : ?>
-                                    м. <?php echo $post['metro'][0]['value'] ?>
+                                    <a class="post-address" href="/metro-<?php echo $post['metro'][0]['url']?>">
+                                        м. <?php echo $post['metro'][0]['value'] ?>
+                                    </a>
                                 <?php endif; ?>
 
                             </div>

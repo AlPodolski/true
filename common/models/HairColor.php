@@ -53,7 +53,7 @@ class HairColor extends \yii\db\ActiveRecord
 
         if ($data === false) {
             // $data нет в кэше, вычисляем заново
-            $data = HairColor::find()->asArray()->all();
+            $data = HairColor::find()->orderBy('value ASC')->asArray()->all();
 
             // Сохраняем значение $data в кэше. Данные можно получить в следующий раз.
             Yii::$app->cache->set('hair_list', $data);

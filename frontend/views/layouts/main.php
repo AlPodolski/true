@@ -362,9 +362,16 @@ AppAsset::register($this);
     </div>
 </header>
 <main>
-    <div class="container">
-        <?php echo \frontend\widgets\FilterWidget::widget() ?>
-    </div>
+    <?php if(Yii::$app->controller->id == 'site'
+        or Yii::$app->controller->id == 'filter'
+        or (Yii::$app->controller->id == 'post' and !strpos(Yii::$app->request->url, 'edit') )) : ?>
+
+        <div class="container">
+            <?php echo \frontend\widgets\FilterWidget::widget() ?>
+        </div>
+
+    <?php endif; ?>
+
     <div class="container custom-container">
         <?php
         echo Breadcrumbs::widget([

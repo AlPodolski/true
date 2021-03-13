@@ -74,7 +74,7 @@ $this->title = 'Кабинет';
                                     <div class="user-menu-item-count red-text">
                                         <?php echo \count($posts); ?>
                                     </div>
-                                    <div class="user-menu-item-text grey-text">
+                                    <div class="user-menu-item-text grey-text ">
                                         Мои анкеты
                                     </div>
                                 </div>
@@ -177,7 +177,7 @@ $this->title = 'Кабинет';
         <div class="col-12 col-md-12 col-lg-6 col-xl-7">
             <div class="row">
 
-                <div class="col-12 black-text">
+                <div class="col-12 black-text font-weight-bold">
                     Мои анкеты
                 </div>
 
@@ -208,22 +208,31 @@ $this->title = 'Кабинет';
 
                 <?php foreach ($posts as $post) : ?>
 
-                    <div class="col-12 col-md-4 col-lg-6 col-sm-6">
+                    <div class="col-6 col-md-4 col-lg-6 col-sm-6">
 
                         <div class="white-cabinet-block cabinet-nav-block margin-top-20 d-flex items-center nav-cabinet-block">
 
-                            <?php echo PhotoWidget::widget([
-                                'path' => $post['avatar']['file'] ,
-                                'size' => '100_100',
-                                'options' => [
-                                    'class' => 'img user-img cabinet-img',
-                                    'loading' => 'lazy',
-                                    'alt' => $post['name'],
-                                ],
-                            ]  ); ?>
+                            <a href="/cabinet/post/edit/<?= $post['id'] ?>">
+
+                                <?php echo PhotoWidget::widget([
+                                    'path' => $post['avatar']['file'] ,
+                                    'size' => '100_100',
+                                    'options' => [
+                                        'class' => 'img user-img cabinet-img',
+                                        'loading' => 'lazy',
+                                        'alt' => $post['name'],
+                                    ],
+                                ]  ); ?>
+
+                            </a>
 
                             <div class="user-name-full">
-                                <?= $post['name'] ?>
+
+                                <a class="user-name-full" href="/cabinet/post/edit/<?= $post['id'] ?>">
+
+                                    <?= $post['name'] ?>
+
+                                </a>
                             </div>
 
                             <div class="edit-block margin-top-20">

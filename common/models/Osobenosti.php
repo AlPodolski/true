@@ -53,7 +53,7 @@ class Osobenosti extends \yii\db\ActiveRecord
 
         if ($data === false) {
             // $data нет в кэше, вычисляем заново
-            $data = self::find()->asArray()->all();
+            $data = self::find()->asArray()->orderBy('value ASC')->all();
 
             // Сохраняем значение $data в кэше. Данные можно получить в следующий раз.
             Yii::$app->cache->set('osobenosti_list', $data);

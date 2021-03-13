@@ -22,13 +22,15 @@ $form = ActiveForm::begin([
                 <div class="row">
                     <div class="col-12 main-photo">
 
-                        <label for="addpost-image" id="cabinet-main-img-label" class="<?php if (isset($post['avatar']['file'])) echo 'exist-img' ?> img-label no-img-bg main-img">
+                        <?php $style = '' ?>
 
-                            <?php if (isset($post['avatar']['file'])) : ?>
+                        <?php if (isset($post['avatar']['file'])) : ?>
 
-                                <img id="cabinet-main-img" src="<?php echo $post['avatar']['file'] ?>">
+                            <?php $style = 'background-image: url('.$post['avatar']['file'].')'; ?>
 
-                            <?php endif; ?>
+                        <?php endif; ?>
+
+                        <label for="addpost-image" style="<?php echo $style ?>" id="cabinet-main-img-label" class=" img-label no-img-bg main-img">
 
                             <?= $form->field($avatarForm, 'avatar')
                                 ->fileInput(['maxlength' => true, 'accept' => 'image/*', 'id' => 'addpost-image'])
@@ -61,25 +63,32 @@ $form = ActiveForm::begin([
 
                                 <div class="gallery-wrap d-flex items-center ">
 
+                                    <div class="small-no-img">
+                                        <label for="addpost-photo" class="add-photoimg-label small-no-img-label d-flex items-center">
+                                            <div class="plus-photo-wrap d-flex items-center">
+                                                <span class="plus d-flex items-center">
+                                                    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M16.15 7.65H9.35005V0.849948C9.35005 0.38085 8.9692 0 8.49995 0C8.03085 0 7.65 0.38085 7.65 0.849948V7.65H0.849948C0.38085 7.65 0 8.03085 0 8.49995C0 8.9692 0.38085 9.35005 0.849948 9.35005H7.65V16.15C7.65 16.6192 8.03085 17.0001 8.49995 17.0001C8.9692 17.0001 9.35005 16.6192 9.35005 16.15V9.35005H16.15C16.6192 9.35005 17.0001 8.9692 17.0001 8.49995C17.0001 8.03085 16.6192 7.65 16.15 7.65Z" fill="white"></path>
+                                                    </svg>
+                                                </span>
+                                            </div>
+                                        </label>
+                                    </div>
+
+
                                     <?php foreach ($photoForm->photo as $photoItem) : ?>
 
-                                        <div class="small-no-img">
+                                        <div class="small-no-img preview-with-photo">
 
                                             <label for="addpost-photo" class="img-label ">
 
-                                                <img class="preview" src="<?php echo $photoItem['file'] ?>" alt="">
+                                                <img class="preview " src="<?php echo $photoItem['file'] ?>" alt="">
 
                                             </label>
 
                                         </div>
 
                                     <?php endforeach; ?>
-
-                                    <div class="no-img-bg small-no-img">
-                                        <label for="addpost-photo" class="img-label small-no-img-label">
-
-                                        </label>
-                                    </div>
 
                                 </div>
 

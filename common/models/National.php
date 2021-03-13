@@ -49,7 +49,7 @@ class National extends \yii\db\ActiveRecord
 
         if ($data === false) {
             // $data нет в кэше, вычисляем заново
-            $data = National::find()->asArray()->all();
+            $data = National::find()->orderBy('value ASC')->asArray()->all();
 
             // Сохраняем значение $data в кэше. Данные можно получить в следующий раз.
             Yii::$app->cache->set('naci_list', $data);

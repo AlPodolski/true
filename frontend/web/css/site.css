@@ -1828,12 +1828,22 @@ h1{
     background-repeat: no-repeat;
 }
 .small-no-img , .gallery-wrap .preview{
-    width: 110px;
+    width: 100px;
     border-radius: 10px;
     height: 144px;
     margin-top: 10px;
     margin-right: 10px;
     background-size: 50px;
+}
+.add-photoimg-label .plus-photo-wrap{
+    position: relative;
+    bottom: inherit;
+}
+.gallery-wrap {
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-height: 290px;
+    overflow: auto;
 }
 .gallery-wrap .preview{
     height: inherit;
@@ -2688,6 +2698,9 @@ input::-webkit-input-placeholder {
 .close-chat {
     display:none;
 }
+.preview-with-photo{
+    height: initial;
+}
 @media (max-width: 1199px) {
     .post .post-img{
         min-height: 348px;
@@ -2777,9 +2790,9 @@ input::-webkit-input-placeholder {
         right: 0;
     }
     .user-menu-item{
-        width: 109px;
+        width: inherit;
         height: 134px;
-        margin-bottom: 5px;
+        margin-bottom: 15px;
     }
     .user-menu-item-wrap{
         padding: 0 5px;

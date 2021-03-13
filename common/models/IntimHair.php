@@ -53,7 +53,7 @@ class IntimHair extends \yii\db\ActiveRecord
 
         if ($data === false) {
             // $data нет в кэше, вычисляем заново
-            $data = IntimHair::find()->asArray()->all();
+            $data = IntimHair::find()->orderBy('value ASC')->asArray()->all();
 
             // Сохраняем значение $data в кэше. Данные можно получить в следующий раз.
             Yii::$app->cache->set('intim_hair_list', $data);

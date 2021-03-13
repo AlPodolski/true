@@ -57,7 +57,7 @@ class Rayon extends \yii\db\ActiveRecord
 
         if ($data === false) {
             // $data нет в кэше, вычисляем заново
-            $data = Rayon::find()->where(['city_id' => $city_id])->asArray()->all();
+            $data = Rayon::find()->where(['city_id' => $city_id])->orderBy('value ASC')->asArray()->all();
 
             // Сохраняем значение $data в кэше. Данные можно получить в следующий раз.
             Yii::$app->cache->set('rayon_hair_list_'.$city_id, $data);
