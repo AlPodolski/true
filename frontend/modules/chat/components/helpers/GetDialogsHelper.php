@@ -45,6 +45,11 @@ class GetDialogsHelper
 
     }
 
+    public static function getUserNoteReadMessageCount($userId)
+    {
+        return Message::find()->where([ 'to' => $userId, 'status' => 0])->count();
+    }
+
     public static function serRead($chat_id, $user_id){
 
         Message::updateAll(['status' => 1], [ 'and',  ['chat_id' => $chat_id] , ['=', 'to' ,$user_id ]]);

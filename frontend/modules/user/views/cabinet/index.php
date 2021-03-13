@@ -4,6 +4,7 @@
 /* @var $posts \frontend\modules\user\models\Posts[] */
 
 use frontend\widgets\PhotoWidget;
+use frontend\modules\chat\components\helpers\GetDialogsHelper;
 
 $this->title = 'Кабинет';
 
@@ -134,7 +135,21 @@ $this->title = 'Кабинет';
                                         </a>
                                     </div>
                                     <div class="user-menu-item-count red-text">
-                                        0
+                                        <?php if (
+                                                $countNotReadMessage = GetDialogsHelper::getUserNoteReadMessageCount(Yii::$app->user->id)
+                                        ) : ?>
+
+                                        <div class="red-text">
+                                            + <?php echo $countNotReadMessage ?>
+                                        </div>
+
+                                        <?php else: ?>
+
+                                            0
+
+                                        <?php endif; ?>
+
+
                                     </div>
                                     <div class="user-menu-item-text grey-text">
 

@@ -18,7 +18,11 @@ class isAuth extends Behavior
 
         if (Yii::$app->user->isGuest) {
 
-            Yii::$app->response->redirect(['/'], 301, false);
+            Yii::$app->session->setFlash('warning', 'Требуется авториция');
+
+             header("Location: /");
+
+             exit();
 
         }
 
