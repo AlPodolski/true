@@ -35,6 +35,8 @@ class MessageListWidget extends Widget
 
             $result['companion']['author']['username'] = 'Администрация';
 
+            $result['lastMessage']['message'] = 'Написать в поддержку';
+
             $result['companion']['user_id'] = Yii::$app->params['admin_id'];
 
             $dialogs[] = $result;

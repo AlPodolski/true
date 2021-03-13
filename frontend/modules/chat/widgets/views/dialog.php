@@ -34,6 +34,7 @@ $photoModel = new \frontend\modules\chat\models\forms\SendPhotoForm();
                 </svg>
 
             </div>
+            <div class="dialog-name red-text text-center"><?php echo ($userTo['username']); ?></div>
             <div class="chat ">
 
                 <?php if (isset($dialog['message'])) : foreach ($dialog['message'] as $item) : ?>
