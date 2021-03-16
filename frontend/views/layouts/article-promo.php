@@ -21,14 +21,17 @@ use frontend\widgets\PhotoWidget;
         ]  ); ?>
         </a>
 
+        <div class="post-top-info">
+            <div class="white-bold-text text-center">
+                <?php echo $post['header']?>
+            </div>
+            <div class="white-text">
+                <?php echo $post['text']?>
+            </div>
+        </div>
 
-    </div>
+        <a class="black-gradient" href="/<?php echo $post['url']?>"></a>
 
-    <div class="big-red-text">
-        <?php echo $post['header']?>
-    </div>
-    <div class="black-text">
-        <?php echo $post['text']?>
     </div>
 
     <div class="price">
