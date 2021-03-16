@@ -1081,6 +1081,9 @@ h1 , .big-red-text{
     width: 45px;
     top: 15px;
 }
+.rating-icon-block{
+    padding-left: 18px;
+}
 .price{
     background: #F74952;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
