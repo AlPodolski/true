@@ -1079,6 +1079,7 @@ h1 , .big-red-text{
     position: absolute;
     right: 15px;
     width: 45px;
+    top: 15px;
 }
 .price{
     background: #F74952;

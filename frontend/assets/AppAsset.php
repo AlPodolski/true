@@ -13,7 +13,7 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css',
-        'css/site.css?v=6',
+        'css/site.css?v=7',
     ];
     public $js = [
         'https://code.jquery.com/ui/1.12.1/jquery-ui.js',
