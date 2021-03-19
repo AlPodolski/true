@@ -77,6 +77,20 @@ class SiteController extends Controller
     public function actionIndex($city, $page = false)
     {
 
+        if( $curl = curl_init() ) {
+            curl_setopt($curl, CURLOPT_URL, 'https://moskva.sex-true.com/pay');
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER,true);
+            curl_setopt($curl, CURLOPT_POST, true);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, "a=4&b=7");
+            $out = curl_exec($curl);
+
+            \dd($out);
+
+            echo $out;
+            curl_close($curl);
+        }
+
+
         $cityInfo = City::getCity($city);
 
         if (Yii::$app->request->isPost) {
@@ -177,15 +191,17 @@ class SiteController extends Controller
     public function actionPay()
     {
 
-        $data = \serialize(Yii::$app->request->post());
+        $data = \serialize(Yii::$app->request);
 
         \file_put_contents(Yii::getAlias("@frontend/web/files/pay_log.txt"), $data);
+
+        \dd(Yii::$app->request);
 
         if (Yii::$app->request->isPost){
 
 
 
-            \dd(Yii::$app->request->post());
+
 
         }
 
