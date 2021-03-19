@@ -174,12 +174,17 @@ $this->title = 'Кабинет';
                                             </clipPath>
                                         </defs>
                                     </svg>
+
                                     </div>
                                     <div class="user-menu-item-count red-text">
-                                        0
+                                        <a class="user-menu-item-text grey-text" href="/cabinet/pay">
+                                            <?php echo Yii::$app->user->identity['cash'] ?>
+                                        </a>
                                     </div>
                                     <div class="user-menu-item-text grey-text">
-                                        Баланс
+                                        <a class="user-menu-item-text grey-text" href="/cabinet/pay">
+                                            Баланс
+                                        </a>
                                     </div>
                                 </div>
                             </div>

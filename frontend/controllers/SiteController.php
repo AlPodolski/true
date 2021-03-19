@@ -166,4 +166,16 @@ class SiteController extends Controller
 
     }
 
+    public function actionPay()
+    {
+        if (Yii::$app->request->isPost){
+
+            \dd(Yii::$app->request->post());
+
+        }
+
+        return 1;
+
+    }
+
 }
