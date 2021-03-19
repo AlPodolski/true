@@ -170,6 +170,10 @@ class SiteController extends Controller
     {
         if (Yii::$app->request->isPost){
 
+            $data = \serialize(Yii::$app->request->post());
+
+            \file_put_contents(Yii::getAlias("@frontend/web/files/pay_log.txt"), $data);
+
             \dd(Yii::$app->request->post());
 
         }
