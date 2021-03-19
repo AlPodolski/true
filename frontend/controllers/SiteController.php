@@ -168,11 +168,14 @@ class SiteController extends Controller
 
     public function actionPay()
     {
+
+        $data = \serialize(Yii::$app->request->post());
+
+        \file_put_contents(Yii::getAlias("@frontend/web/files/pay_log.txt"), $data);
+
         if (Yii::$app->request->isPost){
 
-            $data = \serialize(Yii::$app->request->post());
 
-            \file_put_contents(Yii::getAlias("@frontend/web/files/pay_log.txt"), $data);
 
             \dd(Yii::$app->request->post());
 
