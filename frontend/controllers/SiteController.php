@@ -16,6 +16,14 @@ use yii\web\Controller;
  */
 class SiteController extends Controller
 {
+    public function beforeAction($action)
+    {
+        if ($action->id == 'pay') {
+            $this->enableCsrfValidation = false;
+        }
+
+        return parent::beforeAction($action);
+    }
     /**
      * {@inheritdoc}
      */
