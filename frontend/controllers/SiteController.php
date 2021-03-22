@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use common\models\City;
 use frontend\helpers\MetaBuilder;
 use frontend\helpers\FavoriteHelper;
+use frontend\models\forms\PayForm;
 use frontend\models\Webmaster;
 use frontend\components\AuthHandler;
 use frontend\modules\user\models\Posts;
@@ -76,20 +77,6 @@ class SiteController extends Controller
      */
     public function actionIndex($city, $page = false)
     {
-
-        if( $curl = curl_init() ) {
-            curl_setopt($curl, CURLOPT_URL, 'https://moskva.sex-true.com/pay');
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER,true);
-            curl_setopt($curl, CURLOPT_POST, true);
-            curl_setopt($curl, CURLOPT_POSTFIELDS, "a=4&b=7");
-            $out = curl_exec($curl);
-
-            \dd($out);
-
-            echo $out;
-            curl_close($curl);
-        }
-
 
         $cityInfo = City::getCity($city);
 
@@ -191,17 +178,37 @@ class SiteController extends Controller
     public function actionPay()
     {
 
-        $data = \serialize(Yii::$app->request);
-
-        \file_put_contents(Yii::getAlias("@frontend/web/files/pay_log.txt"), $data);
-
-        \dd(Yii::$app->request);
-
         if (Yii::$app->request->isPost){
 
+            $log_file = fopen(Yii::getAlias("@frontend/web/files/pay_log5.txt"), 'a+');
+            fwrite($log_file, print_r($requestDAta = json_decode(file_get_contents('php://input')), true).PHP_EOL);
+            fwrite($log_file, print_r(getallheaders(), true).PHP_EOL);
+            fclose($log_file);
 
+            $sum = $requestDAta->bill->amount->value;
+            $status = $requestDAta->bill->status->value;
+            $user_id = $requestDAta->bill->customer->account;
+            $billId = $requestDAta->bill->billId;
 
+            $payForm = new PayForm();
 
+            $payForm->user_id = $user_id;
+            $payForm->status = $status;
+            $payForm->sum = $sum;
+            $payForm->bill_id = $billId;
+
+            if ($payForm->validate()){
+
+                if ($payForm->pay()) return true;
+
+            }else{
+
+                $log_file = fopen(Yii::getAlias("@frontend/web/files/error_log.txt"), 'a+');
+                fwrite($log_file, print_r($requestDAta = json_decode(file_get_contents('php://input')), true).PHP_EOL);
+                fwrite($log_file, print_r(getallheaders(), true).PHP_EOL);
+                fclose($log_file);
+
+            }
 
         }
 

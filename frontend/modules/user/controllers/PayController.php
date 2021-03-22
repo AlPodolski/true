@@ -16,7 +16,7 @@ class PayController extends Controller
         ];
     }
 
-    public function actionPay()
+    public function actionPay($city)
     {
 
         $model = new PayForm();
@@ -24,10 +24,9 @@ class PayController extends Controller
         if ($model->load(Yii::$app->request->post())){
 
             $model->user = Yii::$app->user->id;
+            $model->city = $city;
 
-            $model->public_key = Yii::$app->params['qiwi_public_key'];
-
-            if ($model->validate()) return $this->redirect($model->pay());
+            if ($model->validate()) return $this->redirect($model->pay()['payUrl']);
 
         }
 

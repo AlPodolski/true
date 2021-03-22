@@ -3,8 +3,10 @@
 
 namespace frontend\modules\user\models\forms;
 
+use frontend\models\Bill;
 use Yii;
 use yii\base\Model;
+use yii\db\Exception;
 
 class PayForm extends Model
 {
@@ -12,29 +14,43 @@ class PayForm extends Model
 
     public $user;
 
-    public $public_key;
+    public $city;
 
     public function rules()
     {
         return [
-            [['sum', 'user', 'public_key'], 'required'],
+            [['sum', 'user', 'city'], 'required'],
             [['sum', 'user'], 'integer'],
-            [['public_key'], 'string'],
+            [['city'], 'string'],
         ];
     }
 
     public function pay()
     {
 
-        $params = [
-            'publicKey' => $this->public_key,
-            'amount' => $this->sum,
-            'account' => $this->user
-        ];
+        try {
 
-        $billPayments = new \Qiwi\Api\BillPayments();
+            $billPayments = new \Qiwi\Api\BillPayments(Yii::$app->params['qiwi_privite_key']);
 
-        return $billPayments->createPaymentForm($params);
+            $bill = $this->createBill();
+
+            $billId = $bill['id'];
+
+            $fields = [
+                'amount' => $bill->sum,
+                'currency' => 'RUB',
+                'successUrl' => 'https://'.$this->city.'.sex-true.com/pay',
+                'account' => $this->user,
+            ];
+
+            /** @var \Qiwi\Api\BillPayments $billPayments */
+            return $billPayments->createBill($billId, $fields);
+
+        }catch (Exception $e){
+
+            throw new Exception('Ошибка ', $e->getMessage());
+
+        }
 
     }
 
@@ -46,6 +62,20 @@ class PayForm extends Model
         return [
             'sum' => 'Сумма',
         ];
+    }
+
+    public function createBill()
+    {
+        $bill = new Bill();
+
+        $bill->user_id = $this->user;
+        $bill->sum = $this->sum;
+        $bill->status = Bill::WAITING;
+
+        if ($bill->save()) return $bill;
+
+        else throw new Exception('Ошибка сохренения счета', $bill->getErrors());
+
     }
 
 }
