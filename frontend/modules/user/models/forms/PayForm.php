@@ -20,7 +20,8 @@ class PayForm extends Model
     {
         return [
             [['sum', 'user', 'city'], 'required'],
-            [['sum', 'user'], 'integer'],
+            [['user'], 'integer'],
+            [['sum'], 'integer' , 'min' => Yii::$app->params['min_pay']],
             [['city'], 'string'],
         ];
     }

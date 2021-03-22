@@ -19,6 +19,14 @@ $this->title = 'Пополнить баланс';
             <h1 class="margin-top-20">Пополнить баланс</h1>
         </div>
 
+        <?php if ($model->hasErrors()) : ?>
+
+            <div class="alert alert-success">
+                <?php echo $model->getFirstError()?>
+            </div>
+
+        <?php endif; ?>
+
         <div class="col-4">
             <div class="balance-card">
                 <div class="white-bold-text">Баланс</div>
@@ -36,7 +44,7 @@ $this->title = 'Пополнить баланс';
 
                     <div class="col-6">
 
-                        <?= $form->field($model, 'sum')->textInput(['value' => 200])
+                        <?= $form->field($model, 'sum')->textInput(['value' => Yii::$app->params['min_pay']])
                             ->label('Введите сумму пополнения:') ?>
 
                     </div>
