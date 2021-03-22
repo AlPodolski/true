@@ -39,7 +39,7 @@ class PayForm extends Model
             $fields = [
                 'amount' => $bill->sum,
                 'currency' => 'RUB',
-                'successUrl' => 'https://'.$this->city.'.sex-true.com/pay',
+                'successUrl' => 'https://'.$this->city.'.sex-true.com/cabinet',
                 'account' => $this->user,
             ];
 

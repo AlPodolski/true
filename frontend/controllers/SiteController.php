@@ -48,22 +48,22 @@ class SiteController extends Controller
     }
 
 
-/*    public function behaviors()
-    {
-        return [
-            [
-                'class' => 'yii\filters\PageCache',
-                'only' => ['index'],
-                'duration' => 3600 *24,
-                'variations' => [
-                    Yii::$app->request->url,
-                    Yii::$app->request->post('page'),
-                    Yii::$app->request->hostInfo,
+    /*    public function behaviors()
+        {
+            return [
+                [
+                    'class' => 'yii\filters\PageCache',
+                    'only' => ['index'],
+                    'duration' => 3600 *24,
+                    'variations' => [
+                        Yii::$app->request->url,
+                        Yii::$app->request->post('page'),
+                        Yii::$app->request->hostInfo,
+                    ],
                 ],
-            ],
-        ];
+            ];
 
-    }*/
+        }*/
 
     public function onAuthSuccess($client)
     {
@@ -194,7 +194,7 @@ class SiteController extends Controller
 
             $payForm->user_id = $user_id;
             $payForm->status = $status;
-            $payForm->sum = $sum;
+            $payForm->sum = (int)\str_replace(' ', '', $sum);
             $payForm->bill_id = $billId;
 
             if ($payForm->validate()){
@@ -205,6 +205,7 @@ class SiteController extends Controller
 
                 $log_file = fopen(Yii::getAlias("@frontend/web/files/error_log.txt"), 'a+');
                 fwrite($log_file, print_r($requestDAta = json_decode(file_get_contents('php://input')), true).PHP_EOL);
+                fwrite($log_file, print_r($payForm->getErrors(), true).PHP_EOL);
                 fwrite($log_file, print_r(getallheaders(), true).PHP_EOL);
                 fclose($log_file);
 
