@@ -1,7 +1,7 @@
 <?php
 
 
-namespace frontend\components\service;
+namespace frontend\components\events;
 
 use yii\base\Event;
 

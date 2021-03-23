@@ -6,7 +6,7 @@ namespace frontend\models\forms;
 use common\components\service\history\HistoryService;
 use common\models\History;
 use common\models\User;
-use frontend\components\service\BillPayEvent;
+use frontend\components\events\BillPayEvent;
 use frontend\models\Bill;
 use Yii;
 use yii\base\Model;
@@ -57,6 +57,8 @@ class PayForm extends Model
 
                 if ($user->save() and $bill->save()) {
 
+                    $transaction->commit();
+
                     $billPayEvent = new BillPayEvent();
 
                     $billPayEvent->user_id = $this->user_id;
@@ -65,8 +67,6 @@ class PayForm extends Model
                     $billPayEvent->balance = $user->cash;
 
                     $this->trigger(self::EVENT_BILL_PAY, $billPayEvent);
-
-                    $transaction->commit();
 
                     return true;
 
