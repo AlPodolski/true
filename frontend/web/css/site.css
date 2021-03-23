@@ -437,6 +437,9 @@ a.desc:after {
     max-height: 420px;
     overflow: hidden;
 }
+.table-history-pay{
+    overflow: auto;
+}
 body{
     background: #fff;
     font-family: Ubuntu;
@@ -2825,6 +2828,12 @@ input::-webkit-input-placeholder {
     }
 }
 @media (max-width: 769px) {
+    .balance-card{
+        margin: 0 auto;
+    }
+    .pay-form-wrap{
+        margin-top: 25px;
+    }
     .close-chat {
         display:block;
     }

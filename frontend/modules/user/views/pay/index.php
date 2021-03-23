@@ -29,14 +29,14 @@ $this->title = 'Пополнить баланс';
 
         <?php endif; ?>
 
-        <div class="col-4">
+        <div class="col-12 col-lg-4 col-md-6  ">
             <div class="balance-card">
                 <div class="white-bold-text">Баланс</div>
                 <div class=" big-white-text margin-top-20"><?php echo Yii::$app->user->identity['cash'] ?></div>
             </div>
         </div>
 
-        <div class="col-8">
+        <div class="col-12 col-lg-8 col-md-6">
 
             <div class="pay-form-wrap">
 
