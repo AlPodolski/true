@@ -81,8 +81,30 @@ $this->title = 'Пополнить баланс';
                     'id',
                     'sum',
                     'balance',
-                    'type',
-                    'created_at',
+                    [
+                        'attribute' => 'type',
+                        'format' => 'raw',
+                        'value' => function ($history) {
+                            /* @var $history \common\models\History */
+                            switch ($history['type']) {
+                                case \common\models\History::BALANCE_REPLENISHMENT:
+                                    return  "Пополнение баланса";
+                            }
+
+                            return 'Ошибка';
+
+                        },
+                    ],
+                    [
+                        'attribute' => 'created_at',
+                        'format' => 'raw',
+                        'value' => function ($history) {
+                            /* @var $history \common\models\History */
+
+                            return date('Y-m-d H:i:s', $history['created_at']);
+
+                        },
+                    ],
 
                 ],
             ]); ?>
