@@ -24,7 +24,7 @@ $this->title = 'Пополнить баланс';
         <?php if ($model->hasErrors()) : ?>
 
             <div class="alert alert-success">
-                <?php echo $model->getFirstError()?>
+
             </div>
 
         <?php endif; ?>
