@@ -434,6 +434,8 @@ a.desc:after {
 }
 .post .post-img{
     min-height: 420px;
+    max-height: 420px;
+    overflow: hidden;
 }
 body{
     background: #fff;
