@@ -271,6 +271,7 @@ class FindController extends Controller
 
         $posts = $posts
             ->with('avatar', 'metro', 'selphiCount')
+            ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->asArray()
             ->all();
 

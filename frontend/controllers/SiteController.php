@@ -86,6 +86,7 @@ class SiteController extends Controller
                 ->asArray()
                 ->with('avatar', 'metro', 'selphiCount')
                 ->where(['city_id' => $cityInfo['id']])
+                ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
                 ->orderBy(['rand()' => SORT_DESC])
                 ->limit(Yii::$app->params['post_limit']);
 
@@ -114,6 +115,7 @@ class SiteController extends Controller
         $prPosts = Posts::find()->asArray()
             ->with('avatar', 'metro', 'selphiCount')
             ->where(['city_id' => $cityInfo['id']])
+            ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->limit(11)->cache(3600)
             ->orderBy(['rand()' => SORT_DESC])
             ->all();

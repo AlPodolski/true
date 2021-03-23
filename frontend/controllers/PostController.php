@@ -62,10 +62,12 @@ class PostController extends Controller
             $post = Posts::find()->where(['not in', 'id' , $id])
                 ->with('allPhoto', 'metro', 'avatar', 'place', 'service',
                     'sites', 'rayon', 'nacionalnost',
-                    'cvet', 'strizhka', 'osobenost', 'selphiCount', 'serviceDesc'
-                )->limit(1)
+                    'cvet', 'strizhka', 'osobenost', 'selphiCount', 'serviceDesc')
+                ->limit(1)
+                ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
                 ->orderBy(['rand()' => SORT_DESC])
-                ->asArray()->one();
+                ->asArray()
+                ->one();
 
             $cityInfo = City::getCity($city);
 
