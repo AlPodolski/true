@@ -3,19 +3,22 @@
 
 namespace frontend\models\forms;
 
+use common\components\service\history\HistoryService;
+use common\models\History;
 use common\models\User;
+use frontend\components\service\BillPayEvent;
 use frontend\models\Bill;
 use Yii;
 use yii\base\Model;
 
 class PayForm extends Model
 {
+
+    const EVENT_BILL_PAY = 'bill_pay';
+
     public $sum;
-
     public $user_id;
-
     public $status;
-
     public $bill_id;
 
     /**
@@ -54,6 +57,15 @@ class PayForm extends Model
 
                 if ($user->save() and $bill->save()) {
 
+                    $billPayEvent = new BillPayEvent();
+
+                    $billPayEvent->user_id = $this->user_id;
+                    $billPayEvent->sum = $this->sum;
+                    $billPayEvent->type = History::BALANCE_REPLENISHMENT;
+                    $billPayEvent->balance = $user->cash;
+
+                    $this->trigger(self::EVENT_BILL_PAY, $billPayEvent);
+
                     $transaction->commit();
 
                     return true;
@@ -74,6 +86,13 @@ class PayForm extends Model
 
         return false;
 
+    }
+
+    public function __construct()
+    {
+        $this->on(self::EVENT_BILL_PAY, [HistoryService::class, 'addToHistory']);
+
+        parent::__construct();
     }
 
 }

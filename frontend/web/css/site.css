@@ -1120,6 +1120,24 @@ h1 , .big-red-text{
     line-height: 41px;
     color: #FFFFFF;
 }
+a.desc::after {
+    content: "\2193";
+}
+a.asc::after {
+    content: "\2191";
+}
+.table-history-pay a{
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    /* identical to box height */
+
+    text-transform: uppercase;
+
+    color: #9A9A9A;
+}
 .price{
     background: #F74952;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);

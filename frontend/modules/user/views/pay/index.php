@@ -2,10 +2,12 @@
 
 /* @var $model \frontend\modules\user\models\forms\PayForm */
 /* @var $this \yii\web\View */
+/* @var $searchModel backend\models\History */
+/* @var $dataProvider yii\data\ActiveDataProvider */
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use yii\grid\GridView;
 
 $this->title = 'Пополнить баланс';
 
@@ -63,6 +65,27 @@ $this->title = 'Пополнить баланс';
 
             </div>
 
+        </div>
+
+        <div class="col-12">
+            <h1 class="margin-top-20">История денежных операций</h1>
+        </div>
+
+        <div class="col-12 margin-top-20 table-history-pay">
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'filterModel' => $searchModel,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
+
+                    'id',
+                    'sum',
+                    'balance',
+                    'type',
+                    'created_at',
+
+                ],
+            ]); ?>
         </div>
 
     </div>

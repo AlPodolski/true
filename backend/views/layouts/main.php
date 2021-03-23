@@ -71,6 +71,12 @@ FontAwesomeAsset::register($this);
                                     <p>Тикеты</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="/history/index" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Платежи</p>
+                                </a>
+                            </li>
 
                         </ul>
                     </li>
