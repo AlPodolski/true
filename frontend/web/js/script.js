@@ -215,7 +215,16 @@ function favorite(object){
     })
 
 }
+$(document).ready(function() {
 
+    $("#editprofileform-avatar").on('change', function () {
+
+        $("#change-video-label").text('');
+        $(".editprofileform-avatar-label .red-text .add-text").text('Фото выбрано');
+
+    });
+
+});
 function get_comments_forum(object){
 
     $('#forum-comments-modal').modal('show');

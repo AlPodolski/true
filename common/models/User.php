@@ -24,6 +24,8 @@ use yii\web\IdentityInterface;
  * @property integer $city_id
  * @property integer $role
  * @property integer $cash
+ * @property integer $age
+ * @property integer $male
  * @property string $password write-only password
  */
 class User extends ActiveRecord implements IdentityInterface
@@ -34,6 +36,9 @@ class User extends ActiveRecord implements IdentityInterface
 
     const USER_ROLE = 0;
     const ADMIN_ROLE = 1;
+
+    const MEN_MALE = 1;
+    const WOOMEN_MALE = 0;
 
     /**
      * {@inheritdoc}

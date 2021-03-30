@@ -121,6 +121,8 @@ return [
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/chat/get' => 'chat/chat/get',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/chat/send' => 'chat/chat/send',
 
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/edit' => 'user/profile/edit',
+
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/site/verify-email' => 'user/user/verify-email',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/site/request-password-reset' => 'user/user/request-password-reset',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/site/reset-password' => 'user/user/reset-password',

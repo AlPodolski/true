@@ -27,7 +27,22 @@ $this->title = 'Кабинет';
                         <div class="row">
                             <div class="col-6 col-md-3 col-lg-6 col-xl-3">
                                 <div class="user-name-short">
-                                    <?php echo mb_substr($user['username'], 0, 2) ; ?>
+                                    <?php if (isset($user['avatar']['file'])) : ?>
+
+                                        <?php echo PhotoWidget::widget([
+                                            'path' => $user['avatar']['file'] ,
+                                            'size' => '100_100',
+                                            'options' => [
+                                                'class' => 'img user-img cabinet-img',
+                                                'loading' => 'lazy',
+                                            ],
+                                        ]  ); ?>
+
+                                    <?php else: ?>
+
+                                        <?php echo mb_substr($user['username'], 0, 2) ; ?>
+
+                                    <?php endif; ?>
                                 </div>
                             </div>
                             <div class="col-6 col-md-9 col-lg-6 col-xl-9">

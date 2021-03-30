@@ -1719,6 +1719,16 @@ h1{
     justify-content: center;
     flex-direction: column;
 }
+.items-center-left{
+    align-items: center;
+    justify-content: left;
+    flex-direction: row;
+}
+.items-center-right{
+    align-items: center;
+    justify-content: right;
+    flex-direction: row;
+}
 .plus{
     background: linear-gradient(0.25turn, #F74952, #C60D17);
     width: 66px;
@@ -1742,7 +1752,7 @@ h1{
     height: 82px;
     border: 2px solid #F74952;
     border-radius: 50px;
-    line-height: 73px;
+    line-height: 70px;
 }
 .user-menu-item{
     border: 1px solid #F7F7F7;
@@ -2763,6 +2773,46 @@ input::-webkit-input-placeholder {
 .preview-with-photo{
     height: initial;
 }
+input:checked + .img-label-radio:before {
+    background: #F74952;
+}
+.modal-radio.мужской_label.img-label-radio {
+    margin-right: 10px;
+}
+.img-label-radio::before{
+    content: '';
+    width:10px;
+    height: 10px;
+    background-repeat: no-repeat;
+    border: 3px solid #F74952;
+    box-sizing: border-box;
+    border-radius: 6px;
+    background-position: center;
+    display: inline-block;
+    margin-right: 5px;
+}
+#editprofileform-male input {
+     position: absolute;
+     z-index: -1;
+     opacity: 0;
+ }
+#editprofileform-avatar {
+    display: none;
+}
+.form-group.field-editprofileform-avatar {
+    display: none;
+}
+.editprofileform-avatar-label .grey-text{
+    font-size: 16px;
+    margin-right: 40px;
+}
+.editprofileform-avatar-label .red-text svg{
+    margin-right: 15px;
+}
+.margin-bottom-30{
+    margin-bottom: 30px;
+}
+
 @media (max-width: 1199px) {
     .post .post-img{
         min-height: 348px;
