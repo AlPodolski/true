@@ -31,7 +31,7 @@ use frontend\widgets\PhotoWidget;
                 <div class="row">
                     <div class="col-6">
                         <div class="phone-photo-count">
-                            <a href="tel:+<?php echo preg_replace("/[^0-9]/", '', $post['phone']) ?>" class="post-phone"><?php echo $post['phone'] ?></a>
+                            <span data-id="<?php echo $post['id'] ?>" onclick="add_phone_view(this)" data-tel="tel:+<?php echo preg_replace("/[^0-9]/", '', $post['phone']) ?>" class="post-phone"><?php echo $post['phone'] ?></span>
                         </div>
                         <?php if (isset($post['metro'][0]['value'])) : ?>
                             <div class="post-address">

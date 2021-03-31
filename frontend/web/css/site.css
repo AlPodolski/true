@@ -1744,6 +1744,9 @@ h1{
     border: 1px dashed #F74952;
     border-radius: 50%;
 }
+.post-phone{
+    cursor:pointer;
+}
 .user-name-short{
     font-size: 36px;
     color: #F74952;

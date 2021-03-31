@@ -7,6 +7,7 @@ use common\models\City;
 use frontend\helpers\RequestHelper;
 use frontend\models\Files;
 use frontend\modules\user\helpers\ServiceReviewHelper;
+use frontend\modules\user\helpers\ViewCountHelper;
 use frontend\modules\user\models\Posts;
 use Yii;
 use yii\web\Controller;
@@ -32,13 +33,15 @@ class PostController extends Controller
                 'sites', 'rayon', 'nacionalnost',
                 'cvet', 'strizhka', 'osobenost', 'selphiCount', 'serviceDesc'
             )
-            ->asArray()->one();
+            ->asArray()->limit(1)->one();
 
         $serviceListReview = ServiceReviewHelper::getPostServiceReview($id);
 
         $cityInfo = City::getCity($city);
 
         $backUrl = RequestHelper::getBackUrl($protocol);
+
+        ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_view_count_key']);
 
         return $this->render('single', [
             'post' => $post,
@@ -74,6 +77,8 @@ class PostController extends Controller
             $serviceListReview = ServiceReviewHelper::getPostServiceReview($post['id']);
 
             $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
+
+            ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_view_count_key']);
 
             return $this->renderFile(Yii::getAlias('@app/views/post/item.php'), [
                     'post'           => $post,

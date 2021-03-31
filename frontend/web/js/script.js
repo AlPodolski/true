@@ -231,6 +231,23 @@ function get_comments_forum(object){
 
 }
 
+function add_phone_view(object){
+
+    var id = $(object).attr('data-id');
+    var phone = $(object).attr('data-tel');
+
+    $.ajax({
+        type: 'POST',
+        url: "/view/phone", //Путь к обработчику
+        data: 'id=' + id,
+        cache: false,
+        success: function (data) {
+            window.location.href=phone;
+        }
+    })
+
+}
+
 function send_comment(object) {
 
     var formData = new FormData($(".form-wall-comment-" + $(object).attr('data-id'))[0]);
