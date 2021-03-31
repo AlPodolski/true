@@ -8,6 +8,7 @@ use frontend\helpers\FavoriteHelper;
 use frontend\models\forms\PayForm;
 use frontend\models\Webmaster;
 use frontend\components\AuthHandler;
+use frontend\modules\user\helpers\ViewCountHelper;
 use frontend\modules\user\models\Posts;
 use Yii;
 use yii\web\Controller;
@@ -99,6 +100,8 @@ class SiteController extends Controller
             if ($posts) echo '<div data-url="/page-' . $page . '" class="col-12"></div>';
 
             foreach ($posts as $post) {
+
+                ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_listing_view_count_key']);
 
                 echo $this->renderFile('@app/views/layouts/article.php', [
                     'post' => $post,

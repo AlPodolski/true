@@ -9,6 +9,8 @@
 /* @var $des string */
 /* @var $h1 string */
 
+use frontend\modules\user\helpers\ViewCountHelper;
+
 $this->title = $title;
 
 Yii::$app->view->registerMetaTag([
@@ -52,6 +54,8 @@ Yii::$app->view->registerMetaTag([
         <?php foreach ($prPosts as $post) : ?>
 
             <?php if (isset($post['id'])) : ?>
+
+                <?php ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_listing_view_count_key']); ?>
 
                 <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), [
                         'post'  => $post,

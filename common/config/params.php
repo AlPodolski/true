@@ -7,6 +7,7 @@ return [
     'user.passwordResetTokenExpire' => 3600,
     'user.passwordMinLength' => 8,
     'photo_path' => '/uploads/',
-    'redis_view_phone_count_key' => 'view_phone_count',
-    'redis_post_view_count_key' => 'view_post_count',
+    'redis_view_phone_count_key' => 'view_phone_count',//Счетчик кликов по телефону
+    'redis_post_listing_view_count_key' => 'view_post_listing_count', //Счетчик показов анкеты на листинге
+    'redis_post_single_view_count_key' => 'view_post_single_count', //Счетчик просмотров детальной страницы анкеты
 ];
