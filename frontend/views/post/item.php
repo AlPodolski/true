@@ -80,7 +80,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                                         <h1><?php echo $post['name'] ?></h1>
                                     </div>
                                     <div class="col-12">
-                                        <a href="tel:+<?php echo preg_replace("/[^0-9]/", '', $post['phone']) ?>" class="post-phone"><?php echo $post['phone'] ?></a>
+                                        <span data-id="<?php echo $post['id'] ?>" onclick="add_phone_view(this)" data-tel="tel:+<?php echo preg_replace("/[^0-9]/", '', $post['phone']) ?>" class="post-phone"><?php echo $post['phone'] ?></span>
                                     </div>
                                     <div class="col-12">
                                         <div class="icon count-photo-icon">

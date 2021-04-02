@@ -41,7 +41,7 @@ class PostController extends Controller
 
         $backUrl = RequestHelper::getBackUrl($protocol);
 
-        ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_view_count_key']);
+        ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_single_view_count_key']);
 
         return $this->render('single', [
             'post' => $post,
@@ -78,7 +78,8 @@ class PostController extends Controller
 
             $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
 
-            ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_view_count_key']);
+            ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_listing_view_count_key']);
+            ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_single_view_count_key']);
 
             return $this->renderFile(Yii::getAlias('@app/views/post/item.php'), [
                     'post'           => $post,

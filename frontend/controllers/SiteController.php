@@ -81,6 +81,8 @@ class SiteController extends Controller
 
         $cityInfo = City::getCity($city);
 
+        Yii::$app->cache->flush();
+
         if (Yii::$app->request->isPost) {
 
             $posts = Posts::find()
@@ -88,7 +90,7 @@ class SiteController extends Controller
                 ->with('avatar', 'metro', 'selphiCount')
                 ->where(['city_id' => $cityInfo['id']])
                 ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
-                ->orderBy(['rand()' => SORT_DESC])
+                ->orderBy(['sort' => SORT_ASC])
                 ->limit(Yii::$app->params['post_limit']);
 
             $posts->offset(Yii::$app->params['post_limit'] * Yii::$app->request->post('page'));
@@ -119,8 +121,8 @@ class SiteController extends Controller
             ->with('avatar', 'metro', 'selphiCount')
             ->where(['city_id' => $cityInfo['id']])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
-            ->limit(11)->cache(3600)
-            ->orderBy(['rand()' => SORT_DESC])
+            ->limit(11)->cache(0)
+            ->orderBy(['sort' => SORT_ASC])
             ->all();
 
         $checkBlock['block']['post'] = Posts::find()->asArray()
@@ -145,7 +147,7 @@ class SiteController extends Controller
         $des = MetaBuilder::Build($uri, $city, 'des');
         $h1 = MetaBuilder::Build($uri, $city, 'h1');
 
-        \shuffle($prPosts);
+        //\shuffle($prPosts);
 
         return $this->render('index', [
             'prPosts' => $prPosts,

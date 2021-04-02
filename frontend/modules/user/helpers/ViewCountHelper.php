@@ -22,7 +22,7 @@ class ViewCountHelper
     {
         /* @var $redis Connection */
         $redis = Yii::$app->redis;
-        return $redis->scard ($key.":{$item_id}:view");
+        return $redis->GET ($key.":{$item_id}:view");
     }
 
 }

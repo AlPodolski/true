@@ -16,7 +16,7 @@ class FilterController extends Controller
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
+/*    public function behaviors()
     {
         return [
             [
@@ -31,7 +31,7 @@ class FilterController extends Controller
             ],
         ];
 
-    }
+    }*/
 
     public function actionIndex($city, $param, $page = false)
     {
@@ -56,7 +56,7 @@ class FilterController extends Controller
                 ->with('avatar', 'metro', 'selphiCount')
                 ->andWhere(['city_id' => $cityInfo['id']])
                 ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
-                ->orderBy(['rand()' => SORT_DESC])
+                ->orderBy(['sort' => SORT_ASC])
                 ->asArray();
 
             if ($page) $posts = $posts->offset(Yii::$app->params['post_limit'] * 1);

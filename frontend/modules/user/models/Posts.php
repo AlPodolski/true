@@ -37,6 +37,7 @@ use yii\helpers\ArrayHelper;
  * @property int|null $ves
  * @property int|null $check_photo_status
  * @property int|null $status
+ * @property int|null $rating
  */
 class Posts extends \yii\db\ActiveRecord
 {
