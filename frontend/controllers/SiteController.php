@@ -81,8 +81,6 @@ class SiteController extends Controller
 
         $cityInfo = City::getCity($city);
 
-        Yii::$app->cache->flush();
-
         if (Yii::$app->request->isPost) {
 
             $posts = Posts::find()
@@ -90,7 +88,7 @@ class SiteController extends Controller
                 ->with('avatar', 'metro', 'selphiCount')
                 ->where(['city_id' => $cityInfo['id']])
                 ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
-                ->orderBy(['sort' => SORT_ASC])
+                ->orderBy(['rand()' => SORT_DESC])
                 ->limit(Yii::$app->params['post_limit']);
 
             $posts->offset(Yii::$app->params['post_limit'] * Yii::$app->request->post('page'));
@@ -121,8 +119,8 @@ class SiteController extends Controller
             ->with('avatar', 'metro', 'selphiCount')
             ->where(['city_id' => $cityInfo['id']])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
-            ->limit(11)->cache(0)
-            ->orderBy(['sort' => SORT_ASC])
+            ->limit(11)->cache(3600)
+            ->orderBy(['rand()' => SORT_DESC])
             ->all();
 
         $checkBlock['block']['post'] = Posts::find()->asArray()
