@@ -13,7 +13,8 @@ class ConsoleController extends Controller
     public function actionCountRating()
     {
 
-        $posts = Posts::find()->with('selphiCount')->all();
+        $posts = Posts::find()->with('selphiCount', 'nacionalnost', 'cvet',
+            'strizhka', 'osobenost', 'serviceDesc', 'service')->all();
 
         foreach ($posts as $post){
 
@@ -25,7 +26,37 @@ class ConsoleController extends Controller
 
             }
 
-            if ($post['selphiCount']){
+            if ($post['service']){
+
+                $data = $data + 1;
+
+            }
+            if ($post['serviceDesc']){
+
+                $data = $data + 1;
+
+            }
+            if ($post['osobenost']){
+
+                $data = $data + 1;
+
+            }
+            if ($post['strizhka']){
+
+                $data = $data + 1;
+
+            }
+            if ($post['cvet']){
+
+                $data = $data + 1;
+
+            }
+            if ($post['nacionalnost']){
+
+                $data = $data + 1;
+
+            }
+           if ($post['selphiCount']){
 
                 $data = $data + 1;
 
