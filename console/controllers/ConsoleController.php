@@ -13,7 +13,7 @@ class ConsoleController extends Controller
     public function actionCountRating()
     {
 
-        $posts = Posts::find()->all();
+        $posts = Posts::find()->with('selphiCount')->all();
 
         foreach ($posts as $post){
 
@@ -23,19 +23,55 @@ class ConsoleController extends Controller
 
                 $data = (($tempData['pageViewCtr'] * 2) + ($tempData['phoneViewCtr'] * 6));
 
-                $raiting = (int) (10000 / $data);
+            }
 
-                if ($raiting) {
+            if ($post['selphiCount']){
 
-                    $post->sort = $raiting;
+                $data = $data + 1;
 
-                    $post->save();
+            }
 
-                }
+            if ($post['check_photo_status']){
 
-            }else{
+                $data = $data + 2;
 
-                $post->sort = 10000;
+            }
+
+            if ($post['video']){
+
+                $data = $data + 1;
+
+            }
+
+            if ($post['age']){
+
+                $data = $data + 1;
+
+            }
+
+            if ($post['rost']){
+
+                $data = $data + 1;
+
+            }
+
+            if ($post['breast']){
+
+                $data = $data + 1;
+
+            }
+
+            if ($post['ves']){
+
+                $data = $data + 1;
+
+            }
+
+            $raiting = (int) (10000 / $data);
+
+            if ($raiting) {
+
+                $post->sort = $raiting;
 
                 $post->save();
 

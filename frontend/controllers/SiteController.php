@@ -145,7 +145,7 @@ class SiteController extends Controller
         $des = MetaBuilder::Build($uri, $city, 'des');
         $h1 = MetaBuilder::Build($uri, $city, 'h1');
 
-        //\shuffle($prPosts);
+        \shuffle($prPosts);
 
         return $this->render('index', [
             'prPosts' => $prPosts,
