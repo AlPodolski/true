@@ -26,6 +26,14 @@ class ConsoleController extends Controller
 
             }
 
+            $postRating = \frontend\helpers\PostRatingHelper::getPostRating($post['id']);
+
+            if ($postRating){
+
+                $data = $data + $postRating['total_rating'];
+
+            }
+
             if ($post['service']){
 
                 $data = $data + 1;
