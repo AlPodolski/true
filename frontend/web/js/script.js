@@ -248,6 +248,22 @@ function add_phone_view(object){
 
 }
 
+function get_claim_modal(){
+
+    $.ajax({
+        type: 'POST',
+        url: "/claim/get-modal", //Путь к обработчику
+        cache: false,
+        success: function (data) {
+
+            $('#claimModal .modal-body').html(data);
+            $('#claimModal').modal('toggle');
+
+        }
+    })
+
+}
+
 function send_comment(object) {
 
     var formData = new FormData($(".form-wall-comment-" + $(object).attr('data-id'))[0]);

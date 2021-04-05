@@ -19,7 +19,11 @@ class isAdminAuth extends Behavior
 
         if (Yii::$app->user->isGuest or Yii::$app->user->identity['role'] != User::ADMIN_ROLE) {
 
-            Yii::$app->response->redirect(['/auth/login'], 301, false);
+            Yii::$app->session->setFlash('warning', 'Требуется авториция');
+
+            header("Location: /");
+
+            exit();
 
         }
 
