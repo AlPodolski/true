@@ -1159,10 +1159,10 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                         <?php endforeach; ?>
 
                          <a class="grey-text" href="/mesto-<?php echo $lastElement['url']?>">
-                                <?php echo $lastElement['value'] ?>
-                            </a>.
+                             <?php echo $lastElement['value'] ?>
+                         </a>.
 
-                        </div>
+                    </div>
                 </div>
 
             <?php endif; ?>

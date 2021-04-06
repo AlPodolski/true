@@ -20,13 +20,38 @@ $this->registerJsFile('/js/single.js?v=2', ['depends' => ['yii\web\YiiAsset']]);
 
 $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
 
-$title = 'Проститутка '.$post['name'] .' из '.$cityInfo['city2'].' ждет твоего звонка на '.Yii::$app->request->hostName;
+$title = 'Проститутка '.$post['name'] .' из '.$cityInfo['city2']. '';
+
+if (isset($post['metro'][0]['value'])) $title.= ' у метро '.$post['metro'][0]['value'];
+
+$title.= ' скрасит  твой  досуг  за ' .$post['price']. ' руб/час' ;
 
 $this->title = $title;
 
-if($post['about']) $des = $post['about'];
+if($post['about'] and (mb_strlen($post['about']) < 40) ) $des = $post['about'];
 
-else $des = 'Проститутка '.$post['name'].' ждет Вашего звонка. Цена от '.$price['min'];
+else {
+
+    $des = 'Индивидуалка '. $post['name'];
+
+    if ($post['breast']) $des.= ' красавица c '.$post['breast'].' размером груди, ';
+
+    if ($post['service']) $des.= ' нравится '.$post['service'][0]['value'] ;
+
+    if ($post['place']){
+
+         foreach ($post['place'] as $item){
+
+             if($item['url'] == 'v-sayne') $des.= ' возможен выезд в сауну или баню ' ;
+             if($item['url'] == 'appartamentu') $des.= ' есть аппартаменты ' ;
+
+         }
+
+    }
+
+    $des.= ' , остальная информация в анкете сексуальной проститутки.';
+
+}
 
 
 Yii::$app->view->registerMetaTag([
