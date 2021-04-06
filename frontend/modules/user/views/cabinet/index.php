@@ -250,23 +250,21 @@ $this->title = 'Кабинет';
                             <a href="/cabinet/post/edit/<?= $post['id'] ?>">
 
                                 <?php echo PhotoWidget::widget([
-                                    'path' => $post['avatar']['file'] ,
+                                    'path' => $post['avatar']['file'],
                                     'size' => '100_100',
                                     'options' => [
                                         'class' => 'img user-img cabinet-img',
                                         'loading' => 'lazy',
                                         'alt' => $post['name'],
                                     ],
-                                ]  ); ?>
+                                ]); ?>
 
                             </a>
 
                             <div class="user-name-full">
 
                                 <a class="user-name-full" href="/cabinet/post/edit/<?= $post['id'] ?>">
-
                                     <?= $post['name'] ?>
-
                                 </a>
                             </div>
 
@@ -275,6 +273,21 @@ $this->title = 'Кабинет';
                                 <a href="/cabinet/post/edit/<?= $post['id'] ?>" class="edit-anket edit-block-item d-flex items-center">
                                     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M16.531 0L2.62518 13.9058L0 22L8.0942 19.3749L22 5.46902L16.531 0ZM20.177 5.46902L18.354 7.29205L14.7079 3.64603L16.5309 1.82299L20.177 5.46902ZM3.47888 15.452L6.54801 18.5212L5.17146 18.9676L3.03239 16.8285L3.47888 15.452ZM4.10197 14.2521L13.7964 4.55757L15.1637 5.92483L5.46919 15.6193L4.10197 14.2521ZM6.38069 16.5308L16.0752 6.83624L17.4425 8.20351L7.74795 17.8981L6.38069 16.5308ZM2.58599 18.2051L3.79496 19.4141L2.00565 19.9943L2.58599 18.2051Z" fill="white"/>
+                                    </svg>
+                                </a>
+                                <a href="/cabinet/up/<?= $post['id'] ?>" class="edit-anket up-anket edit-block-item d-flex items-center">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0)">
+                                            <path d="M7.14072 8.07527V7.57527H6.64072H4.56939L12.0002 0.539654L19.4313 7.57527H17.3599H16.8599V8.07527V14.8138H7.14072V8.07527Z" stroke="white"/>
+                                            <path d="M7.14071 20.1567H16.8599V20.6045H7.14071V20.1567Z" stroke="white"/>
+                                            <path d="M16.8599 17.709H7.14071V17.2612H16.8599V17.709Z" stroke="white"/>
+                                            <path d="M7.14071 23.0522H16.8599V23.5H7.14071V23.0522Z" stroke="white"/>
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0">
+                                                <rect width="24" height="24" fill="white" transform="translate(24) rotate(90)"/>
+                                            </clipPath>
+                                        </defs>
                                     </svg>
                                 </a>
 

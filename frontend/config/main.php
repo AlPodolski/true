@@ -117,6 +117,8 @@ return [
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/pay' => 'site/pay',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/post/edit/<id:[0-9]+>' => 'user/post/edit',
 
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/up/<id:[0-9]+>' => 'user/up/index',
+
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/chat' => 'chat/chat/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/chat/get' => 'chat/chat/get',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/chat/send' => 'chat/chat/send',
