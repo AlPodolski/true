@@ -41,6 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'created_at',
                 'value' => function ($data) {
+
                     return \date('Y-m-d H:i:s', $data->created_at);
                 }
 
@@ -48,7 +49,9 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'updated_at',
                 'value' => function ($data) {
-                    return \date('Y-m-d H:i:s', $data->created_at);
+                    /* @var $data \common\models\Claim */
+                    return \date('Y-m-d H:i:s', $data->updated_at);
+
                 }
 
             ],
