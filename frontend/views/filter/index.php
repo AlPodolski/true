@@ -2,6 +2,7 @@
 
 /* @var $this \yii\web\View */
 /* @var $posts array */
+/* @var  $topPostList array */
 /* @var $title string */
 /* @var $des string */
 /* @var $h1 string */
@@ -24,6 +25,21 @@ Yii::$app->view->registerMetaTag([
 <div class="row">
 
     <?php echo '<div data-url="/'.$param.'" class="col-12"></div>'; ?>
+
+    <?php if ($topPostList) {
+
+        foreach ($topPostList as $post){
+
+            echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), [
+                    'post'    => $post,
+                'advertising' => true,
+            ]);
+
+        }
+
+        unset($post);
+
+    } ?>
 
     <?php if (is_array($posts)) : ?>
 

@@ -89,6 +89,8 @@ $this->title = 'Пополнить баланс';
                             switch ($history['type']) {
                                 case \common\models\History::BALANCE_REPLENISHMENT:
                                     return  "Пополнение баланса";
+                                case \common\models\History::UP_ANKET:
+                                    return  "Поднятие анкеты";
                             }
 
                             return 'Ошибка';

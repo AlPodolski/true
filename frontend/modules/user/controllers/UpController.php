@@ -3,8 +3,11 @@
 
 namespace frontend\modules\user\controllers;
 
+use common\components\service\history\HistoryService;
 use common\models\City;
+use common\models\History;
 use common\models\User;
+use frontend\components\events\BillPayEvent;
 use frontend\modules\user\models\Posts;
 use frontend\modules\user\models\TopAnketBlock;
 use Yii;
@@ -18,6 +21,17 @@ class UpController extends Controller
         return [
             \common\behaviors\isAuth::class,
         ];
+    }
+
+    const EVENT_BILL_PAY = 'bill_pay';
+
+    public function init()
+    {
+
+        $this->on(self::EVENT_BILL_PAY, [HistoryService::class, 'addToHistory']);
+
+        parent::init();
+
     }
 
     public function actionIndex($city, $id)
@@ -41,6 +55,15 @@ class UpController extends Controller
                 $user->cash = $user->cash - Yii::$app->params['up_anket_cost'];
 
                 if ($upAnketModel->save() and $user->save()){
+
+                    $billPayEvent = new BillPayEvent();
+
+                    $billPayEvent->user_id = $user['id'];
+                    $billPayEvent->sum = Yii::$app->params['up_anket_cost'];
+                    $billPayEvent->type = History::UP_ANKET;
+                    $billPayEvent->balance = $user->cash;
+
+                    $this->trigger(self::EVENT_BILL_PAY, $billPayEvent);
 
                     $transaction->commit();
 

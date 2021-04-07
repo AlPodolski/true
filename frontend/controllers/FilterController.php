@@ -110,6 +110,8 @@ class FilterController extends Controller
         $des = MetaBuilder::Build($uri, $city, 'des');
         $h1 = MetaBuilder::Build($uri, $city, 'h1');
 
+        $topPostList = Posts::getTopList($cityInfo['id']);
+
         return $this->render('index', [
             'posts' => $posts,
             'city' => $city,
@@ -118,6 +120,7 @@ class FilterController extends Controller
             'title' => $title,
             'des' => $des,
             'h1' => $h1,
+            'topPostList' => $topPostList,
         ]);
     }
 }
