@@ -119,7 +119,8 @@ class SiteController extends Controller
             ->with('avatar', 'metro', 'selphiCount')
             ->where(['city_id' => $cityInfo['id']])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
-            ->limit(11)->cache(3600)
+            ->limit(11)
+            ->cache(3600)
             ->orderBy(['rand()' => SORT_DESC])
             ->all();
 
@@ -147,11 +148,14 @@ class SiteController extends Controller
 
         \shuffle($prPosts);
 
+        $topPostList = Posts::getTopList($cityInfo['id']);
+
         return $this->render('index', [
             'prPosts' => $prPosts,
             'title' => $title,
             'des' => $des,
             'h1' => $h1,
+            'topPostList' => $topPostList,
             'webmaster' => $webmaster,
         ]);
     }

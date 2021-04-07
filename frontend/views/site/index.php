@@ -8,6 +8,7 @@
 /* @var $title string */
 /* @var $des string */
 /* @var $h1 string */
+/* @var $topPostList array */
 
 use frontend\modules\user\helpers\ViewCountHelper;
 
@@ -50,6 +51,23 @@ Yii::$app->view->registerMetaTag([
     <div class="row">
 
         <div data-url="/" class="col-12"></div>
+
+        <?php
+
+            if ($topPostList) {
+
+                foreach ($topPostList as $post){
+
+                    echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), [
+                        'post' => $post,
+                        'advertising' => true,
+                    ]);
+
+                }
+
+            }
+
+        ?>
 
         <?php foreach ($prPosts as $post) : ?>
 

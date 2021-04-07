@@ -72,6 +72,14 @@ class Posts extends \yii\db\ActiveRecord
         ];
     }
 
+    public static function getTopList($cityId)
+    {
+        return self::find()->where(['in', 'id', TopAnketBlock::getPostIds($cityId)])
+            ->with('avatar', 'metro', 'selphiCount')
+            ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
+            ->asArray()->all();
+    }
+
     public function getAvatar() : ActiveQuery
     {
         return $this->hasOne(Files::class, ['related_id' => 'id'])->andWhere(['related_class' => self::class])

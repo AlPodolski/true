@@ -2824,6 +2824,9 @@ input:checked + .img-label-radio:before {
     background: linear-gradient(139.53deg, #FFDE38 12.53%, #00FBFF 133.52%);
     box-shadow: 0px 4px 5px rgba(49, 218, 146, 0.28);
 }
+.advertising-block{
+    left: 17px;
+}
 @media (max-width: 1199px) {
     .post .post-img{
         min-height: 348px;
