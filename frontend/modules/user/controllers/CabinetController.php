@@ -30,5 +30,11 @@ class CabinetController extends \yii\web\Controller
         ]);
 
     }
+    public function actionFaq($city)
+    {
+
+        return $this->render('faq');
+
+    }
 
 }

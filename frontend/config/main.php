@@ -111,6 +111,8 @@ return [
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/signup' => 'user/user/signup',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/login' => 'user/user/login',
 
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/faq' => 'user/cabinet/faq',
+
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet' => 'user/cabinet/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/post/add' => 'user/post/add',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/pay' => 'user/pay/pay',

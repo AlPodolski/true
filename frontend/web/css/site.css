@@ -2827,6 +2827,48 @@ input:checked + .img-label-radio:before {
 .advertising-block{
     left: 17px;
 }
+.accordion  .open-plus{
+    display: none;
+}
+.accordion .collapsed .close-minus{
+    display: none;
+}
+.accordion .collapsed .open-plus{
+    display: inline;
+}
+.accordion-custom .btn{
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 141.4%;
+    text-align: center;
+    color: #F74952;
+}
+.accordion-custom .collapsed{
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 141.4%;
+    text-align: center;
+    color: #000;
+}
+.card-header{
+    background: #fff;
+    border:none;
+}
+.card{
+    background: #FFFFFF;
+    border: 1px solid #EBEBEB;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+}
+.btn.btn-block.text-left.collapsed:focus {
+    border:none;
+    box-shadow:none;
+}
 @media (max-width: 1199px) {
     .post .post-img{
         min-height: 348px;
