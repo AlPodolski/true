@@ -17,6 +17,7 @@ Yii::$app->view->registerMetaTag([
 
 ?>
 <div class="container custom-container">
+
     <h1> <?php echo $h1 ?> </h1>
 
     <div class="row">
