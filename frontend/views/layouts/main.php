@@ -67,7 +67,7 @@ AppAsset::register($this);
                     <?php if (!Yii::$app->user->isGuest) : ?>
 
                         <li class="top-menu-item"><a href="/cabinet/edit">Настройки</a></li>
-                        <li class="top-menu-item d-none"><a href="/cabinet/faq">FAQ</a></li>
+                        <li class="top-menu-item"><a href="/cabinet/faq">FAQ</a></li>
 
                     <?php else : ?>
 
