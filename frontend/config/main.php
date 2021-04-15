@@ -128,6 +128,7 @@ return [
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/edit' => 'user/profile/edit',
 
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/view/phone' => 'user/view/view-phone',
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/view/buy' => 'user/view/buy-view',
 
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/claim/get-modal' => 'claim/get-modal',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/claim/add' => 'claim/add',

@@ -19,6 +19,7 @@ class History extends \yii\db\ActiveRecord
 
     const BALANCE_REPLENISHMENT = 1;
     const UP_ANKET = 2;
+    const BUY_VIEW = 3;
 
     /**
      * {@inheritdoc}

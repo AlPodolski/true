@@ -38,6 +38,7 @@ use yii\helpers\ArrayHelper;
  * @property int|null $check_photo_status
  * @property int|null $status
  * @property int|null $rating
+ * @property int|null $view
  */
 class Posts extends \yii\db\ActiveRecord
 {
@@ -63,7 +64,8 @@ class Posts extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['city_id', 'user_id', 'created_at', 'updated_at', 'category', 'check_photo_status', 'price', 'age', 'rost', 'ves', 'breast', 'status'], 'integer'],
+            [['city_id', 'user_id', 'created_at', 'updated_at', 'category', 'check_photo_status', 'price', 'age',
+                'rost', 'ves', 'breast', 'status', 'view'], 'integer'],
             [['name'], 'string', 'max' => 60],
             [['phone'], 'string', 'max' => 20 ],
             [['name', 'phone', 'price'],'required'],
