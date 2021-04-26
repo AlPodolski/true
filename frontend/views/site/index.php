@@ -84,7 +84,7 @@ Yii::$app->view->registerMetaTag([
             <?php if (isset($post['block']['header'])) : ?>
 
                     <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article-promo.php'), [
-                        'post'      => $post['block']['post'],
+                        'post'      => $post['block'],
                         'promo'      => true,
                     ]); ?>
 
