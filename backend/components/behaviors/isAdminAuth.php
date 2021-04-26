@@ -21,7 +21,7 @@ class isAdminAuth extends Behavior
 
             Yii::$app->session->setFlash('warning', 'Требуется авториция');
 
-            header("Location: /");
+            header("Location: /auth/login");
 
             exit();
 
