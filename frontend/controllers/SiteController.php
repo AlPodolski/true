@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\City;
+use frontend\components\helpers\GetAdvertisingPost;
 use frontend\helpers\MetaBuilder;
 use frontend\helpers\FavoriteHelper;
 use frontend\models\forms\PayForm;
@@ -124,19 +125,9 @@ class SiteController extends Controller
             ->orderBy(['rand()' => SORT_DESC])
             ->all();
 
-        $checkBlock['block']['post'] = Posts::find()->asArray()
-            ->where(['id' => 34])
-            ->with('avatar')
-            ->cache(3600)->one();
+        $checkBlock = GetAdvertisingPost::get($cityInfo);
 
-        $checkBlock['block']['header'] = 'Проверенные проститутки с высоким рейтингом';
-        $checkBlock['block']['text'] = 'Рейтинг составляется на основе алгоритма
-                и ручной модерации мы выбираем только
-                качественные анкеты со всего интернета
-                что бы показать их вам.';
-        $checkBlock['block']['url'] = 'proverennye';
-
-        $prPosts[] = $checkBlock;
+        array_unshift($prPosts, $checkBlock);
 
         $uri = Yii::$app->request->url;
 
@@ -145,8 +136,6 @@ class SiteController extends Controller
         $title = MetaBuilder::Build($uri, $city, 'Title');
         $des = MetaBuilder::Build($uri, $city, 'des');
         $h1 = MetaBuilder::Build($uri, $city, 'h1');
-
-        \shuffle($prPosts);
 
         $topPostList = Posts::getTopList($cityInfo['id']);
 

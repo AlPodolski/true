@@ -3,6 +3,7 @@
 /* @var $post array */
 /* @var $countPost integer */
 /* @var $advertising bool | null */
+/* @var $promo bool | null */
 
 use frontend\widgets\PhotoWidget;
 
@@ -19,7 +20,7 @@ use frontend\widgets\PhotoWidget;
                 </div>
             <?php endif ?>
 
-            <?php if (isset($advertising) and $advertising) : ?>
+            <?php if ((isset($advertising) and $advertising) or (isset($promo) and $promo) ) : ?>
                 <div class="check-label advertising-block">
                     Реклама
                 </div>

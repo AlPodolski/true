@@ -30,15 +30,13 @@ class ViewController extends Controller
 
             Yii::$app->session->setFlash('success', 'Показы куплены');
 
-            return $this->redirect(Yii::$app->request->referrer);
-
         }else{
 
             Yii::$app->session->setFlash('warning', 'Ошибка');
 
-            return $this->redirect(Yii::$app->request->referrer);
-
         }
+
+        return $this->redirect(Yii::$app->request->referrer);
     }
 
 }

@@ -10,51 +10,6 @@ use yii\helpers\ArrayHelper;
 $this->registerJsFile('/js/jquery.maskedinput.js', ['depends' => [yii\web\YiiAsset::className()]]);
 $this->registerJsFile('/js/form_cabinet.js', ['depends' => [yii\web\YiiAsset::className()]]); ?>
 
-<div class="container">
-
-    <div class="row">
-
-        <div class="col-12">
-
-            <?php $buyViewForm = new \frontend\modules\user\models\forms\BuyViewForm();
-
-            if (isset($post['name']) and $post['name']) : ?>
-
-                <p>Осталось показов: <?php echo $post['view'] ?></p>
-
-                <?php $viewForm = ActiveForm::begin([
-                'id' => 'login-form',
-                'action' => '/cabinet/view/buy',
-                'options' => ['class' => 'form-horizontal'],
-            ]) ?>
-
-                <?= $viewForm->field($buyViewForm, 'post_id')->hiddenInput(['value' => $post->id])->label(false) ?>
-
-                <?php
-
-                    $tarifParams = [
-                        Yii::$app->params['view_100_buy_price'] => '100 показов '. Yii::$app->params['view_100_buy_price'] .' руб',
-                    ];
-
-                ?>
-
-                <?= $viewForm->field($buyViewForm, 'price')->dropDownList($tarifParams) ?>
-
-                <div class="form-group">
-                    <div class="col-lg-offset-1 col-lg-11">
-                        <?= Html::submitButton('Вход', ['class' => 'btn btn-primary']) ?>
-                    </div>
-                </div>
-                <?php ActiveForm::end() ?>
-
-            <?php endif; ?>
-
-        </div>
-
-    </div>
-
-</div>
-
 <?php $form = ActiveForm::begin([
     'id' => 'login-form',
     'options' => ['class' => 'form-horizontal', 'enctype' => 'multipart/form-data'],
@@ -62,6 +17,16 @@ $this->registerJsFile('/js/form_cabinet.js', ['depends' => [yii\web\YiiAsset::cl
 
     <div class="container">
         <div class="row">
+
+            <div class="col-12">
+
+                <?php if (isset($post['name']) and $post['name']) : ?>
+
+                    <p>Осталось показов: <?php echo $post['view'] ?></p>
+
+                <?php endif; ?>
+
+            </div>
 
             <div class="col-12 col-md-4">
                 <div class="row">
@@ -353,3 +318,44 @@ $this->registerJsFile('/js/form_cabinet.js', ['depends' => [yii\web\YiiAsset::cl
     </div>
 
 <?php ActiveForm::end() ?>
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-12 col-md-4">
+
+            <?php $buyViewForm = new \frontend\modules\user\models\forms\BuyViewForm();
+
+            if (isset($post['name']) and $post['name']) : ?>
+
+                <?php $viewForm = ActiveForm::begin([
+                'id' => 'login-form',
+                'action' => '/cabinet/view/buy',
+                'options' => ['class' => 'form-horizontal'],
+            ]) ?>
+
+                <?= $viewForm->field($buyViewForm, 'post_id')->hiddenInput(['value' => $post->id])->label(false) ?>
+
+                <?php
+
+                $tarifParams = [
+                    Yii::$app->params['view_100_buy_price'] => '100 показов '. Yii::$app->params['view_100_buy_price'] .' руб',
+                ];
+
+                ?>
+
+                <?= $viewForm->field($buyViewForm, 'price')->dropDownList($tarifParams) ?>
+
+                <div class="form-group">
+                    <?= Html::submitButton('Купить', ['class' => 'orange-btn']) ?>
+                </div>
+                <?php ActiveForm::end() ?>
+
+            <?php endif; ?>
+
+        </div>
+
+    </div>
+
+</div>
