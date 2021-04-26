@@ -83,6 +83,12 @@ FontAwesomeAsset::register($this);
                                     <p>Обратная связь</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="/user/index" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Пользователи</p>
+                                </a>
+                            </li>
 
                         </ul>
                     </li>

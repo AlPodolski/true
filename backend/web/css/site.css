@@ -2817,6 +2817,20 @@ input::-webkit-input-placeholder {
 .close-chat {
     display:none;
 }
+.pagination li{
+    margin-left: 5px;
+    padding: 11px;
+}
+.pagination .active{
+    margin-left: 5px;
+    padding: 5px 11px;
+}
+a.desc::after {
+    content: "\2193";
+}
+a.asc::after {
+    content: "\2191";
+}
 @media (max-width: 1199px) {
     .post .post-img{
         min-height: 348px;
