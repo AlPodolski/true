@@ -90,7 +90,7 @@ FontAwesomeAsset::register($this);
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/comments/index" class="nav-link">
+                                <a href="/review/index" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Комментарии</p>
                                 </a>
