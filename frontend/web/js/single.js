@@ -642,8 +642,17 @@ function get_modal(object){
             }
             if(target == 'comment-form'){
 
-                $('.form-comment .review-modal-body .reting-item .form-group').each(function() {
-                    $(this).rating({ size: "xs", min: 0, max: 10, step: 1, readonly: false, showClear: false, showCaption: false, language: "en", theme: "krajee-fas" });
+                $(".rate").rateYo({
+                    rating: 5,
+                    fullStar: true
+                });
+
+                $(".rate").rateYo("option", "onSet", function () {
+
+                    var rating = $(this).rateYo("rating");
+
+                    $(this).siblings('.form-group').find('input').attr('value', rating);
+
                 });
 
             }

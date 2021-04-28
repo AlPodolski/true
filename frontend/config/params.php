@@ -7,5 +7,6 @@ return [
     'site_name' => 'sex-true.com',
     'min_pay' => 300,
     'view_100_buy_price' => 50,
+    'review_cache_key' => 'review',
     'up_anket_cost' => 10
 ];

@@ -40,6 +40,7 @@ class ActionColumnExtends extends ActionColumn
         $this->initDefaultButton('delete', 'trash', [
             'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
             'data-method' => 'post',
+            'data-pjax' => '1',
         ]);
     }
 
@@ -70,7 +71,7 @@ class ActionColumnExtends extends ActionColumn
                 $options = array_merge([
                     'title' => $title,
                     'aria-label' => $title,
-                    'data-pjax' => '0',
+                    'data-pjax' => '1',
                 ], $additionalOptions, $this->buttonOptions);
                 $icon = $this->icons[$iconName];
                 return Html::a($icon, $url, $options);

@@ -3,16 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\User;
-use backend\models\User as UserSearch;
+use frontend\modules\user\models\Review;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * UserController implements the CRUD actions for User model.
+ * ReviewController implements the CRUD actions for Review model.
  */
-class UserController extends Controller
+class ReviewController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -25,28 +25,57 @@ class UserController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                    'check' => ['POST'],
+                    'remove' => ['POST'],
                 ],
             ],
         ];
     }
 
+    public function actionRemove()
+    {
+
+        if ($reviewId = Yii::$app->request->post('id') and $review = Review::findOne($reviewId)){
+
+            return $review->delete();
+
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+
+    }
+    public function actionCheck()
+    {
+
+        if ($reviewId = Yii::$app->request->post('id') and $review = Review::findOne($reviewId)){
+
+            $review->is_moderate = Review::MODARATE;
+
+            return $review->save();
+
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+
+    }
+
     /**
-     * Lists all User models.
+     * Lists all Review models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new UserSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = new ActiveDataProvider([
+            'query' => Review::find(),
+        ]);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Displays a single User model.
+     * Displays a single Review model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -59,13 +88,13 @@ class UserController extends Controller
     }
 
     /**
-     * Creates a new User model.
+     * Creates a new Review model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new User();
+        $model = new Review();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -77,7 +106,7 @@ class UserController extends Controller
     }
 
     /**
-     * Updates an existing User model.
+     * Updates an existing Review model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -97,7 +126,7 @@ class UserController extends Controller
     }
 
     /**
-     * Deletes an existing User model.
+     * Deletes an existing Review model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -111,15 +140,15 @@ class UserController extends Controller
     }
 
     /**
-     * Finds the User model based on its primary key value.
+     * Finds the Review model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return User the loaded model
+     * @return Review the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = User::findOne($id)) !== null) {
+        if (($model = Review::findOne($id)) !== null) {
             return $model;
         }
 

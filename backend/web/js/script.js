@@ -39,6 +39,44 @@ function close_chat(){
     $('.dialog_list-wrap').removeClass('dialog_list-wrap-with-dialog d-flex');
 
 }
+function check_review(object){
+
+    var id = $(object).attr('data-id')
+
+    $.ajax({
+        type: 'POST',
+        url: "/review/check", //Путь к обработчику
+        data: 'id=' + id,
+        response: 'text',
+        dataType: "html",
+        cache: false,
+        success: function (data) {
+
+            $(object).text('Готово');
+
+        }
+    })
+
+}
+function remove_review(object){
+
+    var id = $(object).attr('data-id')
+
+    $.ajax({
+        type: 'POST',
+        url: "/review/remove", //Путь к обработчику
+        data: 'id=' + id,
+        response: 'text',
+        dataType: "html",
+        cache: false,
+        success: function (data) {
+
+            $(object).closest('tr').remove();
+
+        }
+    })
+
+}
 
 function send_message(object){
 

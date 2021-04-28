@@ -17,9 +17,15 @@ use Yii;
  * @property int|null $author
  * @property int|null $created_at
  * @property int|null $is_happy
+ * @property int|null $is_moderate
  */
 class Review extends \yii\db\ActiveRecord
 {
+
+    const ON_MODARATE = 0;
+
+    const MODARATE = 1;
+
     /**
      * {@inheritdoc}
      */
@@ -34,7 +40,7 @@ class Review extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['post_id', 'photo_marc',  'total_marc', 'clean', 'author', 'is_happy'], 'integer'],
+            [['post_id', 'photo_marc',  'total_marc', 'clean', 'author', 'is_happy', 'is_moderate'], 'integer'],
             [['text'], 'string'],
         ];
     }
@@ -51,12 +57,15 @@ class Review extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'author' => 'Author',
-            'post_id' => 'Post ID',
-            'text' => 'Text',
-            'photo_marc' => 'Photo Marc',
-            'service_marc' => 'Service Marc',
-            'total_marc' => 'Total Marc',
+            'author' => 'Автор',
+            'post_id' => 'Пост',
+            'text' => 'Текс',
+            'photo_marc' => 'Оценка фото',
+            'service_marc' => 'Обслуживание',
+            'total_marc' => 'Общая оценка',
+            'is_moderate' => 'Статус',
+            'clean' => 'Чистота',
+            'created_at' => 'Дата добавления',
         ];
     }
 

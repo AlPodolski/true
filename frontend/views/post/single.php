@@ -9,7 +9,9 @@
 /* @var $backUrl string */
 
 use kartik\icons\FontAwesomeAsset;
+use frontend\assets\RateAsset;
 FontAwesomeAsset::register($this);
+RateAsset::register($this);
 
 $this->registerJsFile('/js/owl.carousel.js', ['depends' => ['yii\web\YiiAsset']]);
 $this->registerJsFile('https://cdn.jsdelivr.net/gh/taras-d/images-grid/src/images-grid.min.js', ['depends' => ['yii\web\YiiAsset']]);

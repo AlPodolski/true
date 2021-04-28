@@ -2831,6 +2831,17 @@ a.desc::after {
 a.asc::after {
     content: "\2191";
 }
+.grid-view td {
+    white-space: inherit;
+}
+.check-text{
+    cursor:pointer;
+    color:blue;
+}
+.remove-text{
+    cursor:pointer;
+    color:red;
+}
 @media (max-width: 1199px) {
     .post .post-img{
         min-height: 348px;

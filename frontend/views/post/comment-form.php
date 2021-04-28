@@ -36,20 +36,10 @@ echo $form->field($postReviewForm, 'post_id')->hiddenInput(['value' => $data['po
 
             <div class="col-6">Фото</div>
             <div class="col-6">
+                <div id="rateYo" class="rate"></div>
                 <?php
 
-                echo $form->field($postReviewForm, 'photo')->widget(StarRating::className(), [
-                    'value' => 8,
-                    'pluginOptions' =>  [
-                        'size' => 'xs',
-                        'min' => 0,
-                        'max' => 10,
-                        'step' => 1,
-                        'readonly' => false,
-                        'showClear' => false,
-                        'showCaption' => false,
-                    ],
-                ])->label(false);
+                echo $form->field($postReviewForm, 'photo')->hiddenInput(['value' => 5])->label(false);
 
                 ?>
             </div>
@@ -58,43 +48,29 @@ echo $form->field($postReviewForm, 'post_id')->hiddenInput(['value' => $data['po
     <div class="col-12 reting-item">
         <div class="row">
             <div class="col-6">Чистота</div>
-            <div class="col-6"><?php
+            <div class="col-6">
+                <div  class="rate"></div>
+                <?php
 
-                echo $form->field($postReviewForm, 'clean')->widget(StarRating::className(), [
-                    'value' => 8,
-                    'pluginOptions' =>  [
-                        'size' => 'xs',
-                        'min' => 0,
-                        'max' => 10,
-                        'step' => 1,
-                        'readonly' => false,
-                        'showClear' => false,
-                        'showCaption' => false,
-                    ],
-                ])->label(false);
+                echo $form->field($postReviewForm, 'clean')->hiddenInput(['value' => 5])->label(false);
 
-                ?></div>
+                ?>
+            </div>
         </div>
     </div>
     <div class="col-12 reting-item">
         <div class="row">
             <div class="col-6">Общая</div>
-            <div class="col-6"><?php
+            <div class="col-6">
 
-                echo $form->field($postReviewForm, 'total')->widget(StarRating::className(), [
-                    'value' => 8,
-                    'pluginOptions' =>  [
-                        'size' => 'xs',
-                        'min' => 0,
-                        'max' => 10,
-                        'step' => 1,
-                        'readonly' => false,
-                        'showClear' => false,
-                        'showCaption' => false,
-                    ],
-                ])->label(false);
+                <div class="rate"></div>
+
+                <?php
+
+                echo $form->field($postReviewForm, 'total')->hiddenInput(['value' => 5])->label(false);
 
                 ?>
+
             </div>
         </div>
     </div>
@@ -105,22 +81,16 @@ echo $form->field($postReviewForm, 'post_id')->hiddenInput(['value' => $data['po
             <div class="row">
 
                 <div class="col-6"><?php echo $item['value']?></div>
-                <div class="col-6"><?php
+                <div class="col-6">
 
-                    echo $form->field($serviceReviewFormForm, $item['id'])->widget(StarRating::className(), [
-                        'value' => 8,
-                        'pluginOptions' =>  [
-                            'size' => 'xs',
-                            'min' => 0,
-                            'max' => 10,
-                            'step' => 1,
-                            'readonly' => false,
-                            'showClear' => false,
-                            'showCaption' => false,
-                        ],
-                    ])->label(false);
+                    <div  class="rate"></div>
+                    <?php
 
-                    ?></div>
+                        echo $form->field($serviceReviewFormForm, $item['id'])->hiddenInput(['value' => 5])->label(false);
+
+                    ?>
+
+                </div>
 
             </div>
         </div>
