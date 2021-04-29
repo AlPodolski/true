@@ -37,7 +37,7 @@ class ReviewController extends Controller
 
         if ($reviewId = Yii::$app->request->post('id') and $review = Review::findOne($reviewId)){
 
-            Yii::$app->cache->delete(Yii::$app->params['review_cache_key'].'_'.$reviewId );
+            Yii::$app->cache->delete(Yii::$app->params['review_cache_key'].'_'.$review->post_id  );
 
             return $review->delete();
 
@@ -51,7 +51,7 @@ class ReviewController extends Controller
 
         if ($reviewId = Yii::$app->request->post('id') and $review = Review::findOne($reviewId)){
 
-            Yii::$app->cache->delete(Yii::$app->params['review_cache_key'].'_'.$reviewId );
+            Yii::$app->cache->delete(Yii::$app->params['review_cache_key'].'_'.$review->post_id );
 
             $review->is_moderate = Review::MODARATE;
 

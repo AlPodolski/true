@@ -499,6 +499,19 @@ $( function() {
 
     }
 
+    $(".rate").rateYo({
+        rating: 5,
+        fullStar: true
+    });
+
+    $(".rate").rateYo("option", "onSet", function () {
+
+        var rating = $(this).rateYo("rating");
+
+        $(this).siblings('.form-group').find('input').attr('value', rating);
+
+    });
+
 });
 
 function get_more_post_single(){

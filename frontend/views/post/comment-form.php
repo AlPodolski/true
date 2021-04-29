@@ -77,6 +77,7 @@ echo $form->field($postReviewForm, 'post_id')->hiddenInput(['value' => $data['po
 
 
     <?php foreach ($data['post']['service'] as $item) : ?>
+
         <div class="col-12 reting-item">
             <div class="row">
 
