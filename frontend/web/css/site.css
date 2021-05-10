@@ -2869,6 +2869,10 @@ input:checked + .img-label-radio:before {
     border:none;
     box-shadow:none;
 }
+.listing-img{
+    max-width: 100%;
+    height: auto;
+}
 @media (max-width: 1199px) {
     .post .post-img{
         min-height: 348px;
