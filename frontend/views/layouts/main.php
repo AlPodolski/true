@@ -397,7 +397,7 @@ AppAsset::register($this);
         or (Yii::$app->controller->id == 'post' and !strpos(Yii::$app->request->url, 'edit') )) : ?>
 
         <div class="container">
-            <?php echo \frontend\widgets\FilterWidget::widget() ?>
+            <?php //echo \frontend\widgets\FilterWidget::widget() ?>
         </div>
 
     <?php endif; ?>
