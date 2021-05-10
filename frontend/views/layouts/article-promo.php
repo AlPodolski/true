@@ -14,7 +14,9 @@ use frontend\widgets\PhotoWidget;
             'path' => $post['post']['avatar']['file'] ,
             'size' => '350_420',
             'options' => [
-                'class' => 'img user-img',
+                'width' => '350px',
+                'height' => '420px',
+                'class' => 'img user-img listing-img',
                 'loading' => 'lazy',
                 'alt' => '',
             ],
