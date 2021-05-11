@@ -264,6 +264,25 @@ function get_claim_modal(){
 
 }
 
+function get_data(object){
+
+    var data = $(object).attr('data-type');
+
+    $.ajax({
+        type: 'POST',
+        data: 'data='+data,
+        url: "/data/get", //Путь к обработчику
+        cache: false,
+        success: function (data) {
+
+            $('#dataModal .modal-body').html(data);
+            $('#dataModal').modal('toggle');
+
+        }
+    })
+
+}
+
 function send_comment(object) {
 
     var formData = new FormData($(".form-wall-comment-" + $(object).attr('data-id'))[0]);
@@ -314,7 +333,7 @@ $(window).scroll(function () {
 
     changeURL();
 
-    if (winScrollTop > (scrollToElem - 100)) {
+    if (winScrollTop > (scrollToElem - 150)) {
 
         $.ajax({
             type: 'POST',

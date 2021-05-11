@@ -24,4 +24,19 @@ class MetroWidget extends Widget
 
         return false;
     }
+
+    public static function checkExistMetro()
+    {
+        if (isset(Yii::$app->controller->actionParams['city'])
+            and $city = City::getCity(Yii::$app->controller->actionParams['city'])
+            and Metro::getMetro($city['id'])
+        ) {
+
+            return true;
+
+        }
+
+        return false;
+    }
+
 }

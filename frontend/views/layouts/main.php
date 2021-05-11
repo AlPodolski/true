@@ -93,15 +93,21 @@ AppAsset::register($this);
                         </span>
                         </div>
                     </div>
-                    <div class="col-xl-1 col-lg-2 col-md-2 metro-search-btn-wrap-top" data-toggle="modal" data-target="#metroModal">
-                        <div class="metro-search-btn">
-                            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5.50011 1.34985C2.46255 1.34985 0 3.83578 0 6.90235C0 8.56513 0.717582 9.64956 0.717582 9.64956L10.2803 9.65002C10.2803 9.65002 11 8.46486 11 6.90224C11 3.83578 8.53745 1.34985 5.50011 1.34985ZM9.87695 8.97359L1.14069 8.96978C1.14069 8.96978 0.675168 8.0882 0.675168 6.88483C0.675168 4.1971 2.84359 2.0181 5.51856 2.0181C8.19341 2.0181 10.3619 4.19698 10.3619 6.88483C10.3621 8.1018 9.87695 8.97359 9.87695 8.97359Z" fill="#F74952"/>
-                                <path d="M7.05446 2.8243L6.98542 2.82419L5.51833 5.69898L3.99845 2.79964L1.91751 8.03737H1.37973V8.45805H4.3259V8.03737H3.74132L4.3259 6.40042L5.51833 8.45805L6.66409 6.40042L7.24855 8.03737H6.66409V8.45805H9.58674V8.03737H9.08042L7.05446 2.8243Z" fill="#F74952"/>
-                            </svg>
-                            Метро
+
+                    <?php if(\frontend\widgets\MetroWidget::checkExistMetro()) : ?>
+
+                        <div class="col-xl-1 col-lg-2 col-md-2 metro-search-btn-wrap-top" data-type="metro" onclick="get_data(this)">
+                            <div class="metro-search-btn">
+                                <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5.50011 1.34985C2.46255 1.34985 0 3.83578 0 6.90235C0 8.56513 0.717582 9.64956 0.717582 9.64956L10.2803 9.65002C10.2803 9.65002 11 8.46486 11 6.90224C11 3.83578 8.53745 1.34985 5.50011 1.34985ZM9.87695 8.97359L1.14069 8.96978C1.14069 8.96978 0.675168 8.0882 0.675168 6.88483C0.675168 4.1971 2.84359 2.0181 5.51856 2.0181C8.19341 2.0181 10.3619 4.19698 10.3619 6.88483C10.3621 8.1018 9.87695 8.97359 9.87695 8.97359Z" fill="#F74952"/>
+                                    <path d="M7.05446 2.8243L6.98542 2.82419L5.51833 5.69898L3.99845 2.79964L1.91751 8.03737H1.37973V8.45805H4.3259V8.03737H3.74132L4.3259 6.40042L5.51833 8.45805L6.66409 6.40042L7.24855 8.03737H6.66409V8.45805H9.58674V8.03737H9.08042L7.05446 2.8243Z" fill="#F74952"/>
+                                </svg>
+                                Метро
+                            </div>
                         </div>
-                    </div>
+
+                    <?php endif; ?>
+
                     <div class="col-xl-5 col-lg-3 col-md-3 col-sm-4 col-4">
                         <div class="logo">
                             <a href="/">
@@ -428,7 +434,7 @@ AppAsset::register($this);
     </div>
 </footer>
 
-<div class="modal fade" id="metroModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="dataModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-close-wrap">
@@ -437,11 +443,9 @@ AppAsset::register($this);
                     <path d="M22.6797 20.6411L18.9509 16.9176L22.6797 13.1941C23.1933 12.6804 23.1933 11.8467 22.681 11.3316C22.166 10.8153 21.3323 10.8166 20.8173 11.3303L17.0859 15.0564L13.3545 11.3303C12.8395 10.8166 12.0058 10.8153 11.4908 11.3316C10.9771 11.8466 10.9771 12.6803 11.4921 13.1941L15.2209 16.9176L11.4921 20.6411C10.9771 21.1547 10.9771 21.9885 11.4908 22.5035C11.7477 22.7616 12.0861 22.8894 12.4233 22.8894C12.7606 22.8894 13.0977 22.7603 13.3546 22.5048L17.086 18.7786L20.8174 22.5048C21.0742 22.7616 21.4114 22.8894 21.7486 22.8894C22.0858 22.8894 22.4243 22.7603 22.6811 22.5035C23.1947 21.9885 23.1947 21.1547 22.6797 20.6411Z" fill="#F74952"/>
                 </svg>
             </div>
-
-            <h5 class="modal-title" id="exampleModalLabel">Выбрать метро</h5>
             <div class="modal-body ">
 
-                <?php echo \frontend\widgets\MetroWidget::widget() ?>
+
 
             </div>
         </div>
