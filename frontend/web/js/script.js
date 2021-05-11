@@ -266,21 +266,43 @@ function get_claim_modal(){
 
 function get_data(object){
 
-    var data = $(object).attr('data-type');
+    var data_type = $(object).attr('data-type');
 
     $.ajax({
         type: 'POST',
-        data: 'data='+data,
-        url: "/data/get", //Путь к обработчику
+        data: 'data='+data_type,
+        url: "/data/get",
         cache: false,
         success: function (data) {
 
-            $('#dataModal .modal-body').html(data);
-            $('#dataModal').modal('toggle');
+            if(data_type == 'filter'){
+
+                var scriptTag= document.createElement( "script" );
+                scriptTag.type = "text/javascript";
+                scriptTag.src = "/js/jquery-ui.js";
+                $("body").append(scriptTag);
+                $("head").prepend('<link href="/css/jquery-ui.css" rel="stylesheet">');
+
+                $('.filter-block').html(data);
+
+                $('.filter-block').removeClass('d-none');
+
+                filter();
+
+            }else{
+
+                $('#dataModal .modal-body').html(data);
+                $('#dataModal').modal('toggle');
+
+            }
 
         }
     })
 
+}
+
+function close_filter(){
+    $('.filter-block').addClass('d-none');
 }
 
 function send_comment(object) {
@@ -440,29 +462,22 @@ function get_register_btn(){
 
 }
 
-$('.search-by-params-btn').click(function() {
-
-    $('.filter-block').toggleClass('d-none');
-
-});
-
-$('.dopolnitaelno-btn').click(function() {
+function dopolnitaelno(){
 
     $('.dopolnitaelno-btn span').toggleClass('d-none');
     $('.dop-block').toggleClass('d-none');
     $('.dopolnitaelno-btn svg').toggleClass('arrow-down');
 
-});
+}
 
-
-$('.more-search-btn').click(function() {
+function more_search(){
     $('.more-search-btn span').toggleClass('d-none');
     $('.more-search-block').toggleClass('d-none');
     $('.more-search-btn svg').toggleClass('arrow-down');
+}
 
-});
+function filter(){
 
-$( function() {
     $( "#slider-range-age" ).slider({
         range: true,
         min: 18,
@@ -525,6 +540,6 @@ $( function() {
         }
     });
 
-} );
+}
 
 $(document).ready(main);
