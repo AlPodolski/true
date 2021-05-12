@@ -6,60 +6,153 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model frontend\modules\user\models\Posts */
 /* @var $form yii\widgets\ActiveForm */
+/* @var $postMessageModel \common\models\PostMessage */
+
 ?>
 
 <div class="posts-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-    </div>
+    <div class="row">
 
-    <?= $form->field($model, 'city_id')->textInput() ?>
+        <div class="col-4">
+            <?= $form->field($model, 'city_id')->textInput() ?>
+        </div>
 
-    <?= $form->field($model, 'user_id')->textInput() ?>
+        <div class="col-4">
+            <?= $form->field($model, 'user_id')->textInput() ?>
+        </div>
 
-    <?= $form->field($model, 'status')->dropDownList(
-            [
+        <div class="col-4">
+            <?= $form->field($model, 'status')->dropDownList(
+                [
                     \frontend\modules\user\models\Posts::POST_ON_MODARATION_STATUS => 'Ожидает проверки',
                     \frontend\modules\user\models\Posts::POST_ON_PUPLICATION_STATUS => 'Публикуется',
                     \frontend\modules\user\models\Posts::POST_DONT_PUBLICATION_STATUS => 'Не публикуется',
-            ])
-    ?>
+                    \frontend\modules\user\models\Posts::RETURNED_FOR_REVISION => 'На доработке',
+                ])
+            ?>
+        </div>
 
-    <?= $form->field($model, 'created_at')->textInput() ?>
+        <div class="col-4">
+            <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+        </div>
 
-    <?= $form->field($model, 'updated_at')->textInput() ?>
+        <div class="col-4">
+            <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
+        </div>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+        <div class="col-4">
+            <?= $form->field($model, 'category')->dropDownList(
+                [
+                    \frontend\modules\user\models\Posts::INDI_CATEGORY => 'Инди',
+                    \frontend\modules\user\models\Posts::SALON_CATEGORY => 'Салон',
+                ])
+            ?>
+        </div>
 
-    <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
+        <div class="col-4">
+            <?= $form->field($model, 'check_photo_status')->dropDownList(
+                [
+                    \frontend\modules\user\models\Posts::ANKET_NOT_CHECK => 'Личность не подтверждена',
+                    \frontend\modules\user\models\Posts::ANKET_CHECK => 'Личность подтверждена',
+                ])
+            ?>
+        </div>
 
-    <?= $form->field($model, 'about')->textarea(['rows' => 6]) ?>
+        <div class="col-4">
+            <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
+        </div>
 
-    <?= $form->field($model, 'category')->textInput() ?>
+        <div class="col-4">
+            <?= $form->field($model, 'age')->textInput() ?>
+        </div>
 
-    <?= $form->field($model, 'check_photo_status')->textInput() ?>
+        <div class="col-4">
+            <?= $form->field($model, 'rost')->textInput() ?>
+        </div>
 
-    <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
+        <div class="col-4">
+            <?= $form->field($model, 'breast')->textInput() ?>
+        </div>
 
-    <?= $form->field($model, 'video')->textInput(['maxlength' => true]) ?>
+        <div class="col-4">
+            <?= $form->field($model, 'ves')->textInput() ?>
+        </div>
 
-    <?= $form->field($model, 'age')->textInput() ?>
+        <div class="col-12">
+            <?= $form->field($model, 'about')->textarea(['rows' => 3]) ?>
+        </div>
 
-    <?= $form->field($model, 'rost')->textInput() ?>
+        <?php if ($postMessageModel) : ?>
 
-    <?= $form->field($model, 'breast')->textInput() ?>
+            <div class="col-12">
+                <?= $form->field($postMessageModel, 'message')->textarea(['rows' => 2])
+                    ->label('Прикрепить сообщение') ?>
+            </div>
+            <div class="col-12">
+                <?= $form->field($postMessageModel, 'post_id')->hiddenInput(['value' => $model->id])
+                    ->label(false) ?>
+            </div>
 
-    <?= $form->field($model, 'ves')->textInput() ?>
+        <?php endif; ?>
 
+        <?php if (isset($model->video) and $model->video) : ?>
 
+            <div class="col-4">
+                <label class="control-label">Видео</label>
+                <video controls="controls" class="video">
+                    <source src="http://moskva.<?php echo Yii::$app->params['site_name'] .$model->video ?>">
+                </video>
+            </div>
+
+        <?php endif; ?>
+
+        <?php if (isset($model->allPhoto) and $model->allPhoto) : ?>
+
+            <div class="col-12"><label class="control-label">Фото</label></div>
+
+            <?php foreach ($model->allPhoto as $item) : ?>
+
+                <div class="col-2 position-relative">
+
+                    <?php echo Html::img('http://moskva.'.Yii::$app->params['site_name'] .$item->file); ?>
+
+                    <?php if ($item->main == \frontend\models\Files::MAIN_PHOTO) : ?>
+
+                        <span class="main-photo">Главное фото</span>
+
+                    <?php endif; ?>
+
+                </div>
+
+            <?php endforeach; ?>
+
+        <?php endif; ?>
+
+    </div>
+
+    <?php if (isset($model->created_at)) : ?>
+
+        <p>Создано <?php echo date('Y-m-d H:i:s', $model->created_at)?></p>
+
+        <?php if ($model->updated_at != $model->created_at) : ?>
+
+            <p>Обновлено <?php echo date('Y-m-d H:i:s', $model->updated_at)?></p>
+
+        <?php endif; ?>
+
+    <?php endif; ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
 
+    </div>
+
+
 </div>
+<?php //d($model); ?>

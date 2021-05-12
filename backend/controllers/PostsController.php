@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use common\models\PostMessage;
 use Yii;
 use frontend\modules\user\models\Posts;
 use backend\models\Posts as PostsSearch;
@@ -87,12 +88,19 @@ class PostsController extends Controller
     {
         $model = $this->findModel($id);
 
+        $postMessageModel = new PostMessage();
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            if ($postMessageModel->load(Yii::$app->request->post())) $postMessageModel->save();
+
             return $this->redirect(['view', 'id' => $model->id]);
+
         }
 
         return $this->render('update', [
             'model' => $model,
+            'postMessageModel' => $postMessageModel,
         ]);
     }
 
@@ -119,7 +127,7 @@ class PostsController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Posts::findOne($id)) !== null) {
+        if (($model = Posts::find()->where(['id' => $id])->with('allPhoto')->one()) !== null) {
             return $model;
         }
 

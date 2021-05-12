@@ -49,6 +49,10 @@ class Posts extends \yii\db\ActiveRecord
     const POST_ON_MODARATION_STATUS = 0;
     const POST_ON_PUPLICATION_STATUS = 1;
     const POST_DONT_PUBLICATION_STATUS = 2;
+    const RETURNED_FOR_REVISION = 3;
+
+    const ANKET_CHECK = 1;
+    const ANKET_NOT_CHECK = 0;
 
     /**
      * {@inheritdoc}
@@ -258,7 +262,7 @@ class Posts extends \yii\db\ActiveRecord
             'about' => 'О себе',
             'category' => 'Category',
             'selfie' => 'Selfie',
-            'check_photo_status' => 'Check Photo Status',
+            'check_photo_status' => 'Статус проверочного фото',
             'age' => 'Возраст',
             'rost' => 'Рост',
             'breast' => 'Грудь',

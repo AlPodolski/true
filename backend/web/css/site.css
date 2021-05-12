@@ -571,6 +571,17 @@ a.desc:after {
     font-style: italic;
     font-display:swap
 }
+img{
+    max-width: 100%;
+}
+.main-photo{
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    background: #fff;
+    text-align: center;
+}
 .post .post-img{
     min-height: 420px;
 }
