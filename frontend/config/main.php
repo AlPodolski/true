@@ -127,6 +127,8 @@ return [
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/chat/get' => 'chat/chat/get',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/chat/send' => 'chat/chat/send',
 
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/message/read' => 'user/message/read',
+
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/edit' => 'user/profile/edit',
 
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/view/phone' => 'user/view/view-phone',

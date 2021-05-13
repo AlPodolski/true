@@ -7,6 +7,7 @@ use common\models\IntimHair;
 use common\models\National;
 use common\models\Osobenosti;
 use common\models\Place;
+use common\models\PostMessage;
 use common\models\Rayon;
 use common\models\Service;
 use common\models\Sites;
@@ -94,6 +95,16 @@ class Posts extends \yii\db\ActiveRecord
     public function getAllPhoto() : ActiveQuery
     {
         return $this->hasMany(Files::class, ['related_id' => 'id'])->andWhere(['related_class' => self::class]);
+    }
+
+    public function getMessage() : ActiveQuery
+    {
+        return $this->hasMany(PostMessage::class, ['post_id' => 'id'])->andWhere(['status' => 0]);
+    }
+
+    public function getReadMessage() : ActiveQuery
+    {
+        return $this->hasMany(PostMessage::class, ['post_id' => 'id'])->andWhere(['status' => 1]);
     }
 
     public function getGal() : ActiveQuery

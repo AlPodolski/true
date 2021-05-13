@@ -462,6 +462,26 @@ function get_register_btn(){
 
 }
 
+function set_read_message(object){
+
+    var id = $(object).attr('data-id');
+
+    $.ajax({
+        type: 'POST',
+        url: '/cabinet/message/read',
+        data: 'id=' + id,
+        async: false,
+        dataType: "html",
+        cache: false,
+        success: function (data) {
+
+
+
+        }
+    })
+
+}
+
 function dopolnitaelno(){
 
     $('.dopolnitaelno-btn span').toggleClass('d-none');

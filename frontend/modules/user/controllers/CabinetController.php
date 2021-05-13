@@ -22,7 +22,7 @@ class CabinetController extends \yii\web\Controller
 
         $user = User::find()->where(['id' => Yii::$app->user->id])->with('avatar')->one();
 
-        $posts = Posts::find()->where(['user_id' => Yii::$app->user->id])->with('avatar')->all();
+        $posts = Posts::find()->where(['user_id' => Yii::$app->user->id])->with('avatar', 'message')->all();
 
         return $this->render('index', [
             'user'  => $user,

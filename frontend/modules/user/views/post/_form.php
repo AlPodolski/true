@@ -28,6 +28,25 @@ $this->registerJsFile('/js/form_cabinet.js', ['depends' => [yii\web\YiiAsset::cl
 
             </div>
 
+            <?php if ($post['message']) : ?>
+
+                <div class="col-12">
+
+                    <?php foreach ($post['message'] as $item) : ?>
+
+                        <div class="alert alert-warning"><?php echo $item['message'] ?>
+                            <span class="text-left alert-small-text">Создано : <?php echo date('Y-m-d', $item['created_at']) ?></span>
+                            <button type="button" class="close" onclick="set_read_message(this)" data-id="<?php echo $item['id']; ?>" data-dismiss="alert">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+
+                    <?php endforeach; ?>
+
+                </div>
+
+            <?php endif; ?>
+
             <div class="col-12 col-md-4">
                 <div class="row">
 
@@ -357,5 +376,28 @@ $this->registerJsFile('/js/form_cabinet.js', ['depends' => [yii\web\YiiAsset::cl
         </div>
 
     </div>
+
+    <?php if ($post['readMessage']) : ?>
+
+    <div class="row">
+
+        <div class="col-12">
+
+            <h3>Архив сообщений</h3>
+
+            <?php foreach ($post['readMessage'] as $item) : ?>
+
+                <div class="alert alert-dark">
+                    <?php echo $item['message'] ?>
+                    <span class="text-left alert-small-text"> Прочитано : <?php echo date('Y-m-d', $item['updated_at']) ?></span>
+                </div>
+
+            <?php endforeach; ?>
+
+        </div>
+
+    </div>
+
+    <?php endif; ?>
 
 </div>

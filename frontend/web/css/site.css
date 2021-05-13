@@ -43,7 +43,13 @@ a.asc:after, a.desc:after {
     line-height: 1;
     padding-left: 5px;
 }
-
+.alert-small-text{
+    font-size: 10px;
+    font-weight: bold;
+}
+.cabinet-nav-block .anket-info{
+    margin-bottom: 10px;
+}
 a.asc:after {
     content: "\e151";
 }

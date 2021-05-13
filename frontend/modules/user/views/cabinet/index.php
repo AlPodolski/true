@@ -248,7 +248,37 @@ $this->title = 'Кабинет';
 
                     <div class="col-6 col-md-4 col-lg-6 col-sm-6">
 
+                        <?php
+
+                        $postStatus = [];
+
+                        switch ($post['status']) {
+                            case \frontend\modules\user\models\Posts::POST_ON_MODARATION_STATUS:
+                                $postStatus['key'] = 'mod';
+                                $postStatus['value'] = 'Анкета на модерации';
+                                break;
+                            case \frontend\modules\user\models\Posts::POST_ON_PUPLICATION_STATUS:
+                                $postStatus['key'] = 'pub';
+                                $postStatus['value'] = 'Анкета на публикации';
+                                break;
+                            case \frontend\modules\user\models\Posts::POST_DONT_PUBLICATION_STATUS:
+                                $postStatus['key'] = 'stop';
+                                $postStatus['value'] = 'Анкета не публикуется';
+                                break;
+                            case \frontend\modules\user\models\Posts::RETURNED_FOR_REVISION:
+                                $postStatus['key'] = 'return';
+                                $postStatus['value'] = 'Анкету вернули на доработку';
+                                break;
+                        }
+
+                        ?>
+
                         <div class="white-cabinet-block cabinet-nav-block margin-top-20 d-flex items-center nav-cabinet-block">
+
+                            <div class="anket-info">
+                                <span class="<?php echo $postStatus['key']?>"><?php echo $postStatus['value'] ?></span>
+                            </div>
+
 
                             <a href="/cabinet/post/edit/<?= $post['id'] ?>">
 
@@ -293,6 +323,16 @@ $this->title = 'Кабинет';
                                         </defs>
                                     </svg>
                                 </a>
+
+                            </div>
+
+                            <div class="alert-small-text">
+
+                                <?php if($post['message']) : ?>
+
+                                    <?php echo count($post['message']) .' '. getNumEnding(count($post['message']), ['Сообщение', 'Сообщения', 'Сообщений']); ?>
+
+                                <?php endif; ?>
 
                             </div>
 

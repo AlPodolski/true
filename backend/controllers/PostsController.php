@@ -92,7 +92,7 @@ class PostsController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
-            if ($postMessageModel->load(Yii::$app->request->post())) $postMessageModel->save();
+            if ($postMessageModel->load(Yii::$app->request->post()) and $postMessageModel->message) $postMessageModel->save();
 
             return $this->redirect(['view', 'id' => $model->id]);
 

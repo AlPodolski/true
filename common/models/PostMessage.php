@@ -5,6 +5,8 @@ namespace common\models;
 use frontend\modules\user\models\Posts;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "post_message".
@@ -18,6 +20,23 @@ use Yii;
  */
 class PostMessage extends \yii\db\ActiveRecord
 {
+
+    const NOT_READ = 0;
+    const READ = 1;
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::class,
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                ],
+            ]
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
