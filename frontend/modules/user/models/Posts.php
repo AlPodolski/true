@@ -40,6 +40,7 @@ use yii\helpers\ArrayHelper;
  * @property int|null $status
  * @property int|null $rating
  * @property int|null $view
+ * @property int|null $retouching_photo_status
  */
 class Posts extends \yii\db\ActiveRecord
 {
@@ -54,6 +55,9 @@ class Posts extends \yii\db\ActiveRecord
 
     const ANKET_CHECK = 1;
     const ANKET_NOT_CHECK = 0;
+
+    const NOT_RETOUCHING_PHOTO_STATUS = 1;
+    const WITH_RETOUCHING_PHOTO_STATUS = 0;
 
     /**
      * {@inheritdoc}
@@ -70,7 +74,7 @@ class Posts extends \yii\db\ActiveRecord
     {
         return [
             [['city_id', 'user_id', 'created_at', 'updated_at', 'category', 'check_photo_status', 'price', 'age',
-                'rost', 'ves', 'breast', 'status', 'view'], 'integer'],
+                'rost', 'ves', 'breast', 'status', 'view', 'retouching_photo_status'], 'integer'],
             [['name'], 'string', 'max' => 60],
             [['phone'], 'string', 'max' => 20 ],
             [['name', 'phone', 'price'],'required'],
@@ -280,6 +284,7 @@ class Posts extends \yii\db\ActiveRecord
             'ves' => 'Вес',
             'price' => 'Цена',
             'status' => 'Статус',
+            'retouching_photo_status' => 'Ретуш фото',
         ];
     }
 }

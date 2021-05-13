@@ -53,6 +53,15 @@ use yii\widgets\ActiveForm;
         </div>
 
         <div class="col-4">
+            <?= $form->field($model, 'retouching_photo_status')->dropDownList(
+                [
+                    \frontend\modules\user\models\Posts::WITH_RETOUCHING_PHOTO_STATUS => 'Статус по умолчанию',
+                    \frontend\modules\user\models\Posts::NOT_RETOUCHING_PHOTO_STATUS => 'Фото без ретуши',
+                ])
+            ?>
+        </div>
+
+        <div class="col-4">
             <?= $form->field($model, 'check_photo_status')->dropDownList(
                 [
                     \frontend\modules\user\models\Posts::ANKET_NOT_CHECK => 'Личность не подтверждена',
