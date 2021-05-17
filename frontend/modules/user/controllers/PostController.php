@@ -97,26 +97,11 @@ class PostController extends Controller
 
                 }
 
-                $checkPhotoForm->file = UploadedFile::getInstances($checkPhotoForm, 'file');
+                $checkPhotoForm->file = UploadedFile::getInstance($checkPhotoForm, 'file');
 
                 if ($checkPhotoForm->file and $checkPhotoForm->validate()){
 
                     $checkPhoto = $checkPhotoForm->upload();
-
-                    $oldCheckPhoto = Files::findOne(
-                        ['type' => Files::CHECK_PHOTO_TYPE, 'related_id' => $post['id'], 'related_class' => Posts::class]);
-
-                    if ($oldCheckPhoto){
-
-                        if ($oldCheckPhoto['file']){
-
-                            \unlink(Yii::getAlias("@app/web".$oldCheckPhoto['file']));
-
-                            $oldCheckPhoto->delete();
-
-                        }
-
-                    }
 
                     $file = new Files();
 

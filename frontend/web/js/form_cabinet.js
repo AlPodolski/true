@@ -31,7 +31,7 @@
 $(document).ready(function() {
     $.uploadPreview({
         input_field: "#addpost-image",   // Default: .image-upload
-        preview_box: ".main-img",  // Default: .image-preview
+        preview_box: "#cabinet-main-img-label",  // Default: .image-preview
         label_field: "#image-label",    // Default: .image-label
         label_default: "Загрузить основное фото",   // Default: Choose File
         label_selected: "Загрузить основное фото",  // Default: Change File
