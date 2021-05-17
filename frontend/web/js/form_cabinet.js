@@ -40,6 +40,17 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
+    $.uploadPreview({
+        input_field: "#addpost-check-image",   // Default: .image-upload
+        preview_box: ".check-photo-label",  // Default: .image-preview
+        label_field: "#image-label",    // Default: .image-label
+        label_default: "Загрузить основное фото",   // Default: Choose File
+        label_selected: "Загрузить основное фото",  // Default: Change File
+        no_label: false                 // Default: false
+    });
+});
+
+$(document).ready(function() {
     $("#posts-phone").mask("+7(999)99-99-999");
 });
 

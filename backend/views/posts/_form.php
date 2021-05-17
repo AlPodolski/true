@@ -107,14 +107,15 @@ use yii\widgets\ActiveForm;
 
         <?php endif; ?>
 
-        <?php if (isset($model->video) and $model->video) : ?>
+        <?php if (isset($model->checkPhoto) and $model->checkPhoto) : ?>
 
-            <div class="col-4">
-                <label class="control-label">Видео</label>
-                <video controls="controls" class="video">
-                    <source src="http://moskva.<?php echo Yii::$app->params['site_name'] .$model->video ?>">
-                </video>
-            </div>
+            <div class="col-12"><label class="control-label">Проверочное фото</label></div>
+
+                <div class="col-4 position-relative">
+
+                    <?php echo Html::img('http://moskva.'.Yii::$app->params['site_name'] .$model->checkPhoto->file); ?>
+
+                </div>
 
         <?php endif; ?>
 
@@ -137,6 +138,17 @@ use yii\widgets\ActiveForm;
                 </div>
 
             <?php endforeach; ?>
+
+        <?php endif; ?>
+
+        <?php if (isset($model->video) and $model->video) : ?>
+
+            <div class="col-4">
+                <label class="control-label">Видео</label>
+                <video controls="controls" class="video">
+                    <source src="http://moskva.<?php echo Yii::$app->params['site_name'] .$model->video ?>">
+                </video>
+            </div>
 
         <?php endif; ?>
 

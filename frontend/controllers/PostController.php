@@ -29,7 +29,7 @@ class PostController extends Controller
     public function actionIndex($protocol,$city, $id)
     {
         $post = Posts::find()->where(['id' => $id])
-            ->with('allPhoto', 'metro', 'avatar', 'place', 'service',
+            ->with('gal', 'metro', 'avatar', 'place', 'service',
                 'sites', 'rayon', 'nacionalnost',
                 'cvet', 'strizhka', 'osobenost', 'selphiCount', 'serviceDesc'
             )
@@ -63,7 +63,7 @@ class PostController extends Controller
             $id = \explode(',', Yii::$app->request->post('id'));
 
             $post = Posts::find()->where(['not in', 'id' , $id])
-                ->with('allPhoto', 'metro', 'avatar', 'place', 'service',
+                ->with('gal', 'metro', 'avatar', 'place', 'service',
                     'sites', 'rayon', 'nacionalnost',
                     'cvet', 'strizhka', 'osobenost', 'selphiCount', 'serviceDesc')
                 ->limit(1)

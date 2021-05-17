@@ -2,13 +2,14 @@
 
 /* @var $post \frontend\modules\user\models\Posts */
 /* @var $city array */
+/* @var $checkPhotoForm \frontend\modules\user\models\forms\CheckPhotoForm */
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 
 $this->registerJsFile('/js/jquery.maskedinput.js', ['depends' => [yii\web\YiiAsset::className()]]);
-$this->registerJsFile('/js/form_cabinet.js', ['depends' => [yii\web\YiiAsset::className()]]); ?>
+$this->registerJsFile('/js/form_cabinet.js?v=1', ['depends' => [yii\web\YiiAsset::className()]]); ?>
 
 <?php $form = ActiveForm::begin([
     'id' => 'login-form',
@@ -52,6 +53,8 @@ $this->registerJsFile('/js/form_cabinet.js', ['depends' => [yii\web\YiiAsset::cl
 
                     <div class="col-12 main-photo">
 
+                        <p class="black-text font-weight-bold">Основное фото</p>
+
                         <?php $style = '' ?>
 
                         <?php if (isset($post['avatar']['file'])) : ?>
@@ -64,6 +67,82 @@ $this->registerJsFile('/js/form_cabinet.js', ['depends' => [yii\web\YiiAsset::cl
 
                             <?= $form->field($avatarForm, 'avatar')
                                 ->fileInput(['maxlength' => true, 'accept' => 'image/*', 'id' => 'addpost-image'])
+                                ->label(false) ?>
+
+                            <div class="plus-photo-wrap d-flex items-center">
+
+                                <span class="plus d-flex items-center">
+                                    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16.15 7.65H9.35005V0.849948C9.35005 0.38085 8.9692 0 8.49995 0C8.03085 0 7.65 0.38085 7.65 0.849948V7.65H0.849948C0.38085 7.65 0 8.03085 0 8.49995C0 8.9692 0.38085 9.35005 0.849948 9.35005H7.65V16.15C7.65 16.6192 8.03085 17.0001 8.49995 17.0001C8.9692 17.0001 9.35005 16.6192 9.35005 16.15V9.35005H16.15C16.6192 9.35005 17.0001 8.9692 17.0001 8.49995C17.0001 8.03085 16.6192 7.65 16.15 7.65Z" fill="white"/>
+                                    </svg>
+                                </span>
+
+                            </div>
+
+                        </label>
+
+                    </div>
+
+                    <div class="col-12">
+                        <br>
+                    </div>
+
+                    <div class="col-12 main-photo">
+
+                        <p class="black-text font-weight-bold">Подтверждение личности</p>
+
+                        <div class="accordion accordion-custom" id="accordionExample">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-block text-left collapsed" type="button" data-toggle="collapse"
+                                                data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <span class="open-plus">
+                                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.10714 4.10714H6.07143C5.97281 4.10714 5.89286 4.02719 5.89286 3.92857V0.892857C5.89286 0.39978 5.49308 0 5 0C4.50692 0 4.10714 0.39978 4.10714 0.892857V3.92857C4.10714 4.02719 4.02719 4.10714 3.92857 4.10714H0.892857C0.39978 4.10714 0 4.50692 0 5C0 5.49308 0.39978 5.89286 0.892857 5.89286H3.92857C4.02719 5.89286 4.10714 5.97281 4.10714 6.07143V9.10714C4.10714 9.60022 4.50692 10 5 10C5.49308 10 5.89286 9.60022 5.89286 9.10714V6.07143C5.89286 5.97281 5.97281 5.89286 6.07143 5.89286H9.10714C9.60022 5.89286 10 5.49308 10 5C10 4.50692 9.60022 4.10714 9.10714 4.10714Z"
+                                                  fill="#F74952"/>
+                                        </svg>
+                                    </span>
+                                            <span class="close-minus">
+                                       <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M9.31815 4.09814H0.681818C0.305453 4.09814 0 4.4036 0 4.77996V5.23448C0 5.61085 0.305453 5.9163 0.681818 5.9163H9.31815C9.69452 5.9163 9.99997 5.61085 9.99997 5.23448V4.77996C9.99997 4.4036 9.69452 4.09814 9.31815 4.09814Z" fill="#F74952"/>
+</svg>
+
+                                    </span>
+                                            Подробнее о подтверждении личности...
+                                        </button>
+                                    </h2>
+                                </div>
+
+                                <div id="collapseOne" class="collapse " aria-labelledby="headingOne"
+                                     data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <p class="black-text">Фото будет доступно только Вам и администрации, больше никто не получит
+                                            доступ к фото </p>
+                                        <p class="black-text">На фото должно быть видно лицо, должно быть понятно что фото
+                                            со страницы и проверочное фото принадлежат одному и тому же человеку, на фото должна быть табличка
+                                            с названием сайта, датой добавления и номером телефона указаном а анкете</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <?php $style = '' ?>
+
+                        <?php if (isset($post['checkPhoto']['file'])) : ?>
+
+                            <?php $style = 'background-image: url('.$post['checkPhoto']['file'].')'; ?>
+
+                        <?php endif; ?>
+
+
+
+                        <label for="addpost-check-image" style="<?php echo $style ?>" id="cabinet-main-img-label"
+                               class="margin-top-20 img-label no-img-bg main-img check-photo-label">
+                            <?= $form->field($checkPhotoForm, 'file')
+                                ->fileInput(['maxlength' => true, 'accept' => 'image/*', 'id' => 'addpost-check-image'])
                                 ->label(false) ?>
 
                             <div class="plus-photo-wrap d-flex items-center">

@@ -8,6 +8,7 @@ use frontend\models\Files;
 use frontend\models\UserMetro;
 use frontend\modules\user\helpers\SavePostRelationHelper;
 use frontend\modules\user\models\forms\AvatarForm;
+use frontend\modules\user\models\forms\CheckPhotoForm;
 use frontend\modules\user\models\forms\PhotoForm;
 use frontend\modules\user\models\forms\VideoForm;
 use frontend\modules\user\models\Posts;
@@ -18,6 +19,7 @@ use frontend\modules\user\models\UserOsobenosti;
 use frontend\modules\user\models\UserPlace;
 use frontend\modules\user\models\UserRayon;
 use frontend\modules\user\models\UserService;
+use yii\base\BaseObject;
 use yii\web\Controller;
 use yii\web\UploadedFile;
 use Yii;
@@ -39,6 +41,8 @@ class PostController extends Controller
         $avatarForm = new AvatarForm();
         $photoForm = new PhotoForm();
         $videoForm = new VideoForm();
+
+        $checkPhotoForm = new CheckPhotoForm();
 
         $userNational = new \frontend\modules\user\models\UserNational();
         $userMetro = new \frontend\models\UserMetro();
@@ -90,6 +94,38 @@ class PostController extends Controller
                         $file->save();
 
                     }
+
+                }
+
+                $checkPhotoForm->file = UploadedFile::getInstances($checkPhotoForm, 'file');
+
+                if ($checkPhotoForm->file and $checkPhotoForm->validate()){
+
+                    $checkPhoto = $checkPhotoForm->upload();
+
+                    $oldCheckPhoto = Files::findOne(
+                        ['type' => Files::CHECK_PHOTO_TYPE, 'related_id' => $post['id'], 'related_class' => Posts::class]);
+
+                    if ($oldCheckPhoto){
+
+                        if ($oldCheckPhoto['file']){
+
+                            \unlink(Yii::getAlias("@app/web".$oldCheckPhoto['file']));
+
+                            $oldCheckPhoto->delete();
+
+                        }
+
+                    }
+
+                    $file = new Files();
+
+                    $file->related_id = $post['id'];
+                    $file->main = Files::NOT_MAIN_PHOTO;
+                    $file->type = Files::CHECK_PHOTO_TYPE;
+                    $file->related_class = Posts::class;
+                    $file->file = $checkPhoto;
+                    $file->save();
 
                 }
 
@@ -211,6 +247,8 @@ class PostController extends Controller
 
         $photoForm = new PhotoForm();
 
+        $checkPhotoForm = new CheckPhotoForm();
+
         $userNational = new UserNational();
         $userMetro = new UserMetro();
         $userPlace = new UserPlace();
@@ -278,6 +316,38 @@ class PostController extends Controller
             }
 
             $photoForm->photo = UploadedFile::getInstances($photoForm, 'photo');
+
+            $checkPhotoForm->file = UploadedFile::getInstance($checkPhotoForm, 'file');
+
+            if ($checkPhotoForm->file and $checkPhotoForm->validate()){
+
+                $checkPhoto = $checkPhotoForm->upload();
+
+                $oldCheckPhoto = Files::findOne(
+                    ['type' => Files::CHECK_PHOTO_TYPE, 'related_id' => $post['id'], 'related_class' => Posts::class]);
+
+                if ($oldCheckPhoto){
+
+                     if ($oldCheckPhoto['file']){
+
+                         \unlink(Yii::getAlias("@app/web".$oldCheckPhoto['file']));
+
+                         $oldCheckPhoto->delete();
+
+                     }
+
+                 }
+
+                $file = new Files();
+
+                $file->related_id = $post['id'];
+                $file->main = Files::NOT_MAIN_PHOTO;
+                $file->type = Files::CHECK_PHOTO_TYPE;
+                $file->related_class = Posts::class;
+                $file->file = $checkPhoto;
+                $file->save();
+
+            }
 
             if ($photoForm->photo && $photoForm->validate()) {
 

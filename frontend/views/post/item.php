@@ -30,7 +30,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
         <div class="row">
             <div class="col-12 col-lg-4 col-xl-4 position-relative">
                 <div class="owl-carousel owl-theme owl-carousel-main">
-                    <?php foreach ($post['allPhoto'] as $item) : ?>
+                    <?php foreach ($post['gal'] as $item) : ?>
 
                         <?php if ($item['type'] != \frontend\models\Files::SELPHY_TYPE) :  ?>
 
@@ -304,15 +304,16 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                 <?php
 
-                    if (count($post['allPhoto']) == 1) $size = 'single';
+                    if (count($post['gal']) == 1) $size = 'single';
 
                     else $size = '1024';
 
                 ?>
 
-                <?php foreach ($post['allPhoto'] as $item) : ?>
+                <?php foreach ($post['gal'] as $item) : ?>
 
-                    <?php if ($item['file'] and $item['type'] != \frontend\models\Files::SELPHY_TYPE and file_exists(Yii::getAlias('@webroot').$item['file']) ) {
+                    <?php if ($item['file'] and $item['type'] != \frontend\models\Files::SELPHY_TYPE
+                        and file_exists(Yii::getAlias('@webroot').$item['file']) ) {
 
                         $imgs[] = Yii::$app->imageCache->thumbSrc($item['file'], $size);
 
@@ -1348,7 +1349,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
     </div>
 
     <div class="owl-carousel owl-theme owl-carousel-main">
-            <?php foreach ($post['allPhoto'] as $item) : ?>
+            <?php foreach ($post['gal'] as $item) : ?>
 
                 <?php if ($item['type'] != \frontend\models\Files::SELPHY_TYPE) :  ?>
 

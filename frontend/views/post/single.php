@@ -121,7 +121,7 @@ $this->params['breadcrumbs'][] = array(
             <div class="modal-body">
                 <?php $imgs = array(); ?>
 
-                <?php foreach ($post['allPhoto'] as $item) : ?>
+                <?php foreach ($post['gal'] as $item) : ?>
 
                     <?php
 

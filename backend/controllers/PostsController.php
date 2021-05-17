@@ -127,7 +127,7 @@ class PostsController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Posts::find()->where(['id' => $id])->with('allPhoto')->one()) !== null) {
+        if (($model = Posts::find()->where(['id' => $id])->with('allPhoto', 'checkPhoto')->one()) !== null) {
             return $model;
         }
 

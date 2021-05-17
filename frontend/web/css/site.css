@@ -1709,7 +1709,10 @@ h1{
     text-align: left;
 }
 .margin-top-20{
-    margin-top: 20px;
+    margin-top: 20px!important;
+}
+#addpost-check-image{
+    display: none;
 }
 .cabinet-nav-block{
     padding: 30px 25px;

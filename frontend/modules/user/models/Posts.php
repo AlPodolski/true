@@ -96,9 +96,17 @@ class Posts extends \yii\db\ActiveRecord
         return $this->hasOne(Files::class, ['related_id' => 'id'])->andWhere(['related_class' => self::class])
             ->andWhere(['main' => 1]);
     }
+
+    public function getCheckPhoto() : ActiveQuery
+    {
+        return $this->hasOne(Files::class, ['related_id' => 'id'])->andWhere(['related_class' => self::class])
+            ->andWhere(['type' => Files::CHECK_PHOTO_TYPE]);
+    }
+
     public function getAllPhoto() : ActiveQuery
     {
-        return $this->hasMany(Files::class, ['related_id' => 'id'])->andWhere(['related_class' => self::class]);
+        return $this->hasMany(Files::class, ['related_id' => 'id'])
+            ->andWhere(['type' => Files::DEFAULT_TYPE]);
     }
 
     public function getMessage() : ActiveQuery
@@ -114,7 +122,9 @@ class Posts extends \yii\db\ActiveRecord
     public function getGal() : ActiveQuery
     {
         return $this->hasMany(Files::class, ['related_id' => 'id'])
-            ->andWhere(['related_class' => self::class])->andWhere(['main' => Files::NOT_MAIN_PHOTO]);
+            ->andWhere(['related_class' => self::class])
+            ->andWhere(['type' => Files::DEFAULT_TYPE])
+            ->andWhere(['main' => Files::NOT_MAIN_PHOTO]);
     }
 
     public function getUserAvatar(){

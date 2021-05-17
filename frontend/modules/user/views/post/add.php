@@ -4,6 +4,9 @@
 /* @var $post \frontend\modules\user\models\Posts */
 /* @var $city array */
 
+use yii\base\BaseObject;
+use frontend\modules\user\models\forms\CheckPhotoForm;
+
 $videoForm = new \frontend\modules\user\models\forms\VideoForm();
 $avatarForm = new \frontend\modules\user\models\forms\AvatarForm();
 $photoForm = new \frontend\modules\user\models\forms\PhotoForm();
@@ -15,6 +18,7 @@ $userIntimHair = new \frontend\modules\user\models\UserIntimHair();
 $userRayon = new \frontend\modules\user\models\UserRayon();
 $userOsobenosti = new \frontend\modules\user\models\UserOsobenosti();
 $userService = new \frontend\modules\user\models\UserService();
+$checkPhotoForm = new CheckPhotoForm();
 
 $this->title = 'Добавить анкету';
 
@@ -44,4 +48,5 @@ echo $this->renderFile(Yii::getAlias('@user-view/post/_form.php'), [
     'userRayon' => $userRayon,
     'userOsobenosti' => $userOsobenosti,
     'userService' => $userService,
+    'checkPhotoForm' => $checkPhotoForm,
 ]);

@@ -5,6 +5,8 @@
 
 /* @var $city array */
 
+use frontend\modules\user\models\forms\CheckPhotoForm;
+
 $videoForm = new \frontend\modules\user\models\forms\VideoForm();
 
 $videoForm->video = $post['video'];
@@ -12,6 +14,10 @@ $videoForm->video = $post['video'];
 $avatarForm = new \frontend\modules\user\models\forms\AvatarForm();
 
 $avatarForm->avatar = $post['avatar']['file'];
+
+$checkPhotoForm = new CheckPhotoForm();
+
+$checkPhotoForm->file = $post['checkPhoto']['file'];
 
 $photoForm = new \frontend\modules\user\models\forms\PhotoForm();
 
@@ -79,5 +85,6 @@ echo $this->renderFile(Yii::getAlias('@user-view/post/_form.php'), [
     'userRayon' => $userRayon,
     'userOsobenosti' => $userOsobenosti,
     'userService' => $userService,
+    'checkPhotoForm' => $checkPhotoForm,
 ]);
 
