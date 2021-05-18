@@ -111,12 +111,16 @@ class Posts extends \yii\db\ActiveRecord
 
     public function getMessage() : ActiveQuery
     {
-        return $this->hasMany(PostMessage::class, ['post_id' => 'id'])->andWhere(['status' => 0]);
+        return $this->hasMany(PostMessage::class, ['post_id' => 'id'])
+            ->andWhere(['status' => 0])
+            ->orderBy('id DESC');
     }
 
     public function getReadMessage() : ActiveQuery
     {
-        return $this->hasMany(PostMessage::class, ['post_id' => 'id'])->andWhere(['status' => 1]);
+        return $this->hasMany(PostMessage::class, ['post_id' => 'id'])
+            ->andWhere(['status' => 1])
+            ->orderBy('id DESC');
     }
 
     public function getGal() : ActiveQuery

@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use common\components\helpers\AddEventHelper;
 use common\models\PostMessage;
 use Yii;
 use frontend\modules\user\models\Posts;
@@ -88,11 +89,19 @@ class PostsController extends Controller
     {
         $model = $this->findModel($id);
 
+        $oldStatus = $model->status;
+
         $postMessageModel = new PostMessage();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
             if ($postMessageModel->load(Yii::$app->request->post()) and $postMessageModel->message) $postMessageModel->save();
+
+            if ($oldStatus != $model->status){
+
+                AddEventHelper::addStatus($oldStatus, $model);
+
+            }
 
             return $this->redirect(['view', 'id' => $model->id]);
 
