@@ -355,35 +355,90 @@ $(window).scroll(function () {
 
     changeURL();
 
-    if (winScrollTop > (scrollToElem - 150)) {
+    if (winScrollTop > (scrollToElem - 100)) {
 
-        $.ajax({
-            type: 'POST',
-            url: '' + url,
-            data: 'page=' + page + '&req=' + request,
-            async: false,
-            dataType: "html",
-            headers: {
-                "Accept": accept,
-            },
-            cache: false,
-            success: function (data) {
+        var single = $(target).attr('data-single');
 
-                if (data !== '') {
+        if(single === 1){
+            $('[data-post-id]').each(function() {
 
-                    $('.content').append(data);
+                id = id + $(this).attr('data-post-id') + ',';
 
-                    page = $(target).attr('data-page', Number(page) + 1);
+            });
 
-                } else {
+            $.ajax({
+                type: 'POST',
+                url: '/post/more',
+                data: 'id='+id,
+                async:false,
+                dataType: "html",
+                cache: false,
+                beforeSend: function() {
+                    $(target).removeClass('footer');
+                },
+                success: function (data){
 
-                    $(target).remove();
-                    $('.dots').remove();
+                    if(data !== ''){
+
+                        $('.single-content').append(data);
+
+                        $(target).addClass('footer');
+
+                        var singleGallery = $('.owl-carousel-main');
+                        singleGallery.owlCarousel({
+                            items: 1,
+                            margin: 16,
+                            loop: true,
+                            nav: true,
+                            navText: ['', ''],
+                            navElement: 'a></a',
+                        });
+
+                        add_img_grid();
+
+                    }else{
+
+                        $('.dots').remove();
+
+                    }
+
+
+                    // window.history.pushState("object or string", "Title", "/page-2");
+
+                },
+            })
+
+        }else{
+
+            $.ajax({
+                type: 'POST',
+                url: '' + url,
+                data: 'page=' + page + '&req=' + request,
+                async: false,
+                dataType: "html",
+                headers: {
+                    "Accept": accept,
+                },
+                cache: false,
+                success: function (data) {
+
+                    if (data !== '') {
+
+                        $('.content').append(data);
+
+                        page = $(target).attr('data-page', Number(page) + 1);
+
+                    } else {
+
+                        $(target).remove();
+                        $('.dots').remove();
+
+                    }
 
                 }
+            })
+        }
 
-            }
-        })
     }
 });
 var main = function() {

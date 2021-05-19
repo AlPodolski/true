@@ -628,6 +628,7 @@ $(window).scroll(function(){
             },
         })
     }
+
 });
 
 function get_modal(object){
