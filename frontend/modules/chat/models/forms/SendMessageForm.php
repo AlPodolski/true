@@ -23,7 +23,7 @@ class SendMessageForm extends Model
     public function rules()
     {
         return [
-            [['from_id', 'to'], 'required'],
+            [['from_id', 'to', 'text'], 'required'],
             [['from_id', 'chat_id', 'created_at'], 'integer'],
             [['text', 'class'], 'string'],
             [['user_id'], 'safe'],
@@ -46,7 +46,8 @@ class SendMessageForm extends Model
 
             if ($message->save()) return $this->chat_id;
 
-        } else {
+        }
+        else {
 
             $userDialogs = UserDialog::find()->where(['user_id' => $this->from_id])->select('dialog_id')->asArray()->all();
 
@@ -54,7 +55,7 @@ class SendMessageForm extends Model
 
             foreach ($dialogs as $item) {
 
-                if ($item['user_id'] == $this->user_id) {
+                if ($item['user_id'] == $this->to) {
 
                     $message = new Message();
 
