@@ -135,7 +135,13 @@ AppAsset::register($this);
                     </div>
 
                     <div class="col-2 col-sm-2 col-xl-1 col-md-1 event-widget">
-                        <?php echo \frontend\widgets\EventWidget::widget(['user_id' => Yii::$app->user->id]) ?>
+
+                        <?php if (!Yii::$app->user->isGuest) : ?>
+
+                            <?php echo \frontend\widgets\EventWidget::widget(['user_id' => Yii::$app->user->id]) ?>
+
+                        <?php endif; ?>
+
                     </div>
 
                     <div class="col-xl-1 col-lg-1 col-md-1 col-1 user-btn-wrap">
