@@ -74,7 +74,7 @@ AppAsset::register($this);
         <div class="main-nav">
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-1 col-lg-2 col-md-2 col-sm-4 col-4">
+                    <div class="col-xl-1 col-lg-2 col-md-2 col-sm-4 col-3">
                         <div class="city">
                             <svg width="8" height="12" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M3.00001 0C1.34584 0 0 1.19473 0 2.66318C0 3.104 0.124154 3.54109 0.360176 3.92877L2.83595 7.90369C2.86891 7.95668 2.93172 7.98951 3.00001 7.98951C3.0683 7.98951 3.13111 7.95668 3.16407 7.90369L5.64076 3.92745C5.87587 3.54109 6.00002 3.10399 6.00002 2.66316C6.00002 1.19473 4.65418 0 3.00001 0ZM3.00001 3.99476C2.17292 3.99476 1.50001 3.3974 1.50001 2.66318C1.50001 1.92895 2.17292 1.3316 3.00001 1.3316C3.8271 1.3316 4.50001 1.92895 4.50001 2.66318C4.50001 3.3974 3.8271 3.99476 3.00001 3.99476Z" fill="#F74952"/>
@@ -99,7 +99,7 @@ AppAsset::register($this);
 
                     <?php endif; ?>
 
-                    <div class="col-xl-5 col-lg-3 col-md-3 col-sm-4 col-4">
+                    <div class="col-xl-5 col-lg-3 col-md-3 col-sm-3 col-4">
                         <div class="logo">
                             <a href="/">
                                 <svg width="98" height="18" viewBox="0 0 98 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -110,7 +110,8 @@ AppAsset::register($this);
                             </a>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 search-form-wrap">
+
+                    <div class="col-xl-3 col-lg-3 col-md-3 search-form-wrap">
                         <div class="search-wrap position-relative">
 
                             <?php
@@ -132,7 +133,12 @@ AppAsset::register($this);
 
                         </div>
                     </div>
-                    <div class="col-xl-2 col-lg-2 col-md-1 col-2">
+
+                    <div class="col-2 col-sm-2 col-xl-1 col-md-1 event-widget">
+                        <?php echo \frontend\widgets\EventWidget::widget(['user_id' => Yii::$app->user->id]) ?>
+                    </div>
+
+                    <div class="col-xl-1 col-lg-1 col-md-1 col-1 user-btn-wrap">
                         <?php if (Yii::$app->user->isGuest) : ?>
                             <div class="user-btn" onclick="get_user_menu()">
                                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -151,7 +157,8 @@ AppAsset::register($this);
                             </div>
                         <?php endif; ?>
                     </div>
-                    <div class="col-2">
+
+                    <div class="col-sm-2 col-1">
                         <div class="mobil-menu">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M20 14.4444H0V16.6667H20V14.4444Z" fill="#F74952"/>
@@ -208,6 +215,7 @@ AppAsset::register($this);
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

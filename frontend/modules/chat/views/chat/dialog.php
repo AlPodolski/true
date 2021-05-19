@@ -13,9 +13,7 @@ $this->registerJsFile('/files/js/cabinet.js', ['depends' => [\frontend\assets\Ap
 $this->title = 'Диалог';
 ?>
 <div class="row">
-    <div class="col-xl-3">
-        <?php echo UserSideBarWidget::Widget() ?>
-    </div>
+
     <div class="col-12 col-xl-9 dialog">
         <div class="detal-dialog-wrap">
             <?php

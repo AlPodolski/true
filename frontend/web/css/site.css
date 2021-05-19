@@ -1714,6 +1714,32 @@ h1{
 #addpost-check-image{
     display: none;
 }
+.event-widget{
+    text-align: right;
+    padding-right: 0;
+}
+.event-item .img {
+    max-width: 59px;
+    max-height: 59px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.event-item {
+    padding: 22px 0 25px 0px;
+    border-bottom: 1px solid HSLA(227.4, 83.9%, 61%, 0.1);
+}
+.white-cabinet-block .row:last-child .event-item{
+    border-bottom: none;
+}
+.event-item .small-text {
+    line-height: 25px;
+}
+.event-date{
+    color:#9CA4B4;
+}
+.event-content{
+    padding-top: 5px;
+}
 .cabinet-nav-block{
     padding: 30px 25px;
 }
@@ -3043,10 +3069,33 @@ input:checked + .img-label-radio:before {
         text-align: right;
         margin-top: 0px;
     }
+    .event-widget {
+        text-align: center;
+    }
 }
 
 @media (max-width: 575px) {
-
+    .city svg{
+        display: none;
+    }
+    .event-widget svg{
+        width: 20px;
+    }
+    .logo svg{
+        max-width:100%;
+    }
+    .event-widget {
+        padding-right: 5px;
+    }
+    .user-btn-wrap{
+        padding-left: 7px;
+    }
+    .event-content{
+        padding-top: 0px;
+    }
+    .event-item .img{
+        margin-top: 5px;
+    }
     .slider-item .ui-slider{
         width: 120px;
     }

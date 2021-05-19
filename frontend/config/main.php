@@ -131,6 +131,8 @@ return [
 
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/edit' => 'user/profile/edit',
 
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/events' => 'user/events/index',
+
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/view/phone' => 'user/view/view-phone',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/view/buy' => 'user/view/buy-view',
 

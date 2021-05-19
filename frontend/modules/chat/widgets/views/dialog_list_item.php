@@ -16,7 +16,7 @@ use frontend\modules\chat\components\helpers\GetDialogsHelper;
                 <?php if (file_exists(Yii::getAlias('@webroot') . $dialog['companion']['author']['avatar']['file']) and $dialog->companion['author']['avatar']['file']) : ?>
 
                     <img loading="lazy" class="img"
-                         srcset="<?= Yii::$app->imageCache->thumbSrc($dialog['companion']['author']['avatarRelation']['file'], 'dialog') ?>"
+                         srcset="<?= Yii::$app->imageCache->thumbSrc($dialog['companion']['author']['avatar']['file'], '59') ?>"
                          alt="">
 
                 <?php else : ?>
