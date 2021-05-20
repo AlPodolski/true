@@ -3,10 +3,17 @@
 namespace frontend\controllers;
 
 use common\models\City;
+use common\models\HairColor;
+use common\models\IntimHair;
+use common\models\National;
+use common\models\Place;
+use common\models\Rayon;
+use common\models\Service;
 use frontend\components\helpers\GetAdvertisingPost;
 use frontend\helpers\MetaBuilder;
 use frontend\helpers\FavoriteHelper;
 use frontend\models\forms\PayForm;
+use frontend\models\Metro;
 use frontend\models\Webmaster;
 use frontend\components\AuthHandler;
 use frontend\modules\user\helpers\ViewCountHelper;
@@ -212,6 +219,39 @@ class SiteController extends Controller
         }
 
         return 1;
+
+    }
+
+    public function actionMap($city)
+    {
+
+        $cityInfo = City::getCity($city);
+
+        $metro = Metro::find()->where(['city_id' => $cityInfo['id']])->asArray()->all();
+        $rayon = Rayon::find()->where(['city_id' => $cityInfo['id']])->asArray()->all();
+        $service = Service::find()->asArray()->all();
+
+        $place = Place::getPlace();
+        $naci = National::getAll();
+        $hair = HairColor::getAll();
+        $intimHair = IntimHair::getAll();
+
+        Yii::$app->response->format = \yii\web\Response::FORMAT_RAW;
+        $headers = Yii::$app->response->headers;
+        $headers->add('Content-Type', 'text/xml');
+
+        $posts = Posts::find()->where(['city_id' => $cityInfo['id']])->asArray()->all();
+
+        return $this->renderFile(Yii::getAlias('@frontend/views/site/map.php'), [
+            'metro' => $metro,
+            'rayon' => $rayon,
+            'service' => $service,
+            'place' => $place,
+            'naci' => $naci,
+            'hair' => $hair,
+            'intimHair' => $intimHair,
+            'posts' => $posts,
+        ]);
 
     }
 
