@@ -829,7 +829,7 @@ h1 , .big-red-text{
 .white-text{
     color:#fff;
 }
-.post-address {
+.post-address , .post-address a{
     font-family: Ubuntu;
     font-style: normal;
     font-weight: normal;

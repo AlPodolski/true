@@ -49,7 +49,7 @@ use frontend\widgets\PhotoWidget;
                         </div>
                         <?php if (isset($post['metro'][0]['value'])) : ?>
                             <div class="post-address">
-                                м. <?php echo $post['metro'][0]['value'] ?>
+                                м. <a href="/metro-<?php echo $post['metro'][0]['url'] ?>"><?php echo $post['metro'][0]['value'] ?></a>
                             </div>
                         <?php endif; ?>
                     </div>

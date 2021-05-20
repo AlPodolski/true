@@ -11,6 +11,7 @@ use frontend\modules\user\helpers\ViewCountHelper;
 use frontend\modules\user\models\Posts;
 use Yii;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
 class PostController extends Controller
 {
@@ -35,21 +36,27 @@ class PostController extends Controller
             )
             ->asArray()->limit(1)->one();
 
-        $serviceListReview = ServiceReviewHelper::getPostServiceReview($id);
+        if ($post){
 
-        $cityInfo = City::getCity($city);
+            $serviceListReview = ServiceReviewHelper::getPostServiceReview($id);
 
-        $backUrl = RequestHelper::getBackUrl($protocol);
+            $cityInfo = City::getCity($city);
 
-        ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_single_view_count_key']);
+            $backUrl = RequestHelper::getBackUrl($protocol);
 
-        return $this->render('single', [
-            'post' => $post,
-            'serviceListReview' => $serviceListReview,
-            'id' => $id,
-            'cityInfo' => $cityInfo,
-            'backUrl' => $backUrl,
-        ]);
+            ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_single_view_count_key']);
+
+            return $this->render('single', [
+                'post' => $post,
+                'serviceListReview' => $serviceListReview,
+                'id' => $id,
+                'cityInfo' => $cityInfo,
+                'backUrl' => $backUrl,
+            ]);
+
+        }
+
+        throw new NotFoundHttpException();
 
     }
 
