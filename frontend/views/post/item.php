@@ -30,6 +30,24 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
         <div class="row">
             <div class="col-12 col-lg-4 col-xl-4 position-relative">
                 <div class="owl-carousel owl-theme owl-carousel-main">
+
+                    <?php
+
+                    $photoTitle = 'Проститутка ' . $post['name'];
+
+                    ?>
+                    <?php if ($post['check_photo_status'] == 1 and $post['category'] == 1) : ?>
+                        <div class="check-label">
+                            проверенная
+                            индивидуалка
+                        </div>
+                        <?php
+
+                        $photoTitle = 'Проверенная проститутка ' . $post['name'];
+
+                        ?>
+                    <?php endif ?>
+
                     <?php foreach ($post['gal'] as $item) : ?>
 
                         <?php if ($item['type'] != \frontend\models\Files::SELPHY_TYPE) :  ?>
@@ -41,6 +59,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                                     'class' => 'img user-img',
                                     'loading' => 'lazy',
                                     'alt' => $post['name'],
+                                    'title' => $photoTitle,
                                 ],
                             ]  ); ?>
 
@@ -48,12 +67,6 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                     <?php endforeach; ?>
                 </div>
-                <?php if ($post['check_photo_status'] == 1 and $post['category'] == 1) : ?>
-                    <div class="check-label">
-                        проверенная
-                        индивидуалка
-                    </div>
-                <?php endif ?>
                 <?php $postRating = \frontend\helpers\PostRatingHelper::getPostRating($post['id']) ?>
                 <div class="post-rating">
                     <div class="star-bg">
@@ -400,6 +413,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                                     'class' => 'img user-img',
                                     'loading' => 'lazy',
                                     'alt' => $post['name'],
+                                    'title' => $photoTitle,
                                 ],
                             ]  ); ?>
 
@@ -637,6 +651,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                                     'class' => 'img user-img',
                                     'loading' => 'lazy',
                                     'alt' => $post['name'],
+                                    'title' => $photoTitle,
                                 ],
                             ]  ); ?>
                         </div>
@@ -886,6 +901,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                         'class' => 'img user-img',
                         'loading' => 'lazy',
                         'alt' => $post['name'],
+                        'title' => $photoTitle,
                     ],
                 ]  ); ?>
             </div>
@@ -1113,6 +1129,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                         'class' => 'img user-img',
                         'loading' => 'lazy',
                         'alt' => $post['name'],
+                        'title' => $photoTitle,
                     ],
                 ]  ); ?>
             </div>

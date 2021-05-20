@@ -13,11 +13,24 @@ use frontend\widgets\PhotoWidget;
     <article class="post">
         <div class="post-img position-relative">
 
+            <?php
+
+                $photoTitle = 'Проститутка ' . $post['name'];
+
+            ?>
+
             <?php if ($post['check_photo_status'] == 1 and $post['category'] == 1) : ?>
                 <div class="check-label">
                     проверенная
                     индивидуалка
                 </div>
+
+                <?php
+
+                $photoTitle = 'Проверенная проститутка ' . $post['name'];
+
+                ?>
+
             <?php endif ?>
 
             <?php if ((isset($advertising) and $advertising) or (isset($promo) and $promo) ) : ?>
@@ -27,6 +40,7 @@ use frontend\widgets\PhotoWidget;
             <?php endif ?>
 
             <a href="/post/<?php echo $post['id'] ?>">
+
                 <?php echo PhotoWidget::widget([
                     'path' => $post['avatar']['file'] ,
                     'size' => '350_420',
@@ -36,6 +50,7 @@ use frontend\widgets\PhotoWidget;
                         'height' => '420px',
                         'loading' => 'lazy',
                         'alt' => $post['name'],
+                        'title' => $photoTitle,
                     ],
                 ]  ); ?>
             </a>
