@@ -6,6 +6,7 @@ use common\models\City;
 use common\models\HairColor;
 use common\models\IntimHair;
 use common\models\National;
+use common\models\Osobenosti;
 use common\models\Place;
 use common\models\Rayon;
 use common\models\Service;
@@ -235,6 +236,7 @@ class SiteController extends Controller
         $naci = National::getAll();
         $hair = HairColor::getAll();
         $intimHair = IntimHair::getAll();
+        $osobenosti = Osobenosti::getAll();
 
         Yii::$app->response->format = \yii\web\Response::FORMAT_RAW;
         $headers = Yii::$app->response->headers;
@@ -251,6 +253,7 @@ class SiteController extends Controller
             'hair' => $hair,
             'intimHair' => $intimHair,
             'posts' => $posts,
+            'osobenosti' => $osobenosti,
         ]);
 
     }
