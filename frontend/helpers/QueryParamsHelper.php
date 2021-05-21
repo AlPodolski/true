@@ -210,7 +210,7 @@ class QueryParamsHelper
 
             }
 
-            if (strstr($value, 'video')){
+            if ($value == 'video'){
 
                 Yii::$app->params['breadcrumbs'][] = array(
                     'label'=> 'анкеты видео',

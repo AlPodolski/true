@@ -12,7 +12,7 @@ class CurrentCity extends Widget
     public function run()
     {
 
-        if (isset(Yii::$app->controller->actionParams['city']) and $city = City::getCity(Yii::$app->controller->actionParams['city'])) {
+        if (isset(Yii::$app->requestedParams) and $city = City::getCity(Yii::$app->requestedParams['city'])) {
 
             return $city['city'];
 

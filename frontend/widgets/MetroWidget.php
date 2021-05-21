@@ -13,8 +13,8 @@ class MetroWidget extends Widget
     public function run()
     {
 
-        if (isset(Yii::$app->controller->actionParams['city'])
-            and $city = City::getCity(Yii::$app->controller->actionParams['city'])
+        if (isset(Yii::$app->requestedParams)
+            and $city = City::getCity(Yii::$app->requestedParams['city'])
             and $metro = Metro::getMetro($city['id'])
         ) {
 
@@ -27,8 +27,8 @@ class MetroWidget extends Widget
 
     public static function checkExistMetro()
     {
-        if (isset(Yii::$app->controller->actionParams['city'])
-            and $city = City::getCity(Yii::$app->controller->actionParams['city'])
+        if (isset(Yii::$app->requestedParams['city'])
+            and $city = City::getCity(Yii::$app->requestedParams['city'])
             and Metro::getMetro($city['id'])
         ) {
 

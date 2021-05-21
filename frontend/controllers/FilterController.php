@@ -9,6 +9,7 @@ use frontend\helpers\QueryParamsHelper;
 use frontend\modules\user\models\Posts;
 use Yii;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
 class FilterController extends Controller
 {
@@ -96,31 +97,33 @@ class FilterController extends Controller
 
             $posts = $posts->all();
 
+            $more_posts = false;
+
+            $uri = Yii::$app->request->url;
+
+            if (\strpos($uri, 'page')) $uri = \strstr($uri, '/page', true);
+
+
+            $title =  MetaBuilder::Build($uri, $city, 'Title');
+            $des = MetaBuilder::Build($uri, $city, 'des');
+            $h1 = MetaBuilder::Build($uri, $city, 'h1');
+
+            $topPostList = Posts::getTopList($cityInfo['id']);
+
+            return $this->render('index', [
+                'posts' => $posts,
+                'city' => $city,
+                'param' => $param,
+                'cityInfo' => $cityInfo,
+                'title' => $title,
+                'des' => $des,
+                'h1' => $h1,
+                'topPostList' => $topPostList,
+            ]);
 
         }
 
-        $more_posts = false;
+        throw new NotFoundHttpException();
 
-        $uri = Yii::$app->request->url;
-
-        if (\strpos($uri, 'page')) $uri = \strstr($uri, '/page', true);
-
-
-        $title =  MetaBuilder::Build($uri, $city, 'Title');
-        $des = MetaBuilder::Build($uri, $city, 'des');
-        $h1 = MetaBuilder::Build($uri, $city, 'h1');
-
-        $topPostList = Posts::getTopList($cityInfo['id']);
-
-        return $this->render('index', [
-            'posts' => $posts,
-            'city' => $city,
-            'param' => $param,
-            'cityInfo' => $cityInfo,
-            'title' => $title,
-            'des' => $des,
-            'h1' => $h1,
-            'topPostList' => $topPostList,
-        ]);
     }
 }

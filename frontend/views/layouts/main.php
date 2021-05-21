@@ -108,9 +108,9 @@ AppAsset::register($this);
 
                                 $logoTitle = 'Реальные проститутки';
 
-                                if (isset(Yii::$app->controller->actionParams['city'])){
+                                if (isset(Yii::$app->requestedParams['city'])){
 
-                                    $cityInfo = \common\models\City::getCity(Yii::$app->controller->actionParams['city']);
+                                    $cityInfo = \common\models\City::getCity(Yii::$app->requestedParams['city']);
 
                                     $logoTitle = 'Реальные проститутки '.$cityInfo['city2'];
 
