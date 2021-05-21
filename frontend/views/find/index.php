@@ -18,13 +18,13 @@ Yii::$app->view->registerMetaTag([
 ?>
 <div class="container custom-container">
 
-    <h1> <?php echo $h1 ?> </h1>
+    <h1 class="margin-top-20"> <?php echo $h1 ?> </h1>
 
     <div class="row">
 
         <?php echo '<div data-url="/'.$param.'" class="col-12"></div>'; ?>
 
-        <?php if (is_array($posts)) : ?>
+        <?php if (is_array($posts) and $posts) : ?>
 
             <?php foreach ($posts as $post) : ?>
 
@@ -35,12 +35,13 @@ Yii::$app->view->registerMetaTag([
         <?php else : ?>
 
             <div class="col-12">
-                <p>По вашему запросу ничего нет</p>
+                <p class="alert alert-info">по таким параметрам ничего нет  измените  начтройки  фильтра</p>
             </div>
 
         <?php endif; ?>
 
     </div>
+    <?php if (is_array($posts) and $posts) : ?>
     <div class="row content"></div>
     <svg class="filter" version="1.1">
         <defs>
@@ -61,4 +62,5 @@ Yii::$app->view->registerMetaTag([
     <div class="row">
         <div class="col-12 pager" data-page="1" data-url="<?php echo Yii::$app->request->url ?>" data-reqest="<?php echo Yii::$app->request->url ?>"></div>
     </div>
+    <?php endif; ?>
 </div>

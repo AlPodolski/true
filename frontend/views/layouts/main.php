@@ -421,6 +421,8 @@ AppAsset::register($this);
 <main>
     <?php if(Yii::$app->controller->id == 'site'
         or Yii::$app->controller->id == 'filter'
+        or Yii::$app->controller->id == 'find'
+        or Yii::$app->controller->id == 'search'
         or (Yii::$app->controller->id == 'post' and !strpos(Yii::$app->request->url, 'edit') )) : ?>
 
         <div class="container">
