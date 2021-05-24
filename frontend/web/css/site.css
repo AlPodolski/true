@@ -2979,6 +2979,12 @@ input:checked + .img-label-radio:before {
     }
 }
 @media (max-width: 769px) {
+    .filter-block .search-by-params-btn{
+        text-align: left;
+    }
+    .filter-block .close-filter-btn{
+        top: 13px;
+    }
     .balance-card{
         margin: 0 auto;
     }

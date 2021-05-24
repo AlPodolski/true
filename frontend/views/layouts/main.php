@@ -207,12 +207,12 @@ AppAsset::register($this);
                                 <li class="nav-item" ><a href="/cena-ot-6000">Элитные</a></li>
                                 <?php if (!Yii::$app->user->isGuest) : ?>
 
-                                    <li class="top-menu-item"><a href="/cabinet/edit">Настройки</a></li>
-                                    <li class="top-menu-item"><a href="/cabinet/faq">FAQ</a></li>
+                                    <li class="nav-item"><a href="/cabinet/edit">Настройки</a></li>
+                                    <li class="nav-item"><a href="/cabinet/faq">FAQ</a></li>
 
                                 <?php else : ?>
 
-                                    <li class="top-menu-item" onclick="get_claim_modal()"><a >Обратная связь</a></li>
+                                    <li class="nav-item" onclick="get_claim_modal()"><a >Обратная связь</a></li>
 
                                 <?php endif; ?>
                                 <li class="nav-item d-none" ><a href="/forum">Форум</a></li>
@@ -296,12 +296,12 @@ AppAsset::register($this);
                             <li class="nav-item" ><a href="/cena-ot-6000">Элитные</a></li>
                             <?php if (!Yii::$app->user->isGuest) : ?>
 
-                                <li class="top-menu-item"><a href="/cabinet/edit">Настройки</a></li>
-                                <li class="top-menu-item"><a href="/cabinet/faq">FAQ</a></li>
+                                <li class="nav-item"><a href="/cabinet/edit">Настройки</a></li>
+                                <li class="nav-item"><a href="/cabinet/faq">FAQ</a></li>
 
                             <?php else : ?>
 
-                                <li class="top-menu-item" onclick="get_claim_modal()"><a >Обратная связь</a></li>
+                                <li class="nav-item" onclick="get_claim_modal()"><a >Обратная связь</a></li>
 
                             <?php endif; ?>
                             <li class="nav-item d-none" ><a href="/forum">Форум</a></li>
