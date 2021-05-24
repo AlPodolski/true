@@ -134,6 +134,7 @@ return [
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/events' => 'user/events/index',
 
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/sitemap.xml' => 'site/map',
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/robots.txt' => 'site/robot',
 
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/view/phone' => 'user/view/view-phone',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/view/buy' => 'user/view/buy-view',
