@@ -274,7 +274,15 @@ function get_data(object){
 
     if(data_type == 'filter'){
 
-        url = "/data/get" + encodeURI(window.location.search) + "&data="+data_type;
+        if(window.location.search == ''){
+
+            url = "/data/get?data="+data_type;
+
+        }else{
+
+            url = "/data/get" + encodeURI(window.location.search) + "&data="+data_type;
+
+        }
 
     }
 

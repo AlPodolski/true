@@ -27,6 +27,12 @@
         </svg>
     </div>
 
+    <div class="close-filter-btn" onclick="close_filter(this)">
+        <svg width="13" height="13" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 0.353513L5.64649 0L3 2.64649L0.353513 0L0 0.353513L2.64649 3L0 5.64649L0.353513 6L3 3.35351L5.64649 6L6 5.64649L3.35351 3L6 0.353513Z" fill="black"/>
+        </svg>
+    </div>
+
     <?php if ($metro) : ?>
 
         <div class="metro-select-wrap position-relative">

@@ -829,6 +829,12 @@ h1 , .big-red-text{
 .white-text{
     color:#fff;
 }
+.close-filter-btn {
+    position: absolute;
+    right: 15px;
+    top: 26px;
+    cursor:pointer;
+}
 .post-address , .post-address a{
     font-family: Ubuntu;
     font-style: normal;
