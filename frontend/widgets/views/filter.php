@@ -7,6 +7,7 @@
 /* @var $naci array */
 /* @var $intimHair array */
 /* @var $hair array */
+/* @var $dataGet array */
 
 ?>
 
@@ -36,7 +37,14 @@
 
                 <?php foreach ($metro as $metroItem) : ?>
 
-                    <option value="<?php echo $metroItem['id'] ?>"><?php echo $metroItem['value'] ?></option>
+                <?php $selected = '' ?>
+
+                <?php if ($dataGet
+                        and isset($dataGet['metro'])
+                        and $dataGet['metro']
+                        and $dataGet['metro'] == $metroItem['id']) $selected = 'selected' ?>
+
+                    <option <?php echo $selected ?> value="<?php echo $metroItem['id'] ?>"><?php echo $metroItem['value'] ?></option>
 
                 <?php endforeach; ?>
 
@@ -56,49 +64,106 @@
     <div class="slider-item-wrap d-flex">
         <div class="slider-item-text">Возраст</div>
         <div class="slider-item d-flex">
-            <input type="text" id="age-from" name="age-from" readonly value="18">
+            <?php
+
+            if ($dataGet and isset($dataGet['age-from'])) $ageFrom = $dataGet['age-from'];
+            else $ageFrom = 18;
+
+            ?>
+
+            <?php
+
+            if ($dataGet and isset($dataGet['age-to'])) $ageTo = $dataGet['age-to'];
+            else $ageTo = 65;
+
+            ?>
+            <input type="text" id="age-from" name="age-from" readonly value="<?php echo $ageFrom?>">
             <div id="slider-range-age"></div>
-            <input type="text" id="age-to" name="age-to" readonly value="65">
+            <input type="text" id="age-to" name="age-to" readonly value="<?php echo $ageTo ?>">
         </div>
     </div>
     <div class="slider-item-wrap d-flex">
         <div class="slider-item-text">Рост</div>
         <div class="slider-item d-flex">
-            <input type="text" id="rost-from" name="rost-from" readonly value="150">
+            <?php
+
+            if ($dataGet and isset($dataGet['rost-from'])) $rostFrom = $dataGet['rost-from'];
+            else $rostFrom = 150;
+
+            ?>
+
+            <?php
+
+            if ($dataGet and isset($dataGet['rost-to'])) $rostTo = $dataGet['rost-to'];
+            else $rostTo = 200;
+
+            ?>
+            <input type="text" id="rost-from" name="rost-from" readonly value="<?php echo $rostFrom?>">
             <div id="rost-range-age"></div>
-            <input type="text" id="rost-to" name="rost-to" readonly value="200">
+            <input type="text" id="rost-to" name="rost-to" readonly value="<?php echo $rostTo?>">
         </div>
     </div>
     <div class="slider-item-wrap d-flex">
         <div class="slider-item-text">Вес</div>
         <div class="slider-item d-flex">
-            <input type="text" id="ves-from" name="ves-from" readonly value="35">
+            <?php
+
+            if ($dataGet and isset($dataGet['ves-from'])) $vesFrom = $dataGet['ves-from'];
+            else $vesFrom = 35;
+
+            ?>
+
+            <?php
+
+            if ($dataGet and isset($dataGet['ves-to'])) $vestTo = $dataGet['ves-to'];
+            else $vestTo = 130;
+
+            ?>
+            <input type="text" id="ves-from" name="ves-from" readonly value="<?php echo $vesFrom ?>">
             <div id="slider-range-ves"></div>
-            <input type="text" id="ves-to"  name="ves-to" readonly value="130">
+            <input type="text" id="ves-to"  name="ves-to" readonly value="<?php echo $vestTo ?>">
         </div>
     </div>
     <div class="slider-item-wrap d-flex">
         <div class="slider-item-text">Грудь</div>
         <div class="slider-item d-flex">
-            <input type="text" id="grud-from" name="grud-from" readonly value="0">
+            <?php
+
+            if ($dataGet and isset($dataGet['grud-from'])) $grudFrom = $dataGet['grud-from'];
+            else $grudFrom = 0;
+
+            ?>
+
+            <?php
+
+            if ($dataGet and isset($dataGet['grud-to'])) $grudTo = $dataGet['grud-to'];
+            else $grudTo = 9;
+
+            ?>
+            <input type="text" id="grud-from" name="grud-from" readonly value="<?php echo $grudFrom ?>">
             <div id="slider-range-grud"></div>
-            <input type="text" id="grud-to" name="grud-to" readonly value="9">
+            <input type="text" id="grud-to" name="grud-to" readonly value="<?php echo $grudTo ?>">
         </div>
     </div>
     <div class="slider-item-wrap d-flex">
         <div class="slider-item-text">Цена <br> (1 час)</div>
         <div class="slider-item d-flex">
-            <input type="text" id="price-1-from" name="price-1-from" readonly value="500">
+            <?php
+
+            if ($dataGet and isset($dataGet['price-1-from'])) $priceFrom = $dataGet['price-1-from'];
+            else $priceFrom = 500;
+
+            ?>
+
+            <?php
+
+            if ($dataGet and isset($dataGet['price-1-to'])) $priceTo = $dataGet['price-1-to'];
+            else $priceTo = 25000;
+
+            ?>
+            <input type="text" id="price-1-from" name="price-1-from" readonly value="<?php echo $priceFrom?>">
             <div id="slider-range-price-1-hour"></div>
-            <input type="text" id="price-1-to" name="price-1-to" readonly value="25000">
-        </div>
-    </div>
-    <div class="slider-item-wrap d-flex">
-        <div class="slider-item-text">Цена <br> (2 часа)</div>
-        <div class="slider-item d-flex">
-            <input type="text" id="price-2-from" name="price-2-from" readonly value="500">
-            <div id="slider-range-price-2-hour"></div>
-            <input type="text" id="price-2-to" name="price-2-to" readonly value="25000">
+            <input type="text" id="price-1-to" name="price-1-to" readonly value="<?php echo $priceTo ?>">
         </div>
     </div>
 

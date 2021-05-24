@@ -256,7 +256,7 @@ function get_claim_modal(){
         cache: false,
         success: function (data) {
 
-            $('#claimModal .modal-body').html(data);
+            $('#claimModal .modal-body').html(ё);
             $('#claimModal').modal('toggle');
 
         }
@@ -268,10 +268,19 @@ function get_data(object){
 
     var data_type = $(object).attr('data-type');
 
+    var data = 'data='+data_type;
+
+    var url = "/data/get?data="+data_type;
+
+    if(data_type == 'filter'){
+
+        url = "/data/get" + encodeURI(window.location.search) + "&data="+data_type;
+
+    }
+
     $.ajax({
-        type: 'POST',
-        data: 'data='+data_type,
-        url: "/data/get",
+        type: 'GET',
+        url: url,
         cache: false,
         success: function (data) {
 
@@ -557,7 +566,7 @@ function filter(){
         range: true,
         min: 18,
         max: 65,
-        values: [ 18, 65 ],
+        values: [ $( "#age-from" ).val(), $( "#age-to" ).val() ],
         slide: function( event, ui ) {
             $( "#age-from" ).val( ui.values[ 0 ] );
             $( "#age-to" ).val( ui.values[ 1 ] );
@@ -567,7 +576,7 @@ function filter(){
         range: true,
         min: 150,
         max: 200,
-        values: [ 150, 200 ],
+        values: [ $( "#rost-from" ).val(), $( "#rost-to" ).val() ],
         slide: function( event, ui ) {
             $( "#rost-from" ).val( ui.values[ 0 ] );
             $( "#rost-to" ).val( ui.values[ 1 ] );
@@ -578,7 +587,7 @@ function filter(){
         range: true,
         min: 35,
         max: 130,
-        values: [ 35, 130 ],
+        values: [ $( "#ves-from" ).val(), $( "#ves-to" ).val() ],
         slide: function( event, ui ) {
             $( "#ves-from" ).val( ui.values[ 0 ] );
             $( "#ves-to" ).val( ui.values[ 1 ] );
@@ -588,7 +597,7 @@ function filter(){
         range: true,
         min: 0,
         max: 9,
-        values: [ 0, 9 ],
+        values: [ $( "#grud-from" ).val(), $( "#grud-to" ).val() ],
         slide: function( event, ui ) {
             $( "#grud-from" ).val( ui.values[ 0 ] );
             $( "#grud-to" ).val( ui.values[ 1 ] );
@@ -598,7 +607,7 @@ function filter(){
         range: true,
         min: 500,
         max: 25000,
-        values: [ 500, 25000 ],
+        values: [ $( "#price-1-from" ).val(), $( "#price-1-to" ).val() ],
         slide: function( event, ui ) {
             $( "#price-1-from" ).val( ui.values[ 0 ] );
             $( "#price-1-to" ).val( ui.values[ 1 ] );
@@ -608,7 +617,7 @@ function filter(){
         range: true,
         min: 500,
         max: 25000,
-        values: [ 500, 25000 ],
+        values: [$( "#price-2-from" ).val(), $( "#price-2-to" ).val()],
         slide: function( event, ui ) {
             $( "#price-2-from" ).val( ui.values[ 0 ] );
             $( "#price-2-to" ).val( ui.values[ 1 ] );

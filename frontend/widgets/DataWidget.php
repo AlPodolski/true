@@ -9,6 +9,7 @@ class DataWidget extends Widget
 {
 
     public $data;
+    public $dataGet;
 
     public function run()
     {
@@ -17,7 +18,7 @@ class DataWidget extends Widget
             case 'metro':
                 return $this->render('data-metro');
              case 'filter':
-                return $this->render('data-filter');
+                return $this->render('data-filter', ['dataGet' => $this->dataGet]);
         }
 
         return false;

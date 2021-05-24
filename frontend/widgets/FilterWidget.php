@@ -16,6 +16,9 @@ use yii\base\Widget;
 
 class FilterWidget extends Widget
 {
+
+    public $dataGet;
+
     public function run()
     {
 
@@ -45,6 +48,7 @@ class FilterWidget extends Widget
             'naci' => $naci,
             'hair' => $hair,
             'intimHair' => $intimHair,
+            'dataGet' => $this->dataGet,
         ]);
     }
 }

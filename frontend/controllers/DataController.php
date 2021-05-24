@@ -11,26 +11,11 @@ use yii\web\Controller;
 class DataController extends Controller
 {
 
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'get' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
     public function actionGet($city)
     {
-        $data = Yii::$app->request->post('data');
+        $data = Yii::$app->request->get('data');
 
-        return DataWidget::widget(['data' => $data]);
+        return DataWidget::widget(['data' => $data, 'dataGet' => Yii::$app->request->get()]);
     }
 
 }

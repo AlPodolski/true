@@ -1,3 +1,5 @@
 <?php
 
-echo \frontend\widgets\FilterWidget::widget();
+/* @var $dataGet array */
+
+echo \frontend\widgets\FilterWidget::widget(['dataGet' => $dataGet]);
