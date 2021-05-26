@@ -2772,7 +2772,7 @@ select{
     display: none;
 }
 input::-webkit-input-placeholder {
-    color: #fff;
+    color: #c4c4c4;
 }
 .show-anket-count{
     margin: 0 auto;
