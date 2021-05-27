@@ -257,7 +257,7 @@ function get_claim_modal(){
         success: function (data) {
 
             $('#claimModal .modal-body').html(data);
-            $('#claimModal').modal('toggle');
+            $('#claimModal').modal('toggle' );
 
         }
     })

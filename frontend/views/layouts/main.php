@@ -517,6 +517,7 @@ AppAsset::register($this);
 
             </div>
         </div>
+
     </div>
 </div>
 <div class="modal fade" id="claimModal" tabindex="-1" role="dialog" aria-labelledby="claimModal" aria-hidden="true">
