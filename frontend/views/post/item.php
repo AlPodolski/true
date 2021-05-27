@@ -48,6 +48,17 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                         ?>
                     <?php endif ?>
 
+                    <?php echo PhotoWidget::widget([
+                        'path' => $post['avatar']['file'],
+                        'size' => 'single',
+                        'options' => [
+                            'class' => 'img user-img',
+                            'loading' => 'lazy',
+                            'alt' => $post['name'],
+                            'title' => $photoTitle,
+                        ],
+                    ]  ); ?>
+
                     <?php foreach ($post['gal'] as $item) : ?>
 
                         <?php if ($item['type'] != \frontend\models\Files::SELPHY_TYPE) :  ?>
@@ -66,6 +77,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                         <?php endif; ?>
 
                     <?php endforeach; ?>
+
                 </div>
                 <?php $postRating = \frontend\helpers\PostRatingHelper::getPostRating($post['id']) ?>
                 <div class="post-rating">
