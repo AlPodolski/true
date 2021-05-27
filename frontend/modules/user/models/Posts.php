@@ -220,7 +220,7 @@ class Posts extends \yii\db\ActiveRecord
 
     public function getSites()
     {
-        return $this->hasMany(PostSites::class, ['post_id' => 'id'])->with('site');
+        return $this->hasMany(PostSites::class, ['post_id' => 'id'])->with('site')->groupBy('site_id');
     }
 
     public function getUserToServiceRelations()
