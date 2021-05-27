@@ -335,6 +335,8 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                 ?>
 
+                <?php if (isset($post['avatar']['file']) and $post['avatar']['file']) $imgs[] = $post['avatar']['file']; ?>
+
                 <?php foreach ($post['gal'] as $item) : ?>
 
                     <?php if ($item['file'] and $item['type'] != \frontend\models\Files::SELPHY_TYPE
