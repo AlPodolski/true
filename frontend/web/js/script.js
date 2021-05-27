@@ -256,7 +256,7 @@ function get_claim_modal(){
         cache: false,
         success: function (data) {
 
-            $('#claimModal .modal-body').html(ё);
+            $('#claimModal .modal-body').html(data);
             $('#claimModal').modal('toggle');
 
         }
