@@ -70,6 +70,7 @@ class ActionColumnExtends extends ActionColumn
                 }
                 $options = array_merge([
                     'title' => $title,
+                    'class' => 'admin-icon',
                     'aria-label' => $title,
                     'data-pjax' => '1',
                 ], $additionalOptions, $this->buttonOptions);

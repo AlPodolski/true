@@ -7,7 +7,10 @@ body.blank {
     display: flex;
     padding: 40px 0;
 }
-
+.admin-icon{
+    margin-bottom: 15px;
+    display: block;
+}
 .wrap {
     min-height: 100%;
     height: auto;

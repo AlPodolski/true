@@ -172,6 +172,14 @@ use yii\widgets\ActiveForm;
 
     <?php ActiveForm::end(); ?>
 
+    <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
+        'class' => 'btn btn-danger',
+        'data' => [
+            'confirm' => 'Вы уверенны?',
+            'method' => 'post',
+        ],
+    ]) ?>
+
     </div>
 
 
