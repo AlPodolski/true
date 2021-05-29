@@ -2836,8 +2836,8 @@ input::-webkit-input-placeholder {
     padding: 11px;
 }
 .pagination .active{
-    margin-left: 5px;
-    padding: 5px 11px;
+    background: #f2f2f2;
+    border-radius: 5px;
 }
 a.desc::after {
     content: "\2193";
