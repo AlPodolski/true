@@ -49,6 +49,8 @@ class LoginWidget extends Widget
             <a href="#" class="register-btn" onclick="get_register_btn()">Регистрация</a>
         </div>
 
+        <?php if (false) : ?>
+
         <div class="reset-pass-block">
             <p class="reset-text">
                 Забыли пароль <?= Html::a('Сбросить', ['site/request-password-reset']) ?>.
@@ -59,7 +61,11 @@ class LoginWidget extends Widget
 
         </div>
 
+        <?php endif; ?>
+
         <div class="social-in text-center">
+
+            <br>
 
             <div class="in-with-text">
                 Войти с помощью:
