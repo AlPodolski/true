@@ -305,7 +305,7 @@ AppAsset::register($this);
                                 <li class="nav-item" onclick="get_claim_modal()"><a >Обратная связь</a></li>
 
                             <?php endif; ?>
-                            <li class="nav-item d-none" ><a href="/forum">Форум</a></li>
+
                         </ul>
                         <div class="color-boll first-color-boll">
 
