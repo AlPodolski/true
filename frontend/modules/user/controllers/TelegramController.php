@@ -4,6 +4,7 @@
 namespace frontend\modules\user\controllers;
 
 use common\models\User;
+use frontend\components\helpers\TelegramHelper;
 use frontend\modules\user\models\forms\CheckTelegramForm;
 use Yii;
 use yii\web\Controller;
@@ -26,7 +27,9 @@ class TelegramController extends Controller
 
         $tokenForm->user_id = Yii::$app->user->id;
 
-        if ($tokenForm->load(Yii::$app->request->post()) and $tokenForm->validate() and $tokenForm->checkStatus()){
+        if ($tokenForm->load(Yii::$app->request->post()) and $tokenForm->validate() and $token = $tokenForm->checkStatus()){
+
+            TelegramHelper::sendMenu($token->telegram_chat_id);
 
             Yii::$app->session->setFlash('success', 'Телеграм подтвержден');
 

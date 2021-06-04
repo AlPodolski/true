@@ -5,7 +5,7 @@ namespace frontend\controllers;
 
 use common\models\TelegramLastUpdate;
 use common\models\TelegramToken;
-use frontend\components\helpers\TelegramTokenHelper;
+use frontend\components\helpers\TelegramHelper;
 use Yii;
 use yii\web\Controller;
 use aki\telegram\base\Command;
@@ -33,21 +33,31 @@ class TelegramController extends Controller
 
                         if (!$token){
 
-                            $token = TelegramTokenHelper::generateToken($item['message']['chat']['id'], $item['message']['from']['id']);
+                            $token = TelegramHelper::generateToken($item['message']['chat']['id'], $item['message']['from']['id']);
 
                         }
 
                         if (isset($token->token_status) and $token->token_status == TelegramToken::TOKEN_STATUS_NOT_ACTIVE){
 
-                            Yii::$app->telegram->sendPhoto([
-                                'chat_id' => $item['message']['chat']['id'],
-                                'photo' => 'https://tele.sex-true.com/img/telegram-form-example.png',
-                            ]);
+                            TelegramHelper::sendToken($item['message']['chat']['id'], $token->token);
 
-                            Yii::$app->telegram->sendMessage([
-                                'chat_id' => $item['message']['chat']['id'],
-                                'text' => 'Введите код в форму на сайте : '.$token->token,
-                            ]);
+                        }elseif(isset($token->token_status) and $token->token_status == TelegramToken::TOKEN_STATUS_ACTIVE){
+
+                            TelegramHelper::sendMenu($item['message']['chat']['id']);
+
+                        }
+
+                        break;
+
+                    case "/Баланс" :
+
+                        if (isset($token->token_status) and $token->token_status == TelegramToken::TOKEN_STATUS_NOT_ACTIVE){
+
+                            TelegramHelper::sendToken($item['message']['chat']['id'], $token->token);
+
+                        }elseif(isset($token->token_status) and $token->token_status == TelegramToken::TOKEN_STATUS_ACTIVE){
+
+                            TelegramHelper::sendBalance($item['message']['chat']['id']);
 
                         }
 

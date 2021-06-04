@@ -16,6 +16,7 @@ use yii\db\ActiveRecord;
  * @property int|null $token_status статус токе 0 - токен выпущен но не подтвержден 1 токен подтвержден
  * @property int|null $created_at
  * @property int|null $updated_at
+ * @property int|null $user_id
  */
 class TelegramToken extends \yii\db\ActiveRecord
 {
@@ -45,6 +46,11 @@ class TelegramToken extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getUser()
+    {
+        return $this->hasOne(User::class, ['id' => 'user_id']);
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -52,7 +58,7 @@ class TelegramToken extends \yii\db\ActiveRecord
     {
         return [
             [['token', 'telegram_user_id', 'telegram_chat_id'], 'required'],
-            [['telegram_user_id', 'telegram_chat_id', 'token_status', 'created_at', 'updated_at'], 'integer'],
+            [['telegram_user_id', 'telegram_chat_id', 'token_status', 'created_at', 'updated_at', 'user_id'], 'integer'],
             [['token'], 'string', 'max' => 255],
             [['token'], 'unique'],
         ];
@@ -71,6 +77,7 @@ class TelegramToken extends \yii\db\ActiveRecord
             'token_status' => 'Token Status',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
+            'user_id' => 'id пользователя',
         ];
     }
 }

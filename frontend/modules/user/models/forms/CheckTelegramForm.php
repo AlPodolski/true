@@ -53,13 +53,21 @@ class CheckTelegramForm extends Model
 
     }
 
+    /**
+     * Finds token by [[token,status]]
+     *
+     * @return TelegramToken|false
+     */
+
     public function checkStatus()
     {
 
         $this->_telegram_token->token_status = TelegramToken::TOKEN_STATUS_ACTIVE;
         $this->_telegram_token->user_id = $this->user_id;
 
-        return $this->_telegram_token->save();
+        if ($this->_telegram_token->save()) return $this->_telegram_token;
+
+        return false;
     }
 
 }
