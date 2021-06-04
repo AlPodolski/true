@@ -20,7 +20,7 @@ class CabinetController extends \yii\web\Controller
     public function actionIndex($city)
     {
 
-        $user = User::find()->where(['id' => Yii::$app->user->id])->with('avatar')->one();
+        $user = User::find()->where(['id' => Yii::$app->user->id])->with('avatar', 'telegram')->one();
 
         $posts = Posts::find()->where(['user_id' => Yii::$app->user->id])->with('avatar', 'message')->all();
 

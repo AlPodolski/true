@@ -249,4 +249,10 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->hasOne(Files::class, ['related_id' => 'id'])->andWhere(['related_class' => self::class]);
     }
+
+    public function getTelegram()
+    {
+        return $this->hasOne(TelegramToken::class, ['user_id' => 'id'])
+            ->andWhere(['token_status' => TelegramToken::TOKEN_STATUS_ACTIVE]);
+    }
 }

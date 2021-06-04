@@ -146,6 +146,9 @@ return [
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/site/request-password-reset' => 'user/user/request-password-reset',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/site/reset-password' => 'user/user/reset-password',
 
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/tele/index' => 'telegram/index',
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/telegram' => 'user/telegram/index',
+
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/<param:[a-z-0-9]+>' => 'filter/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/<param:([a-z-0-9]+/)+[a-z-0-9]+>' => 'filter/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/<param:([a-z-0-9]+/)+[a-z-0-9]+>/page-<page:[0-9]+>' => 'filter/index',
