@@ -17,7 +17,11 @@ $this->title = 'Привязать телеграм'
         <?php echo \frontend\modules\user\widgets\SidebarWidget::widget(['user' => $user]) ?>
         <div class="col-12 col-md-12 col-lg-6 col-xl-7">
             <ul class="margin-top-20">
-                <li>Для того что бы привязать телеграм откройте нашего <?php echo \yii\helpers\Html::a('бота', Yii::$app->params['telegram_url'].Yii::$app->telegram->botUsername)?></li>
+                <li>Для того что бы привязать телеграм откройте нашего
+                    <?php echo \yii\helpers\Html::a('бота',
+                        Yii::$app->params['telegram_url'].Yii::$app->telegram->botUsername,
+                        ['target' => 'blank']
+                    )?></li>
                 <li>Нажмите старт и Вам придет код</li>
                 <li>Введите код в форму ниже (Включая тире)</li>
             </ul>

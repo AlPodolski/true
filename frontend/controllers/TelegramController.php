@@ -69,7 +69,5 @@ class TelegramController extends Controller
 
         }
 
-        \dd($result);
-
     }
 }
