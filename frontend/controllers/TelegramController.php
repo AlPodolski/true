@@ -41,7 +41,7 @@ class TelegramController extends Controller
 
                             Yii::$app->telegram->sendPhoto([
                                 'chat_id' => $item['message']['chat']['id'],
-                                'photo' => '/img/telegram-form-example.png',
+                                'photo' => 'https://tele.sex-true.com/img/telegram-form-example.png',
                             ]);
 
                             Yii::$app->telegram->sendMessage([
