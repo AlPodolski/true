@@ -19,7 +19,7 @@ class TelegramController extends Controller
 
         $updateId = TelegramLastUpdate::find()->one();
 
-        $result = Yii::$app->telegram->getUpdates(['offset' => $updateId->update_id ]);
+        $result = Yii::$app->telegram->getUpdates(['offset' => $updateId->update_id + 1]);
 
         if ($result) foreach ($result['result'] as $item){
 
