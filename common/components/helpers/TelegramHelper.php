@@ -1,7 +1,7 @@
 <?php
 
 
-namespace frontend\components\helpers;
+namespace common\components\helpers;
 
 
 use common\models\TelegramToken;
@@ -27,6 +27,14 @@ class TelegramHelper
 
         else self::generateToken($telegram_chat_id, $telegram_user_id);
 
+    }
+
+    public static function sendMessage($chat_id, $text)
+    {
+        Yii::$app->telegram->sendMessage([
+            'chat_id' => $chat_id,
+            'text' => $text,
+        ]);
     }
 
     public static function sendMenu($chat_id)

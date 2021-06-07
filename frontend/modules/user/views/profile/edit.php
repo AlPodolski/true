@@ -64,7 +64,22 @@ $this->params['breadcrumbs'][] = $this->title;
                         'item' => function($index, $label, $name, $checked, $value) {
                             $chec = '';
                             $return = '<span>';
-                            if ($index == 0) $chec = 'checked';
+                            if ($checked) $chec = 'checked';
+                            $return .= '<input '.$chec.' id="'.mb_strtolower($label).'_label-id" type="radio" name="' . $name . '" value="' . $value . '" tabindex="'.$index.'">';
+                            $return .= '<label for="'.mb_strtolower($label).'_label-id" class="modal-radio '.mb_strtolower($label).'_label img-label-radio">';
+                            $return .= $label;
+                            $return .= '</label>';
+                            $return .= '</span>';
+
+                            return $return;
+                        }
+                    ]); ?>
+
+                    <?= $form->field($model, 'notify')->radioList([1 => 'Да' , 0 => "Нет"] , [
+                        'item' => function($index, $label, $name, $checked, $value) {
+                            $chec = '';
+                            $return = '<span>';
+                            if ($checked) $chec = 'checked';
                             $return .= '<input '.$chec.' id="'.mb_strtolower($label).'_label-id" type="radio" name="' . $name . '" value="' . $value . '" tabindex="'.$index.'">';
                             $return .= '<label for="'.mb_strtolower($label).'_label-id" class="modal-radio '.mb_strtolower($label).'_label img-label-radio">';
                             $return .= $label;

@@ -5,7 +5,7 @@ namespace frontend\controllers;
 
 use common\models\TelegramLastUpdate;
 use common\models\TelegramToken;
-use frontend\components\helpers\TelegramHelper;
+use common\components\helpers\TelegramHelper;
 use Yii;
 use yii\web\Controller;
 use aki\telegram\base\Command;

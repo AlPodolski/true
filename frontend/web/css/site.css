@@ -2840,7 +2840,7 @@ input:checked + .img-label-radio:before {
     display: inline-block;
     margin-right: 5px;
 }
-#editprofileform-male input {
+#editprofileform-male input , #editprofileform-notify input {
      position: absolute;
      z-index: -1;
      opacity: 0;

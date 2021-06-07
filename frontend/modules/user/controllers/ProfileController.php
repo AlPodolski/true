@@ -69,6 +69,7 @@ class ProfileController extends Controller
         $editProfileForm->username = $user->username;
         $editProfileForm->age = $user->age;
         $editProfileForm->male = $user->male;
+        $editProfileForm->notify = $user->notify;
 
         return $this->render('edit', [
             'user' => $user,

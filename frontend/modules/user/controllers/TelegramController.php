@@ -4,7 +4,7 @@
 namespace frontend\modules\user\controllers;
 
 use common\models\User;
-use frontend\components\helpers\TelegramHelper;
+use common\components\helpers\TelegramHelper;
 use frontend\modules\user\models\forms\CheckTelegramForm;
 use Yii;
 use yii\web\Controller;

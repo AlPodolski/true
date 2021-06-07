@@ -14,6 +14,7 @@ class EditProfileForm extends Model
     public $avatar;
     public $male;
     public $user_id;
+    public $notify;
 
     /**
      * {@inheritdoc}
@@ -23,6 +24,7 @@ class EditProfileForm extends Model
         return [
             ['age', 'integer', 'min' => 18, 'max' => 99],
             ['male', 'integer', 'min' => 0, 'max' => 1],
+            ['notify', 'integer', 'min' => 0, 'max' => 1],
             ['user_id', 'integer'],
             ['username', 'trim'],
             ['avatar', 'safe'],
@@ -37,6 +39,7 @@ class EditProfileForm extends Model
             'age' => 'Возраст',
             'male' => 'Пол',
             'avatar' => 'Аватар',
+            'notify' => 'Получать уведомлений',
         ];
     }
 
@@ -44,9 +47,12 @@ class EditProfileForm extends Model
     {
         $user = User::findOne($this->user_id);
 
+
+
         $user->male = $this->male;
         $user->username = $this->username;
         $user->age = $this->age;
+        $user->notify = $this->notify;
 
         return $user->save();
     }
