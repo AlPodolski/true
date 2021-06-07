@@ -28,7 +28,7 @@ class TelegramController extends Controller
 
         $updateId = TelegramLastUpdate::find()->one();
 
-        $telegram = new Api('1780291875:AAEsHj_Bgy50QiX6QWK_opQ7wHfZD9Pka4E');
+        $telegram = new Api(Yii::$app->params['telegram_token']);
 
         $result = $telegram->getWebhookUpdates();
 
