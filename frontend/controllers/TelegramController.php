@@ -9,9 +9,9 @@ use frontend\components\helpers\TelegramHelper;
 use Yii;
 use yii\web\Controller;
 use aki\telegram\base\Command;
+use Telegram\Bot\Api;
 
 /* @var Yii::$app->telegram aki\telegram\Telegram */
-
 class TelegramController extends Controller
 {
     public function actionIndex()
@@ -19,61 +19,59 @@ class TelegramController extends Controller
 
         $updateId = TelegramLastUpdate::find()->one();
 
-        $result = Yii::$app->telegram->getUpdates(['offset' => $updateId->update_id + 1]);
+        $telegram = new Api('1780291875:AAEsHj_Bgy50QiX6QWK_opQ7wHfZD9Pka4E');
 
-        if ($result) foreach ($result['result'] as $item){
+        $result = $telegram->getWebhookUpdates();
 
-            $token = TelegramToken::findOne(['telegram_user_id' => $item['message']['from']['id']]);
+        $token = TelegramToken::findOne(['telegram_user_id' => $result['message']['from']['id']]);
 
-            if ($text = $item['message']['text']) {
+        if ($text = $result['message']['text']) {
 
-                switch ($text) {
+            switch ($text) {
 
-                    case "/start":
+                case "/start":
 
-                        if (!$token){
+                    if (!$token) {
 
-                            $token = TelegramHelper::generateToken($item['message']['chat']['id'], $item['message']['from']['id']);
+                        $token = TelegramHelper::generateToken($result['message']['chat']['id'], $result['message']['from']['id']);
 
-                        }
+                    }
 
-                        if (isset($token->token_status) and $token->token_status == TelegramToken::TOKEN_STATUS_NOT_ACTIVE){
+                    if (isset($token->token_status) and $token->token_status == TelegramToken::TOKEN_STATUS_NOT_ACTIVE) {
 
-                            TelegramHelper::sendToken($item['message']['chat']['id'], $token->token);
+                        TelegramHelper::sendToken($result['message']['chat']['id'], $token->token);
 
-                        }elseif(isset($token->token_status) and $token->token_status == TelegramToken::TOKEN_STATUS_ACTIVE){
+                    } elseif (isset($token->token_status) and $token->token_status == TelegramToken::TOKEN_STATUS_ACTIVE) {
 
-                            TelegramHelper::sendMenu($item['message']['chat']['id']);
+                        TelegramHelper::sendMenu($result['message']['chat']['id']);
 
-                        }
+                    }
 
-                        break;
+                    break;
 
-                    case "/Баланс" :
+                case "/Баланс" :
 
-                        if (isset($token->token_status) and $token->token_status == TelegramToken::TOKEN_STATUS_NOT_ACTIVE){
+                    if (isset($token->token_status) and $token->token_status == TelegramToken::TOKEN_STATUS_NOT_ACTIVE) {
 
-                            TelegramHelper::sendToken($item['message']['chat']['id'], $token->token);
+                        TelegramHelper::sendToken($result['message']['chat']['id'], $token->token);
 
-                        }elseif(isset($token->token_status) and $token->token_status == TelegramToken::TOKEN_STATUS_ACTIVE){
+                    } elseif (isset($token->token_status) and $token->token_status == TelegramToken::TOKEN_STATUS_ACTIVE) {
 
-                            TelegramHelper::sendBalance($item['message']['chat']['id']);
+                        TelegramHelper::sendBalance($result['message']['chat']['id']);
 
-                        }
+                    }
 
-                        break;
+                    break;
 
-                }
+            }
 
-                if (!$updateId or $updateId->update_id <= $item['update_id']) {
+            if (!$updateId or $updateId->update_id <= $result['update_id']) {
 
-                    if (!$updateId) $updateId = new TelegramLastUpdate();
+                if (!$updateId) $updateId = new TelegramLastUpdate();
 
-                    $updateId->update_id = $item['update_id'];
+                $updateId->update_id = $result['update_id'];
 
-                    $updateId->save();
-
-                }
+                $updateId->save();
 
             }
 

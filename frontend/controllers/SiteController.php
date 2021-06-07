@@ -88,6 +88,10 @@ class SiteController extends Controller
     public function actionIndex($city, $page = false)
     {
 
+        Yii::$app->telegram->setWebhook([
+            'url' => 'https://tele.sex-true.com/tele/index',
+        ]);
+
         $cityInfo = City::getCity($city);
 
         if (Yii::$app->request->isPost) {
