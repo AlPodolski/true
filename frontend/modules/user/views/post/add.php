@@ -22,6 +22,9 @@ $checkPhotoForm = new CheckPhotoForm();
 
 $this->title = 'Добавить анкету';
 
+$this->params['breadcrumbs'][] = ['label' => 'Кабинет', 'url' => '/cabinet'];
+$this->params['breadcrumbs'][] = $this->title;
+
 ?>
     <div class="container">
         <div class="row">

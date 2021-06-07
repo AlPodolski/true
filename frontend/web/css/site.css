@@ -2914,6 +2914,15 @@ input:checked + .img-label-radio:before {
     max-width: 100%;
     height: auto;
 }
+.text-bold{
+    font-weight: bold!important;
+}
+.black-text:hover{
+    color:#000!important;
+}
+.padding-top-0{
+    padding-top:0px!important;
+}
 input.search::-webkit-input-placeholder { color: #6d6d6d; }
 input.search:-ms-input-placeholder { color: #6d6d6d; }
 input.search::-ms-input-placeholder { color: #6d6d6d; }

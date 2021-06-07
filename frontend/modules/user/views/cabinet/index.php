@@ -8,6 +8,8 @@ use frontend\modules\chat\components\helpers\GetDialogsHelper;
 
 $this->title = 'Кабинет';
 
+$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="container margin-top-20">
 

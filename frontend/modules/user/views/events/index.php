@@ -6,6 +6,9 @@ use frontend\widgets\PhotoWidget;
 
 $this->title = 'Уведомления';
 
+$this->params['breadcrumbs'][] = ['label' => 'Кабинет', 'url' => '/cabinet'];
+$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="container">
 

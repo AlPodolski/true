@@ -7,7 +7,10 @@
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 
-$this->title = 'Привязать телеграм'
+$this->title = 'Привязать телеграм';
+
+$this->params['breadcrumbs'][] = ['label' => 'Кабинет', 'url' => '/cabinet'];
+$this->params['breadcrumbs'][] = $this->title;
 
 ?>
 

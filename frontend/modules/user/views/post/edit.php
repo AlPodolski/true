@@ -60,6 +60,9 @@ $userService->service_id = \yii\helpers\ArrayHelper::getColumn(\frontend\modules
 
 $this->title = 'Редактировать анкету';
 
+$this->params['breadcrumbs'][] = ['label' => 'Кабинет', 'url' => '/cabinet'];
+$this->params['breadcrumbs'][] = $this->title.' '.$post['name'];
+
 ?>
 <div class="container">
     <div class="row">

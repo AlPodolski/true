@@ -1,4 +1,5 @@
 <?php /* @var $user array */ ?>
+<?php /* @var $countPosts integer */ ?>
 <?php use frontend\widgets\PhotoWidget; ?>
 <?php use frontend\modules\chat\components\helpers\GetDialogsHelper; ?>
 <div class="col-12 col-md-12 col-lg-6 col-xl-5">
@@ -35,7 +36,9 @@
                 </div>
             </div>
             <div class="col-12 user-menu">
+
                 <div class="row">
+
                     <div class="col-6 col-sm-3 user-menu-item-wrap col-md-3 col-lg-6 ">
                         <div class="user-menu-item ">
                             <div class="user-menu-item-icon">
@@ -70,7 +73,7 @@
                                 </svg>
                             </div>
                             <div class="user-menu-item-count red-text">
-                                <?php echo \count($posts); ?>
+                                <?php echo $countPosts; ?>
                             </div>
                             <div class="user-menu-item-text grey-text ">
                                 Мои анкеты
@@ -187,6 +190,12 @@
                                 </a>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="col-12">
+                        <a href="/cabinet/edit" class="black-text font-weight-bold d-block text-center padding-top-0">
+                            Настройка аккаунта
+                        </a>
                     </div>
 
                 </div>
