@@ -26,6 +26,8 @@ class Event extends \yii\db\ActiveRecord
 
     const POST_RETURNED_FOR_REVISION = 1;
 
+    const POST_ON_PUPLICATION_STATUS = 2;
+
     const NOT_READ_EVENT = 0;
     const READ_EVENT = 1;
 
