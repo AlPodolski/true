@@ -14,6 +14,15 @@ use Telegram\Bot\Api;
 /* @var Yii::$app->telegram aki\telegram\Telegram */
 class TelegramController extends Controller
 {
+
+    public function beforeAction($action)
+    {
+
+        $this->enableCsrfValidation = false;
+
+        return parent::beforeAction($action);
+    }
+
     public function actionIndex()
     {
 
