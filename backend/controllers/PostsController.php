@@ -103,7 +103,7 @@ class PostsController extends Controller
 
             }
 
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['update', 'id' => $model->id]);
 
         }
 
@@ -123,6 +123,8 @@ class PostsController extends Controller
     public function actionDelete($id)
     {
          $this->findModel($id)->delete();
+
+        if (Yii::$app->request->isGet) return $this->redirect(['index']);
     }
 
     /**
