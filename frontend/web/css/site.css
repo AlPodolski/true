@@ -2845,6 +2845,25 @@ input:checked + .img-label-radio:before {
      z-index: -1;
      opacity: 0;
  }
+.chat{
+    min-height: 45vh;
+}
+.chat , .authorisation-block{
+    min-height: 30vh;
+}
+.chat-wrap {
+    max-height: 550px;
+    overflow-y: scroll;
+    position: relative;
+    right: -12px;
+    padding-right: 10px;
+}
+.close {
+    position: absolute;
+    right: 10px;
+    z-index: 4;
+    top: 5px;
+}
 #editprofileform-avatar {
     display: none;
 }

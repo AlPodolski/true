@@ -534,6 +534,12 @@ function get_register_btn(){
 
 }
 
+function close_parent_modal(object){
+
+    $(object).closest('.modal').modal('toggle');
+
+}
+
 function set_read_message(object){
 
     var id = $(object).attr('data-id');

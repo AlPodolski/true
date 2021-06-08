@@ -4,12 +4,16 @@
 namespace frontend\controllers;
 
 use common\models\City;
+use common\models\User;
 use frontend\helpers\RequestHelper;
 use frontend\models\Files;
+use frontend\modules\chat\models\relation\UserDialog;
 use frontend\modules\user\helpers\ServiceReviewHelper;
 use frontend\modules\user\helpers\ViewCountHelper;
 use frontend\modules\user\models\Posts;
+use frontend\modules\user\models\Profile;
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
@@ -125,6 +129,55 @@ class PostController extends Controller
                     $data = Posts::find()->where(['id' => $params['id']])->select('video')->asArray()->one();
 
                     break;
+
+                case "message":
+
+                    if (!Yii::$app->user->isGuest){
+
+                        $userToId = Yii::$app->request->post('id');
+
+                        if ($userToId){
+
+                            $userDialogsId = ArrayHelper::getColumn(UserDialog::find()
+                                ->where(['user_id' => Yii::$app->user->id])->asArray()->all(), 'dialog_id');
+
+                            $dialog_id = UserDialog::find()->where(['user_id' => Yii::$app->request->post('id')])
+                                ->andWhere(['in', 'dialog_id', $userDialogsId])->asArray()->one();
+
+                            $user = User::find()->where(['id' => Yii::$app->user->id])
+                                ->with('avatar')
+                                ->asArray()->one();
+
+                            $userTo = User::find()
+                                ->where(['id' => $userToId])
+                                ->with('avatar')
+                                ->asArray()
+                                ->one();
+
+
+                            return $this->renderFile(Yii::getAlias('@frontend/modules/chat/views/chat/get-dialog.php'), [
+                                'dialog_id' => $dialog_id,
+                                'user' => $user,
+                                'userTo' => $userTo,
+                                'recepient' => Yii::$app->request->post('id'),
+                            ]);
+
+                        }else{
+
+                            return $this->renderFile(Yii::getAlias('@frontend/views/layouts/message.php'),
+                                [
+                                    'message' => 'Пользователь ограничил получение сообщений'
+                                ]
+                            );
+
+                        }
+
+                    }else{
+
+                        return $this->renderFile(Yii::getAlias('@frontend/views/layouts/authorisation.php'));
+
+                    }
+
 
                 case "comment-form":
 
