@@ -43,8 +43,10 @@ class History extends HistoryModel
 
         // add conditions that should always apply here
 
+        if (!$params) $query = $query->orderBy('id DESC');
+
         $dataProvider = new ActiveDataProvider([
-            'query' => $query->orderBy('id DESC'),
+            'query' => $query,
         ]);
 
         $this->load($params);

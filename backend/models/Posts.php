@@ -41,7 +41,9 @@ class Posts extends PostsModel
      */
     public function search($params)
     {
-        $query = PostsModel::find()->orderBy('id DESC');
+        $query = PostsModel::find();
+
+        if (!$params) $query = $query->orderBy('id DESC');
 
         // add conditions that should always apply here
 
