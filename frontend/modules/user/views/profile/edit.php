@@ -90,6 +90,21 @@ $this->params['breadcrumbs'][] = $this->title;
                         }
                     ]); ?>
 
+                    <?= $form->field($model, 'open_message')->radioList([1 => 'Да' , 0 => "Нет"] , [
+                        'item' => function($index, $label, $name, $checked, $value) {
+                            $chec = '';
+                            $return = '<span>';
+                            if ($checked) $chec = 'checked';
+                            $return .= '<input '.$chec.' id="'.$name.mb_strtolower($label).'_label-id" type="radio" name="' . $name . '" value="' . $value . '" tabindex="'.$index.'">';
+                            $return .= '<label for="'.$name.mb_strtolower($label).'_label-id" class="modal-radio '.mb_strtolower($label).'_label img-label-radio">';
+                            $return .= $label;
+                            $return .= '</label>';
+                            $return .= '</span>';
+
+                            return $return;
+                        }
+                    ]); ?>
+
                     <label for="editprofileform-avatar" class="editprofileform-avatar-label">
 
                     <span class="grey-text">

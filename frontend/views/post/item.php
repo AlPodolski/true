@@ -200,7 +200,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                             <?php endif; ?>
 
                             <div class="white-btn video-btn" onclick="get_modal(this)" data-target="message" data-id="<?php echo $post['user_id']?>">
-                                Написать сообщение
+                                Написать автору
                             </div>
 
                         </div>

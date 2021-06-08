@@ -138,29 +138,43 @@ class PostController extends Controller
 
                         if ($userToId){
 
-                            $userDialogsId = ArrayHelper::getColumn(UserDialog::find()
-                                ->where(['user_id' => Yii::$app->user->id])->asArray()->all(), 'dialog_id');
-
-                            $dialog_id = UserDialog::find()->where(['user_id' => Yii::$app->request->post('id')])
-                                ->andWhere(['in', 'dialog_id', $userDialogsId])->asArray()->one();
-
-                            $user = User::find()->where(['id' => Yii::$app->user->id])
-                                ->with('avatar')
-                                ->asArray()->one();
-
                             $userTo = User::find()
                                 ->where(['id' => $userToId])
                                 ->with('avatar')
                                 ->asArray()
                                 ->one();
 
+                            if ($userTo['open_message'] == User::MESSAGE_ALLOWED){
 
-                            return $this->renderFile(Yii::getAlias('@frontend/modules/chat/views/chat/get-dialog.php'), [
-                                'dialog_id' => $dialog_id,
-                                'user' => $user,
-                                'userTo' => $userTo,
-                                'recepient' => Yii::$app->request->post('id'),
-                            ]);
+                                $userDialogsId = ArrayHelper::getColumn(UserDialog::find()
+                                    ->where(['user_id' => Yii::$app->user->id])->asArray()->all(), 'dialog_id');
+
+                                $dialog_id = UserDialog::find()->where(['user_id' => Yii::$app->request->post('id')])
+                                    ->andWhere(['in', 'dialog_id', $userDialogsId])->asArray()->one();
+
+                                $user = User::find()->where(['id' => Yii::$app->user->id])
+                                    ->with('avatar')
+                                    ->asArray()->one();
+
+
+                                return $this->renderFile(Yii::getAlias('@frontend/modules/chat/views/chat/get-dialog.php'), [
+                                    'dialog_id' => $dialog_id,
+                                    'user' => $user,
+                                    'userTo' => $userTo,
+                                    'recepient' => Yii::$app->request->post('id'),
+                                ]);
+
+                            }else{
+
+                                return $this->renderFile(Yii::getAlias('@frontend/views/layouts/message.php'),
+                                    [
+                                        'message' => 'Пользователь ограничил получение сообщений'
+                                    ]
+                                );
+
+                            }
+
+
 
                         }else{
 

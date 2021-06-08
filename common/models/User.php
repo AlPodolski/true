@@ -27,6 +27,7 @@ use yii\web\IdentityInterface;
  * @property integer $age
  * @property integer $male
  * @property integer $notify
+ * @property integer $open_message
  * @property string $password write-only password
  */
 class User extends ActiveRecord implements IdentityInterface
@@ -43,6 +44,9 @@ class User extends ActiveRecord implements IdentityInterface
 
     const NOTIFY_ALLOWED = 1;
     const NOTIFY_DISALLOWED = 0;
+
+    const MESSAGE_ALLOWED = 1;
+    const MESSAGE_DISALLOWED = 0;
 
     /**
      * {@inheritdoc}

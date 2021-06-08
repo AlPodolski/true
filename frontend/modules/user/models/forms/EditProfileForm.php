@@ -15,6 +15,7 @@ class EditProfileForm extends Model
     public $male;
     public $user_id;
     public $notify;
+    public $open_message;
 
     /**
      * {@inheritdoc}
@@ -25,6 +26,7 @@ class EditProfileForm extends Model
             ['age', 'integer', 'min' => 18, 'max' => 99],
             ['male', 'integer', 'min' => 0, 'max' => 1],
             ['notify', 'integer', 'min' => 0, 'max' => 1],
+            ['open_message', 'integer', 'min' => 0, 'max' => 1],
             ['user_id', 'integer'],
             ['username', 'trim'],
             ['avatar', 'safe'],
@@ -40,6 +42,7 @@ class EditProfileForm extends Model
             'male' => 'Пол',
             'avatar' => 'Аватар',
             'notify' => 'Получать уведомлений',
+            'open_message' => 'Получать ообщения от других пользователей',
         ];
     }
 
@@ -53,6 +56,7 @@ class EditProfileForm extends Model
         $user->username = $this->username;
         $user->age = $this->age;
         $user->notify = $this->notify;
+        $user->open_message = $this->open_message;
 
         return $user->save();
     }
