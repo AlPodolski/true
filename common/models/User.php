@@ -28,6 +28,7 @@ use yii\web\IdentityInterface;
  * @property integer $male
  * @property integer $notify
  * @property integer $open_message
+ * @property integer $fake
  * @property string $password write-only password
  */
 class User extends ActiveRecord implements IdentityInterface
@@ -47,6 +48,9 @@ class User extends ActiveRecord implements IdentityInterface
 
     const MESSAGE_ALLOWED = 1;
     const MESSAGE_DISALLOWED = 0;
+
+    const REAL_USER = 1;
+    const FAKE_USER = 0;
 
     /**
      * {@inheritdoc}
@@ -76,6 +80,7 @@ class User extends ActiveRecord implements IdentityInterface
             ['role', 'integer'],
             ['cash', 'integer'],
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
+            ['fake', 'default', 'value' => self::REAL_USER],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
         ];
     }
