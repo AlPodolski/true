@@ -640,7 +640,7 @@ function get_modal(object){
         type: 'POST',
         url: '/post/get',
         data: 'target='+target+'&id='+id,
-        async:true,
+        async:false,
         dataType: "html",
         cache: false,
         success: function (data){
@@ -649,11 +649,18 @@ function get_modal(object){
 
             $('#info-modal').modal('show');
 
+            $('#info-modal').on('shown.bs.modal', function (e) {
+                $('.chat-wrap').scrollTop(99999999);
+            })
+
+            $('.chat-wrap').scrollTop(99999999);
+
             if(target == 'selfy'){
 
                 add_img_grid();
 
             }
+
             if(target == 'comment-form'){
 
                 $(".rate").rateYo({

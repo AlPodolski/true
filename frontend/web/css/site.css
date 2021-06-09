@@ -1939,6 +1939,7 @@ h1{
     padding: 11px 24px 11px 25px;
     margin-right: 11px;
     border: none;
+    margin-top: 15px;
 }
 #addpost-image{
     display: none;
@@ -2110,7 +2111,6 @@ select{
 }
 .btn-wrap{
     padding-left: 24px;
-    padding-top: 12px;
     padding-bottom: 12px;
 }
 .single-bottom-info .post-top-info{
@@ -2127,6 +2127,17 @@ select{
     font-size: 16px;
     line-height: 141.4%;
     color: #F74952;
+    margin-top: 15px;
+}
+#info-modal .close-chat{
+    display:none;
+}
+.chat-wrap {
+    max-height: 550px;
+    overflow-y: scroll;
+    position: relative;
+    right: -12px;
+    padding-right: 10px;
 }
 .white-btn::before , .main-param-item::before{
     content: "";
@@ -2939,6 +2950,10 @@ input:checked + .img-label-radio:before {
 .black-text:hover{
     color:#000!important;
 }
+.close-chat {
+    position: absolute;
+    top: 15px;
+}
 .padding-top-0{
     padding-top:0px!important;
 }
@@ -3119,6 +3134,9 @@ input.search::placeholder { color: #6d6d6d; }
 }
 
 @media (max-width: 575px) {
+    .chat-wrap {
+        max-height: 360px;
+    }
     .city svg{
         display: none;
     }
