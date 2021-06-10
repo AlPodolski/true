@@ -3,6 +3,10 @@
 
 namespace console\controllers;
 
+use frontend\modules\chat\components\helpers\GetDialogsHelper;
+use frontend\modules\chat\models\forms\SendMessageForm;
+use frontend\modules\chat\models\Message;
+use frontend\modules\chat\models\relation\UserDialog;
 use frontend\modules\user\helpers\ViewCountHelper;
 use frontend\modules\user\models\Posts;
 use Yii;
@@ -139,6 +143,73 @@ class ConsoleController extends Controller
             'pageViewCtr' => $pageViewCtr,
         ];
 
+    }
+
+    public function actionIndex()
+    {
+        $messages = Message::find()->where(['status' => 0])
+            ->andWhere(['<', 'created_at', (\time() - 3600 )])
+            ->select('chat_id , from, message')->asArray()->all();
+
+        $userReply = [];
+
+        foreach ($messages as $message){
+
+            $userInfo = UserDialog::find()->where(['dialog_id' => $message['chat_id']])->andWhere(['<>', 'user_id', $message['from']])
+                ->asArray()->with('user')->one();
+
+
+
+            if ($userInfo['user']['fake'] == 0 and !\in_array($message['from'], $userReply) ){
+
+                $session_id = \md5($message['from'].$userInfo['id']);
+                $text = $message['message'];
+
+                $data = array(
+                    'session_id' => $session_id,
+                    'text'       => $text,
+                );
+
+                if ($curl = \curl_init()) {
+                    \curl_setopt($curl, CURLOPT_URL, 'https://gdialog.pr-13.com/message');
+                    \curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                    \curl_setopt($curl, CURLOPT_POST, true);
+                    \curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+                    $out = \curl_exec($curl);
+                    \curl_close($curl);
+
+                    if (strlen($out) < 500) {
+
+                        $userReply[] = $message['from'];
+
+                        $answerText = $out;
+
+                        GetDialogsHelper::serRead($message['chat_id'], $userInfo['user']['id']);
+
+                        $this->sendMessage($userInfo['user']['id'] , $message['from'], $message['chat_id'] , $answerText );
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+    public function sendMessage($from, $to , $chat_id = false, $text = false)
+    {
+
+        $model = new SendMessageForm();
+
+        $model->from_id = $from;
+        $model->created_at = \time();
+        $model->to = $to;
+        if ($chat_id) $model->chat_id = $chat_id;
+        $model->text = $text;
+
+        $model->save();
     }
 
 }
