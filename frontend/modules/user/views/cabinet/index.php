@@ -22,7 +22,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php if (!$user['telegram']) : ?>
 
         <div class="alert alert-info">
-            Активировать <?php echo \yii\helpers\Html::a('Телеграм', '/cabinet/telegram') ?>
+            Подключите <?php echo \yii\helpers\Html::a('Телеграм', '/cabinet/telegram') ?>
+            и пользуйтесь всеми функциями нашего бота, получайте уведомления о сообщениях и будьте вкурсе всего
         </div>
 
     <?php endif; ?>
