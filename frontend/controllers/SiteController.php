@@ -250,7 +250,7 @@ class SiteController extends Controller
 
         }
 
-        return  $this->redirect($protocol.'://msk.'.Yii::$app->params['site_name']);
+        return  $this->redirect($protocol.'://moskva.'.Yii::$app->params['site_name']);
 
     }
 
