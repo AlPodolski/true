@@ -232,7 +232,7 @@ class SiteController extends Controller
 
                     Yii::$app->session->setFlash('success', 'Оплата совершена успешно');
 
-                    return  $this->redirect($protocol.'://'.$user->city.'.'.Yii::$app->params['site_name']);
+                    return  $this->redirect($protocol.'://'.$city.'.'.Yii::$app->params['site_name']);
 
                 }
 
@@ -242,7 +242,7 @@ class SiteController extends Controller
 
                     Yii::$app->session->setFlash('warning', 'Ошибка');
 
-                    return  $this->redirect($protocol.'://'.$user->city.'.'.Yii::$app->params['site_name']);
+                    return  $this->redirect($protocol.'://'.$city.'.'.Yii::$app->params['site_name']);
 
                 }
 
