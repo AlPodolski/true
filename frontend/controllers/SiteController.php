@@ -207,7 +207,7 @@ class SiteController extends Controller
 
             $obmenka = new Obmenka();
 
-            $data = $obmenka->getOrderInfo($id);
+            $data = $obmenka->getOrderInfo($id.'-'.Yii::$app->params['obm-id-pref']);
 
             if (isset($data->amount) and $data->status == 'FINISHED'){
 
