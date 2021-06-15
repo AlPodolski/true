@@ -120,7 +120,7 @@ return [
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/pay' => 'user/pay/obmenka-pay',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/pay' => 'site/pay',
 
-                '<protocol>://<city:[a-z-0-9]+>.<domain>/pay/obmenka' => 'site/obmenka-pay',
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/pay/obmenka/<id:[0-9]+>' => 'site/obmenka-pay',
 
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/post/edit/<id:[0-9]+>' => 'user/post/edit',
 
