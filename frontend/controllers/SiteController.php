@@ -2,14 +2,19 @@
 
 namespace frontend\controllers;
 
+use common\components\service\history\HistoryService;
 use common\models\City;
 use common\models\HairColor;
+use common\models\History;
 use common\models\IntimHair;
 use common\models\National;
+use common\models\ObmenkaOrder;
 use common\models\Osobenosti;
 use common\models\Place;
 use common\models\Rayon;
 use common\models\Service;
+use common\models\User;
+use frontend\components\events\BillPayEvent;
 use frontend\components\helpers\GetAdvertisingPost;
 use frontend\helpers\MetaBuilder;
 use frontend\helpers\FavoriteHelper;
@@ -20,6 +25,8 @@ use frontend\components\AuthHandler;
 use frontend\modules\user\helpers\ViewCountHelper;
 use frontend\modules\user\models\Posts;
 use Yii;
+use frontend\modules\user\components\obmenka\Obmenka;
+use yii\base\BaseObject;
 use yii\web\Controller;
 
 /**
@@ -27,6 +34,16 @@ use yii\web\Controller;
  */
 class SiteController extends Controller
 {
+
+    const OBMENKA_PAY = 'pay';
+
+    public function init()
+    {
+        $this->on(self::OBMENKA_PAY, [HistoryService::class, 'addToHistory']);
+
+        parent::init();
+    }
+
     public function beforeAction($action)
     {
         if ($action->id == 'pay') {
@@ -178,6 +195,62 @@ class SiteController extends Controller
 
     public function actionCust()
     {
+
+    }
+
+    public function actionObmenkaPay($city,$protocol, $id)
+    {
+
+        if ($order = ObmenkaOrder::findOne(\str_replace(Yii::$app->params['obm-id-pref'],'' , $id))
+            and $order['status'] == ObmenkaOrder::WAIT
+            and $user = User::findOne($order['user_id'])){
+
+            $obmenka = new Obmenka();
+
+            $data = $obmenka->getOrderInfo($id);
+
+            if (isset($data->amount) and $data->status == 'FINISHED'){
+
+                $transaction = Yii::$app->db->beginTransaction();
+
+                $order->status = ObmenkaOrder::FINISH;
+
+                $user->cash = $user->cash + (int) $order->sum;
+
+                if ($user->save() and $order->save()) {
+
+                    $transaction->commit();
+
+                    $billPayEvent = new BillPayEvent();
+
+                    $billPayEvent->user_id = $user->id;
+                    $billPayEvent->sum = (int) $order->sum;
+                    $billPayEvent->type = History::BALANCE_REPLENISHMENT;
+                    $billPayEvent->balance = $user->cash;
+
+                    $this->trigger(self::OBMENKA_PAY, $billPayEvent);
+
+                    Yii::$app->session->setFlash('success', 'Оплата совершена успешно');
+
+                    return  $this->redirect($protocol.'://'.$user->city.'.'.Yii::$app->params['site_name']);
+
+                }
+
+                else{
+
+                    $transaction->rollBack();
+
+                    Yii::$app->session->setFlash('warning', 'Ошибка');
+
+                    return  $this->redirect($protocol.'://'.$user->city.'.'.Yii::$app->params['site_name']);
+
+                }
+
+            }
+
+        }
+
+        return  $this->redirect($protocol.'://msk.'.Yii::$app->params['site_name']);
 
     }
 

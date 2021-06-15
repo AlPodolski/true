@@ -2950,6 +2950,43 @@ input:checked + .img-label-radio:before {
 .black-text:hover{
     color:#000!important;
 }
+#obmenkapayform-currency input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+.image-label-radio {
+    background-repeat: no-repeat;
+    border: 1px solid #EEEEEE;
+    box-sizing: border-box;
+    border-radius: 6px;
+    width: 54px;
+    height: 28px;
+    background-position: center;
+    display: inline-block;
+}
+.qiwi_label {
+    background: url('../img/qiwi-img.png');
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-repeat: repeat;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.visa_master_label {
+    background: url('../img/visa-master.png');
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-repeat: repeat;
+    background-position: center;
+    background-position-x: center;
+    background-repeat: no-repeat;
+    width: 62px;
+    background-position-x: 6px;
+}
+input:checked + .image-label-radio {
+    border: 1px solid #F74952;
+}
 .close-chat {
     position: absolute;
     top: 15px;

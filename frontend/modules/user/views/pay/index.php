@@ -8,6 +8,8 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
+
 
 $this->title = 'Пополнить баланс';
 
@@ -43,28 +45,36 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <div class="pay-form-wrap">
 
-                <?php $form = ActiveForm::begin(); ?>
+                <?php $form = ActiveForm::begin([
+                    'id' => 'login-form',
+                    'options' => ['class' => 'form-horizontal'],
+                ]) ?>
 
-                <div class="row">
+                <?= $form->field($model, 'sum')->textInput(['value' => 300]) ?>
 
-                    <div class="col-6">
 
-                        <?= $form->field($model, 'sum')->textInput(['value' => Yii::$app->params['min_pay']])
-                            ->label('Введите сумму пополнения:') ?>
+                <?= $form->field($model, 'currency')
+                    ->radioList(ArrayHelper::map(\common\models\ObmenkaCurrency::find()->all(), 'id', 'name'),
+                        [
+                            'item' => function($index, $label, $name, $checked, $value) {
+                                $chec = '';
+                                $return = '<span>';
+                                if ($index == 0) $chec = 'checked';
+                                $return .= '<input '.$chec.' id="'.mb_strtolower($label).'_label-id" type="radio" name="' . $name . '" value="' . $value . '" tabindex="'.$index.'">';
+                                $return .= '<label for="'.mb_strtolower($label).'_label-id" class="modal-radio '.mb_strtolower($label).'_label image-label-radio">';
+                                $return .= '</label>';
+                                $return .= '</span>';
 
-                    </div>
+                                return $return;
+                            }
+                        ])
+                ?>
 
-                    <div class="col-12">
-
-                        <div class="form-group">
-                            <?= Html::submitButton('Отправить', ['class' => 'orange-btn d-block']) ?>
-                        </div>
-
-                    </div>
-
+                <div class="form-group">
+                    <?= Html::submitButton('Отправить', ['class' => 'orange-btn d-block']) ?>
                 </div>
 
-                <?php ActiveForm::end(); ?>
+                <?php ActiveForm::end() ?>
 
             </div>
 
