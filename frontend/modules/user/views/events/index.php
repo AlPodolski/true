@@ -76,7 +76,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                                                 }else{
 
-                                                                    echo 'Сегодня '.date('Y-m-d H:i:s', $event['created_at']);
+                                                                    echo date('Y-m-d H:i:s', $event['created_at']);
 
                                                                 }
 
