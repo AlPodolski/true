@@ -12,6 +12,24 @@
 
             <?php foreach ($dialogs as $dialog) : ?>
 
+            <?php if ($dialog['lastMessage']['status'] == \frontend\modules\chat\models\Message::MESSAGE_NOT_READ
+                    and $dialog['lastMessage']['to'] == Yii::$app->user->id) : ?>
+
+                <?php echo $this->renderFile(Yii::getAlias('@frontend/modules/chat/widgets/views/dialog_list_item.php'), [
+                    'dialog' => $dialog,
+                    'user_id' => $user_id
+                ]);
+
+                unset($dialog);
+
+                endif;
+
+                ?>
+
+            <?php endforeach; ?>
+
+            <?php foreach ($dialogs as $dialog) : ?>
+
                 <?php echo $this->renderFile(Yii::getAlias('@frontend/modules/chat/widgets/views/dialog_list_item.php'), [
                     'dialog' => $dialog,
                     'user_id' => $user_id

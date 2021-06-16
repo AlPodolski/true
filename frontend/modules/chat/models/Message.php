@@ -23,6 +23,9 @@ class Message extends \yii\db\ActiveRecord
     const REGULAR_MESSAGE = 1;
     const INVITING_MESSAGE = 2;
 
+    const MESSAGE_READ = 1;
+    const MESSAGE_NOT_READ = 0;
+
     /**
      * {@inheritdoc}
      */
