@@ -34,6 +34,14 @@ function get_dialog(object){
     })
 }
 
+function open_rating_block(object){
+
+    $(object).siblings('.rating-block').removeClass('rating-block-close');
+
+    $(object).remove();
+
+}
+
 function close_chat(){
 
     $('.dialog_list-wrap').removeClass('dialog_list-wrap-with-dialog d-flex');

@@ -2805,6 +2805,13 @@ input::-webkit-input-placeholder {
 .user-menu-item-text{
     font-size: 14px;
 }
+.rating-block-close{
+    max-height: 320px;
+    overflow: hidden;
+}
+.open-rating-block{
+    text-align: center;
+}
 .dialog_list-wrap{
     background: #FFFFFF;
     border: 1px solid #EDEDED;

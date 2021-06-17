@@ -444,7 +444,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                     </div>
                 </div>
                 <div class="col-8">
-                    <div class="rating-block">
+                    <div class="rating-block rating-block-close">
                         <div class="row">
                             <div class="col-12 rating-item">
                                 <div class="row">
@@ -513,9 +513,13 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                                 </div>
                             </div>
 
+                            <?php $reviewCount = 0 ?>
+
                             <?php foreach ($serviceListReview as $service) : ?>
 
                                 <?php if (isset($service['review']) and $service['review']) : ?>
+
+                                <?php $reviewCount++; ?>
 
                                     <?php $serviceRating = \frontend\helpers\PostRatingHelper::setPercentRating($service['review']) ?>
 
@@ -547,6 +551,13 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                         </div>
                     </div>
+                    <?php if(isset($reviewCount) and $reviewCount > 2) : ?>
+
+                        <div onclick="open_rating_block(this)" class="open-rating-block">
+                            Показать все
+                        </div>
+
+                    <?php endif; ?>
                 </div>
             </div>
 
