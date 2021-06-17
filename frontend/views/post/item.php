@@ -29,24 +29,25 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
     <article class="single position-relative" data-post-id="<?php echo $post['id'] ?>">
         <div class="row">
             <div class="col-12 col-lg-4 col-xl-4 position-relative">
-                <div class="owl-carousel owl-theme owl-carousel-main">
 
+                <?php
+
+                $photoTitle = 'Проститутка ' . $post['name'];
+
+                ?>
+                <?php if ($post['check_photo_status'] == 1 and $post['category'] == 1) : ?>
+                    <div class="check-label">
+                        проверенная
+                        индивидуалка
+                    </div>
                     <?php
 
-                    $photoTitle = 'Проститутка ' . $post['name'];
+                    $photoTitle = 'Проверенная проститутка ' . $post['name'];
 
                     ?>
-                    <?php if ($post['check_photo_status'] == 1 and $post['category'] == 1) : ?>
-                        <div class="check-label">
-                            проверенная
-                            индивидуалка
-                        </div>
-                        <?php
+                <?php endif ?>
+                <div class="owl-carousel owl-theme owl-carousel-main">
 
-                        $photoTitle = 'Проверенная проститутка ' . $post['name'];
-
-                        ?>
-                    <?php endif ?>
 
                     <?php echo PhotoWidget::widget([
                         'path' => $post['avatar']['file'],
