@@ -7,6 +7,15 @@ use Yii;
 
 class FavoriteHelper
 {
+
+    public static function getFavorite()
+    {
+        $cookiesRequest = Yii::$app->request->cookies;
+
+        return \unserialize($cookiesRequest->getValue('favorite'));
+
+    }
+
     public static function Favorite($id)
     {
 

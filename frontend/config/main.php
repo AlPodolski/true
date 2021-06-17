@@ -92,6 +92,7 @@ return [
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/find' => 'find/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/page-<page:[0-9]+>' => 'site/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/favorite' => 'site/favorite',
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/favorite/list' => 'site/list-favorite',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/post/<id:[0-9]+>' => 'post/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/post/more' => 'post/more',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/post/get' => 'post/get',

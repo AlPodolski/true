@@ -175,13 +175,27 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays homepage.
      *
      * @return mixed
      */
     public function actionFavorite($city)
     {
         return FavoriteHelper::Favorite(Yii::$app->request->post('id'));
+    }
+
+    /**
+     *
+     * @return mixed
+     */
+    public function actionListFavorite($city)
+    {
+
+        $posts = Posts::find()->where(['in', 'id', FavoriteHelper::getFavorite()])->with('avatar', 'metro', 'selphiCount')
+            ->all();
+
+        return $this->render('favorite', [
+            'posts' => $posts,
+        ]);
     }
 
     public function actionRobot($city)
