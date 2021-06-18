@@ -204,6 +204,12 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                                 Написать автору
                             </div>
 
+                            <br>
+
+                            <div class="white-btn video-btn" onclick="get_modal(this);ym(70919698,'reachGoal','claim')" data-target="claim" data-id="<?php echo $post['id']?>">
+                                Пожаловаться
+                            </div>
+
                         </div>
                         <div class="red-block " onclick="show_site_price_block(this)" data-id="<?php echo $post['id'] ?>">
                             <div>На других сайтах цены:</div>

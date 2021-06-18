@@ -7,6 +7,7 @@ use common\models\City;
 use common\models\User;
 use frontend\helpers\RequestHelper;
 use frontend\models\Files;
+use frontend\models\forms\AnketClaimForm;
 use frontend\modules\chat\models\relation\UserDialog;
 use frontend\modules\user\helpers\ServiceReviewHelper;
 use frontend\modules\user\helpers\ViewCountHelper;
@@ -201,6 +202,14 @@ class PostController extends Controller
                         ->asArray()->one();
 
                     $data['post'] = $post;
+
+                    break;
+
+                case "claim":
+
+                    $data['claim'] = new AnketClaimForm();
+
+                    $data['id'] = $params['id'];
 
                     break;
 
