@@ -19,6 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'columns' => [
             'id',
+            'post_id',
             [
                 'attribute' => 'post_id',
                 'format' => 'raw',
@@ -28,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     $img = Html::img('http://moskva.'.Yii::$app->params['site_name'] .$claim['post']['avatar']['file'], ['width' => '50px']);
 
-                    return Html::a($img, 'http://moskva.'.Yii::$app->params['site_name'].'/post/'.$claim['post']['id']) ;
+                    return Html::a($img, 'http://moskva.'.Yii::$app->params['site_name'].'/post/'.$claim['post']['id'], ['target' => '_blank']) ;
                 },
             ],
             [
