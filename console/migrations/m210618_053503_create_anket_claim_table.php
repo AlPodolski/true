@@ -22,6 +22,9 @@ class m210618_053503_create_anket_claim_table extends Migration
         $this->addForeignKey('fk-anket_claim_reason_id_reason_claim_id', 'anket_claim', 'reason_id',
             'reason_claim', 'id', 'CASCADE', 'CASCADE');
 
+        $this->addForeignKey('fk-anket_claim_post_id_posts_id', 'anket_claim', 'post_id',
+            'posts', 'id', 'CASCADE', 'CASCADE');
+
     }
 
     /**
