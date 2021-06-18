@@ -3,6 +3,8 @@
 namespace common\models;
 
 use frontend\modules\user\models\Posts;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
 
 use Yii;
 
@@ -13,12 +15,28 @@ use Yii;
  * @property int|null $post_id
  * @property int|null $reason_id
  * @property string|null $text
+ * @property int|null $created_at
+ * @property int|null $updated_at
  *
  * @property Posts $post
  * @property ReasonClaim $reason
  */
 class AnketClaim extends \yii\db\ActiveRecord
 {
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::class,
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                ],
+            ],
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -33,7 +51,7 @@ class AnketClaim extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['post_id', 'reason_id'], 'integer'],
+            [['post_id', 'reason_id', 'created_at', 'updated_at'], 'integer'],
             [['text'], 'string', 'max' => 255],
             [['post_id'], 'exist', 'skipOnError' => true, 'targetClass' => Posts::className(), 'targetAttribute' => ['post_id' => 'id']],
             [['reason_id'], 'exist', 'skipOnError' => true, 'targetClass' => ReasonClaim::className(), 'targetAttribute' => ['reason_id' => 'id']],
@@ -50,6 +68,8 @@ class AnketClaim extends \yii\db\ActiveRecord
             'post_id' => 'Post ID',
             'reason_id' => 'Reason ID',
             'text' => 'Text',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
         ];
     }
 

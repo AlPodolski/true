@@ -84,7 +84,7 @@ FontAwesomeAsset::register($this);
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/claim/index" class="nav-link">
+                                <a href="/anket-claim/index" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Жалобы на анкету</p>
                                 </a>
