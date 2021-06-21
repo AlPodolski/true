@@ -28,7 +28,7 @@ Yii::$app->view->registerMetaTag([
 
 ?>
 <div class="container custom-container">
-<?php echo \frontend\widgets\LinkWidget::widget(['url' => Yii::$app->request->url]) ?>
+
 <div class="row">
     <div class="col-12">
         <div class="text-block">
@@ -43,7 +43,7 @@ Yii::$app->view->registerMetaTag([
     </div>
 </div>
 <h1> <?php echo $h1 ?> </h1>
-
+    <?php echo \frontend\widgets\LinkWidget::widget(['url' => Yii::$app->request->url]) ?>
     <div class="row">
 
         <div data-url="/" class="col-12"></div>

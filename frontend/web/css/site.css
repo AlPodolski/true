@@ -650,7 +650,9 @@ body{
     border-radius: 50px;
     margin-right: 5px;
     display: inline-block;
-    margin-top: 15px;
+}
+.popular-btn-block {
+    margin-bottom: 15px;
 }
 .popular-btn:hover{
     background: #F74952;
