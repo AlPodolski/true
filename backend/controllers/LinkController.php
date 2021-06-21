@@ -67,6 +67,7 @@ class LinkController extends Controller
         $model = new Link();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->cache->delete(Yii::$app->params['fast_link_key_cache_pref'].'_'.$model->url);
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -87,6 +88,9 @@ class LinkController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            Yii::$app->cache->delete(Yii::$app->params['fast_link_key_cache_pref'].'_'.$model->url);
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -104,7 +108,11 @@ class LinkController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+
+        Yii::$app->cache->delete(Yii::$app->params['fast_link_key_cache_pref'].'_'.$model->url);
+
+        $model->delete();
 
         return $this->redirect(['index']);
     }

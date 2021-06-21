@@ -7,5 +7,5 @@ return [
     'site_name' => 'sex-true.com',
     'min_pay' => 300,
     'view_100_buy_price' => 50,
-    'up_anket_cost' => 10
+    'up_anket_cost' => 10,
 ];

@@ -14,5 +14,6 @@ return [
     'telegram_url' => 'https://web.telegram.org/#/im?p=@', // ссылка на телегу
     'returned_for_revision_text' => 'Анкету :name вернули на доработку ',
     'anket_check_text' => 'Анкета :name одобрена и поставлена на публикацию',
-    'obm-id-pref' => 'true' //префикс для ид платежа в обменке ,
+    'obm-id-pref' => 'true', //префикс для ид платежа в обменке ,
+    'fast_link_key_cache_pref' => 'fast_link',
 ];
