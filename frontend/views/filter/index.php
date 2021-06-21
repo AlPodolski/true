@@ -20,8 +20,10 @@ Yii::$app->view->registerMetaTag([
 
 ?>
 <div class="container custom-container">
-    <?php echo \frontend\widgets\LinkWidget::widget(['url' => Yii::$app->request->url]) ?>
+
 <h1> <?php echo $h1 ?> </h1>
+
+    <?php echo \frontend\widgets\LinkWidget::widget(['url' => Yii::$app->request->url]) ?>
 
 <div class="row">
 
