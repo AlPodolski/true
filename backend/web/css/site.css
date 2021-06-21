@@ -3,6 +3,28 @@ body {
     height: 100%;
 }
 
+html{
+    height: 100%!important;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+header{
+    /* 0 flex-grow, 0 flex-shrink, auto flex-basis */
+    flex: 0 0 auto;
+}
+.wrap{
+    /* 1 flex-grow, 0 flex-shrink, auto flex-basis */
+    flex: 1 0 auto;
+}
+footer{
+    /* 0 flex-grow, 0 flex-shrink, auto flex-basis */
+    flex: 0 0 auto;
+}
+
 body.blank {
     display: flex;
     padding: 40px 0;
@@ -10,12 +32,6 @@ body.blank {
 .admin-icon{
     margin-bottom: 15px;
     display: block;
-}
-.wrap {
-    min-height: 100%;
-    height: auto;
-    margin: 0 auto -60px;
-    padding: 0 0 60px;
 }
 
 body.blank .wrap {
@@ -145,12 +161,6 @@ body {
     height: 100%;
 }
 
-.wrap {
-    min-height: 100%;
-    height: auto;
-    margin: 0 auto -60px;
-    padding: 0 0 60px;
-}
 
 .wrap > .container {
     padding: 70px 15px 20px;

@@ -28,11 +28,7 @@ Yii::$app->view->registerMetaTag([
 
 ?>
 <div class="container custom-container">
-<div class="popular-btn-block">
-    <a href="/cena-do-1500" class="popular-btn">Дешевые</a>
-    <a class="popular-btn" href="/video">С видео</a>
-    <a class="popular-btn" href="/mesto-viezd">Выезд</a>
-</div>
+<?php echo \frontend\widgets\LinkWidget::widget(['url' => Yii::$app->request->url]) ?>
 <div class="row">
     <div class="col-12">
         <div class="text-block">
