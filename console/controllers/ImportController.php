@@ -111,6 +111,7 @@ class ImportController extends Controller
                 $post->phone = $phoneList[\array_rand($phoneList)];
                 $post->about = $record['anket-about'];
                 $post->check_photo_status = 0;
+                $post->status = 1;
                 $post->price = (int)$record['price'];
                 $post->age = $record['age'];
                 $post->rost = $record['rost'];
