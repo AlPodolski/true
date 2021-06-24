@@ -63,6 +63,7 @@ AppAsset::register($this);
 
                         <li class="top-menu-item"><a href="/cabinet/edit">Настройки</a></li>
                         <li class="top-menu-item"><a href="/cabinet/faq">FAQ</a></li>
+                        <li class="top-menu-item"><a href="/cabinet/call">Обратный звонок</a></li>
 
                     <?php else : ?>
 
@@ -219,6 +220,7 @@ AppAsset::register($this);
 
                                     <li class="nav-item"><a href="/cabinet/edit">Настройки</a></li>
                                     <li class="nav-item"><a href="/cabinet/faq">FAQ</a></li>
+                                    <li class="nav-item"><a href="/cabinet/call">Обратный звонок</a></li>
 
                                 <?php else : ?>
 

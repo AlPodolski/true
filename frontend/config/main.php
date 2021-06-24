@@ -153,6 +153,7 @@ return [
 
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/tele/index' => 'telegram/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/telegram' => 'user/telegram/index',
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/call' => 'user/call/index',
 
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/call/add' => 'call/add',
 
