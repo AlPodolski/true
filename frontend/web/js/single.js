@@ -660,6 +660,13 @@ function get_modal(object){
                 add_img_grid();
 
             }
+            if(target == 'call'){
+
+                $('#info-modal').on('shown.bs.modal', function (e) {
+                    $("#getcallform-phone").mask("+7(999) 999-9999");
+                })
+
+            }
 
             if(target == 'comment-form'){
 

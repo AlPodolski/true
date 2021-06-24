@@ -654,6 +654,9 @@ body{
 .popular-btn-block {
     margin-bottom: 15px;
 }
+#getcallform-phone , #getcallform-text{
+    text-align: left;
+}
 .popular-btn:hover{
     background: #F74952;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);

@@ -210,6 +210,12 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                                 Пожаловаться
                             </div>
 
+                            <br>
+
+                            <div class="orange-btn video-btn" onclick="get_modal(this);ym(70919698,'reachGoal','call')" data-target="call" data-id="<?php echo $post['id']?>">
+                                Заказать звонок
+                            </div>
+
                         </div>
                         <div class="red-block " onclick="show_site_price_block(this)" data-id="<?php echo $post['id'] ?>">
                             <div>На других сайтах цены:</div>
