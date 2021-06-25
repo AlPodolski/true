@@ -89,4 +89,9 @@ class RequestCall extends \yii\db\ActiveRecord
         }
     }
 
+    public static function countNotRead($userId)
+    {
+        return self::find()->where(['user_id' => $userId, 'status' => self::REQUEST_NOT_VIEW])->count();
+    }
+
 }
