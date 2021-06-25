@@ -73,4 +73,20 @@ class RequestCall extends \yii\db\ActiveRecord
             'status' => 'Status',
         ];
     }
+
+    public static function setRead($userId)
+    {
+        if ($notReadPost = self::find()->where(['status' => self::REQUEST_NOT_VIEW, 'user_id' => $userId])->all()){
+
+            foreach ($notReadPost as $item){
+
+                $item->status = self::REQUEST_VIEW;
+
+                $item->save();
+
+            }
+
+        }
+    }
+
 }

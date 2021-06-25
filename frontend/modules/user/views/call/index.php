@@ -74,7 +74,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                                         if ($call['created_at'] != $call['updated_at']){
 
-                                                            echo 'Просмотрена: ';
+                                                            echo ' Просмотрена: ';
 
                                                             echo date('Y-m-d H:i:s', $call['updated_at']);
 

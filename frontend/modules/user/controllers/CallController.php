@@ -26,6 +26,8 @@ class CallController extends Controller
             ->orderBy('id DESC')
             ->all();
 
+        RequestCall::setRead(Yii::$app->user->id);
+
         return $this->render('index', [
             'requestCalls' => $requestCalls
         ]);
