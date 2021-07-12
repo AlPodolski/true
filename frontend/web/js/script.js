@@ -34,6 +34,28 @@ function get_dialog(object){
     })
 }
 
+function check_number(object){
+
+    var phone = $(object).attr('data-number');
+
+    $.ajax({
+        type: 'POST',
+        url: "/cabinet/phone/get-info", //Путь к обработчику
+        data: 'phone=' + phone,
+        response: 'text',
+        dataType: "html",
+        cache: false,
+        success: function (data) {
+
+            $('#phoneModal .modal-body').html(data);
+
+            $('#phoneModal').modal('toggle');
+
+        }
+    })
+
+}
+
 function open_rating_block(object){
 
     $(object).siblings('.rating-block').removeClass('rating-block-close');

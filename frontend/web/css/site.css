@@ -482,6 +482,25 @@ body{
     margin-top: 35px;
     height: 1px;
 }
+.blue-text{
+    color: #0056b3;
+    margin-right: 15px;
+    cursor:pointer;
+}
+.get-num-info-btn{
+    margin-right: 15px;
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 141.4%;
+    /* identical to box height, or 23px */
+
+    text-decoration-line: underline;
+
+    color: #F74952;
+    cursor: pointer;
+}
 .no-photo {
     height: 100%;
     background: linear-gradient(124.95deg, #F74952 15.95%, #F0C612 85%);

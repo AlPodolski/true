@@ -622,7 +622,7 @@ AppAsset::register($this);
     </div>
 </div>
 
-<div class="modal fade" id="cityModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="phoneModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-close-wrap">
@@ -632,7 +632,7 @@ AppAsset::register($this);
                 </svg>
             </div>
 
-            <h5 class="modal-title" id="exampleModalLabel">Выбрать город</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Проверить номер</h5>
             <div class="modal-body">
 
 

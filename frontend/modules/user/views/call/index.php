@@ -48,9 +48,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                             ?>
 
-                                            <?php echo \yii\helpers\Html::a($call['phone'], 'tel:+'.$call['phone']) ?>
+                                            <?php echo \yii\helpers\Html::a($call['phone'], 'tel:+' . $call['phone']) ?>
                                             .
-                                            <?php if ($call['text']) echo 'Комментарий к заявке: '.$call['text'] ?>
+                                            <?php if ($call['text']) echo 'Комментарий к заявке: ' . $call['text'] ?>
 
                                             <br>
 
@@ -72,7 +72,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                                         }
 
-                                                        if ($call['created_at'] != $call['updated_at']){
+                                                        if ($call['created_at'] != $call['updated_at']) {
 
                                                             echo ' Просмотрена: ';
 
@@ -81,7 +81,15 @@ $this->params['breadcrumbs'][] = $this->title;
                                                         }
 
                                                         ?>
-                                                    </span>
+                                            </span>
+
+                                            <br>
+
+                                            <div class="action-btns">
+                                                <span class="get-num-info-btn" onclick="check_number(this)" data-number="<?php echo $call['phone'] ?>">
+                                                    Проверить номер
+                                                </span>
+                                            </div>
 
                                         </div>
 
