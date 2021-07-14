@@ -203,7 +203,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                             <div class="orange-btn selfi-btn" onclick="get_modal(this)" data-target="selfy"
                                  data-id="<?php echo $post['id'] ?>">
-                                <img src="/img/camera(1)1.png" alt="">Смотеть селфи
+                                <img loading="lazy" src="/img/camera(1)1.png" alt="">Смотеть селфи
                             </div>
 
                         <?php endif; ?>
@@ -211,7 +211,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                         <?php if ($post['video']) : ?>
                             <div class="white-btn video-btn" onclick="get_modal(this)" data-target="video"
                                  data-id="<?php echo $post['id'] ?>">
-                                <img src="/img/play1.png" alt="">Смотреть видео
+                                <img loading="lazy" src="/img/play1.png" alt="">Смотреть видео
                             </div>
                         <?php endif; ?>
 
@@ -244,7 +244,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                     </div>
                     <div onclick="show_otzivi_block(this)" data-id="<?php echo $post['id'] ?>"
                          class="white-block itzivi-block">
-                        <img src="/img/conversation2.png" alt="">
+                        <img loading="lazy" src="/img/conversation2.png" alt="">
                         <div>
 
                             <?php echo $countReview ?> <?php echo getNumEnding($countReview, ['отзыв', 'отзыва', 'отзывов']); ?></span></div>
@@ -252,7 +252,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                     </div>
                     <div onclick="show_anket_params_block(this)" class="white-block"
                          data-id="<?php echo $post['id'] ?>">
-                        <img src="/img/pen.png" alt="">
+                        <img loading="lazy" src="/img/pen.png" alt="">
                         <div>Параметры анкеты</div>
                         <div class="show-info show-info-grey"></div>
                     </div>
@@ -271,10 +271,10 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                         <div class="favorite-btn">
 
                             <div class="add">
-                                <img src="/img/heart1.png" alt="">
+                                <img loading="lazy" src="/img/heart1.png" alt="">
                             </div>
                             <div class="added">
-                                <img src="/img/heart2.png" alt="">
+                                <img loading="lazy" src="/img/heart2.png" alt="">
                             </div>
                         </div>
                     </div>
@@ -443,12 +443,12 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                                         <?php if (isset($item['site']['photo']['file'])) : ?>
 
-                                            <img class="site-img" src="<?php echo $item['site']['photo']['file'] ?>"
+                                            <img loading="lazy" class="site-img" src="<?php echo $item['site']['photo']['file'] ?>"
                                                  alt="">
 
                                         <?php else: ?>
 
-                                            <img class="site-img" src="/uploads/no-image.png" alt="">
+                                            <img loading="lazy" class="site-img" src="/uploads/no-image.png" alt="">
 
                                         <?php endif; ?>
 
@@ -776,19 +776,19 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                         <div class="col-12">
                             <div class="main-params-wrap bottom-gallery d-flex">
                                 <div class="main-param-item">
-                                    <img src="/img/calendar.png" alt="">
+                                    <img loading="lazy" src="/img/calendar.png" alt="">
                                     <?php echo $post['age'] ? $post['age'] : "-"; ?>
                                 </div>
                                 <div class="main-param-item">
-                                    <img src="/img/2-Ruler.png" alt="">
+                                    <img loading="lazy" src="/img/2-Ruler.png" alt="">
                                     <?php echo $post['rost'] ? $post['rost'] : "-"; ?> см
                                 </div>
                                 <div class="main-param-item">
-                                    <img src="/img/weight-scale1.png" alt="">
+                                    <img loading="lazy" src="/img/weight-scale1.png" alt="">
                                     <?php echo $post['ves'] ? $post['ves'] : "-"; ?> кг
                                 </div>
                                 <div class="main-param-item">
-                                    <img src="/img/women-brassiere1.png" alt="">
+                                    <img loading="lazy" src="/img/women-brassiere1.png" alt="">
                                     <?php echo $post['breast'] ? $post['breast'] : "-"; ?>
                                 </div>
                             </div>
@@ -999,7 +999,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 </div>
 <div class="otzivi-block otzivi-block-<?php echo $post['id'] ?>">
     <div class="back-block" onclick="close_otzivi_block()">
-        <img src="/img/back-red.png" alt="">
+        <img loading="lazy" src="/img/back-red.png" alt="">
     </div>
     <div class="d-flex otzivi-block-top-info">
         <div class="post-img">
@@ -1227,7 +1227,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 </div>
 <div class="anket-params-block anket-params-block-<?php echo $post['id'] ?>">
     <div class="back-block" onclick="close_anket_params_block(this)" data-id="<?php echo $post['id'] ?>">
-        <img src="/img/back-red.png" alt="">
+        <img loading="lazy" src="/img/back-red.png" alt="">
     </div>
     <div class="d-flex otzivi-block-top-info">
         <div class="otziv-count">
@@ -1251,19 +1251,19 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
     </div>
     <div class="main-params-wrap d-flex">
         <div class="main-param-item">
-            <img src="/img/calendar.png" alt="">
+            <img loading="lazy" src="/img/calendar.png" alt="">
             <?php echo $post['age'] ? $post['age'] : "-"; ?>
         </div>
         <div class="main-param-item">
-            <img src="/img/2-Ruler.png" alt="">
+            <img loading="lazy" src="/img/2-Ruler.png" alt="">
             <?php echo $post['rost'] ? $post['rost'] : "-"; ?> см
         </div>
         <div class="main-param-item">
-            <img src="/img/weight-scale1.png" alt="">
+            <img loading="lazy" src="/img/weight-scale1.png" alt="">
             <?php echo $post['ves'] ? $post['ves'] : "-"; ?> кг
         </div>
         <div class="main-param-item">
-            <img src="/img/women-brassiere1.png" alt="">
+            <img loading="lazy" src="/img/women-brassiere1.png" alt="">
             <?php echo $post['breast'] ? $post['breast'] : "-"; ?>
         </div>
     </div>
@@ -1474,7 +1474,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 <div class="site-price-block site-price-block-<?php echo $post['id'] ?>">
 
     <div class="back-block" onclick="close_site_price_block(this)" data-id="<?php echo $post['id'] ?>">
-        <img src="/img/back-red.png" alt="">
+        <img loading="lazy" src="/img/back-red.png" alt="">
     </div>
 
     <div class="owl-carousel owl-theme owl-carousel-main">
@@ -1482,7 +1482,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
             <?php if ($item['type'] != \frontend\models\Files::SELPHY_TYPE) : ?>
 
-                <img src="<?php echo $item['file'] ?>" alt="">
+                <img src="<?php echo $item['file'] ?>" loading="lazy" alt="">
 
             <?php endif; ?>
 
@@ -1508,11 +1508,11 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                                 <?php if (isset($item['site']['photo']['file'])) : ?>
 
-                                    <img class="site-img" src="<?php echo $item['site']['photo']['file'] ?>" alt="">
+                                    <img loading="lazy" class="site-img" src="<?php echo $item['site']['photo']['file'] ?>" alt="">
 
                                 <?php else: ?>
 
-                                    <img class="site-img" src="/img/no-image.png" alt="">
+                                    <img loading="lazy" class="site-img" src="/img/no-image.png" alt="">
 
                                 <?php endif; ?>
 
