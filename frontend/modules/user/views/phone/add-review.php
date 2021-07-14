@@ -58,6 +58,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     Тип клиента
                 </div>
 
+                <?php $i = 0 ?>
+
                 <?php foreach ($userParams as $item) : ?>
 
                     <?php if ($item->parent_id == 0) : ?>
@@ -85,8 +87,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                 <?php foreach ($tempData as $temItem) : ?>
 
-                                    <?php echo Html::radio('category', false, ['value' => $temItem['id'],
+                                <?php $checked = false ?>
+
+                                <?php if ($i == 0) $checked = true ?>
+
+                                    <?php echo Html::radio('category', $checked, ['value' => $temItem['id'],
                                         'label' => $temItem['value']])?>
+
+                                <?php $i++; ?>
 
                                 <?php endforeach; ?>
 
