@@ -1851,7 +1851,7 @@ h1{
     z-index: 1;
 }
 .form-group .control-label{
-    margin-bottom: 0px;
+    margin-bottom: 5px;
     font-family: Ubuntu;
     font-style: normal;
     font-weight: normal;
@@ -2922,7 +2922,48 @@ input:checked + .img-label-radio:before {
     margin-right: 15px;
 }
 .margin-bottom-30{
-    margin-bottom: 30px;
+    margin-bottom: 30px!important;
+}
+.category-1 .control-label{
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px;
+    color: #20E290;
+}
+.category-2 .control-label{
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px;
+
+    color: #F0C612;
+}
+.category-3 .control-label{
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px;
+
+    color: #F74952;
+}
+#addphonereviewform-category {
+    padding-left: 15px;
+}
+#addphonereviewform-category input{
+    margin-right:10px;
+}
+.category label{
+    display: block;
+}
+.category .control-label{
+    margin-bottom:15px;
+}
+.category input{
+    margin-right:10px;
 }
 .up-anket{
     background: linear-gradient(139.53deg, #FFDE38 12.53%, #00FBFF 133.52%);
@@ -3026,6 +3067,19 @@ input:checked + .image-label-radio {
 }
 .padding-top-0{
     padding-top:0px!important;
+}
+.category label{
+    display: block;
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    margin-bottom: 15px;
+    color: #000000;
+}
+.field-addphonereviewform-category .control-label{
+    margin-bottom: 25px;
 }
 input.search::-webkit-input-placeholder { color: #6d6d6d; }
 input.search:-ms-input-placeholder { color: #6d6d6d; }

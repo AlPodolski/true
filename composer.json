@@ -26,6 +26,7 @@
         "bower-asset/fontawesome": "5.3.1",
         "bower-asset/admin-lte": "3.0.2",
         "bower-asset/rateyo": "*",
+        "bower-asset/jquery-maskedinput": "*",
         "qiwi/bill-payments-php-sdk": "^0.1.2",
         "yiisoft/yii2-redis": "~2.0.0",
         "aki/yii2-bot-telegram": "*",

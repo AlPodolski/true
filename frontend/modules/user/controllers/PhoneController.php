@@ -3,6 +3,7 @@
 
 namespace frontend\modules\user\controllers;
 
+use frontend\modules\user\models\forms\AddPhoneReviewForm;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
@@ -17,9 +18,39 @@ class PhoneController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'get-info' => ['POST'],
+                    'add-review' => ['GET', 'POST'],
                 ],
             ],
         ];
+    }
+
+    public function actionAddReview($city)
+    {
+
+        $userParams = \json_decode(Yii::$app->phone->send(['action' => 'get-category']));
+
+        $reviewForm = new AddPhoneReviewForm();
+
+        if ($reviewForm->load(Yii::$app->request->post()) ){
+
+            $reviewForm->category = Yii::$app->request->post('category');
+
+            if ($reviewForm->validate()){
+
+                $reviewForm->send();
+
+                Yii::$app->session->setFlash('success', 'Спасибо, отзыв добавлен');
+
+                return $this->redirect('/cabinet');
+
+            }
+
+        }
+
+        return $this->render('add-review', [
+            'userParams' => $userParams,
+            'reviewForm' => $reviewForm,
+        ]);
     }
 
     public function actionGetInfo()

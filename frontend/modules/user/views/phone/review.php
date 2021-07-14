@@ -12,7 +12,7 @@ if ($data) : ?>
 
         <?php foreach ($data->review as $item) : ?>
 
-            <div class="small-text">Оценка : <?php echo $item->clientCategoryId->parentCategory->value ?> (<?php echo $item->clientCategoryId->value ?>) </div>
+            <div class="small-text">о клиенте : <?php echo $item->clientCategoryId->parentCategory->value ?> (<?php echo $item->clientCategoryId->value ?>) </div>
             <?php if ($item->review) : ?>
 
                 <div class="small-text">Комментарий к отзыву : <?php echo $item->review ?></div>

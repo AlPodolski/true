@@ -103,10 +103,10 @@
                                 </svg>
                             </div>
                             <div class="user-menu-item-count red-text">
-                                0
+                                <br>
                             </div>
                             <div class="user-menu-item-text grey-text">
-                                Черный список
+                                <a class="user-menu-item-text grey-text" href="/cabinet/phone/add-review">Проверить номер</a>
                             </div>
                         </div>
                     </div>
