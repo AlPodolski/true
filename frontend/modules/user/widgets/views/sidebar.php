@@ -106,7 +106,16 @@
                                 <br>
                             </div>
                             <div class="user-menu-item-text grey-text">
-                                <a class="user-menu-item-text grey-text" href="/cabinet/phone/add-review">Проверить номер</a>
+                                <?php if ($countPosts > 0) : ?>
+
+                                    <a class="user-menu-item-text grey-text" href="/cabinet/phone/add-review">Отзыв о номере</a>
+
+                                <?php else : ?>
+
+                                    <a class="user-menu-item-text grey-text" href="#">Отзыв о номере</a>
+
+                                <?php endif; ?>
+
                             </div>
                         </div>
                     </div>
