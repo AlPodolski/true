@@ -47,9 +47,18 @@ class PhoneController extends Controller
 
         }
 
+        $phone = null;
+
+        if ($phone = Yii::$app->request->get('phone')) {
+
+            $phone = preg_replace('/[^0-9]/', '', $phone);
+
+        }
+
         return $this->render('add-review', [
             'userParams' => $userParams,
             'reviewForm' => $reviewForm,
+            'phone' => $phone,
         ]);
     }
 

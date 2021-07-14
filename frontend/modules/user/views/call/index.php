@@ -89,6 +89,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 <span class="get-num-info-btn" onclick="check_number(this)" data-number="<?php echo $call['phone'] ?>">
                                                     Проверить номер
                                                 </span>
+                                                
+                                                <span class="get-num-info-btn">
+                                                    <a class="get-num-info-btn" href="/cabinet/phone/add-review?phone=<?php echo $call['phone'] ?>">Добавить отзыв</a>
+                                                </span>
                                             </div>
 
                                         </div>

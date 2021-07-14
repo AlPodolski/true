@@ -2,6 +2,7 @@
 
 /* @var $this \yii\web\View */
 /* @var $userParams object[] */
+/* @var $phone integer|null */
 
 /* @var $reviewForm \frontend\modules\user\models\forms\AddPhoneReviewForm */
 
@@ -38,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <div class="row form-group">
                 <div class="col-12 col-sm-6 col-lg-4">
-                    <?= $form->field($reviewForm, 'phone') ?>
+                    <?= $form->field($reviewForm, 'phone')->textInput(['value' => $phone]) ?>
                 </div>
 
                 <div class="col-12 control-label margin-bottom-30 margin-top-20">
