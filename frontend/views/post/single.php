@@ -12,13 +12,13 @@ use kartik\icons\FontAwesomeAsset;
 use frontend\assets\RateAsset;
 FontAwesomeAsset::register($this);
 RateAsset::register($this);
-
+\frontend\assets\GalleryAsset::register($this);
 $this->registerJsFile('/js/owl.carousel.js', ['depends' => ['yii\web\YiiAsset']]);
-$this->registerJsFile('https://cdn.jsdelivr.net/gh/taras-d/images-grid/src/images-grid.min.js', ['depends' => ['yii\web\YiiAsset']]);
+
 $this->registerCssFile('/css/owl.carousel.min.css');
 $this->registerCssFile('/css/owl.theme.default.min.css');
-$this->registerCssFile('https://cdn.jsdelivr.net/gh/taras-d/images-grid/src/images-grid.min.css');
-$this->registerJsFile('/js/single.js?v=2', ['depends' => ['yii\web\YiiAsset']]);
+
+$this->registerJsFile('/js/single.js?v=3', ['depends' => ['yii\web\YiiAsset']]);
 
 $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
 

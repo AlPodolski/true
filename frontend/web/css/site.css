@@ -2953,6 +2953,15 @@ input:checked + .img-label-radio:before {
 #addphonereviewform-category {
     padding-left: 15px;
 }
+.aniimated-thumbnials a{
+    width: 48%;
+    display: block;
+    float: left;
+    margin-right: 5px;
+}
+.aniimated-thumbnials img{
+
+}
 #addphonereviewform-category input{
     margin-right:10px;
 }

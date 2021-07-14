@@ -437,21 +437,14 @@ $('.owl-carousel-bottom').owlCarousel({
 })
 
 function add_img_grid(){
-    $('.img-grids').each(function(i){
-        if($(this).length > 0){
 
-            var img = $(this).attr('data-img');
+    $('.aniimated-thumbnials').each(function(i){
 
-            $(this).imagesGrid({
-                images: img.split(','),
-                cells: 2,
-                getViewAllText: function(imagesCount) {
-                    return 'Все ' + imagesCount + '';
-                },
-                align: true
-            });
-        }
+        var singleGallery = $(this);
+        singleGallery.lightGallery();
+
     });
+
 }
 
 $( function() {
@@ -483,21 +476,7 @@ $( function() {
 })
 
 $( function() {
-
-    if ($('#selfy-imgs').length > 0){
-
-        var img = $('#selfy-imgs').attr('data-img');
-
-        $('#selfy-imgs').imagesGrid({
-            images: img.split(','),
-            cells: 2,
-            getViewAllText: function(imagesCount) {
-                return 'Все ' + imagesCount + '';
-            },
-            align: true
-        });
-
-    }
+    
 
     $(".rate").rateYo({
         rating: 5,
@@ -528,7 +507,7 @@ function get_more_post_single(){
         type: 'POST',
         url: '/post/more',
         data: 'id='+id,
-        async:true,
+        async:false,
         dataType: "html",
         cache: false,
         success: function (data){
