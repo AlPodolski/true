@@ -52,7 +52,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                 <div class="post-photo">
 
-                    <div id="carouselExampleControls-<?php echo $post->id ?>" class="carousel slide"
+                    <div id="carouselExampleControls-<?php echo $post['id'] ?>" class="carousel slide"
                          data-ride="carousel">
 
                         <div class="carousel-inner">
@@ -102,11 +102,11 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                         <ol class="carousel-indicators">
                             <?php $j = 0 ?>
 
-                            <li data-target="#carouselExampleControls-<?php echo $post->id ?>" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleControls-<?php echo $post['id'] ?>" data-slide-to="0" class="active"></li>
 
                             <?php while ($j + 1 <= $i ) : ?>
 
-                                <li data-target="#carouselExampleControls-<?php echo $post->id ?>" data-slide-to="<?php echo $j +1 ?>"></li>
+                                <li data-target="#carouselExampleControls-<?php echo $post['id'] ?>" data-slide-to="<?php echo $j +1 ?>"></li>
 
                             <?php $j++; ?>
 
