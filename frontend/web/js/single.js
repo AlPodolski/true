@@ -63,7 +63,7 @@ function get_more_post_single(){
 
                 add_img_grid();
 
-                $('.carousel').carousel()
+                $('.carousel').carousel({interval: false})
 
             }else{
 
@@ -120,7 +120,7 @@ $(window).scroll(function(){
 
                     $(target).addClass('footer');
 
-                    $('.carousel').carousel();
+                    $('.carousel').carousel({interval: false});
 
                     add_img_grid();
 

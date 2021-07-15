@@ -160,7 +160,7 @@ function close_anket_params_block(object){
 
 function show_site_price_block(object){
 
-    $('.carousel').carousel();
+    $('.carousel').carousel({interval: false});
 
     $('.site-price-block-'+$(object).attr('data-id')).animate({
 
@@ -423,16 +423,6 @@ $(window).scroll(function () {
                         $('.single-content').append(data);
 
                         $(target).addClass('footer');
-
-                        var singleGallery = $('.owl-carousel-main');
-                        singleGallery.owlCarousel({
-                            items: 1,
-                            margin: 16,
-                            loop: true,
-                            nav: true,
-                            navText: ['', ''],
-                            navElement: 'a></a',
-                        });
 
                         add_img_grid();
 
