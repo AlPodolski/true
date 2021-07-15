@@ -413,13 +413,13 @@ $('.owl-carousel-main').owlCarousel({
     autoplayTimeout:9000,
     autoplay:true,
     nav : true,
-    loop: true,
+    loop: false,
     items:1
 })
 $('.owl-carousel-bottom').owlCarousel({
     items: 3,
     margin: 16,
-    loop: true,
+    loop: false,
     nav: true,
     navText: ['', ''],
     navElement: 'a href="#"></a',
@@ -456,7 +456,7 @@ $( function() {
     $('.owl-carousel-bottom').owlCarousel({
         items: 3,
         margin: 16,
-        loop: true,
+        loop: false,
         nav: true,
         navText: ['', ''],
         navElement: 'a href="#"></a',
@@ -520,13 +520,15 @@ function get_more_post_single(){
                 singleGallery.owlCarousel({
                     items: 1,
                     margin: 16,
-                    loop: true,
+                    loop: false,
                     nav: true,
                     navText: ['', ''],
                     navElement: 'a></a',
                 });
 
                 add_img_grid();
+
+                $('.carousel').carousel()
 
             }else{
 
@@ -587,11 +589,13 @@ $(window).scroll(function(){
                     singleGallery.owlCarousel({
                         items: 1,
                         margin: 16,
-                        loop: true,
+                        loop: false,
                         nav: true,
                         navText: ['', ''],
                         navElement: 'a></a',
                     });
+
+                    $('.carousel').carousel()
 
                     add_img_grid();
 

@@ -18,7 +18,7 @@ $this->registerJsFile('/js/owl.carousel.js', ['depends' => ['yii\web\YiiAsset']]
 $this->registerCssFile('/css/owl.carousel.min.css');
 $this->registerCssFile('/css/owl.theme.default.min.css');
 
-$this->registerJsFile('/js/single.js?v=3', ['depends' => ['yii\web\YiiAsset']]);
+$this->registerJsFile('/js/single.js?v=4', ['depends' => ['yii\web\YiiAsset']]);
 
 $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
 

@@ -47,40 +47,79 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                 ?>
             <?php endif ?>
-            <div class="owl-carousel owl-theme owl-carousel-main">
+
+            <div class="position-relative single-photo-block-<?php echo $post['id'] ?>">
+
+                <div class="post-photo">
+
+                    <div id="carouselExampleControls-<?php echo $post->id ?>" class="carousel slide"
+                         data-ride="carousel">
+
+                        <div class="carousel-inner">
+
+                            <?php $i = 0 ?>
+
+                            <span class="active carousel-item">
+                                <?php echo PhotoWidget::widget([
+                                    'path' => $post['avatar']['file'],
+                                    'size' => 'single',
+                                    'options' => [
+                                        'class' => 'img user-img',
+                                        'loading' => 'lazy',
+                                        'alt' => $post['name'],
+                                        'title' => $photoTitle,
+                                    ],
+                                ]); ?>
+                            </span>
+
+                            <?php foreach ($post['gal'] as $item) : ?>
+
+                                <?php if ($item['type'] != \frontend\models\Files::SELPHY_TYPE) : ?>
+
+                                <?php $i++; ?>
+
+                                    <span class="carousel-item">
+
+                                        <?php echo PhotoWidget::widget([
+                                            'path' => $item['file'],
+                                            'size' => 'single',
+                                            'options' => [
+                                                'class' => 'img user-img',
+                                                'loading' => 'lazy',
+                                                'alt' => $post['name'],
+                                                'title' => $photoTitle,
+                                            ],
+                                        ]); ?>
+
+                                      </span>
+
+                                <?php endif; ?>
+
+                            <?php endforeach; ?>
+
+                        </div>
+
+                        <ol class="carousel-indicators">
+                            <?php $j = 0 ?>
+
+                            <li data-target="#carouselExampleControls-<?php echo $post->id ?>" data-slide-to="0" class="active"></li>
+
+                            <?php while ($j + 1 <= $i ) : ?>
+
+                                <li data-target="#carouselExampleControls-<?php echo $post->id ?>" data-slide-to="<?php echo $j +1 ?>"></li>
+
+                            <?php $j++; ?>
+
+                            <?php endwhile; ?>
 
 
-                <?php echo PhotoWidget::widget([
-                    'path' => $post['avatar']['file'],
-                    'size' => 'single',
-                    'options' => [
-                        'class' => 'img user-img',
-                        'loading' => 'lazy',
-                        'alt' => $post['name'],
-                        'title' => $photoTitle,
-                    ],
-                ]); ?>
+                        </ol>
+                    </div>
 
-                <?php foreach ($post['gal'] as $item) : ?>
-
-                    <?php if ($item['type'] != \frontend\models\Files::SELPHY_TYPE) : ?>
-
-                        <?php echo PhotoWidget::widget([
-                            'path' => $item['file'],
-                            'size' => 'single',
-                            'options' => [
-                                'class' => 'img user-img',
-                                'loading' => 'lazy',
-                                'alt' => $post['name'],
-                                'title' => $photoTitle,
-                            ],
-                        ]); ?>
-
-                    <?php endif; ?>
-
-                <?php endforeach; ?>
+                </div>
 
             </div>
+
             <?php $postRating = \frontend\helpers\PostRatingHelper::getPostRating($post['id']) ?>
             <div class="post-rating">
                 <div class="star-bg">
@@ -392,18 +431,18 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                         <?php if ($item['file'] and $item['type'] != \frontend\models\Files::SELPHY_TYPE
                             and file_exists(Yii::getAlias('@webroot') . $item['file'])) { ?>
 
-                            <?php $cssClass = ''; ?>
+                            <?php $cssClass = ' '; ?>
 
-                                <?php if ($i > 1) $cssClass = 'd-none'; ?>
+                            <?php if ($i > 1) $cssClass = 'd-none'; ?>
 
-                            <a class="<?php echo $cssClass ?>" href="<?php echo $item['file']  ?>">
+                            <a class="<?php echo $cssClass ?>" href="<?php echo $item['file'] ?>">
 
                                 <?php
 
                                 echo \yii\helpers\Html::img(Yii::$app->imageCache
                                     ->thumbSrc($item['file'], $size), [
-                                            'class' => 'img user-img',
-                                            'loading' => 'lazy',
+                                    'class' => 'img user-img',
+                                    'loading' => 'lazy',
                                 ]);
 
                                 $i++;
@@ -443,7 +482,8 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                                         <?php if (isset($item['site']['photo']['file'])) : ?>
 
-                                            <img loading="lazy" class="site-img" src="<?php echo $item['site']['photo']['file'] ?>"
+                                            <img loading="lazy" class="site-img"
+                                                 src="<?php echo $item['site']['photo']['file'] ?>"
                                                  alt="">
 
                                         <?php else: ?>
@@ -1478,6 +1518,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
     </div>
 
     <div class="owl-carousel owl-theme owl-carousel-main">
+
         <?php foreach ($post['gal'] as $item) : ?>
 
             <?php if ($item['type'] != \frontend\models\Files::SELPHY_TYPE) : ?>
@@ -1487,6 +1528,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
             <?php endif; ?>
 
         <?php endforeach; ?>
+
     </div>
 
     <div class="sites-wrap">
@@ -1508,7 +1550,8 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                                 <?php if (isset($item['site']['photo']['file'])) : ?>
 
-                                    <img loading="lazy" class="site-img" src="<?php echo $item['site']['photo']['file'] ?>" alt="">
+                                    <img loading="lazy" class="site-img"
+                                         src="<?php echo $item['site']['photo']['file'] ?>" alt="">
 
                                 <?php else: ?>
 
