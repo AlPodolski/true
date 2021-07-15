@@ -76,7 +76,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                                 <?php if ($item['type'] != \frontend\models\Files::SELPHY_TYPE) : ?>
 
-                                <?php $i++; ?>
+                                    <?php $i++; ?>
 
                                     <span class="carousel-item">
 
@@ -99,19 +99,33 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                         </div>
 
+                        <a class="carousel-control-prev"
+                           href="#carouselExampleControls-<?php echo $post['id'] ?>" role="button"
+                           data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next"
+                           href="#carouselExampleControls-<?php echo $post['id'] ?>" role="button"
+                           data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+
                         <ol class="carousel-indicators">
                             <?php $j = 0 ?>
 
-                            <li data-target="#carouselExampleControls-<?php echo $post['id'] ?>" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleControls-<?php echo $post['id'] ?>" data-slide-to="0"
+                                class="active"></li>
 
-                            <?php while ($j + 1 <= $i ) : ?>
+                            <?php while ($j + 1 <= $i) : ?>
 
-                                <li data-target="#carouselExampleControls-<?php echo $post['id'] ?>" data-slide-to="<?php echo $j +1 ?>"></li>
+                                <li data-target="#carouselExampleControls-<?php echo $post['id'] ?>"
+                                    data-slide-to="<?php echo $j + 1 ?>"></li>
 
-                            <?php $j++; ?>
+                                <?php $j++; ?>
 
                             <?php endwhile; ?>
-
 
                         </ol>
                     </div>
@@ -1517,18 +1531,82 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
         <img loading="lazy" src="/img/back-red.png" alt="">
     </div>
 
-    <div class="owl-carousel owl-theme owl-carousel-main">
+    <div id="carouselBottomExampleControls-<?php echo $post['id'] ?>" class="carousel slide"
+         data-ride="carousel">
 
-        <?php foreach ($post['gal'] as $item) : ?>
+        <div class="carousel-inner">
 
-            <?php if ($item['type'] != \frontend\models\Files::SELPHY_TYPE) : ?>
+            <?php $i = 0 ?>
 
-                <img src="<?php echo $item['file'] ?>" loading="lazy" alt="">
+            <span class="active carousel-item">
+                                <?php echo PhotoWidget::widget([
+                                    'path' => $post['avatar']['file'],
+                                    'size' => 'single',
+                                    'options' => [
+                                        'class' => 'img user-img',
+                                        'loading' => 'lazy',
+                                        'alt' => $post['name'],
+                                        'title' => $photoTitle,
+                                    ],
+                                ]); ?>
+                            </span>
 
-            <?php endif; ?>
+            <?php foreach ($post['gal'] as $item) : ?>
 
-        <?php endforeach; ?>
+                <?php if ($item['type'] != \frontend\models\Files::SELPHY_TYPE) : ?>
 
+                    <?php $i++; ?>
+
+                    <span class="carousel-item">
+
+                        <?php echo PhotoWidget::widget([
+                            'path' => $item['file'],
+                            'size' => 'single',
+                            'options' => [
+                                'class' => 'img user-img',
+                                'loading' => 'lazy',
+                                'alt' => $post['name'],
+                                'title' => $photoTitle,
+                            ],
+                        ]); ?>
+
+                                      </span>
+
+                <?php endif; ?>
+
+            <?php endforeach; ?>
+
+        </div>
+
+        <a class="carousel-control-prev"
+           href="#carouselBottomExampleControls-<?php echo $post['id'] ?>" role="button"
+           data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next"
+           href="#carouselBottomExampleControls-<?php echo $post['id'] ?>" role="button"
+           data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+
+        <ol class="carousel-indicators">
+            <?php $j = 0 ?>
+
+            <li data-target="#carouselBottomExampleControls-<?php echo $post['id'] ?>" data-slide-to="0"
+                class="active"></li>
+
+            <?php while ($j + 1 <= $i) : ?>
+
+                <li data-target="#carouselBottomExampleControls-<?php echo $post['id'] ?>"
+                    data-slide-to="<?php echo $j + 1 ?>"></li>
+
+                <?php $j++; ?>
+
+            <?php endwhile; ?>
+
+        </ol>
     </div>
 
     <div class="sites-wrap">

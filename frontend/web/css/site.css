@@ -670,7 +670,7 @@ body{
     margin-right: 5px;
     display: inline-block;
 }
-.popular-btn-block {
+.popular-btn {
     margin-bottom: 15px;
 }
 #getcallform-phone , #getcallform-text{
@@ -2627,7 +2627,7 @@ select{
 }
 .site-price-block .sites-wrap{
     position: relative;
-    top: -50px;
+    top: -25px;
     z-index: 2;
     background: #fff;
     border-radius: 35px;
@@ -3342,7 +3342,8 @@ input.search::placeholder { color: #6d6d6d; }
         padding-left: 0px;
     }
     .single .post-rating {
-        top: 250px;
+        bottom: 75px;
+        top:inherit;
     }
     .orange-btn , .white-btn{
         margin-right: 0;

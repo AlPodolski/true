@@ -160,14 +160,7 @@ function close_anket_params_block(object){
 
 function show_site_price_block(object){
 
-    $('.owl-carousel-main').owlCarousel({
-        margin:10,
-        autoplayTimeout:9000,
-        autoplay:true,
-        nav : true,
-        loop: true,
-        items:1
-    })
+    $('.carousel').carousel();
 
     $('.site-price-block-'+$(object).attr('data-id')).animate({
 
