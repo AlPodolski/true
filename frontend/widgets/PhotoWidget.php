@@ -11,6 +11,8 @@ class PhotoWidget extends Widget
 
     public $size;
 
+    public $width = true;
+
     public $options = [];
 
     public function run()
@@ -19,6 +21,7 @@ class PhotoWidget extends Widget
             'path' => $this->path,
             'options' => $this->options,
             'size' => $this->size,
+            'width' => $this->width,
         ]);
     }
 }

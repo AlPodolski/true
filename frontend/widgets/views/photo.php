@@ -3,6 +3,7 @@
 /* @var $path string */
 /* @var $size string */
 /* @var $options array */
+/* @var $width array */
 
 $params = '';
 
@@ -12,9 +13,19 @@ if (is_array($options)) {
 
 if (file_exists(Yii::getAlias('@webroot') . $path) and $path) : ?>
 
+    <?php $widthInfo = '' ?>
+
+    <?php if ($width) : ?>
+
+    <?php $imageInfo = getimagesize(Yii::getAlias('@webroot') . $path) ?>
+
+    <?php $widthInfo = 'width="'.$imageInfo[0].'" height="'.$imageInfo[1].'"'; ?>
+
+    <?php endif; ?>
+
     <picture>
         <source srcset="<?= Yii::$app->imageCache->thumbSrc($path, $size) ?>" >
-        <img <?php echo $params ?> srcset="<?= Yii::$app->imageCache->thumbSrc($path, $size) ?>">
+        <img <?php echo $widthInfo ?> <?php echo $params ?> srcset="<?= Yii::$app->imageCache->thumbSrc($path, $size) ?>">
     </picture>
 
 <?php else : ?>

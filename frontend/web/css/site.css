@@ -2633,6 +2633,10 @@ select{
     border-radius: 35px;
     padding-top: 15px;
 }
+.card_img {
+    width: 100%;
+    object-fit: scale-down;
+}
 .post{
     margin-bottom: 20px;
 }

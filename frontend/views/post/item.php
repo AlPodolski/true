@@ -63,8 +63,9 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                                 <?php echo PhotoWidget::widget([
                                     'path' => $post['avatar']['file'],
                                     'size' => 'single',
+                                    'width' => true,
                                     'options' => [
-                                        'class' => 'img user-img',
+                                        'class' => 'img user-img card_img',
                                         'loading' => 'lazy',
                                         'alt' => $post['name'],
                                         'title' => $photoTitle,
@@ -83,6 +84,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                                         <?php echo PhotoWidget::widget([
                                             'path' => $item['file'],
                                             'size' => 'single',
+                                            'width' => true,
                                             'options' => [
                                                 'class' => 'img user-img',
                                                 'loading' => 'lazy',
