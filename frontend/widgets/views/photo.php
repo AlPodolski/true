@@ -15,9 +15,9 @@ if (file_exists(Yii::getAlias('@webroot') . $path) and $path) : ?>
 
     <?php $widthInfo = '' ?>
 
-    <?php if ($width) : ?>
+    <?php if ($width and is_file(Yii::getAlias('@webroot') . Yii::$app->imageCache->thumbSrc($path, $size))) : ?>
 
-    <?php $imageInfo = getimagesize(Yii::getAlias('@webroot') . $path) ?>
+    <?php $imageInfo = getimagesize(Yii::getAlias('@webroot') . Yii::$app->imageCache->thumbSrc($path, $size)) ?>
 
     <?php $widthInfo = 'width="'.$imageInfo[0].'" height="'.$imageInfo[1].'"'; ?>
 
