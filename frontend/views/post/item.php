@@ -62,7 +62,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                             <span class="active carousel-item">
                                 <?php echo PhotoWidget::widget([
                                     'path' => $post['avatar']['file'],
-                                    'size' => 'single',
+                                    'size' => '350_490',
                                     'width' => true,
                                     'options' => [
                                         'class' => 'img user-img card_img',
@@ -83,7 +83,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                                         <?php echo PhotoWidget::widget([
                                             'path' => $item['file'],
-                                            'size' => 'single',
+                                            'size' => '350_490',
                                             'width' => true,
                                             'options' => [
                                                 'class' => 'img user-img',
