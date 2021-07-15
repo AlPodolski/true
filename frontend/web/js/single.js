@@ -178,18 +178,23 @@ function get_modal(object){
 
             if(target == 'comment-form'){
 
-                $(".rate").rateYo({
-                    rating: 5,
-                    fullStar: true
-                });
+                $('#info-modal').on('shown.bs.modal', function (e) {
 
-                $(".rate").rateYo("option", "onSet", function () {
+                    $(".rate").rateYo({
+                        rating: 5,
+                        fullStar: true
+                    });
 
-                    var rating = $(this).rateYo("rating");
+                    $(".rate").rateYo("option", "onSet", function () {
 
-                    $(this).siblings('.form-group').find('input').attr('value', rating);
+                        var rating = $(this).rateYo("rating");
 
-                });
+                        $(this).siblings('.form-group').find('input').attr('value', rating);
+
+                    });
+
+                })
+
 
             }
 

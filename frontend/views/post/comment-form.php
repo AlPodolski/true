@@ -7,7 +7,11 @@ use yii\widgets\ActiveForm;
 use frontend\modules\user\models\ReviewForm;
 use frontend\modules\user\models\ServiceReviewForm;
 use kartik\icons\FontAwesomeAsset;
+use frontend\assets\RateAsset;
+
 FontAwesomeAsset::register($this);
+
+$dataRate = RateAsset::register($this);
 
 $serviceReviewFormForm = new ServiceReviewForm();
 $postReviewForm = new ReviewForm();
@@ -119,3 +123,5 @@ echo $form->field($postReviewForm, 'post_id')->hiddenInput(['value' => $data['po
 </div>
 
 <?php ActiveForm::end() ?>
+<script src="<?php echo $dataRate->baseUrl.'/'.$dataRate->js[0] ?>"></script>
+<link href="<?php echo $dataRate->baseUrl.'/'.$dataRate->css[0] ?>" rel="stylesheet">

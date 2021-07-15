@@ -10,8 +10,7 @@
 
 use kartik\icons\FontAwesomeAsset;
 use frontend\assets\RateAsset;
-FontAwesomeAsset::register($this);
-RateAsset::register($this);
+
 \frontend\assets\GalleryAsset::register($this);
 
 $this->registerJsFile('/js/single.js?v=7', ['depends' => ['yii\web\YiiAsset']]);
