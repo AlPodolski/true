@@ -122,6 +122,8 @@ function add_message(text){
 
 function show_otzivi_block(object){
 
+    $('.otzivi-block-'+$(object).attr('data-id')).removeClass('d-none');
+
     $('.otzivi-block-'+$(object).attr('data-id')).animate({
 
         left: '0px'
@@ -140,6 +142,8 @@ function close_otzivi_block(){
 }
 
 function show_anket_params_block(object){
+
+    $('.anket-params-block-'+$(object).attr('data-id')).removeClass('d-none');
 
     $('.anket-params-block-'+$(object).attr('data-id')).animate({
 
@@ -161,6 +165,8 @@ function close_anket_params_block(object){
 function show_site_price_block(object){
 
     $('.carousel').carousel({interval: false});
+
+    $('.site-price-block-'+$(object).attr('data-id')).removeClass('d-none');
 
     $('.site-price-block-'+$(object).attr('data-id')).animate({
 

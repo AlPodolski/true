@@ -1053,7 +1053,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
         </div>
     </div>
 </div>
-<div class="otzivi-block otzivi-block-<?php echo $post['id'] ?>">
+<div class="otzivi-block d-none otzivi-block-<?php echo $post['id'] ?>">
     <div class="back-block" onclick="close_otzivi_block()">
         <img loading="lazy" width="18px" height="30px" src="/img/back-red.png" alt="">
     </div>
@@ -1281,7 +1281,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
         </div>
     </div>
 </div>
-<div class="anket-params-block anket-params-block-<?php echo $post['id'] ?>">
+<div class="anket-params-block d-none anket-params-block-<?php echo $post['id'] ?>">
     <div class="back-block" onclick="close_anket_params_block(this)" data-id="<?php echo $post['id'] ?>">
         <img loading="lazy" width="18px" height="30px" src="/img/back-red.png" alt="">
     </div>
@@ -1527,7 +1527,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
         </div>
     </div>
 </div>
-<div class="site-price-block site-price-block-<?php echo $post['id'] ?>">
+<div class="site-price-block d-none site-price-block-<?php echo $post['id'] ?>">
 
     <div class="back-block" onclick="close_site_price_block(this)" data-id="<?php echo $post['id'] ?>">
         <img loading="lazy" width="18px" height="30px" src="/img/back-red.png" alt="">
