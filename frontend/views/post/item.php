@@ -62,7 +62,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                             <span class="active carousel-item">
                                 <?php echo PhotoWidget::widget([
                                     'path' => $post['avatar']['file'],
-                                    'size' => '350_490',
+                                    'size' => '360_500',
                                     'width' => true,
                                     'options' => [
                                         'class' => 'img user-img card_img',
@@ -83,7 +83,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                                         <?php echo PhotoWidget::widget([
                                             'path' => $item['file'],
-                                            'size' => '350_490',
+                                            'size' => '360_500',
                                             'width' => true,
                                             'options' => [
                                                 'class' => 'img user-img',
@@ -284,7 +284,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                         <br>
 
-                        <div class="orange-btn video-btn" onclick="get_modal(this);ym(70919698,'reachGoal','call')"
+                        <div class="orange-btn video-btn" onclick="get_modal(this);ym(70919698,'reachGoal','getCall')"
                              data-target="call" data-id="<?php echo $post['id'] ?>">
                             Заказать звонок
                         </div>
