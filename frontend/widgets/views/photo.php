@@ -19,7 +19,7 @@ if (file_exists(Yii::getAlias('@webroot') . $path) and $path) : ?>
 
     <?php $height = $imageInfo[1] - 13 ?>
 
-    <?php $widthInfo = 'width="'.$imageInfo[0].'" height="'.$height[1].'"'; ?>
+    <?php $widthInfo = 'width="'.$imageInfo[0].'" height="'.$height.'"'; ?>
 
     <?php endif; ?>
 
