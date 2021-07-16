@@ -14,8 +14,6 @@ $( function() {
 
     add_img_grid();
 
-    get_more_post_single();
-
 })
 
 $( function() {
