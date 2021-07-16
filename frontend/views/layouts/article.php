@@ -43,7 +43,7 @@ use frontend\widgets\PhotoWidget;
 
                 <?php echo PhotoWidget::widget([
                     'path' => $post['avatar']['file'] ,
-                    'size' => '350_420',
+                    'size' => '360_430',
                     'options' => [
                         'class' => 'img user-img listing-img',
                         'width' => '350px',
