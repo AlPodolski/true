@@ -2637,6 +2637,9 @@ select{
     width: 100%;
     object-fit: scale-down;
 }
+.carousel-indicators{
+    bottom: 40px;
+}
 .carousel-indicators li{
     background-color: #ccc;
 }
