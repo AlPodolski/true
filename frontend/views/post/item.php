@@ -62,7 +62,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                             <span class="active carousel-item">
                                 <?php echo PhotoWidget::widget([
                                     'path' => $post['avatar']['file'],
-                                    'size' => '360_500',
+                                    'size' => '360_485',
                                     'width' => true,
                                     'options' => [
                                         'class' => 'img user-img card_img',
