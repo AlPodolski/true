@@ -2633,9 +2633,12 @@ select{
     border-radius: 35px;
     padding-top: 15px;
 }
-.card_img {
+.img{
     width: 100%;
     object-fit: scale-down;
+}
+.carousel-indicators li{
+    background-color: #ccc;
 }
 .post{
     margin-bottom: 20px;
