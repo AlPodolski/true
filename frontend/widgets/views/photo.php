@@ -17,7 +17,9 @@ if (file_exists(Yii::getAlias('@webroot') . $path) and $path) : ?>
 
     <?php if ($imageInfo = Yii::$app->imageCache->sizes[$size]) : ?>
 
-    <?php $widthInfo = 'width="'.$imageInfo[0].'" height="'.$imageInfo[1].'"'; ?>
+    <?php $height = $imageInfo[1] - 13 ?>
+
+    <?php $widthInfo = 'width="'.$imageInfo[0].'" height="'.$height[1].'"'; ?>
 
     <?php endif; ?>
 
