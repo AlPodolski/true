@@ -1286,6 +1286,13 @@ a.asc::after {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
+.advert-item .user-info .dialog-photo img{
+    width: 59px;
+    height: 59px;
+}
+.comments-btn {
+    margin-top: 5px;
+}
 .icon-close , .login-icon-close , .register-icon-close{
     text-align: right;
     padding-right: 10px;
@@ -2714,6 +2721,7 @@ select{
     box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     padding: 30px 15px;
+    padding-bottom: 10px;
 }
 .created{
     font-style: normal;

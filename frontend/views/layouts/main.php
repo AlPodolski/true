@@ -63,6 +63,7 @@ AppAsset::register($this);
 
                         <li class="top-menu-item"><a href="/cabinet/edit">Настройки</a></li>
                         <li class="top-menu-item"><a href="/cabinet/faq">FAQ</a></li>
+                        <li class="top-menu-item"><a href="/cabinet/advert">Объявления</a></li>
                         <li class="top-menu-item position-relative">
                             <a href="/cabinet/call">Обратный звонок</a>
                             <?php
@@ -230,6 +231,7 @@ AppAsset::register($this);
 
                                     <li class="nav-item"><a href="/cabinet/edit">Настройки</a></li>
                                     <li class="nav-item"><a href="/cabinet/faq">FAQ</a></li>
+                                    <li class="nav-item"><a href="/cabinet/advert">Объявления</a></li>
                                     <li class="nav-item position-relative">
                                         <a href="/cabinet/call">Обратный звонок</a>
                                         <?php
@@ -329,7 +331,7 @@ AppAsset::register($this);
 
                                 <li class="nav-item"><a href="/cabinet/edit">Настройки</a></li>
                                 <li class="nav-item"><a href="/cabinet/faq">FAQ</a></li>
-
+                                <li class="nav-item"><a href="/cabinet/advert">Объявления</a></li>
                             <?php else : ?>
 
                                 <li class="nav-item" onclick="get_claim_modal()"><a >Обратная связь</a></li>

@@ -25,7 +25,7 @@ class AdvertController extends Controller
 
             Yii::$app->session->setFlash('success', 'Объяление добавлено');
 
-            return $this->redirect('/forum');
+            return $this->goBack();
 
         }
 
@@ -40,6 +40,7 @@ class AdvertController extends Controller
         $advertList = Advert::find()
             ->limit(Yii::$app->params['advert_limit'])
             ->orderBy('id DESC')
+            ->where(['type' => Advert::PUBLIC_TYPE, 'status' => Advert::STATUS_CHECK])
             ->with('userRelations')
             ->all();
 
@@ -56,6 +57,22 @@ class AdvertController extends Controller
             'h1' => $h1,
         ]);
     }
+    public function actionCabinetAdvert($city){
+
+        if (Yii::$app->user->isGuest) return $this->goHome();
+
+        $advertList = Advert::find()
+            ->limit(Yii::$app->params['advert_limit'])
+            ->orderBy('id DESC')
+            ->where(['type' => Advert::PRIVATE_CABINET_TYPE, 'status' => Advert::STATUS_CHECK])
+            ->with('userRelations')
+            ->all();
+
+        return $this->render('advert', [
+            'advertList' => $advertList,
+            'isCabinet' => true,
+        ]);
+    }
 
     public function actionView($city, $id)
     {
@@ -66,6 +83,21 @@ class AdvertController extends Controller
 
         return $this->render('view', [
             'advert' => $advert
+        ]);
+    }
+    public function actionCabinetAdvertView($city, $id)
+    {
+
+        if (Yii::$app->user->isGuest) return $this->goHome();
+
+        $advert = Advert::find()->where(['id' => $id])
+            ->with('userRelations')
+            ->with('comments')
+            ->asArray()->one();
+
+        return $this->render('view', [
+            'advert' => $advert,
+            'isCabinet' => true,
         ]);
     }
 

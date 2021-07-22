@@ -3,7 +3,7 @@
 /* @var $path string */
 /* @var $size string */
 /* @var $options array */
-/* @var $width array */
+/* @var $width bool|null */
 
 $params = '';
 
@@ -15,7 +15,7 @@ if (file_exists(Yii::getAlias('@webroot') . $path) and $path) : ?>
 
     <?php $widthInfo = '' ?>
 
-    <?php if ($imageInfo = Yii::$app->imageCache->sizes[$size]) : ?>
+    <?php if ($width and $imageInfo = Yii::$app->imageCache->sizes[$size]) : ?>
 
     <?php $height = $imageInfo[1] - 13 ?>
 
@@ -29,5 +29,5 @@ if (file_exists(Yii::getAlias('@webroot') . $path) and $path) : ?>
     </picture>
 
 <?php else : ?>
-    <img <?php echo $params ?> src="/files/img/nophoto.png" srcset="/files/img/nophoto.png" alt="">
+    <img <?php echo $params ?> src="/img/no-photo-user.png" srcset="/img/no-photo-user.png" alt="">
 <?php endif;

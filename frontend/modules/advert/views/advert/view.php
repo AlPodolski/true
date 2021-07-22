@@ -17,99 +17,110 @@ $this->registerMetaTag([
         'content' =>  mb_substr($advert['text'], 0, 255),
 ]);
 
+if (isset($isCabinet) and $isCabinet){
+
+    $this->params['breadcrumbs'][] = ['label' => 'Кабинет', 'url' => '/cabinet'];
+    $this->params['breadcrumbs'][] = ['label' => 'Объявления', 'url' => '/cabinet/advert'];
+    $this->params['breadcrumbs'][] = $this->title;
+
+}
+
+
 ?>
-<div class="row">
+<div class="container">
+    <div class="row">
 
-    <div class="col-12 col-xl-12 advert-wrap-items">
+        <div class="col-12 col-xl-12 advert-wrap-items">
 
-        <div class="anket advert-view advert-item">
+            <div class="anket advert-view advert-item">
 
-            <?php if ($advert['userRelations']) : ?>
+                <?php if ($advert['userRelations']) : ?>
 
-                <div class="col-12">
-                    <div class="row user-info">
-                        <div class="col-3 col-sm-2 col-md-1 ">
-                            <div class="dialog-photo">
-                                <a class="name">
-                                    <?php echo PhotoWidget::widget([
-                                        'path' => $advert['userRelations']['avatar']['file'],
-                                        'size' => '59',
-                                        'options' => [
-                                            'class' => 'img',
-                                            'loading' => 'lazy',
-                                            'alt' => $advert['userRelations']['username'],
-                                        ],
-                                    ]); ?>
-                                </a>
+                    <div class="col-12">
+                        <div class="row user-info">
+                            <div class="col-3 col-sm-2 col-md-1 ">
+                                <div class="dialog-photo">
+                                    <a class="name">
+                                        <?php echo PhotoWidget::widget([
+                                            'path' => $advert['userRelations']['avatar']['file'],
+                                            'size' => '59',
+                                            'options' => [
+                                                'class' => 'img',
+                                                'loading' => 'lazy',
+                                                'alt' => $advert['userRelations']['username'],
+                                            ],
+                                        ]); ?>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-9 col-sm-10 col-md-11">
-                            <div class="name">
-                                <a class="name red-text">
-                                    <?php echo  $advert['userRelations']['username'] ?>
-                                </a>
-                            </div>
-                            <div class="created">
-                                <?php
+                            <div class="col-9 col-sm-10 col-md-11">
+                                <div class="name">
+                                    <a class="name red-text">
+                                        <?php echo  $advert['userRelations']['username'] ?>
+                                    </a>
+                                </div>
+                                <div class="created">
+                                    <?php
 
-                                $day = time() - $advert['created_at'];
+                                    $day = time() - $advert['created_at'];
 
-                                $day = (intdiv($day, 3600 * 24));
+                                    $day = (intdiv($day, 3600 * 24));
 
-                                ?>
+                                    ?>
 
-                                <?php echo $day ?> <?php echo getNumEnding($day, ['день','дня', 'дней']); ?>
+                                    <?php echo $day ?> <?php echo getNumEnding($day, ['день','дня', 'дней']); ?>
 
-                                назад
+                                    назад
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-            <?php endif; ?>
+                <?php endif; ?>
 
-            <div class="col-12 advert-item-text">
-                <div class="advert-item-title">
+                <div class="col-12 advert-item-text">
+                    <div class="advert-item-title">
                         <?php echo $advert['title']; ?>
-                </div>
-                <div class="text-ab">
+                    </div>
+                    <div class="text-ab">
 
                         <?php echo $advert['text']; ?>
 
+                    </div>
                 </div>
-            </div>
 
-            <div class="comments-list col-12">
+                <div class="comments-list col-12">
 
-                <?php if (!empty($advert['comments'])) : ?>
-                    <?php /*комментарии к записи*/ ?>
+                    <?php if (!empty($advert['comments'])) : ?>
+                        <?php /*комментарии к записи*/ ?>
 
-                    <?php foreach ($advert['comments'] as $comment) : ?>
+                        <?php foreach ($advert['comments'] as $comment) : ?>
 
-                        <?php echo $this->renderFile('@app/views/comment/comment-item.php', [
-                            'comment' => $comment
-                        ]); ?>
+                            <?php echo $this->renderFile('@app/views/comment/comment-item.php', [
+                                'comment' => $comment
+                            ]); ?>
 
-                    <?php endforeach; ?>
+                        <?php endforeach; ?>
 
-                <?php endif; ?>
-            </div>
+                    <?php endif; ?>
+                </div>
 
-            <div class="comment-block comment-wall-form col-12 position-relative">
-                <?php
+                <div class="comment-block comment-wall-form col-12 position-relative">
+                    <?php
 
-                echo CommentsFormWidget::widget([
-                    'classRelatedModel' => \frontend\modules\advert\models\Advert::class,
-                    'classCss' => 'form-horizontal form-wall-comment-' . $advert['id'],
-                    'idCss' => 'wall-form',
-                    'relatedId' => $advert['id'],
-                ]);
+                    echo CommentsFormWidget::widget([
+                        'classRelatedModel' => \frontend\modules\advert\models\Advert::class,
+                        'classCss' => 'form-horizontal form-wall-comment-' . $advert['id'],
+                        'idCss' => 'wall-form',
+                        'relatedId' => $advert['id'],
+                    ]);
 
-                ?>
+                    ?>
+                </div>
+
             </div>
 
         </div>
 
     </div>
-
 </div>

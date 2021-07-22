@@ -3,8 +3,7 @@
 namespace frontend\modules\advert\models;
 
 use common\models\Comments;
-use frontend\modules\user\User;
-use frontend\modules\wall\models\Wall;
+use common\models\User;
 use Yii;
 use yii\helpers\ArrayHelper;
 
@@ -16,9 +15,20 @@ use yii\helpers\ArrayHelper;
  * @property int|null $timestamp
  * @property string|null $text
  * @property string|null $title
+ * @property integer $type
+ * @property integer $status
  */
 class Advert extends \yii\db\ActiveRecord
 {
+
+    const PUBLIC_TYPE = 0;
+
+    const PRIVATE_CABINET_TYPE = 1;
+
+    const STATUS_CHECK = 1;
+
+    const STATUS_NOT_CHECK = 0;
+
     /**
      * {@inheritdoc}
      */
@@ -33,7 +43,7 @@ class Advert extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'timestamp'], 'integer'],
+            [['user_id', 'timestamp', 'type', 'status'], 'integer'],
             [['text', 'title'], 'string'],
             [['text', 'title'], 'required'],
         ];
@@ -49,7 +59,7 @@ class Advert extends \yii\db\ActiveRecord
 
     public function getUserName(){
 
-        return ArrayHelper::getValue(Profile::find()->where(['id' => $this->user_id])->asArray()->one(), 'username');
+        return ArrayHelper::getValue(User::find()->where(['id' => $this->user_id])->asArray()->one(), 'username');
 
     }
 
@@ -66,9 +76,11 @@ class Advert extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'user_id' => 'User ID',
-            'timestamp' => 'Timestamp',
-            'text' => 'Добавить объявление',
+            'user_id' => 'Пользователь',
+            'timestamp' => 'Дата создания',
+            'text' => 'Текст',
+            'title' => 'Заголовок',
+            'status' => 'Статус',
         ];
     }
 }

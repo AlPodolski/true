@@ -34,6 +34,26 @@ function get_dialog(object){
     })
 }
 
+function check_advert(object){
+
+    var id = $(object).attr('data-id');
+
+    $.ajax({
+        type: 'POST',
+        url: "/advert/check", //Путь к обработчику
+        data: 'id='+id,
+        response: 'text',
+        dataType: "html",
+        cache: false,
+        success: function (data) {
+
+            $(object).text('Готово');
+
+        }
+    })
+
+}
+
 function close_chat(){
 
     $('.dialog_list-wrap').removeClass('dialog_list-wrap-with-dialog d-flex');
