@@ -78,6 +78,16 @@ if (isset($isCabinet) and $isCabinet){
 
                 <?php endif; ?>
 
+                <?php if ($advert['category']) : ?>
+
+                    <?php echo \yii\helpers\Html::a($advert['category']['value'],
+                        '/cabinet/advert?category='.$advert['category']['id'],
+                        ['class' => 'category-link popular-btn']
+                    )
+                    ?>
+
+                <?php endif; ?>
+
                 <div class="col-12 advert-item-text">
                     <div class="advert-item-title">
                         <?php echo $advert['title']; ?>

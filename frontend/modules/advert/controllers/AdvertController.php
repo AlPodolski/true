@@ -3,6 +3,7 @@
 
 namespace frontend\modules\advert\controllers;
 
+use common\models\AdvertCategory;
 use frontend\helpers\MetaBuilder;
 use yii\web\Controller;
 use frontend\modules\advert\models\Advert;
@@ -65,12 +66,22 @@ class AdvertController extends Controller
             ->limit(Yii::$app->params['advert_limit'])
             ->orderBy('id DESC')
             ->where(['type' => Advert::PRIVATE_CABINET_TYPE, 'status' => Advert::STATUS_CHECK])
-            ->with('userRelations')
-            ->all();
+            ->with('userRelations');
+
+        $category = false;
+
+        if ($category_id = Yii::$app->request->get('category')and $category = AdvertCategory::findOne($category_id)){
+
+            $advertList = $advertList->andWhere(['category_id' => $category]);
+
+        }
+
+        $advertList = $advertList->all();
 
         return $this->render('advert', [
             'advertList' => $advertList,
             'isCabinet' => true,
+            'category' => $category,
         ]);
     }
 
@@ -92,7 +103,7 @@ class AdvertController extends Controller
 
         $advert = Advert::find()->where(['id' => $id])
             ->with('userRelations')
-            ->with('comments')
+            ->with('comments', 'category')
             ->asArray()->one();
 
         return $this->render('view', [

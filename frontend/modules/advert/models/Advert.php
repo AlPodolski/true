@@ -2,9 +2,11 @@
 
 namespace frontend\modules\advert\models;
 
+use common\models\AdvertCategory;
 use common\models\Comments;
 use common\models\User;
 use Yii;
+use yii\db\ActiveQuery;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -17,6 +19,7 @@ use yii\helpers\ArrayHelper;
  * @property string|null $title
  * @property integer $type
  * @property integer $status
+ * @property integer $category_id
  */
 class Advert extends \yii\db\ActiveRecord
 {
@@ -43,7 +46,7 @@ class Advert extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'timestamp', 'type', 'status'], 'integer'],
+            [['user_id', 'timestamp', 'type', 'status', 'category_id'], 'integer'],
             [['text', 'title'], 'string'],
             [['text', 'title'], 'required'],
         ];
@@ -69,6 +72,11 @@ class Advert extends \yii\db\ActiveRecord
 
     }
 
+    public function getCategory() : ActiveQuery
+    {
+        return $this->hasOne(AdvertCategory::class, ['id' => 'category_id']);
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -81,6 +89,7 @@ class Advert extends \yii\db\ActiveRecord
             'text' => 'Текст',
             'title' => 'Заголовок',
             'status' => 'Статус',
+            'category_id' => 'Категория',
         ];
     }
 }

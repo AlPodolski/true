@@ -5,11 +5,14 @@
 /* @var $des string */
 /* @var $h1 string */
 /* @var $isCabinet bool|null */
+/* @var $category array|null */
 
 use frontend\modules\advert\models\Advert;
 use yii\web\View;
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
+
 
 $this->title = 'Объявления';
 
@@ -19,7 +22,17 @@ Yii::$app->view->registerMetaTag([
 ]);
 
 $this->params['breadcrumbs'][] = ['label' => 'Кабинет', 'url' => '/cabinet'];
+
+if ($category){
+
+    $this->title = $category['value'];
+
+    $this->params['breadcrumbs'][] = ['label' => 'Объявления', 'url' => '/cabinet/advert'];
+
+}
+
 $this->params['breadcrumbs'][] = $this->title;
+
 
 ?>
 <div class="container">
@@ -112,9 +125,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                     ->hiddenInput(['value' => $isCabinet ])
                                     ->label(false) ?>
 
-                                <?= $advertForm->field($modelAdvert, 'type')
-                                    ->hiddenInput(['user_id' =>  Yii::$app->user->id])
-                                    ->label(false) ?>
+                                <?php if ($isCabinet) : ?>
+
+                                    <?= $advertForm->field($modelAdvert, 'category_id')
+                                        ->dropDownList(ArrayHelper::map(\common\models\AdvertCategory::find()->all(), 'id', 'value'))
+                                        ->label('Категория') ?>
+
+                                <?php endif; ?>
 
                                 <?= $advertForm->field($modelAdvert, 'text')
                                     ->textarea(['placeholder' => 'Описание' , 'id' => ''])->label(false) ?>
