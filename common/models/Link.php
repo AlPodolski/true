@@ -11,6 +11,7 @@ use Yii;
  * @property string|null $url url на которой распологается ссылка
  * @property string|null $link url на которой ведет ссылка
  * @property string|null $text текст ссылки
+ * @property string|null $city_id ид города, 0 для всех городов
  */
 class Link extends \yii\db\ActiveRecord
 {
@@ -29,6 +30,7 @@ class Link extends \yii\db\ActiveRecord
     {
         return [
             [['url', 'link', 'text'], 'string', 'max' => 255],
+            [['city_id'], 'integer'],
         ];
     }
 
@@ -42,6 +44,7 @@ class Link extends \yii\db\ActiveRecord
             'url' => 'Урл на котором размещается ссылка',
             'link' => 'Ссылка',
             'text' => 'Текст ссылки',
+            'city_id' => 'ид города',
         ];
     }
 }

@@ -3,6 +3,7 @@
 namespace console\controllers;
 
 use common\models\AdvertCategory;
+use common\models\Link;
 use dastanaron\translit\Translit;
 use common\models\City;
 use common\models\HairColor;
@@ -90,17 +91,17 @@ class ImportController extends Controller
 
         $cityList = array_unique($cityList);
 
-        foreach ($cityList as $cityItem){
+        foreach ($cityList as $cityItem) {
 
             $city = City::find()->where(['city' => $cityItem])->asArray()->one();
 
-            $limit = \rand(100 ,  200);
+            $limit = \rand(100, 200);
 
             $i = 0;
 
             $phoneList = $phones[$cityItem];
 
-            while ($i < $limit){
+            while ($i < $limit) {
 
                 $record = $posts[\array_rand($posts)];
 
@@ -118,7 +119,7 @@ class ImportController extends Controller
                 $post->age = $record['age'];
                 $post->rost = $record['rost'];
 
-                if ($record['grud'])$post->breast = $record['grud'];
+                if ($record['grud']) $post->breast = $record['grud'];
 
                 if ($record['weight']) $post->ves = $record['weight'];
 
@@ -193,11 +194,11 @@ class ImportController extends Controller
 
                         }
 
-                    }else{
+                    } else {
 
-                        foreach ($placeList as $placeItem){
+                        foreach ($placeList as $placeItem) {
 
-                            if (\rand(0,2) == 2){
+                            if (\rand(0, 2) == 2) {
 
                                 $userRayon = new UserPlace();
                                 $userRayon->post_id = $post->id;
@@ -275,12 +276,11 @@ class ImportController extends Controller
 
                         }
 
-                    }
-                    else{
+                    } else {
 
-                        foreach ($serviceList as $serviceItem){
+                        foreach ($serviceList as $serviceItem) {
 
-                            if (\rand(0, 3) == 3){
+                            if (\rand(0, 3) == 3) {
 
                                 $userRayon = new UserService();
                                 $userRayon->post_id = $post->id;
@@ -314,7 +314,7 @@ class ImportController extends Controller
 
                         if ($gall) {
 
-                            if (!$record['mini']){
+                            if (!$record['mini']) {
 
                                 $mini = \array_shift($gall);
 
@@ -412,10 +412,9 @@ class ImportController extends Controller
 
                     $post->save();
 
-                }
-                elseif ($post = Posts::find()->where(['like', 'phone', $record['phone']])
+                } elseif ($post = Posts::find()->where(['like', 'phone', $record['phone']])
                     ->andWhere(['<>', 'name', $record['name']])
-                    ->one()){
+                    ->one()) {
 
                     $post = new Posts();
 
@@ -465,7 +464,7 @@ class ImportController extends Controller
                                 $userRayon->city_id = $city['id'];
                                 $userRayon->save();
 
-                            }else{
+                            } else {
 
                                 $rayonId = new Rayon();
 
@@ -491,7 +490,7 @@ class ImportController extends Controller
 
                             if ($metro) {
 
-                                foreach ($metro as $metroItem){
+                                foreach ($metro as $metroItem) {
 
                                     $id = ArrayHelper::getValue(Metro::find()->where(['value' => $metroItem])->asArray()->one(), 'id');
 
@@ -503,7 +502,7 @@ class ImportController extends Controller
                                         $userRayon->city_id = $city['id'];
                                         $userRayon->save();
 
-                                    }else{
+                                    } else {
 
                                         $metro = new Metro();
 
@@ -579,12 +578,11 @@ class ImportController extends Controller
 
                             }
 
-                        }
-                        else{
+                        } else {
 
-                            foreach ($placeList as $placeItem){
+                            foreach ($placeList as $placeItem) {
 
-                                if (\rand(0,2) == 2){
+                                if (\rand(0, 2) == 2) {
 
                                     $userRayon = new UserPlace();
                                     $userRayon->post_id = $post->id;
@@ -662,13 +660,11 @@ class ImportController extends Controller
 
                             }
 
-                        }
+                        } else {
 
-                        else{
+                            foreach ($serviceList as $serviceItem) {
 
-                            foreach ($serviceList as $serviceItem){
-
-                                if (\rand(0, 3) == 3){
+                                if (\rand(0, 3) == 3) {
 
                                     $userRayon = new UserService();
                                     $userRayon->post_id = $post->id;
@@ -702,7 +698,7 @@ class ImportController extends Controller
 
                             if ($gall) {
 
-                                if (!$record['mini']){
+                                if (!$record['mini']) {
 
                                     $mini = \array_shift($gall);
 
@@ -770,9 +766,7 @@ class ImportController extends Controller
 
                     }
 
-                }
-                else
-                    {
+                } else {
 
                     $post = new Posts();
 
@@ -787,7 +781,7 @@ class ImportController extends Controller
                     $post->age = $record['age'];
                     $post->rost = $record['rost'];
 
-                    if ($record['grud'])$post->breast = $record['grud'];
+                    if ($record['grud']) $post->breast = $record['grud'];
 
                     if ($record['weight']) $post->ves = $record['weight'];
 
@@ -825,7 +819,7 @@ class ImportController extends Controller
                                 $userRayon->city_id = $city['id'];
                                 $userRayon->save();
 
-                            }else{
+                            } else {
 
                                 $rayonId = new Rayon();
 
@@ -851,7 +845,7 @@ class ImportController extends Controller
 
                             if ($metro) {
 
-                                foreach ($metro as $metroItem){
+                                foreach ($metro as $metroItem) {
 
                                     $id = ArrayHelper::getValue(Metro::find()
                                         ->where(['value' => $metroItem])
@@ -866,7 +860,7 @@ class ImportController extends Controller
                                         $userRayon->city_id = $city['id'];
                                         $userRayon->save();
 
-                                    }else{
+                                    } else {
 
                                         $metro = new Metro();
 
@@ -943,11 +937,11 @@ class ImportController extends Controller
 
                             }
 
-                        }else{
+                        } else {
 
-                            foreach ($placeList as $placeItem){
+                            foreach ($placeList as $placeItem) {
 
-                                if (\rand(0,2) == 2){
+                                if (\rand(0, 2) == 2) {
 
                                     $userRayon = new UserPlace();
                                     $userRayon->post_id = $post->id;
@@ -1025,11 +1019,11 @@ class ImportController extends Controller
 
                             }
 
-                        }else{
+                        } else {
 
-                            foreach ($serviceList as $serviceItem){
+                            foreach ($serviceList as $serviceItem) {
 
-                                if (\rand(0, 3) == 3){
+                                if (\rand(0, 3) == 3) {
 
                                     $userRayon = new UserService();
                                     $userRayon->post_id = $post->id;
@@ -1063,7 +1057,7 @@ class ImportController extends Controller
 
                             if ($gall) {
 
-                                if (!$record['mini']){
+                                if (!$record['mini']) {
 
                                     $mini = \array_shift($gall);
 
@@ -1129,8 +1123,7 @@ class ImportController extends Controller
 
                         }
 
-                    }
-                    else {
+                    } else {
                         \d($post->getErrors());
                     }
 
@@ -1159,7 +1152,7 @@ class ImportController extends Controller
 
             $advertCategory = AdvertCategory::find()->where(['value' => $record['category']])->one();
 
-            if ($advertCategory){
+            if ($advertCategory) {
 
                 $avert = new Advert();
 
@@ -1174,6 +1167,72 @@ class ImportController extends Controller
             }
 
         }
+    }
+
+    public function actionLink()
+    {
+        $linkItems = $this->getCsvItems(Yii::getAlias('@app/files/fast_links_23_07_2021.csv'));
+
+        $url = \array_unique(ArrayHelper::getColumn($linkItems, 'page'));
+
+        foreach ($url as $item) {
+
+            $i = 0;
+
+            \shuffle($linkItems);
+
+            foreach ($linkItems as $linkItem){
+
+                if ($i > 2) break;
+
+                if ($item != $linkItem['page']){
+
+                    $link = new Link();
+
+                    $link->city_id = 1;
+
+                    $link->url = $item;
+
+                    $link->link = $linkItem['page'];
+
+                    $link->text = $linkItem['key'];
+
+                    $link->save();
+
+                    $i++;
+
+                }
+
+            }
+
+        }
+
+    }
+
+    private function getCsvItems($fileName)
+    {
+
+        $stream = \fopen($fileName, 'r');
+
+        $csv = Reader::createFromStream($stream);
+        $csv->setDelimiter(';');
+        $csv->setHeaderOffset(0);
+
+        //build a statement
+        $stmt = (new Statement());
+
+        $records = $stmt->process($csv);
+
+        $result = array();
+
+        foreach ($records as $record) {
+
+            $result[] = $record;
+
+        }
+
+        return $result;
+
     }
 
     public function actionAddCheck()
@@ -1279,7 +1338,7 @@ class ImportController extends Controller
     {
         $posts = Posts::find()->where(['updated_at' => 1])->asArray()->all();
 
-        foreach ($posts as $post){
+        foreach ($posts as $post) {
 
             $postSite = new PostSites();
 
@@ -1299,11 +1358,11 @@ class ImportController extends Controller
     {
         $posts = Posts::find()->where(['updated_at' => 1])->asArray()->all();
 
-        foreach ($posts as $post){
+        foreach ($posts as $post) {
 
-            if ($files = Files::find()->where(['related_id' => $post['id'], 'related_class' => Posts::class])->all()){
+            if ($files = Files::find()->where(['related_id' => $post['id'], 'related_class' => Posts::class])->all()) {
 
-                foreach ($files as $file){
+                foreach ($files as $file) {
 
                     $file->file = \str_replace('aa2', 'aa3', $file->file);
 
@@ -1320,9 +1379,9 @@ class ImportController extends Controller
     {
         $posts = Posts::find()->where(['updated_at' => 1])->all();
 
-        foreach ($posts as $post){
+        foreach ($posts as $post) {
 
-            if($post['video']){
+            if ($post['video']) {
 
                 $post->video = \str_replace('aa2', 'aa3', $post->video);
 
@@ -1337,11 +1396,11 @@ class ImportController extends Controller
     {
         $reviews = Review::find()->with('post')->asArray()->all();
 
-        foreach ($reviews as $review){
+        foreach ($reviews as $review) {
 
-            if ($review['post']['service']){
+            if ($review['post']['service']) {
 
-                foreach ($review['post']['service'] as $item){
+                foreach ($review['post']['service'] as $item) {
 
                     $serviceReview = new ServiceReviews();
 
@@ -1363,7 +1422,7 @@ class ImportController extends Controller
     {
         $posts = Posts::find()->where(['updated_at' => 2])->all();
 
-        foreach ($posts as $post){
+        foreach ($posts as $post) {
 
             UserMetro::deleteAll(['post_id' => $post->id]);
             UserRayon::deleteAll(['post_id' => $post->id]);
@@ -1380,14 +1439,15 @@ class ImportController extends Controller
         }
     }
 
-    public function actionDns(){
+    public function actionDns()
+    {
 
         $citys = include 'dns-city.php';
 
         $host = 'sex-true.com';
         $ip = '193.42.108.121';
 
-        foreach ($citys as $city){
+        foreach ($citys as $city) {
 
             $content = array(
                 'type' => "A",
@@ -1397,20 +1457,20 @@ class ImportController extends Controller
             );
 
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL,"https://api.cloudflare.com/client/v4/zones/375e7fbf4f926ab5db1431f990329b80/dns_records");
+            curl_setopt($ch, CURLOPT_URL, "https://api.cloudflare.com/client/v4/zones/375e7fbf4f926ab5db1431f990329b80/dns_records");
             curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS,json_encode($content));  //Post Fields
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($content));  //Post Fields
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
             $headers = [
-                'X-Auth-Email: '.Yii::$app->params['cloud_email'],
-                'X-Auth-Key: '.Yii::$app->params['cloud_api'],
+                'X-Auth-Email: ' . Yii::$app->params['cloud_email'],
+                'X-Auth-Key: ' . Yii::$app->params['cloud_api'],
                 'Content-Type: application/json',
             ];
 
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-            $server_output = curl_exec ($ch);
+            $server_output = curl_exec($ch);
 
             $object = json_decode($server_output);
 
@@ -1419,10 +1479,10 @@ class ImportController extends Controller
             $zapid = $object->result->id;
 
 
-            curl_close ($ch);
+            curl_close($ch);
 
             // пытаемся поставить галочку на облаке
-            $zoneindetif="https://api.cloudflare.com/client/v4/zones/375e7fbf4f926ab5db1431f990329b80/dns_records/$zapid";
+            $zoneindetif = "https://api.cloudflare.com/client/v4/zones/375e7fbf4f926ab5db1431f990329b80/dns_records/$zapid";
 
 
             $content = array(
@@ -1433,23 +1493,23 @@ class ImportController extends Controller
             );
 
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL,$zoneindetif);
+            curl_setopt($ch, CURLOPT_URL, $zoneindetif);
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
-            curl_setopt($ch, CURLOPT_POSTFIELDS,json_encode($content));
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($content));
 
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
             $headers = [
-                'X-Auth-Email: '.Yii::$app->params['cloud_email'],
-                'X-Auth-Key: '.Yii::$app->params['cloud_api'],
+                'X-Auth-Email: ' . Yii::$app->params['cloud_email'],
+                'X-Auth-Key: ' . Yii::$app->params['cloud_api'],
                 'Content-Type: application/json',
             ];
 
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-            $server_output = curl_exec ($ch);
+            $server_output = curl_exec($ch);
 
-            echo $city.PHP_EOL;
+            echo $city . PHP_EOL;
 
         }
 
@@ -1462,14 +1522,14 @@ class ImportController extends Controller
 
         $citys = City::find()->asArray()->all();
 
-        foreach ($citys as $city){
+        foreach ($citys as $city) {
 
             $opts = array(
-                'http'=>array(
-                    'method'=>"GET",
-                    'header'=>"Accept-language: en\r\n" .
-                        "Cookie: foo=bar\r\n".
-                        'Authorization: OAuth '.$access_token,
+                'http' => array(
+                    'method' => "GET",
+                    'header' => "Accept-language: en\r\n" .
+                        "Cookie: foo=bar\r\n" .
+                        'Authorization: OAuth ' . $access_token,
                 )
             );
 
@@ -1480,59 +1540,57 @@ class ImportController extends Controller
             $user_id = $user_id->user_id;
 
 
-
             $content = '
                 
                 <Data>
-                    <host_url>https://'.$city['url'].'.'.$host.'</host_url>
+                    <host_url>https://' . $city['url'] . '.' . $host . '</host_url>
                 </Data>
                 
                 ';
 
 
-
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL,"https://api.webmaster.yandex.net/v4/user/{$user_id}/hosts/");
+            curl_setopt($ch, CURLOPT_URL, "https://api.webmaster.yandex.net/v4/user/{$user_id}/hosts/");
             curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS,$content);  //Post Fields
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $content);  //Post Fields
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
             $headers = [
                 'Content-type: application/xml',
-                'Authorization: OAuth '.$access_token
+                'Authorization: OAuth ' . $access_token
             ];
 
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-            $server_output = curl_exec ($ch);
+            $server_output = curl_exec($ch);
 
-            curl_close ($ch);
+            curl_close($ch);
 
-            $result=json_decode($server_output);
+            $result = json_decode($server_output);
 
 
             $content = '';
 
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL,"https://api.webmaster.yandex.net/v3/user/{$user_id}/hosts/".urlencode($result->host_id)."/verification/?verification_type=META_TAG");
+            curl_setopt($ch, CURLOPT_URL, "https://api.webmaster.yandex.net/v3/user/{$user_id}/hosts/" . urlencode($result->host_id) . "/verification/?verification_type=META_TAG");
             curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS,$content);  //Post Fields
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $content);  //Post Fields
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
             $headers = [
                 'Content-type: application/xml',
-                'Authorization: OAuth '.$access_token
+                'Authorization: OAuth ' . $access_token
             ];
 
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-            $server_output = curl_exec ($ch);
+            $server_output = curl_exec($ch);
 
-            curl_close ($ch);
+            curl_close($ch);
 
             $server_output = json_decode($server_output);
 
-            $meta2 =  $server_output->verification_uin;
+            $meta2 = $server_output->verification_uin;
 
             $meta_model = new Webmaster();
 
@@ -1553,15 +1611,15 @@ class ImportController extends Controller
 
         $posts = Posts::find()->asArray()->all();
 
-        foreach ($newService as $item){
+        foreach ($newService as $item) {
 
             $translit = new Translit();
 
-            if ($service = Service::find()->where(['value' => $item])->asArray()->one()){
+            if ($service = Service::find()->where(['value' => $item])->asArray()->one()) {
 
-                foreach ($posts as $post){
+                foreach ($posts as $post) {
 
-                    if (\rand(0,2) == 1){
+                    if (\rand(0, 2) == 1) {
 
                         $userService = new UserService();
 
@@ -1596,23 +1654,23 @@ class ImportController extends Controller
 
         $values = array();
 
-        foreach ($records as $record){
+        foreach ($records as $record) {
 
             $values[] = $record;
 
         }
         $arr = array();
-        foreach ($values as $value){
+        foreach ($values as $value) {
 
-            foreach ($values as $item){
+            foreach ($values as $item) {
 
                 if ($value['key'] == $item['key']) {
 
-                    if (isset($arr[$item['key']]) and \is_array($arr[$item['key']])){
+                    if (isset($arr[$item['key']]) and \is_array($arr[$item['key']])) {
 
                         if (!\in_array($value['value'], $arr[$item['key']])) $arr[$item['key']][] = $value['value'];
 
-                    }else $arr[$item['key']][] = $value['value'];
+                    } else $arr[$item['key']][] = $value['value'];
 
 
                 }
@@ -1621,13 +1679,13 @@ class ImportController extends Controller
 
         }
 
-        foreach ($arr as $key => $value){
+        foreach ($arr as $key => $value) {
 
-            if ($service = Service::find()->where(['value' => $key])->with('posts')->asArray()->one()){
+            if ($service = Service::find()->where(['value' => $key])->with('posts')->asArray()->one()) {
 
-                foreach($service['posts'] as $item){
+                foreach ($service['posts'] as $item) {
 
-                    if (\rand(0,1) == 1){
+                    if (\rand(0, 1) == 1) {
 
                         $serviceDesc = new ServiceDesc();
                         $serviceDesc->post_id = $item['post_id'];
@@ -1651,29 +1709,29 @@ class ImportController extends Controller
     {
         $posts = Posts::find()->asArray()->all();
 
-        foreach ($posts as $post){
+        foreach ($posts as $post) {
 
-            if (!Review::find()->where(['post_id' => $post['id']])->count()){
+            if (!Review::find()->where(['post_id' => $post['id']])->count()) {
 
                 $review = new Review();
 
                 $review->post_id = $post['id'];
-                $review->photo_marc = \rand(4,10);
-                $review->total_marc = \rand(5,10);
-                $review->clean = \rand(2,10);
-                $review->is_happy = \rand(0,1);
+                $review->photo_marc = \rand(4, 10);
+                $review->total_marc = \rand(5, 10);
+                $review->clean = \rand(2, 10);
+                $review->is_happy = \rand(0, 1);
 
                 $review->save();
 
                 $service = UserService::find()->where(['post_id' => $post['id']])->asArray()->all();
 
-                foreach ($service as $serviceItem){
+                foreach ($service as $serviceItem) {
 
                     $servRev = new ServiceReviews();
 
                     $servRev->post_id = $post['id'];
                     $servRev->service_id = $serviceItem['service_id'];
-                    $servRev->marc = \rand(3,10);
+                    $servRev->marc = \rand(3, 10);
 
                     $servRev->save();
 
