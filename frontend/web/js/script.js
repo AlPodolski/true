@@ -399,7 +399,7 @@ $(window).scroll(function () {
 
     var accept = $(target).attr('data-accept');
 
-    changeURL();
+    //changeURL();
 
     if (winScrollTop > (scrollToElem - 100)) {
 

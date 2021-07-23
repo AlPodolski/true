@@ -114,6 +114,8 @@ return [
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/more-forum' => 'advert/advert/more',
 
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/advert' => 'advert/advert/cabinet-advert',
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/more-adverds' => 'advert/advert/cabinet-advert',
+
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/advert/<id:[0-9]+>' => 'advert/advert/cabinet-advert-view',
 
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/comment' => 'comment/index',

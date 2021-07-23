@@ -77,7 +77,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
         </div>
 
-        <div class="col-12 pager" data-url="/more-adverds" data-page="1"></div>
+        <?php if ($isCabinet) : ?>
+
+            <div class="col-12 pager" data-url="/cabinet/more-adverds" data-page="1"></div>
+
+        <?php else : ?>
+
+            <div class="col-12 pager" data-url="/more-adverds" data-page="1"></div>
+
+        <?php endif; ?>
+
 
         <div id="addAdvertModal" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
             <div class="modal-dialog">
