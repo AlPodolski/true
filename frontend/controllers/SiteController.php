@@ -105,6 +105,10 @@ class SiteController extends Controller
     public function actionIndex($city, $page = false)
     {
 
+        $data = Yii::$app->phone->send(['phone' => '71111111111', 'action' => 'get-review']);
+
+        Yii::$app->cache->flush();
+
         $cityInfo = City::getCity($city);
 
         if (Yii::$app->request->isPost) {

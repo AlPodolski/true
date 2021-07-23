@@ -21,20 +21,18 @@ class LinkWidget extends Widget
 
         if ($data === false) {
             // $data нет в кэше, вычисляем заново
-            $links = Link::find()
-                ->where(['url' => $this->url])
-                ->asArray();
+            $links = Link::find()->asArray();
 
             if (isset(Yii::$app->requestedParams)
                 and $city = City::getCity(Yii::$app->requestedParams['city'])
             ) {
 
-                $links = $links->andWhere(['city_id' => $city['id']]);
+                $links = $links->where(['city_id' => $city['id']]);
                 $links = $links->orWhere(['city_id' => 0]);
 
             }
 
-                $links = $links->all();
+                $links = $links->andWhere(['url' => $this->url])->all();
 
             Yii::$app->cache->set(Yii::$app->params['fast_link_key_cache_pref'].'_'.$this->url, $data);
         }
