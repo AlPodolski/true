@@ -2,6 +2,7 @@
 
 namespace console\controllers;
 
+use common\models\AdvertCategory;
 use dastanaron\translit\Translit;
 use common\models\City;
 use common\models\HairColor;
@@ -16,6 +17,7 @@ use frontend\models\Meta;
 use frontend\models\Metro;
 use frontend\models\UserMetro;
 use frontend\models\Webmaster;
+use frontend\modules\advert\models\Advert;
 use frontend\modules\user\models\Posts;
 use frontend\modules\user\models\PostSites;
 use frontend\modules\user\models\Review;
@@ -1138,6 +1140,40 @@ class ImportController extends Controller
 
         }
 
+    }
+
+    public function actionAdvert()
+    {
+        $stream = \fopen(Yii::getAlias('@app/files/advert_23_07_2021.csv'), 'r');
+
+        $csv = Reader::createFromStream($stream);
+        $csv->setDelimiter(';');
+        $csv->setHeaderOffset(0);
+
+        //build a statement
+        $stmt = (new Statement());
+
+        $records = $stmt->process($csv);
+
+        foreach ($records as $record) {
+
+            $advertCategory = AdvertCategory::find()->where(['value' => $record['category']])->one();
+
+            if ($advertCategory){
+
+                $avert = new Advert();
+
+                $avert->title = $record['title'];
+                $avert->text = $record['text'];
+                $avert->type = Advert::PRIVATE_CABINET_TYPE;
+                $avert->status = Advert::STATUS_CHECK;
+                $avert->category_id = $advertCategory->id;
+
+                $avert->save();
+
+            }
+
+        }
     }
 
     public function actionAddCheck()
