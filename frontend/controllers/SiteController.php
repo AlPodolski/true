@@ -104,7 +104,7 @@ class SiteController extends Controller
      */
     public function actionIndex($city, $page = false)
     {
-з
+
         $cityInfo = City::getCity($city);
 
         if (Yii::$app->request->isPost) {
