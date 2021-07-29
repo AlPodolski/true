@@ -1,6 +1,7 @@
 <?php /* @var $user array */ ?>
 <?php /* @var $countPosts integer */ ?>
 <?php use frontend\widgets\PhotoWidget; ?>
+<?php use yii\helpers\Html; ?>
 <?php use frontend\modules\chat\components\helpers\GetDialogsHelper; ?>
 <div class="col-12 col-md-12 col-lg-6 col-xl-5">
 
@@ -205,6 +206,21 @@
                         <a href="/cabinet/edit" class="black-text font-weight-bold d-block text-center padding-top-0">
                             Настройка аккаунта
                         </a>
+                    </div>
+                    <div class="col-12">
+                        <?php echo ''
+                            . Html::beginForm(['/logout'], 'post')
+                            . Html::submitButton(
+                                '<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M17.5 27.5H23.75C24.413 27.5 25.0489 27.2366 25.5178 26.7678C25.9866 26.2989 26.25 25.663 26.25 25V5C26.25 4.33696 25.9866 3.70107 25.5178 3.23223C25.0489 2.76339 24.413 2.5 23.75 2.5H17.5" stroke="#F74952" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M13.75 20L18.75 15L13.75 10" stroke="#F74952" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M18.75 15H3.75" stroke="#F74952" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+                     Выйти (' . Yii::$app->user->identity->username . ')',
+                                ['class' => ' btn-viiti btn text d-block m-auto margin-top-20']
+                            )
+                            . Html::endForm()
+                            . '' ?>
                     </div>
 
                 </div>
