@@ -16,7 +16,7 @@ class CronController extends Controller
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->limit(3)
             ->orderBy('RAND()')
-            ->one();
+            ->all();
 
         foreach ($posts as $post){
 
