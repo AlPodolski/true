@@ -111,7 +111,7 @@ class SiteController extends Controller
 
             $posts = Posts::find()
                 ->asArray()
-                ->with('avatar', 'metro', 'selphiCount')
+                ->with('avatar', 'metro', 'selphiCount', 'partnerId')
                 ->where(['city_id' => $cityInfo['id']])
                 ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
                 ->orderBy(['rand()' => SORT_DESC])
@@ -142,7 +142,7 @@ class SiteController extends Controller
         $webmaster = Webmaster::getTag($cityInfo['id']);
 
         $prPosts = Posts::find()->asArray()
-            ->with('avatar', 'metro', 'selphiCount')
+            ->with('avatar', 'metro', 'selphiCount' , 'partnerId')
             ->where(['city_id' => $cityInfo['id']])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->limit(11)
@@ -190,7 +190,7 @@ class SiteController extends Controller
     public function actionListFavorite($city)
     {
 
-        $posts = Posts::find()->where(['in', 'id', FavoriteHelper::getFavorite()])->with('avatar', 'metro', 'selphiCount')
+        $posts = Posts::find()->where(['in', 'id', FavoriteHelper::getFavorite()])->with('avatar', 'metro', 'selphiCount', 'partnerId')
             ->all();
 
         return $this->render('favorite', [

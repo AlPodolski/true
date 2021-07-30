@@ -14,6 +14,7 @@ use common\models\Sites;
 use frontend\models\Files;
 use frontend\models\Metro;
 use frontend\models\UserMetro;
+use common\models\User;
 use Yii;
 use yii\db\ActiveQuery;
 use yii\helpers\ArrayHelper;
@@ -86,7 +87,7 @@ class Posts extends \yii\db\ActiveRecord
     public static function getTopList($cityId)
     {
         return self::find()->where(['in', 'id', TopAnketBlock::getPostIds($cityId)])
-            ->with('avatar', 'metro', 'selphiCount')
+            ->with('avatar', 'metro', 'selphiCount', 'partnerId')
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->asArray()->all();
     }
@@ -114,6 +115,11 @@ class Posts extends \yii\db\ActiveRecord
         return $this->hasMany(PostMessage::class, ['post_id' => 'id'])
             ->andWhere(['status' => 0])
             ->orderBy('id DESC');
+    }
+
+    public function getPartnerId()
+    {
+        return $this->hasOne(User::class, ['id' => 'user_id'])->select('partner_id');
     }
 
     public function getReadMessage() : ActiveQuery

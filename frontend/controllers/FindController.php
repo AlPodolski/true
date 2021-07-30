@@ -270,7 +270,7 @@ class FindController extends Controller
         }
 
         $posts = $posts
-            ->with('avatar', 'metro', 'selphiCount')
+            ->with('avatar', 'metro', 'selphiCount', 'partnerId')
             ->orderBy(['rand()' => SORT_DESC])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->asArray()

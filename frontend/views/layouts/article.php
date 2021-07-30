@@ -59,7 +59,7 @@ use frontend\widgets\PhotoWidget;
                     <div class="col-6">
                         <div class="phone-photo-count">
                             <span data-id="<?php echo $post['id'] ?>"
-                                  onclick="add_phone_view(this);ym(70919698,'reachGoal','call')"
+                                  onclick="add_phone_view(this);ym(70919698,'reachGoal','call'); <?php if ($post['partnerId']) : ?> ym(70919698,'reachGoal','<?php echo $post['partnerId']['partner_id'] ?>');  <?php endif; ?>  "
                                   data-tel="tel:+<?php echo preg_replace("/[^0-9]/", '', $post['phone']) ?>" class="post-phone"><?php echo $post['phone'] ?></span>
                         </div>
                         <?php if (isset($post['metro'][0]['value'])) : ?>
