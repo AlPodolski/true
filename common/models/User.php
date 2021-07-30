@@ -30,6 +30,7 @@ use yii\web\IdentityInterface;
  * @property integer $open_message
  * @property integer $fake
  * @property string $password write-only password
+ * @property string $partner_id
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -79,6 +80,7 @@ class User extends ActiveRecord implements IdentityInterface
             ['city_id', 'integer'],
             ['role', 'integer'],
             ['cash', 'integer'],
+            ['partner_id', 'string'],
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
             ['fake', 'default', 'value' => self::REAL_USER],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
