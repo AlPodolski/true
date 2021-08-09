@@ -7,6 +7,12 @@ function add_img_grid(){
         singleGallery.lightGallery();
 
     });
+    $('.carousel-inner').each(function(i){
+
+        var singleGallery = $(this);
+        singleGallery.lightGallery();
+
+    });
 
 }
 

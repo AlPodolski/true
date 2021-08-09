@@ -13,7 +13,11 @@ class PhotoWidget extends Widget
 
     public $width = true;
 
+    public $showPictureHref = false;
+
     public $options = [];
+
+    public $pictureOptions = [];
 
     public function run()
     {
@@ -22,6 +26,8 @@ class PhotoWidget extends Widget
             'options' => $this->options,
             'size' => $this->size,
             'width' => $this->width,
+            'pictureOptions' => $this->pictureOptions,
+            'showPictureHref' => $this->showPictureHref,
         ]);
     }
 }

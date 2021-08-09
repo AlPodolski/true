@@ -59,11 +59,15 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                             <?php $i = 0 ?>
 
-                            <span class="active carousel-item">
+
                                 <?php echo PhotoWidget::widget([
                                     'path' => $post['avatar']['file'],
                                     'size' => '360_471',
                                     'width' => true,
+                                    'showPictureHref' => true,
+                                    'pictureOptions' => [
+                                            'class' => 'active carousel-item'
+                                    ],
                                     'options' => [
                                         'class' => 'img user-img card_img',
                                         'loading' => 'lazy',
@@ -71,7 +75,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                                         'title' => $photoTitle,
                                     ],
                                 ]); ?>
-                            </span>
+
 
                             <?php foreach ($post['gal'] as $item) : ?>
 
@@ -79,12 +83,14 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                                     <?php $i++; ?>
 
-                                    <span class="carousel-item">
-
                                         <?php echo PhotoWidget::widget([
                                             'path' => $item['file'],
                                             'size' => '360_471',
                                             'width' => true,
+                                            'showPictureHref' => true,
+                                            'pictureOptions' => [
+                                                'class' => ' carousel-item'
+                                            ],
                                             'options' => [
                                                 'class' => 'img user-img',
                                                 'loading' => 'lazy',
@@ -92,8 +98,6 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                                                 'title' => $photoTitle,
                                             ],
                                         ]); ?>
-
-                                      </span>
 
                                 <?php endif; ?>
 

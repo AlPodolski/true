@@ -3,31 +3,43 @@
 /* @var $path string */
 /* @var $size string */
 /* @var $options array */
+/* @var $pictureOptions array */
 /* @var $width bool|null */
+/* @var $showPictureHref bool|null */
 
 $params = '';
+$pictureOptionText = '';
 
 if (is_array($options)) {
-    foreach ($options as $key => $value) $params.= ' '.$key .'="'.$value.'" ';
+    foreach ($options as $key => $value) $params .= ' ' . $key . '="' . $value . '" ';
 }
 
-if (file_exists(Yii::getAlias('@webroot') . $path) and $path) : ?>
+if (is_array($pictureOptions)) {
+    foreach ($pictureOptions as $key => $value) $pictureOptionText .= ' ' . $key . '="' . $value . '" ';
+} ?>
 
-    <?php $widthInfo = '' ?>
+    <?php if (file_exists(Yii::getAlias('@webroot') . $path) and $path) : ?>
 
-    <?php if ($width and $imageInfo = Yii::$app->imageCache->sizes[$size]) : ?>
+        <?php $widthInfo = '' ?>
 
-    <?php $height = $imageInfo[1] - 13 ?>
+        <?php if ($width and $imageInfo = Yii::$app->imageCache->sizes[$size]) : ?>
 
-    <?php $widthInfo = 'width="'.$imageInfo[0].'" height="'.$height.'"'; ?>
+            <?php $height = $imageInfo[1] - 13 ?>
 
-    <?php endif; ?>
+            <?php $widthInfo = 'width="' . $imageInfo[0] . '" height="' . $height . '"'; ?>
 
-    <picture>
-        <source srcset="<?= Yii::$app->imageCache->thumbSrc($path, $size) ?>" >
-        <img <?php echo $widthInfo ?> <?php echo $params ?> srcset="<?= Yii::$app->imageCache->thumbSrc($path, $size) ?>">
+        <?php endif; ?>
+
+
+        <picture <?php echo $pictureOptionText ?> <?php if ($showPictureHref) : ?> href="<?= Yii::$app->imageCache->thumbSrc($path, $size) ?>" <?php endif; ?>>
+        <img <?php echo $widthInfo ?> <?php echo $params ?> src="<?= Yii::$app->imageCache->thumbSrc($path, $size) ?>">
     </picture>
 
-<?php else : ?>
-    <img <?php echo $params ?> src="/img/no-photo-user.png" srcset="/img/no-photo-user.png" alt="">
-<?php endif;
+
+    <?php else : ?>
+        <img <?php echo $params ?> src="/img/no-photo-user.png" srcset="/img/no-photo-user.png" alt="">
+    <?php endif; ?>
+
+
+
+
