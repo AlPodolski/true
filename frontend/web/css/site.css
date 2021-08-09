@@ -2747,6 +2747,12 @@ select{
     line-height: 141.4%;
     color: #8C8C8C;
 }
+.price{
+    cursor:pointer;
+}
+.cursor-pointer{
+    cursor:pointer;
+}
 .dialog-photo .img{
     border-radius: 50%;
 }

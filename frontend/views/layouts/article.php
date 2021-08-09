@@ -58,9 +58,7 @@ use frontend\widgets\PhotoWidget;
                 <div class="row">
                     <div class="col-6">
                         <div class="phone-photo-count">
-                            <span data-id="<?php echo $post['id'] ?>"
-                                  onclick="add_phone_view(this);ym(70919698,'reachGoal','call'); <?php if ($post['partnerId']) : ?> ym(70919698,'reachGoal','<?php echo $post['partnerId']['partner_id'] ?>');  <?php endif; ?>  "
-                                  data-tel="tel:+<?php echo preg_replace("/[^0-9]/", '', $post['phone']) ?>" class="post-phone"><?php echo $post['phone'] ?></span>
+                            от <?php echo $post['price'] ?> руб.
                         </div>
                         <?php if (isset($post['metro'][0]['value'])) : ?>
                             <div class="post-address">
@@ -173,7 +171,12 @@ use frontend\widgets\PhotoWidget;
             </div>
         </div>
         <div class="price">
-            от <?php echo $post['price'] ?> руб.
+
+            <span data-id="<?php echo $post['id'] ?>"
+                  onclick="add_phone_view(this);ym(70919698,'reachGoal','call'); <?php if ($post['partnerId']) : ?> ym(70919698,'reachGoal','<?php echo $post['partnerId']['partner_id'] ?>');  <?php endif; ?>  "
+                  data-tel="tel:+<?php echo preg_replace("/[^0-9]/", '', $post['phone']) ?>"
+                  data-number="<?php echo $post['phone'] ?>"
+                  class="">Показать номер</span>
         </div>
     </article>
 </div>

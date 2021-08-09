@@ -160,11 +160,13 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                                 <div class="col-12">
                                     <h1><?php echo $post['name'] ?></h1>
                                 </div>
-                                <div class="col-12">
-                                        <span data-id="<?php echo $post['id'] ?>"
-                                              onclick="add_phone_view(this);ym(70919698,'reachGoal','call');<?php if ($post['partnerId']) : ?> ym(70919698,'reachGoal','<?php echo $post['partnerId']['partner_id'] ?>');  <?php endif; ?>"
-                                              data-tel="tel:+<?php echo preg_replace("/[^0-9]/", '', $post['phone']) ?>"
-                                              class="post-phone"><?php echo $post['phone'] ?></span>
+                                <div class="col-12 cursor-pointer">
+                                    <span data-id="<?php echo $post['id'] ?>"
+                                          onclick="add_phone_view(this);ym(70919698,'reachGoal','call'); <?php if ($post['partnerId']) : ?> ym(70919698,'reachGoal','<?php echo $post['partnerId']['partner_id'] ?>');  <?php endif; ?>  "
+                                          data-tel="tel:+<?php echo preg_replace("/[^0-9]/", '', $post['phone']) ?>"
+                                          data-number="<?php echo $post['phone'] ?>"
+                                          class="">Показать номер</span>
+
                                 </div>
                                 <div class="col-12">
                                     <div class="icon count-photo-icon">

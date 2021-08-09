@@ -271,6 +271,7 @@ function add_phone_view(object){
         data: 'id=' + id,
         cache: false,
         success: function (data) {
+            $(object).text($(object).attr('data-number'));
             window.location.href=phone;
         }
     })
