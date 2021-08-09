@@ -76,6 +76,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'phone',
             'price',
             [
+                'attribute' => 'Клик по номеру',
+                'format' => 'raw',
+                'value' => function ($user) {
+                    /* @var $user \frontend\modules\user\models\Posts */
+                    return \frontend\modules\user\helpers\ViewCountHelper::countView($user->id, Yii::$app->params['redis_view_phone_count_key']);
+                },
+            ],
+
+            [
                 'class' => 'backend\components\ActionColumnExtends',
                 'template' => '{update} {delete}',
                 'buttons' => [
