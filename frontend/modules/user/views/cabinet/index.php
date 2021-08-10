@@ -79,11 +79,11 @@ $this->params['breadcrumbs'][] = $this->title;
                                 break;
                             case \frontend\modules\user\models\Posts::POST_ON_PUPLICATION_STATUS:
                                 $postStatus['key'] = 'pub';
-                                $postStatus['value'] = 'Анкета на публикации';
+                                $postStatus['value'] = 'Остановить публикацию';
                                 break;
                             case \frontend\modules\user\models\Posts::POST_DONT_PUBLICATION_STATUS:
                                 $postStatus['key'] = 'stop';
-                                $postStatus['value'] = 'Анкета не публикуется';
+                                $postStatus['value'] = 'Поставить на публикацию';
                                 break;
                             case \frontend\modules\user\models\Posts::RETURNED_FOR_REVISION:
                                 $postStatus['key'] = 'return';
@@ -96,7 +96,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="white-cabinet-block cabinet-nav-block margin-top-20 d-flex items-center nav-cabinet-block">
 
                             <div class="anket-info">
-                                <span class="<?php echo $postStatus['key']?>"><?php echo $postStatus['value'] ?></span>
+                                <span data-id="<?php echo $post['id']?>" onclick="publication(this)" data-key="<?php echo $postStatus['key']?>" class="cursor-pointer <?php echo $postStatus['key']?>"><?php echo $postStatus['value'] ?></span>
                             </div>
 
 

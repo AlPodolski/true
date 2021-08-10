@@ -278,6 +278,24 @@ function add_phone_view(object){
 
 }
 
+function publication(object){
+
+    var id = $(object).attr('data-id');
+
+    $.ajax({
+        type: 'POST',
+        data: 'id='+id,
+        url: "/cabinet/post/publication", //Путь к обработчику
+        cache: false,
+        success: function (data) {
+
+            $(object).text(data);
+
+        }
+    })
+
+}
+
 function get_claim_modal(){
 
     $.ajax({

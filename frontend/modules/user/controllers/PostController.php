@@ -21,8 +21,10 @@ use frontend\modules\user\models\UserRayon;
 use frontend\modules\user\models\UserService;
 use yii\base\BaseObject;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
 use Yii;
+use yii\filters\VerbFilter;
 
 class PostController extends Controller
 {
@@ -31,6 +33,12 @@ class PostController extends Controller
     {
         return [
             \common\behaviors\isAuth::class,
+            'verbs' => [
+                'class' => VerbFilter::class,
+                'actions' => [
+                    'publication' => ['post'],
+                ],
+            ],
         ];
     }
 
@@ -65,7 +73,7 @@ class PostController extends Controller
             and $userRayon->load(Yii::$app->request->post())
             and $userOsobenosti->load(Yii::$app->request->post())
             and $userService->load(Yii::$app->request->post())
-        ){
+        ) {
 
             $post->user_id = Yii::$app->user->id;
 
@@ -77,7 +85,7 @@ class PostController extends Controller
 
             $post->fake = Posts::POST_REAL;
 
-            if ($post->save()){
+            if ($post->save()) {
 
                 $avatarForm->avatar = UploadedFile::getInstance($avatarForm, 'avatar');
 
@@ -85,7 +93,7 @@ class PostController extends Controller
 
                     $avatar = $avatarForm->upload();
 
-                    if ($avatar){
+                    if ($avatar) {
 
                         $file = new Files();
 
@@ -101,7 +109,7 @@ class PostController extends Controller
 
                 $checkPhotoForm->file = UploadedFile::getInstance($checkPhotoForm, 'file');
 
-                if ($checkPhotoForm->file and $checkPhotoForm->validate()){
+                if ($checkPhotoForm->file and $checkPhotoForm->validate()) {
 
                     $checkPhoto = $checkPhotoForm->upload();
 
@@ -122,7 +130,7 @@ class PostController extends Controller
 
                     $video = $videoForm->upload();
 
-                    if ($video){
+                    if ($video) {
 
                         $post->video = $video;
 
@@ -138,7 +146,7 @@ class PostController extends Controller
 
                     $gallery = $photoForm->upload();
 
-                    foreach($gallery as $item){
+                    foreach ($gallery as $item) {
 
                         $file = new Files();
 
@@ -154,10 +162,10 @@ class PostController extends Controller
 
                 if ($userNational['national_id'])
                     SavePostRelationHelper::save(UserNational::class,
-                    $userNational->national_id,
-                    $post['id'],
-                    'national_id', $city['id']
-                );
+                        $userNational->national_id,
+                        $post['id'],
+                        'national_id', $city['id']
+                    );
 
                 if ($userMetro['metro_id'])
                     SavePostRelationHelper::save(UserMetro::class,
@@ -222,7 +230,7 @@ class PostController extends Controller
 
         if (!$post or $post['user_id'] != Yii::$app->user->id or Yii::$app->user->identity['status'] == \common\models\User::STATUS_INACTIVE) {
 
-            Yii::$app->session->addFlash('warning' , 'Отказано в доступе');
+            Yii::$app->session->addFlash('warning', 'Отказано в доступе');
 
             return $this->redirect('/cabinet');
 
@@ -253,159 +261,159 @@ class PostController extends Controller
             and $userIntimHair->load(Yii::$app->request->post())
             and $userRayon->load(Yii::$app->request->post())
             and $userOsobenosti->load(Yii::$app->request->post())
-            and $userService->load(Yii::$app->request->post())){
+            and $userService->load(Yii::$app->request->post())) {
 
-            if ($post->save()){
+            if ($post->save()) {
 
-            $avatarForm->avatar = UploadedFile::getInstance($avatarForm, 'avatar');
+                $avatarForm->avatar = UploadedFile::getInstance($avatarForm, 'avatar');
 
-            if ($avatarForm->avatar && $avatarForm->validate()) {
+                if ($avatarForm->avatar && $avatarForm->validate()) {
 
-                $avatar = $avatarForm->upload();
+                    $avatar = $avatarForm->upload();
 
-                if ($avatar){
+                    if ($avatar) {
 
-                    Files::updateAll(['main' => Files::NOT_MAIN_PHOTO], ['related_id' => $post->id,
-                        'related_class' => Posts::class]);
+                        Files::updateAll(['main' => Files::NOT_MAIN_PHOTO], ['related_id' => $post->id,
+                            'related_class' => Posts::class]);
 
-                    $file = new Files();
+                        $file = new Files();
 
-                    $file->related_id = $post['id'];
-                    $file->main = Files::MAIN_PHOTO;
-                    $file->related_class = Posts::class;
-                    $file->file = $avatar;
-                    $file->save();
-
-                }
-
-            }
-
-            $videoForm->video = UploadedFile::getInstance($videoForm, 'video');
-
-            if ($videoForm->video && $videoForm->validate()) {
-
-                $video = $videoForm->upload();
-
-                if ($video){
-
-                    if ($post['video']){
-
-                        \unlink(Yii::getAlias("@app/web".$post['video']));
+                        $file->related_id = $post['id'];
+                        $file->main = Files::MAIN_PHOTO;
+                        $file->related_class = Posts::class;
+                        $file->file = $avatar;
+                        $file->save();
 
                     }
 
-                    $post->video = $video;
+                }
 
-                    $post->save();
+                $videoForm->video = UploadedFile::getInstance($videoForm, 'video');
+
+                if ($videoForm->video && $videoForm->validate()) {
+
+                    $video = $videoForm->upload();
+
+                    if ($video) {
+
+                        if ($post['video']) {
+
+                            \unlink(Yii::getAlias("@app/web" . $post['video']));
+
+                        }
+
+                        $post->video = $video;
+
+                        $post->save();
+
+                    }
 
                 }
 
-            }
+                $photoForm->photo = UploadedFile::getInstances($photoForm, 'photo');
 
-            $photoForm->photo = UploadedFile::getInstances($photoForm, 'photo');
+                $checkPhotoForm->file = UploadedFile::getInstance($checkPhotoForm, 'file');
 
-            $checkPhotoForm->file = UploadedFile::getInstance($checkPhotoForm, 'file');
+                if ($checkPhotoForm->file and $checkPhotoForm->validate()) {
 
-            if ($checkPhotoForm->file and $checkPhotoForm->validate()){
+                    $checkPhoto = $checkPhotoForm->upload();
 
-                $checkPhoto = $checkPhotoForm->upload();
+                    $oldCheckPhoto = Files::findOne(
+                        ['type' => Files::CHECK_PHOTO_TYPE, 'related_id' => $post['id'], 'related_class' => Posts::class]);
 
-                $oldCheckPhoto = Files::findOne(
-                    ['type' => Files::CHECK_PHOTO_TYPE, 'related_id' => $post['id'], 'related_class' => Posts::class]);
+                    if ($oldCheckPhoto) {
 
-                if ($oldCheckPhoto){
+                        if ($oldCheckPhoto['file']) {
 
-                     if ($oldCheckPhoto['file']){
+                            \unlink(Yii::getAlias("@app/web" . $oldCheckPhoto['file']));
 
-                         \unlink(Yii::getAlias("@app/web".$oldCheckPhoto['file']));
+                            $oldCheckPhoto->delete();
 
-                         $oldCheckPhoto->delete();
+                        }
 
-                     }
-
-                 }
-
-                $file = new Files();
-
-                $file->related_id = $post['id'];
-                $file->main = Files::NOT_MAIN_PHOTO;
-                $file->type = Files::CHECK_PHOTO_TYPE;
-                $file->related_class = Posts::class;
-                $file->file = $checkPhoto;
-                $file->save();
-
-            }
-
-            if ($photoForm->photo && $photoForm->validate()) {
-
-                $gallery = $photoForm->upload();
-
-                foreach($gallery as $item){
+                    }
 
                     $file = new Files();
 
                     $file->related_id = $post['id'];
                     $file->main = Files::NOT_MAIN_PHOTO;
+                    $file->type = Files::CHECK_PHOTO_TYPE;
                     $file->related_class = Posts::class;
-                    $file->file = $item;
+                    $file->file = $checkPhoto;
                     $file->save();
 
                 }
 
-            }
+                if ($photoForm->photo && $photoForm->validate()) {
 
-            if ($userNational['national_id'])
-                SavePostRelationHelper::save(UserNational::class,
-                    $userNational->national_id,
-                    $post['id'],
-                    'national_id', $city['id']
-                );
+                    $gallery = $photoForm->upload();
 
-            if ($userMetro['metro_id'])
-                SavePostRelationHelper::save(UserMetro::class,
-                    $userMetro['metro_id'],
-                    $post['id'],
-                    'metro_id', $city['id']);
+                    foreach ($gallery as $item) {
 
-            if ($userPlace['place_id'])
-                SavePostRelationHelper::save(UserPlace::class,
-                    $userPlace['place_id'],
-                    $post['id'],
-                    'place_id', $city['id']);
+                        $file = new Files();
 
-            if ($userHairColor['hair_color_id'])
-                SavePostRelationHelper::save(UserHairColor::class,
-                    $userHairColor['hair_color_id'],
-                    $post['id'],
-                    'hair_color_id', $city['id']);
+                        $file->related_id = $post['id'];
+                        $file->main = Files::NOT_MAIN_PHOTO;
+                        $file->related_class = Posts::class;
+                        $file->file = $item;
+                        $file->save();
 
-            if ($userIntimHair['color_id'])
-                SavePostRelationHelper::save(UserIntimHair::class,
-                    $userIntimHair['color_id'],
-                    $post['id'],
-                    'color_id', $city['id']);
+                    }
 
-            if ($userRayon['rayon_id'])
-                SavePostRelationHelper::save(UserRayon::class,
-                    $userRayon['rayon_id'],
-                    $post['id'],
-                    'rayon_id', $city['id']);
+                }
 
-            if ($userOsobenosti['param_id'])
-                SavePostRelationHelper::save(UserOsobenosti::class,
-                    $userOsobenosti['param_id'],
-                    $post['id'],
-                    'param_id', $city['id']);
+                if ($userNational['national_id'])
+                    SavePostRelationHelper::save(UserNational::class,
+                        $userNational->national_id,
+                        $post['id'],
+                        'national_id', $city['id']
+                    );
 
-            if ($userService['service_id'])
-                SavePostRelationHelper::save(UserService::class,
-                    $userService['service_id'],
-                    $post['id'],
-                    'service_id', $city['id']);
+                if ($userMetro['metro_id'])
+                    SavePostRelationHelper::save(UserMetro::class,
+                        $userMetro['metro_id'],
+                        $post['id'],
+                        'metro_id', $city['id']);
 
-            Yii::$app->session->setFlash('success' , 'Данные анкеты '.$post['name'].' сохранены');
+                if ($userPlace['place_id'])
+                    SavePostRelationHelper::save(UserPlace::class,
+                        $userPlace['place_id'],
+                        $post['id'],
+                        'place_id', $city['id']);
 
-            return $this->redirect('/cabinet');
+                if ($userHairColor['hair_color_id'])
+                    SavePostRelationHelper::save(UserHairColor::class,
+                        $userHairColor['hair_color_id'],
+                        $post['id'],
+                        'hair_color_id', $city['id']);
+
+                if ($userIntimHair['color_id'])
+                    SavePostRelationHelper::save(UserIntimHair::class,
+                        $userIntimHair['color_id'],
+                        $post['id'],
+                        'color_id', $city['id']);
+
+                if ($userRayon['rayon_id'])
+                    SavePostRelationHelper::save(UserRayon::class,
+                        $userRayon['rayon_id'],
+                        $post['id'],
+                        'rayon_id', $city['id']);
+
+                if ($userOsobenosti['param_id'])
+                    SavePostRelationHelper::save(UserOsobenosti::class,
+                        $userOsobenosti['param_id'],
+                        $post['id'],
+                        'param_id', $city['id']);
+
+                if ($userService['service_id'])
+                    SavePostRelationHelper::save(UserService::class,
+                        $userService['service_id'],
+                        $post['id'],
+                        'service_id', $city['id']);
+
+                Yii::$app->session->setFlash('success', 'Данные анкеты ' . $post['name'] . ' сохранены');
+
+                return $this->redirect('/cabinet');
 
             }
 
@@ -413,10 +421,39 @@ class PostController extends Controller
 
         $city = City::getCity($city);
 
-        return $this->render('edit' , [
+        return $this->render('edit', [
             'post' => $post,
             'city' => $city,
         ]);
+
+    }
+
+    public function actionPublication()
+    {
+
+        if (!$post = Posts::find()->where(['id' => Yii::$app->request->post('id')])->one()) throw new NotFoundHttpException();
+
+        switch ($post->status) {
+
+            case Posts::POST_ON_PUPLICATION_STATUS:
+
+                $post->status = Posts::POST_DONT_PUBLICATION_STATUS;
+
+                $post->save();
+
+                return Yii::$app->response->content = 'Поставить на публикацию';
+
+            case Posts::POST_DONT_PUBLICATION_STATUS:
+
+                $post->status = Posts::POST_ON_PUPLICATION_STATUS;
+
+                $post->save();
+
+                return Yii::$app->response->content = 'Остановить публикацию';
+
+        }
+
+        return Yii::$app->response->content = 'Ошибка';
 
     }
 }
