@@ -75,6 +75,8 @@ class PostController extends Controller
 
             $post->updated_at = $time;
 
+            $post->fake = Posts::POST_REAL;
+
             if ($post->save()){
 
                 $avatarForm->avatar = UploadedFile::getInstance($avatarForm, 'avatar');
