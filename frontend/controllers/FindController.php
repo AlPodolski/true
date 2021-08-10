@@ -221,7 +221,7 @@ class FindController extends Controller
         }
 
         $posts = Posts::find()->limit(Yii::$app->params['post_limit']);
-            if ($ids) $posts = $posts->andWhere(['in', 'id', $ids]);
+            if ($ids) $posts = $posts->andWhere(['in', 'id', $ids])->orderBy(Posts::getOrder());
 
             $posts = $posts->andWhere(['>=' , 'age', $params['age-from']])
             ->andWhere(['<=' , 'age', $params['age-to']])
@@ -271,7 +271,6 @@ class FindController extends Controller
 
         $posts = $posts
             ->with('avatar', 'metro', 'selphiCount', 'partnerId')
-            ->orderBy(['rand()' => SORT_DESC])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->asArray()
             ->all();

@@ -114,7 +114,7 @@ class SiteController extends Controller
                 ->with('avatar', 'metro', 'selphiCount', 'partnerId')
                 ->where(['city_id' => $cityInfo['id']])
                 ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
-                ->orderBy(['rand()' => SORT_DESC])
+                ->orderBy(Posts::getOrder())
                 ->limit(Yii::$app->params['post_limit']);
 
             $posts->offset(Yii::$app->params['post_limit'] * Yii::$app->request->post('page'));
@@ -141,13 +141,15 @@ class SiteController extends Controller
 
         $webmaster = Webmaster::getTag($cityInfo['id']);
 
+        //Yii::$app->cache->flush();
+
         $prPosts = Posts::find()->asArray()
             ->with('avatar', 'metro', 'selphiCount' , 'partnerId')
             ->where(['city_id' => $cityInfo['id']])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->limit(11)
-            ->cache(3600)
-            ->orderBy(['rand()' => SORT_DESC])
+            //->cache(3600)
+            ->orderBy(Posts::getOrder())
             ->all();
 
         $checkBlock = GetAdvertisingPost::get($cityInfo);

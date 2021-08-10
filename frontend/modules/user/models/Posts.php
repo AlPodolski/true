@@ -68,6 +68,11 @@ class Posts extends \yii\db\ActiveRecord
         return 'posts';
     }
 
+    public static function getOrder(): string
+    {
+        return 'fake DESC, RAND()';
+    }
+
     /**
      * {@inheritdoc}
      */
