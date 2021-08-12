@@ -14,7 +14,7 @@ class CronController extends Controller
             ->with('avatar')
             ->where(['user_id' => 22038])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
-            ->limit(3)
+            ->limit(1)
             ->orderBy('RAND()')
             ->all();
 
