@@ -3,7 +3,7 @@ return [
     'adminEmail' => 'admin@example.com',
     'bsVersion' => '4.x',
     'advert_limit' => 20,
-    'post_limit' => 12,
+    'post_limit' => 11,
     'site_name' => 'sex-true.com',
     'min_pay' => 300,
     'view_100_buy_price' => 500,

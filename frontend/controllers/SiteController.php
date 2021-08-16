@@ -147,7 +147,7 @@ class SiteController extends Controller
             ->with('avatar', 'metro', 'selphiCount' , 'partnerId')
             ->where(['city_id' => $cityInfo['id']])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
-            ->limit(11)
+            ->limit(10)
             //->cache(3600)
             ->orderBy(Posts::getOrder())
             ->all();
