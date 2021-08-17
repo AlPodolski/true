@@ -4,11 +4,12 @@
 namespace common\components\service\history;
 
 use common\models\History;
+use frontend\components\events\BillPayEvent;
 use yii\base\Component;
 
 class HistoryService extends Component
 {
-    public function addToHistory(\yii\base\Event $event)
+    public function addToHistory(BillPayEvent $event)
     {
         $history = new History();
 
@@ -16,6 +17,7 @@ class HistoryService extends Component
         $history->sum = $event->sum;
         $history->type = $event->type;
         $history->user_id = $event->type;
+        if ($event->post_id) $history->post_id = $event->post_id;
         $history->created_at = \time();
 
         $history->save();

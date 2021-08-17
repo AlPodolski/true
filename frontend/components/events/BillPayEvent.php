@@ -15,4 +15,6 @@ class BillPayEvent extends Event
 
     public $balance;
 
+    public $post_id;
+
 }

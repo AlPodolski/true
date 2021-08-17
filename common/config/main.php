@@ -10,5 +10,8 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'pay' => [
+            'class' => 'common\components\service\PayService'
+        ],
     ],
 ];

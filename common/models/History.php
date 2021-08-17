@@ -13,6 +13,7 @@ use Yii;
  * @property int|null $type
  * @property int|null $created_at
  * @property int|null $balance
+ * @property int|null $post_id
  */
 class History extends \yii\db\ActiveRecord
 {
@@ -20,6 +21,7 @@ class History extends \yii\db\ActiveRecord
     const BALANCE_REPLENISHMENT = 1;
     const UP_ANKET = 2;
     const BUY_VIEW = 3;
+    const POST_PUBLICATION = 4;
 
     /**
      * {@inheritdoc}
@@ -35,7 +37,7 @@ class History extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'sum', 'type', 'created_at', 'balance'], 'integer'],
+            [['user_id', 'sum', 'type', 'created_at', 'balance', 'post_id'], 'integer'],
         ];
     }
 
@@ -49,6 +51,7 @@ class History extends \yii\db\ActiveRecord
             'user_id' => 'User ID',
             'sum' => 'Сумма',
             'type' => 'Тип',
+            'post_id' => 'id поста',
             'created_at' => 'Дата создания',
             'balance' => 'Баланс',
         ];

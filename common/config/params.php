@@ -16,4 +16,6 @@ return [
     'anket_check_text' => 'Анкета :name одобрена и поставлена на публикацию',
     'obm-id-pref' => 'true', //префикс для ид платежа в обменке ,
     'fast_link_key_cache_pref' => 'fast_link',
+    'user_first_post_cache_key' => 'user_first_post',
+    'hour_pay_sum' => 3,
 ];
