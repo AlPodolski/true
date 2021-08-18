@@ -3111,6 +3111,9 @@ input:checked + .image-label-radio {
     margin-bottom: 15px;
     color: #000000;
 }
+.pagination li{
+    padding: 10px;
+}
 .field-addphonereviewform-category .control-label{
     margin-bottom: 25px;
 }
