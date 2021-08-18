@@ -22,11 +22,11 @@ class PayController extends \yii\console\Controller
 
                 $firstUserPost = $post['id'];
 
-                $post->pay_time = \time() + 1;
+                $post->pay_time = \time() + 3600;
 
                 $post->save();
 
-                Yii::$app->cache->set(Yii::$app->params['user_first_post_cache_key'].'_'.$post['user_id'], $post['id'], \time() + 3600);
+                Yii::$app->cache->set(Yii::$app->params['user_first_post_cache_key'].'_'.$post['user_id'], $post['id'],3600);
 
             }
 
@@ -34,7 +34,7 @@ class PayController extends \yii\console\Controller
 
                 if (Yii::$app->pay->pay(Yii::$app->params['hour_pay_sum'], $post['user_id'], History::POST_PUBLICATION, $post['id'])){
 
-                    $post->pay_time = \time() + 1;
+                    $post->pay_time = \time() + 3600;
 
 
                 }else{
