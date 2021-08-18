@@ -22,7 +22,7 @@ class PayController extends \yii\console\Controller
 
                 $firstUserPost = $post['id'];
 
-                $post->pay_time = \time() + 3600;
+                $post->pay_time = \time() + 1;
 
                 $post->save();
 
@@ -34,7 +34,7 @@ class PayController extends \yii\console\Controller
 
                 if (Yii::$app->pay->pay(Yii::$app->params['hour_pay_sum'], $post['user_id'], History::POST_PUBLICATION, $post['id'])){
 
-                    $post->pay_time = \time() + 3600;
+                    $post->pay_time = \time() + 1;
 
 
                 }else{
