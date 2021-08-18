@@ -218,7 +218,7 @@ var changeURL = debounce(function() {
 
             if(window.location.pathname != $(this).attr('data-url')){
                 window.history.pushState('', document.title, $(this).attr('data-url'));
-                yaCounter54130501.hit($(this).attr('data-url'));
+                yaCounter70919698.hit($(this).attr('data-url'));
 
             }
         }
