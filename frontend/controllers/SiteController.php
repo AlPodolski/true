@@ -27,6 +27,7 @@ use frontend\modules\user\models\Posts;
 use Yii;
 use frontend\modules\user\components\obmenka\Obmenka;
 use yii\base\BaseObject;
+use yii\data\Pagination;
 use yii\web\Controller;
 
 /**
@@ -123,7 +124,7 @@ class SiteController extends Controller
 
             $page = Yii::$app->request->post('page') + 1;
 
-            if ($posts) echo '<div data-url="/page-' . $page . '" class="col-12"></div>';
+            if ($posts) echo '<div data-url="/?page=' . $page . '" class="col-12"></div>';
 
             foreach ($posts as $post) {
 
@@ -147,10 +148,16 @@ class SiteController extends Controller
             ->with('avatar', 'metro', 'selphiCount' , 'partnerId')
             ->where(['city_id' => $cityInfo['id']])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
-            ->limit(10)
+            ->limit(Yii::$app->params['post_limit'])
             //->cache(3600)
-            ->orderBy(Posts::getOrder())
-            ->all();
+            ->orderBy(Posts::getOrder());
+
+
+        $countQuery = clone $prPosts;
+
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => Yii::$app->params['post_limit']]);
+
+        $prPosts = $prPosts->offset($pages->offset)->all();
 
         $checkBlock = GetAdvertisingPost::get($cityInfo);
 
@@ -173,6 +180,7 @@ class SiteController extends Controller
             'h1' => $h1,
             'topPostList' => $topPostList,
             'webmaster' => $webmaster,
+            'pages' => $pages,
         ]);
     }
 

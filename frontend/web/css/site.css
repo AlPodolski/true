@@ -3111,8 +3111,15 @@ input:checked + .image-label-radio {
     margin-bottom: 15px;
     color: #000000;
 }
-.pagination li{
+.table-history-pay .pagination li{
     padding: 10px;
+}
+.page-item.active .page-link {
+    background-color: #f74952;
+    border-color: #f74952;
+}
+.page-link:hover , .page-link{
+    color: #999999;
 }
 .field-addphonereviewform-category .control-label{
     margin-bottom: 25px;

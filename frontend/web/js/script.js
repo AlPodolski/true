@@ -217,10 +217,8 @@ var changeURL = debounce(function() {
         if (inView($(this))) {
 
             if(window.location.pathname != $(this).attr('data-url')){
-
                 window.history.pushState('', document.title, $(this).attr('data-url'));
-
-                console.log(window.location.pathname);
+                yaCounter54130501.hit($(this).attr('data-url'));
 
             }
         }
@@ -418,7 +416,7 @@ $(window).scroll(function () {
 
     var accept = $(target).attr('data-accept');
 
-    //changeURL();
+    changeURL();
 
     if (winScrollTop > (scrollToElem - 100)) {
 

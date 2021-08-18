@@ -8,6 +8,7 @@ use frontend\helpers\MetaBuilder;
 use frontend\helpers\QueryParamsHelper;
 use frontend\modules\user\models\Posts;
 use Yii;
+use yii\data\Pagination;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
@@ -62,7 +63,7 @@ class FilterController extends Controller
 
             if ($page) $posts = $posts->offset(Yii::$app->params['post_limit'] * 1);
 
-            if (strpos($param, 'page')) $param = strstr($param, '/page' , true);
+            if (strpos($param, 'page')) $param = strstr($param, '/?page=' , true);
 
             if (Yii::$app->request->isPost){
 
@@ -74,7 +75,7 @@ class FilterController extends Controller
 
                     $page = Yii::$app->request->post('page') + 1;
 
-                    echo '<div data-url="/'.$param.'/page-'.$page.'" class="col-12"></div>';
+                    echo '<div data-url="/'.$param.'?page='.$page.'" class="col-12"></div>';
 
                 }
 
@@ -95,13 +96,19 @@ class FilterController extends Controller
 
             }
 
+            $countQuery = clone $posts;
+
+            $pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => Yii::$app->params['post_limit']]);
+
+            $posts = $posts->offset($pages->offset);
+
             $posts = $posts->all();
 
             $more_posts = false;
 
             $uri = Yii::$app->request->url;
 
-            if (\strpos($uri, 'page')) $uri = \strstr($uri, '/page', true);
+            if (\strpos($uri, 'page')) $uri = \strstr($uri, '/?page', true);
 
 
             $title =  MetaBuilder::Build($uri, $city, 'Title');
