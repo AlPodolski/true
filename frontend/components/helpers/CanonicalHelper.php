@@ -9,7 +9,7 @@ class CanonicalHelper
     public static function getLink($request)
     {
 
-        if (\strpos($request, 'page-') !== false) {
+        if (\strpos($request, 'page=') !== false) {
 
             $link = \strstr($request, 'page', true);
 

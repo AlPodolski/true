@@ -126,6 +126,7 @@ class FilterController extends Controller
                 'des' => $des,
                 'h1' => $h1,
                 'topPostList' => $topPostList,
+                'pages' => $pages,
             ]);
 
         }

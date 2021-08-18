@@ -7,6 +7,7 @@
 /* @var $des string */
 /* @var $h1 string */
 /* @var $param string */
+/* @var $pages \yii\data\Pagination */
 
 use frontend\modules\user\helpers\ViewCountHelper;
 
@@ -85,4 +86,9 @@ Yii::$app->view->registerMetaTag([
             <div class="col-12 pager" data-page="<?php echo Yii::$app->request->get('page') ?? 1?>" data-url="<?php echo Yii::$app->request->url ?>" data-reqest="<?php echo Yii::$app->request->url ?>"></div>
         </div>
     <?php endif; ?>
+
+    <?php if ($pages) echo \yii\bootstrap4\LinkPager::widget([
+        'pagination' => $pages,
+    ]); ?>
+
 </div>
