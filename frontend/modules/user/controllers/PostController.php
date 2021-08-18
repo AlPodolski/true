@@ -21,6 +21,7 @@ use frontend\modules\user\models\UserRayon;
 use frontend\modules\user\models\UserService;
 use yii\base\BaseObject;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
 use Yii;
@@ -432,6 +433,8 @@ class PostController extends Controller
     {
 
         if (!$post = Posts::find()->where(['id' => Yii::$app->request->post('id')])->one()) throw new NotFoundHttpException();
+
+        if ($post['user_id'] != Yii::$app->user->id) throw new ForbiddenHttpException();
 
         switch ($post->status) {
 
