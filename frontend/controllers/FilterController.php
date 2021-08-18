@@ -108,7 +108,7 @@ class FilterController extends Controller
 
             $uri = Yii::$app->request->url;
 
-            if (\strpos($uri, 'page')) $uri = \strstr($uri, '/?page', true);
+            if (\strpos($uri, 'page')) $uri = \strstr($uri, '?page', true);
 
 
             $title =  MetaBuilder::Build($uri, $city, 'Title');
