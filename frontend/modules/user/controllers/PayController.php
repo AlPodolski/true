@@ -61,7 +61,9 @@ class PayController extends Controller
         }
 
         $searchModel = new HistorySearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $params = Yii::$app->request->queryParams;
+        $params['History']['user_id'] = Yii::$app->user->id;
+        $dataProvider = $searchModel->search($params);
 
         return $this->render('index', [
             'model' => $model,
@@ -76,6 +78,8 @@ class PayController extends Controller
         $model = new PayForm();
 
         $searchModel = new HistorySearch();
+        $params = Yii::$app->request->queryParams;
+        $params['History']['user_id'] = Yii::$app->user->id;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
 
