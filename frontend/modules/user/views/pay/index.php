@@ -104,6 +104,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                     return  "Пополнение баланса";
                                 case \common\models\History::UP_ANKET:
                                     return  "Поднятие анкеты";
+                                case \common\models\History::BUY_VIEW:
+                                    return  "Покупка просмотров";
+                                case \common\models\History::POST_PUBLICATION:
+                                    return  "Публикация анкеты";
                             }
 
                             return 'Ошибка';
