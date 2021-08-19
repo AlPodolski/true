@@ -839,7 +839,7 @@ h1 , .big-red-text{
     font-weight: 500;
     font-size: 18px;
     line-height: 141.4%;
-    color: #F74952;
+    color: #F74952!important;
 }
 .post-phone , .phone-photo-count{
     font-family: Ubuntu;
