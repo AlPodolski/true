@@ -67,7 +67,10 @@ class FilterController extends Controller
 
             if (Yii::$app->request->isPost){
 
-                $posts->offset(Yii::$app->params['post_limit'] * Yii::$app->request->post('page'));
+                $ids = \json_decode(Yii::$app->request->post('id'));
+
+                $posts->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
+                    ->offset(Yii::$app->params['post_limit'] * Yii::$app->request->post('page'));
 
                 $posts = $posts->all();
 

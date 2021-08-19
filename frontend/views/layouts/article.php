@@ -9,7 +9,7 @@ use frontend\widgets\PhotoWidget;
 
 ?>
 
-<div class="col-xl-4 col-lg-4 col-md-6 col-12 post-wrap <?php echo isset($countPost) ? 'post-num-'.$countPost : "";?>">
+<div data-post-id="<?php echo $post['id'] ?>" class="col-xl-4 col-lg-4 col-md-6 col-12 post-wrap <?php echo isset($countPost) ? 'post-num-'.$countPost : "";?>">
     <article class="post">
         <div class="post-img position-relative">
 

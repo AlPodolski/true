@@ -463,10 +463,18 @@ $(window).scroll(function () {
 
         }else{
 
+            var id = [];
+
+            $('[data-post-id]').each(function () {
+
+                id.push($(this).attr('data-post-id'));
+
+            });
+
             $.ajax({
                 type: 'POST',
                 url: '' + url,
-                data: 'page=' + page + '&req=' + request,
+                data: 'page=' + page + '&req=' + request + '&id=' + JSON.stringify(id),
                 async: false,
                 dataType: "html",
                 headers: {

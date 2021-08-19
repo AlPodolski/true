@@ -110,11 +110,14 @@ class SiteController extends Controller
 
         if (Yii::$app->request->isPost) {
 
+            $ids = \json_decode(Yii::$app->request->post('id'));
+
             $posts = Posts::find()
                 ->asArray()
                 ->with('avatar', 'metro', 'selphiCount', 'partnerId')
                 ->where(['city_id' => $cityInfo['id']])
                 ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
+                ->andWhere(['not in' , 'id', $ids])
                 ->orderBy(Posts::getOrder())
                 ->limit(Yii::$app->params['post_limit']);
 
