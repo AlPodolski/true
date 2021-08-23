@@ -91,7 +91,16 @@ class Posts extends \yii\db\ActiveRecord
             [['name', 'phone', 'price'],'required'],
             [['video'], 'string', 'max' => 122],
             [['about'], 'string'],
+            [['phone'], 'validatePhone'],
         ];
+    }
+
+
+    public function validatePhone($attribute)
+    {
+        if (!$this->hasErrors()) {
+            $this->phone = preg_replace('/[^0-9]/', '', $this->phone);
+        }
     }
 
     public static function getTopList($cityId)
