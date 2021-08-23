@@ -47,6 +47,11 @@ class PhoneReview extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getMarc()
+    {
+        return $this->hasOne(CallReviewCategory::class, ['id' => 'call_category_id']);
+    }
+
     /**
      * {@inheritdoc}
      */
