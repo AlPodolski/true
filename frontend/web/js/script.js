@@ -271,6 +271,27 @@ function add_phone_view(object){
         success: function (data) {
             $(object).text($(object).attr('data-number'));
             window.location.href=phone;
+            get_phone_review_form(id);
+        }
+    })
+
+}
+
+function get_phone_review_form(id){
+
+    var target = 'phone-claim-form';
+
+    $.ajax({
+        type: 'POST',
+        data: 'id='+id+'&target='+target,
+        url: "/post/get", //Путь к обработчику
+        cache: false,
+        success: function (data) {
+
+            $('#info-modal .modal-body').html(data);
+
+            $('#info-modal').modal('show');
+
         }
     })
 

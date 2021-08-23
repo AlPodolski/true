@@ -4,6 +4,7 @@
 namespace console\controllers;
 
 use backend\models\Posts;
+use common\models\Phone;
 use frontend\modules\user\models\PostSites;
 use Yii;
 use yii\base\BaseObject;
@@ -14,17 +15,17 @@ class CustController extends Controller
 {
     public function actionIndex()
     {
-        $posts = Posts::findAll(['fake' => 0]);
+        $phones = Posts::find()->all();
 
-        foreach ($posts as $post){
+        foreach ($phones as $phone){
 
-            if ($post->price > 1000 and $post->price < 2000) $post->price = $post->price - 500;
-            elseif ($post->price >= 2000 and $post->price < 4000) $post->price = $post->price - 1000;
-            elseif ($post->price >= 4000 and $post->price < 6000) $post->price = $post->price - 1500;
-            elseif ($post->price >= 6000 and $post->price < 8000) $post->price = $post->price - 2000;
-            elseif ($post->price > 8000) $post->price = $post->price - 3000;
+            $newPhone = new Phone();
 
-            $post->save();
+            $newPhone->phone = $phone->phone = preg_replace('/[^0-9]/', '', $phone['phone']);
+
+            $phone->save();
+
+            $newPhone->save();
 
         }
 

@@ -9,6 +9,7 @@ use frontend\helpers\RequestHelper;
 use frontend\models\Files;
 use frontend\models\forms\AnketClaimForm;
 use frontend\models\forms\GetCallForm;
+use frontend\models\forms\PhoneReviewForm;
 use frontend\modules\chat\models\relation\UserDialog;
 use frontend\modules\user\helpers\ServiceReviewHelper;
 use frontend\modules\user\helpers\ViewCountHelper;
@@ -194,7 +195,6 @@ class PostController extends Controller
 
                     }
 
-
                 case "comment-form":
 
                     $post = Posts::find()->where(['id' => $params['id']])
@@ -219,6 +219,14 @@ class PostController extends Controller
                     $data['call'] = new GetCallForm();
 
                     $data['id'] = $params['id'];
+
+                    break;
+
+                case "phone-claim-form":
+
+                    $data = $params;
+
+                    $data['model'] = new PhoneReviewForm();
 
                     break;
 

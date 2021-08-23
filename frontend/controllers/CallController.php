@@ -4,6 +4,7 @@
 namespace frontend\controllers;
 
 use frontend\models\forms\GetCallForm;
+use frontend\models\forms\PhoneReviewForm;
 use frontend\modules\user\models\Posts;
 use Yii;
 use yii\web\Controller;
@@ -23,6 +24,7 @@ class CallController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'add' => ['POST'],
+                    'add-review' => ['POST'],
                 ],
             ],
         ];
@@ -52,5 +54,18 @@ class CallController extends Controller
 
         return $this->redirect('/post/' . $post['id']);
 
+    }
+
+    public function actionAddReview()
+    {
+        $reviewCall = new PhoneReviewForm();
+
+        if ($reviewCall->load(Yii::$app->request->post()) and $reviewCall->validate() and $reviewCall->save()){
+
+            Yii::$app->session->setFlash('success', 'Ваша оценка отправлена');
+
+            return $this->redirect('/post/' . $reviewCall['post_id']);
+
+        }
     }
 }
