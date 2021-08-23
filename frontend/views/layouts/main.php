@@ -628,7 +628,20 @@ AppAsset::register($this);
         </div>
     </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="info-modal" tabindex="-1" role="dialog" aria-labelledby="info-modal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-body">
 
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
 <?php $this->endBody() ?>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
