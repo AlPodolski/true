@@ -5,6 +5,7 @@ namespace frontend\helpers;
 
 
 use common\models\City;
+use common\models\Pol;
 use frontend\models\FilterParams;
 use frontend\modules\user\models\Posts;
 use Yii;
@@ -27,6 +28,8 @@ class QueryParamsHelper
         $bread_crumbs_params = array();
 
         $stem = 0;
+
+        $polSearch = false;
 
         //Перебираем параметры
         foreach ($params as $value) {
@@ -210,6 +213,40 @@ class QueryParamsHelper
 
             }
 
+            if (strstr($value, 'pol-')){
+
+
+
+                $polSearch = true;
+
+                $url = str_replace('pol-', '', $value);
+
+                $pol = Pol::findOne(['url' => $url]);
+
+                $id = Posts::find()->select('id')->where(['pol_id' => $pol['id']])->asArray()->all();
+
+                Yii::$app->params['breadcrumbs'][] = array(
+                    'label'=> 'Пол '.$pol['value'],
+                );
+
+                if($id){
+
+                    $result = ArrayHelper::getColumn($id, 'id');
+
+                    if (!empty($ids)){
+
+                        $ids = array_intersect($ids, $id);
+
+                    }else{
+
+                        $ids = $result;
+
+                    }
+
+                }
+
+            }
+
             if ($value == 'video'){
 
                 Yii::$app->params['breadcrumbs'][] = array(
@@ -248,21 +285,11 @@ class QueryParamsHelper
 
         }
 
+        if (!$polSearch) $query_params[] = ['pol_id' => Pol::WOMAN_POL];
+
         if (!empty($query_params)) {
 
             return $query_params;
-
-            $posts = Profile::find();
-
-            foreach ($query_params as $item) {
-
-                $posts->andWhere($item);
-
-            }
-
-            $posts = $posts->limit(12)->all();
-
-            return $posts;
 
         }
 

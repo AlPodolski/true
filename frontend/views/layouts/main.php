@@ -55,7 +55,14 @@ AppAsset::register($this);
         <div class="container">
             <div class="top-menu-wrap">
                 <ul class="top-menu">
-                    <li class="top-menu-item"><a href="/">Индивидуалки</a></li>
+
+                    <?php if (Yii::$app->requestedParams['city'] == 'moskva') : ?>
+
+                        <li class="top-menu-item"><a href="/pol-muzhskoj">Жигало</a></li>
+                        <li class="top-menu-item d-none"><a data-href="/pol-trans">Трансы</a></li>
+
+                    <?php endif; ?>
+
                     <li class="top-menu-item"><a href="/proverennye">Проверенные</a></li>
                     <li class="top-menu-item"><a href="/cena-ot-6000">Элитные</a></li>
                     <li class="top-menu-item" ><a href="/favorite/list">Избранное</a></li>

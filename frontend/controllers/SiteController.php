@@ -11,6 +11,7 @@ use common\models\National;
 use common\models\ObmenkaOrder;
 use common\models\Osobenosti;
 use common\models\Place;
+use common\models\Pol;
 use common\models\Rayon;
 use common\models\Service;
 use common\models\User;
@@ -118,6 +119,7 @@ class SiteController extends Controller
                 ->where(['city_id' => $cityInfo['id']])
                 ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
                 ->andWhere(['not in' , 'id', $ids])
+                ->andWhere(['pol_id' => Pol::WOMAN_POL])
                 ->orderBy(Posts::getOrder())
                 ->limit(Yii::$app->params['post_limit']);
 
@@ -151,6 +153,7 @@ class SiteController extends Controller
             ->with('avatar', 'metro', 'selphiCount' , 'partnerId')
             ->where(['city_id' => $cityInfo['id']])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
+            ->andWhere(['pol_id' => Pol::WOMAN_POL])
             ->limit(Yii::$app->params['post_limit'])
             //->cache(3600)
             ->orderBy(Posts::getOrder());
