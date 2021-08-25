@@ -4,6 +4,7 @@
 namespace console\controllers;
 
 use backend\models\Posts;
+use common\models\City;
 use common\models\Phone;
 use frontend\modules\user\models\PostSites;
 use Yii;
@@ -15,17 +16,11 @@ class CustController extends Controller
 {
     public function actionIndex()
     {
-        $phones = Posts::find()->all();
+        $city = City::find()->all();
 
-        foreach ($phones as $phone){
+        foreach ($city as $item){
 
-            $newPhone = new Phone();
-
-            $newPhone->phone = $phone->phone = preg_replace('/[^0-9]/', '', $phone['phone']);
-
-            $phone->save();
-
-            $newPhone->save();
+            echo $item['value'].' - '.Posts::find()->where(['city_id' => $item['id']])->count().\PHP_EOL;
 
         }
 
