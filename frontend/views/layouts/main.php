@@ -597,7 +597,7 @@ AppAsset::register($this);
 
                 <div class="city-wrap">
                     <ul class="city-list">
-                        <li><a class="red-link" href="https://msk.sex-true.com">Москва</a></li>
+                        <li><a class="red-link" href="https://moskva.sex-true.com">Москва</a></li>
                         <li><a class="red-link" href="https://sankt-piterburg.sex-true.com">Санкт-Петербург</a></li>
                         <li><a class="red-link" href="https://novosibirsk.sex-true.com">Новосибирск</a></li>
                         <li><a class="red-link" href="https://ekaterinburg.sex-true.com">Екатеринбург</a></li>
