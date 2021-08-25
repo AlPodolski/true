@@ -11,6 +11,14 @@
 
 use frontend\modules\user\helpers\ViewCountHelper;
 
+if (Yii::$app->request->get('page')) {
+
+    $des .= ' | Страница '.Yii::$app->request->get('page');
+
+    $title .= ' | Страница '.Yii::$app->request->get('page');
+
+}
+
 $this->title = $title;
 
 Yii::$app->view->registerMetaTag([
