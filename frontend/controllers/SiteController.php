@@ -104,8 +104,14 @@ class SiteController extends Controller
      *
      * @return mixed
      */
-    public function actionIndex($city, $page = false)
+    public function actionIndex($city, $page = false, $pager = false)
     {
+
+        if ($pager) {
+
+            return $this->redirect('/'.'?page='.$pager, 301);
+
+        }
 
         $cityInfo = City::getCity($city);
 

@@ -93,7 +93,7 @@ return [
                 'thumbs/<path:.*>' => 'site/thumb',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/' => 'site/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/find' => 'find/index',
-                '<protocol>://<city:[a-z-0-9]+>.<domain>/page-<page:[0-9]+>' => 'site/index',
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/page-<pager:[0-9]+>' => 'site/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/favorite' => 'site/favorite',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/favorite/list' => 'site/list-favorite',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/post/<id:[0-9]+>' => 'post/index',
@@ -172,9 +172,11 @@ return [
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/call/add' => 'call/add',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/call/add-review' => 'call/add-review',
 
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/<param:([a-z-0-9]+/)+[a-z-0-9]+>/page-<pager:[0-9]+>' => 'filter/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/<param:[a-z-0-9]+>' => 'filter/index',
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/<param:[a-z-0-9]+>/page-<pager:[0-9]+>' => 'filter/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/<param:([a-z-0-9]+/)+[a-z-0-9]+>' => 'filter/index',
-                '<protocol>://<city:[a-z-0-9]+>.<domain>/<param:([a-z-0-9]+/)+[a-z-0-9]+>/page-<page:[0-9]+>' => 'filter/index',
+
             ],
         ],
     ],

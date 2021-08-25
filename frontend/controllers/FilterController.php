@@ -35,8 +35,14 @@ class FilterController extends Controller
 
     }*/
 
-    public function actionIndex($city, $param, $page = false)
+    public function actionIndex($city, $param, $page = false, $pager = false)
     {
+
+        if ($pager) {
+
+            return $this->redirect('/'.$param.'?page='.$pager, 301);
+
+        }
 
         $query_params = QueryParamsHelper::getParams($param, $city);
 
