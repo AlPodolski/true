@@ -17,11 +17,11 @@ $this->registerJsFile('/js/single.js?v=9', ['depends' => ['yii\web\YiiAsset']]);
 
 $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
 
-$title = 'Проститутка '.$post['name'] .' из '.$cityInfo['city2']. '';
+$title = 'Проститутка '.$post['name'] .' из '.$cityInfo['city2']. ' номер телефона '.$post['phone'];
 
 if (isset($post['metro'][0]['value'])) $title.= ' у метро '.$post['metro'][0]['value'];
 
-$title.= ' скрасит  твой  досуг  за ' .$post['price']. ' руб/час' ;
+$title.= ' скрасит  твой  досуг  за ' .$post['price']. ' руб/час ' . ' ID '.$post['id'];
 
 $this->title = $title;
 
