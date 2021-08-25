@@ -230,7 +230,8 @@ AppAsset::register($this);
                                 </svg>
                             </div>
                             <ul class="nav">
-                                <li class="nav-item" ><a href="/">Индивидуалки</a></li>
+                                <li class="nav-item"><a href="/pol-muzhskoj">Жиголо</a></li>
+                                <li class="nav-item"><a href="/pol-trans">Трансы</a></li>
                                 <li class="nav-item" ><a href="/proverennye">Проверенные</a></li>
                                 <li class="nav-item" ><a href="/cena-ot-6000">Элитные</a></li>
                                 <li class="nav-item" ><a href="/favorite/list">Избранное</a></li>
@@ -330,7 +331,8 @@ AppAsset::register($this);
                             </svg>
                         </div>
                         <ul class="nav">
-                            <li class="nav-item" ><a href="/">Индивидуалки</a></li>
+                            <li class="nav-item"><a href="/pol-muzhskoj">Жиголо</a></li>
+                            <li class="nav-item"><a href="/pol-trans">Трансы</a></li>
                             <li class="nav-item" ><a href="/proverennye">Проверенные</a></li>
                             <li class="nav-item" ><a href="/cena-ot-6000">Элитные</a></li>
                             <li class="nav-item" ><a href="/favorite/list">Избранное</a></li>
