@@ -39,7 +39,7 @@ use frontend\widgets\PhotoWidget;
                 </div>
             <?php endif ?>
 
-            <a href="/post/<?php echo $post['id'] ?>">
+            <a target="_blank" href="/post/<?php echo $post['id'] ?>">
 
                 <?php echo PhotoWidget::widget([
                     'path' => $post['avatar']['file'] ,
@@ -110,7 +110,7 @@ use frontend\widgets\PhotoWidget;
                 </div>
             </div>
 
-            <a class="black-gradient" href="/post/<?php echo $post['id'] ?>"></a>
+            <a class="black-gradient" target="_blank" href="/post/<?php echo $post['id'] ?>"></a>
             <div class="bottom-info">
 
                 <div class="post-marc-block">
