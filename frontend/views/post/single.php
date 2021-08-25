@@ -25,7 +25,7 @@ $title.= ' скрасит  твой  досуг  за ' .$post['price']. ' ру�
 
 $this->title = $title;
 
-if($post['about'] and (mb_strlen($post['about']) < 40) ) $des = $post['about'];
+if($post['about'] and (mb_strlen($post['about']) > 40) ) $des = $post['about'];
 
 else {
 
