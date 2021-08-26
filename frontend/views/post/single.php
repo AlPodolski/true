@@ -50,6 +50,8 @@ else {
 
 }
 
+$des .= ' Мой номер '.$post['phone'] . ' ID '.$post['id'];
+
 
 Yii::$app->view->registerMetaTag([
     'name' => 'description',
