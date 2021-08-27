@@ -12,6 +12,11 @@ use yii\filters\VerbFilter;
 class ViewController extends Controller
 {
 
+    public function beforeAction($action) {
+        $this->enableCsrfValidation = false;
+        return parent::beforeAction($action);
+    }
+
     public function actionViewPhone()
     {
         $id = Yii::$app->request->post('id');
