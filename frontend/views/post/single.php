@@ -91,7 +91,7 @@ $this->params['breadcrumbs'][] = array(
     <div class="dot"></div>
 </div>
 <div class="row">
-    <div class="col-12 pager" data-page="1" data-url="/post/more" data-single="1" data-reqest="<?php echo Yii::$app->request->url ?>"></div>
+    <div class="col-12 pager" data-page="1" data-adress="/post/more" data-single="1" data-reqest="<?php echo Yii::$app->request->url ?>"></div>
 </div>
 <div class="modal fade" id="selfy-modal" tabindex="-1" role="dialog" aria-labelledby="selfy-modal" aria-hidden="true">
     <div class="modal-dialog" role="document">

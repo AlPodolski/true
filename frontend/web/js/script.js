@@ -432,7 +432,7 @@ $(window).scroll(function () {
 
     var page = $(target).attr('data-page');
 
-    var url = $(target).attr('data-url');
+    var url = $(target).attr('data-adress');
     var request = $(target).attr('data-reqest');
 
     var accept = $(target).attr('data-accept');
