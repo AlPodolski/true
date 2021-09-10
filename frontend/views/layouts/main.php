@@ -66,7 +66,11 @@ AppAsset::register($this);
                     <li class="top-menu-item"><a href="/proverennye">Проверенные</a></li>
                     <li class="top-menu-item"><a href="/cena-ot-6000">Элитные</a></li>
                     <li class="top-menu-item" ><a href="/favorite/list">Избранное</a></li>
-                    <li class="top-menu-item"><a href="/advert">Объявления</a></li>
+
+                    <?php if (Yii::$app->requestedParams['city'] == 'moskva') : ?>
+                        <li class="top-menu-item"><a href="/advert">Объявления</a></li>
+                    <?php endif; ?>
+
                     <?php if (!Yii::$app->user->isGuest) : ?>
 
                         <li class="top-menu-item"><a href="/cabinet/edit">Настройки</a></li>
@@ -236,7 +240,9 @@ AppAsset::register($this);
                                 <li class="nav-item" ><a href="/proverennye">Проверенные</a></li>
                                 <li class="nav-item" ><a href="/cena-ot-6000">Элитные</a></li>
                                 <li class="nav-item" ><a href="/favorite/list">Избранное</a></li>
-                                <li class="nav-item"><a href="/advert">Объявления</a></li>
+                                <?php if (Yii::$app->requestedParams['city'] == 'moskva') : ?>
+                                    <li class="nav-item"><a href="/advert">Объявления</a></li>
+                                <?php endif; ?>
                                 <?php if (!Yii::$app->user->isGuest) : ?>
 
                                     <li class="nav-item"><a href="/cabinet/edit">Настройки</a></li>
@@ -338,7 +344,9 @@ AppAsset::register($this);
                             <li class="nav-item" ><a href="/proverennye">Проверенные</a></li>
                             <li class="nav-item" ><a href="/cena-ot-6000">Элитные</a></li>
                             <li class="nav-item" ><a href="/favorite/list">Избранное</a></li>
-                            <li class="nav-item"><a href="/advert">Объявления</a></li>
+                            <?php if (Yii::$app->requestedParams['city'] == 'moskva') : ?>
+                                <li class="nav-item"><a href="/advert">Объявления</a></li>
+                            <?php endif; ?>
                             <?php if (!Yii::$app->user->isGuest) : ?>
 
                                 <li class="nav-item"><a href="/cabinet/edit">Настройки</a></li>
