@@ -1205,8 +1205,6 @@ class ImportController extends Controller
             $avert->type = Advert::PUBLIC_TYPE;
             $avert->status = Advert::STATUS_CHECK;
 
-            \dd($avert->save());
-
             $avert->save();
 
         }
