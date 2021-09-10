@@ -203,10 +203,18 @@
                     </div>
 
                     <div class="col-12">
-                        <a href="/cabinet/edit" class="black-text font-weight-bold d-block text-center padding-top-0">
+                        <a href="/cabinet/advert" class="black-text font-weight-bold d-block text-center padding-top-0">
+                            Объявления
+                        </a>
+                    </div>
+
+                    <div class="col-12">
+                        <a href="/cabinet/edit" class="black-text font-weight-bold d-block text-center">
                             Настройка аккаунта
                         </a>
                     </div>
+
+
                     <div class="col-12">
                         <?php echo ''
                             . Html::beginForm(['/logout'], 'post')

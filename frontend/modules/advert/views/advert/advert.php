@@ -13,15 +13,20 @@ use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 
+$this->title = ' Частные интим объявления в Москве , доска объявлений интима на сайте sex-true ';
 
-$this->title = 'Объявления';
+if ($isCabinet) $this->title = 'Объявления';
 
-Yii::$app->view->registerMetaTag([
+if ($isCabinet) Yii::$app->view->registerMetaTag([
     'name' => 'description',
     'content' => $this->title
 ]);
+else Yii::$app->view->registerMetaTag([
+        'name' => 'description',
+        'content' => 'Доска секс объявлений Москвы, поиск интим объявлений в Москве на сайте sex-true. Частные интим объявления на секс форуме '
+    ]);
 
-$this->params['breadcrumbs'][] = ['label' => 'Кабинет', 'url' => '/cabinet'];
+if ($isCabinet) $this->params['breadcrumbs'][] = ['label' => 'Кабинет', 'url' => '/cabinet'];
 
 if ($category){
 
@@ -31,8 +36,12 @@ if ($category){
 
 }
 
-$this->params['breadcrumbs'][] = $this->title;
+if ($isCabinet) {
+    $h1 = $this->title;
+}
+else $h1 = 'Доска интим объявлений';
 
+$this->params['breadcrumbs'][] = 'Объявления';
 
 ?>
 <div class="container">
@@ -42,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <div class="anket content advert-page">
 
-                <h1><?php echo $this->title ?></h1>
+                <h1><?php echo $h1 ?></h1>
 
                 <div class="add-advert-wrap" <?php if (Yii::$app->user->isGuest) : ?>
                     data-toggle="modal" data-target="#addAdvertModal"

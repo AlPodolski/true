@@ -1185,7 +1185,7 @@ class ImportController extends Controller
 
     public function actionAdvert()
     {
-        $stream = \fopen(Yii::getAlias('@app/files/advert_23_07_2021.csv'), 'r');
+        $stream = \fopen(Yii::getAlias('@app/files/advert_10_09_2021.csv'), 'r');
 
         $csv = Reader::createFromStream($stream);
         $csv->setDelimiter(';');
@@ -1198,21 +1198,16 @@ class ImportController extends Controller
 
         foreach ($records as $record) {
 
-            $advertCategory = AdvertCategory::find()->where(['value' => $record['category']])->one();
+            $avert = new Advert();
 
-            if ($advertCategory) {
+            $avert->title = \strstr($record['text'], '<br>', true);
+            $avert->text = \str_replace('<br>', '. ' , $record['text']);
+            $avert->type = Advert::PUBLIC_TYPE;
+            $avert->status = Advert::STATUS_CHECK;
 
-                $avert = new Advert();
+            \dd($avert->save());
 
-                $avert->title = $record['title'];
-                $avert->text = $record['text'];
-                $avert->type = Advert::PRIVATE_CABINET_TYPE;
-                $avert->status = Advert::STATUS_CHECK;
-                $avert->category_id = $advertCategory->id;
-
-                $avert->save();
-
-            }
+            $avert->save();
 
         }
     }

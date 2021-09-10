@@ -20,6 +20,7 @@ use yii\helpers\ArrayHelper;
  * @property integer $type
  * @property integer $status
  * @property integer $category_id
+ * @property integer $id_from_parse_site
  */
 class Advert extends \yii\db\ActiveRecord
 {
@@ -46,7 +47,7 @@ class Advert extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'timestamp', 'type', 'status', 'category_id'], 'integer'],
+            [['user_id', 'timestamp', 'type', 'status', 'category_id', 'id_from_parse_site'], 'integer'],
             [['text', 'title'], 'string'],
             [['text', 'title'], 'required'],
         ];

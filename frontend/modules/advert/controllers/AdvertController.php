@@ -125,6 +125,35 @@ class AdvertController extends Controller
         ]);
     }
 
+    public function actionPublicAdvert($city)
+    {
+        $advertList = Advert::find()
+            ->limit(Yii::$app->params['advert_limit'])
+            ->orderBy('id DESC')
+            ->where(['type' => Advert::PUBLIC_TYPE, 'status' => Advert::STATUS_CHECK])
+            ->with('userRelations');
+
+        if (Yii::$app->request->isPost){
+
+            $advertList = Advert::find()
+                ->limit(Yii::$app->params['advert_limit'])
+                ->offset(Yii::$app->params['advert_limit'] * Yii::$app->request->post('page'))
+                ->orderBy('id DESC')->all();
+
+            if ($advertList) return $this->renderFile('@app/modules/advert/views/advert/more.php', [
+                'advertList' => $advertList
+            ]);
+
+        }
+
+        $advertList = $advertList->all();
+
+        return $this->render('advert', [
+            'advertList' => $advertList,
+            'isCabinet' => false,
+        ]);
+    }
+
     public function actionMore()
     {
         if (Yii::$app->request->isPost){
