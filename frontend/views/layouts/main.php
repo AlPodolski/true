@@ -43,6 +43,13 @@ AppAsset::register($this);
     <?php if ($link = \frontend\components\helpers\CanonicalHelper::getLink(Yii::$app->request->url)) : ?>
         <link rel="canonical" href="https://<?php echo Yii::$app->request->serverName . $link ?>">
     <?php endif; ?>
+
+    <?php if (Yii::$app->requestedParams['city'] == 'moskva') : ?>
+
+        <script src="//code-ya.jivosite.com/widget/qB4CJnjzCv" async></script>
+
+    <?php endif; ?>
+
     <link rel="manifest" href="/img/favicons/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/img/favicons/ms-icon-144x144.png">
