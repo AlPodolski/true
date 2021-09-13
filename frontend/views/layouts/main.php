@@ -46,7 +46,7 @@ AppAsset::register($this);
 
     <?php if (Yii::$app->requestedParams['city'] == 'moskva') : ?>
 
-        <script src="//code-ya.jivosite.com/widget/qB4CJnjzCv" async></script>
+        <script src="//code-ya.jivosite.com/widget/N3G2svN2tk" async></script>
 
     <?php endif; ?>
 
