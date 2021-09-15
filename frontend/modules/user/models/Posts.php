@@ -31,6 +31,7 @@ use yii\helpers\ArrayHelper;
  * @property string|null $phone
  * @property string|null $about
  * @property string|null $video
+ * @property string|null $old_url
  * @property int|null $category
  * @property int|null $price
  * @property int|null $age
@@ -91,7 +92,7 @@ class Posts extends \yii\db\ActiveRecord
             [['phone'], 'string', 'max' => 20 ],
             [['name', 'phone', 'price'],'required'],
             [['video'], 'string', 'max' => 122],
-            [['about'], 'string'],
+            [['about' , 'old_url'], 'string'],
             [['phone'], 'validatePhone'],
         ];
     }
