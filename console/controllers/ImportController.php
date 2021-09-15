@@ -88,7 +88,7 @@ class ImportController extends Controller
             $city = City::find()->where(['url' => $postCity])->one();
 
             $post->city_id = $city['id'];
-            $post->pol_id = 3;
+            $post->pol_id = 1;
             $post->created_at = \time() - ((3600 * 24) * \rand(0, 365));
             $post->name = $record['name'];
             $post->updated_at = $this->update;
