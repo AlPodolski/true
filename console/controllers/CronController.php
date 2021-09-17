@@ -64,7 +64,7 @@ class CronController extends Controller
 
                 if ($sum <= Yii::$app->params['phone_min_rating_for_publication']){
 
-                    Posts::updateAll(['status' => 0], ['phone' => $post['phone'], 'fake' => 0]);
+                    Posts::updateAll(['status' => Posts::POST_DONT_PUBLICATION_STATUS], ['phone' => $post['phone'], 'fake' => 0]);
 
                 }
 
