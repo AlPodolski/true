@@ -220,7 +220,7 @@ class FindController extends Controller
 
         }
 
-        $posts = Posts::find()->limit(Yii::$app->params['post_limit']);
+        $posts = Posts::find()->limit(Yii::$app->params['post_limit'])->andWhere(['city_id' => $city['id']]);
             if ($ids) $posts = $posts->andWhere(['in', 'id', $ids])->orderBy(Posts::getOrder());
 
             $posts = $posts->andWhere(['>=' , 'age', $params['age-from']])

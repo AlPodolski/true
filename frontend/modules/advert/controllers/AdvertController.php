@@ -24,7 +24,7 @@ class AdvertController extends Controller
 
         if (Yii::$app->request->isPost and $model->load(Yii::$app->request->post()) and $model->save()){
 
-            Yii::$app->session->setFlash('success', 'Объяление добавлено');
+            Yii::$app->session->setFlash('success', 'Объявление добавлено');
 
             return $this->goBack();
 
