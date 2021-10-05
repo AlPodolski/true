@@ -193,6 +193,7 @@ class SiteController extends Controller
             'topPostList' => $topPostList,
             'webmaster' => $webmaster,
             'pages' => $pages,
+            'cityInfo' => $cityInfo,
         ]);
     }
 
