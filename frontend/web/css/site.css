@@ -697,7 +697,7 @@ body{
     border-radius: 13px;
     padding: 13px;
     margin-top: 15px;
-    padding-bottom: 20px;
+    padding-bottom: 0px;
 }
 h1 , .big-red-text{
     font-family: Ubuntu;
@@ -706,7 +706,7 @@ h1 , .big-red-text{
     font-size: 18px;
     line-height: 21px;
     color: #F74952;
-    margin-top: 0px;
+    margin-top: 20px;
     margin-bottom: 20px;
 }
 .text-block{
