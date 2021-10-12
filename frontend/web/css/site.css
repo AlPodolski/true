@@ -925,7 +925,15 @@ h1 , .big-red-text{
     width: 32px;
     height: 32px;
 }
-
+.lg-backdrop{
+    z-index: 1060!important;
+}
+.lg-outer{
+    z-index: 1070!important;
+}
+#info-modal .aniimated-thumbnials img{
+    max-width:100%;
+}
 .dot:first-child {
     animation: FirstDot 3s infinite;
 }

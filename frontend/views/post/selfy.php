@@ -6,4 +6,14 @@ $files = \yii\helpers\ArrayHelper::getColumn($data, 'file')
 
 ?>
 
-<div class="img-grids" data-img="<?php echo implode(',' , $files) ?>" id="selfy-imgs"></div>
+<div class="aniimated-thumbnials">
+
+    <?php foreach ($files as $file) : ?>
+
+        <a href="<?php echo $file?>">
+            <img src="<?php echo $file?>" alt="">
+        </a>
+
+    <?php endforeach; ?>
+
+</div>

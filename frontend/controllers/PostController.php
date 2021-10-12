@@ -36,6 +36,7 @@ class PostController extends Controller
 
     public function actionIndex($protocol,$city, $id)
     {
+
         $post = Posts::find()->where(['id' => $id])
             ->with('gal', 'metro', 'avatar', 'place', 'service',
                 'sites', 'rayon', 'nacionalnost',

@@ -169,7 +169,12 @@ function get_modal(object){
 
             if(target == 'selfy'){
 
-                add_img_grid();
+                $('.aniimated-thumbnials').each(function(i){
+
+                    var singleGallery = $(this);
+                    singleGallery.lightGallery();
+
+                });
 
             }
             if(target == 'call'){

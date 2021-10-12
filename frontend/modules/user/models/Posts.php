@@ -170,7 +170,7 @@ class Posts extends \yii\db\ActiveRecord
     public function getSelphiCount()
     {
         return $this->hasMany(Files::class, ['related_id' => 'id'])
-            ->andWhere(['related_class' => self::class])->cache(3600)
+            ->andWhere(['related_class' => self::class])
             ->andWhere(['type' => Files::SELPHY_TYPE]);
     }
     public function getMetro()
