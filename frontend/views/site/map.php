@@ -24,7 +24,7 @@
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://<?php echo Yii::$app->request->serverName?>/price-do-1500</loc
+        <loc>https://<?php echo Yii::$app->request->serverName?>/price-do-1500</loc>
         <lastmod>2021-08-04</lastmod>
         <priority>0.9</priority>
     </url>
