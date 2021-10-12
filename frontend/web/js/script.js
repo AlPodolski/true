@@ -522,7 +522,9 @@ $(window).scroll(function () {
         }
 
     }
+
 });
+
 var main = function() {
 
     $('.mobil-menu').click(function() {
