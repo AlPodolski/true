@@ -29,22 +29,22 @@
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://<?php echo Yii::$app->request->serverName?>/price-ot-1500-do-2000</loc
+        <loc>https://<?php echo Yii::$app->request->serverName?>/price-ot-1500-do-2000</loc>
         <lastmod>2021-08-04</lastmod>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://<?php echo Yii::$app->request->serverName?>/price-ot-2000-do-3000</loc
+        <loc>https://<?php echo Yii::$app->request->serverName?>/price-ot-2000-do-3000</loc>
         <lastmod>2021-08-04</lastmod>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://<?php echo Yii::$app->request->serverName?>/price-ot-6000</loc
+        <loc>https://<?php echo Yii::$app->request->serverName?>/price-ot-6000</loc>
         <lastmod>2021-08-04</lastmod>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://<?php echo Yii::$app->request->serverName?>/novie</loc
+        <loc>https://<?php echo Yii::$app->request->serverName?>/novie</loc>
         <lastmod>2021-08-04</lastmod>
         <priority>0.9</priority>
     </url>
