@@ -67,7 +67,7 @@ $this->params['breadcrumbs'][] = array(
         'serviceListReview' => $serviceListReview,
         'price' => $price
     ]); ?>
-
+    <p class="big-red-text">Вас может заинтересовать</p>
 </div>
 
 <svg class="filter" version="1.1">

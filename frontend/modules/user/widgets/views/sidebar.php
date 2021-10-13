@@ -213,7 +213,26 @@
                             Настройка аккаунта
                         </a>
                     </div>
+                    <div class="col-12">
+                        <a href="/cabinet/faq" class="black-text font-weight-bold d-block text-center">
+                            Ответы на вопросы
+                        </a>
+                    </div>
 
+                    <div class="col-12">
+
+                        <a href="/cabinet/call" class="black-text font-weight-bold d-block text-center position-relativer">
+                            Обратный звонок
+                            <?php
+
+                            if ($count = \common\models\RequestCall::countNotRead(Yii::$app->user->id)) : ?>
+
+                                +<?php echo $count ?>
+
+                            <?php endif; ?>
+
+                        </a>
+                    </div>
 
                     <div class="col-12">
                         <?php echo ''

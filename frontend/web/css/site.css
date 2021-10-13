@@ -523,7 +523,7 @@ body{
     font-family: Ubuntu;
     font-style: normal;
     font-weight: 300;
-    font-size: 18px;
+    font-size: 14px;
     line-height: 141.4%;
     text-align: center;
     color: #999999;
@@ -549,7 +549,7 @@ body{
     padding-top: 0px;
 }
 .main-nav .search-wrap button{
-    top: 2px;
+    top: 6px;
     right: 5px;
     left: inherit;
     border: none;
@@ -1331,15 +1331,19 @@ a.asc::after {
 }
 .menu .nav .nav-item a{
     font-style: normal;
-    font-weight: 500;
-    font-size: 24px;
+    font-weight: 400;
+    font-size: 14px;
     line-height: 141.4%;
     /* identical to box height, or 34px */
     text-align: center;
     color: #5C5C5C;
 }
 .nav-item {
-    margin-bottom: 30px;
+    margin-bottom: 5px;
+}
+.list-one-column{
+    column-count: 1!important;
+    text-align: center
 }
 .color-boll{
     border-radius: 50%;
@@ -2637,7 +2641,7 @@ select{
     text-align: left;
     margin-top: 15px;
 }
-.mobil-menu , .metro-search-btn-wrap{
+.metro-search-btn-wrap{
     display: none;
 }
 .site-price-block .sites-wrap{
@@ -3136,6 +3140,9 @@ input.search::-webkit-input-placeholder { color: #6d6d6d; }
 input.search:-ms-input-placeholder { color: #6d6d6d; }
 input.search::-ms-input-placeholder { color: #6d6d6d; }
 input.search::placeholder { color: #6d6d6d; }
+.search-form-wrap{
+    font-size: 12px;
+}
 @media (max-width: 1199px) {
     .post .post-img{
         min-height: 348px;
@@ -3172,6 +3179,15 @@ input.search::placeholder { color: #6d6d6d; }
     }
 }
 @media (max-width: 992px) {
+    .top-menu-container{
+        display:none;
+    }
+    .top-menu .top-menu-item a{
+        font-size: 14px;
+    }
+    .search-form-wrap{
+        display: none;
+    }
     .dialog_list-wrap-with-dialog .dialog-photo-wrap{
         flex: 30%;
         max-width: 95px;

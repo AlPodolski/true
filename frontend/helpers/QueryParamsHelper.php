@@ -93,6 +93,43 @@ class QueryParamsHelper
 
             }
 
+            if (\strstr($value, 'vozrast')){
+
+                $url = str_replace('vozrast-', '', $value);
+
+                $ageRange = \explode('-', $url );
+
+                if (\is_array($ageRange) and (\count($ageRange) == 2) ){
+
+                    $id = Posts::find()
+                        ->select('id')
+                        ->where(['>', 'age', $ageRange[0]])
+                        ->andWhere(['<' , 'age', $ageRange[1]])
+                        ->asArray()
+                        ->all();
+
+                    if($id){
+
+                        $result = ArrayHelper::getColumn($id, 'id');
+
+                        if (!empty($ids)){
+
+                            $ids = array_intersect($ids, $id);
+
+                        }else{
+
+                            $ids = $result;
+
+                        }
+
+                    }
+
+                }
+
+
+
+            }
+
             if (strstr($value, 'cena')){
 
                 $url = str_replace('cena-', '', $value);
