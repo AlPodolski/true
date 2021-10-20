@@ -18,7 +18,7 @@ class isAuth extends Behavior
 
         if (Yii::$app->user->isGuest) {
 
-            Yii::$app->session->setFlash('warning', 'Требуется авториция');
+            Yii::$app->session->setFlash('warning', 'Требуется авторизация');
 
              header("Location: /");
 
