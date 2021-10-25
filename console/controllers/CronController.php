@@ -40,10 +40,18 @@ class CronController extends Controller
 
     public function actionSendPostToTelegramChanel()
     {
-        $post = Posts::find()->with('gallery', 'avatar', 'metro')
-            ->where(['city_id' => 1])->orderBy('RAND()')->one();
+        $posts = Posts::find()->with('gallery', 'avatar', 'metro')
+            ->where(['city_id' => 1])->orderBy('RAND()')->limit(8)->all();
 
-        TelegramChanelHelper::sendPostToChanel($post);
+        foreach ($posts as $post){
+
+            TelegramChanelHelper::sendPostToChanel($post);
+
+            sleep(5);
+
+        }
+
+
 
     }
 

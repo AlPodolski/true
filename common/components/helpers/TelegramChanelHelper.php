@@ -36,12 +36,18 @@ class TelegramChanelHelper
 
         if ($postPhotoFiles = ArrayHelper::getColumn($post->gallery, 'file')) {
 
+            $i = 0;
+
             foreach ($postPhotoFiles as $item) {
 
                 $result[] = [
                     'type' => 'photo',
                     'media' => 'https://moskva.sex-true.com'.$item
                 ];
+
+                $i++;
+
+                if ($i > 8) break;
 
             }
 
@@ -64,19 +70,21 @@ class TelegramChanelHelper
 
     public static function prepareTextAboutPost(Posts $post): string
     {
-        $result = $post->name . '  '. \PHP_EOL;
+        $result = $post->name . ' ✅ '. \PHP_EOL;
 
-        if ($post->breast) $result .= 'Грудь ' . $post->breast . '  ' . \PHP_EOL;
+        if ($post->breast) $result .= 'Грудь: ' . $post->breast . '  ' . \PHP_EOL;
 
-        if ($post->rost) $result .= 'Рост ' . $post->rost . '  ' . \PHP_EOL;
+        if ($post->rost) $result .= 'Рост: ' . $post->rost . '  ' . \PHP_EOL;
 
-        if ($post->rost) $result .= 'Возраст ' . $post->age . '  ' . \PHP_EOL;
+        if ($post->rost) $result .= 'Возраст: ' . $post->age . '  ' . \PHP_EOL;
 
-        if ($post->price) $result .= 'Цена ' . $post->price . '  ' . \PHP_EOL;
+        if ($post->price) $result .= 'Цена: ' . $post->price . '  ' . \PHP_EOL;
 
-        if ($post->about) $result .= 'Обо мне ' . $post->about . '' . \PHP_EOL;
+        if ($post->about) $result .= 'Обо мне: ' . $post->about . '' . \PHP_EOL;
 
-        if ($post->phone) $result .= 'Номер +' . $post->phone;
+        if ($post->phone) $result .= 'Номер: +' . $post->phone . \PHP_EOL;
+
+        $result .= '<a href="https://moskva.sex-true.com/post/'.$post->id.'">Подробнее</a>';
 
         return $result;
     }
