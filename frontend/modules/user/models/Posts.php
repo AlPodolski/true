@@ -46,6 +46,8 @@ use yii\helpers\ArrayHelper;
  * @property int|null $fake
  * @property int|null $pay_time
  * @property int|null $pol_id
+ * @property Files[] $gallery
+ * @property Files $avatar
  */
 class Posts extends \yii\db\ActiveRecord
 {
@@ -115,8 +117,17 @@ class Posts extends \yii\db\ActiveRecord
 
     public function getAvatar() : ActiveQuery
     {
-        return $this->hasOne(Files::class, ['related_id' => 'id'])->andWhere(['related_class' => self::class])
-            ->andWhere(['main' => 1]);
+        return $this->hasOne(Files::class, ['related_id' => 'id'])
+            ->andWhere(['related_class' => self::class])
+            ->andWhere(['main' => Files::MAIN_PHOTO]);
+    }
+
+    public function getGallery()
+    {
+        return $this->hasMany(Files::class, ['related_id' => 'id'])
+            ->andWhere(['related_class' => self::class])
+            ->andWhere(['in', 'type', [Files::DEFAULT_TYPE, Files::SELPHY_TYPE]])
+            ->andWhere(['main' => Files::NOT_MAIN_PHOTO]);
     }
 
     public function getCheckPhoto() : ActiveQuery

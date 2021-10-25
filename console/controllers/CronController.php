@@ -2,6 +2,7 @@
 
 namespace console\controllers;
 
+use common\components\helpers\TelegramChanelHelper;
 use common\models\Phone;
 use common\models\PhoneReview;
 use frontend\modules\user\models\Posts;
@@ -11,7 +12,10 @@ use yii\console\Controller;
 
 class CronController extends Controller
 {
-    public function actionUp ()
+
+
+
+    public function actionUp()
     {
         $posts = Posts::find()
             ->with('avatar')
@@ -21,7 +25,7 @@ class CronController extends Controller
             ->orderBy('RAND()')
             ->all();
 
-        foreach ($posts as $post){
+        foreach ($posts as $post) {
 
             $upAnketModel = new TopAnketBlock();
 
@@ -34,13 +38,21 @@ class CronController extends Controller
         }
     }
 
+    public function actionSendPostToTelegramChanel()
+    {
+        $post = Posts::find()->with('gallery', 'avatar', 'metro')->orderBy('RAND()')->one();
+
+        TelegramChanelHelper::sendPostToChanel($post);
+
+    }
+
     public function actionCountPhoneRating()
     {
         $posts = Posts::find()->where(['fake' => 0, 'status' => 1])->groupBy('phone')->all();
 
-        foreach ($posts as $post){
+        foreach ($posts as $post) {
 
-            if (!$phonePostId = Phone::find()->where(['phone' => $post['phone']])->one()){
+            if (!$phonePostId = Phone::find()->where(['phone' => $post['phone']])->one()) {
 
                 $phonePostId = new Phone();
 
@@ -52,17 +64,17 @@ class CronController extends Controller
 
             $phoneReview = PhoneReview::find()->where(['phone_id' => $phonePostId->id])->with('marc')->all();
 
-            if ($phoneReview){
+            if ($phoneReview) {
 
                 $sum = 0;
 
-                foreach ($phoneReview as $item){
+                foreach ($phoneReview as $item) {
 
                     $sum = $sum + $item['marc']['marc'];
 
                 }
 
-                if ($sum <= Yii::$app->params['phone_min_rating_for_publication']){
+                if ($sum <= Yii::$app->params['phone_min_rating_for_publication']) {
 
                     Posts::updateAll(['status' => Posts::POST_DONT_PUBLICATION_STATUS], ['phone' => $post['phone'], 'fake' => 0]);
 
@@ -73,5 +85,5 @@ class CronController extends Controller
         }
 
     }
-    
+
 }
