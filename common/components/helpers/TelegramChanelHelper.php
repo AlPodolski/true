@@ -25,7 +25,7 @@ class TelegramChanelHelper
     public static function preparePostInfo(Posts $post)
     {
 
-        return (\array_merge($data[] = self::prepareAvatarAndTextInfo($post), self::prepareMedia($post)));
+        return (\array_merge(self::prepareAvatarAndTextInfo($post), self::prepareMedia($post)));
 
     }
 
@@ -53,11 +53,12 @@ class TelegramChanelHelper
 
     public static function prepareAvatarAndTextInfo(Posts $post): array
     {
-        return array(
+        return array(0 => [
             'type' => 'photo',
             'parse_mode' => 'html',
             'caption' => self::prepareTextAboutPost($post),
             'media' => 'https://moskva.sex-true.com'.$post->avatar->file
+        ]
         );
     }
 
