@@ -167,7 +167,11 @@ class SiteController extends Controller
 
         $countQuery = clone $prPosts;
 
-        $pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => Yii::$app->params['post_limit']]);
+        $pages = new Pagination([
+            'totalCount' => $countQuery->count(),
+            'forcePageParam' => false,
+            'defaultPageSize' => Yii::$app->params['post_limit']
+        ]);
 
         $prPosts = $prPosts->offset($pages->offset)->all();
 

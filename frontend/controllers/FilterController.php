@@ -107,7 +107,10 @@ class FilterController extends Controller
 
             $countQuery = clone $posts;
 
-            $pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => Yii::$app->params['post_limit']]);
+            $pages = new Pagination([
+                'totalCount' => $countQuery->count(),
+                'forcePageParam' => false,
+                'defaultPageSize' => Yii::$app->params['post_limit']]);
 
             $posts = $posts->offset($pages->offset);
 
