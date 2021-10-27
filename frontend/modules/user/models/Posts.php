@@ -46,6 +46,7 @@ use yii\helpers\ArrayHelper;
  * @property int|null $fake
  * @property int|null $pay_time
  * @property int|null $pol_id
+ * @property int|null $sort
  * @property Files[] $gallery
  * @property Files $avatar
  */
@@ -89,7 +90,7 @@ class Posts extends \yii\db\ActiveRecord
     {
         return [
             [['city_id', 'user_id', 'created_at', 'updated_at', 'category', 'check_photo_status', 'price', 'age',
-                'rost', 'ves', 'breast', 'status', 'view', 'retouching_photo_status', 'fake', 'pay_time', 'pol_id'], 'integer'],
+                'rost', 'ves', 'breast', 'status', 'view', 'retouching_photo_status', 'fake', 'pay_time', 'pol_id', 'sort'], 'integer'],
             [['name'], 'string', 'max' => 60],
             [['phone'], 'string', 'max' => 20 ],
             [['name', 'phone', 'price'],'required'],

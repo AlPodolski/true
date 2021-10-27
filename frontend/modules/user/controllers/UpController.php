@@ -54,6 +54,10 @@ class UpController extends Controller
 
                 $user->cash = $user->cash - Yii::$app->params['up_anket_cost'];
 
+                $post->status = Posts::POST_ON_PUPLICATION_STATUS;
+
+                $post->save();
+
                 if ($upAnketModel->save() and $user->save()){
 
                     $billPayEvent = new BillPayEvent();
