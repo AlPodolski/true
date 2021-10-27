@@ -13,7 +13,7 @@ class PayController extends \yii\console\Controller
     {
         $posts = Posts::find()
             ->where(['<','pay_time', \time()])
-            ->andWhere(['status', Posts::POST_ON_PUPLICATION_STATUS])
+            ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->andWhere(['fake' => 1])
             ->all();
 
