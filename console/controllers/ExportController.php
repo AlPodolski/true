@@ -17,21 +17,19 @@ class ExportController extends Controller
 
         $postUrl = array();
 
-        $postIdOnSites = ArrayHelper::getColumn(PostSites::find()->where(['site_id' => 1])->asArray()->all(), 'post_id');
-
         foreach ($cityList as $cityItem){
 
             $posts = Posts::find()
                 ->where(['city_id' => $cityItem['id']])
-                ->andWhere(['in', 'id', $postIdOnSites])
-                ->asArray()
+                ->with('gallery')
                 ->all();
 
             if ($posts) {
 
                 foreach ($posts as $post){
 
-                    $postUrl[$cityItem['url']][] = 'https://'.$cityItem['url'].'.sex-true.com/post/'.$post['id'];
+                    if (\count($post->gallery) > 5)
+                        $postUrl[$cityItem['url']][] = 'https://'.$cityItem['url'].'.sex-true.com/post/'.$post['id'];
 
                 }
 
