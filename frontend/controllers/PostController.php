@@ -107,9 +107,7 @@ class PostController extends Controller
 
             }
 
-        }
-
-        return $this->redirect('/');
+        }else return $this->redirect('/');
 
     }
 
