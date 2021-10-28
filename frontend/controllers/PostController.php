@@ -89,21 +89,23 @@ class PostController extends Controller
                 ->asArray()
                 ->one();
 
-            $cityInfo = City::getCity($city);
+            if ($post){
 
-            $serviceListReview = ServiceReviewHelper::getPostServiceReview($post['id']);
+                $serviceListReview = ServiceReviewHelper::getPostServiceReview($post['id']);
 
-            $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
+                $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
 
-            ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_listing_view_count_key']);
-            ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_single_view_count_key']);
+                ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_listing_view_count_key']);
+                ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_single_view_count_key']);
 
-            return $this->renderFile(Yii::getAlias('@app/views/post/item.php'), [
+                return $this->renderFile(Yii::getAlias('@app/views/post/item.php'), [
                     'post'           => $post,
-                'cityInfo'           => $cityInfo,
-                 'serviceListReview' => $serviceListReview,
-                             'price' => $price
-            ]);
+                    'cityInfo'           => $cityInfo,
+                    'serviceListReview' => $serviceListReview,
+                    'price' => $price
+                ]);
+
+            }
 
         }
 
