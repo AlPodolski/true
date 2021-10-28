@@ -113,7 +113,7 @@
     <?php if ($posts) foreach ($posts as $postItem) : ?>
     <url>
         <loc>https://<?php echo Yii::$app->request->serverName?>/post/<?php echo $postItem['id']?></loc>
-        <lastmod><?php echo date('Y-m-d', $postItem->created_at) ?> </lastmod>
+        <lastmod>2021-10-20 </lastmod>
         <priority>0.8</priority>
     </url>
     <?php endforeach; ?>
