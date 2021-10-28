@@ -77,11 +77,13 @@ class PostController extends Controller
 
             $id = \explode(',', Yii::$app->request->post('id'));
 
+            $cityInfo = City::getCity($city);
+
             $post = Posts::find()->where(['not in', 'id' , $id])
                 ->with('gal', 'metro', 'avatar', 'place', 'service',
                     'sites', 'rayon', 'nacionalnost',
                     'cvet', 'strizhka', 'osobenost', 'selphiCount', 'serviceDesc', 'partnerId')
-                ->limit(1)
+                ->andWhere(['city_id' => $cityInfo['id']])
                 ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
                 ->orderBy(['rand()' => SORT_DESC])
                 ->asArray()
