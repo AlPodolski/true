@@ -112,8 +112,8 @@ class ImportController extends Controller
             $post->check_photo_status = 0;
             $post->status = 1;
             $post->price = (int)$record['price'] ?? 1600;
-            $post->age = $record['age'];
-            $post->rost = $record['rost'];
+            $post->age = $record['age'] ;
+            $post->rost = $record['rost'] ?? 170;
 
             if ($post->price > 1000 and $post->price < 2000) $post->price = $post->price - 500;
             elseif ($post->price >= 2000 and $post->price < 4000) $post->price = $post->price - 1000;
@@ -131,7 +131,7 @@ class ImportController extends Controller
 
             if ($record['grud']) $post->breast = $record['grud'];
 
-            if ($record['weight']) $post->ves = $record['weight'];
+            if ($record['weight']) $post->ves = (int)$record['weight'];
 
             $post->category = Posts::INDI_CATEGORY;
 
