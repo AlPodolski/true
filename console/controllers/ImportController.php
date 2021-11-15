@@ -47,7 +47,7 @@ class ImportController extends Controller
 
     public function actionIndex()
     {
-        $stream = \fopen(Yii::getAlias('@app/files/import_prostitutki_ltd_20_10_2021.csv'), 'r');
+        $stream = \fopen(Yii::getAlias('@app/files/import_region_2021_11_12.csv'), 'r');
 
         $csv = Reader::createFromStream($stream);
         $csv->setDelimiter(';');
@@ -62,9 +62,9 @@ class ImportController extends Controller
 
         $serviceList = Service::find()->asArray()->all();
 
-        $this->siteId = 7;
-        $this->update = 16;
-        $this->path = '/uploads/a16/';
+        $this->siteId = 8;
+        $this->update = 17;
+        $this->path = '/uploads/a17/';
 
         foreach ($records as $record) {
 
@@ -76,9 +76,9 @@ class ImportController extends Controller
 
         $records = $stmt->process($csv);
 
-        $city = City::find()->where(['url' => 'moskva'])->one();
-
         foreach ($records as $record) {
+
+            $city = City::find()->where(['city' => $record['city']])->one();
 
             $post = new Posts();
 
@@ -91,7 +91,7 @@ class ImportController extends Controller
             $post->about = $record['anket-about'];
             $post->check_photo_status = 0;
             $post->status = 1;
-            $post->price = (int)$record['price'];
+            $post->price = (int)$record['price'] ?? 1600;
             $post->age = $record['age'];
             $post->rost = $record['rost'];
 
@@ -314,6 +314,8 @@ class ImportController extends Controller
                     }
 
                 }
+
+                exit();
 
             }
 

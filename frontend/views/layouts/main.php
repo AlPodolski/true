@@ -695,7 +695,7 @@ AppAsset::register($this);
     });
 </script>
 <noscript>
-    <div><img src="https://mc.yandex.ru/watch/70919698" style="position:absolute; left:-9999px;" alt=""/></div>
+
 </noscript>
 <!-- /Yandex.Metrika counter -->
 </html>
