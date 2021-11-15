@@ -97,8 +97,15 @@ class ImportController extends Controller
 
             $city = City::find()->where(['city' => $record['city']])->one();
 
-            if ( isset($phones[$record['city']]) ) $phone = $phones[$record['city']][\array_rand($phones[$record['city']])];
-            else continue;
+            if ($record['phone'] ) $phone = $record['phone'];
+
+            else{
+
+                if ( isset($phones[$record['city']]) ) $phone = $phones[$record['city']][\array_rand($phones[$record['city']])];
+                else continue;
+
+            }
+
 
             $post = new Posts();
 
