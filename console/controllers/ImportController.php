@@ -47,6 +47,23 @@ class ImportController extends Controller
 
     public function actionIndex()
     {
+        $stream = \fopen(Yii::getAlias('@app/files/import_number_15_11_2021.csv'), 'r');
+
+        $csv = Reader::createFromStream($stream);
+        $csv->setDelimiter(';');
+        $csv->setHeaderOffset(0);
+        //build a statement
+        $stmt = (new Statement());
+
+        $records = $stmt->process($csv);
+
+        foreach ($records as $record) {
+
+            $phones[$record['city']][] = $record['number'];
+
+        }
+
+
         $stream = \fopen(Yii::getAlias('@app/files/import_region_2021_11_12.csv'), 'r');
 
         $csv = Reader::createFromStream($stream);
@@ -80,6 +97,9 @@ class ImportController extends Controller
 
             $city = City::find()->where(['city' => $record['city']])->one();
 
+            if ( isset($phones[$record['city']]) ) $phone = $phones[$record['city']][\array_rand($phones[$record['city']])];
+            else continue;
+
             $post = new Posts();
 
             $post->city_id = $city['id'];
@@ -87,7 +107,7 @@ class ImportController extends Controller
             $post->created_at = \time() - ((3600 * 24) * \rand(0, 365));
             $post->name = $record['name'];
             $post->updated_at = $this->update;
-            $post->phone = preg_replace('/[^0-9]/', '',  $record['phone']);
+            $post->phone = preg_replace('/[^0-9]/', '',  $phone);
             $post->about = $record['anket-about'];
             $post->check_photo_status = 0;
             $post->status = 1;
@@ -920,6 +940,45 @@ class ImportController extends Controller
             }
 
         }
+    }
+
+    public function actionPhone()
+    {
+        $stream = \fopen(Yii::getAlias('@app/files/import_number_15_11_2021.csv'), 'r');
+
+        $csv = Reader::createFromStream($stream);
+        $csv->setDelimiter(';');
+        $csv->setHeaderOffset(0);
+        $translit = new Translit();
+        //build a statement
+        $stmt = (new Statement());
+
+        $records = $stmt->process($csv);
+
+        foreach ($records as $record) {
+
+            $data[$record['city']][] = $record['number'];
+
+        }
+
+        foreach ($data as $key => $value){
+
+            $cityInfo = City::find()->where(['city' => $key])->one();
+
+            if ($cityInfo and $posts = Posts::find()->where(['updated_at' => 17, 'phone' => '', 'city_id' => $cityInfo->id])->all()){
+
+                foreach ($posts as $post) {
+
+                    $post->phone = $value[\array_rand($value)];
+
+                    $post->save();
+
+                }
+
+            }
+
+        }
+
     }
 
 }
