@@ -47,24 +47,8 @@ class ImportController extends Controller
 
     public function actionIndex()
     {
-        $stream = \fopen(Yii::getAlias('@app/files/import_number_15_11_2021.csv'), 'r');
 
-        $csv = Reader::createFromStream($stream);
-        $csv->setDelimiter(';');
-        $csv->setHeaderOffset(0);
-        //build a statement
-        $stmt = (new Statement());
-
-        $records = $stmt->process($csv);
-
-        foreach ($records as $record) {
-
-            $phones[$record['city']][] = $record['number'];
-
-        }
-
-
-        $stream = \fopen(Yii::getAlias('@app/files/import_region_2021_11_12.csv'), 'r');
+        $stream = \fopen(Yii::getAlias('@app/files/import_16_11_2021.csv'), 'r');
 
         $csv = Reader::createFromStream($stream);
         $csv->setDelimiter(';');
@@ -79,9 +63,9 @@ class ImportController extends Controller
 
         $serviceList = Service::find()->asArray()->all();
 
-        $this->siteId = 8;
-        $this->update = 17;
-        $this->path = '/uploads/a17/';
+        //$this->siteId = 8;
+        $this->update = 18;
+        $this->path = '/uploads/a18/';
 
         foreach ($records as $record) {
 
@@ -97,16 +81,6 @@ class ImportController extends Controller
 
             $city = City::find()->where(['city' => $record['city']])->one();
 
-            if ($record['phone'] ) $phone = $record['phone'];
-
-            else{
-
-                if ( isset($phones[$record['city']]) ) $phone = $phones[$record['city']][\array_rand($phones[$record['city']])];
-                else continue;
-
-            }
-
-
             $post = new Posts();
 
             $post->city_id = $city['id'];
@@ -114,7 +88,7 @@ class ImportController extends Controller
             $post->created_at = \time() - ((3600 * 24) * \rand(0, 365));
             $post->name = $record['name'];
             $post->updated_at = $this->update;
-            $post->phone = preg_replace('/[^0-9]/', '',  $phone);
+            $post->phone = preg_replace('/[^0-9]/', '',  $record['phone']);
             $post->about = $record['anket-about'];
             $post->check_photo_status = 0;
             $post->status = 1;
@@ -146,7 +120,7 @@ class ImportController extends Controller
 
             if ($post->save()) {
 
-                $postSite = new PostSites();
+                /*$postSite = new PostSites();
 
                 $postSite->post_id = $post->id;
                 $postSite->site_id = $this->siteId;
@@ -155,7 +129,7 @@ class ImportController extends Controller
                 $postSite->name_on_site = $post->name;
                 $postSite->age = $post->age;
 
-                $postSite->save();
+                $postSite->save();*/
 
                 if (isset($record['rayon']) and $record['rayon']) {
 
