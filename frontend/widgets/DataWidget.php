@@ -3,10 +3,12 @@
 
 namespace frontend\widgets;
 
+use common\models\City;
 use common\models\National;
 use common\models\Place;
 use common\models\Rayon;
 use common\models\Service;
+use Yii;
 use yii\base\Widget;
 
 class DataWidget extends Widget
@@ -71,8 +73,13 @@ class DataWidget extends Widget
                     'data' => $data,
                     'url' => $this->data
                 ]);
-             case 'filter':
+            case 'filter':
                 return $this->render('data-filter', ['dataGet' => $this->dataGet]);
+            case 'city':
+
+                $cityList = City::find()->where(['like', 'city', Yii::$app->request->get('val')])->all();
+
+                return $this->render('data-city', ['cityList' => $cityList]);
         }
 
         return false;

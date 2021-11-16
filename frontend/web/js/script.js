@@ -70,6 +70,31 @@ function close_chat(){
 
 }
 
+function findCity(object){
+
+    var cityName = $(object).val();
+
+    if (cityName.length > 2){
+
+        var url = "/data/get?data=city&val="+cityName;
+
+        $.ajax({
+            type: 'GET',
+            url: url, //Путь к обработчику
+            response: 'text',
+            dataType: "html",
+            cache: false,
+            success: function (data) {
+
+                $('#cityModal .city-list').html(data)
+
+            }
+        })
+
+    }
+
+}
+
 function send_message(object){
 
     var dialog_id = $(object).attr('data-dialog-id');

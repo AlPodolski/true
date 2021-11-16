@@ -611,7 +611,7 @@ AppAsset::register($this);
 
             <h5 class="modal-title" id="exampleModalLabel">Выбрать город</h5>
             <div class="modal-body ">
-                <input type="text" name="city" class="form-control city-search" placeholder="Ввидите название города:">
+                <input type="text" onkeyup="findCity(this)" onchange="findCity(this)" name="city" class="form-control city-search" placeholder="Ввидите название города:">
 
                 <div class="city-wrap">
                     <ul class="city-list">
