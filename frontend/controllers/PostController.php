@@ -48,7 +48,7 @@ class PostController extends Controller
 
             $serviceListReview = ServiceReviewHelper::getPostServiceReview($id);
 
-            $cityInfo = City::getCity($city);
+            $cityInfo = City::find()->where(['id' => $post['city_id']])->one();
 
             $backUrl = RequestHelper::getBackUrl($protocol);
 
