@@ -169,11 +169,12 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                                 </div>
                                 <div class="col-12 cursor-pointer">
                                     <?php $targetPrice = \frontend\components\helpers\PriceTargetHelper::target($post['price']) ?>
-                                    <span data-id="<?php echo $post['id'] ?>"
+                                    <a data-id="<?php echo $post['id'] ?>"
                                           onclick="add_phone_view(this);ym(70919698,'reachGoal','call'); <?php if ($post['partnerId']) : ?> ym(70919698,'reachGoal','<?php echo $post['partnerId']['partner_id'] ?>');  <?php endif; ?> <?php echo $targetPrice?>"
                                           data-tel="tel:+<?php echo preg_replace("/[^0-9]/", '', $post['phone']) ?>"
+                                          href="tel:+<?php echo preg_replace("/[^0-9]/", '', $post['phone']) ?>"
                                           data-number="<?php echo $post['phone'] ?>"
-                                          class="">Показать номер</span>
+                                          class="d-block single-price">Показать номер</a>
 
                                 </div>
                                 <div class="col-12">

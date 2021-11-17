@@ -173,16 +173,17 @@ use frontend\widgets\PhotoWidget;
 
             </div>
         </div>
-        <div class="price">
 
-            <span data-id="<?php echo $post['id'] ?>"
+
+            <a data-id="<?php echo $post['id'] ?>"
                   <?php $targetPrice = \frontend\components\helpers\PriceTargetHelper::target($post['price']) ?>
                   onclick="add_phone_view(this);ym(70919698,'reachGoal','call'); <?php if ($post['partnerId']) : ?>
                           ym(70919698,'reachGoal','<?php echo $post['partnerId']['partner_id'] ?>');  <?php endif; ?>
                           <?php echo $targetPrice ?>"
                   data-tel="tel:+<?php echo preg_replace("/[^0-9]/", '', $post['phone']) ?>"
+                  href="tel:+<?php echo preg_replace("/[^0-9]/", '', $post['phone']) ?>"
                   data-number="<?php echo $post['phone'] ?>"
-                  class="">Показать номер</span>
-        </div>
+                  class="price d-block ">Показать номер</a>
+
     </article>
 </div>

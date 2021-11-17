@@ -287,14 +287,14 @@ function add_phone_view(object){
 
     var id = $(object).attr('data-id');
     var phone = $(object).attr('data-tel');
-
+    $(object).text($(object).attr('data-number'));
     $.ajax({
         type: 'POST',
         url: "/view/phone", //Путь к обработчику
         data: 'id=' + id,
         cache: false,
         success: function (data) {
-            $(object).text($(object).attr('data-number'));
+
             window.location.href=phone;
             get_phone_review_form(id);
         }
