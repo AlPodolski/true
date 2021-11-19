@@ -318,8 +318,6 @@ class ImportController extends Controller
 
             }
 
-            exit();
-
         }
 
     }
