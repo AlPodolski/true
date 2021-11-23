@@ -322,7 +322,7 @@ class QueryParamsHelper
 
         }
 
-        if (!$polSearch) $query_params[] = ['pol_id' => Pol::WOMAN_POL];
+        if (!$polSearch and $query_params) $query_params[] = ['pol_id' => Pol::WOMAN_POL];
 
         if (!empty($query_params)) {
 
