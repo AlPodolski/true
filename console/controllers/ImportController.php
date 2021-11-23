@@ -48,7 +48,7 @@ class ImportController extends Controller
     public function actionIndex()
     {
 
-        $stream = \fopen(Yii::getAlias('@app/files/import_19_11_2021.csv'), 'r');
+        $stream = \fopen(Yii::getAlias('@app/files/import_23_11_2021.csv'), 'r');
 
         $csv = Reader::createFromStream($stream);
         $csv->setDelimiter(';');
@@ -63,9 +63,9 @@ class ImportController extends Controller
 
         $serviceList = Service::find()->asArray()->all();
 
-        //$this->siteId = 8;
-        $this->update = 19;
-        $this->path = '/uploads/a19/';
+        $this->siteId = 9;
+        $this->update = 20;
+        $this->path = '/uploads/a20/';
 
         foreach ($records as $record) {
 
@@ -77,15 +77,15 @@ class ImportController extends Controller
 
         $records = $stmt->process($csv);
 
-        foreach ($records as $record) {
+        $city = City::find()->where(['city' => 'Санкт-Петербург'])->one();
 
-            $city = City::find()->where(['city' => $record['city']])->one();
+        foreach ($records as $record) {
 
             $post = new Posts();
 
             $post->city_id = $city['id'];
             $post->pol_id = 1;
-            $post->created_at = \time() - ((3600 * 24) * \rand(0, 365));
+            $post->created_at = \time() ;
             $post->name = $record['name'];
             $post->updated_at = $this->update;
             $post->phone = preg_replace('/[^0-9]/', '',  $record['phone']);
@@ -120,7 +120,7 @@ class ImportController extends Controller
 
             if ($post->save()) {
 
-                /*$postSite = new PostSites();
+                $postSite = new PostSites();
 
                 $postSite->post_id = $post->id;
                 $postSite->site_id = $this->siteId;
@@ -129,7 +129,7 @@ class ImportController extends Controller
                 $postSite->name_on_site = $post->name;
                 $postSite->age = $post->age;
 
-                $postSite->save();*/
+                $postSite->save();
 
                 if (isset($record['rayon']) and $record['rayon']) {
 
@@ -317,6 +317,8 @@ class ImportController extends Controller
                 }
 
             }
+
+            exit();
 
         }
 
