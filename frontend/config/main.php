@@ -25,7 +25,7 @@ return [
     ],
     'components' => [
         'imageCache' => [
-            'class' => 'iutbay\yii2imagecache\ImageCache',
+            'class' => 'frontend\components\service\image\ImageCache',
             'sourcePath' => '@app/web/uploads',
             'sourceUrl' => '@web/uploads',
             'thumbsPath' => '@app/web/thumbs',
@@ -48,6 +48,10 @@ return [
                 '77' => [77, 77],
                 '350_420' => [350, 420],
                 '360_430' => [360, 430],
+            ],
+            'text' => [
+                'text' => 'sex-true',
+                'fontFile' => '@app/web/fonts/MullerExtraBold.ttf'
             ],
         ],
         'request' => [
