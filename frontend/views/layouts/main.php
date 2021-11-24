@@ -673,7 +673,11 @@ AppAsset::register($this);
 </div>
 <!-- Modal -->
 <?php $this->endBody() ?>
+<?php if (Yii::$app->requestedParams['city'] == 'moskva') : ?>
 
+    <script src="//code-ya.jivosite.com/widget/N3G2svN2tk" async></script>
+
+<?php endif; ?>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 </body>
 <!-- Yandex.Metrika counter -->
