@@ -44,6 +44,8 @@ class ImageCache  extends ImageC
 
             $thumb->draw()->text($this->text['text'], $font, new Point($start[0], $start[1]), $fontAngle);
 
+            $thumb->draw()->text($this->text['text'], $font, new Point(450, 300), $fontAngle);
+
         }
 
         if ($thumb && $thumb->save($dstPath))
