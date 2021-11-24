@@ -30,8 +30,7 @@
         "qiwi/bill-payments-php-sdk": "^0.1.2",
         "yiisoft/yii2-redis": "~2.0.0",
         "aki/yii2-bot-telegram": "*",
-        "irazasyed/telegram-bot-sdk": "^2.0",
-        "liip/imagine-bundle": "^1.4"
+        "irazasyed/telegram-bot-sdk": "^2.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
