@@ -468,7 +468,9 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                             <?php if ($i > 1) $cssClass = 'd-none'; ?>
 
-                            <a class="<?php echo $cssClass ?>" href="<?php echo $item['file'] ?>">
+                                <?php Yii::$app->imageCache->thumbSrc($item['file'], $size) ?>
+
+                            <a class="<?php echo $cssClass ?>" href="<?php echo Yii::$app->imageCache->thumbSrc($item['file'], '1024') ?>">
 
                                 <?php
 
