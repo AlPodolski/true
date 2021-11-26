@@ -28,7 +28,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
 ?>
 <div class="row">
-    <div class="col-12 pager" data-url="/post/<?php echo $post['id'] ?>"></div>
+    <div class="col-12 pager" <?php if ($post['id']) : ?> data-url="/post/<?php echo $post['id'] ?>" <?php endif; ?>></div>
 </div>
 <article class="single position-relative" data-post-id="<?php echo $post['id'] ?>">
     <div class="row">

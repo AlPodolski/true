@@ -241,7 +241,8 @@ var changeURL = debounce(function() {
     $('[data-url]').each(function() {
         if (inView($(this))) {
 
-            if(window.location.pathname + window.location.search != $(this).attr('data-url')){
+            if(window.location.pathname + window.location.search != $(this).attr('data-url') && $(this).attr('data-url').length > 0){
+
                 window.history.pushState('', document.title, $(this).attr('data-url'));
                 yaCounter70919698.hit($(this).attr('data-url'));
 
