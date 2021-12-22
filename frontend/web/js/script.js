@@ -1,15 +1,15 @@
-function get_dialog(object){
+function get_dialog(object) {
 
     var dialog_id = $(object).attr('data-dialog-id');
     var to = $(object).attr('data-to');
 
-    if(!$(object).closest('.dialog_list-wrap').hasClass('dialog_list-wrap-with-dialog')){
+    if (!$(object).closest('.dialog_list-wrap').hasClass('dialog_list-wrap-with-dialog')) {
 
-        $(object).closest('.dialog_list-wrap').addClass('dialog_list-wrap-with-dialog d-flex' );
+        $(object).closest('.dialog_list-wrap').addClass('dialog_list-wrap-with-dialog d-flex');
 
     }
 
-    $('.dialog_item').each(function() {
+    $('.dialog_item').each(function () {
         $(this).removeClass('selected-dialog');
     });
 
@@ -18,7 +18,7 @@ function get_dialog(object){
     $.ajax({
         type: 'POST',
         url: "/cabinet/chat/get", //Путь к обработчику
-        data: 'dialog_id=' + dialog_id+'&to='+to,
+        data: 'dialog_id=' + dialog_id + '&to=' + to,
         response: 'text',
         dataType: "html",
         cache: false,
@@ -34,7 +34,106 @@ function get_dialog(object){
     })
 }
 
-function check_number(object){
+function get_mobil_map_block(object){
+
+    init_yandex_map(object);
+
+    $('.anket-map-block-' + $(object).attr('data-id')).removeClass('d-none');
+
+    $('.anket-map-block-' + $(object).attr('data-id')).animate({
+
+        left: '0px'
+
+    }, 250);
+
+}
+
+function close_mobil_map_block(object) {
+
+    $('.anket-map-block-' + $(object).attr('data-id')).animate({
+
+        left: '-120%'
+
+    }, 250);
+
+}
+
+function init_yandex_map(object){
+
+    var map_name = $(object).attr('data-map');
+
+    var x = $('#' + map_name).attr('data-x');
+    var y = $('#' + map_name).attr('data-y');
+
+    if (typeof ymaps == 'undefined') {
+
+        $.getScript("https://api-maps.yandex.ru/2.1/?lang=ru_RU", function (data, textStatus, jqxhr) {
+            ymaps.ready(function(){
+
+                if($('#' + map_name).hasClass('map-not-exist')){
+
+                    $('#' + map_name).removeClass('map-not-exist');
+
+                    $('.map').each(init(map_name, x,y));
+
+                }
+
+            })
+        });
+    } else {
+
+        ymaps.ready(function(){
+
+            if($('#' + map_name).hasClass('map-not-exist')){
+
+                $('#' + map_name).removeClass('map-not-exist');
+
+                $('.map').each(init(map_name,x,y));
+
+            }
+
+        })
+    }
+
+}
+
+function init(map_name ,x, y) {
+
+    var myMap = new ymaps.Map(map_name, {
+        center: [x, y],
+        zoom: 13,
+    });
+
+    // Все виды меток
+    // https://tech.yandex.ru/maps/doc/jsapi/2.1/ref/reference/option.presetStorage-docpage/
+
+
+    // Собственное изображение для метки с контентом
+    var placemark4 = new ymaps.Placemark([x, y], {
+        // hintContent: 'Собственный значок метки с контентом',
+    }, {
+        // Опции.
+
+        // Необходимо указать данный тип макета.
+        iconLayout: 'default#image',
+
+        // Своё изображение иконки метки.
+        iconImageHref: '/img/map.svg',
+        // Размеры метки.
+        iconImageSize: [131, 62],
+        // Смещение левого верхнего угла иконки относительно
+        // её "ножки" (точки привязки).
+        iconImageOffset: [-72, -62],
+    });
+
+    myMap.geoObjects.add(placemark4);
+}
+
+function map() {
+    ymaps.ready(init);
+}
+
+function check_number(object) {
 
     var phone = $(object).attr('data-number');
 
@@ -56,7 +155,7 @@ function check_number(object){
 
 }
 
-function open_rating_block(object){
+function open_rating_block(object) {
 
     $(object).siblings('.rating-block').removeClass('rating-block-close');
 
@@ -64,19 +163,19 @@ function open_rating_block(object){
 
 }
 
-function close_chat(){
+function close_chat() {
 
     $('.dialog_list-wrap').removeClass('dialog_list-wrap-with-dialog d-flex');
 
 }
 
-function findCity(object){
+function findCity(object) {
 
     var cityName = $(object).val();
 
-    if (cityName.length > 2){
+    if (cityName.length > 2) {
 
-        var url = "/data/get?data=city&val="+cityName;
+        var url = "/data/get?data=city&val=" + cityName;
 
         $.ajax({
             type: 'GET',
@@ -95,20 +194,20 @@ function findCity(object){
 
 }
 
-function send_message(object){
+function send_message(object) {
 
     var dialog_id = $(object).attr('data-dialog-id');
     var to = $(object).attr('data-user-id-to');
 
     var text = $('#sendmessageform-text').val();
 
-    var sendData = 'dialog_id='+dialog_id+'&to='+to+'&text='+text;
+    var sendData = 'dialog_id=' + dialog_id + '&to=' + to + '&text=' + text;
 
     $.ajax({
         url: '/cabinet/chat/send',
         type: 'POST',
         data: sendData,
-        datatype:'json',
+        datatype: 'json',
         // async: false,
         success: function (data) {
 
@@ -127,14 +226,14 @@ function send_message(object){
 
 }
 
-function add_message(text){
+function add_message(text) {
 
     $('.chat').prepend('<div class="wall-tem right-message">\n' +
         '    <div class="post_header">\n' +
         '        <div class="post_header_info">\n' +
         '            <div class="post-text">\n' +
         '                <span class="message-wrap">\n' +
-        '                    '+text +
+        '                    ' + text +
         '                </span>\n' +
         '            </div>\n' +
         '        </div>\n' +
@@ -145,18 +244,19 @@ function add_message(text){
 
 }
 
-function show_otzivi_block(object){
+function show_otzivi_block(object) {
 
-    $('.otzivi-block-'+$(object).attr('data-id')).removeClass('d-none');
+    $('.otzivi-block-' + $(object).attr('data-id')).removeClass('d-none');
 
-    $('.otzivi-block-'+$(object).attr('data-id')).animate({
+    $('.otzivi-block-' + $(object).attr('data-id')).animate({
 
         left: '0px'
 
     }, 250);
 
 }
-function close_otzivi_block(){
+
+function close_otzivi_block() {
 
     $('.otzivi-block').animate({
 
@@ -166,20 +266,21 @@ function close_otzivi_block(){
 
 }
 
-function show_anket_params_block(object){
+function show_anket_params_block(object) {
 
-    $('.anket-params-block-'+$(object).attr('data-id')).removeClass('d-none');
+    $('.anket-params-block-' + $(object).attr('data-id')).removeClass('d-none');
 
-    $('.anket-params-block-'+$(object).attr('data-id')).animate({
+    $('.anket-params-block-' + $(object).attr('data-id')).animate({
 
         left: '0px'
 
     }, 250);
 
 }
-function close_anket_params_block(object){
 
-    $('.anket-params-block-'+$(object).attr('data-id')).animate({
+function close_anket_params_block(object) {
+
+    $('.anket-params-block-' + $(object).attr('data-id')).animate({
 
         left: '-120%'
 
@@ -187,20 +288,21 @@ function close_anket_params_block(object){
 
 }
 
-function show_site_price_block(object){
+function show_site_price_block(object) {
 
     $('.carousel').carousel({interval: false});
 
-    $('.site-price-block-'+$(object).attr('data-id')).removeClass('d-none');
+    $('.site-price-block-' + $(object).attr('data-id')).removeClass('d-none');
 
-    $('.site-price-block-'+$(object).attr('data-id')).animate({
+    $('.site-price-block-' + $(object).attr('data-id')).animate({
 
         left: '0px'
 
     }, 250);
 
 }
-function close_site_price_block(){
+
+function close_site_price_block() {
 
     $('.site-price-block').animate({
 
@@ -212,9 +314,9 @@ function close_site_price_block(){
 
 function debounce(func, wait, immediate) {
     var timeout;
-    return function() {
+    return function () {
         var context = this, args = arguments;
-        var later = function() {
+        var later = function () {
             timeout = null;
             if (!immediate) func.apply(context, args);
         };
@@ -237,11 +339,11 @@ function inView($elem) {
     return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
 }
 
-var changeURL = debounce(function() {
-    $('[data-url]').each(function() {
+var changeURL = debounce(function () {
+    $('[data-url]').each(function () {
         if (inView($(this))) {
 
-            if(window.location.pathname + window.location.search != $(this).attr('data-url') && $(this).attr('data-url').length > 0){
+            if (window.location.pathname + window.location.search != $(this).attr('data-url') && $(this).attr('data-url').length > 0) {
 
                 window.history.pushState('', document.title, $(this).attr('data-url'));
                 yaCounter70919698.hit($(this).attr('data-url'));
@@ -251,7 +353,7 @@ var changeURL = debounce(function() {
     });
 }, 1);
 
-function favorite(object){
+function favorite(object) {
 
     var id = $(object).attr('data-id');
 
@@ -268,7 +370,8 @@ function favorite(object){
     })
 
 }
-$(document).ready(function() {
+
+$(document).ready(function () {
 
     $("#editprofileform-avatar").on('change', function () {
 
@@ -278,13 +381,14 @@ $(document).ready(function() {
     });
 
 });
-function get_comments_forum(object){
+
+function get_comments_forum(object) {
 
     $('#forum-comments-modal').modal('show');
 
 }
 
-function add_phone_view(object){
+function add_phone_view(object) {
 
     var id = $(object).attr('data-id');
     var phone = $(object).attr('data-tel');
@@ -296,20 +400,20 @@ function add_phone_view(object){
         cache: false,
         success: function (data) {
 
-            window.location.href=phone;
+            window.location.href = phone;
             get_phone_review_form(id);
         }
     })
 
 }
 
-function get_phone_review_form(id){
+function get_phone_review_form(id) {
 
     var target = 'phone-claim-form';
 
     $.ajax({
         type: 'POST',
-        data: 'id='+id+'&target='+target,
+        data: 'id=' + id + '&target=' + target,
         url: "/post/get", //Путь к обработчику
         cache: false,
         success: function (data) {
@@ -323,13 +427,13 @@ function get_phone_review_form(id){
 
 }
 
-function publication(object){
+function publication(object) {
 
     var id = $(object).attr('data-id');
 
     $.ajax({
         type: 'POST',
-        data: 'id='+id,
+        data: 'id=' + id,
         url: "/cabinet/post/publication", //Путь к обработчику
         cache: false,
         success: function (data) {
@@ -341,7 +445,7 @@ function publication(object){
 
 }
 
-function get_claim_modal(){
+function get_claim_modal() {
 
     $.ajax({
         type: 'POST',
@@ -350,30 +454,30 @@ function get_claim_modal(){
         success: function (data) {
 
             $('#claimModal .modal-body').html(data);
-            $('#claimModal').modal('toggle' );
+            $('#claimModal').modal('toggle');
 
         }
     })
 
 }
 
-function get_data(object){
+function get_data(object) {
 
     var data_type = $(object).attr('data-type');
 
-    var data = 'data='+data_type;
+    var data = 'data=' + data_type;
 
-    var url = "/data/get?data="+data_type;
+    var url = "/data/get?data=" + data_type;
 
-    if(data_type == 'filter'){
+    if (data_type == 'filter') {
 
-        if(window.location.search == ''){
+        if (window.location.search == '') {
 
-            url = "/data/get?data="+data_type;
+            url = "/data/get?data=" + data_type;
 
-        }else{
+        } else {
 
-            url = "/data/get" + encodeURI(window.location.search) + "&data="+data_type;
+            url = "/data/get" + encodeURI(window.location.search) + "&data=" + data_type;
 
         }
 
@@ -385,9 +489,9 @@ function get_data(object){
         cache: false,
         success: function (data) {
 
-            if(data_type == 'filter'){
+            if (data_type == 'filter') {
 
-                var scriptTag= document.createElement( "script" );
+                var scriptTag = document.createElement("script");
                 scriptTag.type = "text/javascript";
                 scriptTag.src = "/js/jquery-ui.js";
                 $("body").append(scriptTag);
@@ -399,7 +503,7 @@ function get_data(object){
 
                 filter();
 
-            }else{
+            } else {
 
                 $('#dataModal .modal-body').html(data);
                 $('#dataModal').modal('toggle');
@@ -411,7 +515,7 @@ function get_data(object){
 
 }
 
-function close_filter(){
+function close_filter() {
     $('.filter-block').addClass('d-none');
 }
 
@@ -469,46 +573,15 @@ $(window).scroll(function () {
 
         var single = $(target).attr('data-single');
 
-        if(single === 1){
-            $('[data-post-id]').each(function() {
+        if (single == 1) {
+
+            $('[data-post-id]').each(function () {
 
                 id = id + $(this).attr('data-post-id') + ',';
 
             });
 
-            $.ajax({
-                type: 'POST',
-                url: '/post/more',
-                data: 'id='+id,
-                async:false,
-                dataType: "html",
-                cache: false,
-                beforeSend: function() {
-                    $(target).removeClass('footer');
-                },
-                success: function (data){
-
-                    if(data !== ''){
-
-                        $('.single-content').append(data);
-
-                        $(target).addClass('footer');
-
-                        add_img_grid();
-
-                    }else{
-
-                        $('.dots').remove();
-
-                    }
-
-
-                    // window.history.pushState("object or string", "Title", "/page-2");
-
-                },
-            })
-
-        }else{
+        } else {
 
             var id = [];
 
@@ -551,9 +624,9 @@ $(window).scroll(function () {
 
 });
 
-var main = function() {
+var main = function () {
 
-    $('.mobil-menu').click(function() {
+    $('.mobil-menu').click(function () {
 
         $('.menu').animate({
 
@@ -561,7 +634,7 @@ var main = function() {
 
         }, 250);
 
-        $('body').css('overflow' , 'hidden');
+        $('body').css('overflow', 'hidden');
 
         $('body').animate({
             left: '0'
@@ -570,9 +643,9 @@ var main = function() {
 
     /* Закрытие меню */
 
-    $('.icon-close').click(function() {
+    $('.icon-close').click(function () {
 
-        $('body').css('overflow' , 'inherit');
+        $('body').css('overflow', 'inherit');
 
         $('.menu').animate({
 
@@ -585,9 +658,9 @@ var main = function() {
 };
 
 
-$('.login-icon-close').click(function() {
+$('.login-icon-close').click(function () {
 
-    $('body').css('overflow' , 'inherit');
+    $('body').css('overflow', 'inherit');
 
     $('.login').animate({
 
@@ -596,9 +669,9 @@ $('.login-icon-close').click(function() {
     }, 200);
 
 });
-$('.register-icon-close').click(function() {
+$('.register-icon-close').click(function () {
 
-    $('body').css('overflow' , 'inherit');
+    $('body').css('overflow', 'inherit');
 
     $('.register').animate({
 
@@ -608,7 +681,7 @@ $('.register-icon-close').click(function() {
 
 });
 
-function get_user_menu(){
+function get_user_menu() {
 
     $('.login').animate({
 
@@ -617,7 +690,8 @@ function get_user_menu(){
     }, 250);
 
 }
-function get_register_btn(){
+
+function get_register_btn() {
 
     $('.register').animate({
 
@@ -627,13 +701,13 @@ function get_register_btn(){
 
 }
 
-function close_parent_modal(object){
+function close_parent_modal(object) {
 
     $(object).closest('.modal').modal('toggle');
 
 }
 
-function set_read_message(object){
+function set_read_message(object) {
 
     var id = $(object).attr('data-id');
 
@@ -647,13 +721,12 @@ function set_read_message(object){
         success: function (data) {
 
 
-
         }
     })
 
 }
 
-function dopolnitaelno(){
+function dopolnitaelno() {
 
     $('.dopolnitaelno-btn span').toggleClass('d-none');
     $('.dop-block').toggleClass('d-none');
@@ -661,73 +734,73 @@ function dopolnitaelno(){
 
 }
 
-function more_search(){
+function more_search() {
     $('.more-search-btn span').toggleClass('d-none');
     $('.more-search-block').toggleClass('d-none');
     $('.more-search-btn svg').toggleClass('arrow-down');
 }
 
-function filter(){
+function filter() {
 
-    $( "#slider-range-age" ).slider({
+    $("#slider-range-age").slider({
         range: true,
         min: 18,
         max: 65,
-        values: [ $( "#age-from" ).val(), $( "#age-to" ).val() ],
-        slide: function( event, ui ) {
-            $( "#age-from" ).val( ui.values[ 0 ] );
-            $( "#age-to" ).val( ui.values[ 1 ] );
+        values: [$("#age-from").val(), $("#age-to").val()],
+        slide: function (event, ui) {
+            $("#age-from").val(ui.values[0]);
+            $("#age-to").val(ui.values[1]);
         }
     });
-    $( "#rost-range-age" ).slider({
+    $("#rost-range-age").slider({
         range: true,
         min: 150,
         max: 200,
-        values: [ $( "#rost-from" ).val(), $( "#rost-to" ).val() ],
-        slide: function( event, ui ) {
-            $( "#rost-from" ).val( ui.values[ 0 ] );
-            $( "#rost-to" ).val( ui.values[ 1 ] );
+        values: [$("#rost-from").val(), $("#rost-to").val()],
+        slide: function (event, ui) {
+            $("#rost-from").val(ui.values[0]);
+            $("#rost-to").val(ui.values[1]);
         }
     });
 
-    $( "#slider-range-ves" ).slider({
+    $("#slider-range-ves").slider({
         range: true,
         min: 35,
         max: 130,
-        values: [ $( "#ves-from" ).val(), $( "#ves-to" ).val() ],
-        slide: function( event, ui ) {
-            $( "#ves-from" ).val( ui.values[ 0 ] );
-            $( "#ves-to" ).val( ui.values[ 1 ] );
+        values: [$("#ves-from").val(), $("#ves-to").val()],
+        slide: function (event, ui) {
+            $("#ves-from").val(ui.values[0]);
+            $("#ves-to").val(ui.values[1]);
         }
     });
-    $( "#slider-range-grud" ).slider({
+    $("#slider-range-grud").slider({
         range: true,
         min: 0,
         max: 9,
-        values: [ $( "#grud-from" ).val(), $( "#grud-to" ).val() ],
-        slide: function( event, ui ) {
-            $( "#grud-from" ).val( ui.values[ 0 ] );
-            $( "#grud-to" ).val( ui.values[ 1 ] );
+        values: [$("#grud-from").val(), $("#grud-to").val()],
+        slide: function (event, ui) {
+            $("#grud-from").val(ui.values[0]);
+            $("#grud-to").val(ui.values[1]);
         }
     });
-    $( "#slider-range-price-1-hour" ).slider({
+    $("#slider-range-price-1-hour").slider({
         range: true,
         min: 500,
         max: 25000,
-        values: [ $( "#price-1-from" ).val(), $( "#price-1-to" ).val() ],
-        slide: function( event, ui ) {
-            $( "#price-1-from" ).val( ui.values[ 0 ] );
-            $( "#price-1-to" ).val( ui.values[ 1 ] );
+        values: [$("#price-1-from").val(), $("#price-1-to").val()],
+        slide: function (event, ui) {
+            $("#price-1-from").val(ui.values[0]);
+            $("#price-1-to").val(ui.values[1]);
         }
     });
-    $( "#slider-range-price-2-hour" ).slider({
+    $("#slider-range-price-2-hour").slider({
         range: true,
         min: 500,
         max: 25000,
-        values: [$( "#price-2-from" ).val(), $( "#price-2-to" ).val()],
-        slide: function( event, ui ) {
-            $( "#price-2-from" ).val( ui.values[ 0 ] );
-            $( "#price-2-to" ).val( ui.values[ 1 ] );
+        values: [$("#price-2-from").val(), $("#price-2-to").val()],
+        slide: function (event, ui) {
+            $("#price-2-from").val(ui.values[0]);
+            $("#price-2-to").val(ui.values[1]);
         }
     });
 

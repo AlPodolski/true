@@ -1290,7 +1290,7 @@ a.asc::after {
     margin-left: 5px;
     margin-top: 4px;
 }
-.menu , .login , .otzivi-block , .anket-params-block , .city-list-wrap , .site-price-block , .register{
+.menu , .login , .otzivi-block , .anket-params-block , .city-list-wrap , .site-price-block , .register , .anket-map-block{
     background: #fff;
     left: -120%;
     height: 100%;
@@ -1300,6 +1300,15 @@ a.asc::after {
     top: 0;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+}
+.mobile-map{
+    height: 400px;
+    width: 100%;
+}
+.anket-map-block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .advert-item .user-info .dialog-photo img{
     width: 59px;

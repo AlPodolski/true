@@ -3,6 +3,7 @@
 
 namespace console\controllers;
 
+use common\models\City;
 use frontend\modules\chat\components\helpers\GetDialogsHelper;
 use frontend\modules\chat\models\forms\SendMessageForm;
 use frontend\modules\chat\models\Message;
@@ -210,6 +211,22 @@ class ConsoleController extends Controller
         $model->text = $text;
 
         $model->save();
+    }
+
+    public function actionCity()
+    {
+        $cityAddList = include Yii::getAlias('@app/files/city.php');
+
+        $i = 0;
+
+        foreach ($cityAddList as $cityListItem){
+
+            if (!City::find()->where(['city' => $cityListItem[0]])->one()) $i++;
+
+        }
+
+        echo $i;
+
     }
 
 }

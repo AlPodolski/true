@@ -28,7 +28,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
 ?>
 <div class="row">
-    <div class="col-12 pager" <?php if ($post['id']) : ?> data-url="/post/<?php echo $post['id'] ?>" <?php endif; ?>></div>
+    <div class="col-12 pager" data-single="1" <?php if ($post['id']) : ?> data-url="/post/<?php echo $post['id'] ?>" <?php endif; ?>></div>
 </div>
 <article class="single position-relative" data-post-id="<?php echo $post['id'] ?>">
     <div class="row">
@@ -269,6 +269,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                             </tr>
                         </table>
                     </div>
+
                     <div class="btn-wrap">
 
                         <?php if ($post['selphiCount']) : ?>
@@ -307,6 +308,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                         </div>
 
                     </div>
+
                     <div class="red-block " onclick="show_site_price_block(this)" data-id="<?php echo $post['id'] ?>">
                         <div>На других сайтах цены:</div>
                         <div class="white-bold-text">от <?php echo $price['min'] ?> руб. - <?php echo $price['max'] ?>
@@ -326,6 +328,14 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                          data-id="<?php echo $post['id'] ?>">
                         <img loading="lazy" src="/img/pen.png" width="14px" height="14px" alt="">
                         <div>Параметры анкеты</div>
+                        <div class="show-info show-info-grey"></div>
+                    </div>
+
+                    <div onclick="get_mobil_map_block(this)"
+                         class="white-block"
+                         data-id="<?php echo $post['id'] ?>"
+                         data-map="mobile-map-<?php echo $post['id'] ?>">
+                        <div>Показать на карте</div>
                         <div class="show-info show-info-grey"></div>
                     </div>
 
@@ -391,10 +401,11 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
         </div>
     </div>
 </article>
-
+<?php $col = 'col-4' ?>
+<?php if (isset($post['metro'][0]['x'])) $col = 'col-3' ?>
 <!-- Nav tabs -->
 <ul class="nav nav-tabs single-tabs ">
-    <li class="nav-item col-4">
+    <li class="nav-item <?php echo $col ?>">
         <a class="nav-link active " data-toggle="tab" href="#home<?php echo $post['id'] ?> ">
             <span class="">
                 <span class="small-text">На других сайтах цены:</span><br>
@@ -402,7 +413,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
             </span>
         </a>
     </li>
-    <li class="nav-item col-4">
+    <li class="nav-item <?php echo $col ?>">
         <a class="nav-link" data-toggle="tab" href="#menu1<?php echo $post['id'] ?> ">
                 <span class="icon otzivi-count-icon">
                     <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -426,7 +437,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
             <?php echo $countReview ?> <?php echo getNumEnding($countReview, ['отзыв', 'отзыва', 'отзывов']); ?>
         </a>
     </li>
-    <li class="nav-item col-4">
+    <li class="nav-item <?php echo $col ?>">
         <a class="nav-link" data-toggle="tab" href="#menu2<?php echo $post['id'] ?>">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12.0515 0.961332C11.3459 0.256948 10.2032 0.256948 9.4976 0.961332L8.8583 1.60414L2.05298 8.40584L2.03852 8.42041C2.03502 8.42392 2.03502 8.42764 2.03129 8.42764C2.02406 8.43849 2.01321 8.44923 2.00609 8.46007C2.00609 8.46369 2.00236 8.46369 2.00236 8.4673C1.99513 8.47815 1.99163 8.48538 1.98428 8.49623C1.98078 8.49985 1.98078 8.50335 1.97717 8.50708C1.97355 8.51792 1.96993 8.52516 1.96621 8.536C1.96621 8.53951 1.9627 8.53951 1.9627 8.54323L0.452809 13.0837C0.408516 13.2129 0.442188 13.3561 0.539473 13.452C0.607832 13.5195 0.700032 13.5572 0.795961 13.5569C0.835169 13.5562 0.874038 13.5501 0.911551 13.5388L5.44847 12.0253C5.45197 12.0253 5.45197 12.0253 5.4557 12.0218C5.46711 12.0184 5.47807 12.0135 5.48813 12.0072C5.49095 12.0069 5.49344 12.0056 5.49547 12.0037C5.50621 11.9965 5.52067 11.9891 5.53152 11.9819C5.54225 11.9748 5.55321 11.9639 5.56406 11.9567C5.56767 11.953 5.57117 11.953 5.57117 11.9495C5.5749 11.9458 5.58213 11.9423 5.58575 11.935L13.0304 4.49037C13.7348 3.78474 13.7348 2.64207 13.0304 1.93656L12.0515 0.961332ZM5.33288 11.1764L2.81883 8.66244L9.11117 2.3701L11.6252 4.88403L5.33288 11.1764ZM2.46472 9.33067L4.66103 11.5269L1.36306 12.6249L2.46472 9.33067ZM12.5211 3.98462L12.1382 4.37117L9.62404 1.85701L10.0107 1.47058C10.4336 1.048 11.1191 1.048 11.5422 1.47058L12.5246 2.45304C12.9444 2.87788 12.9428 3.56181 12.5211 3.98462Z"
@@ -435,6 +446,19 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
             Параметры анкеты
         </a>
     </li>
+
+    <?php if (isset($post['metro'][0]['x'])) : ?>
+
+    <li class="nav-item <?php echo $col ?>">
+        <a class="nav-link" onclick="init_yandex_map(this)"
+           data-id="<?php echo $post['id'] ?>"
+           data-map="map-<?php echo $post['id'] ?>"
+           data-toggle="tab" href="#menu3<?php echo $post['id'] ?>">
+            Посмотреть на карте
+        </a>
+    </li>
+
+    <?php endif; ?>
 </ul>
 
 <!-- Tab panes -->
@@ -1071,6 +1095,18 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
             </div>
         </div>
     </div>
+    <div id="menu3<?php echo $post['id'] ?>" class="container tab-pane fade bottom-gallery"><br>
+
+        <?php if (isset($post['metro'][0]['x'])) : ?>
+            <div id="map-<?php echo $post['id'] ?>"
+                 class="yandex-map map-not-exist" data-id="<?php echo $post['id'] ?>"
+                 data-x="<?php echo $post['metro'][0]['x']?>"
+                 data-y="<?php echo $post['metro'][0]['y']?>" style="  height: 400px">
+
+            </div>
+
+        <?php endif; ?>
+    </div>
 </div>
 <div class="otzivi-block d-none otzivi-block-<?php echo $post['id'] ?>">
     <div class="back-block" onclick="close_otzivi_block()">
@@ -1546,6 +1582,26 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
         </div>
     </div>
 </div>
+
+<?php if (isset($post['metro'][0]['x'])) : ?>
+
+    <div class="anket-map-block d-none anket-map-block-<?php echo $post['id'] ?>">
+        <div class="back-block" onclick="close_mobil_map_block(this)" data-id="<?php echo $post['id'] ?>">
+            <img loading="lazy" width="18px" height="30px" src="/img/back-red.png" alt="">
+        </div>
+        <div class="mobile-map-<?php echo $post['id'] ?> mobile-map map-not-exist"
+             id="mobile-map-<?php echo $post['id'] ?>"
+             data-x="<?php echo $post['metro'][0]['x']?>"
+             data-y="<?php echo $post['metro'][0]['y']?>"
+        >
+
+        </div>
+    </div>
+
+<?php endif; ?>
+
+
+
 <div class="site-price-block d-none site-price-block-<?php echo $post['id'] ?>">
 
     <div class="back-block" onclick="close_site_price_block(this)" data-id="<?php echo $post['id'] ?>">

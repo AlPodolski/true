@@ -14,6 +14,8 @@ use Yii;
  * @property string|null $value2
  * @property string|null $value3
  * @property int|null $city_id
+ * @property float|null $x
+ * @property float|null $y
  */
 class Metro extends \yii\db\ActiveRecord
 {
