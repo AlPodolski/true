@@ -6,6 +6,6 @@ return [
     'post_limit' => 12,
     'site_name' => 'sex-true.com',
     'min_pay' => 300,
-    'view_100_buy_price' => 500,
+    'view_100_buy_price' => 20,
     'up_anket_cost' => 10,
 ];

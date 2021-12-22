@@ -28,7 +28,8 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
 ?>
 <div class="row">
-    <div class="col-12 pager" data-single="1" <?php if ($post['id']) : ?> data-url="/post/<?php echo $post['id'] ?>" <?php endif; ?>></div>
+    <div class="col-12 pager"
+         data-single="1" <?php if ($post['id']) : ?> data-url="/post/<?php echo $post['id'] ?>" <?php endif; ?>></div>
 </div>
 <article class="single position-relative" data-post-id="<?php echo $post['id'] ?>">
     <div class="row">
@@ -63,21 +64,21 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                             <?php $i = 0 ?>
 
 
-                                <?php echo PhotoWidget::widget([
-                                    'path' => $post['avatar']['file'],
-                                    'size' => '360_471',
-                                    'width' => true,
-                                    'showPictureHref' => true,
-                                    'pictureOptions' => [
-                                            'class' => 'active carousel-item'
-                                    ],
-                                    'options' => [
-                                        'class' => 'img user-img card_img',
-                                        'loading' => 'lazy',
-                                        'alt' => $post['name'],
-                                        'title' => $photoTitle,
-                                    ],
-                                ]); ?>
+                            <?php echo PhotoWidget::widget([
+                                'path' => $post['avatar']['file'],
+                                'size' => '360_471',
+                                'width' => true,
+                                'showPictureHref' => true,
+                                'pictureOptions' => [
+                                    'class' => 'active carousel-item'
+                                ],
+                                'options' => [
+                                    'class' => 'img user-img card_img',
+                                    'loading' => 'lazy',
+                                    'alt' => $post['name'],
+                                    'title' => $photoTitle,
+                                ],
+                            ]); ?>
 
 
                             <?php foreach ($post['gal'] as $item) : ?>
@@ -86,21 +87,21 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                                     <?php $i++; ?>
 
-                                        <?php echo PhotoWidget::widget([
-                                            'path' => $item['file'],
-                                            'size' => '360_471',
-                                            'width' => true,
-                                            'showPictureHref' => true,
-                                            'pictureOptions' => [
-                                                'class' => ' carousel-item'
-                                            ],
-                                            'options' => [
-                                                'class' => 'img user-img',
-                                                'loading' => 'lazy',
-                                                'alt' => $post['name'],
-                                                'title' => $photoTitle,
-                                            ],
-                                        ]); ?>
+                                    <?php echo PhotoWidget::widget([
+                                        'path' => $item['file'],
+                                        'size' => '360_471',
+                                        'width' => true,
+                                        'showPictureHref' => true,
+                                        'pictureOptions' => [
+                                            'class' => ' carousel-item'
+                                        ],
+                                        'options' => [
+                                            'class' => 'img user-img',
+                                            'loading' => 'lazy',
+                                            'alt' => $post['name'],
+                                            'title' => $photoTitle,
+                                        ],
+                                    ]); ?>
 
                                 <?php endif; ?>
 
@@ -170,11 +171,11 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                                 <div class="col-12 cursor-pointer">
                                     <?php $targetPrice = \frontend\components\helpers\PriceTargetHelper::target($post['price']) ?>
                                     <a data-id="<?php echo $post['id'] ?>"
-                                          onclick="add_phone_view(this);ym(70919698,'reachGoal','call'); <?php if ($post['partnerId']) : ?> ym(70919698,'reachGoal','<?php echo $post['partnerId']['partner_id'] ?>');  <?php endif; ?> <?php echo $targetPrice?>"
-                                          data-tel="tel:+<?php echo preg_replace("/[^0-9]/", '', $post['phone']) ?>"
-                                          href="tel:+<?php echo preg_replace("/[^0-9]/", '', $post['phone']) ?>"
-                                          data-number="<?php echo $post['phone'] ?>"
-                                          class="d-block single-price">Показать номер</a>
+                                       onclick="add_phone_view(this);ym(70919698,'reachGoal','call'); <?php if ($post['partnerId']) : ?> ym(70919698,'reachGoal','<?php echo $post['partnerId']['partner_id'] ?>');  <?php endif; ?> <?php echo $targetPrice ?>"
+                                       data-tel="tel:+<?php echo preg_replace("/[^0-9]/", '', $post['phone']) ?>"
+                                       href="tel:+<?php echo preg_replace("/[^0-9]/", '', $post['phone']) ?>"
+                                       data-number="<?php echo $post['phone'] ?>"
+                                       class="d-block single-price">Показать номер</a>
 
                                 </div>
                                 <div class="col-12">
@@ -206,11 +207,15 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                         </div>
                         <div class="site-price post-address">
-                            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6.5 13C4.76379 13 3.13148 12.3239 1.90379 11.0962C0.676102 9.86852 0 8.23621 0 6.5C0 4.76379 0.676127 3.1315 1.90379 1.90379C3.13145 0.676076 4.76379 0 6.5 0C8.23621 0 9.86852 0.676102 11.0962 1.90379C12.3239 3.13148 13 4.76379 13 6.5C13 8.23621 12.3239 9.8685 11.0962 11.0962C9.86855 12.3239 8.23621 13 6.5 13ZM6.5 0.8125C3.3639 0.8125 0.8125 3.3639 0.8125 6.5C0.8125 9.6361 3.3639 12.1875 6.5 12.1875C9.6361 12.1875 12.1875 9.6361 12.1875 6.5C12.1875 3.3639 9.6361 0.8125 6.5 0.8125Z" fill="#F74952"></path>
-                                <path d="M6.5 6.09375C5.93998 6.09375 5.48438 5.63814 5.48438 5.07812C5.48438 4.51811 5.93998 4.0625 6.5 4.0625C7.06002 4.0625 7.51562 4.51811 7.51562 5.07812C7.51562 5.30248 7.6975 5.48438 7.92188 5.48438C8.14625 5.48438 8.32812 5.30248 8.32812 5.07812C8.32812 4.20974 7.71931 3.48136 6.90625 3.29606V2.84375C6.90625 2.6194 6.72438 2.4375 6.5 2.4375C6.27562 2.4375 6.09375 2.6194 6.09375 2.84375V3.29606C5.28069 3.48136 4.67188 4.20974 4.67188 5.07812C4.67188 6.08616 5.49197 6.90625 6.5 6.90625C7.06002 6.90625 7.51562 7.36186 7.51562 7.92188C7.51562 8.48189 7.06002 8.9375 6.5 8.9375C5.93998 8.9375 5.48438 8.48189 5.48438 7.92188C5.48438 7.69752 5.3025 7.51562 5.07812 7.51562C4.85375 7.51562 4.67188 7.69752 4.67188 7.92188C4.67188 8.79026 5.28069 9.51864 6.09375 9.70394V10.1562C6.09375 10.3806 6.27562 10.5625 6.5 10.5625C6.72438 10.5625 6.90625 10.3806 6.90625 10.1562V9.70394C7.71931 9.51864 8.32812 8.79026 8.32812 7.92188C8.32812 6.91384 7.50803 6.09375 6.5 6.09375Z" fill="#F74952"></path>
+                            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6.5 13C4.76379 13 3.13148 12.3239 1.90379 11.0962C0.676102 9.86852 0 8.23621 0 6.5C0 4.76379 0.676127 3.1315 1.90379 1.90379C3.13145 0.676076 4.76379 0 6.5 0C8.23621 0 9.86852 0.676102 11.0962 1.90379C12.3239 3.13148 13 4.76379 13 6.5C13 8.23621 12.3239 9.8685 11.0962 11.0962C9.86855 12.3239 8.23621 13 6.5 13ZM6.5 0.8125C3.3639 0.8125 0.8125 3.3639 0.8125 6.5C0.8125 9.6361 3.3639 12.1875 6.5 12.1875C9.6361 12.1875 12.1875 9.6361 12.1875 6.5C12.1875 3.3639 9.6361 0.8125 6.5 0.8125Z"
+                                      fill="#F74952"></path>
+                                <path d="M6.5 6.09375C5.93998 6.09375 5.48438 5.63814 5.48438 5.07812C5.48438 4.51811 5.93998 4.0625 6.5 4.0625C7.06002 4.0625 7.51562 4.51811 7.51562 5.07812C7.51562 5.30248 7.6975 5.48438 7.92188 5.48438C8.14625 5.48438 8.32812 5.30248 8.32812 5.07812C8.32812 4.20974 7.71931 3.48136 6.90625 3.29606V2.84375C6.90625 2.6194 6.72438 2.4375 6.5 2.4375C6.27562 2.4375 6.09375 2.6194 6.09375 2.84375V3.29606C5.28069 3.48136 4.67188 4.20974 4.67188 5.07812C4.67188 6.08616 5.49197 6.90625 6.5 6.90625C7.06002 6.90625 7.51562 7.36186 7.51562 7.92188C7.51562 8.48189 7.06002 8.9375 6.5 8.9375C5.93998 8.9375 5.48438 8.48189 5.48438 7.92188C5.48438 7.69752 5.3025 7.51562 5.07812 7.51562C4.85375 7.51562 4.67188 7.69752 4.67188 7.92188C4.67188 8.79026 5.28069 9.51864 6.09375 9.70394V10.1562C6.09375 10.3806 6.27562 10.5625 6.5 10.5625C6.72438 10.5625 6.90625 10.3806 6.90625 10.1562V9.70394C7.71931 9.51864 8.32812 8.79026 8.32812 7.92188C8.32812 6.91384 7.50803 6.09375 6.5 6.09375Z"
+                                      fill="#F74952"></path>
                             </svg>
-                            <?php echo $post['price'] ?> руб.</div>
+                            <?php echo $post['price'] ?> руб.
+                        </div>
                         <div class="post-find-and-otzivi-count-block">
                             <div class="row">
                                 <div class="col-12 single-date-wrap">
@@ -309,13 +314,17 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                     </div>
 
-                    <div class="red-block " onclick="show_site_price_block(this)" data-id="<?php echo $post['id'] ?>">
-                        <div>На других сайтах цены:</div>
-                        <div class="white-bold-text">от <?php echo $price['min'] ?> руб. - <?php echo $price['max'] ?>
-                            руб.
+                    <?php if($post['sites']) : ?>
+
+                        <div class="red-block " onclick="show_site_price_block(this)" data-id="<?php echo $post['id'] ?>">
+                            <div>На других сайтах цены:</div>
+                            <div class="white-bold-text">от <?php echo $price['min'] ?> руб. - <?php echo $price['max'] ?>
+                                руб.
+                            </div>
+                            <div class="show-info show-info-white"></div>
                         </div>
-                        <div class="show-info show-info-white"></div>
-                    </div>
+
+                    <?php endif; ?>
                     <div onclick="show_otzivi_block(this)" data-id="<?php echo $post['id'] ?>"
                          class="white-block itzivi-block">
                         <img loading="lazy" src="/img/conversation2.png" width="16px" height="16px" alt="">
@@ -401,20 +410,29 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
         </div>
     </div>
 </article>
-<?php $col = 'col-4' ?>
-<?php if (isset($post['metro'][0]['x'])) $col = 'col-3' ?>
+
 <!-- Nav tabs -->
 <ul class="nav nav-tabs single-tabs ">
-    <li class="nav-item <?php echo $col ?>">
-        <a class="nav-link active " data-toggle="tab" href="#home<?php echo $post['id'] ?> ">
-            <span class="">
-                <span class="small-text">На других сайтах цены:</span><br>
-                <span class="big-text">от <?php echo $price['min'] ?> руб. - <?php echo $price['max'] ?> руб.</span>
-            </span>
-        </a>
-    </li>
-    <li class="nav-item <?php echo $col ?>">
-        <a class="nav-link" data-toggle="tab" href="#menu1<?php echo $post['id'] ?> ">
+
+    <?php $sites = false; ?>
+
+    <?php if ($post['sites']) : ?>
+
+    <?php $sites = true; ?>
+
+        <li class="nav-item ">
+            <a class="nav-link active " data-toggle="tab" href="#home<?php echo $post['id'] ?> ">
+                <span class="">
+                    <span class="small-text">На других сайтах цены:</span><br>
+                    <span class="big-text">от <?php echo $price['min'] ?> руб. - <?php echo $price['max'] ?> руб.</span>
+                </span>
+            </a>
+        </li>
+
+    <?php endif; ?>
+
+    <li class="nav-item ">
+        <a class="nav-link <?php if (!$sites) echo 'active'?>" data-toggle="tab" href="#menu1<?php echo $post['id'] ?> ">
                 <span class="icon otzivi-count-icon">
                     <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0)">
@@ -437,7 +455,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
             <?php echo $countReview ?> <?php echo getNumEnding($countReview, ['отзыв', 'отзыва', 'отзывов']); ?>
         </a>
     </li>
-    <li class="nav-item <?php echo $col ?>">
+    <li class="nav-item ">
         <a class="nav-link" data-toggle="tab" href="#menu2<?php echo $post['id'] ?>">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12.0515 0.961332C11.3459 0.256948 10.2032 0.256948 9.4976 0.961332L8.8583 1.60414L2.05298 8.40584L2.03852 8.42041C2.03502 8.42392 2.03502 8.42764 2.03129 8.42764C2.02406 8.43849 2.01321 8.44923 2.00609 8.46007C2.00609 8.46369 2.00236 8.46369 2.00236 8.4673C1.99513 8.47815 1.99163 8.48538 1.98428 8.49623C1.98078 8.49985 1.98078 8.50335 1.97717 8.50708C1.97355 8.51792 1.96993 8.52516 1.96621 8.536C1.96621 8.53951 1.9627 8.53951 1.9627 8.54323L0.452809 13.0837C0.408516 13.2129 0.442188 13.3561 0.539473 13.452C0.607832 13.5195 0.700032 13.5572 0.795961 13.5569C0.835169 13.5562 0.874038 13.5501 0.911551 13.5388L5.44847 12.0253C5.45197 12.0253 5.45197 12.0253 5.4557 12.0218C5.46711 12.0184 5.47807 12.0135 5.48813 12.0072C5.49095 12.0069 5.49344 12.0056 5.49547 12.0037C5.50621 11.9965 5.52067 11.9891 5.53152 11.9819C5.54225 11.9748 5.55321 11.9639 5.56406 11.9567C5.56767 11.953 5.57117 11.953 5.57117 11.9495C5.5749 11.9458 5.58213 11.9423 5.58575 11.935L13.0304 4.49037C13.7348 3.78474 13.7348 2.64207 13.0304 1.93656L12.0515 0.961332ZM5.33288 11.1764L2.81883 8.66244L9.11117 2.3701L11.6252 4.88403L5.33288 11.1764ZM2.46472 9.33067L4.66103 11.5269L1.36306 12.6249L2.46472 9.33067ZM12.5211 3.98462L12.1382 4.37117L9.62404 1.85701L10.0107 1.47058C10.4336 1.048 11.1191 1.048 11.5422 1.47058L12.5246 2.45304C12.9444 2.87788 12.9428 3.56181 12.5211 3.98462Z"
@@ -449,21 +467,26 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
     <?php if (isset($post['metro'][0]['x'])) : ?>
 
-    <li class="nav-item <?php echo $col ?>">
-        <a class="nav-link" onclick="init_yandex_map(this)"
-           data-id="<?php echo $post['id'] ?>"
-           data-map="map-<?php echo $post['id'] ?>"
-           data-toggle="tab" href="#menu3<?php echo $post['id'] ?>">
-            Посмотреть на карте
-        </a>
-    </li>
+        <li class="nav-item">
+            <a class="nav-link" onclick="init_yandex_map(this)"
+               data-id="<?php echo $post['id'] ?>"
+               data-map="map-<?php echo $post['id'] ?>"
+               data-toggle="tab" href="#menu3<?php echo $post['id'] ?>">
+                Посмотреть на карте
+            </a>
+        </li>
 
     <?php endif; ?>
 </ul>
 
 <!-- Tab panes -->
 <div class="tab-content">
-    <div id="home<?php echo $post['id'] ?>" class="container tab-pane active"><br>
+
+    <?php $home = true; ?>
+
+    <?php if ($post['sites']) : ?>
+
+        <div id="home<?php echo $post['id'] ?>" class="container tab-pane active"><br>
         <div class="row">
             <div class="col-4 bottom-gallery">
 
@@ -492,9 +515,10 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                             <?php if ($i > 1) $cssClass = 'd-none'; ?>
 
-                                <?php Yii::$app->imageCache->thumbSrc($item['file'], $size) ?>
+                            <?php Yii::$app->imageCache->thumbSrc($item['file'], $size) ?>
 
-                            <a class="<?php echo $cssClass ?>" href="<?php echo Yii::$app->imageCache->thumbSrc($item['file'], '1024') ?>">
+                            <a class="<?php echo $cssClass ?>"
+                               href="<?php echo Yii::$app->imageCache->thumbSrc($item['file'], '1024') ?>">
 
                                 <?php
 
@@ -591,7 +615,13 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
         </div>
     </div>
-    <div id="menu1<?php echo $post['id'] ?>" class="container tab-pane fade bottom-gallery"><br>
+
+    <?php $home = false; ?>
+
+    <?php endif; ?>
+
+    <div id="menu1<?php echo $post['id'] ?>" class="container tab-pane fade bottom-gallery <?php if ($home) echo 'active show'?>"><br>
+
         <div class="otzivi-block-desc">
 
             <div class="row">
@@ -749,79 +779,65 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                     <?php if ($item['text']) : ?>
 
                         <div class="review-block">
-                            <div class="review-item">
-                                <div class="col-12 bottom-gallery">
-                                    <div class="review-item-wrap">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-1">
-                                                        <div class="author-img">
 
-                                                            <?php if (isset($item['author']['avatar']['file']) and $item['author']['avatar']['file']) : ?>
-                                                                <?php echo PhotoWidget::widget([
-                                                                    'path' => $item['author']['avatar']['file'],
-                                                                    'size' => '59',
-                                                                    'options' => [
-                                                                        'class' => 'img user-img',
-                                                                        'loading' => 'lazy',
-                                                                        'alt' => $item['author']['username'],
-                                                                    ],
-                                                                ]); ?>
-                                                            <?php else : ?>
+                            <div class="author-img">
 
-                                                                <div class="no-photo">
-                                                                    <?php
+                                <?php if (isset($item['author']['avatar']['file']) and $item['author']['avatar']['file']) : ?>
+                                    <?php echo PhotoWidget::widget([
+                                        'path' => $item['author']['avatar']['file'],
+                                        'size' => '59',
+                                        'options' => [
+                                            'class' => 'img user-img',
+                                            'loading' => 'lazy',
+                                            'alt' => $item['author']['username'],
+                                        ],
+                                    ]); ?>
+                                <?php else : ?>
 
-                                                                    echo $item['author']['username'][0] . $item['author']['username'][1];
+                                    <div class="no-photo">
+                                        <?php
 
-                                                                    ?>
-                                                                </div>
+                                        echo $item['author']['username'][0] . $item['author']['username'][1];
 
-                                                            <?php endif; ?>
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <div class="author-name">
-                                                            <?php echo $item['author']['username'] ?>
-                                                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <path d="M10.0943 4.77885C10.308 4.99248 10.308 5.33876 10.0943 5.55228L6.42557 9.22115C6.21194 9.43466 5.86577 9.43466 5.65215 9.22115L3.90567 7.47456C3.69205 7.26105 3.69205 6.91476 3.90567 6.70125C4.11919 6.48763 4.46547 6.48763 4.67899 6.70125L6.0388 8.06107L9.32091 4.77885C9.53453 4.56534 9.88081 4.56534 10.0943 4.77885ZM14 7C14 10.8692 10.8687 14 7 14C3.13075 14 0 10.8687 0 7C0 3.13075 3.13129 0 7 0C10.8692 0 14 3.13129 14 7ZM12.9062 7C12.9062 3.73531 10.2643 1.09375 7 1.09375C3.73531 1.09375 1.09375 3.73573 1.09375 7C1.09375 10.2647 3.73573 12.9062 7 12.9062C10.2647 12.9062 12.9062 10.2643 12.9062 7Z"
-                                                                      fill="#31DA92"/>
-                                                            </svg>
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <div class="date">
-                                                            <div class="date-text">
-
-                                                                <?php
-
-                                                                $day = time() - $item['created_at'];
-
-                                                                $day = (intdiv($day, 3600 * 24));
-
-                                                                ?>
-
-                                                                <?php echo $day ?> <?php echo getNumEnding($day, ['день', 'дня', 'дней']); ?>
-
-                                                                назад
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12"></div>
-                                        </div>
-                                        <div class="review-text">
-                                            <?php echo $item['text'] ?>
-                                        </div>
+                                        ?>
                                     </div>
+
+                                <?php endif; ?>
+
+                            </div>
+
+                            <div class="author-name">
+                                <?php echo $item['author']['username'] ?>
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10.0943 4.77885C10.308 4.99248 10.308 5.33876 10.0943 5.55228L6.42557 9.22115C6.21194 9.43466 5.86577 9.43466 5.65215 9.22115L3.90567 7.47456C3.69205 7.26105 3.69205 6.91476 3.90567 6.70125C4.11919 6.48763 4.46547 6.48763 4.67899 6.70125L6.0388 8.06107L9.32091 4.77885C9.53453 4.56534 9.88081 4.56534 10.0943 4.77885ZM14 7C14 10.8692 10.8687 14 7 14C3.13075 14 0 10.8687 0 7C0 3.13075 3.13129 0 7 0C10.8692 0 14 3.13129 14 7ZM12.9062 7C12.9062 3.73531 10.2643 1.09375 7 1.09375C3.73531 1.09375 1.09375 3.73573 1.09375 7C1.09375 10.2647 3.73573 12.9062 7 12.9062C10.2647 12.9062 12.9062 10.2643 12.9062 7Z"
+                                          fill="#31DA92"/>
+                                </svg>
+
+                            </div>
+
+                            <div class="date">
+                                <div class="date-text">
+
+                                    <?php
+
+                                    $day = time() - $item['created_at'];
+
+                                    $day = (intdiv($day, 3600 * 24));
+
+                                    ?>
+
+                                    <?php echo $day ?> <?php echo getNumEnding($day, ['день', 'дня', 'дней']); ?>
+
+                                    назад
+
                                 </div>
                             </div>
+
+                            <div class="review-text">
+                                <?php echo $item['text'] ?>
+                            </div>
+
                         </div>
 
                     <?php endif; ?>
@@ -887,7 +903,8 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                                     <?php echo $post['ves'] ? $post['ves'] : "-"; ?> кг
                                 </div>
                                 <div class="main-param-item">
-                                    <img loading="lazy" src="/img/women-brassiere1.png" width="22px" height="22px" alt="">
+                                    <img loading="lazy" src="/img/women-brassiere1.png" width="22px" height="22px"
+                                         alt="">
                                     <?php echo $post['breast'] ? $post['breast'] : "-"; ?>
                                 </div>
                             </div>
@@ -1100,8 +1117,8 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
         <?php if (isset($post['metro'][0]['x'])) : ?>
             <div id="map-<?php echo $post['id'] ?>"
                  class="yandex-map map-not-exist" data-id="<?php echo $post['id'] ?>"
-                 data-x="<?php echo $post['metro'][0]['x']?>"
-                 data-y="<?php echo $post['metro'][0]['y']?>" style="  height: 400px">
+                 data-x="<?php echo $post['metro'][0]['x'] ?>"
+                 data-y="<?php echo $post['metro'][0]['y'] ?>" style="  height: 400px">
 
             </div>
 
@@ -1591,8 +1608,8 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
         </div>
         <div class="mobile-map-<?php echo $post['id'] ?> mobile-map map-not-exist"
              id="mobile-map-<?php echo $post['id'] ?>"
-             data-x="<?php echo $post['metro'][0]['x']?>"
-             data-y="<?php echo $post['metro'][0]['y']?>"
+             data-x="<?php echo $post['metro'][0]['x'] ?>"
+             data-y="<?php echo $post['metro'][0]['y'] ?>"
         >
 
         </div>
@@ -1600,162 +1617,164 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
 <?php endif; ?>
 
+<?php if($post['sites']) :?>
 
+    <div class="site-price-block d-none site-price-block-<?php echo $post['id'] ?>">
 
-<div class="site-price-block d-none site-price-block-<?php echo $post['id'] ?>">
-
-    <div class="back-block" onclick="close_site_price_block(this)" data-id="<?php echo $post['id'] ?>">
-        <img loading="lazy" width="18px" height="30px" src="/img/back-red.png" alt="">
-    </div>
-
-    <div id="carouselBottomExampleControls-<?php echo $post['id'] ?>" class="carousel slide"
-         data-ride="carousel">
-
-        <div class="carousel-inner">
-
-            <?php $i = 0 ?>
-
-            <span class="active carousel-item">
-                                <?php echo PhotoWidget::widget([
-                                    'path' => $post['avatar']['file'],
-                                    'size' => 'single',
-                                    'options' => [
-                                        'class' => 'img user-img',
-                                        'loading' => 'lazy',
-                                        'alt' => $post['name'],
-                                        'title' => $photoTitle,
-                                    ],
-                                ]); ?>
-                            </span>
-
-            <?php foreach ($post['gal'] as $item) : ?>
-
-                <?php if ($item['type'] != \frontend\models\Files::SELPHY_TYPE) : ?>
-
-                    <?php $i++; ?>
-
-                    <span class="carousel-item">
-
-                        <?php echo PhotoWidget::widget([
-                            'path' => $item['file'],
-                            'size' => 'single',
-                            'options' => [
-                                'class' => 'img user-img',
-                                'loading' => 'lazy',
-                                'alt' => $post['name'],
-                                'title' => $photoTitle,
-                            ],
-                        ]); ?>
-
-                                      </span>
-
-                <?php endif; ?>
-
-            <?php endforeach; ?>
-
+        <div class="back-block" onclick="close_site_price_block(this)" data-id="<?php echo $post['id'] ?>">
+            <img loading="lazy" width="18px" height="30px" src="/img/back-red.png" alt="">
         </div>
 
-        <a class="carousel-control-prev"
-           href="#carouselBottomExampleControls-<?php echo $post['id'] ?>" role="button"
-           data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next"
-           href="#carouselBottomExampleControls-<?php echo $post['id'] ?>" role="button"
-           data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
+        <div id="carouselBottomExampleControls-<?php echo $post['id'] ?>" class="carousel slide"
+             data-ride="carousel">
 
-        <ol class="carousel-indicators">
-            <?php $j = 0 ?>
+            <div class="carousel-inner">
 
-            <li data-target="#carouselBottomExampleControls-<?php echo $post['id'] ?>" data-slide-to="0"
-                class="active"></li>
+                <?php $i = 0 ?>
 
-            <?php while ($j + 1 <= $i) : ?>
+                <span class="active carousel-item">
+                                    <?php echo PhotoWidget::widget([
+                                        'path' => $post['avatar']['file'],
+                                        'size' => 'single',
+                                        'options' => [
+                                            'class' => 'img user-img',
+                                            'loading' => 'lazy',
+                                            'alt' => $post['name'],
+                                            'title' => $photoTitle,
+                                        ],
+                                    ]); ?>
+                                </span>
 
-                <li data-target="#carouselBottomExampleControls-<?php echo $post['id'] ?>"
-                    data-slide-to="<?php echo $j + 1 ?>"></li>
+                <?php foreach ($post['gal'] as $item) : ?>
 
-                <?php $j++; ?>
+                    <?php if ($item['type'] != \frontend\models\Files::SELPHY_TYPE) : ?>
 
-            <?php endwhile; ?>
+                        <?php $i++; ?>
 
-        </ol>
-    </div>
+                        <span class="carousel-item">
 
-    <div class="sites-wrap">
+                            <?php echo PhotoWidget::widget([
+                                'path' => $item['file'],
+                                'size' => 'single',
+                                'options' => [
+                                    'class' => 'img user-img',
+                                    'loading' => 'lazy',
+                                    'alt' => $post['name'],
+                                    'title' => $photoTitle,
+                                ],
+                            ]); ?>
 
-        <div class="red-bold-text">
-            На других сайтах
+                                          </span>
+
+                    <?php endif; ?>
+
+                <?php endforeach; ?>
+
+            </div>
+
+            <a class="carousel-control-prev"
+               href="#carouselBottomExampleControls-<?php echo $post['id'] ?>" role="button"
+               data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next"
+               href="#carouselBottomExampleControls-<?php echo $post['id'] ?>" role="button"
+               data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+
+            <ol class="carousel-indicators">
+                <?php $j = 0 ?>
+
+                <li data-target="#carouselBottomExampleControls-<?php echo $post['id'] ?>" data-slide-to="0"
+                    class="active"></li>
+
+                <?php while ($j + 1 <= $i) : ?>
+
+                    <li data-target="#carouselBottomExampleControls-<?php echo $post['id'] ?>"
+                        data-slide-to="<?php echo $j + 1 ?>"></li>
+
+                    <?php $j++; ?>
+
+                <?php endwhile; ?>
+
+            </ol>
         </div>
 
-        <div class="container">
+        <div class="sites-wrap">
 
-            <?php foreach ($post['sites'] as $item) : ?>
+            <div class="red-bold-text">
+                На других сайтах
+            </div>
 
-                <div class="site-item">
+            <div class="container">
 
-                    <div class="row">
+                <?php foreach ($post['sites'] as $item) : ?>
 
-                        <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-4">
-                            <div class="site-img-wrap">
+                    <div class="site-item">
 
-                                <?php if (isset($item['site']['photo']['file'])) : ?>
+                        <div class="row">
 
-                                    <img loading="lazy" class="site-img"
-                                         src="<?php echo $item['site']['photo']['file'] ?>" alt="">
+                            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-4">
+                                <div class="site-img-wrap">
 
-                                <?php else: ?>
+                                    <?php if (isset($item['site']['photo']['file'])) : ?>
 
-                                    <img loading="lazy" class="site-img" src="/img/no-image.png" alt="">
+                                        <img loading="lazy" class="site-img"
+                                             src="<?php echo $item['site']['photo']['file'] ?>" alt="">
 
-                                <?php endif; ?>
+                                    <?php else: ?>
 
-                            </div>
-                        </div>
+                                        <img loading="lazy" class="site-img" src="/img/no-image.png" alt="">
 
-                        <div class="col-xl-8 col-lg-8 col-md-9 col-sm-9 col-8">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="site-find-date">
-                                        <?php echo date('d.m.y', $item['created_at']); ?>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="age-name">
-                                        <?php echo $item['name_on_site'] ?>, <?php echo $item['age'] ?>
-                                    </div>
-                                </div>
-                                <div class="col-12">
+                                    <?php endif; ?>
 
-                                    <div class="site-price">
-                                        <svg width="13" height="13" viewBox="0 0 13 13" fill="none"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M6.5 13C4.76379 13 3.13148 12.3239 1.90379 11.0962C0.676102 9.86852 0 8.23621 0 6.5C0 4.76379 0.676127 3.1315 1.90379 1.90379C3.13145 0.676076 4.76379 0 6.5 0C8.23621 0 9.86852 0.676102 11.0962 1.90379C12.3239 3.13148 13 4.76379 13 6.5C13 8.23621 12.3239 9.8685 11.0962 11.0962C9.86855 12.3239 8.23621 13 6.5 13ZM6.5 0.8125C3.3639 0.8125 0.8125 3.3639 0.8125 6.5C0.8125 9.6361 3.3639 12.1875 6.5 12.1875C9.6361 12.1875 12.1875 9.6361 12.1875 6.5C12.1875 3.3639 9.6361 0.8125 6.5 0.8125Z"
-                                                  fill="#F74952"/>
-                                            <path d="M6.5 6.09375C5.93998 6.09375 5.48438 5.63814 5.48438 5.07812C5.48438 4.51811 5.93998 4.0625 6.5 4.0625C7.06002 4.0625 7.51562 4.51811 7.51562 5.07812C7.51562 5.30248 7.6975 5.48438 7.92188 5.48438C8.14625 5.48438 8.32812 5.30248 8.32812 5.07812C8.32812 4.20974 7.71931 3.48136 6.90625 3.29606V2.84375C6.90625 2.6194 6.72438 2.4375 6.5 2.4375C6.27562 2.4375 6.09375 2.6194 6.09375 2.84375V3.29606C5.28069 3.48136 4.67188 4.20974 4.67188 5.07812C4.67188 6.08616 5.49197 6.90625 6.5 6.90625C7.06002 6.90625 7.51562 7.36186 7.51562 7.92188C7.51562 8.48189 7.06002 8.9375 6.5 8.9375C5.93998 8.9375 5.48438 8.48189 5.48438 7.92188C5.48438 7.69752 5.3025 7.51562 5.07812 7.51562C4.85375 7.51562 4.67188 7.69752 4.67188 7.92188C4.67188 8.79026 5.28069 9.51864 6.09375 9.70394V10.1562C6.09375 10.3806 6.27562 10.5625 6.5 10.5625C6.72438 10.5625 6.90625 10.3806 6.90625 10.1562V9.70394C7.71931 9.51864 8.32812 8.79026 8.32812 7.92188C8.32812 6.91384 7.50803 6.09375 6.5 6.09375Z"
-                                                  fill="#F74952"/>
-                                        </svg>
-                                        <?php echo $item['price'] ?> руб/час
-                                    </div>
                                 </div>
                             </div>
+
+                            <div class="col-xl-8 col-lg-8 col-md-9 col-sm-9 col-8">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="site-find-date">
+                                            <?php echo date('d.m.y', $item['created_at']); ?>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="age-name">
+                                            <?php echo $item['name_on_site'] ?>, <?php echo $item['age'] ?>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+
+                                        <div class="site-price">
+                                            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M6.5 13C4.76379 13 3.13148 12.3239 1.90379 11.0962C0.676102 9.86852 0 8.23621 0 6.5C0 4.76379 0.676127 3.1315 1.90379 1.90379C3.13145 0.676076 4.76379 0 6.5 0C8.23621 0 9.86852 0.676102 11.0962 1.90379C12.3239 3.13148 13 4.76379 13 6.5C13 8.23621 12.3239 9.8685 11.0962 11.0962C9.86855 12.3239 8.23621 13 6.5 13ZM6.5 0.8125C3.3639 0.8125 0.8125 3.3639 0.8125 6.5C0.8125 9.6361 3.3639 12.1875 6.5 12.1875C9.6361 12.1875 12.1875 9.6361 12.1875 6.5C12.1875 3.3639 9.6361 0.8125 6.5 0.8125Z"
+                                                      fill="#F74952"/>
+                                                <path d="M6.5 6.09375C5.93998 6.09375 5.48438 5.63814 5.48438 5.07812C5.48438 4.51811 5.93998 4.0625 6.5 4.0625C7.06002 4.0625 7.51562 4.51811 7.51562 5.07812C7.51562 5.30248 7.6975 5.48438 7.92188 5.48438C8.14625 5.48438 8.32812 5.30248 8.32812 5.07812C8.32812 4.20974 7.71931 3.48136 6.90625 3.29606V2.84375C6.90625 2.6194 6.72438 2.4375 6.5 2.4375C6.27562 2.4375 6.09375 2.6194 6.09375 2.84375V3.29606C5.28069 3.48136 4.67188 4.20974 4.67188 5.07812C4.67188 6.08616 5.49197 6.90625 6.5 6.90625C7.06002 6.90625 7.51562 7.36186 7.51562 7.92188C7.51562 8.48189 7.06002 8.9375 6.5 8.9375C5.93998 8.9375 5.48438 8.48189 5.48438 7.92188C5.48438 7.69752 5.3025 7.51562 5.07812 7.51562C4.85375 7.51562 4.67188 7.69752 4.67188 7.92188C4.67188 8.79026 5.28069 9.51864 6.09375 9.70394V10.1562C6.09375 10.3806 6.27562 10.5625 6.5 10.5625C6.72438 10.5625 6.90625 10.3806 6.90625 10.1562V9.70394C7.71931 9.51864 8.32812 8.79026 8.32812 7.92188C8.32812 6.91384 7.50803 6.09375 6.5 6.09375Z"
+                                                      fill="#F74952"/>
+                                            </svg>
+                                            <?php echo $item['price'] ?> руб/час
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
 
                     </div>
 
-                </div>
+                <?php endforeach; ?>
 
-            <?php endforeach; ?>
+            </div>
 
         </div>
 
     </div>
 
-</div>
+<?php endif; ?>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">

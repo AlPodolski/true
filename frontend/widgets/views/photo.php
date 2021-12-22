@@ -24,7 +24,7 @@ if (is_array($pictureOptions)) {
 
         <?php if ($width and $imageInfo = Yii::$app->imageCache->sizes[$size]) : ?>
 
-            <?php $height = $imageInfo[1] - 13 ?>
+            <?php $height = $imageInfo[1] ?>
 
             <?php $widthInfo = 'width="' . $imageInfo[0] . '" height="' . $height . '"'; ?>
 
