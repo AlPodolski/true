@@ -1965,6 +1965,106 @@ h1{
 .icon svg{
     margin: 0!important;
 }
+.mega-menu-widget{
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+.m-right-15{
+    margin-right: 15px;
+}
+.m-left-25{
+    margin-left: 25px;
+}
+.top-menu-wrap{
+    display: flex;
+}
+.menu-heading-wrap{
+    display: flex;
+    align-items: center;
+}
+.drop-menu-list{
+    top: 49px;
+    background: #fff;
+    padding: 5px 0;
+    z-index: 66;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.07);
+    border: 1px solid #f0f0f0;
+}
+
+.drop-menu-list-sub-menu{
+    cursor: auto;
+    display: flex;
+    background-color: #fff;
+    position: absolute;
+    top: 0px;
+    left: 100%;
+    width: 665px;
+    flex-wrap: wrap;
+    padding: 10px 15px;
+    z-index: 2;
+    padding-left: 25px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.07);
+    border-bottom: 1px solid #f0f0f0;
+    padding-top: 25px;
+    padding-bottom: 0;
+}
+
+.sub-menu-block{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+    margin-right: 40px;
+}
+.sub-menu-block-heading{
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #F74952;
+}
+.drop-menu-list-item{
+    color: #999999;
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    padding: 15px 35px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+}
+.drop-menu-list-item a{
+    color: #999999;
+    margin-bottom: 10px;
+}
+.big-sub-menu-block{
+    flex: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.big-sub-menu-block .sub-menu-block-heading{
+    flex: 100%;
+}
+.big-sub-menu-block .sub-menu-block-item{
+    margin-right: 10px;
+}
+.sub-menu-block a{
+    font-size: 14px;
+}
+.drop-menu-list-item:last-child{
+    border-bottom: none;
+}
+.drop-menu-list-sub-menu{
+    display: none;
+}
+.drop-menu-list-item:hover .drop-menu-list-sub-menu{
+    display: flex;
+}
+.mega-menu-widget:hover .drop-menu-list{
+    display: block;
+}
+.drop-menu-list{
+    display: none;
+}
 .single-bottom-info .post-address{
     color: #000;
 }

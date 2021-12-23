@@ -56,6 +56,11 @@ AppAsset::register($this);
     <div class="top-menu-container">
         <div class="container">
             <div class="top-menu-wrap">
+
+                <?php echo \frontend\widgets\MegaMenuWidget::widget([
+                        'city' => Yii::$app->requestedParams['city']
+                ])?>
+
                 <ul class="top-menu">
 
                     <?php if (Yii::$app->requestedParams['city'] == 'moskva') : ?>
@@ -65,13 +70,6 @@ AppAsset::register($this);
                         <li class="top-menu-item"><a href="https://t.me/indi_tut">Мы в телеграм</a></li>
 
                     <?php endif; ?>
-
-                    <li class="top-menu-item"><a href="/proverennye">Проверенные</a></li>
-                    <li class="top-menu-item"><a href="/cena-ot-6000">Элитные</a></li>
-                    <li class="top-menu-item"><a href="/cena-do-1500">Дешевые</a></li>
-                    <li class="top-menu-item"><a href="/video">С Видео</a></li>
-                    <li class="top-menu-item"><a href="/mesto-viezd">На выезд</a></li>
-                    <li class="top-menu-item"><a href="/favorite/list">Избранное</a></li>
 
                     <?php if (Yii::$app->requestedParams['city'] == 'moskva') : ?>
                         <li class="top-menu-item"><a href="/advert">Объявления</a></li>
