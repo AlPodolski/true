@@ -34,7 +34,7 @@ use frontend\widgets\PhotoWidget;
             <?php endif ?>
 
             <?php if ((isset($advertising) and $advertising) or (isset($promo) and $promo) ) : ?>
-                <div class="check-label advertising-block">
+                <div class="check-label rek-block">
                     Реклама
                 </div>
             <?php endif ?>

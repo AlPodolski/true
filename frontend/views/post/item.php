@@ -164,31 +164,29 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                 <div class="col-12 col-md-9 col-lg-9 single-post-info-wrap">
                     <div class="post-top-info">
                         <div class="phone-photo-count">
-                            <div class="row">
-                                <div class="col-12">
-                                    <h1><?php echo $post['name'] ?></h1>
-                                </div>
-                                <div class="col-12 cursor-pointer">
-                                    <?php $targetPrice = \frontend\components\helpers\PriceTargetHelper::target($post['price']) ?>
-                                    <a data-id="<?php echo $post['id'] ?>"
-                                       onclick="add_phone_view(this);ym(70919698,'reachGoal','call'); <?php if ($post['partnerId']) : ?> ym(70919698,'reachGoal','<?php echo $post['partnerId']['partner_id'] ?>');  <?php endif; ?> <?php echo $targetPrice ?>"
-                                       data-tel="tel:+<?php echo preg_replace("/[^0-9]/", '', $post['phone']) ?>"
-                                       href="tel:+<?php echo preg_replace("/[^0-9]/", '', $post['phone']) ?>"
-                                       data-number="<?php echo $post['phone'] ?>"
-                                       class="d-block single-price">Показать номер</a>
 
-                                </div>
-                                <div class="col-12">
-                                    <div class="icon count-photo-icon">
-                                        <img src="/img/camera1.svg" width="12px" height="12px" alt="">
-                                    </div>
-                                    <span class="photo-count">
-                                            +<?php echo \frontend\modules\user\models\Posts::countPhoto($post['id']) ?>
-                                             фото
-                                        </span>
-                                </div>
+                            <h1><?php echo $post['name'] ?></h1>
+
+                            <?php $targetPrice = \frontend\components\helpers\PriceTargetHelper::target($post['price']) ?>
+                            <a data-id="<?php echo $post['id'] ?>"
+                               onclick="add_phone_view(this);ym(70919698,'reachGoal','call'); <?php if ($post['partnerId']) : ?> ym(70919698,'reachGoal','<?php echo $post['partnerId']['partner_id'] ?>');  <?php endif; ?> <?php echo $targetPrice ?>"
+                               data-tel="tel:+<?php echo preg_replace("/[^0-9]/", '', $post['phone']) ?>"
+                               href="tel:+<?php echo preg_replace("/[^0-9]/", '', $post['phone']) ?>"
+                               data-number="<?php echo $post['phone'] ?>"
+                               class="d-block single-price cursor-pointer single-phone">Показать номер</a>
+
+                        </div>
+
+                        <div class="photo-count phone-photo-count d-flex">
+                            <div class="icon count-photo-icon">
+                                <img src="/img/camera1.svg" width="12px" height="12px" alt="">
+                            </div>
+                            <div class="photo-count">
+                                +<?php echo \frontend\modules\user\models\Posts::countPhoto($post['id']) ?>
+                                фото
                             </div>
                         </div>
+
                         <div class="post-address">
                             <div class="geo-icon icon">
                                 <svg width="9" height="9" viewBox="0 0 9 9" fill="none"
@@ -207,7 +205,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                         </div>
                         <div class="site-price post-address">
-                            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"
+                            <svg width="21" height="21" viewBox="0 0 13 13" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6.5 13C4.76379 13 3.13148 12.3239 1.90379 11.0962C0.676102 9.86852 0 8.23621 0 6.5C0 4.76379 0.676127 3.1315 1.90379 1.90379C3.13145 0.676076 4.76379 0 6.5 0C8.23621 0 9.86852 0.676102 11.0962 1.90379C12.3239 3.13148 13 4.76379 13 6.5C13 8.23621 12.3239 9.8685 11.0962 11.0962C9.86855 12.3239 8.23621 13 6.5 13ZM6.5 0.8125C3.3639 0.8125 0.8125 3.3639 0.8125 6.5C0.8125 9.6361 3.3639 12.1875 6.5 12.1875C9.6361 12.1875 12.1875 9.6361 12.1875 6.5C12.1875 3.3639 9.6361 0.8125 6.5 0.8125Z"
                                       fill="#F74952"></path>
@@ -216,46 +214,47 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                             </svg>
                             <?php echo $post['price'] ?> руб.
                         </div>
+
                         <div class="post-find-and-otzivi-count-block">
-                            <div class="row">
-                                <div class="col-12 single-date-wrap">
-                                    <div class="icon find-date-icon">
-                                        <svg width="9" height="9" viewBox="0 0 9 9" fill="none"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M6.60468 5.8101C7.04756 5.20531 7.31247 4.46243 7.31247 3.6571C7.31247 1.64111 5.67221 0.000854492 3.65622 0.000854492C1.64024 0.000854492 0 1.64111 0 3.6571C0 5.67308 1.64026 7.31334 3.65624 7.31334C4.46158 7.31334 5.20452 7.0484 5.80931 6.60552L8.2046 9.0008L9 8.2054C9 8.20538 6.60468 5.8101 6.60468 5.8101ZM3.65624 6.18834C2.26043 6.18834 1.125 5.05291 1.125 3.6571C1.125 2.26129 2.26043 1.12586 3.65624 1.12586C5.05205 1.12586 6.18748 2.26129 6.18748 3.6571C6.18748 5.05291 5.05204 6.18834 3.65624 6.18834Z"
-                                                  fill="white"/>
-                                        </svg>
-                                    </div>
-                                    <span class="date"> <span
-                                                class="find-date">Найдено</span> <?php echo date('m.d.y', $post['created_at']) ?> </span>
+
+                            <div class=" single-date-wrap d-flex">
+                                <div class="icon find-date-icon">
+                                    <svg width="9" height="9" viewBox="0 0 9 9" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6.60468 5.8101C7.04756 5.20531 7.31247 4.46243 7.31247 3.6571C7.31247 1.64111 5.67221 0.000854492 3.65622 0.000854492C1.64024 0.000854492 0 1.64111 0 3.6571C0 5.67308 1.64026 7.31334 3.65624 7.31334C4.46158 7.31334 5.20452 7.0484 5.80931 6.60552L8.2046 9.0008L9 8.2054C9 8.20538 6.60468 5.8101 6.60468 5.8101ZM3.65624 6.18834C2.26043 6.18834 1.125 5.05291 1.125 3.6571C1.125 2.26129 2.26043 1.12586 3.65624 1.12586C5.05205 1.12586 6.18748 2.26129 6.18748 3.6571C6.18748 5.05291 5.05204 6.18834 3.65624 6.18834Z"
+                                              fill="white"/>
+                                    </svg>
                                 </div>
-                                <div class="col-12">
-                                        <span class="otzivi-count">
-                                            <span class="icon otzivi-count-icon">
-                                                <svg width="9" height="9" viewBox="0 0 9 9" fill="none"
-                                                     xmlns="http://www.w3.org/2000/svg">
-                                                    <g clip-path="url(#clip0)">
-                                                        <path d="M8.96765 7.06371L8.44493 5.54244C8.69689 5.02737 8.83005 4.45453 8.83094 3.87816C8.83249 2.87598 8.44475 1.92839 7.73913 1.20997C7.03337 0.491412 6.0929 0.0869214 5.09095 0.0710484C4.05199 0.0546304 3.07542 0.449822 2.34124 1.18399C1.63329 1.89192 1.24063 2.82519 1.22821 3.82251C0.530458 4.34785 0.11862 5.1669 0.119974 6.04175C0.120624 6.45114 0.212769 6.8581 0.387372 7.22609L0.0273193 8.27389C-0.0345733 8.45402 0.0106377 8.64959 0.145321 8.78427C0.240103 8.87907 0.365066 8.92954 0.49358 8.92954C0.54765 8.92954 0.602353 8.92061 0.655703 8.90228L1.70352 8.54222C2.07152 8.71683 2.47847 8.80897 2.88786 8.80962C2.88934 8.80962 2.89075 8.80962 2.89222 8.80962C3.78009 8.80959 4.60539 8.38713 5.12881 7.67228C5.67351 7.65794 6.21243 7.52608 6.69965 7.28774L8.22093 7.81048C8.28432 7.83226 8.34932 7.84288 8.41357 7.84288C8.56629 7.84288 8.71479 7.7829 8.82745 7.67022C8.98748 7.51017 9.0412 7.27777 8.96765 7.06371ZM2.89219 8.27391C2.89104 8.27391 2.88983 8.27391 2.88869 8.27391C2.52633 8.27337 2.16649 8.18403 1.84813 8.0156C1.78267 7.98099 1.70582 7.97499 1.63582 7.99904L0.561396 8.36823L0.93059 7.29382C0.954637 7.22381 0.94866 7.14696 0.914031 7.08151C0.745597 6.76314 0.656265 6.40331 0.655703 6.04094C0.654806 5.45807 0.881547 4.9056 1.27806 4.49192C1.40757 5.28146 1.78387 6.00902 2.36715 6.58193C2.94612 7.1506 3.67389 7.51267 4.45914 7.63104C4.0445 8.03972 3.48559 8.27391 2.89219 8.27391ZM8.4486 7.29141C8.43336 7.30665 8.41529 7.3108 8.39497 7.30381L6.76639 6.74419C6.73811 6.73447 6.70868 6.72965 6.67936 6.72965C6.63614 6.72965 6.59307 6.74011 6.5541 6.76075C6.08911 7.00674 5.56366 7.1372 5.03452 7.13801C5.03278 7.13801 5.0312 7.13801 5.02946 7.13801C3.25648 7.13801 1.79199 5.69776 1.7639 3.9252C1.74975 3.03249 2.08932 2.1935 2.72004 1.56278C3.35077 0.932061 4.18989 0.59261 5.08248 0.606672C6.85674 0.634815 8.29797 2.10201 8.29523 3.87732C8.29441 4.40645 8.16396 4.93192 7.91799 5.39688C7.88336 5.46232 7.87738 5.53917 7.90143 5.60919L8.46103 7.23777C8.46801 7.25816 8.46382 7.27621 8.4486 7.29141Z"
-                                                              fill="white"/>
-                                                        <path d="M6.62504 2.45239H3.43355C3.28561 2.45239 3.1657 2.57233 3.1657 2.72025C3.1657 2.86819 3.28563 2.98811 3.43355 2.98811H6.62504C6.77298 2.98811 6.8929 2.86817 6.8929 2.72025C6.8929 2.57233 6.77298 2.45239 6.62504 2.45239Z"
-                                                              fill="white"/>
-                                                        <path d="M6.62504 3.55396H3.43355C3.28561 3.55396 3.1657 3.67389 3.1657 3.82181C3.1657 3.96973 3.28563 4.08967 3.43355 4.08967H6.62504C6.77298 4.08967 6.8929 3.96973 6.8929 3.82181C6.8929 3.67389 6.77298 3.55396 6.62504 3.55396Z"
-                                                              fill="white"/>
-                                                        <path d="M5.39656 4.65564H3.43355C3.28561 4.65564 3.1657 4.77558 3.1657 4.9235C3.1657 5.07143 3.28563 5.19135 3.43355 5.19135H5.39654C5.54448 5.19135 5.6644 5.07142 5.6644 4.9235C5.6644 4.77558 5.5445 4.65564 5.39656 4.65564Z"
-                                                              fill="white"/>
-                                                    </g>
-                                                    <defs>
-                                                    <clipPath id="clip0">
-                                                        <rect width="9" height="9" fill="white"/>
-                                                    </clipPath>
-                                                    </defs>
-                                                </svg>
-                                            </span>
-                                            <?php echo $countReview ?> <?php echo getNumEnding($countReview, ['отзыв', 'отзыва', 'отзывов']); ?>
-                                        </span>
-                                </div>
+                                <div class="date d-flex">
+                                    <div class="find-date">Найдено</div> <?php echo date('m.d.y', $post['created_at']) ?> </div>
                             </div>
+
+                            <div class="otzivi-count d-flex">
+                                <div class="icon otzivi-count-icon">
+                                    <svg width="9" height="9" viewBox="0 0 9 9" fill="none"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0)">
+                                            <path d="M8.96765 7.06371L8.44493 5.54244C8.69689 5.02737 8.83005 4.45453 8.83094 3.87816C8.83249 2.87598 8.44475 1.92839 7.73913 1.20997C7.03337 0.491412 6.0929 0.0869214 5.09095 0.0710484C4.05199 0.0546304 3.07542 0.449822 2.34124 1.18399C1.63329 1.89192 1.24063 2.82519 1.22821 3.82251C0.530458 4.34785 0.11862 5.1669 0.119974 6.04175C0.120624 6.45114 0.212769 6.8581 0.387372 7.22609L0.0273193 8.27389C-0.0345733 8.45402 0.0106377 8.64959 0.145321 8.78427C0.240103 8.87907 0.365066 8.92954 0.49358 8.92954C0.54765 8.92954 0.602353 8.92061 0.655703 8.90228L1.70352 8.54222C2.07152 8.71683 2.47847 8.80897 2.88786 8.80962C2.88934 8.80962 2.89075 8.80962 2.89222 8.80962C3.78009 8.80959 4.60539 8.38713 5.12881 7.67228C5.67351 7.65794 6.21243 7.52608 6.69965 7.28774L8.22093 7.81048C8.28432 7.83226 8.34932 7.84288 8.41357 7.84288C8.56629 7.84288 8.71479 7.7829 8.82745 7.67022C8.98748 7.51017 9.0412 7.27777 8.96765 7.06371ZM2.89219 8.27391C2.89104 8.27391 2.88983 8.27391 2.88869 8.27391C2.52633 8.27337 2.16649 8.18403 1.84813 8.0156C1.78267 7.98099 1.70582 7.97499 1.63582 7.99904L0.561396 8.36823L0.93059 7.29382C0.954637 7.22381 0.94866 7.14696 0.914031 7.08151C0.745597 6.76314 0.656265 6.40331 0.655703 6.04094C0.654806 5.45807 0.881547 4.9056 1.27806 4.49192C1.40757 5.28146 1.78387 6.00902 2.36715 6.58193C2.94612 7.1506 3.67389 7.51267 4.45914 7.63104C4.0445 8.03972 3.48559 8.27391 2.89219 8.27391ZM8.4486 7.29141C8.43336 7.30665 8.41529 7.3108 8.39497 7.30381L6.76639 6.74419C6.73811 6.73447 6.70868 6.72965 6.67936 6.72965C6.63614 6.72965 6.59307 6.74011 6.5541 6.76075C6.08911 7.00674 5.56366 7.1372 5.03452 7.13801C5.03278 7.13801 5.0312 7.13801 5.02946 7.13801C3.25648 7.13801 1.79199 5.69776 1.7639 3.9252C1.74975 3.03249 2.08932 2.1935 2.72004 1.56278C3.35077 0.932061 4.18989 0.59261 5.08248 0.606672C6.85674 0.634815 8.29797 2.10201 8.29523 3.87732C8.29441 4.40645 8.16396 4.93192 7.91799 5.39688C7.88336 5.46232 7.87738 5.53917 7.90143 5.60919L8.46103 7.23777C8.46801 7.25816 8.46382 7.27621 8.4486 7.29141Z"
+                                                              fill="white"/>
+                                            <path d="M6.62504 2.45239H3.43355C3.28561 2.45239 3.1657 2.57233 3.1657 2.72025C3.1657 2.86819 3.28563 2.98811 3.43355 2.98811H6.62504C6.77298 2.98811 6.8929 2.86817 6.8929 2.72025C6.8929 2.57233 6.77298 2.45239 6.62504 2.45239Z"
+                                                              fill="white"/>
+                                            <path d="M6.62504 3.55396H3.43355C3.28561 3.55396 3.1657 3.67389 3.1657 3.82181C3.1657 3.96973 3.28563 4.08967 3.43355 4.08967H6.62504C6.77298 4.08967 6.8929 3.96973 6.8929 3.82181C6.8929 3.67389 6.77298 3.55396 6.62504 3.55396Z"
+                                                              fill="white"/>
+                                            <path d="M5.39656 4.65564H3.43355C3.28561 4.65564 3.1657 4.77558 3.1657 4.9235C3.1657 5.07143 3.28563 5.19135 3.43355 5.19135H5.39654C5.54448 5.19135 5.6644 5.07142 5.6644 4.9235C5.6644 4.77558 5.5445 4.65564 5.39656 4.65564Z"
+                                                              fill="white"/>
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0">
+                                                <rect width="9" height="9" fill="white"/>
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </div>
+                                <?php echo $countReview ?> <?php echo getNumEnding($countReview, ['отзыв', 'отзыва', 'отзывов']); ?>
+                            </div>
+
                         </div>
+
                     </div>
 
                     <div class="post-info-table-wrapper mobile-rating-info-table">
@@ -314,11 +313,13 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                     </div>
 
-                    <?php if($post['sites']) : ?>
+                    <?php if ($post['sites']) : ?>
 
-                        <div class="red-block " onclick="show_site_price_block(this)" data-id="<?php echo $post['id'] ?>">
+                        <div class="red-block " onclick="show_site_price_block(this)"
+                             data-id="<?php echo $post['id'] ?>">
                             <div>На других сайтах цены:</div>
-                            <div class="white-bold-text">от <?php echo $price['min'] ?> руб. - <?php echo $price['max'] ?>
+                            <div class="white-bold-text">от <?php echo $price['min'] ?> руб.
+                                - <?php echo $price['max'] ?>
                                 руб.
                             </div>
                             <div class="show-info show-info-white"></div>
@@ -340,13 +341,17 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                         <div class="show-info show-info-grey"></div>
                     </div>
 
-                    <div onclick="get_mobil_map_block(this)"
-                         class="white-block"
-                         data-id="<?php echo $post['id'] ?>"
-                         data-map="mobile-map-<?php echo $post['id'] ?>">
-                        <div>Показать на карте</div>
-                        <div class="show-info show-info-grey"></div>
-                    </div>
+                    <?php if (isset($post['metro'][0]['x'])) : ?>
+
+                        <div onclick="get_mobil_map_block(this)"
+                             class="white-block"
+                             data-id="<?php echo $post['id'] ?>"
+                             data-map="mobile-map-<?php echo $post['id'] ?>">
+                            <div>Показать на карте</div>
+                            <div class="show-info show-info-grey"></div>
+                        </div>
+
+                    <?php endif; ?>
 
                     <?php
 
@@ -418,7 +423,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
     <?php if ($post['sites']) : ?>
 
-    <?php $sites = true; ?>
+        <?php $sites = true; ?>
 
         <li class="nav-item ">
             <a class="nav-link active " data-toggle="tab" href="#home<?php echo $post['id'] ?> ">
@@ -432,7 +437,8 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
     <?php endif; ?>
 
     <li class="nav-item ">
-        <a class="nav-link <?php if (!$sites) echo 'active'?>" data-toggle="tab" href="#menu1<?php echo $post['id'] ?> ">
+        <a class="nav-link <?php if (!$sites) echo 'active' ?>" data-toggle="tab"
+           href="#menu1<?php echo $post['id'] ?> ">
                 <span class="icon otzivi-count-icon">
                     <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0)">
@@ -487,140 +493,141 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
     <?php if ($post['sites']) : ?>
 
         <div id="home<?php echo $post['id'] ?>" class="container tab-pane active"><br>
-        <div class="row">
-            <div class="col-4 bottom-gallery">
+            <div class="row">
+                <div class="col-4 bottom-gallery">
 
-                <?php $imgs = array(); ?>
+                    <?php $imgs = array(); ?>
 
-                <?php
+                    <?php
 
-                $i = 0;
+                    $i = 0;
 
-                if (count($post['gal']) == 1) $size = '350_490';
+                    if (count($post['gal']) == 1) $size = '350_490';
 
-                else $size = '175_210';
-
-                ?>
-
-                <div class="aniimated-thumbnials">
-
-                    <?php if (isset($post['avatar']['file']) and $post['avatar']['file']) $imgs[] = $post['avatar']['file']; ?>
-
-                    <?php foreach ($post['gal'] as $item) : ?>
-
-                        <?php if ($item['file'] and $item['type'] != \frontend\models\Files::SELPHY_TYPE
-                            and file_exists(Yii::getAlias('@webroot') . $item['file'])) { ?>
-
-                            <?php $cssClass = ' '; ?>
-
-                            <?php if ($i > 1) $cssClass = 'd-none'; ?>
-
-                            <?php Yii::$app->imageCache->thumbSrc($item['file'], $size) ?>
-
-                            <a class="<?php echo $cssClass ?>"
-                               href="<?php echo Yii::$app->imageCache->thumbSrc($item['file'], '1024') ?>">
-
-                                <?php
-
-                                echo \yii\helpers\Html::img(Yii::$app->imageCache
-                                    ->thumbSrc($item['file'], $size), [
-                                    'class' => 'img user-img',
-                                    'loading' => 'lazy',
-                                ]);
-
-                                $i++;
-
-                                ?>
-                            </a>
-
-                            <?php
-
-                        }
-
-                    endforeach;
+                    else $size = '175_210';
 
                     ?>
 
+                    <div class="aniimated-thumbnials">
+
+                        <?php if (isset($post['avatar']['file']) and $post['avatar']['file']) $imgs[] = $post['avatar']['file']; ?>
+
+                        <?php foreach ($post['gal'] as $item) : ?>
+
+                            <?php if ($item['file'] and $item['type'] != \frontend\models\Files::SELPHY_TYPE
+                                and file_exists(Yii::getAlias('@webroot') . $item['file'])) { ?>
+
+                                <?php $cssClass = ' '; ?>
+
+                                <?php if ($i > 1) $cssClass = 'd-none'; ?>
+
+                                <?php Yii::$app->imageCache->thumbSrc($item['file'], $size) ?>
+
+                                <a class="<?php echo $cssClass ?>"
+                                   href="<?php echo Yii::$app->imageCache->thumbSrc($item['file'], '1024') ?>">
+
+                                    <?php
+
+                                    echo \yii\helpers\Html::img(Yii::$app->imageCache
+                                        ->thumbSrc($item['file'], $size), [
+                                        'class' => 'img user-img',
+                                        'loading' => 'lazy',
+                                    ]);
+
+                                    $i++;
+
+                                    ?>
+                                </a>
+
+                                <?php
+
+                            }
+
+                        endforeach;
+
+                        ?>
+
+
+                    </div>
+
+                    <?php
+
+                    ?>
 
                 </div>
 
-                <?php
+                <div class="col-8">
 
-                ?>
+                    <div class="big-red-text">На других сайтах</div>
 
-            </div>
+                    <div class="sites-wrap">
 
-            <div class="col-8">
+                        <?php foreach ($post['sites'] as $item) : ?>
 
-                <div class="big-red-text">На других сайтах</div>
+                            <div class="site-item">
+                                <div class="row">
+                                    <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4">
+                                        <div class="site-img-wrap">
 
-                <div class="sites-wrap">
+                                            <?php if (isset($item['site']['photo']['file'])) : ?>
 
-                    <?php foreach ($post['sites'] as $item) : ?>
+                                                <img loading="lazy" class="site-img img" width="88px" height="28px"
+                                                     src="<?php echo $item['site']['photo']['file'] ?>"
+                                                     alt="">
 
-                        <div class="site-item">
-                            <div class="row">
-                                <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4">
-                                    <div class="site-img-wrap">
+                                            <?php else: ?>
 
-                                        <?php if (isset($item['site']['photo']['file'])) : ?>
+                                                <img loading="lazy" class="site-img" src="/uploads/no-image.png" alt="">
 
-                                            <img loading="lazy" class="site-img img" width="88px" height="28px"
-                                                 src="<?php echo $item['site']['photo']['file'] ?>"
-                                                 alt="">
+                                            <?php endif; ?>
 
-                                        <?php else: ?>
-
-                                            <img loading="lazy" class="site-img" src="/uploads/no-image.png" alt="">
-
-                                        <?php endif; ?>
-
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xl-8 col-lg-8 col-md-9 col-sm-8">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="site-find-date">
-                                                <?php echo date('d.m.y', $item['created_at']); ?>
+                                    <div class="col-xl-8 col-lg-8 col-md-9 col-sm-8">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="site-find-date">
+                                                    <?php echo date('d.m.y', $item['created_at']); ?>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="age-name">
-                                                <?php echo $item['name_on_site'] ?>, <?php echo $item['age'] ?>
+                                            <div class="col-12">
+                                                <div class="age-name">
+                                                    <?php echo $item['name_on_site'] ?>, <?php echo $item['age'] ?>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-12">
+                                            <div class="col-12">
 
-                                            <div class="site-price">
-                                                <svg width="13" height="13" viewBox="0 0 13 13" fill="none"
-                                                     xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M6.5 13C4.76379 13 3.13148 12.3239 1.90379 11.0962C0.676102 9.86852 0 8.23621 0 6.5C0 4.76379 0.676127 3.1315 1.90379 1.90379C3.13145 0.676076 4.76379 0 6.5 0C8.23621 0 9.86852 0.676102 11.0962 1.90379C12.3239 3.13148 13 4.76379 13 6.5C13 8.23621 12.3239 9.8685 11.0962 11.0962C9.86855 12.3239 8.23621 13 6.5 13ZM6.5 0.8125C3.3639 0.8125 0.8125 3.3639 0.8125 6.5C0.8125 9.6361 3.3639 12.1875 6.5 12.1875C9.6361 12.1875 12.1875 9.6361 12.1875 6.5C12.1875 3.3639 9.6361 0.8125 6.5 0.8125Z"
-                                                          fill="#F74952"/>
-                                                    <path d="M6.5 6.09375C5.93998 6.09375 5.48438 5.63814 5.48438 5.07812C5.48438 4.51811 5.93998 4.0625 6.5 4.0625C7.06002 4.0625 7.51562 4.51811 7.51562 5.07812C7.51562 5.30248 7.6975 5.48438 7.92188 5.48438C8.14625 5.48438 8.32812 5.30248 8.32812 5.07812C8.32812 4.20974 7.71931 3.48136 6.90625 3.29606V2.84375C6.90625 2.6194 6.72438 2.4375 6.5 2.4375C6.27562 2.4375 6.09375 2.6194 6.09375 2.84375V3.29606C5.28069 3.48136 4.67188 4.20974 4.67188 5.07812C4.67188 6.08616 5.49197 6.90625 6.5 6.90625C7.06002 6.90625 7.51562 7.36186 7.51562 7.92188C7.51562 8.48189 7.06002 8.9375 6.5 8.9375C5.93998 8.9375 5.48438 8.48189 5.48438 7.92188C5.48438 7.69752 5.3025 7.51562 5.07812 7.51562C4.85375 7.51562 4.67188 7.69752 4.67188 7.92188C4.67188 8.79026 5.28069 9.51864 6.09375 9.70394V10.1562C6.09375 10.3806 6.27562 10.5625 6.5 10.5625C6.72438 10.5625 6.90625 10.3806 6.90625 10.1562V9.70394C7.71931 9.51864 8.32812 8.79026 8.32812 7.92188C8.32812 6.91384 7.50803 6.09375 6.5 6.09375Z"
-                                                          fill="#F74952"/>
-                                                </svg>
-                                                <?php echo $item['price'] ?> руб/час
+                                                <div class="site-price">
+                                                    <svg width="13" height="13" viewBox="0 0 13 13" fill="none"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M6.5 13C4.76379 13 3.13148 12.3239 1.90379 11.0962C0.676102 9.86852 0 8.23621 0 6.5C0 4.76379 0.676127 3.1315 1.90379 1.90379C3.13145 0.676076 4.76379 0 6.5 0C8.23621 0 9.86852 0.676102 11.0962 1.90379C12.3239 3.13148 13 4.76379 13 6.5C13 8.23621 12.3239 9.8685 11.0962 11.0962C9.86855 12.3239 8.23621 13 6.5 13ZM6.5 0.8125C3.3639 0.8125 0.8125 3.3639 0.8125 6.5C0.8125 9.6361 3.3639 12.1875 6.5 12.1875C9.6361 12.1875 12.1875 9.6361 12.1875 6.5C12.1875 3.3639 9.6361 0.8125 6.5 0.8125Z"
+                                                              fill="#F74952"/>
+                                                        <path d="M6.5 6.09375C5.93998 6.09375 5.48438 5.63814 5.48438 5.07812C5.48438 4.51811 5.93998 4.0625 6.5 4.0625C7.06002 4.0625 7.51562 4.51811 7.51562 5.07812C7.51562 5.30248 7.6975 5.48438 7.92188 5.48438C8.14625 5.48438 8.32812 5.30248 8.32812 5.07812C8.32812 4.20974 7.71931 3.48136 6.90625 3.29606V2.84375C6.90625 2.6194 6.72438 2.4375 6.5 2.4375C6.27562 2.4375 6.09375 2.6194 6.09375 2.84375V3.29606C5.28069 3.48136 4.67188 4.20974 4.67188 5.07812C4.67188 6.08616 5.49197 6.90625 6.5 6.90625C7.06002 6.90625 7.51562 7.36186 7.51562 7.92188C7.51562 8.48189 7.06002 8.9375 6.5 8.9375C5.93998 8.9375 5.48438 8.48189 5.48438 7.92188C5.48438 7.69752 5.3025 7.51562 5.07812 7.51562C4.85375 7.51562 4.67188 7.69752 4.67188 7.92188C4.67188 8.79026 5.28069 9.51864 6.09375 9.70394V10.1562C6.09375 10.3806 6.27562 10.5625 6.5 10.5625C6.72438 10.5625 6.90625 10.3806 6.90625 10.1562V9.70394C7.71931 9.51864 8.32812 8.79026 8.32812 7.92188C8.32812 6.91384 7.50803 6.09375 6.5 6.09375Z"
+                                                              fill="#F74952"/>
+                                                    </svg>
+                                                    <?php echo $item['price'] ?> руб/час
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                    <?php endforeach; ?>
+                        <?php endforeach; ?>
+
+                    </div>
 
                 </div>
 
             </div>
-
         </div>
-    </div>
 
-    <?php $home = false; ?>
+        <?php $home = false; ?>
 
     <?php endif; ?>
 
-    <div id="menu1<?php echo $post['id'] ?>" class="container tab-pane fade bottom-gallery <?php if ($home) echo 'active show'?>"><br>
+    <div id="menu1<?php echo $post['id'] ?>"
+         class="container tab-pane fade bottom-gallery <?php if ($home) echo 'active show' ?>"><br>
 
         <div class="otzivi-block-desc">
 
@@ -1133,7 +1140,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
         <div class="post-img">
             <?php echo PhotoWidget::widget([
                 'path' => $post['avatar']['file'],
-                'size' => '200',
+                'size' => '129',
                 'options' => [
                     'class' => 'img user-img',
                     'loading' => 'lazy',
@@ -1364,7 +1371,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
         <div class="post-img">
             <?php echo PhotoWidget::widget([
                 'path' => $post['avatar']['file'],
-                'size' => '200',
+                'size' => '129',
                 'options' => [
                     'class' => 'img user-img',
                     'loading' => 'lazy',
@@ -1617,7 +1624,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
 <?php endif; ?>
 
-<?php if($post['sites']) :?>
+<?php if ($post['sites']) : ?>
 
     <div class="site-price-block d-none site-price-block-<?php echo $post['id'] ?>">
 
