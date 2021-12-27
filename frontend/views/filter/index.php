@@ -26,6 +26,13 @@ Yii::$app->view->registerMetaTag([
     'content' => $des
 ]);
 
+echo \frontend\widgets\OpenGraphWidget::widget([
+    'des' => $des,
+    'title' => $title,
+    'img' => 'https://'.Yii::$app->request->serverName.'/img/logo.png',
+]);
+
+
 
 ?>
 <div class="container custom-container">

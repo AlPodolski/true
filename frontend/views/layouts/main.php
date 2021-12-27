@@ -61,18 +61,18 @@ AppAsset::register($this);
                     'city' => Yii::$app->requestedParams['city']
                 ]) ?>
 
-                <ul class="top-menu">
+                <ul class="top-menu" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
 
                     <?php if (Yii::$app->requestedParams['city'] == 'moskva') : ?>
 
-                        <li class="top-menu-item"><a href="/pol-muzhskoj">Жиголо</a></li>
-                        <li class="top-menu-item"><a href="/pol-trans">Трансы</a></li>
-                        <li class="top-menu-item"><a href="https://t.me/indi_tut">Мы в телеграм</a></li>
+                        <li itemprop="name" class="top-menu-item"><a itemprop="url" href="/pol-muzhskoj">Жиголо</a></li>
+                        <li itemprop="name" class="top-menu-item"><a itemprop="url" href="/pol-trans">Трансы</a></li>
+                        <li itemprop="name" class="top-menu-item"><a itemprop="url" href="https://t.me/indi_tut">Мы в телеграм</a></li>
 
                     <?php endif; ?>
 
                     <?php if (Yii::$app->requestedParams['city'] == 'moskva') : ?>
-                        <li class="top-menu-item"><a href="/advert">Объявления</a></li>
+                        <li itemprop="name" itemprop="url" class="top-menu-item"><a href="/advert">Объявления</a></li>
                     <?php endif; ?>
 
                     <li class="top-menu-item" onclick="get_claim_modal()"><a>Обратная связь</a></li>

@@ -54,6 +54,13 @@ Yii::$app->view->registerMetaTag([
     'content' => $des
 ]);
 
+echo \frontend\widgets\OpenGraphWidget::widget([
+    'des' => $des,
+    'title' => $title,
+    'img' => 'https://'.Yii::$app->request->serverName.$post['avatar']['file'],
+]);
+
+
 $this->params['breadcrumbs'][] = array(
     'label' => $post['name'],
 );

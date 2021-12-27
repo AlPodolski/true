@@ -31,19 +31,9 @@ class GetAdvertisingPost
             return $checkBlock;
 
         }else{
-            $checkBlock['block']['post'] = Posts::find()->asArray()
-                ->where(['id' => 34])
-                ->with('avatar')
-                ->cache(3600)->one();
 
-            $checkBlock['block']['header'] = 'Проверенные проститутки с высоким рейтингом';
-            $checkBlock['block']['text'] = 'Рейтинг составляется на основе алгоритма
-                и ручной модерации мы выбираем только
-                качественные анкеты со всего интернета
-                что бы показать их вам.';
-            $checkBlock['block']['url'] = 'proverennye';
+            return false;
 
-            return $checkBlock;
         }
 
     }

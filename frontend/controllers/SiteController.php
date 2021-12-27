@@ -177,7 +177,7 @@ class SiteController extends Controller
 
         $checkBlock = GetAdvertisingPost::get($cityInfo);
 
-        array_unshift($prPosts, $checkBlock);
+        if($checkBlock) array_unshift($prPosts, $checkBlock);
 
         $uri = Yii::$app->request->url;
 

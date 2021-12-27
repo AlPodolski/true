@@ -30,6 +30,12 @@ Yii::$app->view->registerMetaTag([
     'content' => $des
 ]);
 
+echo \frontend\widgets\OpenGraphWidget::widget([
+        'des' => $des,
+        'title' => $title,
+        'img' => 'https://'.Yii::$app->request->serverName.'/img/logo.png',
+]);
+
 if (isset($webmaster))
 
     Yii::$app->view->registerMetaTag([
@@ -38,6 +44,7 @@ if (isset($webmaster))
     ]);
 
 ?>
+
 <div class="container custom-container">
 
     <?php if ($cityInfo['url'] == 'moskva') : ?>
