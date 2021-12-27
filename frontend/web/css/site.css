@@ -3305,6 +3305,8 @@ input.search::placeholder { color: #6d6d6d; }
 @media (max-width: 1199px) {
     .dopolnitaelno-btn{
         display: block;
+        flex: 100%;
+        text-align: left;
     }
     .metro-select{
         width: 220px;

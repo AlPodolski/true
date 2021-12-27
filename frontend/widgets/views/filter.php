@@ -316,8 +316,6 @@
         </div>
     </div>
 
-    <div class="col-12"></div>
-
     <div class="dopolnitaelno-btn" onclick="dopolnitaelno(this)">
         <span class="d-none">Скрыть</span>
         <span>Дополнительно</span>
