@@ -501,6 +501,9 @@ AppAsset::register($this);
 
     <div class="container custom-container">
         <?php
+
+        echo \frontend\widgets\BreadcrumbMicro::widget();
+
         echo Breadcrumbs::widget([
             'itemTemplate' => "<li class='breadcrumb-item'>{link}</li> <span class='separete'>/</span>\n",
             'homeLink' => [
