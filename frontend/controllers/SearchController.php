@@ -18,7 +18,7 @@ class SearchController extends Controller
 
         $model = new SearchNameForm();
 
-        if (!$model->load( Yii::$app->request->post()) or !$model->name) return $this->goHome();
+        if (!$model->load( Yii::$app->request->get()) or !$model->name) return $this->goHome();
 
         $prPosts = Posts::find()
             ->asArray()
