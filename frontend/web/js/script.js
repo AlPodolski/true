@@ -4,6 +4,9 @@ $( document ).ready(function() {
         $("head").prepend('<link href="/css/jquery-ui.css" rel="stylesheet">');
         filter();
     });
+    $.getScript( "https://www.googletagmanager.com/gtm.js?id=GTM-NWZ4894", function( data, textStatus, jqxhr ) {
+
+    });
 
 });
 
