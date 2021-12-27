@@ -107,6 +107,8 @@ class SiteController extends Controller
     public function actionIndex($city, $page = false, $pager = false)
     {
 
+
+
         if ($pager) {
 
             return $this->redirect('/'.'?page='.$pager, 301);
@@ -114,6 +116,11 @@ class SiteController extends Controller
         }
 
         $cityInfo = City::getCity($city);
+
+        if (!$cityInfo) {
+            http_response_code(502);
+            exit();
+        };
 
         if (Yii::$app->request->isPost) {
 

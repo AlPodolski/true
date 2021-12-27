@@ -50,6 +50,11 @@ class FilterController extends Controller
 
         $cityInfo = City::getCity(Yii::$app->controller->actionParams['city']);
 
+        if (!$cityInfo) {
+            http_response_code(502);
+            exit();
+        };
+
         if (!empty($query_params)){
 
             $posts = Posts::find();
