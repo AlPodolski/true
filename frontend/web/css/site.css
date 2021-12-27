@@ -3302,11 +3302,15 @@ input.search::placeholder { color: #6d6d6d; }
 .dopolnitaelno-btn{
     display: none;
 }
+.close-filter-btn{
+    display: none;
+}
 @media (max-width: 1199px) {
     .dopolnitaelno-btn{
         display: block;
         flex: 100%;
         text-align: left;
+        display: block;
     }
     .metro-select{
         width: 220px;
