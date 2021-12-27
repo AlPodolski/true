@@ -16,6 +16,7 @@ class DataWidget extends Widget
 
     public $data;
     public $dataGet;
+    public $city_id;
 
     public function run()
     {
@@ -24,7 +25,7 @@ class DataWidget extends Widget
             case 'metro':
                 return $this->render('data-metro');
             case 'rayon':
-                $data = Rayon::find()->all();
+                $data = Rayon::find()->where(['city_id' => $this->city_id])->all();
                 return $this->render('data-menu', [
                     'data' => $data,
                     'url' => $this->data

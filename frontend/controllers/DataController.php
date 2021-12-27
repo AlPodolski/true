@@ -3,6 +3,7 @@
 
 namespace frontend\controllers;
 
+use common\models\City;
 use frontend\widgets\DataWidget;
 use Yii;
 use yii\filters\VerbFilter;
@@ -15,7 +16,13 @@ class DataController extends Controller
     {
         $data = Yii::$app->request->get('data');
 
-        return DataWidget::widget(['data' => $data, 'dataGet' => Yii::$app->request->get()]);
+        $cityInfo = City::getCity($city);
+
+        return DataWidget::widget([
+            'data' => $data,
+            'dataGet' => Yii::$app->request->get(),
+            'city_id' => $cityInfo['id']
+        ]);
     }
 
 }

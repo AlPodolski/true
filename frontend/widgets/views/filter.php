@@ -11,23 +11,23 @@
 
 ?>
 
+<div class="search-by-params-btn" onclick="toggle_filter(this)">
+    Поиск по параметрам
+    <svg width="8" height="5" viewBox="0 0 8 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clip-path="url(#clip0)">
+            <path d="M0.178459 0.70499L0.81969 0.010324L4.15384 3.62232L7.488 0.010324L8.12923 0.70499L4.79507 4.31699L4.15384 5.01166L0.178459 0.70499Z" fill="#F74952"/>
+        </g>
+        <defs>
+            <clipPath id="clip0">
+                <rect width="5" height="8" fill="white" transform="translate(0 5) rotate(-180)"/>
+            </clipPath>
+        </defs>
+    </svg>
+</div>
+
 <form action="/find">
 
-    <div class="search-by-params-btn" onclick="close_filter(this)">
-        Поиск по параметрам
-        <svg width="8" height="5" viewBox="0 0 8 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(#clip0)">
-                <path d="M0.178459 0.70499L0.81969 0.010324L4.15384 3.62232L7.488 0.010324L8.12923 0.70499L4.79507 4.31699L4.15384 5.01166L0.178459 0.70499Z" fill="#F74952"/>
-            </g>
-            <defs>
-                <clipPath id="clip0">
-                    <rect width="5" height="8" fill="white" transform="translate(0 5) rotate(-90)"/>
-                </clipPath>
-            </defs>
-        </svg>
-    </div>
-
-    <div class="close-filter-btn" onclick="close_filter(this)">
+    <div class="close-filter-btn" onclick="toggle_filter(this)">
         <svg width="13" height="13" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M6 0.353513L5.64649 0L3 2.64649L0.353513 0L0 0.353513L2.64649 3L0 5.64649L0.353513 6L3 3.35351L5.64649 6L6 5.64649L3.35351 3L6 0.353513Z" fill="black"/>
         </svg>
@@ -37,9 +37,9 @@
 
         <div class="metro-select-wrap position-relative">
 
-            <select name="metro" id="" class="metro-select w-100">
+            <select name="metro" id="" class="metro-select">
 
-                <option value="">Выберите станцию метро</option>
+                <option value="">Выберите метро</option>
 
                 <?php foreach ($metro as $metroItem) : ?>
 
@@ -55,7 +55,6 @@
                 <?php endforeach; ?>
 
             </select>
-            <div class="find-icon-block position-absolute"></div>
         </div>
 
     <?php endif; ?>
@@ -83,9 +82,14 @@
             else $ageTo = 65;
 
             ?>
-            <input type="text" id="age-from" name="age-from" readonly value="<?php echo $ageFrom?>">
             <div id="slider-range-age"></div>
-            <input type="text" id="age-to" name="age-to" readonly value="<?php echo $ageTo ?>">
+
+           <div class="d-flex filter-input-wrap">
+               <input type="text" id="age-from" class="text-left" name="age-from" readonly value="<?php echo $ageFrom?>">
+
+               <input type="text" id="age-to" name="age-to" class="text-right" readonly value="<?php echo $ageTo ?>">
+           </div>
+
         </div>
     </div>
     <div class="slider-item-wrap d-flex">
@@ -104,9 +108,15 @@
             else $rostTo = 200;
 
             ?>
-            <input type="text" id="rost-from" name="rost-from" readonly value="<?php echo $rostFrom?>">
+
             <div id="rost-range-age"></div>
-            <input type="text" id="rost-to" name="rost-to" readonly value="<?php echo $rostTo?>">
+
+            <div class="d-flex filter-input-wrap">
+                <input type="text" id="rost-from" class="text-left" name="rost-from" readonly value="<?php echo $rostFrom?>">
+
+                <input type="text" id="rost-to" class="text-right" name="rost-to" readonly value="<?php echo $rostTo?>">
+            </div>
+
         </div>
     </div>
     <div class="slider-item-wrap d-flex">
@@ -125,9 +135,15 @@
             else $vestTo = 130;
 
             ?>
-            <input type="text" id="ves-from" name="ves-from" readonly value="<?php echo $vesFrom ?>">
+
             <div id="slider-range-ves"></div>
-            <input type="text" id="ves-to"  name="ves-to" readonly value="<?php echo $vestTo ?>">
+
+            <div class="d-flex filter-input-wrap">
+                <input type="text" id="ves-from" class="text-left" name="ves-from" readonly value="<?php echo $vesFrom ?>">
+
+                <input type="text" id="ves-to" class="text-right" name="ves-to" readonly value="<?php echo $vestTo ?>">
+            </div>
+
         </div>
     </div>
     <div class="slider-item-wrap d-flex">
@@ -146,13 +162,20 @@
             else $grudTo = 9;
 
             ?>
-            <input type="text" id="grud-from" name="grud-from" readonly value="<?php echo $grudFrom ?>">
+
             <div id="slider-range-grud"></div>
-            <input type="text" id="grud-to" name="grud-to" readonly value="<?php echo $grudTo ?>">
+
+            <div class="d-flex filter-input-wrap">
+                <input type="text" id="grud-from" class="text-left" name="grud-from" readonly value="<?php echo $grudFrom ?>">
+
+                <input type="text" id="grud-to" class="text-right" name="grud-to" readonly value="<?php echo $grudTo ?>">
+            </div>
+
+
         </div>
     </div>
     <div class="slider-item-wrap d-flex">
-        <div class="slider-item-text">Цена <br> (1 час)</div>
+        <div class="slider-item-text">Цена (1 час)</div>
         <div class="slider-item d-flex">
             <?php
 
@@ -167,19 +190,20 @@
             else $priceTo = 25000;
 
             ?>
-            <input type="text" id="price-1-from" name="price-1-from" readonly value="<?php echo $priceFrom?>">
+
             <div id="slider-range-price-1-hour"></div>
-            <input type="text" id="price-1-to" name="price-1-to" readonly value="<?php echo $priceTo ?>">
+
+            <div class="d-flex filter-input-wrap">
+                <input type="text" id="price-1-from" class="text-left" name="price-1-from" readonly value="<?php echo $priceFrom?>">
+
+                <input type="text" id="price-1-to" class="text-right" name="price-1-to" readonly value="<?php echo $priceTo ?>">
+            </div>
+
+
         </div>
     </div>
 
-    <div class="dopolnitaelno-btn" onclick="dopolnitaelno(this)">
-        <span class="d-none">Скрыть</span>
-        <span>Дополнительно</span>
-        <svg class="arrow-up " width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 1.99998L4.00002 6L8 1.99998H0Z" fill="black"/>
-        </svg>
-    </div>
+
 
     <div class="dop-block d-none">
         <div class="row">
@@ -290,6 +314,16 @@
 
             </div>
         </div>
+    </div>
+
+    <div class="col-12"></div>
+
+    <div class="dopolnitaelno-btn" onclick="dopolnitaelno(this)">
+        <span class="d-none">Скрыть</span>
+        <span>Дополнительно</span>
+        <svg class="arrow-up " width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 1.99998L4.00002 6L8 1.99998H0Z" fill="black"/>
+        </svg>
     </div>
 
     <button class="show-anket-count">Показать</button>

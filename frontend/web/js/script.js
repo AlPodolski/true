@@ -1,3 +1,12 @@
+$( document ).ready(function() {
+
+    $.getScript( "/js/jquery-ui.js", function( data, textStatus, jqxhr ) {
+        $("head").prepend('<link href="/css/jquery-ui.css" rel="stylesheet">');
+        filter();
+    });
+
+});
+
 function get_dialog(object) {
 
     var dialog_id = $(object).attr('data-dialog-id');
@@ -515,9 +524,10 @@ function get_data(object) {
 
 }
 
-function close_filter() {
-    $('.filter-block').addClass('d-none');
+function toggle_filter() {
+    $('.filter-block form').toggleClass('d-flex');
 }
+
 
 function send_comment(object) {
 
