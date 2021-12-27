@@ -651,7 +651,19 @@ AppAsset::register($this);
 <?php $this->endBody() ?>
 <?php if (Yii::$app->requestedParams['city'] == 'moskva') : ?>
 
-    <script src="//code-ya.jivosite.com/widget/N3G2svN2tk" defer></script>
+
+
+    <script >
+
+        $( document ).scroll(function() {
+
+            $.getScript( "//code-ya.jivosite.com/widget/N3G2svN2tk", function( data, textStatus, jqxhr ) {
+                $("head").prepend('<link href="/css/jquery-ui.css" rel="stylesheet">');
+                filter();
+            });
+
+        });
+    </script>
 
 <?php endif; ?>
 <!-- Global site tag (gtag.js) - Google Analytics -->
