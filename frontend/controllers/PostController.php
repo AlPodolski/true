@@ -37,6 +37,13 @@ class PostController extends Controller
     public function actionIndex($protocol,$city, $id)
     {
 
+        $cityInfo = City::getCity(Yii::$app->controller->actionParams['city']);
+
+        if (!$cityInfo) {
+            http_response_code(502);
+            exit();
+        };
+
         $post = Posts::find()->where(['id' => $id])
             ->with('gal', 'metro', 'avatar', 'place', 'service',
                 'sites', 'rayon', 'nacionalnost',
