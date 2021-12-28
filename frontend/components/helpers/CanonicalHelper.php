@@ -19,6 +19,8 @@ class CanonicalHelper
 
         }
 
+        if (\strstr($request, '?')) return \strstr($request, '?', true);
+
         return false;
 
     }
