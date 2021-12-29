@@ -1637,7 +1637,6 @@ a.asc::after {
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
 }
 .metro-select {
-    margin-top: 20px;
     border: none;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
@@ -3304,6 +3303,32 @@ input.search::placeholder { color: #6d6d6d; }
 }
 .close-filter-btn{
     display: none;
+}
+.marck-title{
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 12px;
+    color: #fff;
+    display: none;
+}
+.post-marc:hover .marck-title{
+    display: block;
+}
+.indi-title {
+    background: #F90;
+    left: -110px;
+}
+.salon-title {
+    background: #F74952;
+    left: -60px;
+}
+.chec-title{
+    background: #16c928;
+    left: -130px;
+}
+.video-title{
+    background: #495af7;
+    left: -90px;
 }
 @media (max-width: 1199px) {
     .dopolnitaelno-btn{

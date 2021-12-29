@@ -3,6 +3,8 @@
 
 namespace frontend\controllers;
 
+use common\models\City;
+use frontend\helpers\MetaBuilder;
 use frontend\models\SearchNameForm;
 use frontend\modules\user\models\Posts;
 use Yii;
@@ -26,9 +28,17 @@ class SearchController extends Controller
             ->where(['like', 'name', $model->name])
             ->all();
 
+        $cityInfo = City::getCity($city);
+
+        $title = 'Проститутки по имени '.$model->name.' – путаны и индивидуалки '.$cityInfo['city2'];
+        $des = 'Путаны с именем '.$model->name.' с удовольствием выполнят все Ваши желания. Выбор анкет индивидуалок. Номера телефонов';
+        $h1 = 'Проститутки с именем '.$model->name;
+
         return $this->render('index' , [
             'prPosts' => $prPosts,
-            'name' => $model->name,
+            'title' => $title,
+            'des' => $des,
+            'h1' => $h1,
         ]);
     }
 }

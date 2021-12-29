@@ -3,12 +3,21 @@
 /* @var $this \yii\web\View */
 /* @var $prPosts array */
 /* @var $name string */
+/* @var $title string */
+/* @var $des string */
+/* @var $h1 string */
+
+$this->title = $title;
+
+Yii::$app->view->registerMetaTag([
+    'name' => 'description',
+    'content' => $des
+]);
 
 ?>
 
-
 <div class="container custom-container">
-    <h1 class="margin-top-20"> Поиск по имени : <?php echo $name ?></h1>
+    <h1 class="margin-top-20"> <?php echo $h1 ?> </h1>
     <div class="row">
 
         <?php if ($prPosts) : foreach ($prPosts as $post) : ?>
