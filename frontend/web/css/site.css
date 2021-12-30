@@ -116,7 +116,6 @@ a.desc:after {
     text-align: center;
     background: #f74952;
     width: 100%;
-    margin-bottom: 15px;
     margin-top: 15px;
 }
 @media(max-width:767px) {

@@ -160,6 +160,7 @@ use frontend\widgets\PhotoWidget;
             </div>
         </div>
 
+        <?php if ($post['phone']) : ?>
 
             <a data-id="<?php echo $post['id'] ?>"
                   <?php $targetPrice = \frontend\components\helpers\PriceTargetHelper::target($post['price']) ?>
@@ -170,6 +171,8 @@ use frontend\widgets\PhotoWidget;
                   href="tel:+<?php echo preg_replace("/[^0-9]/", '', $post['phone']) ?>"
                   data-number="<?php echo $post['phone'] ?>"
                   class="price d-block ">Показать номер</a>
+
+        <?php endif; ?>
 
     </article>
 </div>

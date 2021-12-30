@@ -93,7 +93,7 @@ class Posts extends \yii\db\ActiveRecord
                 'rost', 'ves', 'breast', 'status', 'view', 'retouching_photo_status', 'fake', 'pay_time', 'pol_id', 'sort'], 'integer'],
             [['name'], 'string', 'max' => 60],
             [['phone'], 'string', 'max' => 20 ],
-            [['name', 'phone', 'price'],'required'],
+            //[['name', 'phone', 'price'],'required'],
             [['video'], 'string', 'max' => 122],
             [['about' , 'old_url'], 'string'],
             [['phone'], 'validatePhone'],
