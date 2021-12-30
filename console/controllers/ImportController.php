@@ -340,8 +340,6 @@ class ImportController extends Controller
 
                 }
 
-                die();
-
                 if ($i > 50 ) break;
 
             }
