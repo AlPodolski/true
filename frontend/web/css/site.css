@@ -3031,13 +3031,15 @@ input::-webkit-input-placeholder {
 .photo-list{
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
 .photo-list picture{
     margin-right: 15px;
     margin-bottom: 15px;
     border-radius: 5px;
     overflow: hidden;
-    flex: 25%;
+    flex: 31%;
+    flex-grow: 0;
 }
 
 .open-rating-block{
@@ -3502,6 +3504,7 @@ input.search::placeholder { color: #6d6d6d; }
 @media (max-width: 769px) {
     .photo-list picture{
         flex: 46%;
+        flex-grow: 0;
     }
     .filter-block form{
         max-width: 320px;
@@ -3630,6 +3633,7 @@ input.search::placeholder { color: #6d6d6d; }
 @media (max-width: 575px) {
     .photo-list picture{
         flex: 100%;
+        flex-grow: 0;
     }
     .review-block{
         padding: 0 10px;
