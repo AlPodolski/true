@@ -3622,9 +3622,6 @@ input.search::placeholder { color: #6d6d6d; }
     .desc-params{
         padding: 0 15px;
     }
-    .text-block{
-        padding: 0;
-    }
     .main-params-wrap-on-page .main-param-item{
         margin-right: 12px;
     }
