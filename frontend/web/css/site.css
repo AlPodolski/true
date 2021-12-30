@@ -2816,7 +2816,6 @@ select{
 }
 .img{
     width: 100%;
-    object-fit: scale-down;
 }
 .carousel-indicators{
     bottom: 40px;
