@@ -1754,12 +1754,24 @@ a.asc::after {
     margin-top: 50px;
     margin-bottom: 20px;
 }
-.single , .white-cabinet-block{
+.white-cabinet-block{
     background: #FFFFFF;
     box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
     overflow: hidden;
     margin-bottom: 35px;
+}
+.desc-params .red-bold-text , .otzivi-block-desc .red-bold-text{
+    text-align: center;
+}
+.desc-params .user-service-block{
+    margin-top: 10px;
+}
+.single{
+    margin-bottom: 35px;
+}
+.yandex-map{
+    margin-top: 10px;
 }
 .single-content .tab-content{
     margin-bottom: 75px;
@@ -3015,11 +3027,12 @@ input::-webkit-input-placeholder {
     font-size: 14px;
 }
 .rating-block-close{
-    max-height: 320px;
+    max-height: 287px;
     overflow: hidden;
 }
 .open-rating-block{
     text-align: center;
+    margin: auto;
 }
 .dialog_list-wrap{
     background: #FFFFFF;
@@ -3311,6 +3324,14 @@ input.search::placeholder { color: #6d6d6d; }
     color: #fff;
     display: none;
 }
+.main-params-wrap-on-page{
+    flex-wrap:wrap;
+    margin-top: 0!important;
+}
+.main-params-wrap-on-page .main-param-item{
+    padding: 3px 8px 2px 8px;
+    margin-top: 30px!important;
+}
 .post-marc:hover .marck-title{
     display: block;
 }
@@ -3329,6 +3350,9 @@ input.search::placeholder { color: #6d6d6d; }
 .video-title{
     background: #495af7;
     left: -90px;
+}
+.right-video-wrap{
+    display: none;
 }
 @media (max-width: 1199px) {
     .dopolnitaelno-btn{
@@ -3405,6 +3429,12 @@ input.search::placeholder { color: #6d6d6d; }
     }
 }
 @media (max-width: 992px) {
+    .left-video-wrap{
+        display: none;
+    }
+    .right-video-wrap{
+        display: block;
+    }
     .single-bottom-info .post-address{
         margin-left: 40px;
     }
@@ -3577,6 +3607,27 @@ input.search::placeholder { color: #6d6d6d; }
 }
 
 @media (max-width: 575px) {
+    .review-block{
+        padding: 0 10px;
+    }
+    .rating-block-close{
+        padding: 0px 30px;
+    }
+    .user-service-block{
+        padding: 0 15px;
+    }
+    .single-phone{
+        margin-bottom: 0px;
+    }
+    .desc-params{
+        padding: 0 15px;
+    }
+    .text-block{
+        padding: 0;
+    }
+    .main-params-wrap-on-page .main-param-item{
+        margin-right: 12px;
+    }
     .chat-wrap {
         max-height: 360px;
     }
@@ -3653,7 +3704,7 @@ input.search::placeholder { color: #6d6d6d; }
         top:inherit;
     }
     .orange-btn , .white-btn{
-        margin-right: 0;
+        margin-right: 10px;
     }
     .custom-container{
         padding: 0;

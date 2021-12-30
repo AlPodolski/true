@@ -108,6 +108,8 @@ function init_yandex_map(object){
 }
 
 function init(map_name ,x, y) {
+    
+    console.log(map_name);
 
     var myMap = new ymaps.Map(map_name, {
         center: [x, y],
@@ -563,6 +565,26 @@ function send_comment(object) {
 }
 
 $(window).scroll(function () {
+
+    $( ".yandex-map" ).each(function( index ) {
+
+        var object = this;
+
+        var x = $(object).attr('data-x');
+        var y = $(object).attr('data-y');
+
+        ymaps.ready(function(){
+
+            if($(object).hasClass('map-not-exist')){
+
+                $(object).removeClass('map-not-exist');
+
+                $('.map').each(init(object, x,y));
+
+            }
+
+        })
+    });
 
     var target = $('.pager');
     var targetPos = target.offset().top;

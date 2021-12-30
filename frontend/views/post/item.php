@@ -27,6 +27,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
 
 ?>
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
 <div class="row">
     <div class="col-12 pager"
          data-single="1" <?php if ($post['id']) : ?> data-url="/post/<?php echo $post['id'] ?>" <?php endif; ?>></div>
@@ -153,6 +154,16 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                 else echo 0
                 ?>
             </div>
+
+            <?php if ($post['video']) : ?>
+                <div class="left-video-wrap">
+                    <div class="red-bold-text">Видео</div>
+                    <video controls="controls" class="video">
+                        <source src="<?php echo $post['video'] ?>">
+                    </video>
+                </div>
+            <?php endif; ?>
+
         </div>
         <?php if (isset($backUrl) and $backUrl) : ?>
 
@@ -161,11 +172,11 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
         <?php endif; ?>
         <div class="single-bottom-info position-relative  col-xl-8 col-lg-8">
             <div class="row height-100 single-post-info-row">
-                <div class="col-12 col-md-9 col-lg-9 single-post-info-wrap">
+                <div class="col-12 col-md-12 col-lg-9 single-post-info-wrap">
                     <div class="post-top-info">
-                        <div class="phone-photo-count">
+                        <div class="">
 
-                            <h1><?php echo $post['name'] ?></h1>
+                            <h1 class="text-center"><?php echo $post['name'] ?></h1>
 
                             <?php $targetPrice = \frontend\components\helpers\PriceTargetHelper::target($post['price']) ?>
                             <a data-id="<?php echo $post['id'] ?>"
@@ -174,7 +185,27 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                                href="tel:+<?php echo preg_replace("/[^0-9]/", '', $post['phone']) ?>"
                                data-number="<?php echo $post['phone'] ?>"
                                class="d-block single-price cursor-pointer single-phone">Показать номер</a>
+                        </div>
 
+
+                        <div class="main-params-wrap main-params-wrap-on-page bottom-gallery d-flex">
+                            <div class="main-param-item">
+                                <img loading="lazy" src="/img/calendar.png" width="14px" height="14px" alt="">
+                                <?php echo $post['age'] ? $post['age'] : "-"; ?>
+                            </div>
+                            <div class="main-param-item">
+                                <img loading="lazy" src="/img/2-Ruler.png" width="16px" height="16px" alt="">
+                                <?php echo $post['rost'] ? $post['rost'] : "-"; ?> см
+                            </div>
+                            <div class="main-param-item">
+                                <img loading="lazy" src="/img/weight-scale1.png" width="17px" height="17px" alt="">
+                                <?php echo $post['ves'] ? $post['ves'] : "-"; ?> кг
+                            </div>
+                            <div class="main-param-item">
+                                <img loading="lazy" src="/img/women-brassiere1.png" width="22px" height="22px"
+                                     alt="">
+                                <?php echo $post['breast'] ? $post['breast'] : "-"; ?>
+                            </div>
                         </div>
 
                         <div class="photo-count phone-photo-count d-flex">
@@ -226,22 +257,23 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                                     </svg>
                                 </div>
                                 <div class="date d-flex">
-                                    <div class="find-date">Найдено</div> <?php echo date('m.d.y', $post['created_at']) ?> </div>
+                                    <div class="find-date">Найдено
+                                    </div> <?php echo date('m.d.y', $post['created_at']) ?> </div>
                             </div>
 
                             <div class="otzivi-count d-flex">
                                 <div class="icon otzivi-count-icon">
                                     <svg width="9" height="9" viewBox="0 0 9 9" fill="none"
-                                                     xmlns="http://www.w3.org/2000/svg">
+                                         xmlns="http://www.w3.org/2000/svg">
                                         <g clip-path="url(#clip0)">
                                             <path d="M8.96765 7.06371L8.44493 5.54244C8.69689 5.02737 8.83005 4.45453 8.83094 3.87816C8.83249 2.87598 8.44475 1.92839 7.73913 1.20997C7.03337 0.491412 6.0929 0.0869214 5.09095 0.0710484C4.05199 0.0546304 3.07542 0.449822 2.34124 1.18399C1.63329 1.89192 1.24063 2.82519 1.22821 3.82251C0.530458 4.34785 0.11862 5.1669 0.119974 6.04175C0.120624 6.45114 0.212769 6.8581 0.387372 7.22609L0.0273193 8.27389C-0.0345733 8.45402 0.0106377 8.64959 0.145321 8.78427C0.240103 8.87907 0.365066 8.92954 0.49358 8.92954C0.54765 8.92954 0.602353 8.92061 0.655703 8.90228L1.70352 8.54222C2.07152 8.71683 2.47847 8.80897 2.88786 8.80962C2.88934 8.80962 2.89075 8.80962 2.89222 8.80962C3.78009 8.80959 4.60539 8.38713 5.12881 7.67228C5.67351 7.65794 6.21243 7.52608 6.69965 7.28774L8.22093 7.81048C8.28432 7.83226 8.34932 7.84288 8.41357 7.84288C8.56629 7.84288 8.71479 7.7829 8.82745 7.67022C8.98748 7.51017 9.0412 7.27777 8.96765 7.06371ZM2.89219 8.27391C2.89104 8.27391 2.88983 8.27391 2.88869 8.27391C2.52633 8.27337 2.16649 8.18403 1.84813 8.0156C1.78267 7.98099 1.70582 7.97499 1.63582 7.99904L0.561396 8.36823L0.93059 7.29382C0.954637 7.22381 0.94866 7.14696 0.914031 7.08151C0.745597 6.76314 0.656265 6.40331 0.655703 6.04094C0.654806 5.45807 0.881547 4.9056 1.27806 4.49192C1.40757 5.28146 1.78387 6.00902 2.36715 6.58193C2.94612 7.1506 3.67389 7.51267 4.45914 7.63104C4.0445 8.03972 3.48559 8.27391 2.89219 8.27391ZM8.4486 7.29141C8.43336 7.30665 8.41529 7.3108 8.39497 7.30381L6.76639 6.74419C6.73811 6.73447 6.70868 6.72965 6.67936 6.72965C6.63614 6.72965 6.59307 6.74011 6.5541 6.76075C6.08911 7.00674 5.56366 7.1372 5.03452 7.13801C5.03278 7.13801 5.0312 7.13801 5.02946 7.13801C3.25648 7.13801 1.79199 5.69776 1.7639 3.9252C1.74975 3.03249 2.08932 2.1935 2.72004 1.56278C3.35077 0.932061 4.18989 0.59261 5.08248 0.606672C6.85674 0.634815 8.29797 2.10201 8.29523 3.87732C8.29441 4.40645 8.16396 4.93192 7.91799 5.39688C7.88336 5.46232 7.87738 5.53917 7.90143 5.60919L8.46103 7.23777C8.46801 7.25816 8.46382 7.27621 8.4486 7.29141Z"
-                                                              fill="white"/>
+                                                  fill="white"/>
                                             <path d="M6.62504 2.45239H3.43355C3.28561 2.45239 3.1657 2.57233 3.1657 2.72025C3.1657 2.86819 3.28563 2.98811 3.43355 2.98811H6.62504C6.77298 2.98811 6.8929 2.86817 6.8929 2.72025C6.8929 2.57233 6.77298 2.45239 6.62504 2.45239Z"
-                                                              fill="white"/>
+                                                  fill="white"/>
                                             <path d="M6.62504 3.55396H3.43355C3.28561 3.55396 3.1657 3.67389 3.1657 3.82181C3.1657 3.96973 3.28563 4.08967 3.43355 4.08967H6.62504C6.77298 4.08967 6.8929 3.96973 6.8929 3.82181C6.8929 3.67389 6.77298 3.55396 6.62504 3.55396Z"
-                                                              fill="white"/>
+                                                  fill="white"/>
                                             <path d="M5.39656 4.65564H3.43355C3.28561 4.65564 3.1657 4.77558 3.1657 4.9235C3.1657 5.07143 3.28563 5.19135 3.43355 5.19135H5.39654C5.54448 5.19135 5.6644 5.07142 5.6644 4.9235C5.6644 4.77558 5.5445 4.65564 5.39656 4.65564Z"
-                                                              fill="white"/>
+                                                  fill="white"/>
                                         </g>
                                         <defs>
                                             <clipPath id="clip0">
@@ -285,13 +317,6 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                         <?php endif; ?>
 
-                        <?php if ($post['video']) : ?>
-                            <div class="white-btn video-btn" onclick="get_modal(this)" data-target="video"
-                                 data-id="<?php echo $post['id'] ?>">
-                                <img loading="lazy" src="/img/play1.png" alt="">Смотреть видео
-                            </div>
-                        <?php endif; ?>
-
                         <div class="white-btn video-btn" onclick="get_modal(this);ym(70919698,'reachGoal','message')"
                              data-target="message" data-id="<?php echo $post['user_id'] ?>">
                             Написать автору
@@ -313,7 +338,25 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                     </div>
 
-                    <?php if ($post['sites']) : ?>
+                    <?php if ($post['video']) : ?>
+                        <div class="right-video-wrap">
+                            <div class="red-bold-text">Видео</div>
+                            <video controls="controls" class="video">
+                                <source src="<?php echo $post['video'] ?>">
+                            </video>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (isset($post['metro'][0]['x'])) : ?>
+                        <div class="red-bold-text">Карта</div>
+                        <div id="map-<?php echo $post['id'] ?>"
+                             class="yandex-map map-not-exist" data-id="<?php echo $post['id'] ?>"
+                             data-x="<?php echo $post['metro'][0]['x'] ?>"
+                             data-y="<?php echo $post['metro'][0]['y'] ?>" style="height: 200px">
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (false) : ?>
 
                         <div class="red-block " onclick="show_site_price_block(this)"
                              data-id="<?php echo $post['id'] ?>">
@@ -323,32 +366,6 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                                 руб.
                             </div>
                             <div class="show-info show-info-white"></div>
-                        </div>
-
-                    <?php endif; ?>
-                    <div onclick="show_otzivi_block(this)" data-id="<?php echo $post['id'] ?>"
-                         class="white-block itzivi-block">
-                        <img loading="lazy" src="/img/conversation2.png" width="16px" height="16px" alt="">
-                        <div>
-
-                            <?php echo $countReview ?> <?php echo getNumEnding($countReview, ['отзыв', 'отзыва', 'отзывов']); ?></span></div>
-                        <div class="show-info show-info-grey"></div>
-                    </div>
-                    <div onclick="show_anket_params_block(this)" class="white-block"
-                         data-id="<?php echo $post['id'] ?>">
-                        <img loading="lazy" src="/img/pen.png" width="14px" height="14px" alt="">
-                        <div>Параметры анкеты</div>
-                        <div class="show-info show-info-grey"></div>
-                    </div>
-
-                    <?php if (isset($post['metro'][0]['x'])) : ?>
-
-                        <div onclick="get_mobil_map_block(this)"
-                             class="white-block"
-                             data-id="<?php echo $post['id'] ?>"
-                             data-map="mobile-map-<?php echo $post['id'] ?>">
-                            <div>Показать на карте</div>
-                            <div class="show-info show-info-grey"></div>
                         </div>
 
                     <?php endif; ?>
@@ -416,8 +433,429 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
     </div>
 </article>
 
+<div class="desc-params ">
+    <div class="red-bold-text">Параметры анкеты</div>
+    <div class="user-service-block bottom-gallery">
+
+        <?php if ($post['place']) : ?>
+
+            <div class="user-service-item">
+                        <span class="red-text">
+                            Место встречи:
+                        </span>
+                <div class="grey-text">
+
+                    <?php $lastElement = array_pop($post['place']); ?>
+
+                    <?php foreach ($post['place'] as $item) : ?>
+
+                        <a class="grey-text" href="/mesto-<?php echo $item['url'] ?>">
+                            <?php echo $item['value'] ?>
+                        </a>
+
+                    <?php endforeach; ?>
+
+                </div>
+            </div>
+
+        <?php endif; ?>
+
+        <?php if ($post['service']) : ?>
+
+            <div class="user-service-item">
+                        <span class="red-text">
+                            Услуги:
+                        </span>
+                <div class="grey-text">
+
+                    <?php foreach ($post['service'] as $item) : ?>
+
+                        <a class="grey-text" href="/usluga-<?php echo $item['url'] ?>">
+                            <?php echo $item['value'] ?>
+                        </a>
+
+                        <?php foreach ($post['serviceDesc'] as $itemDesc) : ?>
+
+                            <?php if ($itemDesc['service_id'] == $item['id']) : ?>
+
+                                <span class="service_desc">(<?php echo $itemDesc['text']; ?>)</span>
+
+                            <?php endif; ?>
+
+                        <?php endforeach; ?>
+
+                        <?php if ($item != end($post['service'])) echo ', ' ?>
+
+                    <?php endforeach; ?>
+
+                </div>
+            </div>
+
+        <?php endif; ?>
+
+        <?php if ($post['rayon']) : ?>
+
+            <div class="user-service-item">
+                        <span class="red-text">
+                            Район:
+                        </span>
+                <div class="grey-text">
+
+                    <?php $lastElement = array_pop($post['rayon']); ?>
+
+                    <?php foreach ($post['rayon'] as $item) : ?>
+                        <a class="grey-text" href="/rayon-<?php echo $item['url'] ?>">
+                            <?php echo $item['value'] ?>
+                        </a>,
+
+                    <?php endforeach; ?>
+
+                    <a class="grey-text" href="/rayon-<?php echo $lastElement['url'] ?>">
+                        <?php echo $lastElement['value'] ?>
+                    </a>
+
+                </div>
+            </div>
+
+        <?php endif; ?>
+
+        <?php if ($post['nacionalnost']) : ?>
+
+            <div class="user-service-item">
+                        <span class="red-text">
+                            Национальность:
+                        </span>
+                <div class="grey-text">
+
+                    <?php $lastElement = array_pop($post['nacionalnost']); ?>
+
+                    <?php foreach ($post['nacionalnost'] as $item) : ?>
+                        <a class="grey-text" href="/nacionalnost-<?php echo $item['url'] ?>">
+                            <?php echo $item['value'] ?>
+                        </a>,
+
+                    <?php endforeach; ?>
+
+                    <a class="grey-text" href="/nacionalnost-<?php echo $lastElement['url'] ?>">
+                        <?php echo $lastElement['value'] ?>
+                    </a>
+
+                </div>
+            </div>
+
+        <?php endif; ?>
+
+        <?php if ($post['cvet']) : ?>
+
+            <div class="user-service-item">
+                        <span class="red-text">
+                            Цвет волос:
+                        </span>
+                <div class="grey-text">
+
+                    <?php $lastElement = array_pop($post['cvet']); ?>
+
+                    <?php foreach ($post['cvet'] as $item) : ?>
+                        <a class="grey-text" href="/cvet-volos-<?php echo $item['url'] ?>">
+                            <?php echo $item['value'] ?>
+                        </a>,
+
+                    <?php endforeach; ?>
+
+                    <a class="grey-text" href="/cvet-volos-<?php echo $lastElement['url'] ?>">
+                        <?php echo $lastElement['value'] ?>
+                    </a>
+
+                </div>
+            </div>
+
+        <?php endif; ?>
+
+        <?php if ($post['strizhka']) : ?>
+
+            <div class="user-service-item">
+                        <span class="red-text">
+                            Интимная стрижка:
+                        </span>
+                <div class="grey-text">
+
+                    <?php $lastElement = array_pop($post['strizhka']); ?>
+
+                    <?php foreach ($post['strizhka'] as $item) : ?>
+                        <a class="grey-text" href="/intimnaya-strizhka-<?php echo $item['url'] ?>">
+                            <?php echo $item['value'] ?>
+                        </a>,
+
+                    <?php endforeach; ?>
+
+                    <a class="grey-text" href="/intimnaya-strizhka-<?php echo $lastElement['url'] ?>">
+                        <?php echo $lastElement['value'] ?>
+                    </a>
+
+                </div>
+            </div>
+
+        <?php endif; ?>
+
+        <?php if ($post['osobenost']) : ?>
+
+            <div class="user-service-item">
+                        <span class="red-text">
+                            Особенности:
+                        </span>
+                <div class="grey-text">
+
+                    <?php $lastElement = array_pop($post['osobenost']); ?>
+
+                    <?php foreach ($post['osobenost'] as $item) : ?>
+                        <a class="grey-text" href="/osobenost-<?php echo $item['url'] ?>">
+                            <?php echo $item['value'] ?>
+                        </a>,
+
+                    <?php endforeach; ?>
+
+                    <a class="grey-text" href="/osobenost-<?php echo $lastElement['url'] ?>">
+                        <?php echo $lastElement['value'] ?>
+                    </a>
+
+                </div>
+            </div>
+
+        <?php endif; ?>
+
+        <div class="user-service-item">
+                    <span class="red-text">
+                        Описание:
+                    </span>
+            <span class="grey-text">
+                    <?php echo $post['about'] ?>
+                </span>
+        </div>
+    </div>
+</div>
+
+<div class="otzivi-block-desc">
+    <div class="red-bold-text">Отзывы</div>
+    <div class="row">
+
+        <div class="rating-block rating-block-close">
+            <div class="row">
+                <div class="col-12 rating-item">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="left">
+                                Фото
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <?php $photoRating = \frontend\helpers\PostRatingHelper::setPercentRating($postRating['photo_marc']) ?>
+                            <div class="right">
+                                <?php echo $photoRating ?>%
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="rating-wrap">
+                                <div class="rating" style="width: <?php echo $photoRating ?>%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 rating-item">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="left">
+                                Сервис
+                            </div>
+                        </div>
+                        <?php $serviceRating = \frontend\helpers\PostRatingHelper::setPercentRating($postRating['service_marc']) ?>
+                        <div class="col-4">
+                            <div class="right">
+                                <?php echo $serviceRating ?>%
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="rating-wrap">
+                                <div class="rating" style="width: <?php echo $serviceRating ?>%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 rating-item">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="left">
+                                Общая
+                            </div>
+                        </div>
+                        <?php $totalRating = \frontend\helpers\PostRatingHelper::setPercentRating($postRating['total_marc']) ?>
+                        <div class="col-4">
+                            <div class="right">
+                                <?php echo $totalRating ?>%
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="rating-wrap">
+                                <div class="rating" style="width: <?php echo $totalRating ?>%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <?php $reviewCount = 0 ?>
+
+                <?php foreach ($serviceListReview as $service) : ?>
+
+                    <?php if (isset($service['review']) and $service['review']) : ?>
+
+                        <?php $reviewCount++; ?>
+
+                        <?php $serviceRating = \frontend\helpers\PostRatingHelper::setPercentRating($service['review']) ?>
+
+                        <div class="col-12 rating-item">
+                            <div class="row">
+                                <div class="col-8">
+                                    <div class="left">
+                                        <?php echo $service['value'] ?>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="right">
+                                        <?php echo $serviceRating ?>%
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="rating-wrap">
+                                        <div class="rating"
+                                             style="width: <?php echo $serviceRating ?>%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    <?php endif; ?>
+
+                <?php endforeach; ?>
+
+            </div>
+        </div>
+        <?php if (isset($reviewCount) and $reviewCount > 2) : ?>
+
+            <div onclick="open_rating_block(this)" class="open-rating-block">
+                Показать все
+            </div>
+
+        <?php endif; ?>
+
+    </div>
+
+    <div class="col-12 bottom-gallery">
+        <div class="red-bold-text">
+            <?php echo $countReview ?><?php echo getNumEnding($countReview, ['отзыв', 'отзыва', 'отзывов']); ?>
+        </div>
+    </div>
+
+    <?php
+
+    if ($postRating['review']) :
+
+        foreach ($postRating['review'] as $item) : ?>
+
+            <?php if ($item['text']) : ?>
+
+                <div class="review-block">
+
+                    <div class="author-img">
+
+                        <?php if (isset($item['author']['avatar']['file']) and $item['author']['avatar']['file']) : ?>
+                            <?php echo PhotoWidget::widget([
+                                'path' => $item['author']['avatar']['file'],
+                                'size' => '59',
+                                'options' => [
+                                    'class' => 'img user-img',
+                                    'loading' => 'lazy',
+                                    'alt' => $item['author']['username'],
+                                ],
+                            ]); ?>
+                        <?php else : ?>
+
+                            <div class="no-photo">
+                                <?php
+
+                                echo $item['author']['username'][0] . $item['author']['username'][1];
+
+                                ?>
+                            </div>
+
+                        <?php endif; ?>
+
+                    </div>
+
+                    <div class="author-name">
+                        <?php echo $item['author']['username'] ?>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.0943 4.77885C10.308 4.99248 10.308 5.33876 10.0943 5.55228L6.42557 9.22115C6.21194 9.43466 5.86577 9.43466 5.65215 9.22115L3.90567 7.47456C3.69205 7.26105 3.69205 6.91476 3.90567 6.70125C4.11919 6.48763 4.46547 6.48763 4.67899 6.70125L6.0388 8.06107L9.32091 4.77885C9.53453 4.56534 9.88081 4.56534 10.0943 4.77885ZM14 7C14 10.8692 10.8687 14 7 14C3.13075 14 0 10.8687 0 7C0 3.13075 3.13129 0 7 0C10.8692 0 14 3.13129 14 7ZM12.9062 7C12.9062 3.73531 10.2643 1.09375 7 1.09375C3.73531 1.09375 1.09375 3.73573 1.09375 7C1.09375 10.2647 3.73573 12.9062 7 12.9062C10.2647 12.9062 12.9062 10.2643 12.9062 7Z"
+                                  fill="#31DA92"/>
+                        </svg>
+
+                    </div>
+
+                    <div class="date">
+                        <div class="date-text">
+
+                            <?php
+
+                            $day = time() - $item['created_at'];
+
+                            $day = (intdiv($day, 3600 * 24));
+
+                            ?>
+
+                            <?php echo $day ?> <?php echo getNumEnding($day, ['день', 'дня', 'дней']); ?>
+
+                            назад
+
+                        </div>
+                    </div>
+
+                    <div class="review-text">
+                        <?php echo $item['text'] ?>
+                    </div>
+
+                </div>
+
+            <?php endif; ?>
+
+        <?php endforeach; ?>
+
+    <?php endif; ?>
+
+    <div data-toggle="modal" data-target="comment-form" data-id="<?php echo $post['id'] ?>"
+         onclick="get_modal(this)" class="add-review-btn-wrap">
+        <div class="add-review-btn">
+            <div class="bg">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19.2188 9.21875H10.7812V0.78125C10.7812 0.349766 10.4315 0 10 0C9.56852 0 9.21875 0.349766 9.21875 0.78125V9.21875H0.78125C0.349766 9.21875 0 9.56852 0 10C0 10.4315 0.349766 10.7812 0.78125 10.7812H9.21875V19.2188C9.21875 19.6502 9.56852 20 10 20C10.4315 20 10.7812 19.6502 10.7812 19.2188V10.7812H19.2188C19.6502 10.7812 20 10.4315 20 10C20 9.56852 19.6502 9.21875 19.2188 9.21875Z"
+                          fill="white"/>
+                </svg>
+                <span class="text">
+                            отзыв
+                        </span>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Nav tabs -->
-<ul class="nav nav-tabs single-tabs ">
+<ul class="nav nav-tabs single-tabs d-none">
 
     <?php $sites = false; ?>
 
@@ -486,7 +924,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 </ul>
 
 <!-- Tab panes -->
-<div class="tab-content">
+<div class="tab-content d-none">
 
     <?php $home = true; ?>
 
@@ -1640,17 +2078,17 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                 <?php $i = 0 ?>
 
                 <span class="active carousel-item">
-                                    <?php echo PhotoWidget::widget([
-                                        'path' => $post['avatar']['file'],
-                                        'size' => 'single',
-                                        'options' => [
-                                            'class' => 'img user-img',
-                                            'loading' => 'lazy',
-                                            'alt' => $post['name'],
-                                            'title' => $photoTitle,
-                                        ],
-                                    ]); ?>
-                                </span>
+                    <?php echo PhotoWidget::widget([
+                        'path' => $post['avatar']['file'],
+                        'size' => 'single',
+                        'options' => [
+                            'class' => 'img user-img',
+                            'loading' => 'lazy',
+                            'alt' => $post['name'],
+                            'title' => $photoTitle,
+                        ],
+                    ]); ?>
+                </span>
 
                 <?php foreach ($post['gal'] as $item) : ?>
 
