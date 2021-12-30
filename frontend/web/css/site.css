@@ -3631,9 +3631,13 @@ input.search::placeholder { color: #6d6d6d; }
 }
 
 @media (max-width: 575px) {
+    .photo-list{
+        padding: 15px;
+    }
     .photo-list picture{
         flex: 100%;
         flex-grow: 0;
+        margin-right: 0px;
     }
     .review-block{
         padding: 0 10px;
