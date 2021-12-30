@@ -3025,8 +3025,21 @@ input::-webkit-input-placeholder {
 }
 .rating-block-close{
     max-height: 287px;
+    flex: 100%;
     overflow: hidden;
 }
+.photo-list{
+    display: flex;
+    flex-wrap: wrap;
+}
+.photo-list picture{
+    margin-right: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    overflow: hidden;
+    flex: 25%;
+}
+
 .open-rating-block{
     text-align: center;
     margin: auto;
@@ -3487,6 +3500,9 @@ input.search::placeholder { color: #6d6d6d; }
     }
 }
 @media (max-width: 769px) {
+    .photo-list picture{
+        flex: 46%;
+    }
     .filter-block form{
         max-width: 320px;
         padding-left: 25px;
@@ -3612,6 +3628,9 @@ input.search::placeholder { color: #6d6d6d; }
 }
 
 @media (max-width: 575px) {
+    .photo-list picture{
+        flex: 100%;
+    }
     .review-block{
         padding: 0 10px;
     }

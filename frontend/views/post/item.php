@@ -640,6 +640,31 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
     </div>
 </div>
 
+<div class="photo-list-wrap">
+    <div class="red-bold-text text-center">Фото</div>
+
+    <div class="photo-list">
+        <?php foreach ($post['gal'] as $item) : ?>
+
+            <?php echo PhotoWidget::widget([
+                'path' => $item['file'],
+                'size' => '360_471',
+                'showPictureHref' => true,
+
+                'options' => [
+                    'class' => 'img user-img',
+                    'loading' => 'lazy',
+                    'alt' => $post['name'],
+                    'title' => $photoTitle,
+                ],
+            ]); ?>
+
+        <?php endforeach; ?>
+    </div>
+
+
+</div>
+
 <div class="otzivi-block-desc">
     <div class="red-bold-text">Отзывы</div>
     <div class="row">
@@ -752,6 +777,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
             </div>
         </div>
+
         <?php if (isset($reviewCount) and $reviewCount > 2) : ?>
 
             <div onclick="open_rating_block(this)" class="open-rating-block">
@@ -764,7 +790,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
     <div class="col-12 bottom-gallery">
         <div class="red-bold-text">
-            <?php echo $countReview ?><?php echo getNumEnding($countReview, ['отзыв', 'отзыва', 'отзывов']); ?>
+            <?php echo $countReview ?> <?php echo getNumEnding($countReview, ['отзыв', 'отзыва', 'отзывов']); ?>
         </div>
     </div>
 
@@ -1217,7 +1243,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
             <div class="col-12 bottom-gallery">
                 <div class="red-bold-text">
-                    <?php echo $countReview ?><?php echo getNumEnding($countReview, ['отзыв', 'отзыва', 'отзывов']); ?>
+                    <?php echo $countReview ?> <?php echo getNumEnding($countReview, ['отзыв', 'отзыва', 'отзывов']); ?>
                 </div>
             </div>
 
