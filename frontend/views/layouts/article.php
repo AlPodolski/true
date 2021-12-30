@@ -42,8 +42,6 @@ use frontend\widgets\PhotoWidget;
                     'size' => '360_430',
                     'options' => [
                         'class' => 'img user-img listing-img',
-                        'width' => '350px',
-                        'height' => '420px',
                         'loading' => 'lazy',
                         'alt' => $post['name'],
                         'title' => $photoTitle,

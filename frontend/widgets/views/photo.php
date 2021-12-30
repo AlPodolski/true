@@ -32,12 +32,12 @@ if (is_array($pictureOptions)) {
 
 
     <picture <?php echo $pictureOptionText ?> <?php if ($showPictureHref) : ?> href="<?= Yii::$app->imageCache->thumbSrc($path, $size) ?>" <?php endif; ?>>
-        <img <?php echo $widthInfo ?> <?php echo $params ?> src="<?= Yii::$app->imageCache->thumbSrc($path, $size) ?>">
+        <img  <?php echo $params ?> src="<?= Yii::$app->imageCache->thumbSrc($path, $size) ?>">
     </picture>
 
 
 <?php else : ?>
-    <img <?php echo $params ?> src="/img/no-photo-user.png" srcset="/img/no-photo-user.png" alt="">
+    <img class="no-img" <?php echo $params ?> src="/img/no-photo-user.png" srcset="/img/no-photo-user.png" alt="">
 <?php endif; ?>
 
 

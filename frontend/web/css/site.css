@@ -3354,6 +3354,14 @@ input.search::placeholder { color: #6d6d6d; }
 .right-video-wrap{
     display: none;
 }
+.post .post-img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.no-img{
+    width:inherit!important;
+}
 @media (max-width: 1199px) {
     .dopolnitaelno-btn{
         display: block;
