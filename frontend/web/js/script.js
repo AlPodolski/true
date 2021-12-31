@@ -564,8 +564,7 @@ function send_comment(object) {
     });
 }
 
-$(window).scroll(function () {
-
+function init_yandex(){
     $( ".yandex-map" ).each(function( index ) {
 
         var object = this;
@@ -585,6 +584,11 @@ $(window).scroll(function () {
 
         })
     });
+}
+
+$(window).scroll(function () {
+
+    init_yandex();
 
     var target = $('.pager');
     var targetPos = target.offset().top;

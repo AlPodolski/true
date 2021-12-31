@@ -127,3 +127,13 @@ $this->params['breadcrumbs'][] = array(
     </div>
 </div>
 
+<?php
+
+$this->registerJs(
+    "init_yandex();",
+    $this::POS_READY,
+    'my-button-handler'
+);
+
+
+?>
