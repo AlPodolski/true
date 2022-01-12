@@ -65,7 +65,6 @@ class PostController extends Controller
         $city = City::getCity($city);
 
         if ($post->load(Yii::$app->request->post())
-            and Yii::$app->user->identity['status'] == \common\models\User::STATUS_ACTIVE
             and $userNational->load(Yii::$app->request->post())
             and $userMetro->load(Yii::$app->request->post())
             and $userPlace->load(Yii::$app->request->post())

@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php if (Yii::$app->user->identity['status'] == \common\models\User::STATUS_INACTIVE) : ?>
 
-        <div class="alert-success alert alert-dismissible"> Для добавления анкеты нужно активировать почту</div>
+        <div class="alert-success alert alert-dismissible"> Что бы получать уведомления нужно активировать почту</div>
 
     <?php endif; ?>
 
@@ -39,7 +39,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     Мои анкеты
                 </div>
 
-                <?php if (Yii::$app->user->identity['status'] == \common\models\User::STATUS_ACTIVE) : ?>
 
                     <div class="col-12 col-md-4 col-lg-6">
                         <div class="white-cabinet-block cabinet-nav-block margin-top-20 d-flex items-center nav-cabinet-block">
@@ -62,7 +61,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
                     </div>
 
-                <?php endif; ?>
 
                 <?php foreach ($posts as $post) : ?>
 
