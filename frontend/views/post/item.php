@@ -1552,32 +1552,6 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                 <?php endif; ?>
 
-                <?php if ($post['osobenost']) : ?>
-
-                    <div class="user-service-item">
-                        <span class="red-text">
-                            Особенности:
-                        </span>
-                        <div class="grey-text">
-
-                            <?php $lastElement = array_pop($post['osobenost']); ?>
-
-                            <?php foreach ($post['osobenost'] as $item) : ?>
-                                <a class="grey-text" href="/osobenost-<?php echo $item['url'] ?>">
-                                    <?php echo $item['value'] ?>
-                                </a>,
-
-                            <?php endforeach; ?>
-
-                            <a class="grey-text" href="/osobenost-<?php echo $lastElement['url'] ?>">
-                                <?php echo $lastElement['value'] ?>
-                            </a>
-
-                        </div>
-                    </div>
-
-                <?php endif; ?>
-
                 <div class="user-service-item">
                     <span class="red-text">
                         Описание:

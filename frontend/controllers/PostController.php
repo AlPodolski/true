@@ -47,7 +47,7 @@ class PostController extends Controller
         $post = Posts::find()->where(['id' => $id])
             ->with('gal', 'metro', 'avatar', 'place', 'service',
                 'sites', 'rayon', 'nacionalnost',
-                'cvet', 'strizhka', 'osobenost', 'selphiCount', 'serviceDesc', 'partnerId'
+                'cvet', 'strizhka', 'selphiCount', 'serviceDesc', 'partnerId'
             )
             ->asArray()->limit(1)->one();
 
@@ -89,7 +89,7 @@ class PostController extends Controller
             $post = Posts::find()->where(['not in', 'id' , $id])
                 ->with('gal', 'metro', 'avatar', 'place', 'service',
                     'sites', 'rayon', 'nacionalnost',
-                    'cvet', 'strizhka', 'osobenost', 'selphiCount', 'serviceDesc', 'partnerId')
+                    'cvet', 'strizhka', 'selphiCount', 'serviceDesc', 'partnerId')
                 ->andWhere(['city_id' => $cityInfo['id']])
                 ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
                 ->orderBy(['rand()' => SORT_DESC])
