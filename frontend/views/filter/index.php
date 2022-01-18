@@ -97,14 +97,6 @@ echo \frontend\widgets\OpenGraphWidget::widget([
 
             <?php endforeach; ?>
 
-            <?php foreach ($more_posts as $post) : ?>
-
-                <?php ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_listing_view_count_key']); ?>
-
-                <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), ['post' => $post]); ?>
-
-            <?php endforeach; ?>
-
         <?php endif; ?>
 
     </div>
