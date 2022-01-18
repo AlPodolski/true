@@ -70,7 +70,7 @@ echo \frontend\widgets\OpenGraphWidget::widget([
                 <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), ['post' => $post]); ?>
 
                 <?php
-                    unset($post);
+                unset($post);
                 ?>
 
             <?php endforeach; ?>
@@ -83,17 +83,29 @@ echo \frontend\widgets\OpenGraphWidget::widget([
 
         <?php endif; ?>
 
-        <?php if ($more_posts) foreach ($more_posts as $post) : ?>
+        <?php if ($more_posts) : ?>
 
             <div class="col-12">
                 <p>Рекомендуем посмотреть:</p>
             </div>
 
-            <?php ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_listing_view_count_key']); ?>
+            <?php foreach ($more_posts as $post) : ?>
 
-            <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), ['post' => $post]); ?>
+                <?php ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_listing_view_count_key']); ?>
 
-        <?php endforeach; ?>
+                <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), ['post' => $post]); ?>
+
+            <?php endforeach; ?>
+
+            <?php foreach ($more_posts as $post) : ?>
+
+                <?php ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_listing_view_count_key']); ?>
+
+                <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), ['post' => $post]); ?>
+
+            <?php endforeach; ?>
+
+        <?php endif; ?>
 
     </div>
     <?php if ($posts and count($posts) > 6) : ?>
