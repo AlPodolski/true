@@ -60,7 +60,7 @@ echo \frontend\widgets\OpenGraphWidget::widget([
 
     } ?>
 
-    <?php if (is_array($posts)) : ?>
+    <?php if (is_array($posts) and $posts) : ?>
 
     <?php foreach ($posts as $post) : ?>
 
