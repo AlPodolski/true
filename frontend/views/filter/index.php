@@ -81,20 +81,19 @@ echo \frontend\widgets\OpenGraphWidget::widget([
                 <p>По вашему запросу ничего нет</p>
             </div>
 
+        <?php endif; ?>
+
+        <?php if ($more_posts) foreach ($more_posts as $post) : ?>
 
             <div class="col-12">
                 <p>Рекомендуем посмотреть:</p>
             </div>
 
-            <?php if ($more_posts) foreach ($more_posts as $post) : ?>
+            <?php ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_listing_view_count_key']); ?>
 
-                <?php ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_listing_view_count_key']); ?>
+            <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), ['post' => $post]); ?>
 
-                <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), ['post' => $post]); ?>
-
-            <?php endforeach; ?>
-
-        <?php endif; ?>
+        <?php endforeach; ?>
 
     </div>
     <?php if ($posts and count($posts) > 6) : ?>
