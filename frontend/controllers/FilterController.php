@@ -134,16 +134,21 @@ class FilterController extends Controller
 
             $topPostList = Posts::getTopList($cityInfo['id']);
 
+            if (\count($posts) < 6) $more_posts = Posts::find()->limit(Yii::$app->params['post_limit'])
+                ->with('avatar', 'metro', 'selphiCount', 'partnerId')
+                ->andWhere(['city_id' => $cityInfo['id']])
+                ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
+                ->orderBy('RAND()')->all();
+
             return $this->render('index', [
                 'posts' => $posts,
-                'city' => $city,
                 'param' => $param,
-                'cityInfo' => $cityInfo,
                 'title' => $title,
                 'des' => $des,
                 'h1' => $h1,
                 'topPostList' => $topPostList,
                 'pages' => $pages,
+                'more_posts' => $more_posts,
             ]);
 
         }
