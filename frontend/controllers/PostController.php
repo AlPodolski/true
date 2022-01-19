@@ -57,6 +57,8 @@ class PostController extends Controller
 
             $cityInfo = City::find()->where(['id' => $post['city_id']])->one();
 
+            if ($city != $cityInfo['url']) throw new NotFoundHttpException();
+
             $backUrl = RequestHelper::getBackUrl($protocol);
 
             ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_single_view_count_key']);
