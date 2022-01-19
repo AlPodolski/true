@@ -790,7 +790,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
     <div class="col-12 bottom-gallery">
         <div class="red-bold-text">
-            <?php echo $countReview ?><?php echo getNumEnding($countReview, ['отзыв', 'отзыва', 'отзывов']); ?>
+            <?php echo $countReview ?> <?php echo getNumEnding($countReview, ['отзыв', 'отзыва', 'отзывов']); ?>
         </div>
     </div>
 
@@ -1243,7 +1243,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
             <div class="col-12 bottom-gallery">
                 <div class="red-bold-text">
-                    <?php echo $countReview ?><?php echo getNumEnding($countReview, ['отзыв', 'отзыва', 'отзывов']); ?>
+                    <?php echo $countReview ?> <?php echo getNumEnding($countReview, ['отзыв', 'отзыва', 'отзывов']); ?>
                 </div>
             </div>
 
@@ -1594,7 +1594,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
             ]); ?>
         </div>
         <div class="red-bold-text">
-            <?php echo $countReview ?><?php echo getNumEnding($countReview, ['отзыв', 'отзыва', 'отзывов']); ?>
+            <?php echo $countReview ?> <?php echo getNumEnding($countReview, ['отзыв', 'отзыва', 'отзывов']); ?>
         </div>
         <div class="grey-big-text">
             <?php if ($postRating) echo $postRating['total_rating']; ?>/10
