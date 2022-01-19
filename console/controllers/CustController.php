@@ -4,6 +4,7 @@
 namespace console\controllers;
 
 use common\models\IntimHair;
+use frontend\models\UserMetro;
 use frontend\modules\user\models\Posts;
 use common\models\City;
 use common\models\Phone;
@@ -18,24 +19,13 @@ class CustController extends Controller
 {
     public function actionIndex()
     {
-        $posts = Posts::find()->with('strizhka')->all();
-
-        $intimHair = IntimHair::find()->select('id')->asArray()->all();
+        $posts = Posts::find()->with('metro')->where(['<>' , 'city_id', 1])->all();
 
         foreach ($posts as $post){
 
-            if (!$post->strizhka) {
-
-                $userStr = new UserIntimHair();
-
-                $userStr->post_id = $post->id;
-
-                $userStr->color_id = $intimHair[\array_rand($intimHair)]['id'];
-
-                $userStr->save();
-
-            }
+            if ($post->metro) UserMetro::deleteAll(['post_id' => $post->id]);
 
         }
+
     }
 }
