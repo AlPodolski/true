@@ -82,15 +82,15 @@ class ImportController extends Controller
 
         $lowPostList = array();
 
-        foreach ($city as $item){
+        foreach ($city as $item) {
 
             $postsOnCityList = Posts::find()->where(['city_id' => $item['id']])->count();
 
-            if ($postsOnCityList < 12 ) $lowPostList[] = $item['id'];
+            if ($postsOnCityList < 12) $lowPostList[] = $item['id'];
 
         }
 
-        foreach ($lowPostList as $item){
+        foreach ($lowPostList as $item) {
 
             $i = 0;
 
@@ -106,7 +106,7 @@ class ImportController extends Controller
 
                 $post->city_id = $item;
                 $post->pol_id = 1;
-                $post->created_at = \time() ;
+                $post->created_at = \time();
                 $post->name = $record['name'];
                 $post->updated_at = $this->update;
                 //$post->phone = preg_replace('/[^0-9]/', '',  $record['phone']);
@@ -114,7 +114,7 @@ class ImportController extends Controller
                 $post->check_photo_status = 0;
                 $post->status = 1;
                 $post->price = (int)$record['price'] ?? 1600;
-                $post->age = $record['age'] ;
+                $post->age = $record['age'];
                 $post->rost = $record['rost'] ?? 170;
 
                 if ($post->price > 1000 and $post->price < 2000) $post->price = $post->price - 500;
@@ -125,7 +125,7 @@ class ImportController extends Controller
 
                 if (isset($record['video']) and $record['video']) {
 
-                    $videoArray = \explode(',' , $record['video']);
+                    $videoArray = \explode(',', $record['video']);
 
                     $post->video = $this->path . $videoArray[0];
 
@@ -212,9 +212,9 @@ class ImportController extends Controller
 
                     }
 
-                    foreach ($placeList as $placeItem){
+                    foreach ($placeList as $placeItem) {
 
-                        if (\rand(0 , 2) == 1){
+                        if (\rand(0, 2) == 1) {
 
                             $userRayon = new UserPlace();
                             $userRayon->post_id = $post->id;
@@ -341,12 +341,11 @@ class ImportController extends Controller
 
                 }
 
-                if ($i > 50 ) break;
+                if ($i > 50) break;
 
             }
 
         }
-
 
 
     }
@@ -354,7 +353,7 @@ class ImportController extends Controller
 
     public function actionCom()
     {
-        $stream = \fopen(Yii::getAlias('@app/files/comments_true_18_01_2022.csv'), 'r');
+        $stream = \fopen(Yii::getAlias('@app/files/comments_true_region_19_01_2022.csv'), 'r');
 
         $csv = Reader::createFromStream($stream);
         $csv->setDelimiter(';');
@@ -369,56 +368,45 @@ class ImportController extends Controller
 
         foreach ($records as $value) {
 
-            $comments[$value['name']][] = $value['text'];
+            $comments[] = $value['text'];
             $authors[] = $value['author'];
 
         }
 
+        if ($posts = Posts::find()->where(['<>', 'city_id', 1])->with('service')->all()) {
 
-        foreach ($comments as $key => $value){
+            foreach ($posts as $post) {
 
-            if (\count($value) > 5){
+                $review = new Review();
 
-                if ($posts = Posts::find()->where(['city_id' => 1])->with('service')->andWhere(['name' => $key])->all()){
+                $review->post_id = $post->id;
+                $review->name = $authors[\array_rand($authors)];
+                $review->text = $comments[\array_rand($comments)];
+                $review->photo_marc = \rand(3, 5);;
+                $review->clean = \rand(3, 5);
+                $review->is_moderate = 1;
+                $review->total_marc = \rand(3, 5);;
+                $review->created_at = \rand(1621412504, 1606400623);
+                Yii::$app->cache->delete('review_' . $post->id);
+                Yii::$app->cache->delete('review_count_' . $post->id);
 
-                    foreach ($posts as $post){
+                if ($review->save()) {
 
-                        $review = new Review();
+                    if ($post->service) foreach ($post->service as $serviceItem) {
 
-                        $review->post_id = $post->id;
-                        $review->name = $authors[\array_rand($authors)];
-                        $review->text = $value[\array_rand($value)];
-                        $review->photo_marc = \rand(1, 5);;
-                        $review->clean = \rand(1, 5);
-                        $review->is_moderate = 1;
-                        $review->total_marc = \rand(1, 5);;
-                        $review->created_at = \rand(1611044504, 1606400623);
-                        Yii::$app->cache->delete('review_'.$post->id);
-                        Yii::$app->cache->delete('review_count_'.$post->id);
+                        $serviceReview = new ServiceReviews();
 
-                        if ($review->save()) {
+                        $serviceReview->post_id = $post->id;
+                        $serviceReview->service_id = $serviceItem->id;
+                        $serviceReview->marc = \rand(3, 5);
 
-                            if ($post->service) foreach ($post->service as $serviceItem){
-
-                                $serviceReview = new ServiceReviews();
-
-                                $serviceReview->post_id = $post->id ;
-                                $serviceReview->service_id = $serviceItem->id;
-                                $serviceReview->marc = \rand(1, 5);
-
-                                $serviceReview->save();
-
-                            }
-
-                        }
+                        $serviceReview->save();
 
                     }
 
                 }
 
             }
-
-
 
         }
 
@@ -1044,11 +1032,11 @@ class ImportController extends Controller
 
         }
 
-        foreach ($data as $key => $value){
+        foreach ($data as $key => $value) {
 
             $cityInfo = City::find()->where(['city' => $key])->one();
 
-            if ($cityInfo and $posts = Posts::find()->where(['updated_at' => 17, 'phone' => '', 'city_id' => $cityInfo->id])->all()){
+            if ($cityInfo and $posts = Posts::find()->where(['updated_at' => 17, 'phone' => '', 'city_id' => $cityInfo->id])->all()) {
 
                 foreach ($posts as $post) {
 
