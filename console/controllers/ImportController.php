@@ -3,6 +3,7 @@
 namespace console\controllers;
 
 use common\models\AdvertCategory;
+use common\models\Comments;
 use common\models\Link;
 use dastanaron\translit\Translit;
 use common\models\City;
@@ -347,6 +348,79 @@ class ImportController extends Controller
         }
 
 
+
+    }
+
+
+    public function actionCom()
+    {
+        $stream = \fopen(Yii::getAlias('@app/files/comments_true_18_01_2022.csv'), 'r');
+
+        $csv = Reader::createFromStream($stream);
+        $csv->setDelimiter(';');
+        $csv->setHeaderOffset(0);
+
+        $stmt = (new Statement());
+
+        $records = $stmt->process($csv);
+
+        $comments = [];
+        $authors = [];
+
+        foreach ($records as $value) {
+
+            $comments[$value['name']][] = $value['text'];
+            $authors[] = $value['author'];
+
+        }
+
+
+        foreach ($comments as $key => $value){
+
+            if (\count($value) > 5){
+
+                if ($posts = Posts::find()->where(['city_id' => 1])->with('service')->andWhere(['name' => $key])->all()){
+
+                    foreach ($posts as $post){
+
+                        $review = new Review();
+
+                        $review->post_id = $post->id;
+                        $review->name = $authors[\array_rand($authors)];
+                        $review->text = $value[\array_rand($value)];
+                        $review->photo_marc = \rand(1, 5);;
+                        $review->clean = \rand(1, 5);
+                        $review->is_moderate = 1;
+                        $review->total_marc = \rand(1, 5);;
+                        $review->created_at = \rand(1611044504, 1606400623);
+                        Yii::$app->cache->delete('review_'.$post->id);
+                        Yii::$app->cache->delete('review_count_'.$post->id);
+
+                        if ($review->save()) {
+
+                            if ($post->service) foreach ($post->service as $serviceItem){
+
+                                $serviceReview = new ServiceReviews();
+
+                                $serviceReview->post_id = $post->id ;
+                                $serviceReview->service_id = $serviceItem->id;
+                                $serviceReview->marc = \rand(1, 5);
+
+                                $serviceReview->save();
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+
+
+        }
 
     }
 
