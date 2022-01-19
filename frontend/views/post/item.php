@@ -821,7 +821,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                             <div class="no-photo">
                                 <?php
 
-                                echo $item['name'] ?? $item['author']['username'][0] . $item['author']['username'][1] ;
+                                echo $item['name'][0].$item['name'][1] ?? $item['author']['username'][0] . $item['author']['username'][1] ;
 
                                 ?>
                             </div>
