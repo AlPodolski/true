@@ -528,6 +528,9 @@ body{
     color: #FFF;
     width: 59px;
 }
+.small-red-text{
+    color: #F74952!important;
+}
 .main-nav .city{
     line-height: 12px;
 }

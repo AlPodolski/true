@@ -182,6 +182,9 @@ use yii\helpers\Html;
         <div class="drop-menu-list-item">
             <a href="/mesto-viezd">На выезд</a>
         </div>
+        <div class="drop-menu-list-item">
+           <a class="small-red-text" href="/novie">Новые анкеты</a>
+        </div>
 
     </div>
 </div>

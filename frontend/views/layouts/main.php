@@ -63,6 +63,8 @@ AppAsset::register($this);
 
                 <ul class="top-menu" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
 
+                    <li itemprop="name" class="top-menu-item"><a itemprop="url" class="small-red-text" href="/novie">Новые анкеты</a></li>
+
                     <?php if (Yii::$app->requestedParams['city'] == 'moskva') : ?>
 
                         <li itemprop="name" class="top-menu-item"><a itemprop="url" href="/pol-muzhskoj">Жиголо</a></li>
@@ -297,6 +299,7 @@ AppAsset::register($this);
                                 <li class="nav-item"><a href="/video">С Видео</a></li>
                                 <li class="nav-item"><a href="/mesto-viezd">На выезд</a></li>
                                 <li class="nav-item"><a href="/favorite/list">Избранное</a></li>
+                                <li class="nav-item"><a class="small-red-text" href="/novie">Новые анкеты</a></li>
 
                                 <?php if (Yii::$app->requestedParams['city'] == 'moskva') : ?>
                                     <li class="nav-item"><a href="/advert">Объявления</a></li>
