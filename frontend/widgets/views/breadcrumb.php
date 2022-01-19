@@ -4,7 +4,7 @@
 
 $links = isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : Yii::$app->params['breadcrumbs'];
 
-if ($links){
+if ($links and isset($links[0]['label'])){
 
     $result = [
         '@context' => 'http://schema.org',
