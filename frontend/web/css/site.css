@@ -526,6 +526,7 @@ body{
     font-size: 24px;
     line-height: 59px;
     color: #FFF;
+    width: 59px;
 }
 .main-nav .city{
     line-height: 12px;
@@ -3374,6 +3375,7 @@ input.search::placeholder { color: #6d6d6d; }
 .no-img{
     width:inherit!important;
 }
+
 @media (max-width: 1199px) {
     .dopolnitaelno-btn{
         display: block;

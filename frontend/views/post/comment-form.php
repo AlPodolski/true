@@ -108,7 +108,7 @@ echo $form->field($postReviewForm, 'post_id')->hiddenInput(['value' => $data['po
         <?php
 
         echo $form->field($postReviewForm, 'name')
-            ->textInput(['placeholder' => 'Ваше имя'])->label(false);
+            ->textInput(['placeholder' => 'Ваше имя' , 'value' => Yii::$app->user->identity->username ?? ''])->label(false);
 
         ?>
 
