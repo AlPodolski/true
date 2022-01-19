@@ -13,19 +13,11 @@ class ReviewController extends Controller
     public function actionAdd()
     {
 
-        if (Yii::$app->user->isGuest){
-
-            Yii::$app->session->setFlash('warning', 'Ошибка. Требуется авторизация');
-
-            return $this->redirect(Yii::$app->request->referrer, 302);
-
-        }
-
         if (Yii::$app->request->isPost){
 
             $postReviewForm = new ReviewForm();
 
-            $postReviewForm->author_id = Yii::$app->user->id;
+            $postReviewForm->author_id = Yii::$app->user->id ?? null;
 
             if (
                 $postReviewForm->load(Yii::$app->request->post())

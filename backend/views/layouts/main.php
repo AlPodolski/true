@@ -60,43 +60,43 @@ FontAwesomeAsset::register($this);
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/posts/index" class="nav-link">
+                                <a href="/posts/index?sort=-id" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Анкеты</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/advert/index" class="nav-link">
+                                <a href="/advert/index?sort=-id" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Объявления</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/chat" class="nav-link">
+                                <a href="/chat?sort=-id" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Тикеты</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/history/index" class="nav-link">
+                                <a href="/history/index?sort=-id" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Платежи</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/claim/index" class="nav-link">
+                                <a href="/claim/index?sort=-id" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Обратная связь</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/anket-claim/index" class="nav-link">
+                                <a href="/anket-claim/index?sort=-id" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Жалобы на анкету</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/user/index" class="nav-link">
+                                <a href="/user/index?sort=-id" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Пользователи</p>
                                 </a>
@@ -108,7 +108,7 @@ FontAwesomeAsset::register($this);
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/review/index" class="nav-link">
+                                <a href="/review/index?sort=-id" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Комментарии</p>
                                 </a>

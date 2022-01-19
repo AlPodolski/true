@@ -14,6 +14,7 @@ class ReviewForm extends Model
     public $text;
     public $post_id;
     public $author_id;
+    public $name;
 
     public function attributeLabels()
     {
@@ -22,6 +23,7 @@ class ReviewForm extends Model
             'clean' => 'Чистота',
             'total' => 'Общая',
             'text' => 'Комментарий',
+            'name' => 'Имя',
         ];
     }
 
@@ -29,7 +31,7 @@ class ReviewForm extends Model
     {
         return [
             [['photo','clean','total', 'post_id'], 'integer'],
-            [['text'] , 'string'],
+            [['text', 'name'] , 'string'],
         ];
     }
 
@@ -39,10 +41,11 @@ class ReviewForm extends Model
         $review = new Review();
 
         $review->post_id = $this->post_id;
+        $review->name = $this->name;
         $review->text = $this->text;
         $review->photo_marc = $this->photo;
         $review->clean = $this->clean;
-        $review->author = $this->author_id;
+        $review->author = $this->author_id ?? null;
         $review->total_marc = $this->total;
         $review->created_at = \time();
 

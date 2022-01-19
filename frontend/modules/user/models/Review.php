@@ -11,6 +11,7 @@ use Yii;
  * @property int $id
  * @property int|null $post_id
  * @property string|null $text
+ * @property string|null $name
  * @property int|null $photo_marc
  * @property int|null $clean
  * @property int|null $total_marc
@@ -41,7 +42,7 @@ class Review extends \yii\db\ActiveRecord
     {
         return [
             [['post_id', 'photo_marc',  'total_marc', 'clean', 'author', 'is_happy', 'is_moderate'], 'integer'],
-            [['text'], 'string'],
+            [['text', 'name'], 'string'],
         ];
     }
 
