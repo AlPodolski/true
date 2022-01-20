@@ -72,6 +72,8 @@ class FilterController extends Controller
                 ->orderBy(Posts::getOrder())
                 ->asArray();
 
+            if (\strstr($param, 'novie')) $posts = $posts->orderBy('id DESC');
+
             if ($page) $posts = $posts->offset(Yii::$app->params['post_limit'] * 1);
 
             if (strpos($param, 'page')) $param = strstr($param, '/?page=' , true);
