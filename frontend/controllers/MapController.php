@@ -27,6 +27,8 @@ class MapController extends Controller
             ->where(['city_id' => $cityInfo['id']])
             ->select('id, name, phone, price')
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
+            ->orderBy('id DESC')
+            ->limit(6000)
             ->all();
 
         return $this->render('index', [
