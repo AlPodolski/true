@@ -70,6 +70,7 @@ AppAsset::register($this);
                         <li itemprop="name" class="top-menu-item"><a itemprop="url" href="/pol-muzhskoj">Жиголо</a></li>
                         <li itemprop="name" class="top-menu-item"><a itemprop="url" href="/pol-trans">Трансы</a></li>
                         <li itemprop="name" class="top-menu-item"><a itemprop="url" href="https://t.me/indi_tut">Мы в телеграм</a></li>
+                        <li itemprop="name" class="top-menu-item"><a class="small-red-text" itemprop="url" href="/map">Интим карта</a></li>
 
                     <?php endif; ?>
 

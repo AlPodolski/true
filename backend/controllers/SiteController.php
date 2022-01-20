@@ -1,6 +1,7 @@
 <?php
 namespace backend\controllers;
 
+use Yii;
 use yii\web\Controller;
 
 /**
@@ -39,4 +40,14 @@ class SiteController extends Controller
     {
         return $this->render('index');
     }
+
+    public function actionDropCache()
+    {
+        Yii::$app->cache->flush();
+
+        Yii::$app->session->setFlash('success', 'Кеш удален');
+
+        return $this->goHome();
+    }
+
 }

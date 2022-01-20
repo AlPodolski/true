@@ -66,6 +66,12 @@ FontAwesomeAsset::register($this);
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a href="/meta-template/index" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Мета теги</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="/advert/index?sort=-id" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Объявления</p>
@@ -111,6 +117,12 @@ FontAwesomeAsset::register($this);
                                 <a href="/review/index?sort=-id" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Комментарии</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/site/drop-cache" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Удалить кеш</p>
                                 </a>
                             </li>
 
