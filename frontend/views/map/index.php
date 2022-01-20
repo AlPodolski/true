@@ -39,7 +39,7 @@ foreach ($posts as $post) {
     <h1> <?php echo $h1 ?> </h1>
 
     <div id="map">
-
+        <img src="/img/spinner.gif" alt="">
     </div>
 
     <script>
@@ -95,6 +95,9 @@ foreach ($posts as $post) {
             myClusterer0.add(result);
 
             myMap.geoObjects.add(myClusterer0);
+
+            $('.map-page #map img').remove();
+
         }
 
 
