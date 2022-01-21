@@ -57,11 +57,7 @@ use frontend\widgets\PhotoWidget;
                         <div class="phone-photo-count">
                             <?php echo $post['price'] ?> руб.
                         </div>
-                        <?php if (isset($post['metro'][0]['value'])) : ?>
-                            <div class="post-address">
-                                м. <a href="/metro-<?php echo $post['metro'][0]['url'] ?>"><?php echo $post['metro'][0]['value'] ?></a>
-                            </div>
-                        <?php endif; ?>
+
                     </div>
                     <div class="col-6">
                         <div class="row">
