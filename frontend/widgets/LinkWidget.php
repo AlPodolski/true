@@ -33,7 +33,7 @@ class LinkWidget extends Widget
 
             }
 
-                $links = $links->andWhere(['url' => $this->url])->all();
+            $links = $links->andWhere(['url' => $this->url])->all();
 
             Yii::$app->cache->set(Yii::$app->params['fast_link_key_cache_pref'].'_'.$this->url, $data);
         }
@@ -42,10 +42,10 @@ class LinkWidget extends Widget
 
             if (!\strstr(Yii::$app->request->url, 'cena')){
 
-                $links[] = array(
+                array_unshift ($links , array(
                     'link' => Yii::$app->request->url.'/cena-do-3000',
-                    'text' => ' + Дешевые '
-                );
+                    'text' => ' + Дешевые возле этого метро'
+                ));
 
             }
 
