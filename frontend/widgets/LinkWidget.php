@@ -51,6 +51,19 @@ class LinkWidget extends Widget
 
         }
 
+        if (\strstr(Yii::$app->request->url, 'rayon')){
+
+            if (!\strstr(Yii::$app->request->url, 'cena')){
+
+                array_unshift ($links , array(
+                    'link' => Yii::$app->request->url.'/cena-do-3000',
+                    'text' => ' + Дешевые в этом районе'
+                ));
+
+            }
+
+        }
+
         return $this->render('links', [
             'links' => $links
         ]);
