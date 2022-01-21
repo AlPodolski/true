@@ -250,6 +250,32 @@ class QueryParamsHelper
 
             }
 
+            if (strstr($value, 'salon')){
+
+                $id = Posts::find()->select('id')->where(['category' => Posts::SALON_CATEGORY])->asArray()->all();
+
+                Yii::$app->params['breadcrumbs'][] = array(
+                    'label'=> 'Интим салоны',
+                );
+
+                if($id){
+
+                    $result = ArrayHelper::getColumn($id, 'id');
+
+                    if (!empty($ids)){
+
+                        $ids = array_intersect($ids, $id);
+
+                    }else{
+
+                        $ids = $result;
+
+                    }
+
+                }
+
+            }
+
             if (strstr($value, 'pol-')){
 
 

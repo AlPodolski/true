@@ -185,6 +185,11 @@ use yii\helpers\Html;
         <div class="drop-menu-list-item">
            <a class="small-red-text" href="/novie">Новые анкеты</a>
         </div>
+        <?php if (Yii::$app->requestedParams['city'] == 'moskva') : ?>
+            <div class="drop-menu-list-item">
+                <a class="small-red-text" itemprop="url" href="/salon">Интим салоны</a>
+            </div>
+        <?php endif; ?>
 
     </div>
 </div>

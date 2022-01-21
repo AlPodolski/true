@@ -71,6 +71,7 @@ AppAsset::register($this);
                         <li itemprop="name" class="top-menu-item"><a itemprop="url" href="/pol-trans">Трансы</a></li>
                         <li itemprop="name" class="top-menu-item"><a itemprop="url" href="https://t.me/indi_tut">Мы в телеграм</a></li>
                         <li itemprop="name" class="top-menu-item"><a class="small-red-text" itemprop="url" href="/map">Интим карта</a></li>
+                        <li itemprop="name" class="top-menu-item"><a class="small-red-text" itemprop="url" href="/salon">Интим салоны</a></li>
 
                     <?php endif; ?>
 
@@ -307,6 +308,7 @@ AppAsset::register($this);
                                     <li class="nav-item"><a href="/pol-muzhskoj">Жиголо</a></li>
                                     <li class="nav-item"><a href="/pol-trans">Трансы</a></li>
                                     <li class="nav-item"><a href="https://t.me/indi_tut">Мы в телеграм</a></li>
+                                    <li class="nav-item"><a class="small-red-text" href="/salon">Интим салоны</a></li>
                                     <li class="nav-item"><a class="small-red-text" href="/map">Интим карта</a></li>
                                 <?php endif; ?>
 
