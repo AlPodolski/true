@@ -160,8 +160,6 @@ class SiteController extends Controller
 
         $webmaster = Webmaster::getTag($cityInfo['id']);
 
-        //Yii::$app->cache->flush();
-
         $prPosts = Posts::find()->asArray()
             ->with('avatar', 'metro', 'selphiCount' , 'partnerId')
             ->where(['city_id' => $cityInfo['id']])

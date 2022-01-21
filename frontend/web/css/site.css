@@ -556,6 +556,9 @@ body{
     height: 600px;
     max-height: 70vh;
 }
+.breadcrumb-item + .breadcrumb-item::before{
+    color: #cbcbcb;
+}
 .main-nav .city{
     line-height: 12px;
 }
@@ -3019,7 +3022,6 @@ select{
 }
 .breadcrumb li{
     display: inline-block;
-    margin-right: 15px;
 }
 .breadcrumb .separete{
     margin-right: 15px;

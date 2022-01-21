@@ -3,6 +3,7 @@
 
 namespace frontend\widgets;
 
+use aki\telegram\types\User;
 use common\models\City;
 use common\models\Link;
 use frontend\models\Metro;
@@ -35,6 +36,19 @@ class LinkWidget extends Widget
                 $links = $links->andWhere(['url' => $this->url])->all();
 
             Yii::$app->cache->set(Yii::$app->params['fast_link_key_cache_pref'].'_'.$this->url, $data);
+        }
+
+        if (\strstr(Yii::$app->request->url, 'metro')){
+
+            if (!\strstr(Yii::$app->request->url, 'cena')){
+
+                $links[] = array(
+                    'link' => Yii::$app->request->url.'/cena-do-3000',
+                    'text' => ' + Дешевые '
+                );
+
+            }
+
         }
 
         return $this->render('links', [

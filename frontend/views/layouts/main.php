@@ -512,7 +512,7 @@ AppAsset::register($this);
         echo \frontend\widgets\BreadcrumbMicro::widget();
 
         echo Breadcrumbs::widget([
-            'itemTemplate' => "<li class='breadcrumb-item'>{link}</li> <span class='separete'>/</span>\n",
+            'itemTemplate' => "<li class='breadcrumb-item'>{link}</li> \n",
             'homeLink' => [
                 'label' => 'Главная ',
                 'url' => Yii::$app->homeUrl,

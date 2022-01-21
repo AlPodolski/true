@@ -45,13 +45,14 @@ class QueryParamsHelper
 
                     $url = self::prepareUrl($filter_param['url'],$value );
 
-                    if ($url and $className) {
+                    if ($url and $className and $classRelationName) {
 
                         $id = $className::find()->where(['url' => $url])->asArray()->one();
 
                         if (isset($id['value'])){
                             Yii::$app->params['breadcrumbs'][] = array(
                                 'label'=> $id['value'],
+                                'url'=> '/'.$value,
                             );
                             $bread_crumbs_params[] = [
                                 'url' => '/' . $value,
@@ -140,7 +141,15 @@ class QueryParamsHelper
                     Yii::$app->params['breadcrumbs'][] = array(
                         'label'=> 'цена до 1500',
                     );
-                    $price_params[] = ['<', 'price' , 1500];
+                    $price_params[] = ['<', 'price' , 1501];
+                }
+
+                if ($url == 'do-3000') {
+                    Yii::$app->params['breadcrumbs'][] = array(
+                        'label'=> 'цена до 3000',
+                        'url'=> Yii::$app->params['breadcrumbs'] ? 'cena-do-3000' : '/cena-do-3000',
+                    );
+                    $price_params[] = ['<', 'price' , 3001];
                 }
 
                 if ($url == 'ot-1500-do-2000') {
@@ -186,13 +195,16 @@ class QueryParamsHelper
 
                     if (!empty($ids)){
 
-                        $ids = array_intersect($ids, $id);
+                        $ids = array_intersect($ids, $result);
+
 
                     }else{
 
                         $ids = $result;
 
                     }
+
+
 
                 }
 
@@ -337,7 +349,6 @@ class QueryParamsHelper
             }
 
         }
-
 
         if ($ids) {
 
