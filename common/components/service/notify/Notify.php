@@ -20,7 +20,9 @@ class Notify
                 'user_id' => $to, 'token_status' => TelegramToken::TOKEN_STATUS_ACTIVE
             ])) {
                 TelegramHelper::sendMessage($telegramToken->telegram_chat_id, $text);
-            } elseif ($user->status == User::STATUS_ACTIVE and $user->email) {
+            }
+
+            elseif ($user->status == User::STATUS_ACTIVE and $user->email) {
 
                 Yii::$app->mailer->compose()
                     ->setFrom('info@sex-true.com')
