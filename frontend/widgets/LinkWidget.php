@@ -38,12 +38,15 @@ class LinkWidget extends Widget
             Yii::$app->cache->set(Yii::$app->params['fast_link_key_cache_pref'].'_'.$this->url, $data);
         }
 
-        if (\strstr(Yii::$app->request->url, 'metro')){
+        if (\strstr(Yii::$app->request->url, '?')) $url = \strstr(Yii::$app->request->url, '?', true);
+        else $url = Yii::$app->request->url;
 
-            if (!\strstr(Yii::$app->request->url, 'cena')){
+        if (\strstr($url, 'metro')){
+
+            if (!\strstr($url, 'cena')){
 
                 array_unshift ($links , array(
-                    'link' => Yii::$app->request->url.'/cena-do-3000',
+                    'link' => $url.'/cena-do-3000',
                     'text' => ' + Дешевые возле этого метро'
                 ));
 
@@ -51,12 +54,12 @@ class LinkWidget extends Widget
 
         }
 
-        if (\strstr(Yii::$app->request->url, 'rayon')){
+        if (\strstr($url, 'rayon')){
 
-            if (!\strstr(Yii::$app->request->url, 'cena')){
+            if (!\strstr($url, 'cena')){
 
                 array_unshift ($links , array(
-                    'link' => Yii::$app->request->url.'/cena-do-3000',
+                    'link' => $url.'/cena-do-3000',
                     'text' => ' + Дешевые в этом районе'
                 ));
 
