@@ -128,7 +128,7 @@ echo \frontend\widgets\OpenGraphWidget::widget([
 
     <?php  ?>
 
-    <?php if ($pages) echo str_replace( '%2F', '', \yii\bootstrap4\LinkPager::widget([
+    <?php if ($pages) echo str_replace( '%2F', '/', \yii\bootstrap4\LinkPager::widget([
         'pagination' => $pages,
     ])); ?>
 
