@@ -10,6 +10,7 @@ use Yii;
  * @property int $id
  * @property string|null $url
  * @property string|null $value
+ * @property string|null $value2
  */
 class National extends \yii\db\ActiveRecord
 {
@@ -27,7 +28,7 @@ class National extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['url', 'value'], 'string', 'max' => 50],
+            [['url', 'value', 'value2'], 'string', 'max' => 50],
         ];
     }
 
