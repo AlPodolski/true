@@ -235,7 +235,8 @@ class SiteController extends Controller
         $host = $city . '.' . Yii::$app->params['site_name'];
 
         return $this->renderFile('@app/views/site/robot.php', [
-            'host' => $host
+            'host' => $host,
+            'city' => $city,
         ]);
     }
 

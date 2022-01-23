@@ -1,5 +1,7 @@
 <?php
 /* @var $host string */
+/* @var $city string */
+
 header('Content-Type: text/plain; charset=UTF-8');
 ?>
     User-agent: *
@@ -7,6 +9,8 @@ header('Content-Type: text/plain; charset=UTF-8');
     Disallow: *signup*
     Disallow: *resend-verification-email*
     Disallow: /find*
+    <?php if ($city != 'moskva') echo 'Disallow: /forum'?>
+    <?php if ($city != 'moskva') echo 'Disallow: /forum/*'?>
     Host: https://<?php echo $host.PHP_EOL ?>
     Sitemap: https://<?php echo $host ?>/sitemap.xml
 <?php exit() ?>
