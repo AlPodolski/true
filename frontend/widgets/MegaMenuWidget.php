@@ -9,6 +9,7 @@ use common\models\Place;
 use common\models\Rayon;
 use common\models\Time;
 use frontend\models\Metro;
+use Yii;
 use yii\base\Widget;
 
 class MegaMenuWidget extends Widget

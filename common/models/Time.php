@@ -52,7 +52,7 @@ class Time extends \yii\db\ActiveRecord
             $data = self::find()->orderBy('value ASC')->asArray()->all();
 
             // Сохраняем значение $data в кэше. Данные можно получить в следующий раз.
-            Yii::$app->cache->set('place_list', $data);
+            Yii::$app->cache->set('time_list', $data);
         }
 
         return $data;
