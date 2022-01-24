@@ -275,6 +275,11 @@ AppAsset::register($this);
                                         Выбрать цену
                                     </a>
                                 </li>
+                                <li class="nav-item" data-type="vremya" onclick="get_data(this)">
+                                    <a>
+                                        Выбрать время
+                                    </a>
+                                </li>
                                 <li class="nav-item" data-type="vozrast" onclick="get_data(this)">
                                     <a>
                                         Выбрать возраст

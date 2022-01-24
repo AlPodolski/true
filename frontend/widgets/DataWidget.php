@@ -8,6 +8,7 @@ use common\models\National;
 use common\models\Place;
 use common\models\Rayon;
 use common\models\Service;
+use common\models\Time;
 use Yii;
 use yii\base\Widget;
 
@@ -70,6 +71,12 @@ class DataWidget extends Widget
                 ]);
             case 'usluga':
                 $data = Service::find()->all();
+                return $this->render('data-menu', [
+                    'data' => $data,
+                    'url' => $this->data
+                ]);
+            case 'vremya':
+                $data = Time::find()->all();
                 return $this->render('data-menu', [
                     'data' => $data,
                     'url' => $this->data

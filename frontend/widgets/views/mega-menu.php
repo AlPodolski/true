@@ -5,6 +5,7 @@
 /* @var $placeList \common\models\Place[] */
 /* @var $rayon \common\models\Rayon[] */
 /* @var $metro \frontend\models\Metro[] */
+/* @var $timeList \common\models\Time[] */
 
 use yii\helpers\Html;
 
@@ -128,6 +129,26 @@ use yii\helpers\Html;
                     <a class="sub-menu-block-item" href="/vozrast-50-75">От 50 до 75 лет</a>
 
                 </div>
+
+                <?php if ($timeList) : ?>
+
+                    <div class="sub-menu-block big-sub-menu-block">
+
+                        <div class="sub-menu-block-heading">
+                            Время:
+                        </div>
+
+                        <?php foreach ($timeList as $item) {
+
+                            echo Html::a($item['value'], '/vremya-' . $item['url'], [
+                                'class' => 'sub-menu-block-item'
+                            ]);
+
+                        } ?>
+
+                    </div>
+
+                <?php endif; ?>
 
                 <?php if ($nationalList) : ?>
 

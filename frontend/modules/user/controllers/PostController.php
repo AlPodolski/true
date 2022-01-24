@@ -19,6 +19,7 @@ use frontend\modules\user\models\UserOsobenosti;
 use frontend\modules\user\models\UserPlace;
 use frontend\modules\user\models\UserRayon;
 use frontend\modules\user\models\UserService;
+use frontend\modules\user\models\UserTime;
 use yii\base\BaseObject;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
@@ -61,6 +62,7 @@ class PostController extends Controller
         $userRayon = new \frontend\modules\user\models\UserRayon();
         $userOsobenosti = new \frontend\modules\user\models\UserOsobenosti();
         $userService = new \frontend\modules\user\models\UserService();
+        $userTime = new UserTime();
 
         $city = City::getCity($city);
 
@@ -72,6 +74,7 @@ class PostController extends Controller
             and $userIntimHair->load(Yii::$app->request->post())
             and $userRayon->load(Yii::$app->request->post())
             and $userOsobenosti->load(Yii::$app->request->post())
+            and $userTime->load(Yii::$app->request->post())
             and $userService->load(Yii::$app->request->post())
         ) {
 
@@ -203,6 +206,12 @@ class PostController extends Controller
                         $post['id'],
                         'param_id', $city['id']);
 
+                if ($userTime['param_id'])
+                    SavePostRelationHelper::save(UserTime::class,
+                        $userTime['param_id'],
+                        $post['id'],
+                        'param_id', $city['id']);
+
                 if ($userService['service_id'])
                     SavePostRelationHelper::save(UserService::class,
                         $userService['service_id'],
@@ -252,6 +261,7 @@ class PostController extends Controller
         $userRayon = new UserRayon();
         $userOsobenosti = new UserOsobenosti();
         $userService = new UserService();
+        $userTime = new UserTime();
 
         if ($post->load(Yii::$app->request->post())
             and $userNational->load(Yii::$app->request->post())
@@ -261,6 +271,7 @@ class PostController extends Controller
             and $userIntimHair->load(Yii::$app->request->post())
             and $userRayon->load(Yii::$app->request->post())
             and $userOsobenosti->load(Yii::$app->request->post())
+            and $userTime->load(Yii::$app->request->post())
             and $userService->load(Yii::$app->request->post())) {
 
             if ($post->save()) {
@@ -402,6 +413,12 @@ class PostController extends Controller
                 if ($userOsobenosti['param_id'])
                     SavePostRelationHelper::save(UserOsobenosti::class,
                         $userOsobenosti['param_id'],
+                        $post['id'],
+                        'param_id', $city['id']);
+
+                if ($userTime['param_id'])
+                    SavePostRelationHelper::save(UserTime::class,
+                        $userTime['param_id'],
                         $post['id'],
                         'param_id', $city['id']);
 

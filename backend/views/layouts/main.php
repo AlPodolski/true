@@ -120,6 +120,12 @@ FontAwesomeAsset::register($this);
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a href="/filter-params/index" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Параметры фильтров</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="/site/drop-cache" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Удалить кеш</p>

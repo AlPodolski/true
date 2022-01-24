@@ -58,6 +58,11 @@ $userService = new \frontend\modules\user\models\UserService();
 $userService->service_id = \yii\helpers\ArrayHelper::getColumn(\frontend\modules\user\models\UserService::find()
     ->where(['post_id' => $post['id']])->asArray()->all(), 'service_id');
 
+$userTime = new \frontend\modules\user\models\UserTime();
+
+$userTime->param_id = \yii\helpers\ArrayHelper::getColumn(\frontend\modules\user\models\UserTime::find()
+    ->where(['post_id' => $post['id']])->asArray()->all(), 'param_id');
+
 $this->title = 'Редактировать анкету';
 
 $this->params['breadcrumbs'][] = ['label' => 'Кабинет', 'url' => '/cabinet'];
@@ -89,5 +94,6 @@ echo $this->renderFile(Yii::getAlias('@user-view/post/_form.php'), [
     'userOsobenosti' => $userOsobenosti,
     'userService' => $userService,
     'checkPhotoForm' => $checkPhotoForm,
+    'userTime' => $userTime,
 ]);
 

@@ -385,7 +385,7 @@ $this->registerJsFile('/js/form_cabinet.js?v=2', ['depends' => [yii\web\YiiAsset
                         <?= $form->field($userService, 'service_id')->widget(\kartik\select2\Select2::classname(), [
                             'data' => ArrayHelper::map(\common\models\Service::getService(), 'id' , 'value'),
                             'language' => 'de',
-                            'options' => ['placeholder' => 'Выбрать особености ...'],
+                            'options' => ['placeholder' => 'Выбрать услуги ...'],
                             'pluginOptions' => [
                                 'allowClear' => true,
                                 'multiple' => true,
@@ -398,12 +398,25 @@ $this->registerJsFile('/js/form_cabinet.js?v=2', ['depends' => [yii\web\YiiAsset
                         <?= $form->field($userPlace, 'place_id')->widget(\kartik\select2\Select2::classname(), [
                             'data' => ArrayHelper::map(\common\models\Place::getPlace(), 'id' , 'value'),
                             'language' => 'de',
-                            'options' => ['placeholder' => 'Выбрать особености ...'],
+                            'options' => ['placeholder' => 'Выбрать место встречи...'],
                             'pluginOptions' => [
                                 'allowClear' => true,
                                 'multiple' => true,
                             ],
                         ]) ?>
+                    </div>
+
+                    <div class="col-12 col-sm-6">
+
+                        <?= $form->field($userTime, 'param_id')->widget(\kartik\select2\Select2::classname(), [
+                            'data' => ArrayHelper::map(\common\models\Time::find()->all(), 'id' , 'value'),
+                            'language' => 'de',
+                            'options' => ['placeholder' => 'Выбрать доступное время ...'],
+                            'pluginOptions' => [
+                                'allowClear' => true,
+                                'multiple' => true,
+                            ],
+                        ])->label('Время встречи') ?>
                     </div>
 
                 </div>

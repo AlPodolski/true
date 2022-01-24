@@ -19,6 +19,7 @@ $userRayon = new \frontend\modules\user\models\UserRayon();
 $userOsobenosti = new \frontend\modules\user\models\UserOsobenosti();
 $userService = new \frontend\modules\user\models\UserService();
 $checkPhotoForm = new CheckPhotoForm();
+$userTime = new \frontend\modules\user\models\UserTime();
 
 $this->title = 'Добавить анкету';
 
@@ -52,4 +53,5 @@ echo $this->renderFile(Yii::getAlias('@user-view/post/_form.php'), [
     'userOsobenosti' => $userOsobenosti,
     'userService' => $userService,
     'checkPhotoForm' => $checkPhotoForm,
+    'userTime' => $userTime,
 ]);
