@@ -54,10 +54,6 @@ class QueryParamsHelper
                                 'label'=> $id['value'],
                                 'url'=> '/'.$value,
                             );
-                            $bread_crumbs_params[] = [
-                                'url' => '/' . $value,
-                                'label' => $id['value']
-                            ];
                         }
 
                         if ($id and $classRelationName) {
@@ -204,8 +200,12 @@ class QueryParamsHelper
 
                     }
 
+                }
 
-
+                if (empty($ids)) {
+                    $ids[] = [
+                        '0' => 0
+                    ];
                 }
 
             }
@@ -232,6 +232,12 @@ class QueryParamsHelper
 
                     }
 
+                }
+
+                if (empty($ids)) {
+                    $ids[] = [
+                        '0' => 0
+                    ];
                 }
 
             }
@@ -320,6 +326,12 @@ class QueryParamsHelper
 
                 }
 
+                if (empty($ids)) {
+                    $ids[] = [
+                        '0' => 0
+                    ];
+                }
+
             }
 
             if ($value == 'video'){
@@ -344,6 +356,12 @@ class QueryParamsHelper
 
                     }
 
+                }
+
+                if (empty($ids)) {
+                    $ids[] = [
+                        '0' => 0
+                    ];
                 }
 
             }
