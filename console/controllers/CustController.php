@@ -11,6 +11,7 @@ use common\models\City;
 use common\models\Phone;
 use frontend\modules\user\models\PostSites;
 use frontend\modules\user\models\UserIntimHair;
+use frontend\modules\user\models\UserService;
 use frontend\modules\user\models\UserTime;
 use Yii;
 use yii\base\BaseObject;
@@ -27,22 +28,14 @@ class CustController extends Controller
 
         foreach ($posts as $post){
 
-            foreach ($timeList as $item){
+            if (\rand(0, 1) and $post->city_id){
 
-                if (\rand(0, 1) == 0 and $post->city_id) {
+                $userService = new UserService();
 
-                    $userTime = new UserTime();
-
-                    $userTime->param_id = $item['id'];
-
-                    $userTime->post_id = $post->id;
-
-                    $userTime->city_id = $post->city_id;
-
-                    $userTime->save();
-
-
-                }
+                $userService->post_id = $post->id;
+                $userService->city_id = $post->city_id;
+                $userService->service_id = 51;
+                $userService->save();
 
             }
 
