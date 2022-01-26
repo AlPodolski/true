@@ -105,25 +105,9 @@ class QueryParamsHelper
                         ->asArray()
                         ->all();
 
-                    if($id){
-
-                        $result = ArrayHelper::getColumn($id, 'id');
-
-                        if (!empty($ids)){
-
-                            $ids = array_intersect($ids, $id);
-
-                        }else{
-
-                            $ids = $result;
-
-                        }
-
-                    }
+                    $ids = self::intersect_data($id, $ids);
 
                 }
-
-
 
             }
 
@@ -185,28 +169,50 @@ class QueryParamsHelper
 
                 $id = $id->asArray()->all();
 
-                if($id){
+                $ids = self::intersect_data($id, $ids);
 
-                    $result = ArrayHelper::getColumn($id, 'id');
+            }
 
-                    if (!empty($ids)){
+            if (strstr($value, 'rost')){
 
-                        $ids = array_intersect($ids, $result);
+                $url = str_replace('rost-', '', $value);
 
+                $price_params = array();
 
-                    }else{
-
-                        $ids = $result;
-
-                    }
-
+                if ($url == 'visokii') {
+                    Yii::$app->params['breadcrumbs'][] = array(
+                        'label'=> 'Высокие',
+                        'url'=> Yii::$app->params['breadcrumbs'] ? 'rost-visokii' : '/rost-visokii',
+                    );
+                    $price_params[] = ['>', 'rost' , 179];
                 }
 
-                if (empty($ids)) {
-                    $ids[] = [
-                        '0' => 0
-                    ];
+                if ($url == 'srednii') {
+                    Yii::$app->params['breadcrumbs'][] = array(
+                        'label'=> 'Среднего роста',
+                        'url'=> Yii::$app->params['breadcrumbs'] ? 'rost-srednii' : '/rost-srednii',
+                    );
+                    $price_params[] = ['>=', 'rost' , 158];
+                    $price_params[] = ['<', 'rost' , 180];
                 }
+
+                if ($url == 'nizkii') {
+                    Yii::$app->params['breadcrumbs'][] = array(
+                        'label'=> 'Низкие',
+                        'url'=> Yii::$app->params['breadcrumbs'] ? 'rost-nizkii' : '/rost-nizkii',
+                    );
+                    $price_params[] = ['<', 'rost' , 157];
+                }
+
+                $id = Posts::find()->select('id');
+
+                foreach ($price_params as $price_param){
+                    $id->andWhere($price_param);
+                }
+
+                $id = $id->asArray()->all();
+
+                $ids = self::intersect_data($id, $ids);
 
             }
 
@@ -218,27 +224,7 @@ class QueryParamsHelper
                     'label'=> 'проверенные',
                 );
 
-                if($id){
-
-                    $result = ArrayHelper::getColumn($id, 'id');
-
-                    if (!empty($ids)){
-
-                        $ids = array_intersect($ids, $id);
-
-                    }else{
-
-                        $ids = $result;
-
-                    }
-
-                }
-
-                if (empty($ids)) {
-                    $ids[] = [
-                        '0' => 0
-                    ];
-                }
+                $ids = self::intersect_data($id, $ids);
 
             }
 
@@ -250,21 +236,7 @@ class QueryParamsHelper
                     'label'=> 'Новые анкеты',
                 );
 
-                if($id){
-
-                    $result = ArrayHelper::getColumn($id, 'id');
-
-                    if (!empty($ids)){
-
-                        $ids = array_intersect($ids, $id);
-
-                    }else{
-
-                        $ids = $result;
-
-                    }
-
-                }
+                $ids = self::intersect_data($id, $ids);
 
             }
 
@@ -276,27 +248,11 @@ class QueryParamsHelper
                     'label'=> 'Интим салоны',
                 );
 
-                if($id){
-
-                    $result = ArrayHelper::getColumn($id, 'id');
-
-                    if (!empty($ids)){
-
-                        $ids = array_intersect($ids, $id);
-
-                    }else{
-
-                        $ids = $result;
-
-                    }
-
-                }
+                $ids = self::intersect_data($id, $ids);
 
             }
 
             if (strstr($value, 'pol-')){
-
-
 
                 $polSearch = true;
 
@@ -310,27 +266,7 @@ class QueryParamsHelper
                     'label'=> 'Пол '.$pol['value'],
                 );
 
-                if($id){
-
-                    $result = ArrayHelper::getColumn($id, 'id');
-
-                    if (!empty($ids)){
-
-                        $ids = array_intersect($ids, $id);
-
-                    }else{
-
-                        $ids = $result;
-
-                    }
-
-                }
-
-                if (empty($ids)) {
-                    $ids[] = [
-                        '0' => 0
-                    ];
-                }
+                $ids = self::intersect_data($id, $ids);
 
             }
 
@@ -342,27 +278,7 @@ class QueryParamsHelper
 
                 $id = Posts::find()->select('id')->where(['<>', 'video', ''])->asArray()->all();
 
-                if($id){
-
-                    $result = ArrayHelper::getColumn($id, 'id');
-
-                    if (!empty($ids)){
-
-                        $ids = array_intersect($ids, $id);
-
-                    }else{
-
-                        $ids = $result;
-
-                    }
-
-                }
-
-                if (empty($ids)) {
-                    $ids[] = [
-                        '0' => 0
-                    ];
-                }
+                $ids = self::intersect_data($id, $ids);
 
             }
 
@@ -384,6 +300,34 @@ class QueryParamsHelper
             return $query_params;
 
         }
+
+    }
+
+    private static function intersect_data($id, $ids){
+
+        if($id){
+
+            $result = ArrayHelper::getColumn($id, 'id');
+
+            if (!empty($ids)){
+
+                $ids = array_intersect($ids, $id);
+
+            }else{
+
+                $ids = $result;
+
+            }
+
+        }
+
+        if (empty($ids)) {
+            $ids[] = [
+                '0' => 0
+            ];
+        }
+
+        return $ids;
 
     }
 

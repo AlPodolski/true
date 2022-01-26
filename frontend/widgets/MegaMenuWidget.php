@@ -11,6 +11,7 @@ use common\models\Time;
 use frontend\models\Metro;
 use Yii;
 use yii\base\Widget;
+use common\models\Rost;
 
 class MegaMenuWidget extends Widget
 {
@@ -29,6 +30,7 @@ class MegaMenuWidget extends Widget
         $nationalList = National::getAll();
         $placeList = Place::getPlace();
         $timeList = Time::getTime();
+        $rostList = Rost::getData();
 
         return $this->render('mega-menu', [
             'hairColorList' => $hairColorList,
@@ -37,6 +39,7 @@ class MegaMenuWidget extends Widget
             'metro' => $metro,
             'rayon' => $rayon,
             'timeList' => $timeList,
+            'rostList' => $rostList,
         ]);
     }
 

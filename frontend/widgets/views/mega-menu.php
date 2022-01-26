@@ -6,6 +6,7 @@
 /* @var $rayon \common\models\Rayon[] */
 /* @var $metro \frontend\models\Metro[] */
 /* @var $timeList \common\models\Time[] */
+/* @var $rostList \common\models\Rost[] */
 
 use yii\helpers\Html;
 
@@ -141,6 +142,26 @@ use yii\helpers\Html;
                         <?php foreach ($timeList as $item) {
 
                             echo Html::a($item['value'], '/vremya-' . $item['url'], [
+                                'class' => 'sub-menu-block-item'
+                            ]);
+
+                        } ?>
+
+                    </div>
+
+                <?php endif; ?>
+
+                <?php if ($rostList) : ?>
+
+                    <div class="sub-menu-block big-sub-menu-block">
+
+                        <div class="sub-menu-block-heading">
+                            Рост:
+                        </div>
+
+                        <?php foreach ($rostList as $item) {
+
+                            echo Html::a($item['value'], '/rost-' . $item['url'], [
                                 'class' => 'sub-menu-block-item'
                             ]);
 
