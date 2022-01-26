@@ -7,6 +7,7 @@ use common\models\City;
 use common\models\National;
 use common\models\Place;
 use common\models\Rayon;
+use common\models\Rost;
 use common\models\Service;
 use common\models\Time;
 use Yii;
@@ -77,6 +78,12 @@ class DataWidget extends Widget
                 ]);
             case 'vremya':
                 $data = Time::find()->all();
+                return $this->render('data-menu', [
+                    'data' => $data,
+                    'url' => $this->data
+                ]);
+            case 'rost':
+                $data = Rost::getData();
                 return $this->render('data-menu', [
                     'data' => $data,
                     'url' => $this->data

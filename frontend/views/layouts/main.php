@@ -280,6 +280,11 @@ AppAsset::register($this);
                                         Выбрать время
                                     </a>
                                 </li>
+                                <li class="nav-item" data-type="rost" onclick="get_data(this)">
+                                    <a>
+                                        Выбрать рост
+                                    </a>
+                                </li>
                                 <li class="nav-item" data-type="vozrast" onclick="get_data(this)">
                                     <a>
                                         Выбрать возраст
