@@ -346,7 +346,7 @@ class QueryParamsHelper
 
             if (!empty($ids)){
 
-                $ids = array_intersect($ids, $id);
+                $ids = array_intersect($ids, $result);
 
             }else{
 
