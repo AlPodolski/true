@@ -232,7 +232,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                                           fill="white"/>
                                 </svg>
                             </div>
-                            г <?php echo $cityInfo['city'] ?>
+                            <span> г <?php echo $cityInfo['city'] ?> </span>
 
                             <?php if (isset($post['metro'][0]['value'])) : ?>
                                 <a class="post-address" href="/metro-<?php echo $post['metro'][0]['url'] ?>">
