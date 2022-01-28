@@ -5,6 +5,7 @@ namespace console\controllers;
 
 use common\models\IntimHair;
 use common\models\Time;
+use frontend\models\Metro;
 use frontend\models\UserMetro;
 use frontend\modules\user\models\Posts;
 use common\models\City;
@@ -22,22 +23,24 @@ class CustController extends Controller
 {
     public function actionIndex()
     {
-        $posts = Posts::find()->all();
+        $posts = Posts::find()->where(['city_id' => 161])->all();
 
-        $timeList = Time::getTime();
+        $metroList = Metro::find()->where(['city_id' => $posts])->all();
 
         foreach ($posts as $post){
 
-            if (\rand(0, 1) and $post->city_id){
+            $metroId = $metroList[\array_rand($metroList)];
 
-                $userService = new UserService();
+            UserMetro::deleteAll(['post_id' => $post['id']]);
 
-                $userService->post_id = $post->id;
-                $userService->city_id = $post->city_id;
-                $userService->service_id = 51;
-                $userService->save();
+            $userMetro = new UserMetro();
 
-            }
+            $userMetro->metro_id = $metroId['id'];
+            $userMetro->post_id = $post['id'];
+            $userMetro->city_id = 161;
+
+            $userMetro->save();
+
 
         }
 
