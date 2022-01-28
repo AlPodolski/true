@@ -285,6 +285,11 @@ AppAsset::register($this);
                                         Выбрать рост
                                     </a>
                                 </li>
+                                <li class="nav-item" data-type="ves" onclick="get_data(this)">
+                                    <a>
+                                        Выбрать вес
+                                    </a>
+                                </li>
                                 <li class="nav-item" data-type="vozrast" onclick="get_data(this)">
                                     <a>
                                         Выбрать возраст

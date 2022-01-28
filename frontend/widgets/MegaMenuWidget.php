@@ -8,6 +8,7 @@ use common\models\National;
 use common\models\Place;
 use common\models\Rayon;
 use common\models\Time;
+use common\models\Ves;
 use frontend\models\Metro;
 use Yii;
 use yii\base\Widget;
@@ -31,6 +32,7 @@ class MegaMenuWidget extends Widget
         $placeList = Place::getPlace();
         $timeList = Time::getTime();
         $rostList = Rost::getData();
+        $ves = Ves::getData();
 
         return $this->render('mega-menu', [
             'hairColorList' => $hairColorList,
@@ -40,6 +42,7 @@ class MegaMenuWidget extends Widget
             'rayon' => $rayon,
             'timeList' => $timeList,
             'rostList' => $rostList,
+            'ves' => $ves,
         ]);
     }
 

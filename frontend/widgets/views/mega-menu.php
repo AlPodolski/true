@@ -7,6 +7,7 @@
 /* @var $metro \frontend\models\Metro[] */
 /* @var $timeList \common\models\Time[] */
 /* @var $rostList \common\models\Rost[] */
+/* @var $ves \common\models\Rost[] */
 
 use yii\helpers\Html;
 
@@ -162,6 +163,26 @@ use yii\helpers\Html;
                         <?php foreach ($rostList as $item) {
 
                             echo Html::a($item['value'], '/rost-' . $item['url'], [
+                                'class' => 'sub-menu-block-item'
+                            ]);
+
+                        } ?>
+
+                    </div>
+
+                <?php endif; ?>
+
+                <?php if ($ves) : ?>
+
+                    <div class="sub-menu-block big-sub-menu-block">
+
+                        <div class="sub-menu-block-heading">
+                            Вес:
+                        </div>
+
+                        <?php foreach ($ves as $item) {
+
+                            echo Html::a($item['value'], '/ves-' . $item['url'], [
                                 'class' => 'sub-menu-block-item'
                             ]);
 

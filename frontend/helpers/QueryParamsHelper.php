@@ -216,6 +216,41 @@ class QueryParamsHelper
 
             }
 
+            if (strstr($value, 'ves')){
+
+                $url = str_replace('ves-', '', $value);
+
+                $price_params = array();
+
+                if ($url == 'tolstye') {
+                    Yii::$app->params['breadcrumbs'][] = array(
+                        'label'=> 'Высокие',
+                        'url'=> Yii::$app->params['breadcrumbs'] ? 'ves-tolstye' : '/rost-tolstye',
+                    );
+                    $price_params[] = ['>', 'ves' , 80];
+                }
+
+                if ($url == 'hudye') {
+                    Yii::$app->params['breadcrumbs'][] = array(
+                        'label'=> 'Высокие',
+                        'url'=> Yii::$app->params['breadcrumbs'] ? 'ves-hudye' : '/rost-hudye',
+                    );
+                    $price_params[] = ['<', 'ves' , 60];
+
+                }
+
+                $id = Posts::find()->select('id');
+
+                foreach ($price_params as $price_param){
+                    $id->andWhere($price_param);
+                }
+
+                $id = $id->asArray()->all();
+
+                $ids = self::intersect_data($id, $ids);
+
+            }
+
             if (strstr($value, 'proverennye')){
 
                 $id = Posts::find()->select('id')->where(['check_photo_status' => 1])->asArray()->all();
