@@ -139,15 +139,21 @@ $this->params['breadcrumbs'][] = 'Объявления';
                                     ->textInput(['placeholder' => 'Заголовок темы' , 'id' => '' ])
                                     ->label(false) ?>
 
-                                <?= $advertForm->field($modelAdvert, 'type')
-                                    ->hiddenInput(['value' => $isCabinet ])
-                                    ->label(false) ?>
-
                                 <?php if ($isCabinet) : ?>
+
+                                    <?= $advertForm->field($modelAdvert, 'type')
+                                        ->hiddenInput(['value' => Advert::PRIVATE_CABINET_TYPE ])
+                                        ->label(false) ?>
 
                                     <?= $advertForm->field($modelAdvert, 'category_id')
                                         ->dropDownList(ArrayHelper::map(\common\models\AdvertCategory::find()->all(), 'id', 'value'))
                                         ->label('Категория') ?>
+
+                                <?php else : ?>
+
+                                    <?= $advertForm->field($modelAdvert, 'type')
+                                        ->hiddenInput(['value' => Advert::PUBLIC_TYPE ])
+                                        ->label(false) ?>
 
                                 <?php endif; ?>
 
