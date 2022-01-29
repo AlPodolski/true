@@ -187,7 +187,7 @@ class MetaBuilder
 
         $result = str_replace($param, $value, $string);
 
-        $pattern = "#\[[^:a-z-A-Z]+\]#";
+        $pattern = "#\[[^:.]+\]#i";
 
         if (preg_match($pattern,$result,$m)){
 
