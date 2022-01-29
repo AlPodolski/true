@@ -10,6 +10,7 @@ use common\models\Rayon;
 use common\models\Rost;
 use common\models\Service;
 use common\models\Time;
+use common\models\Ves;
 use Yii;
 use yii\base\Widget;
 
@@ -84,6 +85,12 @@ class DataWidget extends Widget
                 ]);
             case 'rost':
                 $data = Rost::getData();
+                return $this->render('data-menu', [
+                    'data' => $data,
+                    'url' => $this->data
+                ]);
+            case 'ves':
+                $data = Ves::getData();
                 return $this->render('data-menu', [
                     'data' => $data,
                     'url' => $this->data
