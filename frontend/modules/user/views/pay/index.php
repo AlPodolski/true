@@ -16,6 +16,7 @@ $this->title = 'Пополнить баланс';
 $this->params['breadcrumbs'][] = ['label' => 'Кабинет', 'url' => '/cabinet'];
 $this->params['breadcrumbs'][] = $this->title;
 
+
 ?>
 
 <div class="container">

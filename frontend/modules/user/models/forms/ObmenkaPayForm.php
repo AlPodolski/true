@@ -25,6 +25,7 @@ class ObmenkaPayForm extends Model
         return [
             [['user_id', 'sum', 'currency'], 'required'],
             [['user_id', 'sum', 'toUser', 'pay_info', 'action'], 'integer'],
+            [['sum'], 'integer', 'min' => 200],
             [['city'], 'string'],
             [['currency'] , 'safe'],
         ];
@@ -37,7 +38,7 @@ class ObmenkaPayForm extends Model
     {
         return [
             'user_id' => 'User ID',
-            'sum' => 'Сумма',
+            'sum' => 'Сумма (минимум 200)',
             'created_at' => 'Created At',
             'currency' => 'Выбрать способ оплаты',
             'status' => 'Status',
