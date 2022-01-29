@@ -8,6 +8,8 @@ header('Content-Type: text/plain; charset=UTF-8');
     Disallow: *request-password-reset*
     Disallow: *signup*
     Disallow: *resend-verification-email*
+    Disallow: /rost-hudye*
+    Disallow: /rost-tolstye*
     Disallow: /find*
     <?php if ($city != 'moskva') echo 'Disallow: /forum' .PHP_EOL ?>
     <?php if ($city != 'moskva') echo 'Disallow: /forum/*' .PHP_EOL ?>
