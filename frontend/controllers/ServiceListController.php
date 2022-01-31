@@ -18,7 +18,6 @@ class ServiceListController extends Controller
            return [
                [
                    'class' => 'yii\filters\PageCache',
-                   'only' => ['index'],
                    'duration' => 3600 *48,
                    'variations' => [
                        Yii::$app->request->url,
