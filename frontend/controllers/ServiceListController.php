@@ -12,6 +12,24 @@ use yii\web\Controller;
 
 class ServiceListController extends Controller
 {
+
+        public function behaviors()
+       {
+           return [
+               [
+                   'class' => 'yii\filters\PageCache',
+                   'only' => ['index'],
+                   'duration' => 3600 *48,
+                   'variations' => [
+                       Yii::$app->request->url,
+                       Yii::$app->request->post('page'),
+                       Yii::$app->request->hostInfo,
+                   ],
+               ],
+           ];
+
+       }
+
     public function actionRayon($city)
     {
         $cityInfo = City::getCity($city);
