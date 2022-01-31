@@ -43,11 +43,16 @@ class LinkWidget extends Widget
 
         if (\strstr($url, 'metro')){
 
-            if (!\strstr($url, 'cena')){
+            if (!\strstr($url, 'cena') and !\strstr($url, 'nacionalnost') ){
 
                 array_unshift ($links , array(
                     'link' => $url.'/cena-do-3000',
                     'text' => ' + Дешевые возле этого метро'
+                ));
+
+                array_unshift ($links , array(
+                    'link' => $url.'/nacionalnost-uzbechka',
+                    'text' => ' + Узбечки возле этого метро'
                 ));
 
             }

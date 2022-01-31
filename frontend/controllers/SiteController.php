@@ -107,7 +107,7 @@ class SiteController extends Controller
     public function actionIndex($city, $page = false, $pager = false)
     {
 
-
+Yii::$app->cache->flush();
 
         if ($pager) {
 
