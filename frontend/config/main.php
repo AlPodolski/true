@@ -182,6 +182,10 @@ return [
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/call/add' => 'call/add',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/call/add-review' => 'call/add-review',
 
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/rayon' => 'service-list/rayon',
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/metro' => 'service-list/metro',
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/usluga' => 'service-list/service',
+
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/<param:([a-z-0-9]+/)+[a-z-0-9]+>/page-<pager:[0-9]+>' => 'filter/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/<param:[a-z-0-9]+>' => 'filter/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/<param:[a-z-0-9]+>/page-<pager:[0-9]+>' => 'filter/index',

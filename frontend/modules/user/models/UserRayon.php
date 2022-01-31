@@ -13,6 +13,12 @@ use Yii;
  */
 class UserRayon extends \yii\db\ActiveRecord
 {
+
+    public function getPosts()
+    {
+        return $this->hasOne(Posts::class, ['id' => 'post_id']);
+    }
+
     /**
      * {@inheritdoc}
      */

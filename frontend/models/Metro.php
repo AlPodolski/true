@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use frontend\modules\user\models\Review;
+use frontend\modules\user\models\UserRayon;
 use Yii;
 
 /**
@@ -36,6 +37,11 @@ class Metro extends \yii\db\ActiveRecord
             [['city_id'], 'integer'],
             [['url', 'value', 'value2', 'value3'], 'string', 'max' => 50],
         ];
+    }
+
+    public function getPosts()
+    {
+        return $this->hasMany(UserMetro::class, ['metro_id' => 'id']);
     }
 
     /**

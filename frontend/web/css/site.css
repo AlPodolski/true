@@ -27,6 +27,9 @@ body {
 .post-address .post-address{
     margin-left: 10px;
 }
+.data-list{
+    column-count: 4;
+}
 .not-set {
     color: #c55;
     font-style: italic;
@@ -3483,6 +3486,9 @@ input.search::placeholder { color: #6d6d6d; }
     }
 }
 @media (max-width: 992px) {
+    .data-list {
+        column-count: 3;
+    }
     .left-video-wrap{
         display: none;
     }
@@ -3536,6 +3542,9 @@ input.search::placeholder { color: #6d6d6d; }
     }
 }
 @media (max-width: 769px) {
+    .data-list {
+        column-count: 2;
+    }
     .photo-list picture{
         flex: 46%;
         flex-grow: 0;
@@ -3665,6 +3674,9 @@ input.search::placeholder { color: #6d6d6d; }
 }
 
 @media (max-width: 575px) {
+    .data-list {
+        column-count: 1;
+    }
     .photo-list{
         padding: 15px;
     }

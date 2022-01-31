@@ -215,17 +215,17 @@ use yii\helpers\Html;
             </div>
         </div>
         <?php if ($metro) : ?>
-            <div data-type="metro" onclick="get_data(this)" class="drop-menu-list-item">
-                <a >Метро</a>
+            <div class="drop-menu-list-item">
+                <a href="/metro" >Метро</a>
             </div>
         <?php endif; ?>
         <?php if ($rayon) : ?>
-            <div data-type="rayon" onclick="get_data(this)" class="drop-menu-list-item">
-                <a >Район</a>
+            <div class="drop-menu-list-item">
+                <a href="/rayon">Район</a>
             </div>
         <?php endif; ?>
-        <div data-type="usluga" onclick="get_data(this)" class="drop-menu-list-item">
-            <a >Услуги</a>
+        <div class="drop-menu-list-item">
+            <a href="/usluga" >Услуги</a>
         </div>
         <div class="drop-menu-list-item">
             <a href="/proverennye">Проверенные</a>

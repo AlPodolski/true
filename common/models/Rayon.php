@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use frontend\modules\user\models\UserRayon;
 use Yii;
 
 /**
@@ -49,6 +50,11 @@ class Rayon extends \yii\db\ActiveRecord
             'value2' => 'Value2',
             'value3' => 'Value3',
         ];
+    }
+
+    public function getPosts()
+    {
+        return $this->hasMany(UserRayon::class, ['rayon_id' => 'id']);
     }
 
     public static function getAll($city_id)
