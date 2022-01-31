@@ -114,8 +114,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div id="collapseOne2" class="collapse " aria-labelledby="headingOne"
                          data-parent="#accordionExample2">
                         <div class="card-body">
-                            Публикация одной анкеты  абсолютно бесплатна.
-                            Вторая  и последующие платные  3 руб/час. (это самая низкая цена по отрасли).
+                            В зависимости от выбранного тарифа, от 1 рубля в час. Чем дороже тариф тем ваше анкете. Так же есть бесплатный тариф
                         </div>
                     </div>
 

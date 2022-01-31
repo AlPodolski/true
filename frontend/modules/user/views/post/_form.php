@@ -417,6 +417,15 @@ $this->registerJsFile('/js/form_cabinet.js?v=2', ['depends' => [yii\web\YiiAsset
                                 'multiple' => true,
                             ],
                         ])->label('Время встречи') ?>
+
+                    </div>
+
+                    <div class="col-12 col-sm-6">
+
+                            <?= $form->field($post, 'tarif_id')
+                                ->dropDownList(\yii\helpers\ArrayHelper::map(\common\models\Tarif::getAll(), 'id' , 'value'))
+                            ->label('Выберите тариф. Чем дороже тариф тем выше выводится анкета')?>
+
                     </div>
 
                 </div>

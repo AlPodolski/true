@@ -31,10 +31,16 @@ class TelegramHelper
 
     public static function sendMessage($chat_id, $text)
     {
-        Yii::$app->telegram->sendMessage([
-            'chat_id' => $chat_id,
-            'text' => $text,
-        ]);
+
+        try {
+            Yii::$app->telegram->sendMessage([
+                'chat_id' => $chat_id,
+                'text' => $text,
+            ]);
+        }catch (\Exception $message){
+            echo $message->getMessage();
+        }
+
     }
 
     public static function sendMenu($chat_id)

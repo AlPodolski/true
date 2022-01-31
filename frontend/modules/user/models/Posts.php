@@ -11,6 +11,7 @@ use common\models\PostMessage;
 use common\models\Rayon;
 use common\models\Service;
 use common\models\Sites;
+use common\models\Tarif;
 use frontend\models\Files;
 use frontend\models\Metro;
 use frontend\models\UserMetro;
@@ -49,6 +50,7 @@ use yii\helpers\ArrayHelper;
  * @property int|null $sort
  * @property Files[] $gallery
  * @property Files $avatar
+ * @property integer $tarif_id
  */
 class Posts extends \yii\db\ActiveRecord
 {
@@ -80,7 +82,7 @@ class Posts extends \yii\db\ActiveRecord
 
     public static function getOrder(): string
     {
-        return 'fake DESC, RAND()';
+        return 'tarif_id DESC, RAND()';
     }
 
     /**
@@ -90,10 +92,11 @@ class Posts extends \yii\db\ActiveRecord
     {
         return [
             [['city_id', 'user_id', 'created_at', 'updated_at', 'category', 'check_photo_status', 'price', 'age',
-                'rost', 'ves', 'breast', 'status', 'view', 'retouching_photo_status', 'fake', 'pay_time', 'pol_id', 'sort'], 'integer'],
+                'rost', 'ves', 'breast', 'status', 'view', 'retouching_photo_status', 'fake', 'pay_time', 'pol_id',
+                'sort', 'tarif_id'], 'integer'],
             [['name'], 'string', 'max' => 60],
             [['phone'], 'string', 'max' => 20 ],
-            //[['name', 'phone', 'price'],'required'],
+            [['name', 'phone', 'price'],'required'],
             [['video'], 'string', 'max' => 122],
             [['about' , 'old_url'], 'string'],
             [['phone'], 'validatePhone'],
@@ -114,6 +117,11 @@ class Posts extends \yii\db\ActiveRecord
             ->with('avatar', 'metro', 'selphiCount', 'partnerId')
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->asArray()->all();
+    }
+
+    public function getTarif()
+    {
+        return $this->hasOne(Tarif::class, ['id' => 'tarif_id']);
     }
 
     public function getAvatar() : ActiveQuery
