@@ -21,20 +21,25 @@ class PayController extends \yii\console\Controller
 
         foreach ($posts as $post) {
 
-            if ($post['tarif']['sum'] > 0 and Yii::$app->pay->pay($post['tarif']['sum'], $post['user_id'], History::POST_PUBLICATION, $post['id'])) {
+            if ($post['tarif']['sum'] > 0) {
 
-                $post->pay_time = \time() + 3600;
+                if (Yii::$app->pay->pay($post['tarif']['sum'], $post['user_id'], History::POST_PUBLICATION, $post['id'])) {
+
+                    $post->pay_time = \time() + 3600;
 
 
-            } else {
+                } else {
 
-                Notify::send('Анкета ' . $post->name . ' снята с публикации из за низкого баланса', $post['user_id'], 'Остановка публикации');
 
-                $post->status = Posts::POST_DONT_PUBLICATION_STATUS;
+                    Notify::send('Анкета ' . $post->name . ' снята с публикации из за низкого баланса', $post['user_id'], 'Остановка публикации');
+
+                    $post->status = Posts::POST_DONT_PUBLICATION_STATUS;
+
+                }
+
+                $post->save();
 
             }
-
-            $post->save();
 
         }
     }
