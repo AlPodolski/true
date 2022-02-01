@@ -3410,8 +3410,27 @@ input.search::placeholder { color: #6d6d6d; }
 .no-img{
     width:inherit!important;
 }
-
+.main-nav{
+    height: 60px;
+    align-items: center;
+}
+.search-wrap{
+    margin-left: 100px;
+}
+.event-bell , .user-btn-wrap , .metro-search-btn-wrap-top , .mobil-menu{
+    margin-left: 25px;
+}
+.logo{
+    flex-grow: 1;
+}
 @media (max-width: 1199px) {
+    .search-wrap{
+        max-width: 175px;
+        margin-left: 99px;
+    }
+    .top-menu-container{
+        display: none;
+    }
     .dopolnitaelno-btn{
         display: block;
         flex: 100%;
@@ -3486,6 +3505,12 @@ input.search::placeholder { color: #6d6d6d; }
     }
 }
 @media (max-width: 992px) {
+    .event-bell{
+        margin-left: 181px;
+    }
+    .search-wrap{
+        display: none;
+    }
     .data-list {
         column-count: 3;
     }
@@ -3542,6 +3567,9 @@ input.search::placeholder { color: #6d6d6d; }
     }
 }
 @media (max-width: 769px) {
+    .event-bell {
+        margin-left: 88px;
+    }
     .data-list {
         column-count: 2;
     }
@@ -3674,6 +3702,9 @@ input.search::placeholder { color: #6d6d6d; }
 }
 
 @media (max-width: 575px) {
+    .event-bell {
+        margin-left: 75px;
+    }
     .data-list {
         column-count: 1;
     }
@@ -3794,6 +3825,9 @@ input.search::placeholder { color: #6d6d6d; }
     }
 }
 @media (max-width: 450px) {
+    .event-bell {
+        margin-left: 25px;
+    }
     .field-sendmessageform-text {
         max-width: 65%;
     }

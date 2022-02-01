@@ -1,6 +1,6 @@
 <?php /* @var $events integer */ ?>
 
-<a href="/cabinet/events">
+<a href="/cabinet/events" class="event-bell">
 
     <svg width="30" height="30" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M24.1928 33.3334C24.1928 37.0153 21.2079 39.9999 17.5259 39.9999C13.844 39.9999 10.8594 37.0153 10.8594 33.3334C10.8594 29.6514 13.844 26.6665 17.5259 26.6665C21.2079 26.6665 24.1928 29.6514 24.1928 33.3334Z" fill="#FFA000"/>
