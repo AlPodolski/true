@@ -88,9 +88,15 @@ class PostController extends Controller
 
             $post->fake = Posts::POST_REAL;
 
-            if ($post->save()) {
+            if (!$avatarForm->avatar = UploadedFile::getInstance($avatarForm, 'avatar')) {
 
-                $avatarForm->avatar = UploadedFile::getInstance($avatarForm, 'avatar');
+                Yii::$app->session->setFlash('warning', 'Нужно добавить фото');
+
+                return $this->redirect('/cabinet/post/add');
+
+            }
+
+            if ($post->save()) {
 
                 if ($avatarForm->avatar && $avatarForm->validate()) {
 
