@@ -184,12 +184,7 @@ AppAsset::register($this);
 
             </div>
 
-            <?php if (!Yii::$app->user->isGuest) : ?>
-
-                <?php echo \frontend\widgets\EventWidget::widget(['user_id' => Yii::$app->user->id]) ?>
-
-            <?php endif; ?>
-
+            <?php echo \frontend\widgets\EventWidget::widget(['user_id' => Yii::$app->user->id]) ?>
 
             <div class="user-btn-wrap">
                 <?php if (Yii::$app->user->isGuest) : ?>

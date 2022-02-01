@@ -2,7 +2,6 @@
 
 namespace console\controllers;
 
-use common\components\service\history\HistoryService;
 use common\components\service\notify\Notify;
 use common\models\History;
 use frontend\modules\user\models\Posts;
@@ -29,7 +28,6 @@ class PayController extends \yii\console\Controller
 
 
                 } else {
-
 
                     Notify::send('Анкета ' . $post->name . ' снята с публикации из за низкого баланса', $post['user_id'], 'Остановка публикации');
 
