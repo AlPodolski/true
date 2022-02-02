@@ -6,6 +6,7 @@ namespace console\controllers;
 use common\models\City;
 use common\models\Rayon;
 use frontend\modules\user\models\Posts;
+use frontend\modules\user\models\UserRayon;
 use League\Csv\Reader;
 use League\Csv\Statement;
 use Yii;
@@ -15,37 +16,27 @@ class CustController extends Controller
 {
     public function actionIndex()
     {
-        $stream = \fopen(Yii::getAlias('@app/files/rf_rayons.csv'), 'r');
+        $cityList = array('Архангельск' , 'Астрахань' , 'Барнаул' , 'Белгород' , 'Братск' , 'Брянск' , 'Владивосток' , 'Владикавказ' , 'Владимир' , 'Волгоград' , 'Воронеж' , 'Грозный' , 'Екатеринбург' , 'Иваново' , 'Ижевск' , 'Иркутск' , 'Казань' , 'Калининград' , 'Калуга' , 'Каменск-Уральский' , 'Кемерово' , 'Киров' , 'Комсомольск-на-Амуре' , 'Кострома' , 'Краснодар' , 'Красноярск' , 'Курск' , 'Липецк' , 'Магнитогорск' , 'Махачкала' , 'Мурманск' , 'Набережные Челны' , 'Назрань' , 'Нижний Новгород' , 'Нижний Тагил' , 'Новокузнецк' , 'Новороссийск' , 'Новосибирск' , 'Норильск' , 'Омск' , 'Орёл' , 'Оренбург' , 'Орск' , 'Пенза' , 'Пермь' , 'Прокопьевск' , 'Рязань' , 'Самара' , 'Саранск' , 'Саратов' , 'Севастополь' , 'Симферополь' , 'Смоленск' , 'Сочи' , 'Ставрополь' , 'Сыктывкар' , 'Тамбов' , 'Тверь' , 'Тольятти' , 'Томск' , 'Тула' , 'Тюмень' , 'Улан-Удэ' , 'Ульяновск' , 'Уфа' , 'Хабаровск' , 'Чебоксары' , 'Челябинск' , 'Чита' , 'Якутск' , 'Ярославль');
 
-        $csv = Reader::createFromStream($stream);
-        $csv->setDelimiter(';');
-        $csv->setHeaderOffset(0);
-        //build a statement
-        $stmt = (new Statement());
+        foreach ($cityList as $item){
 
-        $records = $stmt->process($csv);
+            if ($cityInfo = City::findOne(['city' => $item]) and $rayonList = Rayon::findAll(['city_id' => $cityInfo['id']])){
 
-        $rayonList = [];
+                if ($postsList = Posts::findAll(['city_id' => $cityInfo['id']])){
 
-        foreach ($records as $record) {
+                    foreach ($postsList as $postItem){
 
-            $rayonList[] = $record;
+                        $rayon = $rayonList[\array_rand($rayonList)];
 
-        }
+                        $userRayon = new UserRayon();
 
-        foreach ($rayonList as $rayonItem){
+                        $userRayon->city_id = $cityInfo['id'];
+                        $userRayon->rayon_id = $rayon['id'];
+                        $userRayon->post_id = $postItem['id'];
 
-            if ($cityInfo = City::find()->where(['city' => $rayonItem['city']])->one()){
+                        $postItem->save();
 
-                if (!Rayon::findOne(['city_id' => $cityInfo['id'], 'value' => $rayonItem['value']])){
-
-                    $newRayon = new Rayon();
-
-                    $newRayon->value = $rayonItem['value'];
-                    $newRayon->url = $rayonItem['url'];
-                    $newRayon->city_id = $cityInfo['id'];
-
-                    $newRayon->save();
+                    }
 
                 }
 
