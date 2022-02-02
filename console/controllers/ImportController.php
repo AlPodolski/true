@@ -49,7 +49,7 @@ class ImportController extends Controller
     public function actionIndex()
     {
 
-        $stream = \fopen(Yii::getAlias('@app/files/import_true_salon_20_01_2022.csv'), 'r');
+        $stream = \fopen(Yii::getAlias('@app/files/import_krasnoyarsk_02_02_2022.csv'), 'r');
 
         $csv = Reader::createFromStream($stream);
         $csv->setDelimiter(';');
@@ -64,9 +64,9 @@ class ImportController extends Controller
 
         $serviceList = Service::find()->asArray()->all();
 
-        $this->siteId = 5;
-        $this->update = 22;
-        $this->path = '/uploads/a22/files/';
+        $this->siteId = 0;
+        $this->update = 23;
+        $this->path = '/uploads/a23/';
 
         foreach ($records as $record) {
 
@@ -80,20 +80,20 @@ class ImportController extends Controller
 
             $post = new Posts();
 
-            $city['id'] = 1;
+            $city['id'] = 565;
 
-            $post->city_id = 1;
+            $post->city_id = $city['id'];
             $post->pol_id = 1;
             $post->created_at = \time();
             $post->name = $record['name'];
             $post->updated_at = $this->update;
             $post->phone = preg_replace('/[^0-9]/', '',  $record['phone']);
-            $post->about = $record['anket-about'];
+            $post->about = strip_tags ($record['deskr']);
             $post->check_photo_status = 0;
             $post->status = 1;
             $post->price = (int)$record['price'] ?? 3000;
-            //$post->age = $record['age'];
-            //$post->rost = $record['rost'] ?? 170;
+            $post->age = $record['age'] ?? 19;
+            $post->rost = $record['rost'] ?? 170;
 
             if ($post->price > 1000 and $post->price < 2000) $post->price = $post->price - 500;
             elseif ($post->price >= 2000 and $post->price < 4000) $post->price = $post->price - 1000;
@@ -111,9 +111,9 @@ class ImportController extends Controller
 
             if (isset($record['grud']) and $record['grud']) $post->breast = $record['grud'];
 
-            if (isset($record['weight']) and $record['weight']) $post->ves = (int)$record['weight'];
+            if (isset($record['ves']) and $record['ves']) $post->ves = (int)$record['weight'];
 
-            $post->category = Posts::SALON_CATEGORY;
+            $post->category = Posts::INDI_CATEGORY;
 
             if (isset($record['cheked']) and $record['cheked'] == 1) $post->check_photo_status = 1;
 
@@ -295,6 +295,22 @@ class ImportController extends Controller
 
                     if ($gall) {
 
+                        $ava = array_shift($gall);
+
+                        if ($ava){
+
+                            $userPhoto = new Files();
+
+                            $userPhoto->related_id = $post->id;
+                            $userPhoto->file = $this->path . $ava;
+                            $userPhoto->main = 1;
+                            $userPhoto->type = 0;
+                            $userPhoto->related_class = Posts::class;
+
+                            $userPhoto->save();
+
+                        }
+
                         foreach ($gall as $gallitem) {
 
                             if ($gallitem) {
@@ -318,6 +334,8 @@ class ImportController extends Controller
                 }
 
             }
+
+            exit();
 
         }
 
