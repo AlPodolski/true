@@ -47,7 +47,7 @@ class QueryParamsHelper
 
                     if ($url and $className and $classRelationName) {
 
-                        $id = $className::find()->where(['url' => $url])->asArray()->one();
+                        $id = $className::find()->where(['url' => $url, ['city_id' => $city['id']]])->asArray()->one();
 
                         if (isset($id['value'])){
                             Yii::$app->params['breadcrumbs'][] = array(
