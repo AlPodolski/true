@@ -3,72 +3,53 @@
 
 namespace console\controllers;
 
-use common\models\IntimHair;
-use common\models\Rayon;
-use common\models\Time;
-use frontend\models\Metro;
-use frontend\models\UserMetro;
-use frontend\modules\user\models\Posts;
 use common\models\City;
-use common\models\Phone;
-use frontend\modules\user\models\PostSites;
-use frontend\modules\user\models\UserIntimHair;
-use frontend\modules\user\models\UserRayon;
-use frontend\modules\user\models\UserService;
-use frontend\modules\user\models\UserTime;
+use common\models\Rayon;
+use frontend\modules\user\models\Posts;
+use League\Csv\Reader;
+use League\Csv\Statement;
 use Yii;
-use yii\base\BaseObject;
 use yii\console\Controller;
-use common\models\User;
 
 class CustController extends Controller
 {
     public function actionIndex()
     {
+        $stream = \fopen(Yii::getAlias('@app/files/rf_rayons.csv'), 'r');
 
-        $metroRayonList = array('Девяткино' =>  'Всеволожский' , 'Гражданский проспект' =>  'Калининский' , 'Академическая' =>  'Калининский' , 'Политехническая' =>  'Калининский' ,
-            'Площадь Мужества' =>  'Калининский' , 'Лесная' =>  'Выборгский' , 'Выборгская' =>  'Выборгский' , 'Площадь Ленина' =>  'Калининский' ,
-            'Чернышевская' =>  'Центральный' , 'Площадь Восстания' =>  'Центральный' , 'Владимирская' =>  'Центральный' , 'Пушкинская' =>  'Адмиралтейский' ,
-            'Балтийская' =>  'Адмиралтейский' , 'Нарвская' =>  'Кировский' , 'Кировский завод' =>  'Кировский' , 'Автово' =>  'Кировский' ,
-            'Ленинский проспект' =>  'Кировский' , 'Проспект Ветеранов' =>  'Кировский' , 'Парнас' =>  'Выборгский' , 'Проспект Просвещения' =>  'Выборгский' ,
-            'Озерки' =>  'Выборгский' , 'Удельная' =>  'Выборгский' , 'Пионерская' =>  'Приморский' , 'Чёрная речка' =>  'Приморский' , 'Петроградская' =>  'Петроградский' ,
-            'Горьковская' =>  'Петроградский' , 'Невский проспект' =>  'Центральный' , 'Фрунзенская' =>  'Адмиралтейский' , 'Московские ворота' =>  'Московский' ,
-            'Электросила' =>  'Московский' , 'Парк Победы' =>  'Московский' , 'Московская' =>  'Московский' , 'Звёздная' =>  'Московский' , 'Купчино' =>  'Московский' ,
-            'Беговая' =>  'Приморский' , 'Зенит' =>  'Петроградский' , 'Приморская' =>  'Василеостровский' , 'Василеостровская' =>  'Василеостровский' ,
-            'Гостиный двор' =>  'Центральный' , 'Маяковская' =>  'Центральный' , 'Елизаровская' =>  'Невский' ,
-            'Ломоносовская' =>  'Невский' , 'Пролетарская' =>  'Невский' , 'Обухово' =>  'Невский' , 'Рыбацкое' =>  'Невский' , 'Спасская' =>  'Адмиралтейский' ,
-            'Достоевская' =>  'Центральный' , 'Лиговский проспект' =>  'Центральный' , 'Площадь Александра Невского' =>  'Центральный' , 'Новочеркасская' =>  'Красногвардейский' ,
-            'Ладожская' =>  'Красногвардейский' , 'Проспект Большевиков' =>  'Невский' , 'Улица Дыбенко' =>  'Невский' , 'Комендантский проспект' =>  'Приморский' ,
-            'Старая Деревня' =>  'Приморский' , 'Крестовский остров' =>  'Петроградский' , 'Чкаловская' =>  'Петроградский' , 'Спортивная' =>  'Петроградский' ,
-            'Адмиралтейская' =>  'Центральный' , 'Садовая' =>  'Адмиралтейский' , 'Звенигородская' =>  'Адмиралтейский' , 'Обводный канал' =>  'Фрунзенский' ,
-            'Волковская' =>  'Фрунзенский' , 'Бухарестская' =>  'Фрунзенский' , 'Международная' =>  'Фрунзенский' , 'Проспект Славы' =>  'Фрунзенский' ,
-            'Дунайская' =>  'Фрунзенский' , 'Шушары' =>  'Пушкинский');
+        $csv = Reader::createFromStream($stream);
+        $csv->setDelimiter(';');
+        $csv->setHeaderOffset(0);
+        //build a statement
+        $stmt = (new Statement());
 
-        foreach ($metroRayonList as $key => $value){
+        $records = $stmt->process($csv);
 
-            $metro = Metro::find()->where(['city_id' => 161, 'value' => $key])->one();
+        $rayonList = [];
 
-            if ($metro){
+        foreach ($records as $record) {
 
-                $userMetroIds = UserMetro::find()->where(['metro_id' => $metro->id, 'city_id' => 161])->all();
+            $rayonList[] = $record;
 
-                $rayon = Rayon::find()->where(['value' => $value])->one();
+        }
 
-                if ($userMetroIds) foreach ($userMetroIds as $item){
+        foreach ($rayonList as $rayonItem){
 
-                    $userRayon = new UserRayon();
+            if ($cityInfo = City::find()->where(['city' => $rayonItem['city']])->one()){
 
-                    $userRayon->rayon_id = $rayon->id;
-                    $userRayon->post_id = $item->post_id;
-                    $userRayon->city_id = 161;
+                if (!Rayon::findOne(['city_id' => $cityInfo['id'], 'value' => $rayonItem['value']])){
 
-                    $userRayon->save();
+                    $newRayon = new Rayon();
+
+                    $newRayon->value = $rayonItem['value'];
+                    $newRayon->url = $rayonItem['url'];
+                    $newRayon->city_id = $cityInfo['id'];
+
+                    $newRayon->save();
 
                 }
 
             }
-
-
 
         }
 
