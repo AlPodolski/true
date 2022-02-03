@@ -9,7 +9,17 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 
 $this->registerJsFile('/js/jquery.maskedinput.js', ['depends' => [yii\web\YiiAsset::className()]]);
-$this->registerJsFile('/js/form_cabinet.js?v=2', ['depends' => [yii\web\YiiAsset::className()]]); ?>
+$this->registerJsFile('/js/form_cabinet.js?v=2', ['depends' => [yii\web\YiiAsset::className()]]);
+
+$tarifList = array();
+
+foreach (\common\models\Tarif::getAll() as $item){
+
+    $tarifList[] = array( 'id' => $item['id'], 'value' => $item['value'] . ' - ' . $item['sum'].' руб. в час' );
+
+}
+
+?>
 
 <?php $form = ActiveForm::begin([
     'id' => 'login-form',
@@ -422,8 +432,10 @@ $this->registerJsFile('/js/form_cabinet.js?v=2', ['depends' => [yii\web\YiiAsset
 
                     <div class="col-12 col-sm-6">
 
+
+
                             <?= $form->field($post, 'tarif_id')
-                                ->dropDownList(\yii\helpers\ArrayHelper::map(\common\models\Tarif::getAll(), 'id' , 'value'))
+                                ->dropDownList(\yii\helpers\ArrayHelper::map($tarifList, 'id' , 'value'))
                             ->label('Выберите тариф. Чем дороже тариф тем выше выводится анкета')?>
 
                     </div>
