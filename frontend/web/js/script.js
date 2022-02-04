@@ -587,10 +587,13 @@ function init_yandex(){
 }
 
 var load_map_status = false;
+var start_load_map_status = false;
 
 $(window).scroll(function () {
 
-    if(!load_map_status){
+    if(!load_map_status && !start_load_map_status){
+
+        start_load_map_status = true;
 
         $.getScript("https://api-maps.yandex.ru/2.1/?lang=ru_RU", function (data, textStatus, jqxhr) {
             ymaps.ready(function(){
