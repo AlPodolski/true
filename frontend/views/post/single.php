@@ -14,7 +14,7 @@ use frontend\assets\RateAsset;
 
 \frontend\assets\GalleryAsset::register($this);
 
-$this->registerJsFile('/js/single.js?v=9', ['depends' => ['yii\web\YiiAsset']]);
+$this->registerJsFile('/js/single.js?v=10', ['depends' => ['yii\web\YiiAsset']]);
 
 
 $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
@@ -130,11 +130,6 @@ $this->params['breadcrumbs'][] = array(
 
 <?php
 
-$this->registerJs(
-    "init_yandex();",
-    $this::POS_READY,
-    'my-button-handler'
-);
 
 
 ?>

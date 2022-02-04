@@ -5,6 +5,14 @@ $( document ).ready(function() {
         filter();
     });
 
+    $.getScript("https://api-maps.yandex.ru/2.1/?lang=ru_RU", function (data, textStatus, jqxhr) {
+        ymaps.ready(function(){
+
+            init_yandex();
+
+        })
+    });
+
 
 });
 
@@ -588,7 +596,12 @@ function init_yandex(){
 
 $(window).scroll(function () {
 
-    init_yandex();
+    if (typeof ymaps != 'undefined') {
+
+        init_yandex();
+    }
+
+
 
     var target = $('.pager');
     var targetPos = target.offset().top;
