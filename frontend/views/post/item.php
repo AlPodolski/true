@@ -75,7 +75,6 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                                 ],
                                 'options' => [
                                     'class' => 'img user-img card_img',
-                                    'loading' => 'lazy',
                                     'alt' => $post['name'],
                                     'title' => $photoTitle,
                                 ],

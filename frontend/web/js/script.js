@@ -4,29 +4,6 @@ $( document ).ready(function() {
         $("head").prepend('<link href="/css/jquery-ui.css" rel="stylesheet">');
         filter();
     });
-
-    if(!load_map_status && !start_load_map_status){
-
-        start_load_map_status = true;
-
-        $.getScript("https://api-maps.yandex.ru/2.1/?lang=ru_RU", function (data, textStatus, jqxhr) {
-            ymaps.ready(function(){
-
-                load_map_status = true;
-
-                init_yandex();
-
-            })
-        });
-
-    }
-    if(load_map_status){
-
-        init_yandex();
-
-    }
-
-
 });
 
 function get_dialog(object) {
