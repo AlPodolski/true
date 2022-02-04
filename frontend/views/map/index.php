@@ -20,6 +20,8 @@ foreach ($posts as $post) {
 
     if (isset($post['metro'][0]['x']) and $post['metro'][0]['x'] and $post['avatar']) {
 
+        $post['name'] = preg_replace('/[^ a-zа-яё\d]/ui', '',$post['name'] );
+
         $result[] = $post;
 
     }
