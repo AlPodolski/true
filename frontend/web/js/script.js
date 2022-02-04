@@ -5,6 +5,7 @@ $( document ).ready(function() {
         filter();
     });
 
+
 });
 
 function get_dialog(object) {
@@ -590,6 +591,7 @@ $(window).scroll(function () {
     if (typeof ymaps != 'undefined') {
 
         init_yandex();
+
     }
 
 
@@ -843,6 +845,14 @@ function filter() {
             $("#price-2-from").val(ui.values[0]);
             $("#price-2-to").val(ui.values[1]);
         }
+    });
+
+    $.getScript("https://api-maps.yandex.ru/2.1/?lang=ru_RU", function (data, textStatus, jqxhr) {
+        ymaps.ready(function(){
+
+            init_yandex();
+
+        })
     });
 
 }
