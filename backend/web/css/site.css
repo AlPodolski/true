@@ -2824,6 +2824,9 @@ input::-webkit-input-placeholder {
     border-radius: 5px;
     padding: 10px 10px;
     min-height: 527px;
+
+}
+.dialog_list{
     overflow: scroll;
     max-height: 800px;
 }
