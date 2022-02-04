@@ -27,7 +27,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
 
 ?>
-<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
+
 <div class="row">
     <div class="col-12 pager"
          data-single="1" <?php if ($post['id']) : ?> data-url="/post/<?php echo $post['id'] ?>" <?php endif; ?>></div>
