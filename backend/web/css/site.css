@@ -2825,6 +2825,7 @@ input::-webkit-input-placeholder {
     padding: 10px 10px;
     min-height: 527px;
     overflow: hidden;
+    max-height: 800px;
 }
 .dialog_item_ul{
     padding-left: 0;
