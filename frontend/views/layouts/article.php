@@ -162,7 +162,7 @@ use frontend\widgets\PhotoWidget;
 
         <?php if ($post['phone']) : ?>
 
-            <a data-id="<?php echo $post['id'] ?>"
+            <div data-id="<?php echo $post['id'] ?>"
                   <?php $targetPrice = \frontend\components\helpers\PriceTargetHelper::target($post['price']) ?>
                   onclick="add_phone_view(this);ym(70919698,'reachGoal','call'); <?php if ($post['partnerId']) : ?>
                           ym(70919698,'reachGoal','<?php echo $post['partnerId']['partner_id'] ?>');  <?php endif; ?>
@@ -170,7 +170,7 @@ use frontend\widgets\PhotoWidget;
                   data-tel="tel:+<?php echo preg_replace("/[^0-9]/", '', $post['phone']) ?>"
                   href="tel:+<?php echo preg_replace("/[^0-9]/", '', $post['phone']) ?>"
                   data-number="<?php echo $post['phone'] ?>"
-                  class="price d-block ">Показать номер</a>
+                  class="price d-block ">Показать номер</div>
 
         <?php endif; ?>
 
