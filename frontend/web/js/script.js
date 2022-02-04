@@ -586,13 +586,29 @@ function init_yandex(){
     });
 }
 
+var load_map_status = false;
+
 $(window).scroll(function () {
 
-    if (typeof ymaps != 'undefined') {
+    if(!load_map_status){
+
+        $.getScript("https://api-maps.yandex.ru/2.1/?lang=ru_RU", function (data, textStatus, jqxhr) {
+            ymaps.ready(function(){
+
+                load_map_status = true;
+
+                init_yandex();
+
+            })
+        });
+
+    }
+    if(load_map_status){
 
         init_yandex();
 
     }
+
 
 
 
@@ -845,14 +861,6 @@ function filter() {
             $("#price-2-from").val(ui.values[0]);
             $("#price-2-to").val(ui.values[1]);
         }
-    });
-
-    $.getScript("https://api-maps.yandex.ru/2.1/?lang=ru_RU", function (data, textStatus, jqxhr) {
-        ymaps.ready(function(){
-
-            init_yandex();
-
-        })
     });
 
 }
