@@ -5,6 +5,27 @@ $( document ).ready(function() {
         filter();
     });
 
+    if(!load_map_status && !start_load_map_status){
+
+        start_load_map_status = true;
+
+        $.getScript("https://api-maps.yandex.ru/2.1/?lang=ru_RU", function (data, textStatus, jqxhr) {
+            ymaps.ready(function(){
+
+                load_map_status = true;
+
+                init_yandex();
+
+            })
+        });
+
+    }
+    if(load_map_status){
+
+        init_yandex();
+
+    }
+
 
 });
 
@@ -590,6 +611,29 @@ var load_map_status = false;
 var start_load_map_status = false;
 
 $(window).scroll(function () {
+
+    if(!load_map_status && !start_load_map_status){
+
+        start_load_map_status = true;
+
+        $.getScript("https://api-maps.yandex.ru/2.1/?lang=ru_RU", function (data, textStatus, jqxhr) {
+            ymaps.ready(function(){
+
+                load_map_status = true;
+
+                init_yandex();
+
+            })
+        });
+
+    }
+    if(load_map_status){
+
+        init_yandex();
+
+    }
+
+
 
 
     var target = $('.pager');
