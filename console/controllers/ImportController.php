@@ -92,6 +92,7 @@ class ImportController extends Controller
             $post->price = (int)$record['price'] ?? 3000;
             $post->age = $record['age'] ?? 19;
             $post->rost = $record['rost'] ?? 170;
+            $post->old_url = $record['url'] ?? $record['url'];
 
             if ($post->price > 1000 and $post->price < 2000) $post->price = $post->price - 500;
             elseif ($post->price >= 2000 and $post->price < 4000) $post->price = $post->price - 1000;
@@ -332,8 +333,6 @@ class ImportController extends Controller
                 }
 
             }
-
-            exit();
 
         }
 
