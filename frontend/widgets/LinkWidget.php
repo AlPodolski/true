@@ -55,6 +55,11 @@ class LinkWidget extends Widget
                     'text' => ' + Узбечки возле этого метро'
                 ));
 
+                array_unshift ($links , array(
+                    'link' => $url.'/nacionalnost-aziatka',
+                    'text' => ' + Азиатки возле этого метро'
+                ));
+
             }
 
         }
