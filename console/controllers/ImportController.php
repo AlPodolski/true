@@ -49,7 +49,7 @@ class ImportController extends Controller
     public function actionIndex()
     {
 
-        $stream = \fopen(Yii::getAlias('@app/files/import_krasnoyarsk_02_02_2022.csv'), 'r');
+        $stream = \fopen(Yii::getAlias('@app/files/import_mos_dosug_07_02_2022.csv'), 'r');
 
         $csv = Reader::createFromStream($stream);
         $csv->setDelimiter(';');
@@ -65,8 +65,8 @@ class ImportController extends Controller
         $serviceList = Service::find()->asArray()->all();
 
         $this->siteId = 0;
-        $this->update = 23;
-        $this->path = '/uploads/a23/';
+        $this->update = 24;
+        $this->path = '/uploads/a24/';
 
         foreach ($records as $record) {
 
@@ -74,13 +74,11 @@ class ImportController extends Controller
 
         }
 
-        $city = City::find()->all();
-
         foreach ($posts as $record) {
 
             $post = new Posts();
 
-            $city['id'] = 565;
+            $city['id'] = 1;
 
             $post->city_id = $city['id'];
             $post->pol_id = 1;
@@ -111,7 +109,7 @@ class ImportController extends Controller
 
             if (isset($record['grud']) and $record['grud']) $post->breast = $record['grud'];
 
-            if (isset($record['ves']) and $record['ves']) $post->ves = (int)$record['weight'];
+            if (isset($record['ves']) and $record['ves']) $post->ves = (int)$record['ves'];
 
             $post->category = Posts::INDI_CATEGORY;
 
@@ -334,6 +332,8 @@ class ImportController extends Controller
                 }
 
             }
+
+            exit();
 
         }
 
