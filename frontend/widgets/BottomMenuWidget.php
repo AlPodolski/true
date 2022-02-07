@@ -7,16 +7,14 @@ use common\models\HairColor;
 use common\models\National;
 use common\models\Place;
 use common\models\Rayon;
+use common\models\Rost;
 use common\models\Time;
 use common\models\Ves;
 use frontend\models\Metro;
-use Yii;
 use yii\base\Widget;
-use common\models\Rost;
 
-class MegaMenuWidget extends Widget
+class BottomMenuWidget extends Widget
 {
-
     public $city;
     public $bottom_menu = false;
 
@@ -35,18 +33,9 @@ class MegaMenuWidget extends Widget
         $rostList = Rost::getData();
         $ves = Ves::getData();
 
-        if ($this->bottom_menu) return $this->render('bottom-menu' , [
-            'hairColorList' => $hairColorList,
-            'nationalList' => $nationalList,
-            'placeList' => $placeList,
-            'metro' => $metro,
-            'rayon' => $rayon,
-            'timeList' => $timeList,
-            'rostList' => $rostList,
-            'ves' => $ves,
-        ]);
 
-        return $this->render('mega-menu', [
+
+        return $this->render('bottom-menu', [
             'hairColorList' => $hairColorList,
             'nationalList' => $nationalList,
             'placeList' => $placeList,
@@ -57,5 +46,4 @@ class MegaMenuWidget extends Widget
             'ves' => $ves,
         ]);
     }
-
 }

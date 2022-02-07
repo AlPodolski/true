@@ -97,6 +97,11 @@ echo \frontend\widgets\OpenGraphWidget::widget([
 
             <?php endforeach; ?>
 
+            <?php echo \frontend\widgets\MegaMenuWidget::widget([
+                'city' => Yii::$app->requestedParams['city'],
+                'bottom_menu' => true
+            ]) ?>
+
         <?php endif; ?>
 
     </div>

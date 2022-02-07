@@ -3423,6 +3423,14 @@ input.search::placeholder { color: #6d6d6d; }
 .logo{
     flex-grow: 1;
 }
+.bottom-menu-wrap{
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.bottom-menu-wrap a {
+    color: #999999;
+    margin-bottom: 10px;
+}
 @media (max-width: 1199px) {
     .search-wrap{
         max-width: 175px;
@@ -3702,6 +3710,9 @@ input.search::placeholder { color: #6d6d6d; }
 }
 
 @media (max-width: 575px) {
+    .bottom-menu-wrap{
+        padding-left: 30px;
+    }
     .event-bell {
         margin-left: 75px;
     }
