@@ -2,7 +2,7 @@
 
 namespace frontend\modules\user\controllers;
 
-use yii\web\Controller;
+use frontend\controllers\BeforeController as Controller;
 
 /**
  * Default controller for the `User` module

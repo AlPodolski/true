@@ -8,7 +8,7 @@ use frontend\helpers\MetaBuilder;
 use frontend\models\SearchNameForm;
 use frontend\modules\user\models\Posts;
 use Yii;
-use yii\web\Controller;
+use frontend\controllers\BeforeController as Controller;
 
 class SearchController extends Controller
 {

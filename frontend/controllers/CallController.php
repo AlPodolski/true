@@ -7,7 +7,7 @@ use frontend\models\forms\GetCallForm;
 use frontend\models\forms\PhoneReviewForm;
 use frontend\modules\user\models\Posts;
 use Yii;
-use yii\web\Controller;
+use frontend\controllers\BeforeController as Controller;
 use yii\filters\VerbFilter;
 
 

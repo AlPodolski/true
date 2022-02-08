@@ -11,7 +11,7 @@ use frontend\components\events\BillPayEvent;
 use frontend\modules\user\models\Posts;
 use frontend\modules\user\models\TopAnketBlock;
 use Yii;
-use yii\web\Controller;
+use frontend\controllers\BeforeController as Controller;
 
 class UpController extends Controller
 {

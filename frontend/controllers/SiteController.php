@@ -29,7 +29,7 @@ use Yii;
 use frontend\modules\user\components\obmenka\Obmenka;
 use yii\base\BaseObject;
 use yii\data\Pagination;
-use yii\web\Controller;
+use frontend\controllers\BeforeController as Controller;
 
 /**
  * Site controller

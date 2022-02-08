@@ -5,8 +5,9 @@ namespace frontend\modules\user\controllers;
 use common\models\User;
 use frontend\modules\user\models\Posts;
 use Yii;
+use frontend\controllers\BeforeController as Controller;
 
-class CabinetController extends \yii\web\Controller
+class CabinetController extends Controller
 {
 
     public function behaviors()

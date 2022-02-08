@@ -7,7 +7,7 @@ use common\models\PostMessage;
 use frontend\modules\user\models\Posts;
 use Yii;
 use yii\filters\VerbFilter;
-use yii\web\Controller;
+use frontend\controllers\BeforeController as Controller;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 

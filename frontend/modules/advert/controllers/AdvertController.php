@@ -5,7 +5,7 @@ namespace frontend\modules\advert\controllers;
 
 use common\models\AdvertCategory;
 use frontend\helpers\MetaBuilder;
-use yii\web\Controller;
+use frontend\controllers\BeforeController as Controller;
 use frontend\modules\advert\models\Advert;
 use Yii;
 

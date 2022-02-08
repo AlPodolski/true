@@ -9,7 +9,7 @@ use frontend\helpers\QueryParamsHelper;
 use frontend\modules\user\models\Posts;
 use Yii;
 use yii\data\Pagination;
-use yii\web\Controller;
+use frontend\controllers\BeforeController as Controller;
 use yii\web\NotFoundHttpException;
 
 class FilterController extends Controller

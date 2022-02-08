@@ -7,7 +7,7 @@ use common\models\Pol;
 use frontend\helpers\MetaBuilder;
 use frontend\modules\user\models\Posts;
 use Yii;
-use yii\web\Controller;
+use frontend\controllers\BeforeController as Controller;
 
 class MapController extends Controller
 {

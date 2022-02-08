@@ -9,7 +9,7 @@ use frontend\models\Files;
 use frontend\modules\user\models\forms\EditProfileForm;
 use frontend\modules\user\models\Posts;
 use Yii;
-use yii\web\Controller;
+use frontend\controllers\BeforeController as Controller;
 use yii\web\UploadedFile;
 
 class ProfileController extends Controller

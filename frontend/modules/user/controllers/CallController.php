@@ -5,7 +5,7 @@ namespace frontend\modules\user\controllers;
 
 use common\models\RequestCall;
 use Yii;
-use yii\web\Controller;
+use frontend\controllers\BeforeController as Controller;
 
 class CallController extends Controller
 {

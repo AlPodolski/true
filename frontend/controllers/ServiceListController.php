@@ -8,7 +8,7 @@ use common\models\Service;
 use frontend\helpers\MetaBuilder;
 use frontend\models\Metro;
 use Yii;
-use yii\web\Controller;
+use frontend\controllers\BeforeController as Controller;
 
 class ServiceListController extends Controller
 {

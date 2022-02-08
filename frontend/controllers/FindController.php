@@ -14,7 +14,7 @@ use frontend\modules\user\models\UserRayon;
 use frontend\modules\user\models\UserService;
 use Yii;
 use yii\helpers\ArrayHelper;
-use yii\web\Controller;
+use frontend\controllers\BeforeController as Controller;
 
 class FindController extends Controller
 {

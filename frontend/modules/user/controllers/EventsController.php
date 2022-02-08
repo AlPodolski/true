@@ -6,7 +6,7 @@ namespace frontend\modules\user\controllers;
 use common\models\Event;
 use frontend\components\helpers\EventHelper;
 use Yii;
-use yii\web\Controller;
+use frontend\controllers\BeforeController as Controller;
 
 class EventsController extends Controller
 {

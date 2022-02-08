@@ -7,7 +7,7 @@ use common\models\City;
 use frontend\widgets\DataWidget;
 use Yii;
 use yii\filters\VerbFilter;
-use yii\web\Controller;
+use frontend\controllers\BeforeController as Controller;
 
 class DataController extends Controller
 {

@@ -7,7 +7,7 @@ use common\models\User;
 use common\components\helpers\TelegramHelper;
 use frontend\modules\user\models\forms\CheckTelegramForm;
 use Yii;
-use yii\web\Controller;
+use frontend\controllers\BeforeController as Controller;
 
 class TelegramController extends Controller
 {

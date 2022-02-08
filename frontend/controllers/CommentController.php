@@ -7,7 +7,7 @@ use common\models\Comments;
 use frontend\helpers\CommentsHelper;
 use frontend\models\forms\AddCommentForm;
 use Yii;
-use yii\web\Controller;
+use frontend\controllers\BeforeController as Controller;
 
 class CommentController extends Controller
 {

@@ -6,7 +6,7 @@ namespace frontend\controllers;
 use common\models\Claim;
 use frontend\models\forms\AnketClaimForm;
 use Yii;
-use yii\web\Controller;
+use frontend\controllers\BeforeController as Controller;
 
 class ClaimController extends Controller
 {

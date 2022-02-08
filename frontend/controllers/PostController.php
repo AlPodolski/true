@@ -17,7 +17,7 @@ use frontend\modules\user\models\Posts;
 use frontend\modules\user\models\Profile;
 use Yii;
 use yii\helpers\ArrayHelper;
-use yii\web\Controller;
+use frontend\controllers\BeforeController as Controller;
 use yii\web\NotFoundHttpException;
 
 class PostController extends Controller

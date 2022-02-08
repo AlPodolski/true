@@ -7,7 +7,7 @@ use common\models\TelegramLastUpdate;
 use common\models\TelegramToken;
 use common\components\helpers\TelegramHelper;
 use Yii;
-use yii\web\Controller;
+use frontend\controllers\BeforeController as Controller;
 use aki\telegram\base\Command;
 use Telegram\Bot\Api;
 

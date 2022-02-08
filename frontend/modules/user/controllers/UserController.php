@@ -14,7 +14,7 @@ use frontend\models\VerifyEmailForm;
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
-use yii\web\Controller;
+use frontend\controllers\BeforeController as Controller;
 
 class UserController extends Controller
 {

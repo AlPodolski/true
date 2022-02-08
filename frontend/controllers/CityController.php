@@ -5,7 +5,7 @@ namespace frontend\controllers;
 
 use common\models\City;
 use Yii;
-use yii\web\Controller;
+use frontend\controllers\BeforeController as Controller;
 
 class CityController extends Controller
 {
