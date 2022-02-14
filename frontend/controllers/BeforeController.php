@@ -2,6 +2,8 @@
 
 namespace frontend\controllers;
 
+use common\models\Redirect;
+use frontend\components\helpers\RedirectHelper;
 use Yii;
 use yii\base\InlineAction;
 use yii\web\BadRequestHttpException;
@@ -41,6 +43,9 @@ class BeforeController extends Controller
                 } elseif (!is_array($params[$name])) {
 
                     if ($name == 'city'){
+
+                        RedirectHelper::redirect($params[$name]);
+
                         $params[$name] =  preg_replace('/[0-9]+/', '', $params[$name]);
                         Yii::$app->requestedParams['city'] = $params[$name];
                     }
