@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\components\helpers\AddCloudHelper;
 use Yii;
 use common\models\Redirect;
 use backend\models\Redirect as RedirectSearch;
@@ -67,6 +68,7 @@ class RedirectController extends Controller
         $model = new Redirect();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            AddCloudHelper::add($model->to);
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

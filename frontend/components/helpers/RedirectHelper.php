@@ -52,7 +52,8 @@ class RedirectHelper
     {
         $url = 'https://'.$redirect->to.'.'.Yii::$app->params['domain'].Yii::$app->request->url;
 
-        header('Location: '.$url);
+        if ($redirect->status == Redirect::STATUS_301 )header('Location: '.$url, true, 301);
+        if ($redirect->status == Redirect::STATUS_302 )header('Location: '.$url, true, 302);
 
         exit();
     }

@@ -728,7 +728,7 @@ class ImportController extends Controller
                 );
 
                 $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, "https://api.cloudflare.com/client/v4/zones/375e7fbf4f926ab5db1431f990329b80/dns_records");
+                curl_setopt($ch, CURLOPT_URL, "https://api.cloudflare.com/client/v4/zones/zonq/dns_records");
                 curl_setopt($ch, CURLOPT_POST, 1);
                 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($content));  //Post Fields
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
