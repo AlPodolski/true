@@ -31,13 +31,7 @@ Yii::$app->view->registerMetaTag([
 
             foreach ($dataList as $item){
 
-                $urlText = $item['value'].' - '.Posts::find()
-                        ->where(['in', 'id', ArrayHelper::getColumn($item['posts'], 'post_id')])
-                        ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
-                        ->andWhere(['city_id' => $cityInfo['id']])
-                        ->count();
-
-                echo Html::a($urlText, $url .'-'. $item['url'], ['class' => 'red-link']);
+                echo Html::a($item['value'], $url .'-'. $item['url'], ['class' => 'red-link']);
 
             }
 
