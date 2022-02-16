@@ -37,7 +37,14 @@ body {
 .search-wrap .form-group{
     margin-bottom: 0;
 }
-
+.delete-item{
+    background: linear-gradient(138.93deg, #0865CD 9.98%, #FC0766 131.98%);
+    box-shadow: 0px 6px 4px rgba(151, 35, 142, 0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
 /* add sorting icons to gridview sort links */
 a.asc:after, a.desc:after {
     position: relative;

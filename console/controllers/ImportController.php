@@ -2,6 +2,7 @@
 
 namespace console\controllers;
 
+use backend\components\helpers\AddCloudHelper;
 use common\models\AdvertCategory;
 use common\models\Comments;
 use common\models\Link;
@@ -792,57 +793,55 @@ class ImportController extends Controller
 
     public function actionWebmaster()
     {
-        $access_token = 'AgAAAABNB5owAAOcKnTtNSvAHEBslBQhuKfyGD8';
+        $access_token = 'AQAAAABNB5owAAOcKiwrxUdFd05Nmv60IkMd9L8';
         $host = 'sex-true.com';
 
-        $citys = City::find()->asArray()->all();
+        $opts = array(
+            'http' => array(
+                'method' => "GET",
+                'header' => "Accept-language: en\r\n" .
+                    "Cookie: foo=bar\r\n" .
+                    'Authorization: OAuth ' . $access_token,
+            )
+        );
 
-        foreach ($citys as $city) {
+        $context = stream_context_create($opts);
 
-            $opts = array(
-                'http' => array(
-                    'method' => "GET",
-                    'header' => "Accept-language: en\r\n" .
-                        "Cookie: foo=bar\r\n" .
-                        'Authorization: OAuth ' . $access_token,
-                )
-            );
+        $user_id = file_get_contents("https://api.webmaster.yandex.net/v3/user/", false, $context);
+        $user_id = json_decode($user_id);
+        $user_id = $user_id->user_id;
 
-            $context = stream_context_create($opts);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "https://api.webmaster.yandex.net/v4/user/{$user_id}/hosts");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
-            $user_id = file_get_contents("https://api.webmaster.yandex.net/v3/user/", false, $context);
-            $user_id = json_decode($user_id);
-            $user_id = $user_id->user_id;
+        $headers = [
+            'Content-type: application/xml',
+            'Authorization: OAuth ' . $access_token
+        ];
 
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-            $content = '
-                
-                <Data>
-                    <host_url>https://' . $city['url'] . '.' . $host . '</host_url>
-                </Data>
-                
-                ';
+        $server_output = curl_exec($ch);
 
+        $result = json_decode($server_output);
 
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "https://api.webmaster.yandex.net/v4/user/{$user_id}/hosts/");
-            curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $content);  //Post Fields
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $domainInWebmaster = array();
 
-            $headers = [
-                'Content-type: application/xml',
-                'Authorization: OAuth ' . $access_token
-            ];
+        foreach ($result->hosts as $item){
 
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            if (isset($item->ascii_host_url) and !$item->verified) $domainInWebmaster[] = $item;
 
-            $server_output = curl_exec($ch);
+        }
 
-            curl_close($ch);
+        foreach ($domainInWebmaster as $webmasterItem){
 
-            $result = json_decode($server_output);
+            $city = \str_replace('https://', '', \str_replace('.sex-true.com/', '', $webmasterItem->ascii_host_url));
 
+            $cityId = City::findOne(['url' => $city]);
+
+            Webmaster::deleteAll(['city_id' => $cityId['id']]);
 
             $content = '';
 
@@ -874,7 +873,12 @@ class ImportController extends Controller
 
             $meta_model->save();
 
+            echo $city.\PHP_EOL;
+
         }
+
+        exit();
+
     }
 
     public function actionAddService()

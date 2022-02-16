@@ -143,6 +143,7 @@ return [
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/pay/obmenka/<id:[0-9]+>' => 'site/obmenka-pay',
 
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/post/edit/<id:[0-9]+>' => 'user/post/edit',
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/post/delete' => 'user/post/delete',
 
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/up/<id:[0-9]+>' => 'user/up/index',
 

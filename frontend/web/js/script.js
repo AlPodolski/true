@@ -6,6 +6,35 @@ $( document ).ready(function() {
     });
 });
 
+function delete_item(object){
+
+    var id = $(object).attr('data-id');
+    var name = $(object).attr('data-name');
+
+    let isBoss = confirm("Удалить анкету "+ name +" ?");
+
+    if (isBoss === true){
+
+        $.ajax({
+            type: 'POST',
+            url: "/cabinet/post/delete", //Путь к обработчику
+            data: 'id=' + id,
+            response: 'text',
+            dataType: "html",
+            cache: false,
+            success: function (data) {
+
+                $(object).closest('.cabinet-item').remove();
+
+            }
+        })
+
+    }
+
+
+
+}
+
 function get_dialog(object) {
 
     var dialog_id = $(object).attr('data-dialog-id');

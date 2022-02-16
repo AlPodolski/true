@@ -6,6 +6,7 @@ namespace frontend\modules\user\controllers;
 use common\models\City;
 use frontend\models\Files;
 use frontend\models\UserMetro;
+use frontend\modules\chat\models\relation\UserDialog;
 use frontend\modules\user\helpers\SavePostRelationHelper;
 use frontend\modules\user\models\forms\AvatarForm;
 use frontend\modules\user\models\forms\CheckPhotoForm;
@@ -449,6 +450,39 @@ class PostController extends Controller
             'city' => $city,
         ]);
 
+    }
+
+    public function actionDelete($city)
+    {
+        $id = Yii::$app->request->post('id');
+
+        if ($post = Posts::findOne(['id' => $id, 'user_id' => Yii::$app->user->id])){
+
+           if ($postPhoto = Files::findAll(['related_id' => $post['id'], 'related_class' => Posts::class])){
+
+               foreach ($postPhoto as $item){
+
+                   $file = Yii::getAlias('@app/web'.$item->file);
+
+                   if(\is_file($file)) \unlink($file);
+
+                   $item->delete();
+
+               }
+
+           }
+
+           UserRayon::deleteAll(['post_id' => $post['id']]);
+           UserMetro::deleteAll(['post_id' => $post['id']]);
+           UserHairColor::deleteAll(['post_id' => $post['id']]);
+           UserIntimHair::deleteAll(['post_id' => $post['id']]);
+           UserNational::deleteAll(['post_id' => $post['id']]);
+           UserPLace::deleteAll(['post_id' => $post['id']]);
+           UserService::deleteAll(['post_id' => $post['id']]);
+
+            $post->delete();
+
+        }
     }
 
     public function actionPublication()
