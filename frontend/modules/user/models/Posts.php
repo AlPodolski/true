@@ -96,7 +96,7 @@ class Posts extends \yii\db\ActiveRecord
                 'sort', 'tarif_id'], 'integer'],
             [['name'], 'string', 'max' => 60],
             [['phone'], 'string', 'max' => 20 ],
-            [['name',  'price'],'required'],
+            [['name', 'phone', 'price'],'required'],
             [['video'], 'string', 'max' => 122],
             [['about' , 'old_url'], 'string'],
             [['phone'], 'validatePhone'],
