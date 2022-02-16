@@ -50,7 +50,7 @@ class ImportController extends Controller
     public function actionIndex()
     {
 
-        $stream = \fopen(Yii::getAlias('@app/files/import_mos_dosug_07_02_2022.csv'), 'r');
+        $stream = \fopen(Yii::getAlias('@app/files/import_16_02_2022.csv'), 'r');
 
         $csv = Reader::createFromStream($stream);
         $csv->setDelimiter(';');
@@ -66,8 +66,8 @@ class ImportController extends Controller
         $serviceList = Service::find()->asArray()->all();
 
         $this->siteId = 0;
-        $this->update = 24;
-        $this->path = '/uploads/a24/';
+        $this->update = 25;
+        $this->path = '/uploads/a25/';
 
         foreach ($records as $record) {
 
@@ -75,234 +75,229 @@ class ImportController extends Controller
 
         }
 
-        foreach ($posts as $record) {
+        $priceList = [1500, 1800, 2000, 2500, 3000, 3500, 4000, 4500];
 
-            $post = new Posts();
+        $cityList = City::find()->all();
 
-            $city['id'] = 1;
+        foreach ($cityList as $cityItem){
 
-            $post->city_id = $city['id'];
-            $post->pol_id = 1;
-            $post->created_at = \time();
-            $post->name = $record['name'];
-            $post->updated_at = $this->update;
-            $post->phone = preg_replace('/[^0-9]/', '',  $record['phone']);
-            $post->about = strip_tags ($record['deskr']);
-            $post->check_photo_status = 0;
-            $post->status = 1;
-            $post->price = (int)$record['price'] ?? 3000;
-            $post->age = $record['age'] ?? 19;
-            $post->rost = $record['rost'] ?? 170;
-            $post->old_url = $record['url'] ?? $record['url'];
+            if (Posts::find()->where(['city_id' => $cityItem['id']])->count() < 500 ){
 
-            if ($post->price > 1000 and $post->price < 2000) $post->price = $post->price - 500;
-            elseif ($post->price >= 2000 and $post->price < 4000) $post->price = $post->price - 1000;
-            elseif ($post->price >= 4000 and $post->price < 6000) $post->price = $post->price - 1500;
-            elseif ($post->price >= 6000 and $post->price < 8000) $post->price = $post->price - 2000;
-            elseif ($post->price > 8000) $post->price = $post->price - 3000;
+                \shuffle($posts);
 
-            if (isset($record['video']) and $record['video']) {
+                $i = 0;
 
-                $videoArray = \explode(',', $record['video']);
+                foreach ($posts as $record) {
 
-                $post->video = $this->path . $videoArray[0];
+                    if ($i > 500) break;
 
-            }
+                    $post = new Posts();
 
-            if (isset($record['grud']) and $record['grud']) $post->breast = $record['grud'];
+                    $city['id'] = $cityItem['id'];
 
-            if (isset($record['ves']) and $record['ves']) $post->ves = (int)$record['ves'];
+                    $post->price = $priceList[\array_rand($priceList)];
 
-            $post->category = Posts::INDI_CATEGORY;
+                    $post->city_id = $city['id'];
+                    $post->pol_id = 1;
+                    $post->created_at = \time();
+                    $post->name = $record['name'];
+                    $post->updated_at = $this->update;
+                    //$post->phone = preg_replace('/[^0-9]/', '',  $record['phone']);
+                    $post->about = strip_tags ($record['anketabout']);
+                    $post->check_photo_status = 0;
+                    $post->status = 1;
+                    $post->age = $record['age'] ?? 19;
+                    $post->rost = $record['rost'] ?? 170;
+                    //$post->old_url = $record['url'] ?? $record['url'];
 
-            if (isset($record['cheked']) and $record['cheked'] == 1) $post->check_photo_status = 1;
+                    if ($post->price > 1000 and $post->price < 2000) $post->price = $post->price - 500;
+                    elseif ($post->price >= 2000 and $post->price < 4000) $post->price = $post->price - 1000;
+                    elseif ($post->price >= 4000 and $post->price < 6000) $post->price = $post->price - 1500;
+                    elseif ($post->price >= 6000 and $post->price < 8000) $post->price = $post->price - 2000;
+                    elseif ($post->price > 8000) $post->price = $post->price - 3000;
 
-            if ($post->save()) {
+                    if (isset($record['video']) and $record['video']) {
 
-                if (isset($record['rayon']) and $record['rayon']) {
+                        $videoArray = \explode(',', $record['video']);
 
-                    $rayonId = ArrayHelper::getValue(Rayon::find()
-                        ->where(['value' => $record['rayon']])
-                        ->andWhere(['city_id' => $city['id']])
-                        ->asArray()->one(), 'id');
-
-                    if ($rayonId) {
-
-                        $userRayon = new UserRayon();
-                        $userRayon->post_id = $post->id;
-                        $userRayon->rayon_id = $rayonId;
-                        $userRayon->city_id = $city['id'];
-                        $userRayon->save();
+                        $post->video = $this->path . $videoArray[0];
 
                     }
 
-                }
+                    if (isset($record['grud']) and $record['grud']) $post->breast = $record['grud'];
 
-                if (isset($record['metro']) and $metro = $record['metro']) {
+                    if (isset($record['ves']) and $record['ves']) $post->ves = (int)$record['ves'];
 
-                    if ($metro) {
+                    $post->category = Posts::INDI_CATEGORY;
 
-                        $id = ArrayHelper::getValue(Metro::find()->where(['value' => $metro])->asArray()->one(), 'id');
+                    if (isset($record['cheked']) and $record['cheked'] == 1) $post->check_photo_status = 1;
 
-                        if ($id) {
+                    if ($post->save()) {
 
-                            $userRayon = new UserMetro();
-                            $userRayon->post_id = $post->id;
-                            $userRayon->metro_id = $id;
-                            $userRayon->city_id = $city['id'];
-                            $userRayon->save();
+                        $i++;
+
+                        if (isset($record['rayon']) and $record['rayon']) {
+
+                            $rayonId = ArrayHelper::getValue(Rayon::find()
+                                ->where(['value' => $record['rayon']])
+                                ->andWhere(['city_id' => $city['id']])
+                                ->asArray()->one(), 'id');
+
+                            if ($rayonId) {
+
+                                $userRayon = new UserRayon();
+                                $userRayon->post_id = $post->id;
+                                $userRayon->rayon_id = $rayonId;
+                                $userRayon->city_id = $city['id'];
+                                $userRayon->save();
+
+                            }
 
                         }
 
-                    }
+                        if (isset($record['metro']) and $metro = $record['metro']) {
 
-                }
+                            if ($metro) {
 
-                if (isset($record['hair']) and $record['hair']) {
+                                $id = ArrayHelper::getValue(Metro::find()->where(['value' => $metro])->asArray()->one(), 'id');
 
-                    $id = ArrayHelper::getValue(HairColor::find()->where(['value' => $record['hair']])->asArray()->one(), 'id');
+                                if ($id) {
 
-                    if ($id) {
+                                    $userRayon = new UserMetro();
+                                    $userRayon->post_id = $post->id;
+                                    $userRayon->metro_id = $id;
+                                    $userRayon->city_id = $city['id'];
+                                    $userRayon->save();
 
-                        $userRayon = new UserHairColor();
-                        $userRayon->post_id = $post->id;
-                        $userRayon->hair_color_id = $id;
-                        $userRayon->city_id = $city['id'];
-                        $userRayon->save();
+                                }
 
-                    }
-
-                }
-
-                if (isset($record['ethnik']) and $record['ethnik']) {
-
-                    $id = ArrayHelper::getValue(National::find()->where(['value' => $record['ethnik']])->asArray()->one(), 'id');
-
-                    if ($id) {
-
-                        $userRayon = new UserNational();
-                        $userRayon->post_id = $post->id;
-                        $userRayon->national_id = $id;
-                        $userRayon->city_id = $city['id'];
-                        $userRayon->save();
-
-                    }
-
-                }
-
-                foreach ($placeList as $placeItem) {
-
-                    if (\rand(0, 2) == 1) {
-
-                        $userRayon = new UserPlace();
-                        $userRayon->post_id = $post->id;
-                        $userRayon->place_id = $placeItem['id'];
-                        $userRayon->city_id = $city['id'];
-                        $userRayon->save();
-
-                    }
-
-                }
-
-                /*
-
-                $postSite = new PostSites();
-
-                $postSite->post_id = $post->id;
-                $postSite->site_id = $this->siteId;
-                $postSite->price = $post->price;
-                $postSite->created_at = $post->created_at;
-                $postSite->name_on_site = $post->name;
-                $postSite->age = $post->age;
-
-                $postSite->save();
-
-                if (isset($record['mesto']) and $record['mesto']) {
-
-                     $placeAr = \explode(',', $record['mesto']);
-
-                     foreach ($placeAr as $item) {
-
-                         $id = ArrayHelper::getValue(Place::find()->where(['value' => $item])->asArray()->one(), 'id');
-
-                         if ($id) {
-
-                             $userRayon = new UserPlace();
-                             $userRayon->post_id = $post->id;
-                             $userRayon->place_id = $id;
-                             $userRayon->city_id = $city['id'];
-                             $userRayon->save();
-
-                         }
-
-                     }
-
-                 }*/
-
-                if (isset($record['osob']) and $record['osob']) {
-
-                    $Ar = \explode(',', $record['osob']);
-
-                    foreach ($Ar as $item) {
-
-                        $id = ArrayHelper::getValue(Osobenosti::find()->where(['value' => $item])->asArray()->one(), 'id');
-
-                        if ($id) {
-
-                            $userRayon = new UserOsobenosti();
-                            $userRayon->post_id = $post->id;
-                            $userRayon->param_id = $id;
-                            $userRayon->city_id = $city['id'];
-                            $userRayon->save();
+                            }
 
                         }
 
-                    }
+                        if (isset($record['hair']) and $record['hair']) {
 
-                }
+                            $id = ArrayHelper::getValue(HairColor::find()->where(['value' => $record['hair']])->asArray()->one(), 'id');
 
-                foreach ($serviceList as $serviceItem) {
+                            if ($id) {
 
-                    if (\rand(0, 3) == 3) {
+                                $userRayon = new UserHairColor();
+                                $userRayon->post_id = $post->id;
+                                $userRayon->hair_color_id = $id;
+                                $userRayon->city_id = $city['id'];
+                                $userRayon->save();
 
-                        $userRayon = new UserService();
-                        $userRayon->post_id = $post->id;
-                        $userRayon->service_id = $serviceItem['id'];
-                        $userRayon->city_id = $city['id'];
-                        $userRayon->save();
+                            }
 
-                    }
+                        }
 
-                }
+                        if (isset($record['ethnik']) and $record['ethnik']) {
 
-                if (isset($record['mini']) and $record['mini']) {
+                            $id = ArrayHelper::getValue(National::find()->where(['value' => $record['ethnik']])->asArray()->one(), 'id');
 
-                    $userPhoto = new Files();
+                            if ($id) {
 
-                    $userPhoto->related_id = $post->id;
-                    $userPhoto->file = $this->path . $record['mini'];
-                    $userPhoto->main = 1;
-                    $userPhoto->type = 0;
-                    $userPhoto->related_class = Posts::class;
+                                $userRayon = new UserNational();
+                                $userRayon->post_id = $post->id;
+                                $userRayon->national_id = $id;
+                                $userRayon->city_id = $city['id'];
+                                $userRayon->save();
 
-                    $userPhoto->save();
+                            }
 
-                }
+                        }
 
-                if (isset($record['gallery']) and $record['gallery']) {
+                        foreach ($placeList as $placeItem) {
 
-                    $gall = \explode(',', $record['gallery']);
+                            if (\rand(0, 2) == 1) {
 
-                    if ($gall) {
+                                $userRayon = new UserPlace();
+                                $userRayon->post_id = $post->id;
+                                $userRayon->place_id = $placeItem['id'];
+                                $userRayon->city_id = $city['id'];
+                                $userRayon->save();
 
-                        $ava = array_shift($gall);
+                            }
 
-                        if ($ava){
+                        }
+
+                        /*
+
+                        $postSite = new PostSites();
+
+                        $postSite->post_id = $post->id;
+                        $postSite->site_id = $this->siteId;
+                        $postSite->price = $post->price;
+                        $postSite->created_at = $post->created_at;
+                        $postSite->name_on_site = $post->name;
+                        $postSite->age = $post->age;
+
+                        $postSite->save();
+
+                        if (isset($record['mesto']) and $record['mesto']) {
+
+                             $placeAr = \explode(',', $record['mesto']);
+
+                             foreach ($placeAr as $item) {
+
+                                 $id = ArrayHelper::getValue(Place::find()->where(['value' => $item])->asArray()->one(), 'id');
+
+                                 if ($id) {
+
+                                     $userRayon = new UserPlace();
+                                     $userRayon->post_id = $post->id;
+                                     $userRayon->place_id = $id;
+                                     $userRayon->city_id = $city['id'];
+                                     $userRayon->save();
+
+                                 }
+
+                             }
+
+                         }*/
+
+                        if (isset($record['osob']) and $record['osob']) {
+
+                            $Ar = \explode(',', $record['osob']);
+
+                            foreach ($Ar as $item) {
+
+                                $id = ArrayHelper::getValue(Osobenosti::find()->where(['value' => $item])->asArray()->one(), 'id');
+
+                                if ($id) {
+
+                                    $userRayon = new UserOsobenosti();
+                                    $userRayon->post_id = $post->id;
+                                    $userRayon->param_id = $id;
+                                    $userRayon->city_id = $city['id'];
+                                    $userRayon->save();
+
+                                }
+
+                            }
+
+                        }
+
+                        foreach ($serviceList as $serviceItem) {
+
+                            if (\rand(0, 3) == 3) {
+
+                                $userRayon = new UserService();
+                                $userRayon->post_id = $post->id;
+                                $userRayon->service_id = $serviceItem['id'];
+                                $userRayon->city_id = $city['id'];
+                                $userRayon->save();
+
+                            }
+
+                        }
+
+                        if (isset($record['mini']) and $record['mini']) {
 
                             $userPhoto = new Files();
 
                             $userPhoto->related_id = $post->id;
-                            $userPhoto->file = $this->path . $ava;
+                            $userPhoto->file = $this->path . $record['mini'];
                             $userPhoto->main = 1;
                             $userPhoto->type = 0;
                             $userPhoto->related_class = Posts::class;
@@ -311,25 +306,53 @@ class ImportController extends Controller
 
                         }
 
-                        foreach ($gall as $gallitem) {
+                        if (isset($record['gallery']) and $record['gallery']) {
 
-                            if ($gallitem) {
+                            $gall = \explode(',', $record['gallery']);
 
-                                $userPhoto = new Files();
+                            if ($gall) {
 
-                                $userPhoto->related_id = $post->id;
-                                $userPhoto->file = $this->path . $gallitem;
-                                $userPhoto->main = 0;
-                                $userPhoto->type = 0;
-                                $userPhoto->related_class = Posts::class;
+                                $ava = array_shift($gall);
 
-                                $userPhoto->save();
+                                if ($ava){
+
+                                    $userPhoto = new Files();
+
+                                    $userPhoto->related_id = $post->id;
+                                    $userPhoto->file = $this->path . $ava;
+                                    $userPhoto->main = 1;
+                                    $userPhoto->type = 0;
+                                    $userPhoto->related_class = Posts::class;
+
+                                    $userPhoto->save();
+
+                                }
+
+                                foreach ($gall as $gallitem) {
+
+                                    if ($gallitem) {
+
+                                        $userPhoto = new Files();
+
+                                        $userPhoto->related_id = $post->id;
+                                        $userPhoto->file = $this->path . $gallitem;
+                                        $userPhoto->main = 0;
+                                        $userPhoto->type = 0;
+                                        $userPhoto->related_class = Posts::class;
+
+                                        $userPhoto->save();
+
+                                    }
+
+                                }
 
                             }
 
                         }
 
                     }
+
+                    exit();
 
                 }
 
