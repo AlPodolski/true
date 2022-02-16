@@ -8,6 +8,7 @@ use frontend\helpers\MetaBuilder;
 use frontend\controllers\BeforeController as Controller;
 use frontend\modules\advert\models\Advert;
 use Yii;
+use yii\data\Pagination;
 
 class AdvertController extends Controller
 {
@@ -140,16 +141,33 @@ class AdvertController extends Controller
                 ->offset(Yii::$app->params['advert_limit'] * Yii::$app->request->post('page'))
                 ->orderBy('id DESC')->all();
 
-            if ($advertList) return $this->renderFile('@app/modules/advert/views/advert/more.php', [
+            $page = Yii::$app->request->post('page') + 1;
+
+            if ($advertList) echo '<div data-url="'.Yii::$app->request->url.'/?page=' . $page . '" class="col-12"></div>';
+
+            if ($advertList) echo $this->renderFile('@app/modules/advert/views/advert/more.php', [
                 'advertList' => $advertList
             ]);
 
+            exit();
+
         }
+
+        $countQuery = clone $advertList;
+
+        $pages = new Pagination([
+            'totalCount' => $countQuery->count(),
+            'forcePageParam' => false,
+            'defaultPageSize' => Yii::$app->params['post_limit']
+        ]);
+
+        $advertList = $advertList->offset($pages->offset);
 
         $advertList = $advertList->all();
 
         return $this->render('advert', [
             'advertList' => $advertList,
+            'pages' => $pages,
             'isCabinet' => false,
         ]);
     }
