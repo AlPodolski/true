@@ -106,6 +106,11 @@ class QueryParamsHelper
 
                 if (\is_array($ageRange) and (\count($ageRange) == 2) ){
 
+                    Yii::$app->params['breadcrumbs'][] = array(
+                        'label'=> 'возраст от '.$ageRange[0].' до '.$ageRange[1],
+                        'url'=> Yii::$app->params['breadcrumbs'] ? $value : '/'.$value,
+                    );
+
                     $id = Posts::find()
                         ->select('id')
                         ->where(['>', 'age', $ageRange[0]])

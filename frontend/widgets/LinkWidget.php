@@ -128,6 +128,19 @@ class LinkWidget extends Widget
 
         }
 
+        if (\strstr($url, 'vozrast')){
+
+            if (!\strstr($url, 'cena')){
+
+                array_unshift ($links , array(
+                    'link' => $url.'/cena-do-3000',
+                    'text' => ' + Дешевые в этом разделе'
+                ));
+
+            }
+
+        }
+
         return $this->render('links', [
             'links' => $links
         ]);
