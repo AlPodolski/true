@@ -132,6 +132,12 @@ FontAwesomeAsset::register($this);
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a href="/obmenka" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Оплаты</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="/site/drop-cache" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Удалить кеш</p>
