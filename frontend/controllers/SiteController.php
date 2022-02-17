@@ -376,4 +376,61 @@ class SiteController extends Controller
 
     }
 
+    public function actionPhone($city)
+    {
+
+        Yii::$app->cache->flush();
+
+        $cityInfo = City::getCity($city);
+
+        $posts = Posts::find()->asArray()
+            ->with('avatar', 'metro', 'selphiCount' , 'partnerId')
+            ->where(['city_id' => $cityInfo['id']])
+            ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
+            ->limit(Yii::$app->params['post_limit'])
+            //->cache(3600)
+            ->orderBy(Posts::getOrder());
+
+
+        $countQuery = clone $posts;
+
+        $pages = new Pagination([
+            'totalCount' => $countQuery->count(),
+            'forcePageParam' => false,
+            'defaultPageSize' => Yii::$app->params['post_limit']
+        ]);
+
+        $posts = $posts->offset($pages->offset)->all();
+
+        if (Yii::$app->request->isPost){
+
+            $page = Yii::$app->request->post('page') + 1;
+
+            if ($posts) echo '<div data-url="/phone?page=' . $page . '" class="col-12"></div>';
+
+            foreach ($posts as $post) {
+
+                ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_listing_view_count_key']);
+
+                echo $this->renderFile('@app/views/layouts/article-phone.php', \compact('post'));
+
+            }
+
+            exit();
+
+        }
+
+        $uri = Yii::$app->request->url;
+
+        if (\strpos($uri, 'page')) $uri = \strstr($uri, '?page', true);
+
+        $title = MetaBuilder::Build($uri, $city, 'Title');
+        $des = MetaBuilder::Build($uri, $city, 'des');
+        $h1 = MetaBuilder::Build($uri, $city, 'h1');
+
+        return $this->render('phone', \compact('posts', 'cityInfo', 'title', 'des', 'h1', 'pages'));
+
+
+    }
+
 }

@@ -240,6 +240,9 @@ use yii\helpers\Html;
             <a href="/cena-ot-6000">Элитные</a>
         </div>
         <div class="drop-menu-list-item">
+            <a href="/phone">Телефоны</a>
+        </div>
+        <div class="drop-menu-list-item">
             <a href="/video">С Видео</a>
         </div>
         <div class="drop-menu-list-item">

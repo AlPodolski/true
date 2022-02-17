@@ -110,6 +110,8 @@ return [
 
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/map' => 'map/index',
 
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/phone' => 'site/phone',
+
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/data/get' => 'data/get',
 
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/auth' => 'site/auth',

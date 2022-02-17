@@ -45,6 +45,28 @@ body {
     align-items: center;
     cursor: pointer;
 }
+.item-phone{
+    margin-bottom: 15px;
+    display: flex;
+}
+.phone-wrap{
+    margin-left: auto;
+}
+.phone-wrap .red-bold-text{
+    font-size: 19px;
+    cursor: pointer;
+}
+.price-name-wrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-left: 15px;
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 101.9%;
+}
 /* add sorting icons to gridview sort links */
 a.asc:after, a.desc:after {
     position: relative;
