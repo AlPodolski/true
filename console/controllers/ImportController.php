@@ -360,6 +360,51 @@ class ImportController extends Controller
 
     }
 
+    public function actionPhone()
+    {
+        $stream = \fopen(Yii::getAlias('@app/files/phones_16_02_2022.csv'), 'r');
+
+        $csv = Reader::createFromStream($stream);
+        $csv->setDelimiter(';');
+        $csv->setHeaderOffset(0);
+
+        $stmt = (new Statement());
+
+        $records = $stmt->process($csv);
+
+        $phonesCity = array();
+
+        foreach ($records as $value) {
+
+            $phonesCity[$value['city']][] = $value['phone'];
+
+        }
+
+        foreach ($phonesCity as $key => $cityItem){
+
+            if ($city = City::find()->where(['city' => $key])->one()){
+
+                if ($posts = Posts::find()->where(['phone' => null, 'city_id' => $city['id']])->all()){
+
+                    foreach ($posts as $post){
+
+                        $post->phone = $cityItem[\array_rand($cityItem)];
+
+                        $post->save();
+
+                    }
+
+                }
+
+            }else{
+
+                echo $key.\PHP_EOL;
+
+            }
+
+        }
+
+    }
 
     public function actionCom()
     {
@@ -1043,43 +1088,5 @@ class ImportController extends Controller
         }
     }
 
-    public function actionPhone()
-    {
-        $stream = \fopen(Yii::getAlias('@app/files/import_number_15_11_2021.csv'), 'r');
-
-        $csv = Reader::createFromStream($stream);
-        $csv->setDelimiter(';');
-        $csv->setHeaderOffset(0);
-        $translit = new Translit();
-        //build a statement
-        $stmt = (new Statement());
-
-        $records = $stmt->process($csv);
-
-        foreach ($records as $record) {
-
-            $data[$record['city']][] = $record['number'];
-
-        }
-
-        foreach ($data as $key => $value) {
-
-            $cityInfo = City::find()->where(['city' => $key])->one();
-
-            if ($cityInfo and $posts = Posts::find()->where(['updated_at' => 17, 'phone' => '', 'city_id' => $cityInfo->id])->all()) {
-
-                foreach ($posts as $post) {
-
-                    $post->phone = $value[\array_rand($value)];
-
-                    $post->save();
-
-                }
-
-            }
-
-        }
-
-    }
 
 }
