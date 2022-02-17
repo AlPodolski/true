@@ -398,11 +398,11 @@ class SiteController extends Controller
             'defaultPageSize' => Yii::$app->params['post_limit']
         ]);
 
-        $posts = $posts->offset($pages->offset)->all();
-
         if (Yii::$app->request->isPost){
 
             $page = Yii::$app->request->post('page') + 1;
+
+            $posts->offset(Yii::$app->params['post_limit'] * Yii::$app->request->post('page'));
 
             if ($posts) echo '<div data-url="/phone?page=' . $page . '" class="col-12"></div>';
 
@@ -417,6 +417,8 @@ class SiteController extends Controller
             exit();
 
         }
+
+        $posts = $posts->offset($pages->offset)->all();
 
         $uri = Yii::$app->request->url;
 
