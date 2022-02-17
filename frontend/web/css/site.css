@@ -48,13 +48,21 @@ body {
 .item-phone{
     margin-bottom: 15px;
     display: flex;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+}
+.item-phone .img{
+    border-radius: 50%;
 }
 .phone-wrap{
     margin-left: auto;
+    display: flex;
+    align-items: center;
 }
 .phone-wrap .red-bold-text{
     font-size: 19px;
     cursor: pointer;
+    margin-top: 0px;
 }
 .price-name-wrap{
     display: flex;
