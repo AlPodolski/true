@@ -379,8 +379,6 @@ class SiteController extends Controller
     public function actionPhone($city)
     {
 
-        Yii::$app->cache->flush();
-
         $cityInfo = City::getCity($city);
 
         $posts = Posts::find()->asArray()
