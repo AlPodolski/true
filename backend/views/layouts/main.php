@@ -132,7 +132,7 @@ FontAwesomeAsset::register($this);
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/obmenka" class="nav-link">
+                                <a href="/obmenka/index?sort=-id" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Оплаты</p>
                                 </a>
