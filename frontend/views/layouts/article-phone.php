@@ -60,7 +60,7 @@ $photoTitle = 'Проститутка ' . $post['name'];
                  data-tel="tel:+<?php echo preg_replace("/[^0-9]/", '', $post['phone']) ?>"
                  href="tel:+<?php echo preg_replace("/[^0-9]/", '', $post['phone']) ?>"
                  data-number="<?php echo $post['phone'] ?>"
-                 class="red-bold-text ">+<?php echo mb_substr($post['phone'], 0, -6) ?>... Показать номер </div>
+                 class="red-bold-text ">+<?php echo mb_substr($post['phone'], 0, -6) ?>... Показать телефон </div>
 
         <?php endif; ?>
     </div>

@@ -3612,6 +3612,18 @@ input.search::placeholder { color: #6d6d6d; }
     }
 }
 @media (max-width: 769px) {
+    .item-phone{
+        flex-direction: column;
+        align-items: center;
+    }
+    .price-name-wrap{
+        margin-top: 15px;
+        align-items: center;
+    }
+    .phone-wrap{
+        margin-left: inherit;
+        margin-top: 15px;
+    }
     .event-bell {
         margin-left: 88px;
     }
