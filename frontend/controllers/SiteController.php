@@ -402,7 +402,7 @@ class SiteController extends Controller
 
             $page = Yii::$app->request->post('page') + 1;
 
-            $posts->offset(Yii::$app->params['post_limit'] * Yii::$app->request->post('page'))->all();
+            $posts = $posts->offset(Yii::$app->params['post_limit'] * Yii::$app->request->post('page'))->all();
 
             if ($posts) echo '<div data-url="/phone?page=' . $page . '" class="col-12"></div>';
 
