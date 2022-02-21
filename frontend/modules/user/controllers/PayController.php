@@ -27,7 +27,7 @@ class PayController extends Controller
 
         if ($model->load(Yii::$app->request->post())){
 
-            if ($model->sum >= 199){
+            if ($model->sum >= 299){
 
                 if($model->currency == 3){
 
