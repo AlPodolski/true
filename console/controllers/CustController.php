@@ -17,31 +17,60 @@ class CustController extends Controller
     public function actionIndex()
     {
 
-        $cityList = array('Красноярск');
+        $cloudUrl = 'https://api.cloudflare.com/client/v4/zones//dns_records?';
 
-        foreach ($cityList as $item){
+        $dataRequest = 'content='.$oldIp.'&page=1&per_page=100';
 
-            if ($cityInfo = City::findOne(['city' => $item]) and $rayonList = Rayon::findAll(['city_id' => $cityInfo['id']])){
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $cloudUrl.$dataRequest);
+        //curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($content));  //Post Fields
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
-                if ($postsList = Posts::findAll(['city_id' => $cityInfo['id']])){
+        $headers = [
+            'X-Auth-Email: ' . 'anketa-dosug@yandex.ru',
+            'X-Auth-Key: ' . $token,
+            'Content-Type: application/json',
+        ];
 
-                    foreach ($postsList as $postItem){
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-                        $rayon = $rayonList[\array_rand($rayonList)];
+        $server_output = curl_exec($ch);
 
-                        $userRayon = new UserRayon();
+        $object = json_decode($server_output);
 
-                        $userRayon->city_id = $cityInfo['id'];
-                        $userRayon->rayon_id = $rayon['id'];
-                        $userRayon->post_id = $postItem['id'];
+        curl_close($ch);
 
-                        $userRayon->save();
+        foreach ($object->result as $item){
 
-                    }
+            if (!isset($item->id)) continue;
 
-                }
+            $zapid = $item->id;
 
-            }
+
+            // пытаемся поставить галочку на облаке
+            $zoneindetif = "https://api.cloudflare.com/client/v4/zones//dns_records/$zapid";
+
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $zoneindetif);
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            //curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($content));
+
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+            $headers = [
+                'X-Auth-Email: ' . 'anketa-dosug@yandex.ru',
+                'X-Auth-Key: ' . $token,
+                'Content-Type: application/json',
+            ];
+
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+            $server_output = curl_exec($ch);
 
         }
 

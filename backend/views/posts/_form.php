@@ -8,6 +8,14 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 /* @var $postMessageModel \common\models\PostMessage */
 
+$tarifList = array();
+
+foreach (\common\models\Tarif::getAll() as $item){
+
+    $tarifList[] = array( 'id' => $item['id'], 'value' => $item['value'] . ' - ' . $item['sum'].' руб. в час' );
+
+}
+
 ?>
 
 <div class="posts-form">
@@ -33,6 +41,13 @@ use yii\widgets\ActiveForm;
                     \frontend\modules\user\models\Posts::RETURNED_FOR_REVISION => 'На доработке',
                 ])
             ?>
+        </div>
+
+        <div class="col-4">
+            <?= $form->field($model, 'tarif_id')
+                ->dropDownList(\yii\helpers\ArrayHelper::map($tarifList, 'id' , 'value'))
+                ->label('Выберите тариф')?>
+
         </div>
 
         <div class="col-4">

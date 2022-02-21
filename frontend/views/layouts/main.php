@@ -650,22 +650,6 @@ AppAsset::register($this);
 </div>
 <!-- Modal -->
 <?php $this->endBody() ?>
-<?php if (Yii::$app->requestedParams['city'] == 'moskva') : ?>
-
-
-    <script>
-
-        $(document).scroll(function () {
-
-            $.getScript("//code-ya.jivosite.com/widget/N3G2svN2tk", function (data, textStatus, jqxhr) {
-                $("head").prepend('<link href="/css/jquery-ui.css" rel="stylesheet">');
-                filter();
-            });
-
-        });
-    </script>
-
-<?php endif; ?>
 
 </body>
 <!-- Yandex.Metrika counter -->
