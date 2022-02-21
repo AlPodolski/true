@@ -60,7 +60,7 @@ class PayController extends Controller
 
                 Yii::$app->session->setFlash('warning', 'Ошибка');
 
-            } else Yii::$app->session->setFlash('warning', 'Минимальная сумма 200');
+            } else Yii::$app->session->setFlash('warning', 'Минимальная сумма 300');
 
         }
 
