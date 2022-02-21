@@ -38,6 +38,8 @@ class UpController extends Controller
     {
         if ($post = Posts::find()->where(['id' => $id])->limit(1)->one()){
 
+            if ($post->status == Posts::POST_ON_MODARATION_STATUS or $post->status == Posts::RETURNED_FOR_REVISION) exit();
+
             $cityInfo = City::getCity($city);
 
             $user = User::findOne(Yii::$app->user->id);
