@@ -51,6 +51,16 @@ foreach (\common\models\Tarif::getAll() as $item){
         </div>
 
         <div class="col-4">
+            <?= $form->field($model, 'fake')
+                ->dropDownList( [
+                        \frontend\modules\user\models\Posts::POST_FAKE => 'Фейк',
+                        \frontend\modules\user\models\Posts::POST_REAL => 'Настоящий',
+                ] )
+                ->label('Фейк') ?>
+
+        </div>
+
+        <div class="col-4">
             <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
         </div>
 
