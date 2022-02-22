@@ -75,6 +75,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'phone',
             'price',
+            'user_id',
             [
                 'attribute' => 'Клик по номеру',
                 'format' => 'raw',
