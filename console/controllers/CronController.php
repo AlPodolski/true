@@ -20,6 +20,20 @@ class CronController extends Controller
         return true;
     }
 
+    public function actionSort()
+    {
+        $posts = Posts::find()->where(['fake' => Posts::POST_FAKE])->all();
+
+        foreach ($posts as $post){
+
+            $post->sort = rand(0, 1000);
+
+            $post->save();
+
+        }
+
+    }
+
     public function actionSendPostToTelegramChanel()
     {
         $posts = Posts::find()->with('gallery', 'avatar', 'metro')

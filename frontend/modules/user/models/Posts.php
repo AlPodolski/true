@@ -82,7 +82,7 @@ class Posts extends \yii\db\ActiveRecord
 
     public static function getOrder(): string
     {
-        return 'tarif_id DESC, RAND()';
+        return 'tarif_id DESC, sort DESC';
     }
 
     /**
