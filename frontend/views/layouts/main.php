@@ -437,7 +437,7 @@ AppAsset::register($this);
         <div class="login-form-wrap">
             <?php
 
-            echo \frontend\widgets\LoginWidget::run();
+            echo (new frontend\widgets\LoginWidget)->run();
 
             ?>
         </div>
@@ -477,7 +477,7 @@ AppAsset::register($this);
         <div class="login-form-wrap">
             <?php
 
-            echo \frontend\widgets\RegisterWidget::run();
+            echo (new frontend\widgets\RegisterWidget)->run();
 
             ?>
         </div>

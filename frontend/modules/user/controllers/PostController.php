@@ -244,7 +244,7 @@ class PostController extends Controller
 
         $post = Posts::find()->where(['id' => $id])->with('avatar', 'gal')->one();
 
-        if (!$post or $post['user_id'] != Yii::$app->user->id or Yii::$app->user->identity['status'] == \common\models\User::STATUS_INACTIVE) {
+        if (!$post or $post['user_id'] != Yii::$app->user->id) {
 
             Yii::$app->session->addFlash('warning', 'Отказано в доступе');
 
