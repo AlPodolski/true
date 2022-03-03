@@ -21,6 +21,7 @@ use yii\helpers\ArrayHelper;
  * @property integer $status
  * @property integer $category_id
  * @property integer $id_from_parse_site
+ * @property User $userRelations
  */
 class Advert extends \yii\db\ActiveRecord
 {

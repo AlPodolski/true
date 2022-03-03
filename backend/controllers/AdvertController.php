@@ -116,9 +116,19 @@ class AdvertController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        if ($advert = Advert::find()->where(['id' => $id])->with('userRelations')->one()){
 
-        return $this->redirect(['index']);
+            $advert->userRelations->cash = $advert->userRelations->cash + Yii::$app->params['advert_price'];
+
+            if ($advert->userRelations->save()) {
+
+                $advert->delete();
+
+                return $this->redirect('/advert/index?sort=-id');
+
+            }
+
+        }
     }
 
     /**

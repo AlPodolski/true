@@ -4,8 +4,10 @@
 namespace frontend\modules\advert\controllers;
 
 use common\models\AdvertCategory;
+use common\models\City;
 use frontend\helpers\MetaBuilder;
 use frontend\controllers\BeforeController as Controller;
+use frontend\modules\advert\components\helpers\AdvertHelper;
 use frontend\modules\advert\models\Advert;
 use Yii;
 use yii\data\Pagination;
@@ -17,23 +19,13 @@ class AdvertController extends Controller
 
         if (Yii::$app->user->isGuest) return $this->goHome();
 
-        $model = new Advert();
+        if (AdvertHelper::add( Yii::$app->request->post(), Yii::$app->user->identity )){
 
-        $model->timestamp = \time();
-
-        $model->user_id = Yii::$app->user->id;
-
-        if (Yii::$app->request->isPost and $model->load(Yii::$app->request->post()) and $model->save()){
-
-            Yii::$app->session->setFlash('success', 'Объявление добавлено');
-
-            return $this->goBack();
+            return $this->redirect('/advert');
 
         }
 
-        return $this->render('ad', [
-            'model' => $model,
-        ]);
+        return $this->redirect('/cabinet/pay');
 
     }
 

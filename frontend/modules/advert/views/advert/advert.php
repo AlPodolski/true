@@ -155,6 +155,12 @@ $this->params['breadcrumbs'][] = 'Объявления';
                                 <?= $advertForm->field($modelAdvert, 'text')
                                     ->textarea(['placeholder' => 'Описание', 'id' => ''])->label(false) ?>
 
+                                <p>
+                                    Стоимость объявления
+                                    <?php echo Yii::$app->params['advert_price']?>
+                                    руб.
+                                </p>
+
                             </div>
 
                             <div class="col-12">
