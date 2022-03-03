@@ -4,6 +4,7 @@
 namespace frontend\components\helpers;
 
 use common\models\User;
+use yii\web\IdentityInterface;
 
 class CashHelper
 {
@@ -14,7 +15,7 @@ class CashHelper
         return false;
     }
 
-    public static function babloSpiz(User $user, $sum)
+    public static function babloSpiz(IdentityInterface $user, $sum)
     {
         $user->cash = $user->cash - $sum;
 
