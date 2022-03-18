@@ -33,7 +33,7 @@ class ServiceListController extends Controller
     {
         $cityInfo = City::getCity($city);
 
-        $dataList = Rayon::find()->where(['city_id' => $cityInfo['id']])->with('posts')->all();
+        $dataList = Rayon::find()->where(['city_id' => $cityInfo['id']])->all();
 
         $url = 'rayon';
 
@@ -51,7 +51,7 @@ class ServiceListController extends Controller
     {
         $cityInfo = City::getCity($city);
 
-        $dataList = Metro::find()->where(['city_id' => $cityInfo['id']])->with('posts')->all();
+        $dataList = Metro::find()->where(['city_id' => $cityInfo['id']])->all();
 
         $url = 'metro';
 

@@ -859,7 +859,7 @@ class ImportController extends Controller
 
     public function actionWebmaster()
     {
-        $access_token = 'AQAAAABNB5owAAOcKiwrxUdFd05N';
+        $access_token = '';
         $host = 'sex-true.com';
 
         $opts = array(
