@@ -22,7 +22,21 @@ use yii\web\NotFoundHttpException;
 
 class PostController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => 'yii\filters\PageCache',
+                'only' => ['index'],
+                'duration' => 3600 * 24,
+                'variations' => [
+                    Yii::$app->request->url,
+                    Yii::$app->request->hostInfo,
+                ],
+            ],
+        ];
 
+    }
     /**
      * @inheritdoc
      */
