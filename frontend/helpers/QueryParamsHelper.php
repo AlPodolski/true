@@ -267,7 +267,7 @@ class QueryParamsHelper
 
             if (strstr($value, 'proverennye')){
 
-                $id = Posts::find()->select('id')->andWhere(['city_id' => $city['id']])->where(['check_photo_status' => 1])->asArray()->all();
+                $id = Posts::find()->select('id')->andWhere(['city_id' => $city['id']])->andWhere(['check_photo_status' => 1])->asArray()->all();
 
                 Yii::$app->params['breadcrumbs'][] = array(
                     'label'=> 'проверенные',
@@ -291,7 +291,7 @@ class QueryParamsHelper
 
             if (strstr($value, 'salon')){
 
-                $id = Posts::find()->select('id')->andWhere(['city_id' => $city['id']])->where(['category' => Posts::SALON_CATEGORY])->asArray()->all();
+                $id = Posts::find()->select('id')->andWhere(['city_id' => $city['id']])->andWhere(['category' => Posts::SALON_CATEGORY])->asArray()->all();
 
                 Yii::$app->params['breadcrumbs'][] = array(
                     'label'=> 'Интим салоны',
@@ -309,7 +309,7 @@ class QueryParamsHelper
 
                 $pol = Pol::findOne(['url' => $url]);
 
-                $id = Posts::find()->select('id')->andWhere(['city_id' => $city['id']])->where(['pol_id' => $pol['id']])->asArray()->all();
+                $id = Posts::find()->select('id')->andWhere(['city_id' => $city['id']])->andWhere(['pol_id' => $pol['id']])->asArray()->all();
 
                 Yii::$app->params['breadcrumbs'][] = array(
                     'label'=> 'Пол '.$pol['value'],
@@ -325,7 +325,7 @@ class QueryParamsHelper
                     'label'=> 'анкеты видео',
                 );
 
-                $id = Posts::find()->select('id')->andWhere(['city_id' => $city['id']])->where(['<>', 'video', ''])->asArray()->all();
+                $id = Posts::find()->select('id')->andWhere(['city_id' => $city['id']])->andWhere(['<>', 'video', ''])->asArray()->all();
 
                 $ids = self::intersect_data($id, $ids);
 
