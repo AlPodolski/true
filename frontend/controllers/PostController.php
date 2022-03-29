@@ -67,7 +67,8 @@ class PostController extends Controller
 
         if ($post){
 
-            $serviceListReview = ServiceReviewHelper::getPostServiceReview($id);
+            //$serviceListReview = ServiceReviewHelper::getPostServiceReview($id);
+            $serviceListReview = false;
 
             $cityInfo = City::find()->where(['id' => $post['city_id']])->one();
 
