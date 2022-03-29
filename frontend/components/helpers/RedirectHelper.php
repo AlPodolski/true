@@ -10,7 +10,7 @@ class RedirectHelper
     public static function redirect($city)
     {
 
-        if ($redirect = Redirect::findOne(['from' => $city])){
+        if ($redirect = Redirect::find()->where(['from' => $city])->cache(3600)->one()){
 
             if ($redirect->user_agent == Redirect::ALL_REDIRECT){
 

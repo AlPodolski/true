@@ -164,14 +164,14 @@ class SiteController extends Controller
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->andWhere(['pol_id' => Pol::WOMAN_POL])
             ->limit(Yii::$app->params['post_limit'])
-            //->cache(3600)
+            ->cache(60)
             ->orderBy(Posts::getOrder());
 
 
         $countQuery = clone $prPosts;
 
         $pages = new Pagination([
-            'totalCount' => $countQuery->cache(3600 * 4)->count(),
+            'totalCount' => $countQuery->cache(3600 * 12)->count(),
             'forcePageParam' => false,
             'defaultPageSize' => Yii::$app->params['post_limit']
         ]);

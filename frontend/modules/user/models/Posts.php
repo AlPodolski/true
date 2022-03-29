@@ -113,10 +113,15 @@ class Posts extends \yii\db\ActiveRecord
 
     public static function getTopList($cityId)
     {
-        return self::find()->where(['in', 'id', TopAnketBlock::getPostIds($cityId)])
+
+        $topAnketList = TopAnketBlock::getPostIds($cityId);
+
+        if ($topAnketList) return self::find()->where(['in', 'id', $topAnketList])
             ->with('avatar', 'metro', 'selphiCount', 'partnerId')
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->asArray()->all();
+
+        return false;
     }
 
     public function getTarif()
@@ -160,7 +165,7 @@ class Posts extends \yii\db\ActiveRecord
 
     public function getPartnerId()
     {
-        return $this->hasOne(User::class, ['id' => 'user_id'])->select('partner_id');
+        return $this->hasOne(User::class, ['id' => 'user_id'])->select('partner_id')->cache(3600);
     }
 
     public function getReadMessage() : ActiveQuery

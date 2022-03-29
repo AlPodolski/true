@@ -16,11 +16,11 @@ class QueryParamsHelper
     public static function getParams($params,$city)
     {
 
-        $city = City::find()->select('id')->where(['url' => $city])->asArray()->one();
+        $city = City::getCity($city);
 
         $params = explode('/', $params);
 
-        $filter_params = FilterParams::find()->asArray()->all();
+        $filter_params = FilterParams::find()->asArray()->cache(3600)->all();
 
         $ids = array();
 
@@ -49,11 +49,11 @@ class QueryParamsHelper
 
                         if ($className == 'frontend\models\Metro' or $className == 'common\models\Rayon'){
 
-                            $id = $className::find()->where(['url' => $url, 'city_id' => $city['id']])->asArray()->one();
+                            $id = $className::find()->where(['url' => $url, 'city_id' => $city['id']])->cache(3600)->asArray()->one();
 
                         }else{
 
-                            $id = $className::find()->where(['url' => $url])->asArray()->one();
+                            $id = $className::find()->where(['url' => $url])->cache(3600)->asArray()->one();
 
                         }
 

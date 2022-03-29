@@ -35,7 +35,7 @@ class LinkWidget extends Widget
 
             $links = $links->andWhere(['url' => $this->url])->all();
 
-            Yii::$app->cache->set(Yii::$app->params['fast_link_key_cache_pref'].'_'.$this->url, $data);
+            Yii::$app->cache->set('fast_link_key_cache_pref_'.$this->url, $data);
         }
 
         if (\strstr(Yii::$app->request->url, '?')) $url = \strstr(Yii::$app->request->url, '?', true);

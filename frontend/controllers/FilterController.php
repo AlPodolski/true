@@ -115,7 +115,7 @@ class FilterController extends Controller
             $countQuery = clone $posts;
 
             $pages = new Pagination([
-                'totalCount' => $countQuery->cache(3600 * 4)->count(),
+                'totalCount' => $countQuery->cache(3600 * 12)->count(),
                 'forcePageParam' => false,
                 'defaultPageSize' => Yii::$app->params['post_limit']]);
 
@@ -140,6 +140,7 @@ class FilterController extends Controller
                 ->with('avatar', 'metro', 'selphiCount', 'partnerId')
                 ->andWhere(['city_id' => $cityInfo['id']])
                 ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
+                ->cache(3600)
                 ->orderBy('RAND()')->all();
 
             return $this->render('index', [

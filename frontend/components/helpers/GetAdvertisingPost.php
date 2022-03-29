@@ -17,6 +17,7 @@ class GetAdvertisingPost
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->andWhere(['>', 'view', 0])
             ->limit(1)
+            ->cache(60)
             ->orderBy('RAND()')
             ->one()){
 

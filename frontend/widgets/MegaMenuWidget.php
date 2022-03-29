@@ -23,7 +23,7 @@ class MegaMenuWidget extends Widget
     public function run()
     {
 
-        $cityInfo = City::findOne(['url' => $this->city]);
+        $cityInfo = City::getCity($this->city);
 
         $metro = Metro::getMetro($cityInfo['id']);
         $rayon = Rayon::getAll($cityInfo['id']);
