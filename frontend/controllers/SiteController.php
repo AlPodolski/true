@@ -127,7 +127,7 @@ class SiteController extends Controller
 
             $posts = Posts::find()
                 ->asArray()
-                ->with('avatar', 'metro', 'selphiCount', 'partnerId')
+                ->with('avatar', 'metro', 'partnerId')
                 ->where(['city_id' => $cityInfo['id']])
                 ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
                 ->andWhere(['not in', 'id', $ids])
@@ -160,7 +160,7 @@ class SiteController extends Controller
         $webmaster = Webmaster::getTag($cityInfo['id']);
 
         $prPosts = Posts::find()->asArray()
-            ->with('avatar', 'metro', 'selphiCount', 'partnerId')
+            ->with('avatar', 'metro', 'partnerId')
             ->where(['city_id' => $cityInfo['id']])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->andWhere(['pol_id' => Pol::WOMAN_POL])
