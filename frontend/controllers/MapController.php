@@ -11,6 +11,23 @@ use frontend\controllers\BeforeController as Controller;
 
 class MapController extends Controller
 {
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => 'yii\filters\PageCache',
+                'only' => ['index'],
+                'duration' => 3600 * 24,
+                'variations' => [
+                    Yii::$app->request->url,
+                    Yii::$app->request->hostInfo,
+                ],
+            ],
+        ];
+
+    }
+
     public function actionIndex($city)
     {
 

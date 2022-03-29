@@ -54,6 +54,7 @@ class SiteController extends Controller
 
         return parent::beforeAction($action);
     }
+
     /**
      * {@inheritdoc}
      */
@@ -77,22 +78,22 @@ class SiteController extends Controller
     }
 
 
-    /*    public function behaviors()
-        {
-            return [
-                [
-                    'class' => 'yii\filters\PageCache',
-                    'only' => ['index'],
-                    'duration' => 3600 *24,
-                    'variations' => [
-                        Yii::$app->request->url,
-                        Yii::$app->request->post('page'),
-                        Yii::$app->request->hostInfo,
-                    ],
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => 'yii\filters\PageCache',
+                'only' => ['map'],
+                'duration' => 3600 * 24,
+                'variations' => [
+                    Yii::$app->request->url,
+                    Yii::$app->request->post('page'),
+                    Yii::$app->request->hostInfo,
                 ],
-            ];
+            ],
+        ];
 
-        }*/
+    }
 
     public function onAuthSuccess($client)
     {
@@ -109,7 +110,7 @@ class SiteController extends Controller
 
         if ($pager) {
 
-            return $this->redirect('/'.'?page='.$pager, 301);
+            return $this->redirect('/' . '?page=' . $pager, 301);
 
         }
 
@@ -129,7 +130,7 @@ class SiteController extends Controller
                 ->with('avatar', 'metro', 'selphiCount', 'partnerId')
                 ->where(['city_id' => $cityInfo['id']])
                 ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
-                ->andWhere(['not in' , 'id', $ids])
+                ->andWhere(['not in', 'id', $ids])
                 ->andWhere(['pol_id' => Pol::WOMAN_POL])
                 ->orderBy(Posts::getOrder())
                 ->limit(Yii::$app->params['post_limit']);
@@ -159,7 +160,7 @@ class SiteController extends Controller
         $webmaster = Webmaster::getTag($cityInfo['id']);
 
         $prPosts = Posts::find()->asArray()
-            ->with('avatar', 'metro', 'selphiCount' , 'partnerId')
+            ->with('avatar', 'metro', 'selphiCount', 'partnerId')
             ->where(['city_id' => $cityInfo['id']])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->andWhere(['pol_id' => Pol::WOMAN_POL])
@@ -180,7 +181,7 @@ class SiteController extends Controller
 
         $checkBlock = GetAdvertisingPost::get($cityInfo);
 
-        if($checkBlock) array_unshift($prPosts, $checkBlock);
+        if ($checkBlock) array_unshift($prPosts, $checkBlock);
 
         $uri = Yii::$app->request->url;
 
@@ -243,24 +244,24 @@ class SiteController extends Controller
 
     }
 
-    public function actionObmenkaPay($city,$protocol, $id)
+    public function actionObmenkaPay($city, $protocol, $id)
     {
 
-        if ($order = ObmenkaOrder::findOne(\str_replace(Yii::$app->params['obm-id-pref'],'' , $id))
+        if ($order = ObmenkaOrder::findOne(\str_replace(Yii::$app->params['obm-id-pref'], '', $id))
             and $order['status'] == ObmenkaOrder::WAIT
-            and $user = User::findOne($order['user_id'])){
+            and $user = User::findOne($order['user_id'])) {
 
             $obmenka = new Obmenka();
 
-            $data = $obmenka->getOrderInfo($id.'-'.Yii::$app->params['obm-id-pref']);
+            $data = $obmenka->getOrderInfo($id . '-' . Yii::$app->params['obm-id-pref']);
 
-            if (isset($data->amount) and $data->status == 'FINISHED'){
+            if (isset($data->amount) and $data->status == 'FINISHED') {
 
                 $transaction = Yii::$app->db->beginTransaction();
 
                 $order->status = ObmenkaOrder::FINISH;
 
-                $user->cash = $user->cash + (int) $order->sum;
+                $user->cash = $user->cash + (int)$order->sum;
 
                 if ($user->save() and $order->save()) {
 
@@ -269,7 +270,7 @@ class SiteController extends Controller
                     $billPayEvent = new BillPayEvent();
 
                     $billPayEvent->user_id = $user->id;
-                    $billPayEvent->sum = (int) $order->sum;
+                    $billPayEvent->sum = (int)$order->sum;
                     $billPayEvent->type = History::BALANCE_REPLENISHMENT;
                     $billPayEvent->balance = $user->cash;
 
@@ -277,17 +278,15 @@ class SiteController extends Controller
 
                     Yii::$app->session->setFlash('success', 'Оплата совершена успешно');
 
-                    return  $this->redirect($protocol.'://'.$city.'.'.Yii::$app->params['site_name']);
+                    return $this->redirect($protocol . '://' . $city . '.' . Yii::$app->params['site_name']);
 
-                }
-
-                else{
+                } else {
 
                     $transaction->rollBack();
 
                     Yii::$app->session->setFlash('warning', 'Ошибка');
 
-                    return  $this->redirect($protocol.'://'.$city.'.'.Yii::$app->params['site_name']);
+                    return $this->redirect($protocol . '://' . $city . '.' . Yii::$app->params['site_name']);
 
                 }
 
@@ -295,18 +294,18 @@ class SiteController extends Controller
 
         }
 
-        return  $this->redirect($protocol.'://moskva.'.Yii::$app->params['site_name']);
+        return $this->redirect($protocol . '://moskva.' . Yii::$app->params['site_name']);
 
     }
 
     public function actionPay()
     {
 
-        if (Yii::$app->request->isPost){
+        if (Yii::$app->request->isPost) {
 
             $log_file = fopen(Yii::getAlias("@frontend/web/files/pay_log5.txt"), 'a+');
-            fwrite($log_file, print_r($requestDAta = json_decode(file_get_contents('php://input')), true).PHP_EOL);
-            fwrite($log_file, print_r(getallheaders(), true).PHP_EOL);
+            fwrite($log_file, print_r($requestDAta = json_decode(file_get_contents('php://input')), true) . PHP_EOL);
+            fwrite($log_file, print_r(getallheaders(), true) . PHP_EOL);
             fclose($log_file);
 
             $sum = $requestDAta->bill->amount->value;
@@ -321,16 +320,16 @@ class SiteController extends Controller
             $payForm->sum = (int)\str_replace(' ', '', $sum);
             $payForm->bill_id = $billId;
 
-            if ($payForm->validate()){
+            if ($payForm->validate()) {
 
                 if ($payForm->pay()) return true;
 
-            }else{
+            } else {
 
                 $log_file = fopen(Yii::getAlias("@frontend/web/files/error_log.txt"), 'a+');
-                fwrite($log_file, print_r($requestDAta = json_decode(file_get_contents('php://input')), true).PHP_EOL);
-                fwrite($log_file, print_r($payForm->getErrors(), true).PHP_EOL);
-                fwrite($log_file, print_r(getallheaders(), true).PHP_EOL);
+                fwrite($log_file, print_r($requestDAta = json_decode(file_get_contents('php://input')), true) . PHP_EOL);
+                fwrite($log_file, print_r($payForm->getErrors(), true) . PHP_EOL);
+                fwrite($log_file, print_r(getallheaders(), true) . PHP_EOL);
                 fclose($log_file);
 
             }
@@ -382,7 +381,7 @@ class SiteController extends Controller
         $cityInfo = City::getCity($city);
 
         $posts = Posts::find()->asArray()
-            ->with('avatar', 'metro', 'selphiCount' , 'partnerId')
+            ->with('avatar', 'metro', 'selphiCount', 'partnerId')
             ->where(['city_id' => $cityInfo['id']])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->limit(Yii::$app->params['post_limit'])
@@ -398,7 +397,7 @@ class SiteController extends Controller
             'defaultPageSize' => Yii::$app->params['post_limit']
         ]);
 
-        if (Yii::$app->request->isPost){
+        if (Yii::$app->request->isPost) {
 
             $page = Yii::$app->request->post('page') + 1;
 
