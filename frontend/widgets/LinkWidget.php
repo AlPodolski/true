@@ -22,7 +22,7 @@ class LinkWidget extends Widget
 
         if ($data === false) {
             // $data нет в кэше, вычисляем заново
-            $links = Link::find()->asArray();
+            $links = Link::find()->asArray()->cache(3600 * 24);
 
             if (isset(Yii::$app->requestedParams)
                 and $city = City::getCity(Yii::$app->requestedParams['city'])
