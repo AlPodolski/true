@@ -239,7 +239,7 @@ class QueryParamsHelper
                 if ($url == 'tolstye') {
                     Yii::$app->params['breadcrumbs'][] = array(
                         'label'=> 'Высокие',
-                        'url'=> Yii::$app->params['breadcrumbs'] ? 'ves-tolstye' : '/rost-tolstye',
+                        'url'=> Yii::$app->params['breadcrumbs'] ? 'ves-tolstye' : '/ves-tolstye',
                     );
                     $price_params[] = ['>', 'ves' , 80];
                 }
@@ -247,7 +247,7 @@ class QueryParamsHelper
                 if ($url == 'hudye') {
                     Yii::$app->params['breadcrumbs'][] = array(
                         'label'=> 'Высокие',
-                        'url'=> Yii::$app->params['breadcrumbs'] ? 'ves-hudye' : '/rost-hudye',
+                        'url'=> Yii::$app->params['breadcrumbs'] ? 'ves-hudye' : '/ves-hudye',
                     );
                     $price_params[] = ['<', 'ves' , 60];
 
