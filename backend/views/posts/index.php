@@ -45,6 +45,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             return  "Публикуется";
                         case \frontend\modules\user\models\Posts::POST_DONT_PUBLICATION_STATUS:
                             return "Не публикуется";
+                        case \frontend\modules\user\models\Posts::RETURNED_FOR_REVISION:
+                            return "Анкета на доработке";
                     }
 
                     return 'Ошибка';
