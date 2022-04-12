@@ -11,7 +11,7 @@ header('Content-Type: text/plain; charset=UTF-8');
     Disallow: /rost-hudye*
     Disallow: /rost-tolstye*
     Disallow: /find*
-    <?php if ($city != 'moskva') echo 'Disallow: /forum' .PHP_EOL ?>
+    <?php echo 'Disallow: /forum' .PHP_EOL ?>
     <?php if ($city != 'moskva') echo 'Disallow: /forum/*' .PHP_EOL ?>
     Host: https://<?php echo $host.PHP_EOL ?>
     Sitemap: https://<?php echo $host ?>/sitemap.xml
