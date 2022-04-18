@@ -13,7 +13,7 @@ class PhotoForm extends Model
     public function rules()
     {
         return [
-            [['photo'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg', 'maxFiles' => 15],
+            [['photo'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg', 'maxFiles' => 15],
         ];
     }
 

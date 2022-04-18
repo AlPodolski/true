@@ -13,7 +13,7 @@ class AvatarForm extends Model
     public function rules()
     {
         return [
-            [['avatar'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
+            [['avatar'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg'],
         ];
     }
 
