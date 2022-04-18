@@ -51,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'options' => ['class' => 'form-horizontal'],
                 ]) ?>
 
-                <?= $form->field($model, 'sum')->textInput(['value' => 300]) ?>
+                <?= $form->field($model, 'sum')->textInput(['value' => 500]) ?>
 
 
                 <?= $form->field($model, 'currency')
