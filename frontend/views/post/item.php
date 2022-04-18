@@ -739,7 +739,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                 <?php $reviewCount = 0 ?>
 
-                <?php foreach ($serviceListReview as $service) : ?>
+                <?php if ($serviceListReview) foreach ($serviceListReview as $service) : ?>
 
                     <?php if (isset($service['review']) and $service['review']) : ?>
 
@@ -1193,7 +1193,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                             <?php $reviewCount = 0 ?>
 
-                            <?php foreach ($serviceListReview as $service) : ?>
+                            <?php if($serviceListReview) foreach ($serviceListReview as $service) : ?>
 
                                 <?php if (isset($service['review']) and $service['review']) : ?>
 
@@ -1668,7 +1668,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                 </div>
             </div>
 
-            <?php foreach ($serviceListReview as $service) : ?>
+            <?php if($serviceListReview) foreach ($serviceListReview as $service) : ?>
 
                 <?php if (isset($service['review']) and $service['review']) : ?>
 

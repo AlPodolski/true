@@ -5,6 +5,7 @@ namespace frontend\controllers;
 
 use common\models\City;
 use common\models\User;
+use frontend\helpers\GetPostHelper;
 use frontend\helpers\RequestHelper;
 use frontend\models\Files;
 use frontend\models\forms\AnketClaimForm;
@@ -22,21 +23,6 @@ use yii\web\NotFoundHttpException;
 
 class PostController extends Controller
 {
-    public function behaviors()
-    {
-        return [
-            [
-                'class' => 'yii\filters\PageCache',
-                'only' => ['index'],
-                'duration' => 3600 * 24,
-                'variations' => [
-                    Yii::$app->request->url,
-                    Yii::$app->request->hostInfo,
-                ],
-            ],
-        ];
-
-    }
     /**
      * @inheritdoc
      */
@@ -58,21 +44,12 @@ class PostController extends Controller
             exit();
         };
 
-        $post = Posts::find()->where(['id' => $id])
-            ->with('gal', 'metro', 'avatar', 'place', 'service',
-                'sites', 'rayon', 'nacionalnost',
-                'cvet', 'strizhka', 'selphiCount', 'serviceDesc', 'partnerId'
-            )
-            ->asArray()->limit(1)->one();
+        $post = GetPostHelper::getForSingle($id, $cityInfo['id']);
 
         if ($post){
 
             //$serviceListReview = ServiceReviewHelper::getPostServiceReview($id);
             $serviceListReview = false;
-
-            $cityInfo = City::find()->where(['id' => $post['city_id']])->one();
-
-            if ($city != $cityInfo['url']) throw new NotFoundHttpException();
 
             $backUrl = RequestHelper::getBackUrl($protocol);
 
