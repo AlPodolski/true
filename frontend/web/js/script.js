@@ -446,6 +446,25 @@ function add_phone_view(object) {
 
 }
 
+function get_fake_phone(object) {
+
+    var id = $(object).attr('data-id');
+    var price = $(object).attr('data-price');
+
+    $.ajax({
+        type: 'POST',
+        url: "/phone/get", //Путь к обработчику
+        data: 'id=' + id + '&price=' + price,
+        cache: false,
+        success: function (data) {
+            $(object).text(data);
+            window.location.href = phone;
+            get_phone_review_form(id);
+        }
+    })
+
+}
+
 function get_phone_review_form(id) {
 
     var target = 'phone-claim-form';
