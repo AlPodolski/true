@@ -458,8 +458,7 @@ function get_fake_phone(object) {
         cache: false,
         success: function (data) {
             $(object).text(data);
-            window.location.href = phone;
-            get_phone_review_form(id);
+            window.location.href = 'tel:+' + data;
         }
     })
 
