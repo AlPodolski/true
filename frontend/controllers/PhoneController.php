@@ -13,11 +13,11 @@ class PhoneController extends Controller
 
         $price = \Yii::$app->request->post('price');
 
-        $time = time() - (4 * 3600);
+        $time = time() - (3 * 3600);
 
         $phone = PhonesAdvert::find()
             ->where(['<', 'last_view' , $time])
-            ->andWhere(['>=' , 'price', $price - 500])
+            ->andWhere(['>=' , 'price', $price - 800])
             ->andWhere(['<=' , 'price', $price + 500])
             ->one();
 
