@@ -183,9 +183,11 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                                 <div data-id="<?php echo $post['id'] ?>"
 
-                                    <?php if (!$post['fake'] and $post['city_id'] == 1) : ?>
+                                    <?php if (!$post['fake']) : ?>
 
-                                        onclick="get_fake_phone(this)" data-id="<?php echo $post['id'] ?>" data-price="<?php echo $post['price'] ?>"
+                                        onclick="get_fake_phone(this)" data-id="<?php echo $post['id'] ?>"
+                                        data-city="<?php echo $post['city_id'] ?>"
+                                        data-price="<?php echo $post['price'] ?>"
 
                                     <?php else : ?>
 

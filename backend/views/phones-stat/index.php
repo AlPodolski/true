@@ -31,7 +31,23 @@ $this->params['breadcrumbs'][] = $this->title;
             'phone',
             'price',
             'view',
-            'last_view',
+            [
+                'attribute' => 'last_view',
+                'format' => 'raw',
+                'value' => function ($item) {
+                    /* @var $item \common\models\PhonesAdvert */
+                    return date('Y-m-d H:i:s', $item->last_view);
+                },
+            ],
+            [
+                'attribute' => 'city_id',
+                'format' => 'raw',
+                'value' => function ($item) {
+                    /* @var $item \common\models\PhonesAdvert */
+                    $item->getCity();
+                    return $item->city->city;
+                },
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

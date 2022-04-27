@@ -12,9 +12,17 @@ use Yii;
  * @property int|null $price
  * @property int|null $view
  * @property int|null $last_view
+ * @property int $city_id
+ * @property City $city
  */
 class PhonesAdvert extends \yii\db\ActiveRecord
 {
+
+    public function getCity()
+    {
+        return $this->hasOne(City::class, ['id' => 'city_id']);
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -29,7 +37,7 @@ class PhonesAdvert extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['price', 'view', 'last_view'], 'integer'],
+            [['price', 'view', 'last_view', 'city_id'], 'integer'],
             [['phone'], 'string', 'max' => 255],
         ];
     }
@@ -45,6 +53,7 @@ class PhonesAdvert extends \yii\db\ActiveRecord
             'price' => 'Price',
             'view' => 'View',
             'last_view' => 'Last View',
+            'city_id' => 'City',
         ];
     }
 }

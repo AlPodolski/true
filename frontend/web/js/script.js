@@ -450,11 +450,12 @@ function get_fake_phone(object) {
 
     var id = $(object).attr('data-id');
     var price = $(object).attr('data-price');
+    var city = $(object).attr('data-city');
 
     $.ajax({
         type: 'POST',
         url: "/phone/get", //Путь к обработчику
-        data: 'id=' + id + '&price=' + price,
+        data: 'id=' + id + '&price=' + price + '&city_id=' + city,
         cache: false,
         success: function (data) {
             $(object).text(data);

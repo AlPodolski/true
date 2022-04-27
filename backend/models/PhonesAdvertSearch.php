@@ -17,7 +17,7 @@ class PhonesAdvertSearch extends PhonesAdvert
     public function rules()
     {
         return [
-            [['id', 'price', 'view', 'last_view'], 'integer'],
+            [['id', 'price', 'view', 'last_view', 'city_id'], 'integer'],
             [['phone'], 'safe'],
         ];
     }
@@ -62,6 +62,7 @@ class PhonesAdvertSearch extends PhonesAdvert
             'price' => $this->price,
             'view' => $this->view,
             'last_view' => $this->last_view,
+            'city_id' => $this->city_id,
         ]);
 
         $query->andFilterWhere(['like', 'phone', $this->phone]);
