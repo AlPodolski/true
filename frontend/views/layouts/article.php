@@ -174,7 +174,7 @@ use frontend\widgets\PhotoWidget;
 
             <div data-id="<?php echo $post['id'] ?>"
 
-                <?php if (!$post['fake'] and $post['city_id'] == 1) : ?>
+                <?php if (!$post['fake']) : ?>
 
                     onclick="get_fake_phone(this)"
                     data-id="<?php echo $post['id'] ?>"
