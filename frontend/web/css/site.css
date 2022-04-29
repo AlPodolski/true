@@ -3395,6 +3395,10 @@ input.search::placeholder { color: #6d6d6d; }
 }
 .post-find-and-otzivi-count-block{
     display: flex;
+    margin-bottom: 15px;
+}
+.site-price.post-address {
+    margin-bottom: 20px;
 }
 .dopolnitaelno-btn{
     display: none;
@@ -3415,7 +3419,7 @@ input.search::placeholder { color: #6d6d6d; }
 }
 .main-params-wrap-on-page .main-param-item{
     padding: 3px 8px 2px 8px;
-    margin-top: 30px!important;
+    margin-top: 20px!important;
 }
 .post-marc:hover .marck-title{
     display: block;

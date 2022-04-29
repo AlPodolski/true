@@ -204,6 +204,8 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                         </div>
 
+                        <div class="red-text">Скажите что звоните с сайта <?php echo Yii::$app->request->serverName?>(секс тут) я и все пойму</div>
+
 
                         <div class="main-params-wrap main-params-wrap-on-page bottom-gallery d-flex">
                             <div class="main-param-item">
