@@ -853,24 +853,6 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                     </div>
 
-                    <div class="date">
-                        <div class="date-text">
-
-                            <?php
-
-                            $day = time() - $item['created_at'];
-
-                            $day = (intdiv($day, 3600 * 24));
-
-                            ?>
-
-                            <?php echo $day ?> <?php echo getNumEnding($day, ['день', 'дня', 'дней']); ?>
-
-                            назад
-
-                        </div>
-                    </div>
-
                     <div class="review-text">
                         <?php echo $item['text'] ?>
                     </div>
@@ -1304,24 +1286,6 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                                           fill="#31DA92"/>
                                 </svg>
 
-                            </div>
-
-                            <div class="date">
-                                <div class="date-text">
-
-                                    <?php
-
-                                    $day = time() - $item['created_at'];
-
-                                    $day = (intdiv($day, 3600 * 24));
-
-                                    ?>
-
-                                    <?php echo $day ?> <?php echo getNumEnding($day, ['день', 'дня', 'дней']); ?>
-
-                                    назад
-
-                                </div>
                             </div>
 
                             <div class="review-text">
@@ -1764,25 +1728,6 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                                                               fill="#31DA92"/>
                                                     </svg>
 
-                                                </div>
-                                            </div>
-                                            <div class="col-4">
-                                                <div class="date">
-                                                    <div class="date-text">
-
-                                                        <?php
-
-                                                        $day = time() - $item['created_at'];
-
-                                                        $day = (intdiv($day, 3600 * 24));
-
-                                                        ?>
-
-                                                        <?php echo $day ?> <?php echo getNumEnding($day, ['день', 'дня', 'дней']); ?>
-
-                                                        назад
-
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
