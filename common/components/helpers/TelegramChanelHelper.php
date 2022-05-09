@@ -72,6 +72,8 @@ class TelegramChanelHelper
     {
         $result = $post->name . ' ✅ '. \PHP_EOL;
 
+        $about = strip_tags($post->about);
+
         if ($post->breast) $result .= 'Грудь: ' . $post->breast . '  ' . \PHP_EOL;
 
         if ($post->rost) $result .= 'Рост: ' . $post->rost . '  ' . \PHP_EOL;
@@ -80,7 +82,7 @@ class TelegramChanelHelper
 
         if ($post->price) $result .= 'Цена: ' . $post->price . '  ' . \PHP_EOL;
 
-        if ($post->about) $result .= 'Обо мне: ' . $post->about . '' . \PHP_EOL;
+        if ($post->about) $result .= 'Обо мне: ' . $about . ' ' . \PHP_EOL;
 
         if ($post->phone) $result .= 'Номер: +' . $post->phone . \PHP_EOL;
 
