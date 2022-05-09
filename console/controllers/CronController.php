@@ -43,7 +43,7 @@ class CronController extends Controller
 
             TelegramChanelHelper::sendPostToChanel($post);
 
-            sleep(5);
+            sleep(30);
 
         }
 
