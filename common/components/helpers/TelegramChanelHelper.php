@@ -42,7 +42,7 @@ class TelegramChanelHelper
 
                 $result[] = [
                     'type' => 'photo',
-                    'media' => 'https://moskva.sex-true.com'.$item
+                    'media' => 'https://moskva.sex-tut.com'.$item
                 ];
 
                 $i++;
