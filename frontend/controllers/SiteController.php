@@ -108,7 +108,7 @@ class SiteController extends Controller
     public function actionIndex($city, $page = false, $pager = false)
     {
         $queue = Yii::$app->queue;
-        dd($queue);
+
         if ($pager) {
 
             return $this->redirect('/' . '?page=' . $pager, 301);
