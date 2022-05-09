@@ -10,6 +10,11 @@ return [
         'pay' => [
             'class' => 'common\components\service\PayService'
         ],
+        'queue' => [
+            'class' => \yii\queue\file\Queue::class,
+            'path' => '@console/runtime/queue',
+            'as log' => \yii\queue\LogBehavior::class,
+        ],
         'imageCache' => [
             'class' => 'frontend\components\service\image\ImageCache',
             'sourcePath' => '@frontend/web/uploads',
@@ -41,5 +46,8 @@ return [
                 'fontFile' => '@frontend/web/fonts/MullerExtraBold.ttf'
             ],
         ],
+    ],
+    'bootstrap' => [
+        'queue', // Компонент регистрирует свои консольные команды
     ],
 ];

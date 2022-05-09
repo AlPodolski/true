@@ -3,6 +3,7 @@
 namespace console\controllers;
 
 use common\components\helpers\TelegramChanelHelper;
+use common\jobs\SendPostToTelegramJob;
 use common\models\Phone;
 use common\models\PhoneReview;
 use frontend\modules\user\models\Posts;
@@ -41,13 +42,11 @@ class CronController extends Controller
 
         foreach ($posts as $post){
 
-            TelegramChanelHelper::sendPostToChanel($post);
-
-            sleep(61);
+            $id = Yii::$app->queue->delay(61)->push(new SendPostToTelegramJob([
+                'postId' => $post->id,
+            ]));
 
         }
-
-
 
     }
 

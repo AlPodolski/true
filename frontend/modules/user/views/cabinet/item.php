@@ -119,6 +119,13 @@ use frontend\modules\user\helpers\ViewCountHelper;
 
         </div>
 
+        <div class="anket-info send-to-telegram">
+            <span onclick="send_to_telegram(this)" data-id="<?php echo $post['id']?>" class="cursor-pointer">
+                Опубликовать в телегам канале
+            </span>
+        </div>
+        <a href="https://t.me/indi_tut">Посмотреть канал</a>
+
     </div>
 
 </div>

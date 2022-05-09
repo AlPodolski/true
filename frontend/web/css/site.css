@@ -14,7 +14,10 @@ body {
 .wrap > .container {
     padding: 70px 15px 20px;
 }
-
+.send-to-telegram{
+    margin-top: 10px;
+    margin-bottom: 0;
+}
 .jumbotron {
     text-align: center;
     background-color: transparent;
@@ -1917,7 +1920,7 @@ h1{
     border-radius: 50%;
 }
 .nav-cabinet-block{
-    height: 281px;
+    height: 330px;
 }
 .plus-wrap{
     width: 91px;

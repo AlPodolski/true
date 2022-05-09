@@ -6,8 +6,11 @@ namespace frontend\modules\user\controllers;
 use common\models\User;
 use common\components\helpers\TelegramHelper;
 use frontend\modules\user\models\forms\CheckTelegramForm;
+use frontend\modules\user\models\Posts;
 use Yii;
 use frontend\controllers\BeforeController as Controller;
+use yii\filters\VerbFilter;
+use common\jobs\SendPostToTelegramJob;
 
 class TelegramController extends Controller
 {
@@ -15,6 +18,13 @@ class TelegramController extends Controller
     {
         return [
             \common\behaviors\isAuth::class,
+            'verbs' => [
+                'class' => VerbFilter::class,
+                'actions' => [
+                    'send-post' => ['post'],
+                    'index' => ['get'],
+                ],
+            ],
         ];
     }
 
@@ -43,6 +53,19 @@ class TelegramController extends Controller
             'user' => $user,
             'tokenForm' => $tokenForm
         ]);
+    }
+
+    public function actionSendPost()
+    {
+        $id = Yii::$app->request->post('id');
+
+        if ($post = Posts::findOne($id) and $post->user_id == Yii::$app->user->id){
+
+            $id = Yii::$app->queue->delay(60)->push(new SendPostToTelegramJob([
+                'postId' => $post->id,
+            ]));
+
+        }
     }
 
 }
