@@ -69,7 +69,7 @@ class ServiceListController extends Controller
     {
         $cityInfo = City::getCity($city);
 
-        $dataList = Service::find()->with('posts')->all();
+        $dataList = Service::find()->all();
 
         $url = 'usluga';
 
