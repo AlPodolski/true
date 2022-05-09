@@ -42,7 +42,7 @@ class TelegramChanelHelper
 
                 $result[] = [
                     'type' => 'photo',
-                    'media' => 'https://moskva.sex-true.com'.Yii::$app->imageCache->thumbSrc($item, '1024')
+                    'media' => 'https://moskva.sex-true.com'.$item
                 ];
 
                 $i++;
@@ -63,7 +63,7 @@ class TelegramChanelHelper
             'type' => 'photo',
             'parse_mode' => 'html',
             'caption' => self::prepareTextAboutPost($post),
-            'media' => 'https://moskva.sex-true.com'.Yii::$app->imageCache->thumbSrc($post->avatar->file, '1024')
+            'media' => 'https://moskva.sex-true.com'.$post->avatar->file
         ]
         );
     }
