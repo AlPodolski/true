@@ -13,11 +13,15 @@ class TelegramChanelHelper
     public static function sendPostToChanel(Posts $post)
     {
 
+        $media = self::preparePostInfo($post);
+
+        Yii::debug($media);
+
         return Yii::$app->telegramChanel->sendMediaGroup([
 
             'chat_id' => Yii::$app->params['telegramChanelId'],
 
-            'media' => \json_encode(self::preparePostInfo($post)),
+            'media' => \json_encode($media),
 
         ]);
     }
