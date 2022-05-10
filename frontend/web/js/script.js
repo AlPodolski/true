@@ -19,7 +19,7 @@ function send_to_telegram(object){
         cache: false,
         success: function (data) {
 
-
+            $(object).text(data).attr('onclick', '')
 
         }
     })

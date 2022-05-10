@@ -133,7 +133,7 @@ use frontend\modules\user\models\Posts;
 
             <div class="anket-info send-to-telegram">
                 <span onclick="send_to_telegram(this)" data-id="<?php echo $post['id'] ?>" class="cursor-pointer">
-                    Опубликовать в телегам канале
+                    Опубликовать в телегам канале (<?php echo Yii::$app->params['publication_telegram_cost'] ?>р.)
                 </span>
             </div>
 

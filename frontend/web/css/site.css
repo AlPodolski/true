@@ -1922,6 +1922,9 @@ h1{
 .nav-cabinet-block{
     height: 330px;
 }
+.send-to-telegram{
+    font-size: 13px;
+}
 .plus-wrap{
     width: 91px;
     height: 91px;
