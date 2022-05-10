@@ -30,6 +30,7 @@ use frontend\modules\user\components\obmenka\Obmenka;
 use yii\base\BaseObject;
 use yii\data\Pagination;
 use frontend\controllers\BeforeController as Controller;
+use yii\queue\Queue;
 
 /**
  * Site controller
@@ -107,8 +108,6 @@ class SiteController extends Controller
      */
     public function actionIndex($city, $page = false, $pager = false)
     {
-        $queue = Yii::$app->queue;
-
         if ($pager) {
 
             return $this->redirect('/' . '?page=' . $pager, 301);

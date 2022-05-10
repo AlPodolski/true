@@ -11,9 +11,11 @@ return [
             'class' => 'common\components\service\PayService'
         ],
         'queue' => [
-            'class' => \yii\queue\file\Queue::class,
-            'path' => '@console/runtime/queue',
-            'as log' => \yii\queue\LogBehavior::class,
+            'class' => \yii\queue\db\Queue::class,
+            'db' => 'db', // DB connection component or its config
+            'tableName' => '{{%queue}}', // Table name
+            'channel' => 'default', // Queue channel key
+            'mutex' => \yii\mutex\MysqlMutex::class, // Mutex used to sync queries
         ],
         'imageCache' => [
             'class' => 'frontend\components\service\image\ImageCache',
