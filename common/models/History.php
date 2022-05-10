@@ -22,6 +22,7 @@ class History extends \yii\db\ActiveRecord
     const UP_ANKET = 2;
     const BUY_VIEW = 3;
     const POST_PUBLICATION = 4;
+    const POST_PUBLICATION_TELEGRAM = 5;
 
     /**
      * {@inheritdoc}

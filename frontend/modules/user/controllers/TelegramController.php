@@ -3,6 +3,7 @@
 
 namespace frontend\modules\user\controllers;
 
+use common\models\History;
 use common\models\User;
 use common\components\helpers\TelegramHelper;
 use frontend\modules\user\models\forms\CheckTelegramForm;
@@ -57,15 +58,33 @@ class TelegramController extends Controller
 
     public function actionSendPost()
     {
-        $id = Yii::$app->request->post('id');
 
-        if ($post = Posts::findOne($id) and $post->user_id == Yii::$app->user->id){
+        $user = Yii::$app->user->identity;
 
-            $id = Yii::$app->queue->delay(60)->push(new SendPostToTelegramJob([
-                'postId' => $post->id,
-            ]));
+        if ($user['cash'] >= $cost = Yii::$app->params['publication_telegram_cost']){
+
+            $id = Yii::$app->request->post('id');
+
+            if ($post = Posts::findOne($id) and $post->user_id == Yii::$app->user->id){
+
+                $id = Yii::$app->queue->push(new SendPostToTelegramJob([
+                    'postId' => $post->id,
+                ]));
+
+                if (Yii::$app->pay->pay($cost, $post['user_id'], History::POST_PUBLICATION_TELEGRAM, $post['id'])) {
+
+                    if ($id) return 'Добавлена в очередь';
+
+                }
+
+                return 'Ошибка';
+
+            }
 
         }
+
+        return 'Недостаточно средств';
+
     }
 
 }

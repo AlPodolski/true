@@ -19,4 +19,5 @@ return [
     'user_first_post_cache_key' => 'user_first_post',
     'hour_pay_sum' => 3,
     'phone_min_rating_for_publication' => -4,
+    'publication_telegram_cost' => 100,
 ];
