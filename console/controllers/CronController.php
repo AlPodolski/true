@@ -37,12 +37,16 @@ class CronController extends Controller
 
     public function actionSendPostToTelegramChanel()
     {
-        $posts = Posts::find()->with('gallery', 'avatar', 'metro')
-            ->where(['city_id' => 1])->orderBy('RAND()')->limit(8)->all();
+        $posts = Posts::find()
+            ->select('id')
+            ->where(['city_id' => 1])
+            ->orderBy('RAND()')
+            ->limit(8)
+            ->all();
 
         foreach ($posts as $post){
 
-            $id = Yii::$app->queue->delay(61)->push(new SendPostToTelegramJob([
+            $id = Yii::$app->queue->push(new SendPostToTelegramJob([
                 'postId' => $post->id,
             ]));
 
