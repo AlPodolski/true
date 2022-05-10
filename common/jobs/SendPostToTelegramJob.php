@@ -22,7 +22,7 @@ class SendPostToTelegramJob extends BaseObject implements JobInterface
             ->limit(1)
             ->one();
 
-        Yii::debug($post);
+        TelegramChanelHelper::sendPostToChanel($post);
     }
 
 }
