@@ -3,9 +3,12 @@
 
 namespace frontend\controllers;
 
+use common\jobs\SendMediaToTelegram;
+use common\jobs\SendPostToTelegramJob;
 use common\models\TelegramLastUpdate;
 use common\models\TelegramToken;
 use common\components\helpers\TelegramHelper;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Yii;
 use frontend\controllers\BeforeController as Controller;
 use aki\telegram\base\Command;
@@ -17,7 +20,6 @@ class TelegramController extends Controller
 
     public function beforeAction($action)
     {
-
         $this->enableCsrfValidation = false;
 
         return parent::beforeAction($action);
@@ -87,4 +89,24 @@ class TelegramController extends Controller
         }
 
     }
+
+    public function actionSend()
+    {
+
+        $key = Yii::$app->params['telegram_action_key'];
+
+        $keyFromRequest = Yii::$app->request->post('key');
+
+        if ($keyFromRequest != $key) throw new AccessDeniedException();
+
+        $data = Yii::$app->request->post('data');
+
+        $id = Yii::$app->queue->push(new SendMediaToTelegram([
+            'data' => $data,
+        ]));
+
+        return $id;
+
+    }
+
 }

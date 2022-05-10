@@ -151,6 +151,7 @@ return [
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/site/reset-password' => 'user/user/reset-password',
 
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/tele/index' => 'telegram/index',
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/telegram/send' => 'telegram/send',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/telegram' => 'user/telegram/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/call' => 'user/call/index',
 

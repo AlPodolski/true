@@ -10,16 +10,14 @@ use yii\helpers\Html;
 
 class TelegramChanelHelper
 {
-    public static function sendPostToChanel(Posts $post)
+    public static function sendPostToChanel($media)
     {
-
-        $media = self::preparePostInfo($post);
 
         return Yii::$app->telegramChanel->sendMediaGroup([
 
             'chat_id' => Yii::$app->params['telegramChanelId'],
 
-            'media' => \json_encode($media),
+            'media' => $media,
 
         ]);
     }
@@ -27,7 +25,15 @@ class TelegramChanelHelper
     public static function preparePostInfo(Posts $post)
     {
 
-        return (\array_merge(self::prepareAvatarAndTextInfo($post), self::prepareMedia($post)));
+        $postAvatar = self::prepareAvatarAndTextInfo($post);
+
+        $postMedia = self::prepareMedia($post);
+
+        $resultData = \array_merge($postMedia, $postAvatar);
+
+        $resultData = \json_encode($resultData);
+
+        return $resultData;
 
     }
 

@@ -6,7 +6,6 @@ use common\components\helpers\TelegramChanelHelper;
 use frontend\modules\user\models\Posts;
 use yii\queue\JobInterface;
 use yii\base\BaseObject;
-use Yii;
 
 class SendPostToTelegramJob extends BaseObject implements JobInterface
 {
@@ -22,7 +21,9 @@ class SendPostToTelegramJob extends BaseObject implements JobInterface
             ->limit(1)
             ->one();
 
-        TelegramChanelHelper::sendPostToChanel($post);
+        $media = TelegramChanelHelper::preparePostInfo($post);
+
+        TelegramChanelHelper::sendPostToChanel($media);
     }
 
 }
