@@ -9,7 +9,7 @@ use yii\base\Component;
 
 class HistoryService extends Component
 {
-    public function addToHistory(BillPayEvent $event)
+    public static function addToHistory(BillPayEvent $event)
     {
         $history = new History();
 

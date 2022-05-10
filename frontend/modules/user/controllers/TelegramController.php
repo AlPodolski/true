@@ -67,11 +67,11 @@ class TelegramController extends Controller
 
             if ($post = Posts::findOne($id) and $post->user_id == Yii::$app->user->id){
 
-                $id = Yii::$app->queue->push(new SendPostToTelegramJob([
-                    'postId' => $post->id,
-                ]));
-
                 if (Yii::$app->pay->pay($cost, $post['user_id'], History::POST_PUBLICATION_TELEGRAM, $post['id'])) {
+
+                    $id = Yii::$app->queue->push(new SendPostToTelegramJob([
+                        'postId' => $post->id,
+                    ]));
 
                     if ($id) return 'Добавлена в очередь';
 

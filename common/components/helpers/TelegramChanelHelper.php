@@ -15,8 +15,6 @@ class TelegramChanelHelper
 
         $media = self::preparePostInfo($post);
 
-        Yii::debug($media);
-
         return Yii::$app->telegramChanel->sendMediaGroup([
 
             'chat_id' => Yii::$app->params['telegramChanelId'],
@@ -46,7 +44,7 @@ class TelegramChanelHelper
 
                 $result[] = [
                     'type' => 'photo',
-                    'media' => 'https://moskva.sex-tut.com'.$item
+                    'media' => 'https://moskva.sex-tut.com'.Yii::$app->imageCache->thumbSrc($item, '1024')
                 ];
 
                 $i++;
@@ -67,7 +65,7 @@ class TelegramChanelHelper
             'type' => 'photo',
             'parse_mode' => 'html',
             'caption' => self::prepareTextAboutPost($post),
-            'media' => 'https://moskva.sex-true.com'.$post->avatar->file
+            'media' => 'https://moskva.sex-true.com'.Yii::$app->imageCache->thumbSrc($post->avatar->file, '1024')
         ]
         );
     }
