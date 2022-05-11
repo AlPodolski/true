@@ -6,6 +6,7 @@ use common\components\helpers\TelegramChanelHelper;
 use common\jobs\SendPostToTelegramJob;
 use common\models\Phone;
 use common\models\PhoneReview;
+use common\models\SendPostToTelegram;
 use frontend\modules\user\models\Posts;
 use frontend\modules\user\models\TopAnketBlock;
 use Yii;
@@ -49,6 +50,20 @@ class CronController extends Controller
             $id = Yii::$app->queue->push(new SendPostToTelegramJob([
                 'postId' => $post->id,
             ]));
+
+            if ($id){
+
+                $sendPostToTelegram = new SendPostToTelegram();
+
+                $sendPostToTelegram->post_id = $post->id;
+                $sendPostToTelegram->created_at = time();
+                $sendPostToTelegram->job_id = $id;
+
+                $sendPostToTelegram->save();
+
+            }
+
+
 
         }
 
