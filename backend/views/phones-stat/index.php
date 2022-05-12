@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use common\models\PhonesAdvert;
+
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\PhonesAdvertSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -40,12 +42,33 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
             [
+                'attribute' => 'created_at',
+                'format' => 'raw',
+                'value' => function ($item) {
+                    /* @var $item \common\models\PhonesAdvert */
+                    return date('Y-m-d H:i:s', $item->created_at);
+                },
+            ],
+            [
                 'attribute' => 'city_id',
                 'format' => 'raw',
                 'value' => function ($item) {
                     /* @var $item \common\models\PhonesAdvert */
                     $item->getCity();
                     return $item->city->city;
+                },
+            ],
+            [
+                'attribute' => 'status',
+                'format' => 'raw',
+                'value' => function ($item) {
+                    /* @var $item \common\models\PhonesAdvert */
+                    switch ($item->status) {
+                        case \common\models\PhonesAdvert::PUBLICATION_STATUS:
+                            return  "Публикуется";
+                        case \common\models\PhonesAdvert::DONT_PUBLICATION_STATUS:
+                            return  "Не публикуется";
+                    }
                 },
             ],
 

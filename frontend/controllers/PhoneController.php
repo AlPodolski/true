@@ -21,6 +21,8 @@ class PhoneController extends Controller
             ->andWhere(['<=' , 'price', $price + 100])
             ->andWhere(['>=' , 'price', $price - 1000])
             ->andWhere(['city_id' => $city_id])
+            ->andWhere(['status' => PhonesAdvert::PUBLICATION_STATUS])
+            ->orderBy('view DESC')
             ->one();
 
         if ($phone){
