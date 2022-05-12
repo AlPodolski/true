@@ -14,7 +14,7 @@ class PhoneController extends Controller
         $price = \Yii::$app->request->post('price');
         $city_id = \Yii::$app->request->post('city_id');
 
-        $time = time() - (3600);
+        $time = time() - (1800);
 
         $phone = PhonesAdvert::find()
             ->where(['<', 'last_view' , $time])
