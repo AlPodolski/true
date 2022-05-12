@@ -67,7 +67,7 @@ class PhonesStatController extends Controller
         $model = new PhonesAdvert();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect('/phones-stat/create');
         }
 
         return $this->render('create', [
