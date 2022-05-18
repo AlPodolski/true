@@ -501,6 +501,7 @@ AppAsset::register($this);
     <?php endif; ?>
 
     <div class="container custom-container">
+        <div class="alert alert-info">Не переводите деньги заранее и скажите что звоните с сайта <?php echo Yii::$app->request->serverName?></div>
         <?php
 
         echo \frontend\widgets\BreadcrumbMicro::widget();
