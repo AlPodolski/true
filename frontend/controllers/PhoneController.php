@@ -14,13 +14,15 @@ class PhoneController extends Controller
         $price = \Yii::$app->request->post('price');
         $city_id = \Yii::$app->request->post('city_id');
 
-        $time = time() - (3600);
+        $time = time() - (1800);
 
         $phone = PhonesAdvert::find()
             ->where(['<', 'last_view' , $time])
-            ->andWhere(['<=' , 'price', $price + 100])
+            ->andWhere(['<=' , 'price', $price + 1100])
             ->andWhere(['>=' , 'price', $price - 1000])
             ->andWhere(['city_id' => $city_id])
+            ->andWhere(['status' => PhonesAdvert::PUBLICATION_STATUS])
+            ->orderBy('view DESC')
             ->one();
 
         if ($phone){

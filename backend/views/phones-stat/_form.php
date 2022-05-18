@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'price')->textInput() ?>
+    <?= $form->field($model, 'price')->textInput(['value' => $model->price ?? 2000]) ?>
 
     <?= $form->field($model, 'view')->textInput() ?>
 
