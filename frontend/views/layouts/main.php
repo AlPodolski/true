@@ -70,7 +70,7 @@ AppAsset::register($this);
 
                         <li itemprop="name" class="top-menu-item"><a itemprop="url" href="/pol-muzhskoj">Жиголо</a></li>
                         <li itemprop="name" class="top-menu-item"><a itemprop="url" href="/pol-trans">Трансы</a></li>
-                        <li itemprop="name" class="top-menu-item"><a itemprop="url" href="https://t.me/indi_tut">Мы в
+                        <li itemprop="name" class="top-menu-item"><a rel=”nofollow” itemprop="url" href="https://t.me/indi_tut">Мы в
                                 телеграм</a></li>
                         <li itemprop="name" class="top-menu-item"><a class="small-red-text" itemprop="url" href="/map">Интим
                                 карта</a></li>
@@ -304,7 +304,7 @@ AppAsset::register($this);
                         <li class="nav-item"><a href="/advert">Объявления</a></li>
                         <li class="nav-item"><a href="/pol-muzhskoj">Жиголо</a></li>
                         <li class="nav-item"><a href="/pol-trans">Трансы</a></li>
-                        <li class="nav-item"><a href="https://t.me/indi_tut">Мы в телеграм</a></li>
+                        <li class="nav-item"><a rel=”nofollow” href="https://t.me/indi_tut">Мы в телеграм</a></li>
                         <li class="nav-item"><a class="small-red-text" href="/salon">Интим салоны</a></li>
                         <li class="nav-item"><a class="small-red-text" href="/map">Интим карта</a></li>
                     <?php endif; ?>
@@ -379,7 +379,7 @@ AppAsset::register($this);
                             <li class="nav-item"><a href="/favorite/list">Избранное</a></li>
                             <?php if (Yii::$app->requestedParams['city'] == 'moskva') : ?>
                                 <li class="nav-item"><a href="/advert">Объявления</a></li>
-                                <li class="nav-item"><a href="https://t.me/indi_tut">Мы в телеграм</a></li>
+                                <li class="nav-item"><a rel=”nofollow” href="https://t.me/indi_tut">Мы в телеграм</a></li>
                             <?php endif; ?>
 
                             <li class="nav-item" onclick="get_claim_modal()"><a>Обратная связь</a></li>
