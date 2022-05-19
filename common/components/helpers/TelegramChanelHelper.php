@@ -55,7 +55,7 @@ class TelegramChanelHelper
 
                 $i++;
 
-                if ($i > 4) break;
+                if ($i >= 3) break;
 
             }
 
