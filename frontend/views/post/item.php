@@ -306,6 +306,27 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                         </div>
 
+                        <div class="price-wrap">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Експресс</th>
+                                    <th scope="col">Час</th>
+                                    <th scope="col">2 часа</th>
+                                    <th scope="col">Ночь</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><?php echo $post['express_price'] ?? '-'?></td>
+                                    <td><?php echo $post['price'] ?? '-'?></td>
+                                    <td><?php echo $post['price_2_hour'] ?? '-'?></td>
+                                    <td><?php echo $post['price_night'] ?? '-'?></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
 
                     <div class="post-info-table-wrapper mobile-rating-info-table">
