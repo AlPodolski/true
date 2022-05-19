@@ -267,19 +267,6 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                         <div class="post-find-and-otzivi-count-block">
 
-                            <div class=" single-date-wrap d-flex">
-                                <div class="icon find-date-icon">
-                                    <svg width="9" height="9" viewBox="0 0 9 9" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M6.60468 5.8101C7.04756 5.20531 7.31247 4.46243 7.31247 3.6571C7.31247 1.64111 5.67221 0.000854492 3.65622 0.000854492C1.64024 0.000854492 0 1.64111 0 3.6571C0 5.67308 1.64026 7.31334 3.65624 7.31334C4.46158 7.31334 5.20452 7.0484 5.80931 6.60552L8.2046 9.0008L9 8.2054C9 8.20538 6.60468 5.8101 6.60468 5.8101ZM3.65624 6.18834C2.26043 6.18834 1.125 5.05291 1.125 3.6571C1.125 2.26129 2.26043 1.12586 3.65624 1.12586C5.05205 1.12586 6.18748 2.26129 6.18748 3.6571C6.18748 5.05291 5.05204 6.18834 3.65624 6.18834Z"
-                                              fill="white"/>
-                                    </svg>
-                                </div>
-                                <div class="date d-flex">
-                                    <div class="find-date">Найдено
-                                    </div> <?php echo date('m.d.y', $post['created_at']) ?> </div>
-                            </div>
-
                             <div class="otzivi-count d-flex">
                                 <div class="icon otzivi-count-icon">
                                     <svg width="9" height="9" viewBox="0 0 9 9" fill="none"
