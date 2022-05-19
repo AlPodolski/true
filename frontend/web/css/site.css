@@ -1925,6 +1925,10 @@ h1{
 .send-to-telegram{
     font-size: 13px;
 }
+.marc-wrap {
+    display: flex;
+    color: #fff;
+}
 .plus-wrap{
     width: 91px;
     height: 91px;
