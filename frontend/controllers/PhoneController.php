@@ -18,8 +18,8 @@ class PhoneController extends Controller
 
         $phone = PhonesAdvert::find()
             ->where(['<', 'last_view' , $time])
-            ->andWhere(['<=' , 'price', $price + 1100])
-            ->andWhere(['>=' , 'price', $price - 1000])
+            //->andWhere(['<=' , 'price', $price + 1100])
+            //->andWhere(['>=' , 'price', $price - 1000])
             ->andWhere(['city_id' => $city_id])
             ->andWhere(['status' => PhonesAdvert::PUBLICATION_STATUS])
             ->orderBy('view DESC')
