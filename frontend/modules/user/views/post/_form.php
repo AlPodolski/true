@@ -321,7 +321,16 @@ foreach (\common\models\Tarif::getAll() as $item){
                         <?= $form->field($post, 'about')->textarea() ?>
                     </div>
                     <div class="col-12 col-sm-6">
+                        <?= $form->field($post, 'express_price')->textInput() ?>
+                    </div>
+                    <div class="col-12 col-sm-6">
                         <?= $form->field($post, 'price')->textInput() ?>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <?= $form->field($post, 'price_2_hour')->textInput() ?>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <?= $form->field($post, 'price_night')->textInput() ?>
                     </div>
                     <div class="col-12 col-sm-6">
                         <?= $form->field($post, 'age')->textInput() ?>

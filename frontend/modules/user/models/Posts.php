@@ -352,6 +352,9 @@ class Posts extends \yii\db\ActiveRecord
             'breast' => 'Грудь',
             'ves' => 'Вес',
             'price' => 'Цена',
+            'express_price' => 'Цена за експроесс',
+            'price_2_hour' => 'Цена за 2 часа',
+            'price_night' => 'Цена за ночь',
             'status' => 'Статус',
             'retouching_photo_status' => 'Ретуш фото',
         ];
