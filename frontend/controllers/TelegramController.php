@@ -5,6 +5,7 @@ namespace frontend\controllers;
 
 use common\jobs\SendMediaToTelegram;
 use common\jobs\SendPostToTelegramJob;
+use common\models\Queue;
 use common\models\TelegramLastUpdate;
 use common\models\TelegramToken;
 use common\components\helpers\TelegramHelper;
@@ -101,7 +102,9 @@ class TelegramController extends Controller
 
         $data = Yii::$app->request->post('data');
 
-        $id = Yii::$app->queue->push(new SendMediaToTelegram([
+        $jobsCount = Queue::find()->count() + 1;
+
+        $id = Yii::$app->queue->delay($jobsCount * 60)->push(new SendMediaToTelegram([
             'data' => $data,
         ]));
 

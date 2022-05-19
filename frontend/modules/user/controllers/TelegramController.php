@@ -4,6 +4,7 @@
 namespace frontend\modules\user\controllers;
 
 use common\models\History;
+use common\models\Queue;
 use common\models\User;
 use common\components\helpers\TelegramHelper;
 use frontend\modules\user\models\forms\CheckTelegramForm;
@@ -69,7 +70,9 @@ class TelegramController extends Controller
 
                 if (Yii::$app->pay->pay($cost, $post['user_id'], History::POST_PUBLICATION_TELEGRAM, $post['id'])) {
 
-                    $id = Yii::$app->queue->push(new SendPostToTelegramJob([
+                    $jobsCount = Queue::find()->count() + 1;
+
+                    $id = Yii::$app->queue->delay($jobsCount * 60)->push(new SendPostToTelegramJob([
                         'postId' => $post->id,
                     ]));
 
