@@ -42,7 +42,11 @@ class LoginWidget extends Widget
             ]) ?>
         </div>
 
-
+        <!-- Yandex.Metrika informer -->
+        <a href="https://metrika.yandex.ru/stat/?id=70919698&amp;from=informer"
+           target="_blank" rel="nofollow"><img src="https://informer.yandex.ru/informer/70919698/3_1_FFFFFFFF_EFEFEFFF_0_pageviews"
+                                               style="width:88px; height:31px; border:0; margin-top: 15px" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" /></a>
+        <!-- /Yandex.Metrika informer -->
 
         <div class="login-register-btns">
             <?= Html::submitButton('Войти', ['class' => 'in-btn', 'name' => 'login-button']) ?>
