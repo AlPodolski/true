@@ -20,6 +20,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'last_view')->textInput() ?>
 
+    <?= $form->field($model, 'status')->dropDownList([
+            \common\models\PhonesAdvert::DONT_PUBLICATION_STATUS => 'Не публикуется',
+            \common\models\PhonesAdvert::PUBLICATION_STATUS => 'Публикуется',
+    ]) ?>
+
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
