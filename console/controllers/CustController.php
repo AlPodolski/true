@@ -14,6 +14,21 @@ use yii\console\Controller;
 
 class CustController extends Controller
 {
+    public function actionPrice()
+    {
+        $posts = Posts::find()->where(['fake' => Posts::POST_FAKE])->all();
+
+        foreach ($posts as $post){
+
+            if ($post->price > 2000) $post->express_price = $post->price - 1000;
+            $post->price_2_hour = $post->price * 2;
+            $post->price_night = $post->price * 4;
+
+            $post->save();
+
+        }
+    }
+
     public function actionIndex()
     {
 

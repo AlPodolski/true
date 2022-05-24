@@ -35,6 +35,9 @@ use yii\helpers\ArrayHelper;
  * @property string|null $old_url
  * @property int|null $category
  * @property int|null $price
+ * @property int|null $express_price
+ * @property int|null $price_2_hour
+ * @property int|null $price_night
  * @property int|null $age
  * @property int|null $rost
  * @property int|null $breast
@@ -93,7 +96,7 @@ class Posts extends \yii\db\ActiveRecord
         return [
             [['city_id', 'user_id', 'created_at', 'updated_at', 'category', 'check_photo_status', 'price', 'age',
                 'rost', 'ves', 'breast', 'status', 'view', 'retouching_photo_status', 'fake', 'pay_time', 'pol_id',
-                'sort', 'tarif_id'], 'integer'],
+                'sort', 'tarif_id', 'price_night', 'price_2_hour', 'express_price'], 'integer'],
             [['name'], 'string', 'max' => 60],
             [['phone'], 'string', 'max' => 20 ],
             [['name', 'phone', 'price'],'required'],
@@ -349,6 +352,9 @@ class Posts extends \yii\db\ActiveRecord
             'breast' => 'Грудь',
             'ves' => 'Вес',
             'price' => 'Цена',
+            'express_price' => 'Цена за експроесс',
+            'price_2_hour' => 'Цена за 2 часа',
+            'price_night' => 'Цена за ночь',
             'status' => 'Статус',
             'retouching_photo_status' => 'Ретуш фото',
         ];

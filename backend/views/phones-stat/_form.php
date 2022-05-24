@@ -16,9 +16,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'price')->textInput(['value' => $model->price ?? 2000]) ?>
 
-    <?= $form->field($model, 'view')->textInput() ?>
+    <?= $form->field($model, 'view')->textInput(['value' => $model->view ?? 0]) ?>
 
-    <?= $form->field($model, 'last_view')->textInput() ?>
+    <?= $form->field($model, 'last_view')->textInput(['value' => $model->last_view ?? 0]) ?>
 
     <?= $form->field($model, 'status')->dropDownList([
             \common\models\PhonesAdvert::DONT_PUBLICATION_STATUS => 'Не публикуется',

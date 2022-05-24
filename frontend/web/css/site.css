@@ -954,7 +954,7 @@ h1 , .big-red-text{
     font-size: 18px;
     line-height: 101.9%;
     color: #FFFFFF;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     display: flex;
 }
 .post-find-and-otzivi-count-block {
@@ -1924,6 +1924,10 @@ h1{
 }
 .send-to-telegram{
     font-size: 13px;
+}
+.marc-wrap {
+    display: flex;
+    color: #fff;
 }
 .plus-wrap{
     width: 91px;

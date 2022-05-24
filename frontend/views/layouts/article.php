@@ -100,6 +100,30 @@ use frontend\widgets\PhotoWidget;
                         </div>
                     </div>
                 </div>
+                <div class="marc-wrap d-none ">
+
+                    <?php if ($post['rost']) : ?>
+                        <div class="marc-item">
+                            <div class="marc-wrap">Рост</div>
+                            <div class="marc-value"><?php echo $post['rost'] ?></div>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if ($post['ves']) : ?>
+                        <div class="marc-item">
+                            <div class="marc-wrap">Вес</div>
+                            <div class="marc-value"><?php echo $post['rost'] ?></div>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if ($post['breast']) : ?>
+                        <div class="marc-item">
+                            <div class="marc-wrap">Размер груди</div>
+                            <div class="marc-value"><?php echo $post['rost'] ?></div>
+                        </div>
+                    <?php endif; ?>
+
+                </div>
             </div>
 
             <a class="black-gradient" target="_blank" href="/post/<?php echo $post['id'] ?>"></a>
