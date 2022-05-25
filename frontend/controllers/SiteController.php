@@ -114,8 +114,6 @@ class SiteController extends Controller
 
         }
 
-        Yii::$app->cache->flush();
-
         $cityInfo = City::getCity($city);
 
         if (!$cityInfo) {
