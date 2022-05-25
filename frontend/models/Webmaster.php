@@ -51,10 +51,25 @@ class Webmaster extends \yii\db\ActiveRecord
 
         if ($data === false) {
             // $data нет в кэше, вычисляем заново
-            $data = Webmaster::find()->where(['city_name' => $id])->orWhere(['city_id' => $id])->asArray()->one();
+            $data = Webmaster::find()->where(['city_id' => $id])->asArray()->one();
 
             // Сохраняем значение $data в кэше. Данные можно получить в следующий раз.
             Yii::$app->cache->set('webmaster_info_'.$id, $data);
+        }
+
+        return $data;
+    }
+
+    public static function getTagByName($cityName)
+    {
+        $data = Yii::$app->cache->get('webmaster_info_'.$cityName);
+
+        if ($data === false) {
+            // $data нет в кэше, вычисляем заново
+            $data = Webmaster::find()->where(['city_name' => $cityName])->asArray()->one();
+
+            // Сохраняем значение $data в кэше. Данные можно получить в следующий раз.
+            Yii::$app->cache->set('webmaster_info_'.$cityName, $data);
         }
 
         return $data;

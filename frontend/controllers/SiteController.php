@@ -158,7 +158,7 @@ class SiteController extends Controller
         }
 
         if (Yii::$app->requestedParams['actual_city'] != $city) {
-            $webmaster = Webmaster::getTag(Yii::$app->requestedParams['actual_city']);
+            $webmaster = Webmaster::getTagByName(Yii::$app->requestedParams['actual_city']);
         }else{
             $webmaster = Webmaster::getTag($cityInfo['id']);
         }
