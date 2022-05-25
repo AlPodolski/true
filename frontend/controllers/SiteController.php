@@ -114,6 +114,8 @@ class SiteController extends Controller
 
         }
 
+        Yii::$app->cache->flush();
+
         $cityInfo = City::getCity($city);
 
         if (!$cityInfo) {
@@ -157,7 +159,12 @@ class SiteController extends Controller
 
         }
 
-        $webmaster = Webmaster::getTag($cityInfo['id']);
+        if (Yii::$app->requestedParams['actual_city'] != $city) {
+            $webmaster = Webmaster::getTag(Yii::$app->requestedParams['actual_city']);
+        }else{
+            $webmaster = Webmaster::getTag($cityInfo['id']);
+        }
+
 
         $prPosts = Posts::find()->asArray()
             ->with('avatar', 'metro', 'partnerId')
