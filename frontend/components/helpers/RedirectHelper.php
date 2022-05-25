@@ -10,35 +10,39 @@ class RedirectHelper
     public static function redirect($city)
     {
 
-        if ($redirect = Redirect::find()->where(['from' => $city])->cache(3600)->one()){
+        if ( $redirects = Redirect::find()->where(['from' => $city])->cache(3600)->all()){
 
-            if ($redirect->user_agent == Redirect::ALL_REDIRECT){
+            foreach ($redirects as $redirect){
 
-                self::sendHeader($redirect);
-
-            }
-
-            if ($redirect->user_agent == Redirect::HUMAN_REDIRECT){
-
-                if (
-                    !\strstr(Yii::$app->request->userAgent, 'yandex') and
-                    !\strstr(Yii::$app->request->userAgent, 'google')
-                ){
+                if ($redirect->user_agent == Redirect::ALL_REDIRECT){
 
                     self::sendHeader($redirect);
 
                 }
 
-            }
+                if ($redirect->user_agent == Redirect::HUMAN_REDIRECT){
 
-            if ($redirect->user_agent == Redirect::BOT_REDIRECT){
+                    if (
+                        !\strstr(Yii::$app->request->userAgent, 'yandex') and
+                        !\strstr(Yii::$app->request->userAgent, 'google')
+                    ){
 
-                if (
-                    \strstr(Yii::$app->request->userAgent, 'yandex') or
-                    \strstr(Yii::$app->request->userAgent, 'google')
-                ){
+                        self::sendHeader($redirect);
 
-                    self::sendHeader($redirect);
+                    }
+
+                }
+
+                if ($redirect->user_agent == Redirect::BOT_REDIRECT){
+
+                    if (
+                        \strstr(Yii::$app->request->userAgent, 'yandex') or
+                        \strstr(Yii::$app->request->userAgent, 'google')
+                    ){
+
+                        self::sendHeader($redirect);
+
+                    }
 
                 }
 
