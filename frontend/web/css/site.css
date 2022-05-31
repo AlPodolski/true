@@ -957,6 +957,20 @@ h1 , .big-red-text{
     margin-bottom: 15px;
     display: flex;
 }
+.limit {
+    margin-left: auto;
+}
+#limit-select {
+    box-shadow: none;
+}
+.sort-block{
+    margin-bottom: 15px;
+}
+#sort-select {
+    width: 180px;
+    box-shadow: none;
+    padding-left: 0;
+}
 .post-find-and-otzivi-count-block {
     font-family: Ubuntu;
     font-style: normal;

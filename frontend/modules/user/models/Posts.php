@@ -12,6 +12,7 @@ use common\models\Rayon;
 use common\models\Service;
 use common\models\Sites;
 use common\models\Tarif;
+use frontend\components\helpers\GetOrderHelper;
 use frontend\models\Files;
 use frontend\models\Metro;
 use frontend\models\UserMetro;
@@ -85,7 +86,7 @@ class Posts extends \yii\db\ActiveRecord
 
     public static function getOrder(): string
     {
-        return 'tarif_id DESC, sort DESC';
+        return (new GetOrderHelper())->get();
     }
 
     /**

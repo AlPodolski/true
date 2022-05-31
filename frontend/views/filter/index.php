@@ -39,7 +39,7 @@ echo \frontend\widgets\OpenGraphWidget::widget([
 <div class="container custom-container">
 
     <h1> <?php echo $h1 ?> </h1>
-
+    <?php echo \frontend\widgets\SortingWidget::widget() ?>
     <?php echo \frontend\widgets\LinkWidget::widget(['url' => Yii::$app->request->url]) ?>
 
     <div class="row">

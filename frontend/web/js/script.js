@@ -868,6 +868,18 @@ function more_search() {
     $('.more-search-btn svg').toggleClass('arrow-down');
 }
 
+function setSort(){
+
+    if ($('#sort-select').val()) {
+
+        document.cookie =  'sort=' + $('#sort-select').val();
+
+    }
+
+    window.location.href = location.pathname;
+
+}
+
 function filter() {
 
     $("#slider-range-age").slider({

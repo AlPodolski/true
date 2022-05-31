@@ -25,6 +25,7 @@ use frontend\models\Webmaster;
 use frontend\components\AuthHandler;
 use frontend\modules\user\helpers\ViewCountHelper;
 use frontend\modules\user\models\Posts;
+use frontend\repository\PostsRepository;
 use Yii;
 use frontend\modules\user\components\obmenka\Obmenka;
 use yii\base\BaseObject;
@@ -108,11 +109,6 @@ class SiteController extends Controller
      */
     public function actionIndex($city, $page = false, $pager = false)
     {
-        if ($pager) {
-
-            return $this->redirect('/' . '?page=' . $pager, 301);
-
-        }
 
         $cityInfo = City::getCity($city);
 
@@ -121,39 +117,15 @@ class SiteController extends Controller
             exit();
         };
 
+        $postRepository = new PostsRepository();
+
         if (Yii::$app->request->isPost) {
 
-            $ids = \json_decode(Yii::$app->request->post('id'));
-
-            $posts = Posts::find()
-                ->asArray()
-                ->with('avatar', 'metro', 'partnerId')
-                ->where(['city_id' => $cityInfo['id']])
-                ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
-                ->andWhere(['not in', 'id', $ids])
-                ->andWhere(['pol_id' => Pol::WOMAN_POL])
-                ->orderBy(Posts::getOrder())
-                ->limit(Yii::$app->params['post_limit']);
-
-            $posts->offset(Yii::$app->params['post_limit'] * Yii::$app->request->post('page'));
-
-            $posts = $posts->all();
+            $posts = $postRepository->getMorePostsForMainPage($cityInfo['id'], Yii::$app->request->post('page'));
 
             $page = Yii::$app->request->post('page') + 1;
 
-            if ($posts) echo '<div data-url="/?page=' . $page . '" class="col-12"></div>';
-
-            foreach ($posts as $post) {
-
-                ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_listing_view_count_key']);
-
-                echo $this->renderFile('@app/views/layouts/article.php', [
-                    'post' => $post,
-                ]);
-
-            }
-
-            exit();
+            return $this->renderFile('@app/views/site/more.php', compact('page', 'posts'));
 
         }
 
@@ -163,30 +135,11 @@ class SiteController extends Controller
             $webmaster = Webmaster::getTag($cityInfo['id']);
         }
 
-
-        $prPosts = Posts::find()->asArray()
-            ->with('avatar', 'metro', 'partnerId')
-            ->where(['city_id' => $cityInfo['id']])
-            ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
-            ->andWhere(['pol_id' => Pol::WOMAN_POL])
-            ->limit(Yii::$app->params['post_limit'])
-            ->cache(60)
-            ->orderBy(Posts::getOrder());
-
-
-        $countQuery = clone $prPosts;
-
-        $pages = new Pagination([
-            'totalCount' => $countQuery->cache(3600 * 12)->count(),
-            'forcePageParam' => false,
-            'defaultPageSize' => Yii::$app->params['post_limit']
-        ]);
-
-        $prPosts = $prPosts->offset($pages->offset)->all();
+        $data = $postRepository->getForMainPage($cityInfo['id']);
 
         $checkBlock = GetAdvertisingPost::get($cityInfo);
 
-        if ($checkBlock) array_unshift($prPosts, $checkBlock);
+        if ($checkBlock) array_unshift($data['posts'], $checkBlock);
 
         $uri = Yii::$app->request->url;
 
@@ -199,13 +152,13 @@ class SiteController extends Controller
         $topPostList = Posts::getTopList($cityInfo['id']);
 
         return $this->render('index', [
-            'prPosts' => $prPosts,
+            'prPosts' => $data['posts'],
             'title' => $title,
             'des' => $des,
             'h1' => $h1,
             'topPostList' => $topPostList,
             'webmaster' => $webmaster,
-            'pages' => $pages,
+            'pages' => $data['pages'],
             'cityInfo' => $cityInfo,
         ]);
     }
