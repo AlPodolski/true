@@ -1,6 +1,7 @@
 <?php
 
 /* @var $post array */
+/* @var $viewPosts \frontend\modules\user\models\Posts[] */
 /* @var $serviceList array */
 /* @var $serviceListReview array */
 /* @var $cityInfo array */
@@ -73,8 +74,27 @@ $this->params['breadcrumbs'][] = array(
         'post' => $post,
         'cityInfo' => $cityInfo,
         'serviceListReview' => $serviceListReview,
+        'viewPosts' => $viewPosts,
         'price' => $price
     ]); ?>
+
+    <?php if ($viewPosts) : ?>
+
+    <div class="red-bold-text text-center">Просмотренные анкеты</div>
+
+    <div class="view-posts d-flex">
+
+        <?php foreach ($viewPosts as $viewPost) : ?>
+
+            <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), [
+                'post' => $viewPost,
+            ]); ?>
+
+        <?php endforeach; ?>
+    </div>
+
+    <?php endif; ?>
+
     <p class="big-red-text">Вас может заинтересовать</p>
 </div>
 

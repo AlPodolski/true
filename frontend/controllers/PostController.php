@@ -5,6 +5,7 @@ namespace frontend\controllers;
 
 use common\models\City;
 use common\models\User;
+use frontend\components\helpers\AddViewHelper;
 use frontend\helpers\GetPostHelper;
 use frontend\helpers\RequestHelper;
 use frontend\models\Files;
@@ -16,6 +17,7 @@ use frontend\modules\user\helpers\ServiceReviewHelper;
 use frontend\modules\user\helpers\ViewCountHelper;
 use frontend\modules\user\models\Posts;
 use frontend\modules\user\models\Profile;
+use frontend\repository\PostsRepository;
 use Yii;
 use yii\helpers\ArrayHelper;
 use frontend\controllers\BeforeController as Controller;
@@ -48,6 +50,10 @@ class PostController extends Controller
 
         if ($post){
 
+            $viewPostsIds = (new AddViewHelper())->add($post['id']);
+
+            $viewPosts = (new PostsRepository())->getByIdPosts($viewPostsIds);
+
             //$serviceListReview = ServiceReviewHelper::getPostServiceReview($id);
             $serviceListReview = false;
 
@@ -61,6 +67,7 @@ class PostController extends Controller
                 'id' => $id,
                 'cityInfo' => $cityInfo,
                 'backUrl' => $backUrl,
+                'viewPosts' => $viewPosts,
             ]);
 
         }

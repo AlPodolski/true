@@ -966,6 +966,13 @@ h1 , .big-red-text{
 .sort-block{
     margin-bottom: 15px;
 }
+.view-posts {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    padding-bottom: 15px;
+    margin-left: -15px;
+}
 #sort-select {
     width: 230px;
     box-shadow: none;

@@ -62,4 +62,16 @@ class PostsRepository
         return $posts;
     }
 
+    public function getByIdPosts($ids)
+    {
+        $posts = Posts::find()
+            ->asArray()
+            ->with('avatar', 'metro', 'partnerId')
+            ->where(['in' ,'id', $ids])
+            ->orderBy($this->order)
+            ->all();
+
+        return $posts;
+    }
+
 }
