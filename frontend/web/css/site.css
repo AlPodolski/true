@@ -972,6 +972,7 @@ h1 , .big-red-text{
     scrollbar-width: thin;
     padding-bottom: 15px;
     margin-left: -15px;
+    margin-top: 15px;
 }
 #sort-select {
     width: 230px;
