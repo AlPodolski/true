@@ -71,7 +71,7 @@ class TelegramChanelHelper
             'type' => 'photo',
             'parse_mode' => 'html',
             'caption' => self::prepareTextAboutPost($post),
-            'media' => 'https://moskva3.sex-true.com'.Yii::$app->imageCache->thumbSrc($post->avatar->file, '500_700')
+            'media' => 'https://moskva3.sex-tut.com'.Yii::$app->imageCache->thumbSrc($post->avatar->file, '500_700')
         ]
         );
     }
