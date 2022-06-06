@@ -447,6 +447,36 @@ function get_comments_forum(object) {
 
 }
 
+function getPhone(object){
+
+    var id = $(object).attr('data-id');
+    var price = $(object).attr('data-price');
+    var city = $(object).attr('data-city');
+
+    if (typeof $(object).attr('data-num') !== typeof undefined){
+
+        window.location.href = 'tel:+' + $(object).attr('data-num');
+
+    }else{
+
+        $.ajax({
+            type: 'POST',
+            url: "/phone/get", //Путь к обработчику
+            data: 'id=' + id + '&price=' + price + '&city_id=' + city,
+            cache: false,
+            success: function (data) {
+
+                $(object).attr('data-num', data);
+
+                $(object).text(data);
+                window.location.href = 'tel:+' + data;
+            }
+        })
+
+    }
+
+}
+
 function add_phone_view(object) {
 
     var id = $(object).attr('data-id');
@@ -461,25 +491,7 @@ function add_phone_view(object) {
 
             window.location.href = phone;
             get_phone_review_form(id);
-        }
-    })
 
-}
-
-function get_fake_phone(object) {
-
-    var id = $(object).attr('data-id');
-    var price = $(object).attr('data-price');
-    var city = $(object).attr('data-city');
-
-    $.ajax({
-        type: 'POST',
-        url: "/phone/get", //Путь к обработчику
-        data: 'id=' + id + '&price=' + price + '&city_id=' + city,
-        cache: false,
-        success: function (data) {
-            $(object).text(data);
-            window.location.href = 'tel:+' + data;
         }
     })
 

@@ -20,11 +20,11 @@ $this->registerJsFile('/js/single.js?v=13', ['depends' => ['yii\web\YiiAsset']])
 
 $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
 
-$title = 'Проститутка ' . $post['name'] . ' из ' . $cityInfo['city2'] . ' номер телефона ' . $post['phone'];
+$title = 'Проститутка ' . $post['name'] . ' из ' . $cityInfo['city2'];
 
 if (isset($post['metro'][0]['value'])) $title .= ' у метро ' . $post['metro'][0]['value'];
 
-$title .= ' скрасит  твой  досуг  за ' . $post['price'] . ' руб/час ' . ' ID ' . $post['id'];
+$title .= ' скрасит  твой  досуг  за ' . $post['price'] . ' руб/час ' . ' Анкета номер ' . $post['id'];
 
 $this->title = $title;
 
@@ -48,7 +48,7 @@ if ($post['place']) {
 $des .= ' , остальная информация в анкете сексуальной проститутки.';
 
 
-$des .= ' Мой номер ' . $post['phone'] . ' ID ' . $post['id'];
+$des .= ' Анкета номер ' . $post['id'];
 
 
 Yii::$app->view->registerMetaTag([
