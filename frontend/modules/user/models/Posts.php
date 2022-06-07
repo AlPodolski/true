@@ -2,6 +2,7 @@
 
 namespace frontend\modules\user\models;
 
+use common\models\City;
 use common\models\HairColor;
 use common\models\IntimHair;
 use common\models\National;
@@ -55,6 +56,7 @@ use yii\helpers\ArrayHelper;
  * @property Files[] $gallery
  * @property Files $avatar
  * @property integer $tarif_id
+ * @property City $city
  */
 class Posts extends \yii\db\ActiveRecord
 {
@@ -170,6 +172,10 @@ class Posts extends \yii\db\ActiveRecord
     public function getPartnerId()
     {
         return $this->hasOne(User::class, ['id' => 'user_id'])->select('partner_id')->cache(3600);
+    }
+    public function getCity(): ActiveQuery
+    {
+        return $this->hasOne(City::class, ['id' => 'city_id'])->cache(3600 * 24);
     }
 
     public function getReadMessage() : ActiveQuery

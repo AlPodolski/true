@@ -58,8 +58,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => function ($user) {
                     /* @var $user \frontend\modules\user\models\Posts */
+                    $user->getCity();
                     return Html::a($user['name'],
-                        'http://moskva.'.Yii::$app->params['site_name'] .'/post/'.$user['id'] ,
+                        'http://'.$user->city->url.'.'.Yii::$app->params['site_name'] .'/post/'.$user['id'] ,
                         ['target' => '_blank']
                     );
                 },
