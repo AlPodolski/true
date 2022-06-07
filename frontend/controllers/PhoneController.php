@@ -3,44 +3,63 @@
 namespace frontend\controllers;
 
 use common\models\PhonesAdvert;
+use frontend\modules\user\helpers\ViewCountHelper;
 use frontend\modules\user\models\Posts;
 use yii\web\Controller;
+use Yii;
 
 class PhoneController extends Controller
 {
     public function actionIndex($city)
     {
 
-        $price = \Yii::$app->request->post('price');
-        $city_id = \Yii::$app->request->post('city_id');
+        $price = Yii::$app->request->post('price');
+        $city_id = Yii::$app->request->post('city_id');
+        $postId = Yii::$app->request->post('id');
 
-        $time = time() - (1800);
+        if ($post = Posts::findOne($postId)){
 
-        $phone = PhonesAdvert::find()
-            ->where(['<', 'last_view' , $time])
-            //->andWhere(['<=' , 'price', $price + 1100])
-            //->andWhere(['>=' , 'price', $price - 1000])
-            ->andWhere(['city_id' => $city_id])
-            ->andWhere(['status' => PhonesAdvert::PUBLICATION_STATUS])
-            ->orderBy('view DESC')
-            ->one();
+            if ($post->fake) {
 
-        if ($phone){
+                ViewCountHelper::addView($post->id , Yii::$app->params['redis_view_phone_count_key']);
 
-            $phone->view = $phone->view + 1;
-            $phone->last_view = time();
+                return $post->phone;
 
-            $phone->save();
+            }else{
 
-            return $phone->phone;
+                $time = time() - (1800);
 
-        }else{
+                $phone = PhonesAdvert::find()
+                    ->where(['<', 'last_view' , $time])
+                    //->andWhere(['<=' , 'price', $price + 1100])
+                    //->andWhere(['>=' , 'price', $price - 1000])
+                    ->andWhere(['city_id' => $city_id])
+                    ->andWhere(['status' => PhonesAdvert::PUBLICATION_STATUS])
+                    ->orderBy('view DESC')
+                    ->one();
 
-            $post = Posts::findOne(\Yii::$app->request->post('id'));
+                if ($phone){
 
-            return $post->phone;
+                    $phone->view = $phone->view + 1;
+                    $phone->last_view = time();
+
+                    $phone->save();
+
+                    return $phone->phone;
+
+                }else{
+
+                    $post = Posts::findOne(\Yii::$app->request->post('id'));
+
+                    return $post->phone;
+
+                }
+
+            }
 
         }
+
+        return false;
 
     }
 }
