@@ -4,7 +4,7 @@ namespace frontend\components\helpers;
 
 class GetOrderHelper
 {
-    private $default = 'tarif_id DESC, sort DESC';
+    private $default = 'tarif_id DESC, sort DESC, fake DESC';
 
     private $priceDesc = 'price DESC';
     private $priceAsc = 'price ASC';
