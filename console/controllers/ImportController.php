@@ -95,6 +95,7 @@ class ImportController extends Controller
             $post->about = strip_tags ($record['anket-about']);
             $post->check_photo_status = 0;
             $post->status = 1;
+            $post->sort = 10000;
             $post->age = $record['age'] ?? 19;
             $post->rost = $record['rost'] ?? 170;
 
@@ -296,8 +297,6 @@ class ImportController extends Controller
                 }
 
             }
-
-            exit();
 
         }
 
