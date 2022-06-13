@@ -21,12 +21,11 @@ class PostsRepository
     public function getForMainPage($cityId): array
     {
         $prPosts = Posts::find()->asArray()
-            ->with('avatar', 'metro', 'partnerId')
+            ->with('avatar', 'metro', 'partnerId', 'rayon', 'nacionalnost')
             ->where(['city_id' => $cityId])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->andWhere(['pol_id' => Pol::WOMAN_POL])
             ->limit(Yii::$app->params['post_limit'])
-            ->cache(60)
             ->orderBy($this->order);
 
 
@@ -48,7 +47,7 @@ class PostsRepository
 
         $posts = Posts::find()
             ->asArray()
-            ->with('avatar', 'metro', 'partnerId')
+            ->with('avatar', 'metro', 'partnerId', 'rayon', 'nacionalnost')
             ->where(['city_id' => $cityId])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->andWhere(['pol_id' => Pol::WOMAN_POL])
@@ -66,7 +65,7 @@ class PostsRepository
     {
         $posts = Posts::find()
             ->asArray()
-            ->with('avatar', 'metro', 'partnerId')
+            ->with('avatar', 'metro', 'partnerId', 'rayon', 'nacionalnost')
             ->where(['in' ,'id', $ids])
             ->orderBy($this->order)
             ->all();
