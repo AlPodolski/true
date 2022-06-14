@@ -32,13 +32,17 @@ class PhoneController extends Controller
 
                 $phone = PhonesAdvert::find()
                     ->where(['status' => PhonesAdvert::PUBLICATION_STATUS])
-                    ->andWhere(['<=' , 'price', $price])
-                    ->andWhere(['>=' , 'price', $price - 1000])
+                    ->andWhere(['<=' , 'price', $price + 100])
+                    ->andWhere(['>=' , 'price', $price - 1200])
                     ->andWhere(['city_id' => $city_id])
                     ->orderBy('view DESC');
 
-                if ($national) $phone = $phone->andWhere(['national_id' => $national]);
-                if ($age) $phone = $phone->andWhere(['age' => $age]);
+                if ($age) {
+
+                    $phone = $phone->andWhere(['<=' , 'age', $age + 5])
+                                    ->andWhere(['>=' , 'age', $age - 5]);
+
+                }
                 if ($rayon) $phone = $phone->andWhere(['rayon_id' => $rayon]);
 
                 $phone = $phone->one();

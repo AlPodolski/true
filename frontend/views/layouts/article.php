@@ -7,7 +7,7 @@
 /* @var $promo bool | null */
 
 use frontend\widgets\PhotoWidget;
-dd($post);
+
 ?>
 
 <div data-post-id="<?php echo $post['id'] ?>"
@@ -199,7 +199,6 @@ dd($post);
             <div data-id="<?php echo $post['id'] ?>"
                  data-city="<?php echo $post['city_id'] ?>"
                  data-price="<?php echo $post['price'] ?>"
-                 data-national="<?php echo $post['nacionalnost']['id'] ?>"
                  data-age="<?php echo $post['age'] ?>"
                  data-rayon="<?php if (isset($post['rayon'][0]['id'])) echo $post['rayon'][0]['id'] ?>"
 

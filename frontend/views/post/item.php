@@ -184,7 +184,6 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                                 <div data-id="<?php echo $post['id'] ?>"
                                      data-city="<?php echo $post['city_id'] ?>"
                                      data-price="<?php echo $post['price'] ?>"
-                                     data-national="<?php echo $post['nacionalnost']['id'] ?>"
                                      data-age="<?php echo $post['age'] ?>"
                                      data-rayon="<?php echo $post['rayon']['id'] ?>"
 
