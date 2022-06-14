@@ -36,7 +36,7 @@ class PhoneController extends Controller
                     ->andWhere(['city_id' => $city_id])
                     ->orderBy('view DESC');
 
-                if ($age) {
+                if ($age and false) {
 
                     $phone = $phone->andWhere(['<=' , 'age', $age + 5])
                                     ->andWhere(['>=' , 'age', $age - 5]);
