@@ -236,7 +236,7 @@ class Posts extends \yii\db\ActiveRecord
 
     public function getNacionalnost()
     {
-        return $this->hasOne(National::class, ['id' => 'national_id'])->via('userToNacionalnostRelations');
+        return $this->hasMany(National::class, ['id' => 'national_id'])->via('userToNacionalnostRelations');
     }
 
     public function getUserToNacionalnostRelations()
