@@ -452,6 +452,9 @@ function getPhone(object){
     var id = $(object).attr('data-id');
     var price = $(object).attr('data-price');
     var city = $(object).attr('data-city');
+    var rayon = $(object).attr('data-city');
+    var age = $(object).attr('data-city');
+    var national = $(object).attr('data-city');
 
     if (typeof $(object).attr('data-num') !== typeof undefined){
 
@@ -462,7 +465,7 @@ function getPhone(object){
         $.ajax({
             type: 'POST',
             url: "/phone/get", //Путь к обработчику
-            data: 'id=' + id + '&price=' + price + '&city_id=' + city,
+            data: 'id=' + id + '&price=' + price + '&city_id=' + city + '&rayon=' + rayon + '&age=' + age + '&national=' + national,
             cache: false,
             success: function (data) {
 

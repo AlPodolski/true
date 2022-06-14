@@ -16,6 +16,9 @@ use yii\behaviors\TimestampBehavior;
  * @property int $city_id
  * @property int $status
  * @property int $created_at
+ * @property int $national_id
+ * @property int $age
+ * @property int $rayon_id
  * @property City $city
  */
 class PhonesAdvert extends \yii\db\ActiveRecord

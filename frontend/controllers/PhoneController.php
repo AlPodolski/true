@@ -16,6 +16,9 @@ class PhoneController extends Controller
         $price = Yii::$app->request->post('price');
         $city_id = Yii::$app->request->post('city_id');
         $postId = Yii::$app->request->post('id');
+        $national = Yii::$app->request->post('national');
+        $rayon = Yii::$app->request->post('rayon');
+        $age = Yii::$app->request->post('age');
 
         if ($post = Posts::findOne($postId)){
 
@@ -27,16 +30,18 @@ class PhoneController extends Controller
 
             }else{
 
-                $time = time() - (1800);
-
                 $phone = PhonesAdvert::find()
-                    ->where(['<', 'last_view' , $time])
-                    //->andWhere(['<=' , 'price', $price + 1100])
-                    //->andWhere(['>=' , 'price', $price - 1000])
+                    ->where(['status' => PhonesAdvert::PUBLICATION_STATUS])
+                    ->andWhere(['<=' , 'price', $price])
+                    ->andWhere(['>=' , 'price', $price - 1000])
                     ->andWhere(['city_id' => $city_id])
-                    ->andWhere(['status' => PhonesAdvert::PUBLICATION_STATUS])
-                    ->orderBy('view DESC')
-                    ->one();
+                    ->orderBy('view DESC');
+
+                if ($national) $phone = $phone->andWhere(['national_id' => $national]);
+                if ($age) $phone = $phone->andWhere(['age' => $age]);
+                if ($rayon) $phone = $phone->andWhere(['rayon_id' => $rayon]);
+
+                $phone = $phone->one();
 
                 if ($phone){
 

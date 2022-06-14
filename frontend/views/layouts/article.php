@@ -199,6 +199,9 @@ use frontend\widgets\PhotoWidget;
             <div data-id="<?php echo $post['id'] ?>"
                  data-city="<?php echo $post['city_id'] ?>"
                  data-price="<?php echo $post['price'] ?>"
+                 data-national="<?php echo $post['nacionalnost']['id'] ?>"
+                 data-age="<?php echo $post['age'] ?>"
+                 data-rayon="<?php echo $post['rayon']['id'] ?>"
 
                 <?php $targetPrice = \frontend\components\helpers\PriceTargetHelper::target($post['price']) ?>
                  onclick="getPhone(this);ym(70919698,'reachGoal','call'); <?php if ($post['partnerId']) : ?>
