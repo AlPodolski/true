@@ -7,7 +7,7 @@
 /* @var $promo bool | null */
 
 use frontend\widgets\PhotoWidget;
-
+dd($post);
 ?>
 
 <div data-post-id="<?php echo $post['id'] ?>"
@@ -201,7 +201,7 @@ use frontend\widgets\PhotoWidget;
                  data-price="<?php echo $post['price'] ?>"
                  data-national="<?php echo $post['nacionalnost']['id'] ?>"
                  data-age="<?php echo $post['age'] ?>"
-                 data-rayon="<?php echo $post['rayon']['id'] ?>"
+                 data-rayon="<?php if (isset($post['rayon'][0]['id'])) echo $post['rayon'][0]['id'] ?>"
 
                 <?php $targetPrice = \frontend\components\helpers\PriceTargetHelper::target($post['price']) ?>
                  onclick="getPhone(this);ym(70919698,'reachGoal','call'); <?php if ($post['partnerId']) : ?>
