@@ -452,7 +452,7 @@ function getPhone(object){
     var id = $(object).attr('data-id');
     var price = $(object).attr('data-price');
     var city = $(object).attr('data-city');
-    var rayon = $(object).attr('data-city');
+    var rayon = $(object).attr('data-rayon');
     var age = $(object).attr('data-age');
 
     if (typeof $(object).attr('data-num') !== typeof undefined){
