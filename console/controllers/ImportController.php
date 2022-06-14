@@ -334,6 +334,7 @@ class ImportController extends Controller
             $phoneAdvert->rayon_id = $rayon;
             $phoneAdvert->view = 0;
             $phoneAdvert->last_view = 0;
+            $phoneAdvert->age = $value['vozrast'];
             $phoneAdvert->status = PhonesAdvert::PUBLICATION_STATUS;
             $phoneAdvert->created_at = time();
 
