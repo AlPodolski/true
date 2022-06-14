@@ -6,6 +6,7 @@ use backend\components\helpers\AddCloudHelper;
 use common\models\AdvertCategory;
 use common\models\Comments;
 use common\models\Link;
+use common\models\PhonesAdvert;
 use dastanaron\translit\Translit;
 use common\models\City;
 use common\models\HairColor;
@@ -305,7 +306,7 @@ class ImportController extends Controller
 
     public function actionPhone()
     {
-        $stream = \fopen(Yii::getAlias('@app/files/phones_16_02_2022.csv'), 'r');
+        $stream = \fopen(Yii::getAlias('@app/files/import_city_phone.csv'), 'r');
 
         $csv = Reader::createFromStream($stream);
         $csv->setDelimiter(';');
@@ -315,35 +316,28 @@ class ImportController extends Controller
 
         $records = $stmt->process($csv);
 
-        $phonesCity = array();
-
         foreach ($records as $value) {
 
-            $phonesCity[$value['city']][] = $value['phone'];
+            $rayon = '';
 
-        }
+            if ($value['rayon'] and $rayon = Rayon::find()->where(['value' => $value['rayon']])->one()){
 
-        foreach ($phonesCity as $key => $cityItem){
-
-            if ($city = City::find()->where(['city' => $key])->one()){
-
-                if ($posts = Posts::find()->where(['phone' => null, 'city_id' => $city['id']])->all()){
-
-                    foreach ($posts as $post){
-
-                        $post->phone = $cityItem[\array_rand($cityItem)];
-
-                        $post->save();
-
-                    }
-
-                }
-
-            }else{
-
-                echo $key.\PHP_EOL;
+                $rayon = $rayon->id;
 
             }
+
+            $phoneAdvert = new PhonesAdvert();
+
+            $phoneAdvert->city_id = 1;
+            $phoneAdvert->phone = preg_replace('/[^0-9]/', '',  $value['tel']);
+            $phoneAdvert->price = $value['1hour'];
+            $phoneAdvert->rayon_id = $rayon;
+            $phoneAdvert->view = 0;
+            $phoneAdvert->last_view = 0;
+            $phoneAdvert->status = PhonesAdvert::PUBLICATION_STATUS;
+            $phoneAdvert->created_at = time();
+
+            if ($phoneAdvert->validate()) $phoneAdvert->save();
 
         }
 

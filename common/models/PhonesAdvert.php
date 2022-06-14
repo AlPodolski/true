@@ -64,6 +64,7 @@ class PhonesAdvert extends \yii\db\ActiveRecord
         return [
             [['price', 'view', 'last_view', 'city_id', 'status', 'created_at'], 'integer'],
             [['phone'], 'string', 'max' => 255],
+            [['phone'], 'unique'],
         ];
     }
 
