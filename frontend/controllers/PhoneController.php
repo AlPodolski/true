@@ -16,7 +16,6 @@ class PhoneController extends Controller
         $price = Yii::$app->request->post('price');
         $city_id = Yii::$app->request->post('city_id');
         $postId = Yii::$app->request->post('id');
-        $national = Yii::$app->request->post('national');
         $rayon = Yii::$app->request->post('rayon');
         $age = Yii::$app->request->post('age');
 
