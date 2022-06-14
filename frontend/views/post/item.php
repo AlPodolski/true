@@ -185,7 +185,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                                      data-city="<?php echo $post['city_id'] ?>"
                                      data-price="<?php echo $post['price'] ?>"
                                      data-age="<?php echo $post['age'] ?>"
-                                     data-rayon="<?php echo $post['rayon']['id'] ?>"
+                                     data-rayon="<?php echo $post['rayon'][0]['id'] ?>"
 
                                     <?php $targetPrice = \frontend\components\helpers\PriceTargetHelper::target($post['price']) ?>
                                      onclick="getPhone(this);ym(70919698,'reachGoal','call'); <?php if ($post['partnerId']) : ?>
