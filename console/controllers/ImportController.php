@@ -51,7 +51,7 @@ class ImportController extends Controller
     public function actionIndex()
     {
 
-        $stream = \fopen(Yii::getAlias('@app/files/import_checom_13_06_22.csv'), 'r');
+        $stream = \fopen(Yii::getAlias('@app/files/import_20_06.csv'), 'r');
 
         $csv = Reader::createFromStream($stream);
         $csv->setDelimiter(';');
@@ -67,8 +67,8 @@ class ImportController extends Controller
         $serviceList = Service::find()->asArray()->all();
 
         $this->siteId = 0;
-        $this->update = 26;
-        $this->path = '/uploads/a26/';
+        $this->update = 27;
+        $this->path = '/uploads/a27/';
 
         $posts = array();
 
@@ -82,23 +82,23 @@ class ImportController extends Controller
 
             $post = new Posts();
 
-            $city['id'] = 1;
+            $city = City::find()->where(['city' => $record['city']])->one();
 
             $post->price = $record['price'];
 
             $post->city_id = $city['id'];
             $post->pol_id = 1;
-            $post->user_id = 240;
             $post->created_at = \time();
             $post->name = $record['name'];
             $post->updated_at = $this->update;
             $post->phone = preg_replace('/[^0-9]/', '',  $record['phone']);
-            $post->about = strip_tags ($record['anket-about']);
+            //$post->about = strip_tags ($record['anket-about']);
             $post->check_photo_status = 0;
             $post->status = 1;
             $post->sort = 10000;
             $post->age = $record['age'] ?? 19;
             $post->rost = $record['rost'] ?? 170;
+            $post->ves = $record['weight'] ?? 53;
 
             if (isset($record['video']) and $record['video']) {
 
@@ -253,9 +253,9 @@ class ImportController extends Controller
 
                 }
 
-                if (isset($record['gallery']) and $record['gallery']) {
+                if (isset($record['gallm']) and $record['gallm']) {
 
-                    $gall = \explode(',', $record['gallery']);
+                    $gall = \explode(',', $record['gallm']);
 
                     if ($gall) {
 
@@ -298,6 +298,8 @@ class ImportController extends Controller
                 }
 
             }
+
+            exit();
 
         }
 
