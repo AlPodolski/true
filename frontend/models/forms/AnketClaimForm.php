@@ -11,13 +11,15 @@ class AnketClaimForm extends Model
     public $post_id;
     public $reason;
     public $text;
+    public $email;
 
     public function rules()
     {
         return [
             [['post_id', 'reason'], 'integer'],
             [['post_id', 'reason'], 'required'],
-            [['text'], 'string']
+            [['text'], 'string'],
+            [['email'], 'email'],
         ];
     }
 
@@ -28,6 +30,7 @@ class AnketClaimForm extends Model
         $claim->post_id = $this->post_id;
         $claim->reason_id = $this->reason;
         $claim->text = $this->text;
+        $claim->email = $this->email;
 
         return $claim->save();
     }

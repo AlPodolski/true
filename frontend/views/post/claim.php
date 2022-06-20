@@ -15,6 +15,7 @@ $form = ActiveForm::begin([
 <?= $form->field($data['claim'], 'reason')
     ->dropDownList(\yii\helpers\ArrayHelper::map(\common\models\ReasonClaim::find()->asArray()->all(), 'id', 'value'))
     ->label('Причина жалобы') ?>
+<?= $form->field($data['claim'], 'email')->textInput()->label('Ваша почта') ?>
 <?= $form->field($data['claim'], 'text')->textarea()->label('Комментарий') ?>
 
 <div class="form-group">
