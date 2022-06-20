@@ -16,6 +16,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'reason_id')->textInput() ?>
 
+    <?= $form->field($model, 'email')->textInput() ?>
+
     <?= $form->field($model, 'text')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
