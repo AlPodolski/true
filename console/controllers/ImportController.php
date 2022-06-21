@@ -343,8 +343,6 @@ class ImportController extends Controller
 
                 if ($phoneAdvert->validate()) $phoneAdvert->save();
 
-                exit();
-
             }
 
         }
