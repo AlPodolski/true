@@ -306,7 +306,10 @@ class ImportController extends Controller
 
     public function actionPhone()
     {
-        $stream = \fopen(Yii::getAlias('@app/files/import_city_phone.csv'), 'r');
+
+        $price = array(2000, 3000, 4000, 5000);
+
+        $stream = \fopen(Yii::getAlias('@app/files/phones_20_06.csv'), 'r');
 
         $csv = Reader::createFromStream($stream);
         $csv->setDelimiter(';');
@@ -316,29 +319,33 @@ class ImportController extends Controller
 
         $records = $stmt->process($csv);
 
+        $resultData = array();
+
         foreach ($records as $value) {
+            $resultData[$value['city']][] = $value['phone'];
+        }
 
-            $rayon = '';
+        foreach ($resultData as $key => $item){
 
-            if ($value['rayon'] and $rayon = Rayon::find()->where(['value' => $value['rayon']])->one()){
+            $cityInfo = City::find()->where(['city' => $key])->one();
 
-                $rayon = $rayon->id;
+            foreach ($item as $phoneItem){
+
+                $phoneAdvert = new PhonesAdvert();
+
+                $phoneAdvert->city_id = $cityInfo['id'];
+                $phoneAdvert->phone = preg_replace('/[^0-9]/', '',  $phoneItem);
+                $phoneAdvert->price = $price[array_rand($price)];
+                $phoneAdvert->view = 0;
+                $phoneAdvert->last_view = 0;
+                $phoneAdvert->status = PhonesAdvert::PUBLICATION_STATUS;
+                $phoneAdvert->created_at = time();
+
+                if ($phoneAdvert->validate()) $phoneAdvert->save();
+
+                exit();
 
             }
-
-            $phoneAdvert = new PhonesAdvert();
-
-            $phoneAdvert->city_id = 1;
-            $phoneAdvert->phone = preg_replace('/[^0-9]/', '',  $value['tel']);
-            $phoneAdvert->price = $value['1hour'];
-            $phoneAdvert->rayon_id = $rayon;
-            $phoneAdvert->view = 0;
-            $phoneAdvert->last_view = 0;
-            $phoneAdvert->age = $value['vozrast'];
-            $phoneAdvert->status = PhonesAdvert::PUBLICATION_STATUS;
-            $phoneAdvert->created_at = time();
-
-            if ($phoneAdvert->validate()) $phoneAdvert->save();
 
         }
 
