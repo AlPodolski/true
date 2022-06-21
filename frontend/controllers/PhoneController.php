@@ -42,7 +42,7 @@ class PhoneController extends Controller
                                     ->andWhere(['>=' , 'age', $age - 5]);
 
                 }
-                if ($rayon) $phone = $phone->andWhere(['rayon_id' => $rayon]);
+                if ($city_id == 1 and $rayon) $phone = $phone->andWhere(['rayon_id' => $rayon]);
 
                 $phone = $phone->one();
 
