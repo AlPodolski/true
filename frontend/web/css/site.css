@@ -787,7 +787,6 @@ body{
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.07);
     border-radius: 13px;
     padding: 13px;
-    margin-top: 15px;
 }
 h1 , .big-red-text{
     font-family: Ubuntu;
@@ -985,6 +984,9 @@ h1 , .big-red-text{
     font-weight: normal;
     font-size: 18px;
     color: #FFFFFF;
+}
+.filter-block{
+    margin-bottom: 25px;
 }
 .post-top-info{
     position: absolute;

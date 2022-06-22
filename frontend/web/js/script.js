@@ -6,6 +6,14 @@ $( document ).ready(function() {
     });
 });
 
+function rememberClose(object){
+
+    var type = $(object).attr('data-type')
+
+    document.cookie = type + '=1; max-age=' + (3600 * 24 * 31);
+
+}
+
 function send_to_telegram(object){
 
     var id = $(object).attr('data-id');

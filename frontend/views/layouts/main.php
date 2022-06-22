@@ -501,11 +501,13 @@ AppAsset::register($this);
     <?php endif; ?>
 
     <div class="container custom-container">
-        <div class="alert alert-info">Не переводите деньги заранее и скажите что звоните с сайта <?php echo Yii::$app->request->serverName?></div>
+
         <?php
+            echo (new frontend\widgets\ShowInfoWidget())->run();
+        ?>
 
+        <?php
         echo \frontend\widgets\BreadcrumbMicro::widget();
-
         echo Breadcrumbs::widget([
             'itemTemplate' => "<li class='breadcrumb-item'>{link}</li> \n",
             'homeLink' => [
