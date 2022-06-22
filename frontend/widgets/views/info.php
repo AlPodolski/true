@@ -21,7 +21,7 @@
 
     <?php if (Yii::$app->user->isGuest and !$showBonusInfo) : ?>
 
-    <div class="alert alert-success">Бонус за регистрацию 100р!
+    <div class="alert alert-success">Регистрируйся и получи деньги для первых публикаций
         <button data-type="bonus" onclick="rememberClose(this)" type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
