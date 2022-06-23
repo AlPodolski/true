@@ -86,6 +86,7 @@ class PostController extends Controller
             $post->created_at = $time = \time();
 
             $post->updated_at = $time;
+            $post->sort = $time;
 
             $post->fake = Posts::POST_REAL;
 
