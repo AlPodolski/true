@@ -658,7 +658,6 @@ AppAsset::register($this);
 
 
     <script>
-
         $(document).scroll(function () {
 
             $.getScript("//code-ya.jivosite.com/widget/N3G2svN2tk", function (data, textStatus, jqxhr) {

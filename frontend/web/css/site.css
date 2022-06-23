@@ -788,6 +788,16 @@ body{
     border-radius: 13px;
     padding: 13px;
 }
+#map-filter{
+    display: none;
+}
+#map-filter-btn{
+    color: #5C5C5C;
+    margin-bottom: 20px;
+}
+#map-filter-btn svg{
+    margin-right: 10px;
+}
 h1 , .big-red-text{
     font-family: Ubuntu;
     font-style: normal;
@@ -2108,10 +2118,41 @@ h1{
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.07);
     border: 1px solid #f0f0f0;
 }
-.filter-block form{
+.filter-block form , #map-filter form{
     display: flex;
     margin: 15px 0;
     flex-wrap: wrap;
+}
+.heading{
+    flex: 0 0 100%;
+    padding: 10px 15px 9px;
+    margin-bottom: 15px;
+    background-color: #f3f3f3;
+}
+.filter-map-item{
+    flex-wrap: wrap;
+    flex: 0 0 100%;
+}
+.intim-haircut-wrap .black-check-box{
+    width: auto;
+}
+.intim-haircut-wrap{
+    justify-content: space-between;
+}
+.national-wrap .black-check-box ,.place-wrap .black-check-box , .hair-color-wrap .black-check-box {
+    flex: 0 0 25%;
+}
+#map-filter .black-check-box{
+    margin-bottom: 0px;
+}
+#map-filter form{
+    justify-content: space-between;
+}
+#map-filter .slider-item-wrap{
+    margin-bottom: 15px;
+}
+.margin-top-10{
+    margin-top: 10px!important;
 }
 .metro-select-wrap{
     display: flex;

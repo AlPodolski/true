@@ -30,7 +30,7 @@ foreach ($posts as $post) {
 
 ?>
 
-<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
+<scri1pt src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></scri1pt>
 
 <div class="map-data d-none">
     <?php echo json_encode($result) ?>
@@ -39,6 +39,8 @@ foreach ($posts as $post) {
 <div class="container map-page">
 
     <h1> <?php echo $h1 ?> </h1>
+
+    <?php echo \frontend\widgets\MapFilterWidget::widget() ?>
 
     <div id="map">
         <img src="/img/spinner.gif" alt="">
@@ -60,7 +62,7 @@ foreach ($posts as $post) {
 
         }
 
-        ymaps.ready(init);
+        //ymaps.ready(init);
 
         function init() {
             var myMap = new ymaps.Map("map", {

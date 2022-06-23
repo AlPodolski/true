@@ -619,6 +619,10 @@ function toggle_filter() {
     $('.filter-block form').toggleClass('d-flex');
 }
 
+function toggle_map_filter() {
+    $('#map-filter').toggle();
+}
+
 
 function send_comment(object) {
 
