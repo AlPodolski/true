@@ -12,7 +12,7 @@ use frontend\controllers\BeforeController as Controller;
 class MapController extends Controller
 {
 
-    public function behaviors()
+/*    public function behaviors()
     {
         return [
             [
@@ -26,7 +26,7 @@ class MapController extends Controller
             ],
         ];
 
-    }
+    }*/
 
     public function actionIndex($city)
     {
@@ -45,7 +45,7 @@ class MapController extends Controller
             ->select('id, name, phone, price')
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->orderBy('id DESC')
-            ->limit(4500)
+            ->limit(50)
             ->all();
 
         return $this->render('index', [
