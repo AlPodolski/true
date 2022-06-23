@@ -973,3 +973,7 @@ function filter() {
 }
 
 $(document).ready(main);
+
+function getForMap(){
+
+}

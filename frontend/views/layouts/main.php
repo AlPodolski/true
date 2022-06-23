@@ -306,7 +306,7 @@ AppAsset::register($this);
                         <li class="nav-item"><a href="/pol-trans">Трансы</a></li>
                         <li class="nav-item"><a rel=”nofollow” href="https://t.me/indi_tut">Мы в телеграм</a></li>
                         <li class="nav-item"><a class="small-red-text" href="/salon">Интим салоны</a></li>
-                        <li class="nav-item"><a class="small-red-text" href="/map">Интим карта</a></li>
+                        <li class="nav-item"><a class="small-red-text d-none" href="/map">Интим карта</a></li>
                     <?php endif; ?>
 
                     <li class="nav-item" onclick="get_claim_modal()"><a>Обратная связь</a></li>
