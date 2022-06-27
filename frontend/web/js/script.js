@@ -1,12 +1,12 @@
-$( document ).ready(function() {
+$(document).ready(function () {
 
-    $.getScript( "/js/jquery-ui.js", function( data, textStatus, jqxhr ) {
+    $.getScript("/js/jquery-ui.js", function (data, textStatus, jqxhr) {
         $("head").prepend('<link href="/css/jquery-ui.css" rel="stylesheet">');
         filter();
     });
 });
 
-function rememberClose(object){
+function rememberClose(object) {
 
     var type = $(object).attr('data-type')
 
@@ -14,7 +14,7 @@ function rememberClose(object){
 
 }
 
-function send_to_telegram(object){
+function send_to_telegram(object) {
 
     var id = $(object).attr('data-id');
 
@@ -34,14 +34,14 @@ function send_to_telegram(object){
 
 }
 
-function delete_item(object){
+function delete_item(object) {
 
     var id = $(object).attr('data-id');
     var name = $(object).attr('data-name');
 
-    let isBoss = confirm("Удалить анкету "+ name +" ?");
+    let isBoss = confirm("Удалить анкету " + name + " ?");
 
-    if (isBoss === true){
+    if (isBoss === true) {
 
         $.ajax({
             type: 'POST',
@@ -58,7 +58,6 @@ function delete_item(object){
         })
 
     }
-
 
 
 }
@@ -99,7 +98,7 @@ function get_dialog(object) {
     })
 }
 
-function get_mobil_map_block(object){
+function get_mobil_map_block(object) {
 
     init_yandex_map(object);
 
@@ -123,7 +122,7 @@ function close_mobil_map_block(object) {
 
 }
 
-function init_yandex_map(object){
+function init_yandex_map(object) {
 
     var map_name = $(object).attr('data-map');
 
@@ -133,13 +132,13 @@ function init_yandex_map(object){
     if (typeof ymaps == 'undefined') {
 
         $.getScript("https://api-maps.yandex.ru/2.1/?lang=ru_RU", function (data, textStatus, jqxhr) {
-            ymaps.ready(function(){
+            ymaps.ready(function () {
 
-                if($('#' + map_name).hasClass('map-not-exist')){
+                if ($('#' + map_name).hasClass('map-not-exist')) {
 
                     $('#' + map_name).removeClass('map-not-exist');
 
-                    $('.map').each(init(map_name, x,y));
+                    $('.map').each(init(map_name, x, y));
 
                 }
 
@@ -147,13 +146,13 @@ function init_yandex_map(object){
         });
     } else {
 
-        ymaps.ready(function(){
+        ymaps.ready(function () {
 
-            if($('#' + map_name).hasClass('map-not-exist')){
+            if ($('#' + map_name).hasClass('map-not-exist')) {
 
                 $('#' + map_name).removeClass('map-not-exist');
 
-                $('.map').each(init(map_name,x,y));
+                $('.map').each(init(map_name, x, y));
 
             }
 
@@ -162,8 +161,8 @@ function init_yandex_map(object){
 
 }
 
-function init(map_name ,x, y) {
-    
+function init(map_name, x, y) {
+
     console.log(map_name);
 
     var myMap = new ymaps.Map(map_name, {
@@ -455,7 +454,7 @@ function get_comments_forum(object) {
 
 }
 
-function getPhone(object){
+function getPhone(object) {
 
     var id = $(object).attr('data-id');
     var price = $(object).attr('data-price');
@@ -463,11 +462,11 @@ function getPhone(object){
     var rayon = $(object).attr('data-rayon');
     var age = $(object).attr('data-age');
 
-    if (typeof $(object).attr('data-num') !== typeof undefined){
+    if (typeof $(object).attr('data-num') !== typeof undefined) {
 
         window.location.href = 'tel:+' + $(object).attr('data-num');
 
-    }else{
+    } else {
 
         $.ajax({
             type: 'POST',
@@ -656,21 +655,21 @@ function send_comment(object) {
     });
 }
 
-function init_yandex(){
-    $( ".yandex-map" ).each(function( index ) {
+function init_yandex() {
+    $(".yandex-map").each(function (index) {
 
         var object = this;
 
         var x = $(object).attr('data-x');
         var y = $(object).attr('data-y');
 
-        ymaps.ready(function(){
+        ymaps.ready(function () {
 
-            if($(object).hasClass('map-not-exist')){
+            if ($(object).hasClass('map-not-exist')) {
 
                 $(object).removeClass('map-not-exist');
 
-                $('.map').each(init(object, x,y));
+                $('.map').each(init(object, x, y));
 
             }
 
@@ -683,12 +682,12 @@ var start_load_map_status = false;
 
 $(window).scroll(function () {
 
-    if(!load_map_status && !start_load_map_status){
+    if (!load_map_status && !start_load_map_status) {
 
         start_load_map_status = true;
 
         $.getScript("https://api-maps.yandex.ru/2.1/?lang=ru_RU", function (data, textStatus, jqxhr) {
-            ymaps.ready(function(){
+            ymaps.ready(function () {
 
                 load_map_status = true;
 
@@ -698,13 +697,11 @@ $(window).scroll(function () {
         });
 
     }
-    if(load_map_status){
+    if (load_map_status) {
 
         init_yandex();
 
     }
-
-
 
 
     var target = $('.pager');
@@ -894,11 +891,11 @@ function more_search() {
     $('.more-search-btn svg').toggleClass('arrow-down');
 }
 
-function setSort(){
+function setSort() {
 
     if ($('#sort-select').val()) {
 
-        document.cookie =  'sort=' + $('#sort-select').val();
+        document.cookie = 'sort=' + $('#sort-select').val();
 
     }
 
@@ -973,7 +970,3 @@ function filter() {
 }
 
 $(document).ready(main);
-
-function getForMap(){
-
-}

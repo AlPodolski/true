@@ -160,7 +160,7 @@ class FindController extends Controller
 
             $filter = true;
 
-            $id = UserNational::find()->where(['national_id' => $params['place']])
+            $id = UserNational::find()->where(['national_id' => $params['naci']])
                 ->andWhere(['city_id' => $city['id']])
                 ->select('post_id')->asArray()->all();
 

@@ -2154,6 +2154,9 @@ h1{
 .margin-top-10{
     margin-top: 10px!important;
 }
+#map-form .black-check-box label{
+    flex-direction: row;
+}
 .metro-select-wrap{
     display: flex;
     align-items: center;

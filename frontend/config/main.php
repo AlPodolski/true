@@ -78,6 +78,7 @@ return [
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/review/add' => 'user/review/add',
 
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/map' => 'map/index',
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/map/filter' => 'map/filter',
 
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/phone' => 'site/phone',
 

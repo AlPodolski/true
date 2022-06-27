@@ -15,7 +15,7 @@
         <div class="span">Расширенный поиск</div>
     </div>
     <div id="map-filter">
-        <form action="/find">
+        <form action="/find" id="map-form">
 
             <div class="find-near-with-me d-none">
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -207,7 +207,7 @@
                     <?php foreach ($hair as $item) : ?>
 
                         <div class="checbox black-check-box">
-                            <input type="checkbox" name="place[]" id="hair-<?php echo $item['id']?>"
+                            <input type="checkbox" name="hair[]" id="hair-<?php echo $item['id']?>"
                                    class="custom-checkbox" value="<?php echo $item['id']?>">
                             <label for="hair-<?php echo $item['id']?>"><span><?php echo $item['value'] ?></span></label>
                         </div>
@@ -216,24 +216,24 @@
 
                 </div>
 
-            <div class="d-none margin-top-10">
-                <div class="checbox black-check-box">
-                    <input type="checkbox" name="check-photo" id="check-photo" class="custom-checkbox">
-                    <label for="check-photo"><span>Фото проверено</span></label>
+            <div class="filter-map-item hair-color-wrap d-flex margin-top-10">
+
+                    <div class="heading">Дополнительно</div>
+
+                    <div class="checbox black-check-box">
+                        <input type="checkbox" name="check-photo" id="check-photo" class="custom-checkbox">
+                        <label for="check-photo"><span>Фото проверено</span></label>
+                    </div>
+                    <div class="checbox black-check-box">
+                        <input type="checkbox" name="video" id="video" class="custom-checkbox">
+                        <label for="video"><span>Анкета с видео</span></label>
+                    </div>
+
                 </div>
-                <div class="checbox black-check-box">
-                    <input type="checkbox" name="video" id="video" class="custom-checkbox">
-                    <label for="video"><span>Анкета с видео</span></label>
-                </div>
-                <div class="checbox black-check-box d-none">
-                    <input type="checkbox" name="bez-retushi" id="bez-retushi" class="custom-checkbox">
-                    <label for="bez-retushi"><span>Фото без ретуши</span></label>
-                </div>
-            </div>
 
             <div class="col-12"></div>
 
-            <button class="show-anket-count">Показать</button>
+            <div class="show-anket-count margin-top-20" onclick="getForMap()">Показать</div>
 
         </form>
     </div>

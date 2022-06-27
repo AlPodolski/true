@@ -1,0 +1,70 @@
+function create_img(src) {
+    return '<img src="' + src + '" class="yandex-map-img">'
+}
+
+function create_ballon_content(item) {
+    return create_img(item.avatar['file']) + "<br>"
+        + "<div class='map-phone'> " + item.phone + " </div>"
+        + "<div class='small-red-text'>" + item.price + " р.</div>";
+}
+
+ymaps.ready(init_map_with_posts);
+
+function init_map_with_posts() {
+    var myMap = new ymaps.Map("map", {
+        center: [55.76, 37.64],
+        zoom: 10,
+    }, {
+        searchControlProvider: 'yandex#search'
+    });
+
+    var data = JSON.parse($('.map-data').html());
+
+    var result = [];
+
+    var presetName = "twirl#violetIcon";
+
+    data.forEach(function (item) {
+
+        var myGeoObject = new ymaps.GeoObject({
+                geometry: {type: "Point", coordinates: [item.metro[0]['x'], item.metro[0]['y']]},
+                properties: {
+                    clusterCaption: item.name,
+                    hintContent: item.name,
+                    balloonContent: create_ballon_content(item),
+                }
+            },
+            {preset: presetName});
+
+        result.push(myGeoObject);
+
+    })
+
+    var myClusterer0 = new ymaps.Clusterer({preset: "twirl#redClusterIcons", gridSize: 100});
+
+    myClusterer0.add(result);
+
+    myMap.geoObjects.add(myClusterer0);
+
+    $('.map-page #map img').remove();
+
+}
+
+function getForMap() {
+
+    var form = $('#map-form');
+    var msg = form.serialize();
+    $.ajax({
+        type: 'POST',
+        url: '/map/filter', // Обработчик собственно
+        data: msg,
+        success: function (data) {
+            $('.map-data').html(data);
+            init_map_with_posts();
+        },
+        error: function () {
+            alert('Ошибка!');
+        }
+    });
+
+}
