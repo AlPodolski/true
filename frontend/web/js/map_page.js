@@ -1,11 +1,11 @@
 function create_img(src, link) {
-    return '<a href="/post/ '+ link +'"></a><img src="' + src + '" class="yandex-map-img">'
+    return '<a target="_blank" href="/post/ '+ link +'"><img src="' + src + '" class="yandex-map-img"></a>'
 }
 
 function create_ballon_content(item) {
     return create_img(item.avatar['file'], item.id) + "<br>"
         + "<div class='map-phone'> " + item.phone + " </div>"
-        + "<a class='map-link' href='/post/" + item.id + "'> Подробнее </a>"
+        + "<a target='_blank' class='map-link' href='/post/" + item.id + "'> Подробнее </a>"
         + "<div class='small-red-text'>" + item.price + " р.</div>";
 }
 
