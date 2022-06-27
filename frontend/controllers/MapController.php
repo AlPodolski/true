@@ -18,7 +18,7 @@ use yii\helpers\ArrayHelper;
 class MapController extends Controller
 {
 
-    private $limit = 4500;
+    private $limit = 3000;
     private $columns = 'id, name, phone, price';
 
     /*    public function behaviors()
