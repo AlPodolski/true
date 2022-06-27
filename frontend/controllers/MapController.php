@@ -21,21 +21,21 @@ class MapController extends Controller
     private $limit = 3000;
     private $columns = 'id, name, phone, price';
 
-    /*    public function behaviors()
-        {
-            return [
-                [
-                    'class' => 'yii\filters\PageCache',
-                    'only' => ['index'],
-                    'duration' => 3600 * 24,
-                    'variations' => [
-                        Yii::$app->request->url,
-                        Yii::$app->request->hostInfo,
-                    ],
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => 'yii\filters\PageCache',
+                'only' => ['index'],
+                'duration' => 3600 * 24,
+                'variations' => [
+                    Yii::$app->request->url,
+                    Yii::$app->request->hostInfo,
                 ],
-            ];
+            ],
+        ];
 
-        }*/
+    }
 
     public function actionIndex($city)
     {
