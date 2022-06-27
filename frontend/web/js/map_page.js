@@ -60,6 +60,7 @@ function getForMap() {
         data: msg,
         success: function (data) {
             $('.map-data').html(data);
+            $('#map').html('');
             init_map_with_posts();
         },
         error: function () {

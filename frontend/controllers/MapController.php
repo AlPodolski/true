@@ -72,6 +72,8 @@ class MapController extends Controller
 
         $params = Yii::$app->request->post();
 
+        $ids = array();
+
         $id = UserMetro::find()
             ->andWhere(['city_id' => $city['id']])
             ->select('post_id')->asArray()->all();
@@ -131,7 +133,6 @@ class MapController extends Controller
         if ($params['intimCut']) {
 
             $id = UserIntimHair::find()->where(['in', 'color_id', $params['intimCut']])
-                ->andWhere(['city_id' => $city['id']])
                 ->select('post_id')->asArray()->all();
 
             if ($id) {
@@ -240,7 +241,7 @@ class MapController extends Controller
         if ($params['check-photo']) $posts = $posts->andWhere(['check_photo_status' => 1]);
         if ($params['video']) $posts = $posts->andWhere(['<>', 'video', '']);
 
-        $posts = $posts->limit($this->limit)->all();
+        $posts = $posts->limit($this->limit)->asArray()->all();
 
         $result = [];
 

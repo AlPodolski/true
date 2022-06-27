@@ -48,6 +48,6 @@ foreach ($posts as $post) {
 
 </div>
 
-<?php $this->registerJsFile('/js/map_page.js', ['depends' => \frontend\assets\AppAsset::class]);
+<?php $this->registerJsFile('/js/map_page.js?v=1', ['depends' => \frontend\assets\AppAsset::class]);
 
 
