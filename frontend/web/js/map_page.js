@@ -54,13 +54,16 @@ function getForMap() {
 
     var form = $('#map-form');
     var msg = form.serialize();
+
+    $('#map').addClass('blur');
+
     $.ajax({
         type: 'POST',
         url: '/map/filter', // Обработчик собственно
         data: msg,
         success: function (data) {
             $('.map-data').html(data);
-            $('#map').html('');
+            $('#map').html('').removeClass('blur');
             init_map_with_posts();
         },
         error: function () {

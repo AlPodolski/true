@@ -2157,6 +2157,9 @@ h1{
 #map-form .black-check-box label{
     flex-direction: row;
 }
+.blur{
+    filter: blur(4px);
+}
 .metro-select-wrap{
     display: flex;
     align-items: center;
