@@ -30,7 +30,7 @@ foreach ($posts as $post) {
 
 ?>
 
-<scri1pt src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></scri1pt>
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
 
 <div class="map-data d-none">
     <?php echo json_encode($result) ?>
