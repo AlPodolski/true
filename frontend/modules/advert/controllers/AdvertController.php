@@ -32,8 +32,6 @@ class AdvertController extends Controller
 
     public function actionList($city){
 
-        if ($city =! 'moskva') throw new NotFoundHttpException();
-
         $advertList = Advert::find()
             ->limit(Yii::$app->params['advert_limit'])
             ->orderBy('id DESC')
@@ -97,7 +95,7 @@ class AdvertController extends Controller
     public function actionView($city, $id)
     {
 
-        if ($city =! 'moskva') throw new NotFoundHttpException();
+        if ($city != 'moskva') throw new NotFoundHttpException();
 
         $advert = Advert::find()->where(['id' => $id])
             ->with('userRelations')
@@ -127,6 +125,9 @@ class AdvertController extends Controller
 
     public function actionPublicAdvert($city)
     {
+
+        if ($city != 'moskva') throw new NotFoundHttpException();
+
         $advertList = Advert::find()
             ->limit(Yii::$app->params['advert_limit'])
             ->orderBy('id DESC')
