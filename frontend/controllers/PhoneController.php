@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\PhonesAdvert;
+use common\models\Pol;
 use frontend\modules\user\helpers\ViewCountHelper;
 use frontend\modules\user\models\Posts;
 use yii\web\Controller;
@@ -21,7 +22,7 @@ class PhoneController extends Controller
 
         if ($post = Posts::findOne($postId)){
 
-            if ($post->fake) {
+            if ($post->fake or $post->pol_id != Pol::WOMAN_POL) {
 
                 ViewCountHelper::addView($post->id , Yii::$app->params['redis_view_phone_count_key']);
 

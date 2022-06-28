@@ -15,6 +15,8 @@ class Pol extends \yii\db\ActiveRecord
 {
 
     const WOMAN_POL = 1;
+    const MEN_POL = 2;
+    const TRANS_POL = 3;
 
     /**
      * {@inheritdoc}
