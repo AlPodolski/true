@@ -11,6 +11,7 @@ use frontend\modules\advert\components\helpers\AdvertHelper;
 use frontend\modules\advert\models\Advert;
 use Yii;
 use yii\data\Pagination;
+use yii\web\NotFoundHttpException;
 
 class AdvertController extends Controller
 {
@@ -30,6 +31,8 @@ class AdvertController extends Controller
     }
 
     public function actionList($city){
+
+        if ($city =! 'moskva') throw new NotFoundHttpException();
 
         $advertList = Advert::find()
             ->limit(Yii::$app->params['advert_limit'])
@@ -93,6 +96,9 @@ class AdvertController extends Controller
 
     public function actionView($city, $id)
     {
+
+        if ($city =! 'moskva') throw new NotFoundHttpException();
+
         $advert = Advert::find()->where(['id' => $id])
             ->with('userRelations')
             ->with('comments')
