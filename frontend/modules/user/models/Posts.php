@@ -14,6 +14,7 @@ use common\models\Service;
 use common\models\Sites;
 use common\models\Tarif;
 use frontend\components\helpers\GetOrderHelper;
+use frontend\components\service\AddPost;
 use frontend\models\Files;
 use frontend\models\Metro;
 use frontend\models\UserMetro;
@@ -77,6 +78,15 @@ class Posts extends \yii\db\ActiveRecord
 
     const POST_FAKE = 0;
     const POST_REAL = 1;
+
+    const ADD_POST = 'add_post';
+
+    public function __construct()
+    {
+        $this->on(self::EVENT_AFTER_INSERT, [AddPost::class, 'handle']);
+
+        parent::__construct();
+    }
 
     /**
      * {@inheritdoc}

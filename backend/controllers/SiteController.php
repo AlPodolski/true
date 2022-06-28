@@ -2,6 +2,7 @@
 namespace backend\controllers;
 
 use common\models\CashCount;
+use common\models\PostCount;
 use Yii;
 use yii\web\Controller;
 
@@ -40,13 +41,21 @@ class SiteController extends Controller
     public function actionIndex()
     {
 
+        $registerCountWeek = PostCount::find()->limit(7)->orderBy('id DESC')->all();
+
+        $monthRegister = PostCount::find()
+            ->andWhere(['like','date', date('m-Y')])
+            ->sum('count');
+
         $payCountWeek = CashCount::find()->limit(7)->orderBy('id DESC')->all();
 
         $monthCash = CashCount::find()
             ->andWhere(['like','date', date('m-Y')])
             ->sum('count');
 
-        return $this->render('index', compact('payCountWeek', 'monthCash'));
+        return $this->render('index',
+            compact('payCountWeek', 'monthCash', 'monthRegister', 'registerCountWeek')
+        );
 
     }
 
