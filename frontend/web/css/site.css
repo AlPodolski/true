@@ -1240,7 +1240,7 @@ h1 , .big-red-text{
 }
 .bottom-info{
     position: absolute;
-    right: 15px;
+    right: 0px;
     width: 45px;
     top: 15px;
 }
@@ -3989,6 +3989,16 @@ input.search::placeholder { color: #6d6d6d; }
     }
     .single-date-wrap{
         margin-bottom: 15px;
+    }
+    .post-address{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .post-address-wrap{
+        margin-bottom: 0px;
+    }
+    .post-top-info .red-text{
+        text-align: center;
     }
 }
 @media (max-width: 360px) {
