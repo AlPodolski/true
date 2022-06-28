@@ -23,12 +23,14 @@ $this->title = 'Главная страница';
 
                         }else echo '-'?>
 
-                        <p>Месяц <?php echo $monthCash ?></p>
+                        <?php if ($monthCash) : ?>
+
+                            <p>Месяц <?php echo $monthCash ?></p>
+
+                        <?php endif; ?>
 
                     </div>
-                    <div class="icon">
-                        <i class="fas fa-user"></i>
-                    </div>
+
                 </div>
             </div>
         </div>
