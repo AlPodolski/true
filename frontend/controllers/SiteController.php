@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\components\service\history\HistoryService;
+use common\components\service\PayCount;
 use common\models\City;
 use common\models\HairColor;
 use common\models\History;
@@ -44,6 +45,7 @@ class SiteController extends Controller
     public function init()
     {
         $this->on(self::OBMENKA_PAY, [HistoryService::class, 'addToHistory']);
+        $this->on(self::OBMENKA_PAY, [PayCount::class, 'handle']);
 
         parent::init();
     }

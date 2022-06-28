@@ -1,6 +1,7 @@
 <?php
 namespace backend\controllers;
 
+use common\models\CashCount;
 use Yii;
 use yii\web\Controller;
 
@@ -38,7 +39,15 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+
+        $payCountWeek = CashCount::find()->limit(7)->orderBy('id DESC')->all();
+
+        $monthCash = CashCount::find()
+            ->andWhere(['like','date', date('m-Y')])
+            ->sum('count');
+
+        return $this->render('index', compact('payCountWeek', 'monthCash'));
+
     }
 
     public function actionDropCache()
