@@ -43,12 +43,14 @@ AppAsset::register($this);
     <link rel="icon" type="image/png" sizes="16x16" href="/img/favicons/favicon-16x16.png">
     <?php if ($link = \frontend\components\helpers\CanonicalHelper::getLink(Yii::$app->request->url)) : ?>
         <link rel="canonical" href="https://<?php echo Yii::$app->request->serverName . $link ?>">
+        <meta name="robots" content="noindex, follow">
     <?php endif; ?>
 
     <link rel="manifest" href="/img/favicons/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/img/favicons/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
+    <meta name="HandheldFriendly" content="True">
 </head>
 <body>
 <?php $this->beginBody() ?>
