@@ -1954,7 +1954,7 @@ h1{
     border-radius: 50%;
 }
 .nav-cabinet-block{
-    height: 330px;
+    height: 355px;
 }
 .send-to-telegram{
     font-size: 13px;
@@ -1975,6 +1975,7 @@ h1{
 .edit-block{
     width: 100%;
     display: flex;
+    padding-bottom: 15px;
     justify-content: space-around;
 }
 .user-name-short{
@@ -3552,6 +3553,12 @@ input.search::placeholder { color: #6d6d6d; }
 .bottom-menu-wrap a {
     color: #999999;
     margin-bottom: 10px;
+}
+.edit-anket span{
+    font-size: 10px;
+    font-weight: bold;
+    color: #000;
+    bottom: -14px;
 }
 @media (max-width: 1199px) {
     .search-wrap{

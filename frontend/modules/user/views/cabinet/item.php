@@ -72,7 +72,7 @@ use frontend\modules\user\models\Posts;
                           fill="white"/>
                 </svg>
             </a>
-            <a href="/cabinet/up/<?= $post['id'] ?>" class="edit-anket up-anket edit-block-item d-flex items-center">
+            <a href="/cabinet/up/<?= $post['id'] ?>" class="edit-anket position-relative up-anket edit-block-item d-flex items-center">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0)">
                         <path d="M7.14072 8.07527V7.57527H6.64072H4.56939L12.0002 0.539654L19.4313 7.57527H17.3599H16.8599V8.07527V14.8138H7.14072V8.07527Z"
@@ -87,6 +87,7 @@ use frontend\modules\user\models\Posts;
                         </clipPath>
                     </defs>
                 </svg>
+                <span class="position-absolute">Поднять(<?php echo Yii::$app->params['up_anket_cost']?>р)</span>
             </a>
 
             <div class="delete-item edit-block-item" data-name="<?= $post['name'] ?>" onclick="delete_item(this)"
