@@ -114,7 +114,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div id="collapseOne2" class="collapse " aria-labelledby="headingOne"
                          data-parent="#accordionExample2">
                         <div class="card-body">
-                            В зависимости от выбранного тарифа, от 3 рублей в час. Чем дороже тариф тем ваше анкете.
+                            В зависимости от выбранного тарифа, от 3 рублей в час. Чем дороже тариф тем выше анкета.
                         </div>
                     </div>
 
@@ -181,7 +181,7 @@ $this->params['breadcrumbs'][] = $this->title;
                          data-parent="#accordionExample4">
                         <div class="card-body">
                             Анкеты сортируются по тарифу(чем дороже тем выше) и по дате добавления, последняя добавленая анкета выводится выше.
-                            Так же модно поднять анкету, тогда она будет выводится выше в рамках тарифа
+                            Так же можно поднять анкету, тогда она будет выводится выше в рамках тарифа
                         </div>
                     </div>
 
