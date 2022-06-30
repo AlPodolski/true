@@ -66,7 +66,7 @@ class FilterController extends Controller
             }
 
             $posts = $posts->limit(Yii::$app->params['post_limit'])
-                ->with('avatar', 'metro', 'partnerId', 'rayon', 'nacionalnost')
+                ->with('avatar', 'metro', 'partnerId', 'rayon', 'nacionalnost', 'city')
                 ->andWhere(['city_id' => $cityInfo['id']])
                 ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
                 ->orderBy(Posts::getOrder())

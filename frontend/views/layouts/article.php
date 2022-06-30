@@ -8,6 +8,8 @@
 
 use frontend\widgets\PhotoWidget;
 
+echo \frontend\components\helpers\MicroHelper::image($post);
+
 ?>
 
 <div data-post-id="<?php echo $post['id'] ?>"
