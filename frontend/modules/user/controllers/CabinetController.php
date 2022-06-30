@@ -3,6 +3,7 @@
 namespace frontend\modules\user\controllers;
 
 use common\models\User;
+use frontend\modules\user\helpers\CabinetViewHelper;
 use frontend\modules\user\models\Posts;
 use Yii;
 use frontend\controllers\BeforeController as Controller;
@@ -25,9 +26,12 @@ class CabinetController extends Controller
 
         $posts = Posts::find()->where(['user_id' => Yii::$app->user->id])->with('avatar', 'message')->all();
 
+        $viewType = (new CabinetViewHelper())->get();
+
         return $this->render('index', [
             'user'  => $user,
             'posts' => $posts,
+            'viewType' => $viewType,
         ]);
 
     }

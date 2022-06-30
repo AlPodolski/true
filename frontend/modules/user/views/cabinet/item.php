@@ -35,14 +35,13 @@ use frontend\modules\user\models\Posts;
 
     ?>
 
-    <div class="white-cabinet-block cabinet-nav-block margin-top-20 d-flex items-center nav-cabinet-block">
+    <div class="white-cabinet-block cabinet-nav-block d-flex items-center nav-cabinet-block">
 
-        <div class="anket-info">
+        <div class="anket-info publication-info">
             <a data-id="<?php echo $post['id'] ?>" onclick="publication(this)"
                   data-key="<?php echo $postStatus['key'] ?>"
                   class="cursor-pointer <?php echo $postStatus['key'] ?>"><?php echo $postStatus['value'] ?></a>
         </div>
-
 
         <a href="/cabinet/post/edit/<?= $post['id'] ?>">
 
@@ -58,10 +57,18 @@ use frontend\modules\user\models\Posts;
 
         </a>
 
-        <div class="user-name-full">
+        <div class="name-publication-wrap d-flex">
+
             <a class="user-name-full" href="/cabinet/post/edit/<?= $post['id'] ?>">
                 <?= $post['name'] ?>
             </a>
+
+            <div class="anket-info">
+                <a data-id="<?php echo $post['id'] ?>" onclick="publication(this)"
+                   data-key="<?php echo $postStatus['key'] ?>"
+                   class="cursor-pointer <?php echo $postStatus['key'] ?>"><?php echo $postStatus['value'] ?></a>
+            </div>
+
         </div>
 
         <div class="edit-block margin-top-20">
@@ -72,23 +79,27 @@ use frontend\modules\user\models\Posts;
                           fill="white"/>
                 </svg>
             </a>
-            <a href="/cabinet/up/<?= $post['id'] ?>" class="edit-anket position-relative up-anket edit-block-item d-flex items-center">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0)">
-                        <path d="M7.14072 8.07527V7.57527H6.64072H4.56939L12.0002 0.539654L19.4313 7.57527H17.3599H16.8599V8.07527V14.8138H7.14072V8.07527Z"
-                              stroke="white"/>
-                        <path d="M7.14071 20.1567H16.8599V20.6045H7.14071V20.1567Z" stroke="white"/>
-                        <path d="M16.8599 17.709H7.14071V17.2612H16.8599V17.709Z" stroke="white"/>
-                        <path d="M7.14071 23.0522H16.8599V23.5H7.14071V23.0522Z" stroke="white"/>
-                    </g>
-                    <defs>
-                        <clipPath id="clip0">
-                            <rect width="24" height="24" fill="white" transform="translate(24) rotate(90)"/>
-                        </clipPath>
-                    </defs>
-                </svg>
-                <span class="position-absolute">Поднять(<?php echo Yii::$app->params['up_anket_cost']?>р)</span>
-            </a>
+
+            <?php if ($post['status'] == Posts::POST_ON_PUPLICATION_STATUS or $post['status'] == Posts::POST_DONT_PUBLICATION_STATUS) : ?>
+
+                <a href="/cabinet/up/<?= $post['id'] ?>" class="edit-anket position-relative up-anket edit-block-item d-flex items-center">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0)">
+                            <path d="M7.14072 8.07527V7.57527H6.64072H4.56939L12.0002 0.539654L19.4313 7.57527H17.3599H16.8599V8.07527V14.8138H7.14072V8.07527Z"
+                                  stroke="white"/>
+                            <path d="M7.14071 20.1567H16.8599V20.6045H7.14071V20.1567Z" stroke="white"/>
+                            <path d="M16.8599 17.709H7.14071V17.2612H16.8599V17.709Z" stroke="white"/>
+                            <path d="M7.14071 23.0522H16.8599V23.5H7.14071V23.0522Z" stroke="white"/>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0">
+                                <rect width="24" height="24" fill="white" transform="translate(24) rotate(90)"/>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </a>
+
+            <?php endif; ?>
 
             <div class="delete-item edit-block-item" data-name="<?= $post['name'] ?>" onclick="delete_item(this)"
                  data-id="<?= $post['id'] ?>">
@@ -113,7 +124,7 @@ use frontend\modules\user\models\Posts;
 
         </div>
 
-        <div class="alert-small-text">
+        <div class="alert-small-text table-d-none">
 
             <?php if ($post['message']) : ?>
 
@@ -123,7 +134,7 @@ use frontend\modules\user\models\Posts;
 
         </div>
 
-        <div class="alert-small-text margin-top-20">
+        <div class="alert-small-text margin-top-20 table-d-none">
 
             Просмотров
             телефона <?php echo ViewCountHelper::countView($post->id, Yii::$app->params['redis_view_phone_count_key']) ?? 0 ?>
@@ -132,13 +143,13 @@ use frontend\modules\user\models\Posts;
 
         <?php if ($post['status'] == Posts::POST_ON_PUPLICATION_STATUS or $post['status'] == Posts::POST_DONT_PUBLICATION_STATUS) : ?>
 
-            <div class="anket-info send-to-telegram">
+            <div class="anket-info send-to-telegram table-d-none">
                 <span onclick="send_to_telegram(this)" data-id="<?php echo $post['id'] ?>" class="cursor-pointer">
                     Опубликовать в телегам канале (<?php echo Yii::$app->params['publication_telegram_cost'] ?>р.)
                 </span>
             </div>
 
-            <a href="https://t.me/indi_tut">Посмотреть канал</a>
+            <a class="table-d-none" href="https://t.me/indi_tut">Посмотреть канал</a>
 
         <?php endif; ?>
 

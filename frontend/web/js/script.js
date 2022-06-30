@@ -891,6 +891,17 @@ function more_search() {
     $('.more-search-btn svg').toggleClass('arrow-down');
 }
 
+function setView(){
+
+    if ($('#sort-select').val()) {
+
+        document.cookie = 'view=' + $('#sort-select').val();
+
+    }
+    window.location.href = location.pathname;
+
+}
+
 function setSort() {
 
     if ($('#sort-select').val()) {

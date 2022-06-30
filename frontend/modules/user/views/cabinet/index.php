@@ -2,8 +2,8 @@
 
 /* @var $user \common\models\User */
 /* @var $posts \frontend\modules\user\models\Posts[] */
-
 /* @var $this \yii\web\View */
+/* @var $viewType string|null */
 
 use frontend\widgets\PhotoWidget;
 use frontend\modules\chat\components\helpers\GetDialogsHelper;
@@ -15,36 +15,33 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
     <div class="container margin-top-20">
 
-        <?php if (Yii::$app->user->identity['status'] == \common\models\User::STATUS_INACTIVE) : ?>
-
-            <div class="alert-success alert alert-dismissible"> Что бы получать уведомления нужно активировать почту
-            </div>
-
-        <?php endif; ?>
-
-        <?php if (!$user['telegram']) : ?>
-
-            <div class="alert alert-info">
-                Подключите <?php echo \yii\helpers\Html::a('Телеграм', '/cabinet/telegram') ?>
-                и пользуйтесь всеми функциями нашего бота, получайте уведомления о сообщениях и будьте вкурсе всего
-            </div>
-
-        <?php endif; ?>
+        <?php echo $this->renderFile(Yii::getAlias('@user-view/cabinet/info.php'), compact('user')) ?>
 
         <div class="row">
 
             <?php echo \frontend\modules\user\widgets\SidebarWidget::widget(['user' => $user]) ?>
 
-            <div class="col-12 col-md-12 col-lg-6 col-xl-7">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-7 <?php echo $viewType ?>">
+
                 <div class="row">
 
-                    <div class="col-12 black-text font-weight-bold">
-                        Мои анкеты
+                    <div class="col-12 d-flex head-view-wrap">
+                        <span class="black-text font-weight-bold">Мои анкеты</span>
+                        <div class="order-block">
+                            <select class="metro-select" name="limit" id="sort-select" onchange="setView()">
+
+                                <option value="default">Вид</option>
+
+                                <option value="default">По умолчанию</option>
+                                <option <?php if ($viewType == 'table') echo 'selected'?> value="table">Таблица</option>
+
+                            </select>
+                        </div>
                     </div>
 
 
-                    <div class="col-12 col-md-4 col-lg-6">
-                        <div class="white-cabinet-block cabinet-nav-block margin-top-20 d-flex items-center nav-cabinet-block">
+                    <div class="col-12 col-md-4 col-lg-6 cabinet-item">
+                        <div class="white-cabinet-block cabinet-nav-block d-flex items-center nav-cabinet-block">
 
                             <div class="plus-wrap d-flex items-center">
                                 <a href="/cabinet/post/add">
@@ -57,9 +54,16 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </span>
                                 </a>
                             </div>
-                            <div class="red-text text-center margin-top-20">
+
+                            <div class="red-text add-anket text-center margin-top-20">
                                 <a class="red-text" href="/cabinet/post/add">
                                     Добавить <br> анкету
+                                </a>
+                            </div>
+
+                            <div class="text-center add-anket-table">
+                                <a class="red-text" href="/cabinet/post/add">
+                                    Добавить анкету
                                 </a>
                             </div>
 
@@ -77,6 +81,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     } ?>
 
                 </div>
+
             </div>
 
         </div>

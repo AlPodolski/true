@@ -1295,11 +1295,74 @@ a.asc::after {
     font-weight: normal;
     font-size: 14px;
     line-height: 16px;
-    /* identical to box height */
-
     text-transform: uppercase;
-
     color: #9A9A9A;
+}
+.head-view-wrap{
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+}
+.table .cabinet-item{
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+.nav-cabinet-block {
+    margin-top: 20px;
+}
+.table .cabinet-item .nav-cabinet-block {
+    height: 70px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+.table .cabinet-item .nav-cabinet-block .plus-wrap {
+    display: none!important;
+}
+.table .cabinet-item .nav-cabinet-block .plus-wrap, .add-anket-table {
+    display: none;
+}
+.table .cabinet-item .add-anket-table {
+    display: block;
+}
+.table .cabinet-item .add-anket {
+    display: none;
+}
+.table .white-cabinet-block{
+    flex-direction: row;
+}
+.table .publication-info, .table .table-d-none{
+    display: none;
+}
+.table .user-name-full{
+    padding-top: 0px;
+    height: 18px;
+    overflow: hidden;
+    display: block;
+    font-size: 12px;
+    width: 130px;
+    margin-left: 5px;
+}
+.table .cabinet-img {
+    max-width: 55px;
+}
+.table .name-publication-wrap {
+    flex-direction: column;
+    width: 359px;
+}
+.table .name-publication-wrap .anket-info{
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+.name-publication-wrap .anket-info{
+    display: none;
+}
+.table .name-publication-wrap .anket-info{
+    display: block;
+}
+.table .edit-block{
+    max-width: 200px;
 }
 .price{
     background: #F74952;
