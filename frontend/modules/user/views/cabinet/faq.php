@@ -114,7 +114,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div id="collapseOne2" class="collapse " aria-labelledby="headingOne"
                          data-parent="#accordionExample2">
                         <div class="card-body">
-                            В зависимости от выбранного тарифа, от 1 рубля в час. Чем дороже тариф тем ваше анкете. Так же есть бесплатный тариф
+                            В зависимости от выбранного тарифа, от 3 рублей в час. Чем дороже тариф тем ваше анкете.
                         </div>
                     </div>
 
@@ -147,7 +147,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div id="collapseOne3" class="collapse " aria-labelledby="headingOne"
                          data-parent="#accordionExample3">
                         <div class="card-body">
-                            Да можете,  но публикация   второй  и последующих платна.  Лимита на  количество анкет нет.
+                            Да можете, лимита на  количество анкет нет.
                         </div>
                     </div>
 
@@ -172,7 +172,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <path d="M9.31815 4.09814H0.681818C0.305453 4.09814 0 4.4036 0 4.77996V5.23448C0 5.61085 0.305453 5.9163 0.681818 5.9163H9.31815C9.69452 5.9163 9.99997 5.61085 9.99997 5.23448V4.77996C9.99997 4.4036 9.69452 4.09814 9.31815 4.09814Z" fill="#F74952"/>
 </svg>
                                     </span>
-                                Почему моя  анкета не попадает в топ?
+                                Как вывести анкету на первое место?
                             </button>
                         </h2>
                     </div>
@@ -180,16 +180,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div id="collapseOne4" class="collapse " aria-labelledby="headingOne"
                          data-parent="#accordionExample4">
                         <div class="card-body">
-                            На нашем сайте уровень ротации анкеты  напрямую зависит от ее качества.
-                            Если вы не видите свою анкету в топе,  начните
-                            работать над повышением ее качества либо  поднимайте ее платно.
+                            Анкеты сортируются по тарифу(чем дороже тем выше) и по дате добавления, последняя добавленая анкета выводится выше.
+                            Так же модно поднять анкету, тогда она будет выводится выше в рамках тарифа
                         </div>
                     </div>
 
                 </div>
             </div>
 
-            <div class="accordion accordion-custom margin-top-20" id="accordionExample5">
+            <div class="accordion accordion-custom margin-top-20 d-none" id="accordionExample5">
                 <div class="card">
                     <div class="card-header" id="headingOne">
                         <h2 class="mb-0">
@@ -228,7 +227,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
 
-            <div class="accordion accordion-custom margin-top-20" id="accordionExample6">
+            <div class="accordion accordion-custom margin-top-20 d-none" id="accordionExample6">
                 <div class="card">
                     <div class="card-header" id="headingOne">
                         <h2 class="mb-0">
@@ -267,7 +266,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
 
-            <div class="accordion accordion-custom margin-top-20" id="accordionExample7">
+            <div class="accordion accordion-custom margin-top-20 d-none" id="accordionExample7">
                 <div class="card">
                     <div class="card-header" id="headingOne">
                         <h2 class="mb-0">
@@ -302,7 +301,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
 
-            <div class="accordion accordion-custom margin-top-20" id="accordionExample8">
+            <div class="accordion accordion-custom margin-top-20 d-none" id="accordionExample8">
                 <div class="card">
                     <div class="card-header" id="headingOne">
                         <h2 class="mb-0">
