@@ -963,7 +963,7 @@ h1 , .big-red-text{
     font-size: 18px;
     line-height: 101.9%;
     color: #FFFFFF;
-    margin-bottom: 15px;
+    margin-bottom: 19px;
     display: flex;
 }
 .limit {
@@ -986,7 +986,7 @@ h1 , .big-red-text{
 #sort-select {
     width: 230px;
     box-shadow: none;
-    padding-left: 0;
+    padding: 5px;
 }
 .post-find-and-otzivi-count-block {
     font-family: Ubuntu;
@@ -997,6 +997,9 @@ h1 , .big-red-text{
 }
 .filter-block{
     margin-bottom: 25px;
+}
+.map-heading{
+    padding-left: 9px;
 }
 .post-top-info{
     position: absolute;
@@ -4024,7 +4027,7 @@ input.search::placeholder { color: #6d6d6d; }
         padding: 2px 8px 2px 4px;
     }
     .btn-wrap{
-        padding-left: 0px;
+        padding-left: 10px;
     }
     .single .post-rating {
         bottom: 75px;

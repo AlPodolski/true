@@ -368,7 +368,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                     <?php endif; ?>
 
                     <?php if (isset($post['metro'][0]['x'])) : ?>
-                        <div class="red-bold-text">Карта</div>
+                        <div class="red-bold-text map-heading">Карта</div>
                         <div id="map-<?php echo $post['id'] ?>"
                              class="yandex-map map-not-exist" data-id="<?php echo $post['id'] ?>"
                              data-x="<?php echo $post['metro'][0]['x'] ?>"
@@ -654,7 +654,9 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
     </div>
 </div>
 
-<div class="photo-list-wrap">
+<?php if ($post['gal'] ) : ?>
+
+    <div class="photo-list-wrap">
     <div class="red-bold-text text-center">Фото</div>
 
     <div class="photo-list">
@@ -678,6 +680,8 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
 
 </div>
+
+<?php endif; ?>
 
 <div class="otzivi-block-desc">
     <div class="red-bold-text">Отзывы</div>
