@@ -1339,7 +1339,7 @@ a.asc::after {
     height: 18px;
     overflow: hidden;
     display: block;
-    font-size: 12px;
+    font-size: 14px;
     width: 130px;
     margin-left: 5px;
 }
@@ -3622,6 +3622,12 @@ input.search::placeholder { color: #6d6d6d; }
     font-weight: bold;
     color: #000;
     bottom: -14px;
+}
+.head-view-wrap .black-text{
+    padding-top: 0;
+}
+.table .anket-info a{
+    font-size: 13px;
 }
 @media (max-width: 1199px) {
     .search-wrap{
