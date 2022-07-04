@@ -152,7 +152,7 @@ foreach (\common\models\Tarif::getAll() as $item){
                         <label for="addpost-check-image" style="<?php echo $style ?>" id="cabinet-main-img-label"
                                class="margin-top-20 img-label no-img-bg main-img check-photo-label">
                             <?= $form->field($checkPhotoForm, 'file')
-                                ->fileInput(['maxlength' => true, 'accept' => 'image/*', 'id' => 'addpost-check-image'])
+                                ->fileInput(['maxlength' => true, 'accept' => '.png, .jpg, .jpeg', 'id' => 'addpost-check-image'])
                                 ->label(false) ?>
 
                             <div class="plus-photo-wrap d-flex items-center">
@@ -244,7 +244,7 @@ foreach (\common\models\Tarif::getAll() as $item){
 
                         <?= $form->field($photoForm, 'photo[]')
                             ->fileInput(['maxlength' => true,
-                                'accept' => 'image/*',
+                                'accept' => '.png, .jpg, .jpeg',
                                 'multiple' => true,
                                 'id' => 'addpost-photo',
                                 'class' => 'd-none'
