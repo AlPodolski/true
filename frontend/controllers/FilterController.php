@@ -128,8 +128,8 @@ class FilterController extends Controller
             if (\strpos($uri, '?')) $uri = \strstr($uri, '?', true);
 
 
-            $title =  MetaBuilder::Build($uri, $city, 'Title');
-            $des = MetaBuilder::Build($uri, $city, 'des');
+            $title =  MetaBuilder::Build($uri, $city, 'Title'). ' На сайте '.Yii::$app->request->serverName;
+            $des = MetaBuilder::Build($uri, $city, 'des'). ' На сайте '.Yii::$app->request->serverName;
             $h1 = MetaBuilder::Build($uri, $city, 'h1');
 
             $topPostList = Posts::getTopList($cityInfo['id']);
