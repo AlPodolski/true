@@ -32,6 +32,7 @@ class ReviewForm extends Model
         return [
             [['photo','clean','total', 'post_id'], 'integer'],
             [['text', 'name'] , 'string'],
+            [['text'] , 'required'],
         ];
     }
 

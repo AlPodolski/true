@@ -119,7 +119,7 @@ echo $form->field($postReviewForm, 'post_id')->hiddenInput(['value' => $data['po
         <?php
 
         echo $form->field($postReviewForm, 'text')
-            ->textarea(['placeholder' => 'Комментарий'])->label(false);
+            ->textarea(['placeholder' => 'Комментарий', 'required' => ''])->label(false);
 
         ?>
 
