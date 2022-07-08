@@ -8,6 +8,7 @@ use common\models\City;
 use common\models\Pol;
 use frontend\models\FilterParams;
 use frontend\modules\user\models\Posts;
+use frontend\modules\user\models\Review;
 use Yii;
 use yii\helpers\ArrayHelper;
 
@@ -328,6 +329,31 @@ class QueryParamsHelper
                 $id = Posts::find()->select('id')->andWhere(['city_id' => $city['id']])->andWhere(['<>', 'video', ''])->asArray()->all();
 
                 $ids = self::intersect_data($id, $ids);
+
+            }
+
+            if ($value == 'prostitutki-s-otzyvami'){
+
+                Yii::$app->params['breadcrumbs'][] = array(
+                    'label'=> 'проститутки с отзывами',
+                );
+
+                $id = Review::find()->select('post_id')
+                    ->where(['is_moderate' => Review::MODARATE])
+                    ->asArray()
+                    ->all();
+
+                $resultPostsIds = ArrayHelper::getColumn($id, 'post_id');
+
+                if (!empty($ids)) $ids = array_intersect($ids, $resultPostsIds);
+
+                else $ids = $resultPostsIds;
+
+                if (empty($ids)) {
+                    $ids[] = [
+                        '0' => 0
+                    ];
+                }
 
             }
 
