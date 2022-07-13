@@ -51,7 +51,7 @@ class ImportController extends Controller
     public function actionIndex()
     {
 
-        $stream = \fopen(Yii::getAlias('@app/files/import_20_06.csv'), 'r');
+        $stream = \fopen(Yii::getAlias('@app/files/import_true_13_17_2022.csv'), 'r');
 
         $csv = Reader::createFromStream($stream);
         $csv->setDelimiter(';');
@@ -67,8 +67,8 @@ class ImportController extends Controller
         $serviceList = Service::find()->asArray()->all();
 
         $this->siteId = 0;
-        $this->update = 27;
-        $this->path = '/uploads/a27/';
+        $this->update = 28;
+        $this->path = '/uploads/a28/';
 
         $posts = array();
 
@@ -82,17 +82,17 @@ class ImportController extends Controller
 
             $post = new Posts();
 
-            $city = City::find()->where(['city' => $record['city']])->one();
+            $city['id'] = 1;
 
-            $post->price = $record['price'];
+            $post->price = $record['price'] ?? 3000;
 
-            $post->city_id = $city['id'];
+            $post->city_id = 1;
             $post->pol_id = 1;
             $post->created_at = \time();
             $post->name = $record['name'];
             $post->updated_at = $this->update;
             $post->phone = preg_replace('/[^0-9]/', '',  $record['phone']);
-            //$post->about = strip_tags ($record['anket-about']);
+            $post->about = strip_tags ($record['anket-about']);
             $post->check_photo_status = 0;
             $post->status = 1;
             $post->sort = 10000;
@@ -102,9 +102,7 @@ class ImportController extends Controller
 
             if (isset($record['video']) and $record['video']) {
 
-                $videoArray = \explode(',', $record['video']);
-
-                $post->video = $this->path . $videoArray[0];
+                $post->video = $this->path . $record['video'];
 
             }
 
@@ -159,7 +157,7 @@ class ImportController extends Controller
 
                 if (isset($record['hair']) and $record['hair']) {
 
-                    $id = ArrayHelper::getValue(HairColor::find()->where(['value' => $record['hair']])->asArray()->one(), 'id');
+                    $id = ArrayHelper::getValue(HairColor::find()->where(['value2' => $record['hair']])->asArray()->one(), 'id');
 
                     if ($id) {
 
@@ -175,7 +173,7 @@ class ImportController extends Controller
 
                 if (isset($record['ethnik']) and $record['ethnik']) {
 
-                    $id = ArrayHelper::getValue(National::find()->where(['value' => $record['ethnik']])->asArray()->one(), 'id');
+                    $id = ArrayHelper::getValue(National::find()->where(['value2' => $record['ethnik']])->asArray()->one(), 'id');
 
                     if ($id) {
 
@@ -296,6 +294,8 @@ class ImportController extends Controller
                     }
 
                 }
+
+                exit();
 
             }
 
