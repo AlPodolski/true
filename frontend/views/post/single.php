@@ -77,7 +77,7 @@ $this->params['breadcrumbs'][] = array(
         'viewPosts' => $viewPosts,
         'price' => $price
     ]); ?>
-
+    <?php echo \frontend\widgets\HelperWidget::widget()?>
     <?php if ($viewPosts) : ?>
 
     <div class="red-bold-text text-center">Просмотренные анкеты</div>

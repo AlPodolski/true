@@ -41,7 +41,7 @@ echo \frontend\widgets\OpenGraphWidget::widget([
     <h1> <?php echo $h1 ?> </h1>
     <?php echo \frontend\widgets\SortingWidget::widget() ?>
     <?php echo \frontend\widgets\LinkWidget::widget(['url' => Yii::$app->request->url]) ?>
-
+    <?php echo \frontend\widgets\HelperWidget::widget()?>
     <div class="row">
 
         <?php echo '<div data-url="/' . $param . '" class="col-12"></div>'; ?>
