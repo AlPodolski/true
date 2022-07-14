@@ -1041,6 +1041,8 @@ h1 , .big-red-text{
     border-radius: 5px;
     margin-left: 20px;
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 .help-text::before{
     position: absolute;
