@@ -111,6 +111,7 @@ class HelperRepository
 
         }
 
-        return $post->limit(8)->all();
+        return $post->limit(8)->orderBy('RAND()')->all();
+
     }
 }
