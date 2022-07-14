@@ -22,13 +22,14 @@ class SearchController extends Controller
 
         if (!$model->load( Yii::$app->request->get()) or !$model->name) return $this->goHome();
 
+        $cityInfo = City::getCity($city);
+
         $prPosts = Posts::find()
             ->asArray()
             ->with('avatar', 'metro')
             ->where(['like', 'name', $model->name])
+            ->andWhere(['city_id' => $cityInfo['id']])
             ->all();
-
-        $cityInfo = City::getCity($city);
 
         $title = 'Проститутки по имени '.$model->name.' – путаны и индивидуалки '.$cityInfo['city2'];
         $des = 'Путаны с именем '.$model->name.' с удовольствием выполнят все Ваши желания. Выбор анкет индивидуалок. Номера телефонов';

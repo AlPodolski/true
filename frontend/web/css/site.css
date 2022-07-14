@@ -1006,6 +1006,65 @@ h1 , .big-red-text{
     bottom: 13px;
     z-index: 2;
 }
+#helper{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 320px;
+    transition: bottom .3s ease-in-out;
+    z-index: 100;
+    border-top-right-radius: 5px;
+    overflow: hidden;
+}
+.helper-header{
+    background: #f74952;
+    z-index: 100;
+    padding: 10px;
+    color: #fff;
+    font-weight: bold;
+    width: 100%;
+}
+.helper-content{
+    background: #F9F8F8;
+    display: none;
+}
+.show-helper .helper-content{
+    width: 100%;
+    display: flex;
+}
+.help-text{
+    background: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    margin-left: 20px;
+    position: relative;
+}
+.help-text::before{
+    position: absolute;
+    top: 30px;
+    left: -20px;
+    width: 20px;
+    height: 15px;
+    border-right: 20px solid transparent;
+    border-top: 20px solid transparent;
+    border-color: #fff transparent transparent;
+    border-style: solid;
+    border-width: 15px 0 20px 20px;
+    content: "";
+}
+.helper-content{
+    padding: 25px 20px;
+}
+.counter{
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 35px;
+    color: #ff3f40;
+}
+
 .otzivi-count-icon{
     background: #FFCF03;
 }

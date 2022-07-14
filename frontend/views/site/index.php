@@ -168,3 +168,5 @@ if (isset($webmaster))
 
 
 </div>
+
+<?php echo \frontend\widgets\HelperWidget::widget()?>

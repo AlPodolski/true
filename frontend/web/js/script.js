@@ -885,6 +885,12 @@ function dopolnitaelno() {
 
 }
 
+function toggleHelper(object){
+
+    $('#helper').toggleClass('show-helper')
+
+}
+
 function more_search() {
     $('.more-search-btn span').toggleClass('d-none');
     $('.more-search-block').toggleClass('d-none');

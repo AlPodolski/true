@@ -58,6 +58,8 @@ use yii\helpers\ArrayHelper;
  * @property Files $avatar
  * @property integer $tarif_id
  * @property City $city
+ * @property National $nacionalnost
+ * @property Rayon $rayon
  */
 class Posts extends \yii\db\ActiveRecord
 {
