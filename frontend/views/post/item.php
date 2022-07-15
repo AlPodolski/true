@@ -67,7 +67,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                             <?php echo PhotoWidget::widget([
                                 'path' => $post['avatar']['file'],
-                                'size' => '360_471',
+                                'size' => '1024',
                                 'width' => true,
                                 'showPictureHref' => true,
                                 'pictureOptions' => [
@@ -89,7 +89,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                                     <?php echo PhotoWidget::widget([
                                         'path' => $item['file'],
-                                        'size' => '360_471',
+                                        'size' => '1024',
                                         'width' => true,
                                         'showPictureHref' => true,
                                         'pictureOptions' => [
