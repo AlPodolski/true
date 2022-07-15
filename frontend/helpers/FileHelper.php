@@ -46,7 +46,7 @@ class FileHelper
 
     public static function regenerateImg($img, $width , $save_path){
 
-        return Image::resize ($img, $width, 9999)->save($save_path, ['quality' => 78]);
+        return Image::resize ($img, $width, 9999)->save($save_path, ['quality' => 85]);
 
     }
 
