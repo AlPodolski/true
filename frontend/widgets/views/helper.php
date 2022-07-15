@@ -7,7 +7,7 @@ use yii\helpers\Html;
 
 ?>
 
-<div id="helper" class="helper-wrap" >
+<div id="helper" class="helper-wrap <?php if ($posts) echo 'show-helper' ?> " >
     <div class="helper-header" onclick="toggleHelper(this)">
         Секретарша Светочка
     </div>
