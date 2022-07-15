@@ -1026,6 +1026,11 @@ h1 , .big-red-text{
     color: #fff;
     font-weight: bold;
     width: 100%;
+    display: flex;
+    align-items: center;
+}
+.close-helper{
+    margin-left: auto;
 }
 .helper-content{
     background: #F9F8F8;

@@ -7,9 +7,11 @@ use yii\helpers\Html;
 
 ?>
 
-<div id="helper" class="helper-wrap <?php if ($posts) echo 'show-helper' ?> " >
+<div id="helper" class="helper-wrap" >
     <div class="helper-header" onclick="toggleHelper(this)">
-        Секретарша Светочка
+        <?php if ($posts) echo '<span>Смотреть рекомендации</span>';
+        else echo '<span>Секретарша Светочка</span>' ?>
+        <div class="close-helper"><img src="/img/icons8-close.svg" alt=""></div>
     </div>
     <div class="helper-content">
         <div class="girl">

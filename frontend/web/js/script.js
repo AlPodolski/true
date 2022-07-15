@@ -887,7 +887,7 @@ function dopolnitaelno() {
 
 function toggleHelper(object){
 
-    $('#helper').toggleClass('show-helper')
+    $('#helper').toggleClass('show-helper');
 
 }
 
