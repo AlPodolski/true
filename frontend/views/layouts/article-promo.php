@@ -12,7 +12,7 @@ use frontend\widgets\PhotoWidget;
         <a href="/<?php echo $post['url']?>">
         <?php echo PhotoWidget::widget([
             'path' => $post['post']['avatar']['file'] ,
-            'size' => '350_420',
+            'size' => '420_480',
             'options' => [
                 'width' => '350px',
                 'height' => '420px',

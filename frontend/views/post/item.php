@@ -664,7 +664,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
             <?php echo PhotoWidget::widget([
                 'path' => $item['file'],
-                'size' => '360_471',
+                'size' => '1024',
                 'showPictureHref' => true,
 
                 'options' => [
