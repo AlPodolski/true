@@ -43,7 +43,7 @@ echo \frontend\components\helpers\MicroHelper::image($post);
 
                 <?php echo PhotoWidget::widget([
                     'path' => $post['avatar']['file'],
-                    'size' => '360_430',
+                    'size' => '390_460',
                     'options' => [
                         'class' => 'img user-img listing-img',
                         'loading' => 'lazy',
