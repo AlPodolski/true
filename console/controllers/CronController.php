@@ -12,6 +12,7 @@ use frontend\modules\user\models\Posts;
 use frontend\modules\user\models\TopAnketBlock;
 use Yii;
 use yii\console\Controller;
+use yii\helpers\ArrayHelper;
 
 class CronController extends Controller
 {
@@ -107,6 +108,23 @@ class CronController extends Controller
                 }
 
             }
+
+        }
+
+    }
+
+    public function actionUpdateTime()
+    {
+
+        $posts = Posts::find()->where(['fake' => Posts::POST_FAKE])
+            ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
+            ->limit(10)->orderBy('RAND()')->all();
+
+        foreach ($posts as $post){
+
+            $post->updated_at = time() - rand(0, 7200);
+
+            $post->save();
 
         }
 
