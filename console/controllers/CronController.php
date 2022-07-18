@@ -118,7 +118,7 @@ class CronController extends Controller
 
         $posts = Posts::find()->where(['fake' => Posts::POST_FAKE])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
-            ->limit(10)->orderBy('RAND()')->all();
+            ->limit(100)->orderBy('RAND()')->all();
 
         foreach ($posts as $post){
 
