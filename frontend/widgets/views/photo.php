@@ -39,7 +39,7 @@ if (is_array($pictureOptions)) {
 
 
     <picture <?php echo $pictureOptionText ?> <?php if ($showPictureHref) : ?> href="<?= Yii::$app->imageCache->thumbSrc($path, $size) ?>" <?php endif; ?>>
-
+        <source srcset="<?= $thumbSrcWebP ?>" type="image/webp">
         <source srcset="<?= $thumbSrc ?>" type="image/jpeg">
         <img  <?php echo $params ?> src="<?= $thumbSrc ?>">
     </picture>
