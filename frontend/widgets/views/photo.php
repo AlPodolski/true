@@ -20,6 +20,13 @@ if (is_array($pictureOptions)) {
 
 <?php if (file_exists(Yii::getAlias('@webroot') . $path) and $path) : ?>
 
+    <?php
+
+    $thumbSrc = Yii::$app->imageCache->thumbSrc($path, $size);
+    $thumbSrcWebP = str_replace('.jpg', '.webp', $thumbSrc);
+
+    ?>
+
     <?php $widthInfo = '' ?>
 
     <?php if ($width and $imageInfo = Yii::$app->imageCache->sizes[$size]) : ?>
@@ -32,7 +39,9 @@ if (is_array($pictureOptions)) {
 
 
     <picture <?php echo $pictureOptionText ?> <?php if ($showPictureHref) : ?> href="<?= Yii::$app->imageCache->thumbSrc($path, $size) ?>" <?php endif; ?>>
-        <img  <?php echo $params ?> src="<?= Yii::$app->imageCache->thumbSrc($path, $size) ?>">
+        <source srcset="<?= $thumbSrcWebP ?>" type="image/webp">
+        <source srcset="<?= $thumbSrc ?>" type="image/jpeg">
+        <img  <?php echo $params ?> src="<?= $thumbSrc ?>">
     </picture>
 
 

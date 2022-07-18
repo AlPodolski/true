@@ -28,6 +28,7 @@ return [
                 'png' => 'png',
                 'gif' => 'gif',
                 'bmp' => 'bmp',
+                'webp' => 'jpg',
             ],
             'sizes' => [
                 'single' => [375, 450],
