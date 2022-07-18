@@ -122,7 +122,7 @@ class CronController extends Controller
 
         foreach ($posts as $post){
 
-            $post->updated_at = time() - rand(0, 7200);
+            $post->updated_at = time() - rand(0, 3600);
 
             $post->save();
 
