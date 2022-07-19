@@ -16,6 +16,8 @@ class PhotoController extends Controller
 
         $city = City::getCity($city);
 
+        dd($city);
+
         $posts = Posts::find()
             ->where(['status' => Posts::POST_ON_PUPLICATION_STATUS, 'city_id' => $city['id']])
         ->orderBy((new GetOrderHelper)->get())
@@ -26,9 +28,9 @@ class PhotoController extends Controller
 
         if (\strpos($uri, 'page')) $uri = \strstr($uri, '?page', true);
 
-        $title = MetaBuilder::Build($uri, $city, 'Title');
-        $des = MetaBuilder::Build($uri, $city, 'des');
-        $h1 = MetaBuilder::Build($uri, $city, 'h1');
+        $title = MetaBuilder::Build($uri, $city['city'], 'Title');
+        $des = MetaBuilder::Build($uri, $city['city'], 'des');
+        $h1 = MetaBuilder::Build($uri, $city['city'], 'h1');
 
         return $this->render('photo', compact('posts' , 'h1', 'title', 'des'));
     }
