@@ -6,10 +6,9 @@ use common\models\City;
 use frontend\components\helpers\GetOrderHelper;
 use frontend\helpers\MetaBuilder;
 use frontend\modules\user\models\Posts;
-use yii\web\Controller;
 use Yii;
 
-class PhotoController extends Controller
+class PhotoController extends BeforeController
 {
     public function actionIndex($city)
     {
