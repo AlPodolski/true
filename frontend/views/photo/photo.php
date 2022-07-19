@@ -22,8 +22,9 @@ Yii::$app->view->registerMetaTag([
     <div class="posts-photo-wrap">
         <?php foreach ($posts as $post) : ?>
             <article class="photo-article">
+                <div class="big-red-text"><?php echo $post['name'] ?></div>
                 <div class="photo-wrap view-posts">
-                    <div class="photo-item">
+                    <div class="photo-item col-4">
                         <?php echo PhotoWidget::widget([
                             'path' => $post['avatar']['file'],
                             'size' => '420_480',
@@ -40,7 +41,7 @@ Yii::$app->view->registerMetaTag([
 
                         <?php foreach ($post['gallery'] as $item) : ?>
 
-                            <div class="photo-item">
+                            <div class="photo-item col-4">
 
                                 <?php echo PhotoWidget::widget([
                                     'path' => $item['file'],
@@ -60,6 +61,7 @@ Yii::$app->view->registerMetaTag([
 
                     <?php endif; ?>
                 </div>
+                <div class="price">Подробнее</div>
             </article>
         <? endforeach; ?>
     </div>
