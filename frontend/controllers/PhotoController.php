@@ -16,8 +16,6 @@ class PhotoController extends Controller
 
         $city = City::getCity($city);
 
-        dd($city);
-
         $posts = Posts::find()
             ->where(['status' => Posts::POST_ON_PUPLICATION_STATUS, 'city_id' => $city['id']])
         ->orderBy((new GetOrderHelper)->get())
