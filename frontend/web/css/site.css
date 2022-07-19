@@ -1019,11 +1019,6 @@ h1 , .big-red-text{
     border-top-right-radius: 5px;
     overflow: hidden;
 }
-.posts-photo-wrap{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-}
 .photo-article .big-red-text{
     margin-top: 0px;
 }
