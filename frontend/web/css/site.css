@@ -1019,6 +1019,9 @@ h1 , .big-red-text{
     border-top-right-radius: 5px;
     overflow: hidden;
 }
+.photo-article .view-posts{
+    margin-top: 0px;
+}
 .photo-article .big-red-text{
     margin-top: 0px;
 }
