@@ -185,6 +185,7 @@ class Posts extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::class, ['id' => 'user_id'])->select('partner_id')->cache(3600);
     }
+
     public function getCity(): ActiveQuery
     {
         return $this->hasOne(City::class, ['id' => 'city_id'])->cache(3600 * 24);

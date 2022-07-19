@@ -8,6 +8,7 @@ use yii\base\BaseObject;
 use frontend\modules\user\models\forms\CheckPhotoForm;
 
 $videoForm = new \frontend\modules\user\models\forms\VideoForm();
+$selphiForm = new \frontend\modules\user\models\forms\SelphiForm();
 $avatarForm = new \frontend\modules\user\models\forms\AvatarForm();
 $photoForm = new \frontend\modules\user\models\forms\PhotoForm();
 $userNational = new \frontend\modules\user\models\UserNational();
@@ -54,4 +55,5 @@ echo $this->renderFile(Yii::getAlias('@user-view/post/_form.php'), [
     'userService' => $userService,
     'checkPhotoForm' => $checkPhotoForm,
     'userTime' => $userTime,
+    'selphiForm' => $selphiForm,
 ]);

@@ -6,6 +6,7 @@
 /* @var $city array */
 
 use frontend\modules\user\models\forms\CheckPhotoForm;
+use frontend\modules\user\models\forms\SelphiForm;
 
 $videoForm = new \frontend\modules\user\models\forms\VideoForm();
 
@@ -22,6 +23,10 @@ $checkPhotoForm->file = $post['checkPhoto']['file'];
 $photoForm = new \frontend\modules\user\models\forms\PhotoForm();
 
 $photoForm->photo = $post['gal'];
+
+$selphiForm = new SelphiForm();
+
+$selphiForm->photo = $post['selphiCount'];
 
 $userNational = \frontend\modules\user\models\UserNational::findOne(['post_id' => $post['id']]) ?? new \frontend\modules\user\models\UserNational() ;
 
@@ -95,5 +100,6 @@ echo $this->renderFile(Yii::getAlias('@user-view/post/_form.php'), [
     'userService' => $userService,
     'checkPhotoForm' => $checkPhotoForm,
     'userTime' => $userTime,
+    'selphiForm' => $selphiForm,
 ]);
 

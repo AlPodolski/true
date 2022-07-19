@@ -11,6 +11,7 @@ use frontend\modules\user\helpers\SavePostRelationHelper;
 use frontend\modules\user\models\forms\AvatarForm;
 use frontend\modules\user\models\forms\CheckPhotoForm;
 use frontend\modules\user\models\forms\PhotoForm;
+use frontend\modules\user\models\forms\SelphiForm;
 use frontend\modules\user\models\forms\VideoForm;
 use frontend\modules\user\models\Posts;
 use frontend\modules\user\models\UserHairColor;
@@ -52,6 +53,7 @@ class PostController extends Controller
         $avatarForm = new AvatarForm();
         $photoForm = new PhotoForm();
         $videoForm = new VideoForm();
+        $selphiForm = new SelphiForm();
 
         $checkPhotoForm = new CheckPhotoForm();
 
@@ -153,6 +155,8 @@ class PostController extends Controller
 
                 $photoForm->photo = UploadedFile::getInstances($photoForm, 'photo');
 
+                $selphiForm->photo = UploadedFile::getInstances($selphiForm, 'photo');
+
                 if ($photoForm->photo && $photoForm->validate()) {
 
                     $gallery = $photoForm->upload();
@@ -164,6 +168,25 @@ class PostController extends Controller
                         $file->related_id = $post['id'];
                         $file->main = Files::NOT_MAIN_PHOTO;
                         $file->related_class = Posts::class;
+                        $file->file = $item;
+                        $file->save();
+
+                    }
+
+                }
+
+                if ($selphiForm->photo && $selphiForm->validate()) {
+
+                    $gallery = $selphiForm->upload();
+
+                    foreach ($gallery as $item) {
+
+                        $file = new Files();
+
+                        $file->related_id = $post['id'];
+                        $file->main = Files::NOT_MAIN_PHOTO;
+                        $file->related_class = Posts::class;
+                        $file->type = Files::SELPHY_TYPE;
                         $file->file = $item;
                         $file->save();
 
@@ -243,7 +266,7 @@ class PostController extends Controller
 
         $city = City::getCity($city);
 
-        $post = Posts::find()->where(['id' => $id])->with('avatar', 'gal')->one();
+        $post = Posts::find()->where(['id' => $id])->with('avatar', 'gal', 'selphiCount')->one();
 
         if (!$post or $post['user_id'] != Yii::$app->user->id) {
 
@@ -258,6 +281,8 @@ class PostController extends Controller
         $videoForm = new VideoForm();
 
         $photoForm = new PhotoForm();
+
+        $selphiForm = new SelphiForm();
 
         $checkPhotoForm = new CheckPhotoForm();
 
@@ -333,6 +358,8 @@ class PostController extends Controller
 
                 $photoForm->photo = UploadedFile::getInstances($photoForm, 'photo');
 
+                $selphiForm->photo = UploadedFile::getInstances($selphiForm, 'photo');
+
                 $checkPhotoForm->file = UploadedFile::getInstance($checkPhotoForm, 'file');
 
                 if ($checkPhotoForm->file and $checkPhotoForm->validate()) {
@@ -376,6 +403,25 @@ class PostController extends Controller
                         $file->related_id = $post['id'];
                         $file->main = Files::NOT_MAIN_PHOTO;
                         $file->related_class = Posts::class;
+                        $file->file = $item;
+                        $file->save();
+
+                    }
+
+                }
+
+                if ($selphiForm->photo && $selphiForm->validate()) {
+
+                    $gallery = $selphiForm->upload();
+
+                    foreach ($gallery as $item) {
+
+                        $file = new Files();
+
+                        $file->related_id = $post['id'];
+                        $file->main = Files::NOT_MAIN_PHOTO;
+                        $file->related_class = Posts::class;
+                        $file->type = Files::SELPHY_TYPE;
                         $file->file = $item;
                         $file->save();
 

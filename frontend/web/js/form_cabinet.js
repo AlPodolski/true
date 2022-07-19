@@ -54,9 +54,29 @@ $(document).ready(function() {
     $("#posts-phone").mask("+7(999)99-99-999");
 });
 
+var fileFieldSelphi = document.getElementById('addpost-selphi');
+var previewSelphi = document.getElementById('previewselphi');
+
+fileFieldSelphi.addEventListener('change', function(event) {
+    previewSelphi.innerHTML = '';
+    for(var x = 0; x < event.target.files.length; x++) {
+        (function(i) {
+            var reader = new FileReader();
+            var img = document.createElement('img');
+            reader.onload = function(event) {
+                img.setAttribute('src', event.target.result);
+                img.setAttribute('class', 'preview');
+
+                previewSelphi.appendChild(img);
+            }
+            reader.readAsDataURL(event.target.files[x]);
+        })(x);
+    }
+}, false);
 
 var fileField = document.getElementById('addpost-photo');
 var preview = document.getElementById('preview');
+
 fileField.addEventListener('change', function(event) {
     preview.innerHTML = '';
     for(var x = 0; x < event.target.files.length; x++) {
@@ -73,6 +93,9 @@ fileField.addEventListener('change', function(event) {
         })(x);
     }
 }, false);
+
+
+
 
 $(document).ready(function() {
 
