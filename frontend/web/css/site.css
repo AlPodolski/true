@@ -1019,6 +1019,12 @@ h1 , .big-red-text{
     border-top-right-radius: 5px;
     overflow: hidden;
 }
+.posts-photo-wrap{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding: 0 15px;
+}
 .helper-header{
     background: #f74952;
     z-index: 100;

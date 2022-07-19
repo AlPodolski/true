@@ -301,6 +301,7 @@ AppAsset::register($this);
                     <li class="nav-item"><a href="/mesto-viezd">На выезд</a></li>
                     <li class="nav-item"><a href="/favorite/list">Избранное</a></li>
                     <li class="nav-item"><a class="small-red-text" href="/novie">Новые анкеты</a></li>
+                    <li class="nav-item"><a class="small-red-text" href="/photo-prostitutok">Фото проституток</a></li>
                     <li class="nav-item"><a class="small-red-text" href="/prostitutki-s-otzyvami">Проститутки с отзывами</a></li>
 
                     <?php if (Yii::$app->requestedParams['city'] == 'moskva') : ?>
