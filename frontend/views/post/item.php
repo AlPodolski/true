@@ -328,15 +328,6 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                     <div class="btn-wrap">
 
-                        <?php if ($post['selphiCount']) : ?>
-
-                            <div class="orange-btn selfi-btn" onclick="get_modal(this)" data-target="selfy"
-                                 data-id="<?php echo $post['id'] ?>">
-                                <img loading="lazy" src="/img/camera(1)1.png" alt="">Смотеть селфи
-                            </div>
-
-                        <?php endif; ?>
-
                         <div class="white-btn video-btn" onclick="get_modal(this);ym(70919698,'reachGoal','message')"
                              data-target="message" data-id="<?php echo $post['user_id'] ?>">
                             Написать автору
@@ -653,6 +644,32 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
         </div>
     </div>
 </div>
+
+<?php if ($post['selphiCount'] ) : ?>
+
+    <div class="photo-list-wrap">
+        <div class="red-bold-text text-center">Селфи</div>
+        <div class="photo-list">
+            <?php foreach ($post['selphiCount'] as $item) : ?>
+
+                <?php echo PhotoWidget::widget([
+                    'path' => $item['file'],
+                    'size' => '1024',
+                    'showPictureHref' => true,
+
+                    'options' => [
+                        'class' => 'img user-img',
+                        'loading' => 'lazy',
+                        'alt' => $post['name'],
+                        'title' => $photoTitle,
+                    ],
+                ]); ?>
+
+            <?php endforeach; ?>
+        </div>
+    </div>
+
+<?php endif; ?>
 
 <?php if ($post['gal'] ) : ?>
 
