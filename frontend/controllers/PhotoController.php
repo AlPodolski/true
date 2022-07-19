@@ -25,9 +25,9 @@ class PhotoController extends BeforeController
 
         if (\strpos($uri, 'page')) $uri = \strstr($uri, '?page', true);
 
-        $title = MetaBuilder::Build($uri, $city['city'], 'Title');
-        $des = MetaBuilder::Build($uri, $city['city'], 'des');
-        $h1 = MetaBuilder::Build($uri, $city['city'], 'h1');
+        $title = MetaBuilder::Build($uri, $city['url'], 'Title');
+        $des = MetaBuilder::Build($uri, $city['url'], 'des');
+        $h1 = MetaBuilder::Build($uri, $city['url'], 'h1');
 
         return $this->render('photo', compact('posts' , 'h1', 'title', 'des'));
     }
