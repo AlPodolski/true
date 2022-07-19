@@ -61,7 +61,7 @@ Yii::$app->view->registerMetaTag([
 
                     <?php endif; ?>
                 </div>
-                <div class="price">Подробнее</div>
+                <a class="price d-block" href="/post/<?=$post->id ?>">Подробнее</a>
             </article>
         <? endforeach; ?>
     </div>

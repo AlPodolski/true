@@ -1025,6 +1025,9 @@ h1 , .big-red-text{
 .photo-article .big-red-text{
     margin-top: 0px;
 }
+.price:hover{
+    color:#fff;
+}
 .photo-article{
     margin-bottom: 15px;
 }
