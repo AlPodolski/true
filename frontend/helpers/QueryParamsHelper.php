@@ -6,6 +6,7 @@ namespace frontend\helpers;
 
 use common\models\City;
 use common\models\Pol;
+use frontend\models\Files;
 use frontend\models\FilterParams;
 use frontend\modules\user\models\Posts;
 use frontend\modules\user\models\Review;
@@ -323,10 +324,27 @@ class QueryParamsHelper
             if ($value == 'video'){
 
                 Yii::$app->params['breadcrumbs'][] = array(
-                    'label'=> 'анкеты видео',
+                    'label'=> 'анкеты с видео',
                 );
 
                 $id = Posts::find()->select('id')->andWhere(['city_id' => $city['id']])->andWhere(['<>', 'video', ''])->asArray()->all();
+
+                $ids = self::intersect_data($id, $ids);
+
+            }
+
+            if ($value == 'prostitutki-s-selfi'){
+
+                Yii::$app->params['breadcrumbs'][] = array(
+                    'label'=> 'анкеты с селфи',
+                );
+
+                $postsIds = Files::find()->where(['type' => Files::SELPHY_TYPE])
+                    ->select('related_id')
+                    ->asArray()->all();
+
+                $id = Posts::find()->select('id')
+                    ->where(['in', 'id', ArrayHelper::getColumn($postsIds, 'related_id')])->asArray()->all();
 
                 $ids = self::intersect_data($id, $ids);
 
