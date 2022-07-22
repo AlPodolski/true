@@ -657,11 +657,11 @@ AppAsset::register($this);
         </div>
     </div>
 </div>
+<?php if (Yii::$app->requestedParams['city'] == 'moskva') : ?>
+<div class="jivo-block"><div> <?php endif; ?>
 <!-- Modal -->
 <?php $this->endBody() ?>
-<?php if (Yii::$app->requestedParams['city'] == 'moskva') : ?>
-    <div class="jivo-block"><div>
-<?php endif; ?>
+
 </body>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
