@@ -1,7 +1,6 @@
 $(document).ready(function () {
-
-    $.getScript("/js/jquery-ui.js", function (data, textStatus, jqxhr) {
-        $("head").prepend('<link href="/css/jquery-ui.css" rel="stylesheet">');
+    $.getScript("/js/jquery-ui.min.js", function (data, textStatus, jqxhr) {
+        $("head").prepend('<link href="/css/jquery-ui.min.css" rel="stylesheet">');
         filter();
     });
 });
