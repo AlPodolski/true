@@ -17,7 +17,7 @@ var exist_jivo_block = false;
 
 if ($('.jivo-block').length > 0) {
 
-    exist_map_block = true;
+    exist_jivo_block = true;
 
 }
 
