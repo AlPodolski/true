@@ -358,12 +358,25 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                         </div>
                     <?php endif; ?>
 
-                    <?php if (isset($post['metro'][0]['x'])) : ?>
+                    <?php if (isset($post['metro'][0]['x']) or $post['x']) : ?>
                         <div class="red-bold-text map-heading">Карта</div>
                         <div id="map-<?php echo $post['id'] ?>"
                              class="yandex-map map-not-exist" data-id="<?php echo $post['id'] ?>"
-                             data-x="<?php echo $post['metro'][0]['x'] ?>"
-                             data-y="<?php echo $post['metro'][0]['y'] ?>" style="height: 200px">
+
+                             <?php
+                                if ($post['x']){
+                                    $x = $post['x'];
+                                    $y = $post['y'];
+                                }else{
+                                    $x = $post['metro'][0]['x'];
+                                    $y = $post['metro'][0]['y'];
+                                }
+                             ?>
+
+                             data-x="<?php echo $x ?>"
+                             data-y="<?php echo $y ?>"
+
+                             style="height: 200px">
                         </div>
                     <?php endif; ?>
 
@@ -1567,8 +1580,19 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
         <?php if (isset($post['metro'][0]['x'])) : ?>
             <div id="map-<?php echo $post['id'] ?>"
                  class="yandex-map map-not-exist" data-id="<?php echo $post['id'] ?>"
-                 data-x="<?php echo $post['metro'][0]['x'] ?>"
-                 data-y="<?php echo $post['metro'][0]['y'] ?>" style="  height: 400px">
+
+                <?php
+                if ($post['x']){
+                    $x = $post['x'];
+                    $y = $post['y'];
+                }else{
+                    $x = $post['metro'][0]['x'];
+                    $y = $post['metro'][0]['y'];
+                }
+                ?>
+
+                 data-x="<?php echo $x ?>"
+                 data-y="<?php echo $y ?>" style="  height: 400px">
 
             </div>
 
