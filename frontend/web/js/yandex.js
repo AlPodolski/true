@@ -1,10 +1,22 @@
-$.getScript("https://api-maps.yandex.ru/2.1/?lang=ru_RU", function (data, textStatus, jqxhr) {
-    ymaps.ready(function () {
-        init();
-    })
+function init_yandex_for_cabinet(){
+    if (typeof ymaps == 'undefined') {
+        $.getScript("https://api-maps.yandex.ru/2.1/?lang=ru_RU", function (data, textStatus, jqxhr) {
+            ymaps.ready(function () {
+                init_cab();
+            })
+        });
+    } else {
+        ymaps.ready(function () {
+            init_cab();
+        })
+    }
+}
+
+$(document).ready(function () {
+    init_yandex_for_cabinet();
 });
 
-function init() {
+function init_cab() {
 
     var myPlacemark,
         myMap = new ymaps.Map('map', {
