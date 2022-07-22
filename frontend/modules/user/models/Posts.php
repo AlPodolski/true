@@ -116,6 +116,7 @@ class Posts extends \yii\db\ActiveRecord
                 'sort', 'tarif_id', 'price_night', 'price_2_hour', 'express_price'], 'integer'],
             [['name'], 'string', 'max' => 60],
             [['phone'], 'string', 'max' => 20 ],
+            [['x', 'y'], 'float'],
             [['name', 'phone', 'price'],'required'],
             [['video'], 'string', 'max' => 122],
             [['about' , 'old_url'], 'string'],
