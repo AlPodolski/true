@@ -555,7 +555,7 @@ foreach (\common\models\Tarif::getAll() as $item) {
                                 data-x="<?php echo $post->x ?>"
                                 data-y="<?php echo $post->y ?>"
                             <?php endif; ?>
-                             class="yandex-map" style="height: 300px">
+                             class="map" style="height: 300px">
                         </div>
                     </div>
 

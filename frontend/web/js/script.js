@@ -679,9 +679,17 @@ function init_yandex() {
 var load_map_status = false;
 var start_load_map_status = false;
 
+var exist_map_block = false;
+
+if ($('.yandex-map').length > 0) {
+
+    exist_map_block = true;
+
+}
+
 $(window).scroll(function () {
 
-    if (!load_map_status && !start_load_map_status) {
+    if (exist_map_block && !load_map_status && !start_load_map_status) {
 
         start_load_map_status = true;
 
