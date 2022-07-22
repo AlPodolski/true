@@ -548,7 +548,7 @@ foreach (\common\models\Tarif::getAll() as $item) {
                 </div>
 
                 <?php if (Yii::$app->requestedParams['city'] == 'moskva') : ?>
-                    <div class="col-12 d-none">
+                    <div class="col-12">
                     <div class="col-12">
                         <p class="control-label">Укажите свое местоположение на карте</p>
                         <div id="map"
