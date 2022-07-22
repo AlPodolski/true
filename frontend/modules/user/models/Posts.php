@@ -54,6 +54,8 @@ use yii\helpers\ArrayHelper;
  * @property int|null $pay_time
  * @property int|null $pol_id
  * @property int|null $sort
+ * @property int|null $x
+ * @property int|null $y
  * @property Files[] $gallery
  * @property Files $avatar
  * @property integer $tarif_id
