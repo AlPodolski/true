@@ -1,8 +1,6 @@
-$.getScript("https://api-maps.yandex.ru/2.1/?lang=ru_RU", function (data, textStatus, jqxhr) {
-    ymaps.ready(function () {
-        init();
-    })
-});
+ymaps.ready(function () {
+    init();
+})
 
 function init() {
 
