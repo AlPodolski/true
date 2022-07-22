@@ -20,8 +20,8 @@ function init_cab() {
 
     var myPlacemark,
         myMap = new ymaps.Map('map', {
-            center: [55.45, 37.37],
-            zoom: 11
+            center: [55.753845599344615, 37.62512497949332],
+            zoom: 10
         }, {
             searchControlProvider: 'yandex#search'
         });

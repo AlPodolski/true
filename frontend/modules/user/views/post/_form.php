@@ -11,7 +11,7 @@ use yii\helpers\ArrayHelper;
 
 $this->registerJsFile('/js/jquery.maskedinput.js', ['depends' => [yii\web\YiiAsset::className()]]);
 $this->registerJsFile('/js/form_cabinet.js?v=2', ['depends' => [yii\web\YiiAsset::className()]]);
-$this->registerJsFile('/js/yandex.js?v=2', ['depends' => [yii\web\YiiAsset::className()]]);
+$this->registerJsFile('/js/yandex.js?v=3', ['depends' => [yii\web\YiiAsset::className()]]);
 
 $tarifList = array();
 
@@ -547,7 +547,8 @@ foreach (\common\models\Tarif::getAll() as $item) {
                         ->label('Выберите тариф. Чем дороже тариф тем выше выводится анкета') ?>
                 </div>
 
-                <div class="col-12 d-none">
+                <?php if (Yii::$app->requestedParams['city'] == 'moskva') : ?>
+                    <div class="col-12 d-none">
                     <div class="col-12">
                         <p class="control-label">Укажите свое местоположение на карте</p>
                         <div id="map"
@@ -563,6 +564,7 @@ foreach (\common\models\Tarif::getAll() as $item) {
                     <?= $form->field($post, 'y')->hiddenInput()->label(false) ?>
 
                 </div>
+                <?php endif; ?>
 
             </div>
 
