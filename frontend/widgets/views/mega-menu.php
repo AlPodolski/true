@@ -237,7 +237,7 @@ use yii\helpers\Html;
             <a href="/favorite/list">Избранное</a>
         </div>
         <div class="drop-menu-list-item">
-            <a href="/cena-ot-6000">Элитные</a>
+            <a href="/ehlitnye-prostitutki">Элитные</a>
         </div>
         <div class="drop-menu-list-item">
             <a href="/phone">Телефоны</a>

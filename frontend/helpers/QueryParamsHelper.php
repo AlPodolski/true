@@ -303,6 +303,27 @@ class QueryParamsHelper
 
             }
 
+            if ($value =='ehlitnye-prostitutki'){
+
+                $id = Posts::find()->select('id')->andWhere(['city_id' => $city['id']])
+                    ->andWhere(['>', 'price', 4999])->asArray()->all();
+
+                Yii::$app->params['breadcrumbs'][] = array(
+                    'label'=> 'Элитные проститутки',
+                );
+
+                if (!empty($ids)) $ids = array_intersect($ids, $id);
+
+                else $ids = $id;
+
+                if (empty($ids)) {
+                    $ids[] = [
+                        '0' => 0
+                    ];
+                }
+
+            }
+
             if (strstr($value, 'pol-')){
 
                 $polSearch = true;

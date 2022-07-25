@@ -128,13 +128,13 @@ AppAsset::register($this);
             <div class="logo">
                 <?php
 
-                $logoTitle = 'Реальные проститутки';
+                $logoTitle = 'Проститутки';
 
                 if (isset(Yii::$app->requestedParams['city'])) {
 
                     $cityInfo = \common\models\City::getCity(Yii::$app->requestedParams['city']);
 
-                    $logoTitle = 'Реальные проститутки ' . $cityInfo['city2'];
+                    $logoTitle = 'Проститутки ' . $cityInfo['city2'];
 
                 }
 
