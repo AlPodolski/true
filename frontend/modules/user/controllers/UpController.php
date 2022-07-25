@@ -58,6 +58,8 @@ class UpController extends Controller
 
                 $post->status = Posts::POST_ON_PUPLICATION_STATUS;
 
+                $post->sort = time();
+
                 $post->save();
 
                 if ($upAnketModel->save() and $user->save()){
