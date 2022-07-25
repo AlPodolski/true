@@ -19,7 +19,7 @@ class MapController extends Controller
 {
 
     private $limit = 3000;
-    private $columns = 'id, name, phone, price';
+    private $columns = 'id, name, phone, price, x, y';
 
     public function behaviors()
     {

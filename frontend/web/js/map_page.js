@@ -28,7 +28,7 @@ function init_map_with_posts() {
     data.forEach(function (item) {
 
         var myGeoObject = new ymaps.GeoObject({
-                geometry: {type: "Point", coordinates: [item.metro[0]['x'], item.metro[0]['y']]},
+                geometry: {type: "Point", coordinates: [item.x, item.y]},
                 properties: {
                     clusterCaption: item.name,
                     hintContent: item.name,
