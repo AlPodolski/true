@@ -312,6 +312,8 @@ class QueryParamsHelper
                     'label'=> 'Элитные проститутки',
                 );
 
+                $id = ArrayHelper::getColumn($id, 'id');
+
                 if (!empty($ids)) $ids = array_intersect($ids, $id);
 
                 else $ids = $id;
