@@ -599,6 +599,7 @@ foreach (\common\models\Tarif::getAll() as $item) {
 
                 $tarifParams = [
                     Yii::$app->params['view_100_buy_price'] => '100 показов ' . Yii::$app->params['view_100_buy_price'] . ' руб',
+                    Yii::$app->params['view_1000_buy_price'] => '1000 показов ' . Yii::$app->params['view_1000_buy_price'] . ' руб',
                 ];
 
                 ?>

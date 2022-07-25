@@ -102,6 +102,8 @@ class BuyViewForm extends Model
         switch ($this->price) {
             case Yii::$app->params['view_100_buy_price']:
                 return (100);
+            case Yii::$app->params['view_1000_buy_price']:
+                return (1000);
         }
 
         return false;
