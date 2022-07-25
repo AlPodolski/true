@@ -111,7 +111,7 @@ class HelperRepository
 
         }
 
-        return $post->limit(8)->orderBy('RAND()')->all();
+        return $post->limit(8)->orderBy('RAND()')->cache(3600)->all();
 
     }
 }
