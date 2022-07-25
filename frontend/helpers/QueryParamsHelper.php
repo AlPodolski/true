@@ -303,7 +303,7 @@ class QueryParamsHelper
 
             }
 
-            if ($value =='ehlitnye-prostitutki'){
+            if ($value =='elitnye-prostitutki'){
 
                 $id = Posts::find()->select('id')->andWhere(['city_id' => $city['id']])
                     ->andWhere(['>', 'price', 4999])->asArray()->all();
