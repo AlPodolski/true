@@ -192,6 +192,9 @@ a.desc:after {
     margin-left: 5px;
     margin-right: 20px;
 }
+.ya-share2{
+    margin-top: 10px;
+}
 @media(max-width:767px) {
     .nav li > form > button.logout {
         display:block;
