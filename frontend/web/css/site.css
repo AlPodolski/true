@@ -183,6 +183,7 @@ a.desc:after {
 }
 .inputs-wrap .black-check-box{
     width: auto;
+    margin-bottom: 0;
 }
 .open-form .red-select{
     margin: 0;
@@ -3766,6 +3767,9 @@ input.search::placeholder { color: #6d6d6d; }
 }
 .table .anket-info a{
     font-size: 13px;
+}
+form .more-search-btn{
+    display: none;
 }
 @media (max-width: 1199px) {
     .more-search-btn{

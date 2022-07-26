@@ -221,30 +221,48 @@
 
         <div class="inputs-wrap">
             <div class="checbox black-check-box">
-                <input type="checkbox" name="check-photo" id="check-photo" class="custom-checkbox">
+                <input type="checkbox" name="check-photo"
+                       <?php if ($dataGet['check-photo']) echo 'selected' ?>
+                       id="check-photo" class="custom-checkbox">
                 <label for="check-photo"><span>Фото проверено</span></label>
             </div>
             <div class="checbox black-check-box">
-                <input type="checkbox" name="video" id="video" class="custom-checkbox">
+                <input type="checkbox"
+                    <?php if ($dataGet['video']) echo 'selected' ?>
+                       name="video" id="video" class="custom-checkbox">
                 <label for="video"><span>Анкета с видео</span></label>
             </div>
             <div class="checbox black-check-box d-none">
-                <input type="checkbox" name="bez-retushi" id="bez-retushi" class="custom-checkbox">
+                <input type="checkbox"
+                    <?php if ($dataGet['bez-retushi']) echo 'selected' ?>
+                       name="bez-retushi" id="bez-retushi" class="custom-checkbox">
                 <label for="bez-retushi"><span>Фото без ретуши</span></label>
             </div>
             <div class="checbox black-check-box">
-                <input type="checkbox" name="new" id="new" class="custom-checkbox">
+                <input type="checkbox"
+                    <?php if ($dataGet['new']) echo 'selected' ?>
+                       name="new" id="new" class="custom-checkbox">
                 <label for="new"><span>Новые на сайте</span></label>
             </div>
         </div>
-
         <?php if ($service) : ?>
             <select name="service" class="red-select">
                 <option value="">Услуги</option>
 
                 <?php foreach ($service as $serviceItem) : ?>
 
-                    <option value="<?php echo $serviceItem['id'] ?>"><?php echo $serviceItem['value'] ?></option>
+                    <option
+
+                        <?php $selected = '' ?>
+
+                        <?php if ($dataGet
+                            and isset($dataGet['service'])
+                            and $dataGet['service']
+                            and $dataGet['service'] == $serviceItem['id']) $selected = 'selected'; ?>
+
+                            <?php echo $selected ?>
+
+                            value="<?php echo $serviceItem['id'] ?>"><?php echo $serviceItem['value'] ?></option>
 
                 <?php endforeach; ?>
 
@@ -255,7 +273,18 @@
 
             <?php foreach ($place as $item) : ?>
 
-                <option value="<?php echo $item['id'] ?>"><?php echo $item['value'] ?></option>
+                <option
+
+                    <?php $selected = '' ?>
+
+                    <?php if ($dataGet
+                        and isset($dataGet['place'])
+                        and $dataGet['place']
+                        and $dataGet['place'] == $item['id']) $selected = 'selected'; ?>
+
+                    <?php echo $selected ?>
+
+                        value="<?php echo $item['id'] ?>"><?php echo $item['value'] ?></option>
 
             <?php endforeach; ?>
 
@@ -265,7 +294,18 @@
 
             <?php foreach ($naci as $item) : ?>
 
-                <option value="<?php echo $item['id'] ?>"><?php echo $item['value'] ?></option>
+                <option
+
+                    <?php $selected = '' ?>
+
+                    <?php if ($dataGet
+                        and isset($dataGet['naci'])
+                        and $dataGet['naci']
+                        and $dataGet['naci'] == $item['id']) $selected = 'selected'; ?>
+
+                    <?php echo $selected ?>
+
+                        value="<?php echo $item['id'] ?>"><?php echo $item['value'] ?></option>
 
             <?php endforeach; ?>
 
@@ -275,17 +315,39 @@
 
             <?php foreach ($hair as $item) : ?>
 
-                <option value="<?php echo $item['id'] ?>"><?php echo $item['value'] ?></option>
+                <option
+
+                    <?php $selected = '' ?>
+
+                    <?php if ($dataGet
+                        and isset($dataGet['hair'])
+                        and $dataGet['hair']
+                        and $dataGet['hair'] == $item['id']) $selected = 'selected'; ?>
+
+                    <?php echo $selected ?>
+
+                        value="<?php echo $item['id'] ?>"><?php echo $item['value'] ?></option>
 
             <?php endforeach; ?>
 
         </select>
-        <select name="service" class="red-select">
+        <select name="intimHair" class="red-select">
             <option value="">Интим стрижка</option>
 
             <?php foreach ($intimHair as $item) : ?>
 
-                <option value="<?php echo $item['id'] ?>"><?php echo $item['value'] ?></option>
+                <option
+
+                    <?php $selected = '' ?>
+
+                    <?php if ($dataGet
+                        and isset($dataGet['intimHair'])
+                        and $dataGet['intimHair']
+                        and $dataGet['intimHair'] == $item['id']) $selected = 'selected'; ?>
+
+                    <?php echo $selected ?>
+
+                        value="<?php echo $item['id'] ?>"><?php echo $item['value'] ?></option>
 
             <?php endforeach; ?>
 
@@ -296,7 +358,18 @@
 
                 <?php foreach ($rayon as $item) : ?>
 
-                    <option value="<?php echo $item['id'] ?>"><?php echo $item['value'] ?></option>
+                    <option
+
+                        <?php $selected = '' ?>
+
+                        <?php if ($dataGet
+                            and isset($dataGet['rayon'])
+                            and $dataGet['rayon']
+                            and $dataGet['rayon'] == $item['id']) $selected = 'selected'; ?>
+
+                        <?php echo $selected ?>
+
+                            value="<?php echo $item['id'] ?>"><?php echo $item['value'] ?></option>
 
                 <?php endforeach; ?>
 
