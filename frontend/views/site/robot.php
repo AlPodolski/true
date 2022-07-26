@@ -11,7 +11,7 @@ header('Content-Type: text/plain; charset=UTF-8');
     Disallow: /rost-hudye*
     Disallow: /rost-tolstye*
     Disallow: /find*
-    Disallow: /ehlitnye-prostitutki*
+    Disallow: /ehlitnye-prostitutki
     <?php echo 'Disallow: /forum' .PHP_EOL ?>
     Allow: /forum/*
     <?php if ($city != 'moskva') echo 'Disallow: /forum/*' .PHP_EOL ?>
