@@ -200,7 +200,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                         <div class="red-text">Скажите что звоните с сайта <?php echo Yii::$app->request->serverName?> я и все пойму</div>
 
                         <script defer src="https://yastatic.net/share2/share.js"></script>
-                        <div class="ya-share2" data-curtain data-shape="round" data-services="messenger,vkontakte,odnoklassniki,telegram,twitter,viber,whatsapp,skype,linkedin,reddit"></div>
+                        <div onclick="ym(70919698,'reachGoal','SHARE')" class="ya-share2" data-curtain data-shape="round" data-services="messenger,vkontakte,odnoklassniki,telegram,twitter,viber,whatsapp,skype,linkedin,reddit"></div>
 
                         <div class="main-params-wrap main-params-wrap-on-page bottom-gallery d-flex">
                             <div class="main-param-item">
