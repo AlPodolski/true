@@ -222,25 +222,26 @@
         <div class="inputs-wrap">
             <div class="checbox black-check-box">
                 <input type="checkbox" name="check-photo"
-                       <?php if ($dataGet['check-photo']) echo 'selected' ?>
+                       <?php if ($dataGet['check-photo']) echo 'checked' ?>
+
                        id="check-photo" class="custom-checkbox">
                 <label for="check-photo"><span>Фото проверено</span></label>
             </div>
             <div class="checbox black-check-box">
                 <input type="checkbox"
-                    <?php if ($dataGet['video']) echo 'selected' ?>
+                    <?php if ($dataGet['video']) echo 'checked' ?>
                        name="video" id="video" class="custom-checkbox">
                 <label for="video"><span>Анкета с видео</span></label>
             </div>
             <div class="checbox black-check-box d-none">
                 <input type="checkbox"
-                    <?php if ($dataGet['bez-retushi']) echo 'selected' ?>
+                    <?php if ($dataGet['bez-retushi']) echo 'checked' ?>
                        name="bez-retushi" id="bez-retushi" class="custom-checkbox">
                 <label for="bez-retushi"><span>Фото без ретуши</span></label>
             </div>
             <div class="checbox black-check-box">
                 <input type="checkbox"
-                    <?php if ($dataGet['new']) echo 'selected' ?>
+                    <?php if ($dataGet['new']) echo 'checked' ?>
                        name="new" id="new" class="custom-checkbox">
                 <label for="new"><span>Новые на сайте</span></label>
             </div>
