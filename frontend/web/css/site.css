@@ -163,6 +163,34 @@ a.desc:after {
     width: 100%;
     margin-top: 15px;
 }
+.open-form .show-anket-count{
+    flex: 100%;
+}
+.open-form .more-search-block{
+    display: flex;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+}
+.inputs-wrap{
+    flex: 100%;
+    display: flex;
+    margin-bottom: 10px;
+    max-width: 100%;
+    flex-wrap: wrap;
+}
+.inputs-wrap .black-check-box{
+    width: auto;
+}
+.open-form .red-select{
+    margin: 0;
+}
+.inputs-wrap .black-check-box label::before{
+    margin-left: 5px;
+    margin-right: 20px;
+}
 @media(max-width:767px) {
     .nav li > form > button.logout {
         display:block;
@@ -1974,7 +2002,7 @@ a.asc::after {
     text-decoration-line: underline;
     color: #000000;
     text-align: right;
-    margin-top: 15px;
+    margin-top: 20px;
 }
 .more-search-btn{
     margin-bottom: 15px;
@@ -2023,6 +2051,7 @@ a.asc::after {
     height: 32px;
     border-bottom: 1px solid;
     margin-bottom: 5px;
+    max-width: 150px;
 }
 .show-anket-count{
     font-weight: 500;
@@ -2294,6 +2323,7 @@ h1{
     display: flex;
     margin: 15px 0;
     flex-wrap: wrap;
+    justify-content: space-around;
 }
 .heading{
     flex: 0 0 100%;
@@ -3738,6 +3768,12 @@ input.search::placeholder { color: #6d6d6d; }
     font-size: 13px;
 }
 @media (max-width: 1199px) {
+    .more-search-btn{
+        display: none;
+    }
+    form .more-search-btn{
+        display: block;
+    }
     .search-wrap{
         max-width: 175px;
         margin-left: 99px;
@@ -3778,7 +3814,14 @@ input.search::placeholder { color: #6d6d6d; }
         max-width: 450px;
         position: absolute;
         z-index: 6;
-        padding-left: 37px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .open-form .red-select {
+        margin-bottom: 15px;
+    }
+    .more-search-block .black-check-box{
+        margin-bottom: 10px;
     }
     .metro-select-wrap{
         margin-right: 15px;
@@ -3881,6 +3924,9 @@ input.search::placeholder { color: #6d6d6d; }
     }
 }
 @media (max-width: 769px) {
+    .open-form .red-select {
+        max-width: 100%;
+    }
     .item-phone{
         flex-direction: column;
         align-items: center;

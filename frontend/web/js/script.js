@@ -918,6 +918,7 @@ function more_search() {
     $('.more-search-btn span').toggleClass('d-none');
     $('.more-search-block').toggleClass('d-none');
     $('.more-search-btn svg').toggleClass('arrow-down');
+    $('#searchForm').toggleClass('open-form');
 }
 
 function setView(){
