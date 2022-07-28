@@ -44,7 +44,7 @@ class CronController extends Controller
             ->select('id')
             ->where(['city_id' => 1])
             ->orderBy('RAND()')
-            ->limit(8)
+            ->limit(5)
             ->all();
 
         foreach ($posts as $post){
