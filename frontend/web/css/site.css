@@ -847,10 +847,7 @@ h1 , .big-red-text{
     font-size: 18px;
     line-height: 21px;
     color: #F74952;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-.text-block{
+    margin-top: 15px;
     margin-bottom: 15px;
 }
 .single-tabs .nav-item  .nav-link.active{
@@ -3167,7 +3164,7 @@ select{
 }
 .search-by-params-btn{
     text-align: left;
-    margin-top: 15px;
+    margin-bottom: 15px;
 }
 .metro-search-btn-wrap{
     display: none;
@@ -3351,10 +3348,8 @@ select{
     background: #fff;
     display: inline-block;
     width: 100%;
-    padding-left: 0;
-    padding-top: 20px;
-    padding-bottom: 20px;
     margin-bottom: 0;
+    padding: 0;
 }
 .breadcrumb li{
     display: inline-block;
