@@ -47,22 +47,11 @@ if (isset($webmaster))
 
 <div class="container custom-container">
 
-    <?php if ($cityInfo['url'] == 'moskva') : ?>
+    <?php
 
-        <div class="row">
-            <div class="col-12">
-                <div class="text-block">
-                    Внимание!!! Мы создали портал который обеденяет
-                    всех любителей индивидуалок и поможет отличить
-                    фейковые анкеты от нормальных. Присоеденяйтесь
-                    к нам и делитесь проверенной информацией о
-                    телефонах и анкетах. Вместе мы сделаем этот рынок
-                    честным. Если вы первый раз на сайте прочитайте
-                    статьи котрые мы для вас подготовили.
-                </div>
-            </div>
-        </div>
-    <?php endif; ?>
+    echo $this->renderFile(Yii::getAlias('@app/views/includes/text-on-main.php'), compact('cityInfo'));
+
+    ?>
     <h1> <?php echo $h1 ?> </h1>
     <?php echo \frontend\widgets\SortingWidget::widget() ?>
     <?php echo \frontend\widgets\LinkWidget::widget(['url' => Yii::$app->request->url]) ?>
@@ -73,16 +62,12 @@ if (isset($webmaster))
         <?php
 
         if ($topPostList) {
-
             foreach ($topPostList as $post) {
-
                 echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), [
                     'post' => $post,
                     'advertising' => true,
                 ]);
-
             }
-
         }
 
         ?>

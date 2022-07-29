@@ -5,6 +5,11 @@ $(document).ready(function () {
     });
 });
 
+function close_text(){
+    $('.text-block-wrap').remove();
+    document.cookie = 'text=close';
+}
+
 var exist_map_block = false;
 
 if ($('.yandex-map').length > 0) {

@@ -781,7 +781,7 @@ body{
     top: -1px;
 }
 .popular-btn{
-    padding: 8px 25px;
+    padding: 6px 18px;
     background: #F0F0F0;
     font-family: Ubuntu;
     font-style: normal;
@@ -792,6 +792,11 @@ body{
     border-radius: 50px;
     margin-right: 5px;
     display: inline-block;
+    white-space: nowrap;
+}
+.popular-btn-block{
+    display: flex;
+    overflow: scroll;
 }
 .popular-btn {
     margin-bottom: 15px;
@@ -1026,9 +1031,6 @@ h1 , .big-red-text{
     font-weight: normal;
     font-size: 18px;
     color: #FFFFFF;
-}
-.filter-block{
-    margin-bottom: 25px;
 }
 .map-heading{
     padding-left: 9px;

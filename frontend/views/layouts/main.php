@@ -601,13 +601,13 @@ AppAsset::register($this);
 
                 <div class="city-wrap">
                     <ul class="city-list">
-                        <li><a class="red-link" href="https://moskva.sex-tut.com">Москва</a></li>
+                        <li><a class="red-link" href="https://moskva4.sex-tut.com">Москва</a></li>
                         <li><a class="red-link" href="https://sankt-piterburg.sex-tut.com">Санкт-Петербург</a></li>
                         <li><a class="red-link" href="https://novosibirsk.sex-tut.com">Новосибирск</a></li>
                         <li><a class="red-link" href="https://ekaterinburg.sex-tut.com">Екатеринбург</a></li>
                         <li><a class="red-link" href="https://nizhniy-novgorod.sex-tut.com">Нижний Новгород</a></li>
                         <li><a class="red-link" href="https://kazan.sex-tut.com">Казань</a></li>
-                        <li><a class="red-link" href="https://chelyabinsk.sex-tut.com">Челябинск</a></li>
+                        <li><a class="red-link" href="https://chelyabinsk2.sex-tut.com">Челябинск</a></li>
                         <li><a class="red-link" href="https://omsk.sex-tut.com">Омск</a></li>
                         <li><a class="red-link" href="https://samara.sex-tut.com">Самара</a></li>
                         <li><a class="red-link" href="https://rostov-na-dony.sex-tut.com">Ростов-на-Дону</a></li>
