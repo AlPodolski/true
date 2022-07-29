@@ -152,7 +152,7 @@ AppAsset::register($this);
 
             <div class="search-wrap position-relative" itemscope itemtype="https://schema.org/WebSite">
 
-                <meta itemprop="url" content="https://<?php echo \Yii::$app->request->serverName ?>/>
+                <meta itemprop="url" content="https://<?php echo \Yii::$app->request->serverName ?>"/>
 
                 <?php
 
