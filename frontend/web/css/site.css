@@ -2388,6 +2388,9 @@ h1{
 .search-by-params-btn{
     display: none;
 }
+.breadcrumb{
+    margin-top: 15px;
+}
 .drop-menu-list-sub-menu{
     cursor: auto;
     display: flex;
@@ -3167,7 +3170,6 @@ select{
 }
 .search-by-params-btn{
     text-align: left;
-    margin-bottom: 15px;
 }
 .metro-search-btn-wrap{
     display: none;
@@ -4075,7 +4077,6 @@ form .more-search-btn{
     }
     .search-by-params-btn {
         text-align: right;
-        margin-top: 20px;
     }
     .event-widget {
         text-align: center;
