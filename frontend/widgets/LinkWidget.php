@@ -16,7 +16,7 @@ class LinkWidget extends Widget
 
     public function run()
     {
-        if (\strstr($this->url, '?page')) $this->url = \strstr($this->url, '?page', true);
+        if (\strstr($this->url, '?')) $this->url = \strstr($this->url, '?', true);
         // Пробуем извлечь $data из кэша.
         $data = Yii::$app->cache->get('fast_link_key_cache_pref_'.$this->url);
 
