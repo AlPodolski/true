@@ -850,6 +850,9 @@ h1 , .big-red-text{
     margin-top: 15px;
     margin-bottom: 15px;
 }
+.single-content{
+    margin-top: 15px;
+}
 .single-tabs .nav-item  .nav-link.active{
     color: #F74952;
 }
