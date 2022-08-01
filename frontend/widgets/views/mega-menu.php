@@ -85,7 +85,13 @@ use yii\helpers\Html;
                         array('url' => 'ot-6000', 'value' => 'От 6000 руб.'),
                     ); ?>
 
-                    <?php foreach ($tempData as $hairColorItem) {
+                    <?php
+
+                    echo Html::a('Дешевые(до 3000)', '/deshevye-prostitutki' , [
+                        'class' => 'sub-menu-block-item'
+                    ]);
+
+                    foreach ($tempData as $hairColorItem) {
 
                         echo Html::a($hairColorItem['value'], '/cena-' . $hairColorItem['url'], [
                             'class' => 'sub-menu-block-item'
