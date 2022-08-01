@@ -801,7 +801,7 @@ body{
 }
 .popular-btn-block{
     display: flex;
-    overflow: scroll;
+    overflow: auto;
 }
 .popular-btn {
     margin-bottom: 15px;
