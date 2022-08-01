@@ -13,6 +13,9 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ /index.php
 
+Redirect 301 /cena-ot-1500-do-2000 /deshevye-prostitutki
+Redirect 301 /cena-ot-2000-do-3000 /deshevye-prostitutki
+
 php_flag display_startup_errors off
 php_flag display_errors off
 php_flag html_errors off
