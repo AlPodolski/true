@@ -803,7 +803,7 @@ class ImportController extends Controller
     public function actionWebmaster()
     {
         $access_token = Yii::$app->params['webmaster_token'];
-        $host = 'sex-tut.com';
+        $host = 'sex-key.com';
 
         $citys = City::find()->asArray()->all();
 

@@ -4,7 +4,7 @@ return [
     'bsVersion' => '4.x',
     'advert_limit' => 20,
     'post_limit' => 36,
-    'site_name' => 'sex-tut.com',
+    'site_name' => 'sex-key.com',
     'min_pay' => 300,
     'view_100_buy_price' => 20,
     'view_1000_buy_price' => 200,
