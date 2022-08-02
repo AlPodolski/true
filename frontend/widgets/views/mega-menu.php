@@ -80,7 +80,6 @@ use yii\helpers\Html;
 
                     <?php $tempData = array(
                         array('url' => 'do-1500', 'value' => 'До 1500 руб.'),
-                        array('url' => '/deshevye-prostitutki', 'value' => 'До 3000 руб.'),
                         array('url' => 'ot-3000-do-6000', 'value' => 'От 3000 до 6000 руб.'),
                         array('url' => 'ot-6000', 'value' => 'От 6000 руб.'),
                     ); ?>
