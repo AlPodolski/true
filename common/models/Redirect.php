@@ -37,7 +37,8 @@ class Redirect extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['from', 'to', 'user_agent', 'status'], 'string', 'max' => 255],
+            [['from', 'to'], 'string', 'max' => 255],
+            [['user_agent', 'status'], 'integer'],
         ];
     }
 

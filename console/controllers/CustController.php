@@ -5,6 +5,7 @@ namespace console\controllers;
 
 use common\models\City;
 use common\models\Rayon;
+use common\models\Redirect;
 use frontend\modules\user\models\Posts;
 use frontend\modules\user\models\UserRayon;
 use League\Csv\Reader;
@@ -27,6 +28,31 @@ class CustController extends Controller
             $post->save();
 
         }
+    }
+
+    public function actionCust()
+    {
+        $arr = array('almetevsk'=>'almetevsk1', 'anadyir'=>'anadyir1', 'angarsk'=>'angarsk1', 'belogorsk'=>'belogorsk1',
+            'buzuluk'=>'buzuluk1', 'chelyabinsk'=>'chelyabinsk1', 'chelyabinsk2'=>'chelyabinsk2', 'engels'=>'engels1',
+            'eysk'=>'eysk1', 'gorno-altaisk'=>'gorno-altaisk1', 'kazan'=>'kazan1', 'kovrov'=>'kovrov1',
+            'kuznetsk'=>'kuznetsk1', 'magadan'=>'magadan1', 'magnitogorsk'=>'magnitogorsk1',
+            'pechora'=>'pechora1', 'penza'=>'penza1', 'prokopievsk'=>'prokopievsk1', 'pskov'=>'pskov1',
+            'solikamsk'=>'solikamsk1', 'sorochinsk'=>'sorochinsk1', 'syktyvkar'=>'syktyvkar1', 'syzran'=>'syzran1',
+            'velikiy-novgorod'=>'velikiy-novgorod1', 'volgodansk'=>'volgodansk1', 'vorkuta'=>'vorkuta1');
+
+        foreach ($arr as $key => $value){
+
+            $redirect = new Redirect();
+
+            $redirect->status = Redirect::STATUS_301;
+            $redirect->user_agent = Redirect::ALL_REDIRECT;
+            $redirect->from = $key;
+            $redirect->to = $value;
+
+            $redirect->save();
+
+        }
+
     }
 
     public function actionIndex()
