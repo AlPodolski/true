@@ -22,6 +22,10 @@ class PhoneController extends Controller
 
         if ($post = Posts::findOne($postId)){
 
+            ViewCountHelper::addView($post->id , Yii::$app->params['redis_view_phone_count_key']);
+
+            return $post->phone;
+
             if ($post->fake or $post->pol_id != Pol::WOMAN_POL) {
 
                 ViewCountHelper::addView($post->id , Yii::$app->params['redis_view_phone_count_key']);
