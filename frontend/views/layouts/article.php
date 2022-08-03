@@ -14,7 +14,7 @@ echo \frontend\components\helpers\MicroHelper::image($post);
 
 <div data-post-id="<?php echo $post['id'] ?>"
      class="col-xl-4 col-lg-4 col-md-6 col-12 post-wrap <?php echo isset($countPost) ? 'post-num-' . $countPost : ""; ?>">
-    <article class="post">
+    <article class="post position-relative">
         <div class="post-img position-relative">
 
             <?php
@@ -194,6 +194,29 @@ echo \frontend\components\helpers\MicroHelper::image($post);
                 </div>
 
             </div>
+        </div>
+
+        <div class="data-wrap d-flex">
+            <?php if ($post['breast']) : ?>
+                <div class="data-item">
+                    Возраст: <?php echo $post['age'] ?>
+                </div>
+            <?php endif; ?>
+            <?php if ($post['breast']) : ?>
+                <div class="data-item">
+                    Рост: <?php echo $post['rost'] ?>
+                </div>
+            <?php endif; ?>
+            <?php if ($post['breast']) : ?>
+                <div class="data-item">
+                    Вес: <?php echo $post['ves'] ?>
+                </div>
+            <?php endif; ?>
+            <?php if ($post['breast']) : ?>
+                <div class="data-item">
+                    Грудь: <?php echo $post['breast'] ?>
+                </div>
+            <?php endif; ?>
         </div>
 
         <?php if ($post['phone']) : ?>
