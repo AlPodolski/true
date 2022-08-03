@@ -6,6 +6,7 @@ return [
     'senderName' => 'Example.com mailer',
     'user.passwordResetTokenExpire' => 3600,
     'user.passwordMinLength' => 8,
+    'bonus_sum' => 100,
     'photo_path' => '/uploads/',
     'review_cache_key' => 'review',
     'redis_view_phone_count_key' => 'view_phone_count',//Счетчик кликов по телефону
