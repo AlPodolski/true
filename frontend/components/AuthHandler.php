@@ -107,6 +107,7 @@ class AuthHandler
             'updated_at' => $time,
             'status' => 10,
             'city_id' => $city,
+            'cash' => Yii::$app->params['bonus_sum'],
         ]);
     }
 
