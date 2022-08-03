@@ -29,7 +29,7 @@ class PayController extends \yii\console\Controller
 
                 } else {
 
-                    //Notify::send('Анкета ' . $post->name . ' снята с публикации из за низкого баланса', $post['user_id'], 'Остановка публикации');
+                    Notify::send('Анкета ' . $post->name . ' снята с публикации из за низкого баланса', $post['user_id'], 'Остановка публикации');
 
                     $post->status = Posts::POST_DONT_PUBLICATION_STATUS;
 
