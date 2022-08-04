@@ -25,7 +25,7 @@ class Notify
             elseif ($user->status == User::STATUS_ACTIVE and $user->email) {
 
                 Yii::$app->mailer->compose()
-                    ->setFrom('info@sex-true.com')
+                    ->setFrom('info@sex-key.com')
                     ->setTo($user->email)
                     ->setSubject($subject)
                     ->setTextBody($text)
