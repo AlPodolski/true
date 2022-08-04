@@ -49,7 +49,7 @@ class CronController extends Controller
 
         foreach ($posts as $post){
 
-            $jobsCount = Queue::find()->count() + 1;
+            $jobsCount = Queue::find()->where(['channel' => 'default'])->count() + 1;
 
             $id = Yii::$app->queue->delay($jobsCount * 60)->push(new SendPostToTelegramJob([
                 'postId' => $post->id,

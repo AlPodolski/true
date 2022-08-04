@@ -3,7 +3,10 @@
 namespace console\controllers;
 
 use common\components\service\notify\Notify;
+use common\jobs\SendMail;
+use common\jobs\SendPostToTelegramJob;
 use common\models\History;
+use common\models\Queue;
 use frontend\modules\user\models\Posts;
 use Yii;
 
@@ -29,7 +32,13 @@ class PayController extends \yii\console\Controller
 
                 } else {
 
-                    Notify::send('Анкета ' . $post->name . ' снята с публикации из за низкого баланса', $post['user_id'], 'Остановка публикации');
+                    $jobsCount = Queue::find()->where(['channel' => 'mail'])->count() + 1;
+
+                    Yii::$app->queueMail->delay($jobsCount * 10)->push(new SendMail([
+                        'text' => 'Анкета ' . $post->name . ' снята с публикации из за низкого баланса',
+                        'to' => $post['user_id'],
+                        'subject' => 'Остановка публикации',
+                    ]));
 
                     $post->status = Posts::POST_DONT_PUBLICATION_STATUS;
 

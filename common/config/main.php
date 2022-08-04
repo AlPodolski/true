@@ -17,6 +17,13 @@ return [
             'channel' => 'default', // Queue channel key
             'mutex' => \yii\mutex\MysqlMutex::class, // Mutex used to sync queries
         ],
+        'queueMail' => [
+            'class' => \yii\queue\db\Queue::class,
+            'db' => 'db', // DB connection component or its config
+            'tableName' => '{{%queue}}', // Table name
+            'channel' => 'mail', // Queue channel key
+            'mutex' => \yii\mutex\MysqlMutex::class, // Mutex used to sync queries
+        ],
         'imageCache' => [
             'class' => 'frontend\components\service\image\ImageCache',
             'sourcePath' => '@frontend/web/uploads',
@@ -54,6 +61,6 @@ return [
         ],
     ],
     'bootstrap' => [
-        'queue', // Компонент регистрирует свои консольные команды
+        'queue', 'queueMail'
     ],
 ];
