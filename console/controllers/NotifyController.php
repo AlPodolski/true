@@ -28,7 +28,7 @@ class NotifyController extends Controller
 
             if (!\in_array($user_id['to'], $usersSendNotify)) {
 
-                Notify::send('У вас новое сообщение на сайте sex-true ', $user_id['to']);
+                Notify::send('У вас новое сообщение', $user_id['to']);
 
                 $usersSendNotify[] = $user_id['to'];
 
