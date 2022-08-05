@@ -61,13 +61,14 @@ class PostController extends Controller
 
             ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_single_view_count_key']);
 
+            $postsByPhone = GetPostHelper::getByPhone($post['phone'], $cityInfo['id']);
+
             return $this->render('single', [
                 'post' => $post,
                 'serviceListReview' => $serviceListReview,
-                'id' => $id,
                 'cityInfo' => $cityInfo,
-                'backUrl' => $backUrl,
                 'viewPosts' => $viewPosts,
+                'postsByPhone' => $postsByPhone
             ]);
 
         }

@@ -28,4 +28,18 @@ class GetPostHelper
 
         return $post;
     }
+
+    public static function getByPhone($phone, $cityId)
+    {
+        $phone = mb_substr($phone, 1);
+
+        $posts = Posts::find()
+            ->with('avatar', 'metro', 'partnerId', 'rayon', 'nacionalnost', 'city')
+            ->andWhere(['city_id' => $cityId])
+            ->andWhere(['like', 'phone', $phone])
+            ->all();
+
+        return $posts;
+    }
+
 }

@@ -5,6 +5,7 @@
 /* @var $advertising bool | null */
 
 /* @var $promo bool | null */
+/* @var $this \yii\web\View */
 
 use frontend\widgets\PhotoWidget;
 
@@ -16,23 +17,14 @@ echo \frontend\components\helpers\MicroHelper::image($post);
      class="col-xl-4 col-lg-4 col-md-6 col-12 post-wrap <?php echo isset($countPost) ? 'post-num-' . $countPost : ""; ?>">
     <article class="post position-relative">
         <div class="post-img position-relative">
-
             <?php
-
             $photoTitle = 'Проститутка ' . $post['name'];
-
             ?>
-
             <?php if ($post['check_photo_status'] == 1 and $post['category'] == 1) : ?>
-
                 <?php
-
                 $photoTitle = 'Проверенная проститутка ' . $post['name'];
-
                 ?>
-
             <?php endif ?>
-
             <?php if ((isset($advertising) and $advertising) or (isset($promo) and $promo)) : ?>
                 <div class="check-label rek-block">
                     Реклама
@@ -41,30 +33,10 @@ echo \frontend\components\helpers\MicroHelper::image($post);
 
             <a target="_blank" href="/post/<?php echo $post['id'] ?>">
 
-                <picture>
-
-                    <?php if (file_exists(Yii::getAlias('@webroot') . $post['avatar']['file']) and $post['avatar']['file']) : ?>
-
-                    <?php
-                    $thumbSrc = Yii::$app->imageCache->thumbSrc($post['avatar']['file'], '500_700');
-                    $thumbSrcWebP = str_replace('.jpg', '.webp', $thumbSrc);
-                    ?>
-
-                    <source srcset="<?php echo $thumbSrc ?>" media="(max-width: 768px)" type="image/webp">
-                    <source srcset="<?php echo $thumbSrcWebP ?>" media="(max-width: 768px)" type="image/jpeg">
-
-                    <?php
-                        $thumbSrc = Yii::$app->imageCache->thumbSrc($post['avatar']['file'], '420_480');
-                        $thumbSrcWebP = str_replace('.jpg', '.webp', $thumbSrc);
-                    ?>
-                    <source srcset="<?= $thumbSrcWebP ?>" type="image/webp">
-                    <source srcset="<?= $thumbSrc ?>" type="image/jpeg">
-                    <img src="<?= $thumbSrc ?>" alt="Проститутка <?php echo $post['name'] ?>">
-
-                    <?php endif; ?>
-
-                </picture>
-
+                <?php
+                    $path = Yii::getAlias('@frontend/views/includes/article-photo.php');
+                    echo $this->renderFile($path, compact('post'));
+                ?>
 
             </a>
             <div class="post-top-info">
