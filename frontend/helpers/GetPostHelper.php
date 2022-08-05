@@ -31,6 +31,9 @@ class GetPostHelper
 
     public static function getByPhone($phone, $cityId)
     {
+
+        if (!$phone) return false;
+
         $phone = mb_substr($phone, 1);
 
         $posts = Posts::find()
