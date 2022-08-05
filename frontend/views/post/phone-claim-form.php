@@ -12,7 +12,7 @@ $form = ActiveForm::begin([
     'action' => '/call/add-review',
     'options' => ['class' => 'form-horizontal'],
 ]) ?>
-    <h5 class="modal-title margin-top-20" id="exampleModalLabel">Пожалуйста оцените ответ</h5>
+    <h5 class="modal-title margin-top-20" >Пожалуйста оцените ответ</h5>
 <?= $form->field($data['model'], 'post_id')->hiddenInput(['value' => $data['id']])->label(false) ?>
 <?= $form->field($data['model'], 'reviewCategoryId')
     ->dropDownList(ArrayHelper::map(CallReviewCategory::find()->asArray()->all(), 'id', 'value'))

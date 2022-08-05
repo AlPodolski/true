@@ -594,7 +594,7 @@ AppAsset::register($this);
                 </svg>
             </div>
 
-            <h5 class="modal-title" id="exampleModalLabel">Выбрать город</h5>
+            <h5 class="modal-title" >Выбрать город</h5>
             <div class="modal-body ">
                 <input type="text" onkeyup="findCity(this)" onchange="findCity(this)" name="city"
                        class="form-control city-search" placeholder="Ввидите название города:">
@@ -636,7 +636,7 @@ AppAsset::register($this);
                 </svg>
             </div>
 
-            <h5 class="modal-title" id="exampleModalLabel">Проверить номер</h5>
+            <h5 class="modal-title">Проверить номер</h5>
             <div class="modal-body">
 
 

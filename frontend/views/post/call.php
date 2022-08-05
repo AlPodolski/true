@@ -14,7 +14,7 @@ $form = ActiveForm::begin([
     'options' => ['class' => 'form-horizontal'],
 ]) ?>
 
-    <h5 class="modal-title margin-top-20" id="exampleModalLabel">Заказать звонок</h5>
+    <h5 class="modal-title margin-top-20" >Заказать звонок</h5>
 <?= $form->field($data['call'], 'post_id')->hiddenInput(['value' => $data['id']])->label(false) ?>
 <?= $form->field($data['call'], 'phone')->textInput(['placeholder' => 'Введите свой номер'])
     ->label('Ваш номер') ?>

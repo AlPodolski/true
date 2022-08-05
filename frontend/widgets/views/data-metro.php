@@ -1,3 +1,3 @@
-<p class="modal-title" id="exampleModalLabel">Выбрать метро</p>
+<p class="modal-title" >Выбрать метро</p>
 
 <?php echo \frontend\widgets\MetroWidget::widget() ?>

@@ -18,7 +18,7 @@ $postReviewForm = new ReviewForm();
 
 ?>
 
-<h5 class="modal-title" id="exampleModalLabel">Добавить отзыв</h5>
+<h5 class="modal-title" >Добавить отзыв</h5>
 <div class="grey-text">
     Оцените по 5 балльной шкале качество выполненной работы и оставить отзыв.
 </div>

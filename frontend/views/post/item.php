@@ -2246,7 +2246,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                 </svg>
             </div>
 
-            <h5 class="modal-title" id="exampleModalLabel">Добавить отзыв</h5>
+            <h5 class="modal-title" >Добавить отзыв</h5>
             <div class="modal-body ">
                 <div class="grey-text">
                     Оцените по 5 балльной шкале качество выполненной работы и оставить отзыв.
