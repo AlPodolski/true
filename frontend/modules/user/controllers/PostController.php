@@ -201,11 +201,17 @@ class PostController extends Controller
                         'national_id', $city['id']
                     );
 
-                if ($userMetro['metro_id'])
+                if ($userMetro['metro_id']){
+
+                    $userMetro->validate();
+
                     SavePostRelationHelper::save(UserMetro::class,
                         $userMetro['metro_id'],
                         $post['id'],
                         'metro_id', $city['id']);
+
+                }
+
 
                 if ($userPlace['place_id'])
                     SavePostRelationHelper::save(UserPlace::class,
@@ -306,7 +312,6 @@ class PostController extends Controller
             and $userOsobenosti->load(Yii::$app->request->post())
             and $userTime->load(Yii::$app->request->post())
             and $userService->load(Yii::$app->request->post())) {
-
             if ($post->save()) {
 
                 Yii::$app->cache->delete('post_cache_'.$post->id);
@@ -436,11 +441,14 @@ class PostController extends Controller
                         'national_id', $city['id']
                     );
 
-                if ($userMetro['metro_id'])
+                if ($userMetro['metro_id']){
+                    $userMetro->validate();
                     SavePostRelationHelper::save(UserMetro::class,
                         $userMetro['metro_id'],
                         $post['id'],
                         'metro_id', $city['id']);
+                }
+
 
                 if ($userPlace['place_id'])
                     SavePostRelationHelper::save(UserPlace::class,

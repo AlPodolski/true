@@ -466,24 +466,23 @@ foreach (\common\models\Tarif::getAll() as $item) {
 
                     <?= $form->field($userMetro, 'metro_id')->widget(\kartik\select2\Select2::classname(), [
                         'data' => ArrayHelper::map(\frontend\models\Metro::getMetro($city['id']), 'id', 'value'),
-                        'language' => 'de',
+                        'language' => 'ru',
                         'options' => ['placeholder' => 'Выбрать метро ...'],
                         'pluginOptions' => [
                             'allowClear' => true,
                             'multiple' => true,
                         ],
-                    ]) ?>
+                    ])->label('Метро(Максимум 4)') ?>
 
                 </div>
                 <div class="col-12 col-sm-6">
 
                     <?= $form->field($userRayon, 'rayon_id')->widget(\kartik\select2\Select2::classname(), [
                         'data' => ArrayHelper::map(\common\models\Rayon::getAll($city['id']), 'id', 'value'),
-                        'language' => 'de',
+                        'language' => 'ru',
                         'options' => ['placeholder' => 'Выбрать район ...'],
                         'pluginOptions' => [
                             'allowClear' => true,
-                            'multiple' => true,
                         ],
                     ]) ?>
                 </div>
