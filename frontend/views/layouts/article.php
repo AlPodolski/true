@@ -55,9 +55,9 @@ echo \frontend\components\helpers\MicroHelper::image($post);
             <div class="post-top-info">
                 <div class="row">
                     <div class="col-6">
-                        <div class="phone-photo-count">
+                        <h2 class="phone-photo-count">
                             <?php echo $post['name'] ?>
-                        </div>
+                        </h2>
                         <div class="phone-photo-count">
                             <?php echo $post['price'] ?> руб.
                         </div>

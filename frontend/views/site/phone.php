@@ -49,7 +49,7 @@ echo \frontend\widgets\OpenGraphWidget::widget([
         <defs>
             <filter id="gooeyness">
                 <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
-                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10"
+                <feColorMatrix in="blur" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10"
                                result="gooeyness"/>
                 <feComposite in="SourceGraphic" in2="gooeyness" operator="atop"/>
             </filter>
