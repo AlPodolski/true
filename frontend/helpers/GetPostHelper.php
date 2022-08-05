@@ -40,6 +40,7 @@ class GetPostHelper
             ->with('avatar', 'metro', 'partnerId', 'rayon', 'nacionalnost', 'city')
             ->andWhere(['city_id' => $cityId])
             ->andWhere(['like', 'phone', $phone])
+            ->cache(3600 * 24)
             ->all();
 
         return $posts;
