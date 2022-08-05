@@ -594,7 +594,6 @@ body{
     cursor: pointer;
 }
 .no-photo {
-    height: 100%;
     background: linear-gradient(124.95deg, #F74952 15.95%, #F0C612 85%);
     box-shadow: 0px 6px 15px rgba(48, 48, 48, 0.32);
     color: #fff;
@@ -604,6 +603,7 @@ body{
     line-height: 59px;
     color: #FFF;
     width: 59px;
+    height: 59px;
 }
 .small-red-text{
     color: #F74952!important;
