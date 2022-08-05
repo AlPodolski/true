@@ -35,7 +35,7 @@ class UserMetro extends \yii\db\ActiveRecord
 
     public function validateMetroId()
     {
-        $this->metro_id = array_slice($this->metro_id, 0, 4);
+        if (is_array($this->metro_id)) $this->metro_id = array_slice($this->metro_id, 0, 4);
     }
 
     /**
