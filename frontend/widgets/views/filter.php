@@ -39,7 +39,7 @@
 
         <div class="metro-select-wrap position-relative">
 
-            <select name="metro" id="" class="metro-select">
+            <select name="metro" class="metro-select">
 
                 <option value="">Выберите метро</option>
 

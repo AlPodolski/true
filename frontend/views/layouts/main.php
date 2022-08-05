@@ -82,7 +82,7 @@ AppAsset::register($this);
                     <?php endif; ?>
 
                     <?php if (Yii::$app->requestedParams['city'] == 'moskva') : ?>
-                        <li itemprop="name" itemprop="url" class="top-menu-item"><a href="/advert">Объявления</a></li>
+                        <li itemprop="name"  class="top-menu-item"><a itemprop="url" href="/advert">Объявления</a></li>
                     <?php endif; ?>
 
                     <li class="top-menu-item" onclick="get_claim_modal()"><a>Обратная связь</a></li>
