@@ -14,12 +14,12 @@
 <div class="search-by-params-btn" onclick="toggle_filter(this)">
     Показать фильтр
     <svg width="8" height="5" viewBox="0 0 8 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g clip-path="url(#clip0)">
+        <g clip-path="url(.clip0)">
             <path d="M0.178459 0.70499L0.81969 0.010324L4.15384 3.62232L7.488 0.010324L8.12923 0.70499L4.79507 4.31699L4.15384 5.01166L0.178459 0.70499Z"
                   fill="#F74952"/>
         </g>
         <defs>
-            <clipPath id="clip0">
+            <clipPath class="clip0">
                 <rect width="5" height="8" fill="white" transform="translate(0 5) rotate(-180)"/>
             </clipPath>
         </defs>

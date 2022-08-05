@@ -23,11 +23,11 @@ $photoModel = new \frontend\modules\chat\models\forms\SendPhotoForm();
 
         <div class="close-chat" onclick="close_chat(this)">
             <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0)">
+                <g clip-path="url(.clip0)">
                     <path d="M7.24033 14.1768L21.1162 0.33925C21.5708 -0.113854 22.3069 -0.113092 22.7608 0.341594C23.2143 0.796221 23.2131 1.53268 22.7584 1.98614L9.70847 15.0001L22.7589 28.0139C23.2135 28.4674 23.2147 29.2034 22.7612 29.6581C22.5337 29.886 22.2356 30 21.9376 30C21.6403 30 21.3434 29.8868 21.1163 29.6604L7.24033 15.8233C7.02137 15.6054 6.8985 15.309 6.8985 15.0001C6.8985 14.6911 7.02172 14.395 7.24033 14.1768Z" fill="#F74952"/>
                 </g>
                 <defs>
-                    <clipPath id="clip0">
+                    <clipPath class="clip0">
                         <rect width="30" height="30" fill="white" transform="matrix(-1 0 0 1 30 0)"/>
                     </clipPath>
                 </defs>

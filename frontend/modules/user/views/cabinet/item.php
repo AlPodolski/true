@@ -84,7 +84,7 @@ use frontend\modules\user\models\Posts;
 
                 <a href="/cabinet/up/<?= $post['id'] ?>" class="edit-anket position-relative up-anket edit-block-item d-flex items-center">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g clip-path="url(#clip0)">
+                        <g clip-path="url(.clip0)">
                             <path d="M7.14072 8.07527V7.57527H6.64072H4.56939L12.0002 0.539654L19.4313 7.57527H17.3599H16.8599V8.07527V14.8138H7.14072V8.07527Z"
                                   stroke="white"/>
                             <path d="M7.14071 20.1567H16.8599V20.6045H7.14071V20.1567Z" stroke="white"/>
@@ -92,7 +92,7 @@ use frontend\modules\user\models\Posts;
                             <path d="M7.14071 23.0522H16.8599V23.5H7.14071V23.0522Z" stroke="white"/>
                         </g>
                         <defs>
-                            <clipPath id="clip0">
+                            <clipPath class="clip0">
                                 <rect width="24" height="24" fill="white" transform="translate(24) rotate(90)"/>
                             </clipPath>
                         </defs>
@@ -104,7 +104,7 @@ use frontend\modules\user\models\Posts;
             <div class="delete-item edit-block-item" data-name="<?= $post['name'] ?>" onclick="delete_item(this)"
                  data-id="<?= $post['id'] ?>">
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_576_92)">
+                    <g clip-path="url(.clip0_576_92)">
                         <path d="M11.4826 6.52148C11.2497 6.52148 11.061 6.71019 11.061 6.94303V14.9102C11.061 15.1429 11.2497 15.3318 11.4826 15.3318C11.7154 15.3318 11.9041 15.1429 11.9041 14.9102V6.94303C11.9041 6.71019 11.7154 6.52148 11.4826 6.52148Z"
                               fill="white"/>
                         <path d="M6.50846 6.52148C6.27562 6.52148 6.08691 6.71019 6.08691 6.94303V14.9102C6.08691 15.1429 6.27562 15.3318 6.50846 15.3318C6.7413 15.3318 6.93001 15.1429 6.93001 14.9102V6.94303C6.93001 6.71019 6.7413 6.52148 6.50846 6.52148Z"
@@ -115,7 +115,7 @@ use frontend\modules\user\models\Posts;
                               fill="white"/>
                     </g>
                     <defs>
-                        <clipPath id="clip0_576_92">
+                        <clipPath class="clip0_576_92">
                             <rect width="18" height="18" fill="white"/>
                         </clipPath>
                     </defs>

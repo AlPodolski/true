@@ -226,12 +226,12 @@ AppAsset::register($this);
                 <div class="icon-close">
                     <svg width="32" height="32" viewBox="0 0 32 32" fill="none"
                          xmlns="http://www.w3.org/2000/svg">
-                        <g clip-path="url(#clip0)">
+                        <g clip-path="url(.clip0)">
                             <path d="M32 3.77081L28.2292 0L16 12.2291L3.77081 0L0 3.77081L12.2291 16L0 28.2292L3.77081 32L16 19.7709L28.2291 32L31.9999 28.2292L19.7709 16L32 3.77081Z"
                                   fill="#F74952"/>
                         </g>
                         <defs>
-                            <clipPath id="clip0">
+                            <clipPath class="clip0">
                                 <rect width="32" height="32" fill="white"/>
                             </clipPath>
                         </defs>
@@ -365,12 +365,12 @@ AppAsset::register($this);
                         <div class="icon-close">
                             <svg width="32" height="32" viewBox="0 0 32 32" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
-                                <g clip-path="url(#clip0)">
+                                <g clip-path="url(.clip0)">
                                     <path d="M32 3.77081L28.2292 0L16 12.2291L3.77081 0L0 3.77081L12.2291 16L0 28.2292L3.77081 32L16 19.7709L28.2291 32L31.9999 28.2292L19.7709 16L32 3.77081Z"
                                           fill="#F74952"/>
                                 </g>
                                 <defs>
-                                    <clipPath id="clip0">
+                                    <clipPath class="clip0">
                                         <rect width="32" height="32" fill="white"/>
                                     </clipPath>
                                 </defs>
@@ -410,12 +410,12 @@ AppAsset::register($this);
     <div class="login">
         <div class="login-icon-close ">
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0)">
+                <g clip-path="url(.clip0)">
                     <path d="M32 3.77081L28.2292 0L16 12.2291L3.77081 0L0 3.77081L12.2291 16L0 28.2292L3.77081 32L16 19.7709L28.2291 32L31.9999 28.2292L19.7709 16L32 3.77081Z"
                           fill="white"/>
                 </g>
                 <defs>
-                    <clipPath id="clip0">
+                    <clipPath class="clip0">
                         <rect width="32" height="32" fill="white"/>
                     </clipPath>
                 </defs>
@@ -450,12 +450,12 @@ AppAsset::register($this);
     <div class="register">
         <div class="register-icon-close">
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0)">
+                <g clip-path="url(.clip0)">
                     <path d="M32 3.77081L28.2292 0L16 12.2291L3.77081 0L0 3.77081L12.2291 16L0 28.2292L3.77081 32L16 19.7709L28.2291 32L31.9999 28.2292L19.7709 16L32 3.77081Z"
                           fill="white"/>
                 </g>
                 <defs>
-                    <clipPath id="clip0">
+                    <clipPath class="clip0">
                         <rect width="32" height="32" fill="white"/>
                     </clipPath>
                 </defs>

@@ -23,12 +23,12 @@ use yii\helpers\Html;
         <span class="m-right-15 metro-search-btn ">Выбрать анкету</span>
         <svg class="m-left-25" width="19" height="10" viewBox="0 0 32 20" fill="none"
              xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(#clip0_114_4)">
+            <g clip-path="url(.clip0_114_4)">
                 <path d="M1.60863 3.72732L3.98258 1.19739L16.6432 14.0472L28.9869 0.892589L31.4218 3.36389L19.0781 16.5185L16.7042 19.0485L1.60863 3.72732Z"
                       fill="#F74952"/>
             </g>
             <defs>
-                <clipPath id="clip0_114_4">
+                <clipPath class="clip0_114_4">
                     <rect width="18" height="30" fill="white" transform="translate(1.12793 19.197) rotate(-90.6984)"/>
                 </clipPath>
             </defs>
@@ -39,12 +39,12 @@ use yii\helpers\Html;
             Поиск по параметрам
             <svg class="m-left-25" width="10" height="15" viewBox="0 0 10 15" fill="none"
                  xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_114_4)">
+                <g clip-path="url(.clip0_114_4)">
                     <path d="M2.24979 14.6416L1.00721 13.4744L7.25699 7.18819L0.796085 1.11916L1.99805 -0.0898235L8.45895 5.97921L9.70153 7.14642L2.24979 14.6416Z"
                           fill="#5C5C5C"/>
                 </g>
                 <defs>
-                    <clipPath id="clip0_114_4">
+                    <clipPath class="clip0_114_4">
                         <rect width="8.79882" height="14.8248" fill="white"
                               transform="translate(9.81274 14.8432) rotate(179.021)"/>
                     </clipPath>
