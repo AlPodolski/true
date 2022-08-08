@@ -65,11 +65,11 @@ echo \frontend\components\helpers\MicroHelper::image($post);
 
                 <?php endif; ?>
                 <?php if ($post['video']) : ?>
-                    <div class="carousel-item">
+                    <span class="carousel-item">
                         <video controls="controls" class="video">
                             <source src="<?php echo $post['video'] ?>">
                         </video>
-                    </div>
+                    </span>
                 <?php endif; ?>
             </div>
 
