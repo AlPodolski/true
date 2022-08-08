@@ -64,6 +64,13 @@ echo \frontend\components\helpers\MicroHelper::image($post);
                     </a>
 
                 <?php endif; ?>
+                <?php if ($post['video']) : ?>
+                    <div class="carousel-item">
+                        <video controls="controls" class="video">
+                            <source src="<?php echo $post['video'] ?>">
+                        </video>
+                    </div>
+                <?php endif; ?>
             </div>
 
             <div class="post-top-info">
