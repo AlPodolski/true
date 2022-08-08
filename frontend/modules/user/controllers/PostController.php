@@ -85,10 +85,7 @@ class PostController extends Controller
 
             $post->city_id = $city['id'];
 
-            $post->created_at = $time = \time();
-
-            $post->updated_at = $time;
-            $post->sort = $time;
+            $post->sort = time();
 
             $post->fake = Posts::POST_REAL;
 

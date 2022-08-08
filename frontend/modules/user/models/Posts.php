@@ -20,8 +20,10 @@ use frontend\models\Metro;
 use frontend\models\UserMetro;
 use common\models\User;
 use Yii;
+use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
 use yii\helpers\ArrayHelper;
+use frontend\components\service\AddPhoneService;
 
 /**
  * This is the model class for table "posts".
@@ -66,6 +68,17 @@ use yii\helpers\ArrayHelper;
 class Posts extends \yii\db\ActiveRecord
 {
 
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::class,
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
+            ],
+        ];
+    }
+
     const INDI_CATEGORY = 1;
     const SALON_CATEGORY = 2;
 
@@ -88,6 +101,8 @@ class Posts extends \yii\db\ActiveRecord
     public function __construct()
     {
         $this->on(self::EVENT_AFTER_INSERT, [AddPost::class, 'handle']);
+        $this->on(self::EVENT_AFTER_INSERT, [AddPhoneService::class, 'handle']);
+        $this->on(self::EVENT_AFTER_UPDATE, [AddPhoneService::class, 'handle']);
 
         parent::__construct();
     }
