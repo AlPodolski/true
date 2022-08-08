@@ -56,7 +56,6 @@ if (isset($webmaster))
     <?php echo \frontend\widgets\SortingWidget::widget() ?>
     <?php echo \frontend\widgets\LinkWidget::widget(['url' => Yii::$app->request->url]) ?>
     <div class="row">
-
         <div data-url="/" class="col-12"></div>
 
         <?php

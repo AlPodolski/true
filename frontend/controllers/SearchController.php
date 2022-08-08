@@ -26,7 +26,7 @@ class SearchController extends Controller
 
         $prPosts = Posts::find()
             ->asArray()
-            ->with('avatar', 'metro')
+            ->with('avatar', 'metro','gallery')
             ->where(['like', 'name', $model->name])
             ->andWhere(['city_id' => $cityInfo['id']])
             ->all();

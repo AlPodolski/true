@@ -458,7 +458,7 @@ function favorite(object) {
 }
 
 $(document).ready(function () {
-
+    $('.carousel').carousel();
     $("#editprofileform-avatar").on('change', function () {
 
         $("#change-video-label").text('');
@@ -787,6 +787,8 @@ $(window).scroll(function () {
                         $('.content').append(data);
 
                         page = $(target).attr('data-page', Number(page) + 1);
+
+                        $('.carousel').carousel();
 
                     } else {
 

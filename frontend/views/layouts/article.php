@@ -5,6 +5,7 @@
 /* @var $advertising bool | null */
 
 /* @var $promo bool | null */
+
 /* @var $this \yii\web\View */
 
 use frontend\widgets\PhotoWidget;
@@ -17,28 +18,54 @@ echo \frontend\components\helpers\MicroHelper::image($post);
      class="col-xl-4 col-lg-4 col-md-6 col-12 post-wrap <?php echo isset($countPost) ? 'post-num-' . $countPost : ""; ?>">
     <article class="post position-relative">
         <div class="post-img position-relative">
-            <?php
-            $photoTitle = 'Проститутка ' . $post['name'];
-            ?>
-            <?php if ($post['check_photo_status'] == 1 and $post['category'] == 1) : ?>
-                <?php
-                $photoTitle = 'Проверенная проститутка ' . $post['name'];
-                ?>
-            <?php endif ?>
             <?php if ((isset($advertising) and $advertising) or (isset($promo) and $promo)) : ?>
                 <div class="check-label rek-block">
                     Реклама
                 </div>
             <?php endif ?>
 
-            <a target="_blank" href="/post/<?php echo $post['id'] ?>">
-
-                <?php
+            <div
+               id="post-<?php echo $post['id'] ?>"
+               data-interval="false" class="carousel slide"
+               data-ride="carousel">
+                <div class="carousel-inner">
+                    <?php
                     $path = Yii::getAlias('@frontend/views/includes/article-photo.php');
-                    echo $this->renderFile($path, compact('post'));
-                ?>
+                    echo $this->renderFile($path, [
+                        'file' => $post['avatar']['file'],
+                        'name' => $post['name'],
+                        'cssClass' => 'active picture-'.$post['id'] ,
+                    ]);
+                    ?>
+                    <?php
 
-            </a>
+                    if (isset($post['gallery']) and $post['gallery']){
+                        foreach ($post['gallery'] as $item){
+                            echo $this->renderFile($path, [
+                                'file' => $item['file'],
+                                'name' => $post['name'],
+                                'cssClass' => 'picture-'.$post['id'] ,
+                            ]);
+                        }
+                    }
+                    ?>
+                </div>
+                <?php if ($post['gallery']) : ?>
+
+                    <a class="carousel-control-prev" href="#post-<?php echo $post['id'] ?>" role="button"
+                       data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#post-<?php echo $post['id'] ?>" role="button"
+                       data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+
+                <?php endif; ?>
+            </div>
+
             <div class="post-top-info">
                 <div class="row">
                     <div class="col-6">

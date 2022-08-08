@@ -21,7 +21,7 @@ class PostsRepository
     public function getForMainPage($cityId): array
     {
         $prPosts = Posts::find()->asArray()
-            ->with('avatar', 'metro', 'partnerId', 'rayon', 'nacionalnost', 'city')
+            ->with('avatar', 'metro', 'partnerId', 'rayon', 'nacionalnost', 'city', 'gallery')
             ->where(['city_id' => $cityId])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->andWhere(['pol_id' => Pol::WOMAN_POL])
@@ -47,7 +47,7 @@ class PostsRepository
 
         $posts = Posts::find()
             ->asArray()
-            ->with('avatar', 'metro', 'partnerId', 'rayon', 'nacionalnost')
+            ->with('avatar', 'metro', 'partnerId', 'rayon', 'nacionalnost', 'gallery')
             ->where(['city_id' => $cityId])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->andWhere(['pol_id' => Pol::WOMAN_POL])
