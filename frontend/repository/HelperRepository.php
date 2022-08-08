@@ -38,7 +38,7 @@ class HelperRepository
 
             $temp = UserNational::find()
                 ->andWhere(['city_id' => $city])
-                ->andWhere(['in', 'national_id', $nationals])
+                ->andWhere(['in', 'national_id', array_unique($nationals)])
                 ->select('post_id')
                 ->asArray()->all();
 
@@ -50,7 +50,7 @@ class HelperRepository
 
             $temp = UserRayon::find()
                 ->andWhere(['city_id' => $city])
-                ->andWhere(['in', 'rayon_id', $rayon])
+                ->andWhere(['in', 'rayon_id', array_unique($rayon)])
                 ->select('post_id')
                 ->asArray()->all();
 
