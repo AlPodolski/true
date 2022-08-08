@@ -4,7 +4,7 @@
 /* @var $cssClass string */
 ?>
 
-<picture class="carousel-item <?php echo $cssClass ?>">
+<picture>
     <?php if (file_exists(Yii::getAlias('@webroot') . $file) and $file) : ?>
         <?php
         $thumbSrc = Yii::$app->imageCache->thumbSrc($file, '500_700');

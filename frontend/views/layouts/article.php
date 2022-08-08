@@ -28,27 +28,32 @@ echo \frontend\components\helpers\MicroHelper::image($post);
                id="post-<?php echo $post['id'] ?>"
                data-interval="false" class="carousel slide"
                data-ride="carousel">
-                <a href="/post/<?php echo $post['id'] ?>" target="_blank" class="carousel-inner">
-                    <?php
-                    $path = Yii::getAlias('@frontend/views/includes/article-photo.php');
-                    echo $this->renderFile($path, [
-                        'file' => $post['avatar']['file'],
-                        'name' => $post['name'],
-                        'cssClass' => 'active picture-'.$post['id'] ,
-                    ]);
-                    ?>
-                    <?php
+                <div  class="carousel-inner">
+                    <a class="active carousel-item" href="/post/<?php echo $post['id'] ?>" target="_blank">
+                        <?php
+                        $path = Yii::getAlias('@frontend/views/includes/article-photo.php');
+                        echo $this->renderFile($path, [
+                            'file' => $post['avatar']['file'],
+                            'name' => $post['name'],
+                        ]);
+                        ?>
+                    </a>
 
-                    if (isset($post['gallery']) and $post['gallery']){
-                        foreach ($post['gallery'] as $item){
-                            echo $this->renderFile($path, [
-                                'file' => $item['file'],
-                                'name' => $post['name'],
-                                'cssClass' => 'picture-'.$post['id'] ,
-                            ]);
+
+                        <?php
+
+                        if (isset($post['gallery']) and $post['gallery']){
+                            foreach ($post['gallery'] as $item){
+                                echo '<a class="carousel-item" href="/post/'.$post['id'].'" target="_blank">';
+                                echo $this->renderFile($path, [
+                                    'file' => $item['file'],
+                                    'name' => $post['name'],
+                                ]);
+                                echo '</a>';
+                            }
                         }
-                    }
-                    ?>
+                        ?>
+
                     <?php if ($post['video']) : ?>
                         <span class="carousel-item video-item">
                         <video controls="controls" class="video">
@@ -56,7 +61,7 @@ echo \frontend\components\helpers\MicroHelper::image($post);
                         </video>
                     </span>
                     <?php endif; ?>
-                </a>
+                </div>
                 <?php if ($post['gallery']) : ?>
 
                     <a class="carousel-control-prev" href="#post-<?php echo $post['id'] ?>" role="button"
