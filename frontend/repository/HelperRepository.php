@@ -37,9 +37,9 @@ class HelperRepository
         if ($nationals){
 
             $temp = UserNational::find()
-                ->where(['in', 'national_id', $nationals])
-                ->select('post_id')
                 ->andWhere(['city_id' => $city])
+                ->andWhere(['in', 'national_id', $nationals])
+                ->select('post_id')
                 ->asArray()->all();
 
             $ids = ArrayHelper::getColumn($temp, 'post_id');
@@ -49,9 +49,9 @@ class HelperRepository
         if ($rayon){
 
             $temp = UserRayon::find()
-                ->where(['in', 'rayon_id', $rayon])
-                ->select('post_id')
                 ->andWhere(['city_id' => $city])
+                ->andWhere(['in', 'rayon_id', $rayon])
+                ->select('post_id')
                 ->asArray()->all();
 
             $temp = ArrayHelper::getColumn($temp, 'post_id');
