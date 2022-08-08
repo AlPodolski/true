@@ -18,6 +18,6 @@
         ?>
         <source srcset="<?= $thumbSrcWebP ?>" type="image/webp">
         <source srcset="<?= $thumbSrc ?>" type="image/jpeg">
-        <img src="<?= $thumbSrc ?>" alt="Проститутка <?php echo $name ?>">
+        <img src="<?= $thumbSrc ?>" loading="lazy" alt="Проститутка <?php echo $name ?>">
     <?php endif; ?>
 </picture>
