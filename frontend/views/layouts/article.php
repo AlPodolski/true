@@ -49,6 +49,13 @@ echo \frontend\components\helpers\MicroHelper::image($post);
                         }
                     }
                     ?>
+                    <?php if ($post['video']) : ?>
+                        <span class="carousel-item">
+                        <video controls="controls" class="video">
+                            <source src="<?php echo $post['video'] ?>">
+                        </video>
+                    </span>
+                    <?php endif; ?>
                 </a>
                 <?php if ($post['gallery']) : ?>
 
@@ -63,13 +70,6 @@ echo \frontend\components\helpers\MicroHelper::image($post);
                         <span class="sr-only">Next</span>
                     </a>
 
-                <?php endif; ?>
-                <?php if ($post['video']) : ?>
-                    <span class="carousel-item">
-                        <video controls="controls" class="video">
-                            <source src="<?php echo $post['video'] ?>">
-                        </video>
-                    </span>
                 <?php endif; ?>
             </div>
 
