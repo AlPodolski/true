@@ -605,6 +605,10 @@ body{
     width: 59px;
     height: 59px;
 }
+.video-item{
+    position: relative;
+    z-index: 1;
+}
 .small-red-text{
     color: #F74952!important;
 }

@@ -50,7 +50,7 @@ echo \frontend\components\helpers\MicroHelper::image($post);
                     }
                     ?>
                     <?php if ($post['video']) : ?>
-                        <span class="carousel-item">
+                        <span class="carousel-item video-item">
                         <video controls="controls" class="video">
                             <source src="<?php echo $post['video'] ?>">
                         </video>
@@ -76,9 +76,9 @@ echo \frontend\components\helpers\MicroHelper::image($post);
             <div class="post-top-info">
                 <div class="row">
                     <div class="col-6">
-                        <h2 class="phone-photo-count">
+                        <a class="phone-photo-count" href="/post/<?php echo $post['id'] ?>">
                             <?php echo $post['name'] ?>
-                        </h2>
+                        </a>
                         <div class="phone-photo-count">
                             <?php echo $post['price'] ?> руб.
                         </div>
@@ -122,30 +122,6 @@ echo \frontend\components\helpers\MicroHelper::image($post);
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="marc-wrap d-none ">
-
-                    <?php if ($post['rost']) : ?>
-                        <div class="marc-item">
-                            <div class="marc-wrap">Рост</div>
-                            <div class="marc-value"><?php echo $post['rost'] ?></div>
-                        </div>
-                    <?php endif; ?>
-
-                    <?php if ($post['ves']) : ?>
-                        <div class="marc-item">
-                            <div class="marc-wrap">Вес</div>
-                            <div class="marc-value"><?php echo $post['rost'] ?></div>
-                        </div>
-                    <?php endif; ?>
-
-                    <?php if ($post['breast']) : ?>
-                        <div class="marc-item">
-                            <div class="marc-wrap">Размер груди</div>
-                            <div class="marc-value"><?php echo $post['rost'] ?></div>
-                        </div>
-                    <?php endif; ?>
-
                 </div>
             </div>
 
