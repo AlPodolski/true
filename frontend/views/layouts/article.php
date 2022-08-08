@@ -28,7 +28,7 @@ echo \frontend\components\helpers\MicroHelper::image($post);
                id="post-<?php echo $post['id'] ?>"
                data-interval="false" class="carousel slide"
                data-ride="carousel">
-                <a href="/post/<?php echo $post['id'] ?>" class="carousel-inner">
+                <a href="/post/<?php echo $post['id'] ?>" target="_blank" class="carousel-inner">
                     <?php
                     $path = Yii::getAlias('@frontend/views/includes/article-photo.php');
                     echo $this->renderFile($path, [
