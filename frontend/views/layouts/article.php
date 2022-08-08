@@ -28,7 +28,7 @@ echo \frontend\components\helpers\MicroHelper::image($post);
                id="post-<?php echo $post['id'] ?>"
                data-interval="false" class="carousel slide"
                data-ride="carousel">
-                <div class="carousel-inner">
+                <a href="/post/<?php echo $post['id'] ?>" class="carousel-inner">
                     <?php
                     $path = Yii::getAlias('@frontend/views/includes/article-photo.php');
                     echo $this->renderFile($path, [
@@ -49,7 +49,7 @@ echo \frontend\components\helpers\MicroHelper::image($post);
                         }
                     }
                     ?>
-                </div>
+                </a>
                 <?php if ($post['gallery']) : ?>
 
                     <a class="carousel-control-prev" href="#post-<?php echo $post['id'] ?>" role="button"
