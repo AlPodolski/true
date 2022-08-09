@@ -4,7 +4,7 @@
 
 header('Content-Type: text/plain; charset=UTF-8');
 
-if (strstr($host, 'sex-key')) : ?>
+if (strstr(Yii::$app->request->serverName, 'sex-key')) : ?>
     User-agent: *
     Disallow: /
     <?php exit() ?>
@@ -22,6 +22,6 @@ if (strstr($host, 'sex-key')) : ?>
     <?php if ($city != 'moskva') echo 'Disallow: /forum/*' .PHP_EOL ?>
     Host: https://<?php echo $host.PHP_EOL ?>
     Sitemap: https://<?php echo $host ?>/sitemap.xml
-<?php exit() ?>
+    <?php exit() ?>
 
 <?php endif;
