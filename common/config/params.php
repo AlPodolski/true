@@ -1,8 +1,8 @@
 <?php
 return [
-    'adminEmail' => 'info@sex-key.com',
-    'supportEmail' => 'info@sex-key.com',
-    'senderEmail' => 'info@sex-key.com',
+    'adminEmail' => 'info@sex-tut.com',
+    'supportEmail' => 'info@sex-tut.com',
+    'senderEmail' => 'info@sex-tut.com',
     'senderName' => 'Example.com mailer',
     'user.passwordResetTokenExpire' => 3600,
     'user.passwordMinLength' => 8,

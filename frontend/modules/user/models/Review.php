@@ -2,6 +2,7 @@
 
 namespace frontend\modules\user\models;
 
+use common\components\service\AddPhoneReview;
 use common\models\User;
 use Yii;
 
@@ -24,8 +25,16 @@ class Review extends \yii\db\ActiveRecord
 {
 
     const ON_MODARATE = 0;
-
     const MODARATE = 1;
+
+    const COMMENT_MODERATE = 'moderate';
+
+    public function __construct()
+    {
+        $this->on(self::COMMENT_MODERATE, [AddPhoneReview::class, 'handle']);
+
+        parent::__construct();
+    }
 
     /**
      * {@inheritdoc}
