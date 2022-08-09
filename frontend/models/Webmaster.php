@@ -11,6 +11,7 @@ use Yii;
  * @property int $id
  * @property int|null $city_id
  * @property string|null $tag
+ * @property string|null $city_name
  */
 class Webmaster extends \yii\db\ActiveRecord
 {
@@ -29,7 +30,7 @@ class Webmaster extends \yii\db\ActiveRecord
     {
         return [
             [['city_id'], 'integer'],
-            [['tag'], 'string', 'max' => 122],
+            [['tag', 'city_name'], 'string', 'max' => 122],
         ];
     }
 
