@@ -3,7 +3,12 @@
 /* @var $city string */
 
 header('Content-Type: text/plain; charset=UTF-8');
-?>
+
+if (strstr($host, 'sex-key')) : ?>
+    User-agent: *
+    Disallow: /
+    <?php exit() ?>
+<?php else : ?>
     User-agent: *
     Disallow: *request-password-reset*
     Disallow: *signup*
@@ -18,3 +23,5 @@ header('Content-Type: text/plain; charset=UTF-8');
     Host: https://<?php echo $host.PHP_EOL ?>
     Sitemap: https://<?php echo $host ?>/sitemap.xml
 <?php exit() ?>
+
+<?php endif;
