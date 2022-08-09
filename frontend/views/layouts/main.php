@@ -295,7 +295,7 @@ AppAsset::register($this);
                         </a>
                     </li>
                     <li class="nav-item"><a href="/proverennye">Проверенные</a></li>
-                    <li class="nav-item"><a href="/cena-ot-6000">Элитные</a></li>
+                    <li class="nav-item"><a href="/elitnye-prostitutki">Элитные</a></li>
                     <li class="nav-item"><a href="/favorite/list">Избранное</a></li>
                     <li class="nav-item"><a href="/video">С Видео</a></li>
                     <li class="nav-item"><a href="/mesto-viezd">На выезд</a></li>
@@ -380,7 +380,7 @@ AppAsset::register($this);
                             <li class="nav-item"><a href="/pol-muzhskoj">Жиголо</a></li>
                             <li class="nav-item"><a href="/pol-trans">Трансы</a></li>
                             <li class="nav-item"><a href="/proverennye">Проверенные</a></li>
-                            <li class="nav-item"><a href="/cena-ot-6000">Элитные</a></li>
+                            <li class="nav-item"><a href="/elitnye-prostitutki">Элитные</a></li>
                             <li class="nav-item"><a href="/favorite/list">Избранное</a></li>
                             <?php if (Yii::$app->requestedParams['city'] == 'moskva') : ?>
                                 <li class="nav-item"><a href="/advert">Объявления</a></li>
