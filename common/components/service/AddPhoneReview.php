@@ -2,6 +2,7 @@
 
 namespace common\components\service;
 
+use common\models\Comments;
 use common\models\Phone;
 use frontend\modules\user\models\Posts;
 use frontend\modules\user\models\Review;
@@ -11,18 +12,30 @@ class AddPhoneReview extends Component
 {
     public static function handle($event)
     {
-        $comment = $event->sender;
+        $review = $event->sender;
 
-        /* @var $comment Review */
+        /* @var $review Review */
 
-        $post = Posts::find()->where(['id' => $comment->post_id])->one();
+        $post = Posts::find()->where(['id' => $review->post_id])->one();
 
-        if ($post and $phone = Phone::find()->where(['phone'])){
+        if ($post){
 
+            if (!$phone = Phone::find()->where(['like', 'phone', $post->phone])->one()){
+                $phone = new Phone();
+                $phone->phone = $post->phone;
+                $phone->save();
+            }
 
+            $comment = new Comments();
+
+            $comment->class = Phone::class;
+            $comment->related_id = $phone->id;
+            $comment->text = $review->text;
+
+            $comment->save();
 
         }
 
-        dd($comment);
+        dd($review);
     }
 }

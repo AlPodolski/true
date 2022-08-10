@@ -57,6 +57,8 @@ class ReviewController extends Controller
 
             $review->is_moderate = Review::MODARATE;
 
+            $review->trigger($review::COMMENT_MODERATE);
+
             if ($review->save()){
 
                 $review->trigger($review::COMMENT_MODERATE);
