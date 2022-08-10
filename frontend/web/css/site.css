@@ -1099,7 +1099,10 @@ h1 , .big-red-text{
     align-items: center;
 }
 .close-helper{
-    margin-left: auto;
+    position: absolute;
+    right: 5px;
+    z-index: 111;
+    top: 6px;
 }
 .helper-content{
     background: #F9F8F8;

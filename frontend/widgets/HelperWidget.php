@@ -11,6 +11,8 @@ class HelperWidget extends Widget
     public function run()
     {
 
+        if ($_COOKIE['helper']) return '';
+
         $viewNeedCount = \Yii::$app->params['view_post_count_for_helper'];
         $postViewCount = 0;
 

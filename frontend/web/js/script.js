@@ -805,6 +805,19 @@ $(window).scroll(function () {
 
 });
 
+function closeHelper(object){
+
+    if (!$('#helper').hasClass('show-helper')){
+        $('#helper').remove();
+        let date = new Date(Date.now() + 3600 * 24);
+        document.cookie = "helper=close; expires=" + date;
+    }else{
+        console.log($('#helper').removeClass('show-helper'));
+        $('#helper').removeClass('show-helper');
+    }
+
+}
+
 var main = function () {
 
     $('.mobil-menu').click(function () {
