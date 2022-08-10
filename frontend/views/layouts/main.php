@@ -174,7 +174,7 @@ AppAsset::register($this);
                     ->textInput([
                         'class' => 'search',
                         'itemprop' => 'query-input',
-                        'placeholder' => 'Поиск по имени'
+                        'placeholder' => 'Поиск по имени или номеру'
                     ])
                     ->label(false) ?>
 

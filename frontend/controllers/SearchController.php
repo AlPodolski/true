@@ -28,12 +28,13 @@ class SearchController extends Controller
             ->asArray()
             ->with('avatar', 'metro','gallery')
             ->where(['like', 'name', $model->name])
+            ->orWhere(['like', 'phone', $model->name])
             ->andWhere(['city_id' => $cityInfo['id']])
             ->all();
 
-        $title = 'Проститутки по имени '.$model->name.' – путаны и индивидуалки '.$cityInfo['city2'];
-        $des = 'Путаны с именем '.$model->name.' с удовольствием выполнят все Ваши желания. Выбор анкет индивидуалок. Номера телефонов';
-        $h1 = 'Проститутки с именем '.$model->name;
+        $title = 'Проститутки '.$model->name.' – путаны и индивидуалки '.$cityInfo['city2'];
+        $des = 'Путаны '.$model->name.' с удовольствием выполнят все Ваши желания. Выбор анкет индивидуалок. Номера телефонов';
+        $h1 = 'Проститутки '.$model->name;
 
         return $this->render('index' , [
             'prPosts' => $prPosts,
