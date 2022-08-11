@@ -31,6 +31,7 @@ class SearchController extends Controller
             ->where(['like', 'name', $model->name])
             ->orWhere(['like', 'phone', $model->name])
             ->andWhere(['city_id' => $cityInfo['id']])
+            ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->limit(Yii::$app->params['post_limit']);
 
         $countQuery = clone $prPosts;
@@ -71,6 +72,7 @@ class SearchController extends Controller
             ->where(['like', 'name', $model->name])
             ->orWhere(['like', 'phone', $model->name])
             ->andWhere(['city_id' => $cityInfo['id']])
+            ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->limit(Yii::$app->params['post_limit']);
 
 
