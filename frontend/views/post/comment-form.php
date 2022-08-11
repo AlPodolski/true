@@ -102,18 +102,6 @@ echo $form->field($postReviewForm, 'post_id')->hiddenInput(['value' => $data['po
 
     <?php endforeach; ?>
 
-
-    <div class="col-12">
-
-        <?php
-
-        echo $form->field($postReviewForm, 'name')
-            ->textInput(['placeholder' => 'Ваше имя' , 'value' => Yii::$app->user->identity->username ?? ''])->label(false);
-
-        ?>
-
-    </div>
-
     <div class="col-12">
 
         <?php
