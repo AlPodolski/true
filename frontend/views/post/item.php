@@ -916,7 +916,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
     </div>
 </div>
 
-<?php if ($post['phoneComments']) : ?>
+<?php if ($post['phoneComments'] and $post['phoneComments']['comments']) : ?>
 
     <div class="otzivi-block-desc">
         <div class="red-bold-text">Отзывы на этот номер</div>
