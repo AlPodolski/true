@@ -7,9 +7,28 @@ use frontend\modules\user\models\ReviewForm;
 use frontend\modules\user\models\ServiceReviewForm;
 use Yii;
 use frontend\controllers\BeforeController as Controller;
+use yii\filters\AccessControl;
 
 class ReviewController extends Controller
 {
+
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'only' => ['add'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['add'],
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+        ];
+    }
+
     public function actionAdd()
     {
 
@@ -17,7 +36,7 @@ class ReviewController extends Controller
 
             $postReviewForm = new ReviewForm();
 
-            $postReviewForm->author_id = Yii::$app->user->id ?? null;
+            $postReviewForm->author_id = Yii::$app->user->id;
 
             if (
                 $postReviewForm->load(Yii::$app->request->post())

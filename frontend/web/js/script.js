@@ -7,7 +7,7 @@ $(document).ready(function () {
 
 function close_text(){
     $('.text-block-wrap').remove();
-    document.cookie = 'text=close';
+    document.cookie = 'text=close; max-age=' + (3600 * 24 * 31);
 }
 
 var exist_map_block = false;
