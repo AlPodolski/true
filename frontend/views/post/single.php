@@ -152,7 +152,6 @@ $this->params['breadcrumbs'][] = array(
 
                         ?>
 
-
                     <?php endforeach; ?>
 
                     <div data-img="<?php echo implode(',', $imgs) ?>" id="selfy-imgs"></div>

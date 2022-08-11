@@ -6,6 +6,7 @@ namespace frontend\controllers;
 use common\models\City;
 use common\models\User;
 use frontend\components\helpers\AddViewHelper;
+use frontend\helpers\GetCommentByPhoneHelper;
 use frontend\helpers\GetPostHelper;
 use frontend\helpers\RequestHelper;
 use frontend\models\Files;
@@ -62,6 +63,8 @@ class PostController extends Controller
             ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_single_view_count_key']);
 
             $postsByPhone = GetPostHelper::getByPhone($post['phone'], $cityInfo['id']);
+
+            if ($post['phone']) $post['phoneComments'] = (new GetCommentByPhoneHelper($post['phone']))->get();
 
             return $this->render('single', [
                 'post' => $post,

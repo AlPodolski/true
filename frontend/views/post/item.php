@@ -174,8 +174,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                 <div class="col-12 col-md-12 col-lg-9 single-post-info-wrap">
                     <div class="post-top-info">
                         <div class="">
-
-                            <h1 class="text-center"><?php echo $post['name'] ?></h1>
+                            <h1 class="text-center"><?php echo $post['name'] ?> ID: <?php echo $post['id'] ?></h1>
 
                             <?php $targetPrice = \frontend\components\helpers\PriceTargetHelper::target($post['price']) ?>
 
@@ -916,6 +915,25 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
         </div>
     </div>
 </div>
+
+<?php if ($post['phoneComments']) : ?>
+
+    <div class="otzivi-block-desc">
+        <div class="red-bold-text">Отзывы на этот номер</div>
+
+        <?php foreach ($post['phoneComments']['comments'] as $comment) : ?>
+
+        <?php /* @var $comment \common\models\Comments */ ?>
+            <div class="review-block">
+                <div class="review-text">
+                    <?php echo $comment['text'] ?>
+                </div>
+            </div>
+        <?php endforeach; ?>
+
+    </div>
+
+<?php endif; ?>
 
 <!-- Nav tabs -->
 <ul class="nav nav-tabs single-tabs d-none">

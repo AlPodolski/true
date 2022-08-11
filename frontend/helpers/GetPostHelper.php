@@ -19,10 +19,10 @@ class GetPostHelper
                 ->andWhere(['city_id' => $city_id])
                 ->with('gal', 'metro', 'avatar', 'place', 'service',
                     'sites', 'rayon', 'nacionalnost',
-                    'cvet', 'strizhka', 'selphiCount', 'serviceDesc', 'partnerId'
+                    'cvet', 'strizhka', 'selphiCount', 'serviceDesc', 'partnerId','phoneComment'
                 )
                 ->asArray()->limit(1)->one();
-            // Сохраняем значение $data в кэше. Данные можно получить в следующий раз.
+
             Yii::$app->cache->set('post_cache_'.$id , $post);
         }
 

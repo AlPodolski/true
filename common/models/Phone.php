@@ -55,6 +55,11 @@ class Phone extends \yii\db\ActiveRecord
         }
     }
 
+    public function getComments(): \yii\db\ActiveQuery
+    {
+        return $this->hasMany(Comments::class, ['related_id' => 'id']);
+    }
+
     /**
      * {@inheritdoc}
      */
