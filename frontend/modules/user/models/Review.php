@@ -20,6 +20,7 @@ use Yii;
  * @property int|null $created_at
  * @property int|null $is_happy
  * @property int|null $is_moderate
+ * @property Posts $article
  */
 class Review extends \yii\db\ActiveRecord
 {
@@ -77,6 +78,11 @@ class Review extends \yii\db\ActiveRecord
             'clean' => 'Чистота',
             'created_at' => 'Дата добавления',
         ];
+    }
+
+    public function getArticle()
+    {
+        return $this->hasOne(Posts::class, ['id' => 'post_id'])->with('avatar');
     }
 
     public function getAuthor()

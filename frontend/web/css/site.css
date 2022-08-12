@@ -1104,6 +1104,24 @@ h1 , .big-red-text{
     z-index: 111;
     top: 6px;
 }
+.item-review .review-block{
+    margin-bottom: 0px;
+}
+.item-review .review{
+    width: 100%;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+.review-block{
+    margin-bottom: 32px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.author-name-wrap{
+    justify-content: space-around;
+    display: flex;
+    flex-direction: column;
+}
 .helper-content{
     background: #F9F8F8;
     display: none;

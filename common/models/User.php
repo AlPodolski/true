@@ -2,6 +2,7 @@
 namespace common\models;
 
 use frontend\models\Files;
+use frontend\modules\user\models\Review;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
@@ -31,6 +32,7 @@ use yii\web\IdentityInterface;
  * @property integer $fake
  * @property string $password write-only password
  * @property string $partner_id
+ * @property Review $review
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -85,6 +87,11 @@ class User extends ActiveRecord implements IdentityInterface
             ['fake', 'default', 'value' => self::REAL_USER],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
         ];
+    }
+
+    public function getReview()
+    {
+        return $this->hasMany(Review::class, ['author' => 'id'])->with('article', 'author');
     }
 
     /**
