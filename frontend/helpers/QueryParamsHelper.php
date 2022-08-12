@@ -40,7 +40,7 @@ class QueryParamsHelper
 
                 $result_id_array = array();
 
-                if (strstr($value, $filter_param['url'])) {
+                if (strpos($value, $filter_param['url']) !== false) {
 
                     $className = $filter_param['class_name'];
                     $classRelationName = $filter_param['relation_class'];
@@ -100,7 +100,7 @@ class QueryParamsHelper
 
             }
 
-            if (\strstr($value, 'vozrast')){
+            if (\strpos($value, 'vozrast-') !== false){
 
                 $url = str_replace('vozrast-', '', $value);
 
@@ -127,7 +127,7 @@ class QueryParamsHelper
 
             }
 
-            if (strstr($value, 'cena')){
+            if (strpos($value, 'cena-') !== false){
 
                 $url = str_replace('cena-', '', $value);
 
@@ -189,7 +189,7 @@ class QueryParamsHelper
 
             }
 
-            if (strstr($value, 'rost-')){
+            if (strpos($value, 'rost-') !== false){
 
                 $url = str_replace('rost-', '', $value);
 
@@ -232,7 +232,7 @@ class QueryParamsHelper
 
             }
 
-            if (strstr($value, 'ves')){
+            if (strpos($value, 'ves-') !== false){
 
                 $url = str_replace('ves-', '', $value);
 
@@ -267,7 +267,7 @@ class QueryParamsHelper
 
             }
 
-            if (strstr($value, 'proverennye')){
+            if ($value == 'proverennye'){
 
                 $id = Posts::find()->select('id')->andWhere(['city_id' => $city['id']])->andWhere(['check_photo_status' => 1])->asArray()->all();
 
@@ -279,7 +279,7 @@ class QueryParamsHelper
 
             }
 
-            if (strstr($value, 'novie')){
+            if (strpos($value, 'novie') !== false){
 
                 $id = Posts::find()->select('id')->andWhere(['city_id' => $city['id']])->orderBy(['created_at' => SORT_DESC ])->asArray()->all();
 
@@ -349,7 +349,7 @@ class QueryParamsHelper
 
             }
 
-            if (strstr($value, 'pol-')){
+            if (strpos($value, 'pol-') !== false){
 
                 $polSearch = true;
 
