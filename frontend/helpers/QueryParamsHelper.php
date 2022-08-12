@@ -404,7 +404,6 @@ class QueryParamsHelper
 
                 $id = Review::find()->select('post_id')
                     ->where(['is_moderate' => Review::MODARATE])
-                    ->andWhere(['>', 'text', ''])
                     ->asArray()
                     ->all();
 
