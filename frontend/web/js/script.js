@@ -809,8 +809,8 @@ function closeHelper(object){
 
     if (!$('#helper').hasClass('show-helper')){
         $('#helper').remove();
-        let date = new Date(Date.now() + (3600 * 24));
-        document.cookie = "helper=close; expires=" + date;
+
+        document.cookie = "helper=close; max-age=" + (3600 * 24 * 31);
     }else{
         console.log($('#helper').removeClass('show-helper'));
         $('#helper').removeClass('show-helper');
