@@ -11,6 +11,7 @@ use frontend\models\FilterParams;
 use frontend\modules\user\models\Posts;
 use frontend\modules\user\models\Review;
 use Yii;
+use yii\db\Query;
 use yii\helpers\ArrayHelper;
 
 class QueryParamsHelper
@@ -406,6 +407,7 @@ class QueryParamsHelper
                     ->distinct()
                     ->where(['is_moderate' => Review::MODARATE])
                     ->asArray()
+                    ->cache(3600)
                     ->all();
 
                 $resultPostsIds = ArrayHelper::getColumn($id, 'post_id');
