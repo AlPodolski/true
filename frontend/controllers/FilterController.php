@@ -70,6 +70,7 @@ class FilterController extends Controller
                 ->andWhere(['city_id' => $cityInfo['id']])
                 ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
                 ->orderBy(Posts::getOrder())
+                ->cache(3600)
                 ->asArray();
 
             if (\strstr($param, 'novie')) $posts = $posts->orderBy('id DESC');
