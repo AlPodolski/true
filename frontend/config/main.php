@@ -169,7 +169,7 @@ return [
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/phone/get' => 'phone/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/photo-prostitutok' => 'photo/index',
 
-                '<protocol>://<city:[a-z-0-9]+>.<domain>/user/<id:[0-9]>' => 'profile/index',
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/user/<id:[0-9]+>' => 'profile/index',
 
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/<param:([a-z-0-9]+/)+[a-z-0-9]+>/page-<pager:[0-9]+>' => 'filter/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/<param:[a-z-0-9]+>' => 'filter/index',

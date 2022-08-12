@@ -3,7 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\User;
-use yii\web\Controller;
+use frontend\controllers\BeforeController as Controller;
 use yii\web\NotFoundHttpException;
 
 class ProfileController extends Controller
