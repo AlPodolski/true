@@ -16,7 +16,7 @@ use frontend\assets\RateAsset;
 
 \frontend\assets\GalleryAsset::register($this);
 
-$this->registerJsFile('/js/single.js?v=14', ['depends' => ['yii\web\YiiAsset']]);
+$this->registerJsFile('/js/single.js?v=15', ['depends' => ['yii\web\YiiAsset']]);
 
 
 $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
