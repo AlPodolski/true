@@ -15,7 +15,7 @@ Yii::$app->view->registerMetaTag([
     <h1 class=""><?php echo $user->username ?></h1>
     <p class="">Дата регистрации - <?php echo date("Y-m-d", $user->created_at) ?></p>
 
-    <?php if (Yii::$app->user != $user['id'] or Yii::$app->user->isGuest) : ?>
+    <?php if (Yii::$app->user->id != $user['id'] or Yii::$app->user->isGuest) : ?>
 
         <p class="white-btn video-btn" onclick="get_modal(this);ym(70919698,'reachGoal','message')"
            data-target="message" data-id="<?php echo $user['id'] ?>">Написать сообщение</p>

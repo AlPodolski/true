@@ -1122,6 +1122,9 @@ h1 , .big-red-text{
     display: flex;
     flex-direction: column;
 }
+.profile-link{
+    font-size: 12px;
+}
 .helper-content{
     background: #F9F8F8;
     display: none;
@@ -2897,7 +2900,6 @@ select{
 .author-name{
     font-weight: 500;
     font-size: 18px;
-    line-height: 141.4%;
     color: #000000;
 }
 .date-text{

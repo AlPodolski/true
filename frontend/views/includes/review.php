@@ -54,7 +54,15 @@ use frontend\widgets\PhotoWidget;
                 <a href="/user/<?php echo $item['author']['id'] ?>">Посмотреть профиль</a>
             </div>
 
+            <?php if (Yii::$app->user->id != $item['author']['id'] or Yii::$app->user->isGuest) : ?>
+                <div class="profile-link" onclick="get_modal(this);ym(70919698,'reachGoal','message')"
+                     data-target="message" data-id="<?php echo $item['author']['id']  ?>">
+                    <a >Написать сообщение</a>
+                </div>
+            <?php endif; ?>
+
         <?php endif; ?>
+
     </div>
 
 
