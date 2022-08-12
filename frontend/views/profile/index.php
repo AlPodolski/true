@@ -4,6 +4,11 @@
 
 $this->title = $user->username;
 
+Yii::$app->view->registerMetaTag([
+    'name' => 'description',
+    'content' => $user->username
+]);
+
 ?>
 
 <div class="container">
