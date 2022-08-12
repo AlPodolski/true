@@ -189,7 +189,7 @@ class QueryParamsHelper
 
             }
 
-            if (strstr($value, 'rost')){
+            if (strstr($value, 'rost-')){
 
                 $url = str_replace('rost-', '', $value);
 
