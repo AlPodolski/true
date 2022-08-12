@@ -653,14 +653,15 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
         <?php endif; ?>
 
-        <div class="user-service-item">
-                    <span class="red-text">
-                        Описание:
-                    </span>
-            <span class="grey-text">
-                    <?php echo $post['about'] ?>
-                </span>
-        </div>
+        <?php if ($post['about']) : ?>
+
+            <div class="user-service-item">
+                <span class="red-text">Описание:</span>
+                <span class="grey-text"><?php echo $post['about'] ?></span>
+            </div>
+
+        <?php endif; ?>
+
     </div>
 </div>
 
@@ -720,6 +721,9 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 <?php endif; ?>
 
 <div class="otzivi-block-desc">
+
+    <?php if ($postRating['review']) : ?>
+
     <div class="red-bold-text">Отзывы</div>
     <div class="row">
 
@@ -849,8 +853,6 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
     </div>
 
     <?php
-
-    if ($postRating['review']) :
 
         foreach ($postRating['review'] as $item) : ?>
 
