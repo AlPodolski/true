@@ -403,6 +403,7 @@ class QueryParamsHelper
                 );
 
                 $id = Review::find()->select('post_id')
+                    ->distinct()
                     ->where(['is_moderate' => Review::MODARATE])
                     ->asArray()
                     ->all();
