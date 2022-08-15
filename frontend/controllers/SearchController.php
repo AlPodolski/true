@@ -38,6 +38,7 @@ class SearchController extends Controller
             ->orWhere(['like', 'phone', $model->name])
             ->andWhere(['city_id' => $cityInfo['id']])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
+            ->orderBy('id DESC')
             ->limit(Yii::$app->params['post_limit']);
 
         $countQuery = clone $prPosts;
@@ -65,6 +66,7 @@ class SearchController extends Controller
                         ->where(['metro_id' => $metro->id, 'city_id' => $cityInfo['id']])
                         ->select('post_id')
                         ->asArray()
+                        ->orderBy('id DESC')
                         ->cache(3600)
                         ->all();
 
@@ -74,6 +76,7 @@ class SearchController extends Controller
                         ->asArray()
                         ->with('avatar', 'metro','gallery')
                         ->where(['in', 'id', $result])
+                        ->orderBy('id DESC')
                         ->limit(Yii::$app->params['post_limit']);
 
                     $countQuery = clone $prPosts;
@@ -112,6 +115,7 @@ class SearchController extends Controller
                         ->asArray()
                         ->with('avatar', 'metro','gallery')
                         ->where(['in', 'id', $result])
+                        ->orderBy('id DESC')
                         ->limit(Yii::$app->params['post_limit']);
 
                     $prPosts = $prPosts->all();
@@ -152,6 +156,7 @@ class SearchController extends Controller
             ->orWhere(['like', 'phone', $model->name])
             ->andWhere(['city_id' => $cityInfo['id']])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
+            ->orderBy('id DESC')
             ->limit(Yii::$app->params['post_limit']);
 
 
@@ -182,6 +187,7 @@ class SearchController extends Controller
                     ->with('avatar', 'metro','gallery')
                     ->where(['in', 'id', $result])
                     ->limit(Yii::$app->params['post_limit'])
+                    ->orderBy('id DESC')
                     ->offset(Yii::$app->params['post_limit'] * $page);
                     $prPosts = $prPosts->all();
 
@@ -214,6 +220,7 @@ class SearchController extends Controller
                     ->asArray()
                     ->with('avatar', 'metro','gallery')
                     ->where(['in', 'id', $result])
+                    ->orderBy('id DESC')
                     ->limit(Yii::$app->params['post_limit'])
                     ->offset(Yii::$app->params['post_limit'] * $page);
                 $prPosts = $prPosts->all();
