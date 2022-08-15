@@ -230,10 +230,10 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                             <div class="icon count-photo-icon">
                                 <img src="/img/camera1.svg" width="12px" height="12px" alt="">
                             </div>
-                            <div class="photo-count">
+                            <a href="#photo-count-<?php echo $post['id'] ?>" class="photo-count">
                                 +<?php echo \frontend\modules\user\models\Posts::countPhoto($post['id']) ?>
                                 фото
-                            </div>
+                            </a>
                         </div>
 
                         <div class="post-address post-address-wrap">
@@ -696,7 +696,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
     <div class="photo-list-wrap">
         <div class="red-bold-text text-center">Фото</div>
 
-        <div class="photo-list">
+        <div class="photo-list" id="photo-count-<?php echo $post['id'] ?>">
             <?php foreach ($post['gal'] as $item) : ?>
 
                 <?php echo PhotoWidget::widget([

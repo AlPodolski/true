@@ -3976,6 +3976,12 @@ form .more-search-btn{
     }
 }
 @media (max-width: 769px) {
+    .ya-share2__container{
+        display: flex;
+    }
+    .ya-share2__list{
+        margin: auto;
+    }
     .open-form .red-select {
         max-width: 100%;
     }
