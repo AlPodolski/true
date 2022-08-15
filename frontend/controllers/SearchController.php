@@ -202,7 +202,7 @@ class SearchController extends Controller
             if ($rayon){
 
                 $ids = UserRayon::find()
-                    ->where(['metro_id' => $rayon->id, 'city_id' => $cityInfo['id']])
+                    ->where(['rayon_id' => $rayon->id, 'city_id' => $cityInfo['id']])
                     ->select('post_id')
                     ->asArray()
                     ->cache(3600)
