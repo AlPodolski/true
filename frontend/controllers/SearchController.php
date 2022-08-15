@@ -4,11 +4,13 @@
 namespace frontend\controllers;
 
 use common\models\City;
+use common\models\Rayon;
 use frontend\helpers\MetaBuilder;
 use frontend\models\Metro;
 use frontend\models\SearchNameForm;
 use frontend\models\UserMetro;
 use frontend\modules\user\models\Posts;
+use frontend\modules\user\models\UserRayon;
 use frontend\widgets\MetroWidget;
 use Yii;
 use frontend\controllers\BeforeController as Controller;
@@ -88,6 +90,37 @@ class SearchController extends Controller
 
             }
 
+            if (MetroWidget::checkExistRayon()){
+
+                $rayon = Rayon::find()
+                    ->where(['like', 'value', $model->name])
+                    ->cache(3600 * 128)
+                    ->one();
+
+                if ($rayon){
+
+                    $ids = UserRayon::find()
+                        ->where(['rayon_id' => $rayon->id, 'city_id' => $cityInfo['id']])
+                        ->select('post_id')
+                        ->asArray()
+                        ->cache(3600)
+                        ->all();
+
+                    $result = ArrayHelper::getColumn($ids, 'post_id');
+
+                    $prPosts = Posts::find()
+                        ->asArray()
+                        ->with('avatar', 'metro','gallery')
+                        ->where(['in', 'id', $result])
+                        ->limit(Yii::$app->params['post_limit']);
+
+                    $prPosts = $prPosts->all();
+
+
+                }
+
+            }
+
         }
 
         $title = 'Проститутки '.$model->name.' – путаны и индивидуалки '.$cityInfo['city2'];
@@ -136,7 +169,7 @@ class SearchController extends Controller
             if ($metro){
 
                 $ids = UserMetro::find()
-                    ->where(['metro_id' => $metro->id, 'city_id' => $cityInfo['id']])
+                    ->where(['rayon_id' => $metro->id, 'city_id' => $cityInfo['id']])
                     ->select('post_id')
                     ->asArray()
                     ->cache(3600)
@@ -155,6 +188,39 @@ class SearchController extends Controller
                     if ($prPosts) return $this->renderFile(Yii::getAlias('@frontend/views/search/more.php'), [
                         'prPosts' => $prPosts
                     ]);
+
+            }
+
+        }
+        if (MetroWidget::checkExistRayon()){
+
+            $rayon = Rayon::find()
+                ->where(['like', 'value', $model->name])
+                ->cache(3600 * 128)
+                ->one();
+
+            if ($rayon){
+
+                $ids = UserRayon::find()
+                    ->where(['metro_id' => $rayon->id, 'city_id' => $cityInfo['id']])
+                    ->select('post_id')
+                    ->asArray()
+                    ->cache(3600)
+                    ->all();
+
+                $result = ArrayHelper::getColumn($ids, 'post_id');
+
+                $prPosts = Posts::find()
+                    ->asArray()
+                    ->with('avatar', 'metro','gallery')
+                    ->where(['in', 'id', $result])
+                    ->limit(Yii::$app->params['post_limit'])
+                    ->offset(Yii::$app->params['post_limit'] * $page);
+                $prPosts = $prPosts->all();
+
+                if ($prPosts) return $this->renderFile(Yii::getAlias('@frontend/views/search/more.php'), [
+                    'prPosts' => $prPosts
+                ]);
 
             }
 
