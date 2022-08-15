@@ -3985,6 +3985,9 @@ form .more-search-btn{
     }
 }
 @media (max-width: 769px) {
+    .otzivi-block-desc{
+        margin-bottom: 25px;
+    }
     .ya-share2__container{
         display: flex;
     }
