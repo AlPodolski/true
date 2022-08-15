@@ -697,13 +697,14 @@ body{
     margin-right: 20px;
 }
 .search , .city-search{
-    width: 100%;
+    width: 260%;
     background: #FFFFFF;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     border-radius: 50px;
     border: none;
     height: 32px;
     padding-left: 15px;
+    font-size: 12px;
 }
 .city-search {
     padding: 5px 0 5px 17px;
@@ -4075,7 +4076,6 @@ form .more-search-btn{
     }
     .post-marc-block {
         min-height: inherit;
-        padding: 22px 0px 5px 10px;
     }
     .single-post-info-wrap {
         padding-top: 20px;
