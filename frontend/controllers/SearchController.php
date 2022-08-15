@@ -128,6 +128,38 @@ class SearchController extends Controller
             'prPosts' => $prPosts
         ]);
 
+        if (MetroWidget::checkExistMetro()){
+
+            $metro = Metro::find()->where(['like', 'value', $model->name])
+                ->cache(3600 * 128)->one();
+
+            if ($metro){
+
+                $ids = UserMetro::find()
+                    ->where(['metro_id' => $metro->id, 'city_id' => $cityInfo['id']])
+                    ->select('post_id')
+                    ->asArray()
+                    ->cache(3600)
+                    ->all();
+
+                $result = ArrayHelper::getColumn($ids, 'post_id');
+
+                $prPosts = Posts::find()
+                    ->asArray()
+                    ->with('avatar', 'metro','gallery')
+                    ->where(['in', 'id', $result])
+                    ->limit(Yii::$app->params['post_limit'])
+                    ->offset(Yii::$app->params['post_limit'] * $page);
+                    $prPosts = $prPosts->all();
+
+                    if ($prPosts) return $this->renderFile(Yii::getAlias('@frontend/views/search/more.php'), [
+                        'prPosts' => $prPosts
+                    ]);
+
+            }
+
+        }
+
         return '';
 
     }
