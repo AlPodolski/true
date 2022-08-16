@@ -21,7 +21,7 @@ class GetPostHelper
                     'sites', 'rayon', 'nacionalnost',
                     'cvet', 'strizhka', 'selphiCount', 'serviceDesc', 'partnerId'
                 )
-                ->asArray()->limit(1)->one();
+                ->limit(1)->one();
 
             Yii::$app->cache->set('post_cache_'.$id , $post);
         }

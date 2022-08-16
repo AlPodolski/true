@@ -9,6 +9,7 @@ use frontend\components\helpers\AddViewHelper;
 use frontend\helpers\GetCommentByPhoneHelper;
 use frontend\helpers\GetPostHelper;
 use frontend\helpers\RequestHelper;
+use frontend\helpers\shema\SingleProductShema;
 use frontend\models\Files;
 use frontend\models\forms\AnketClaimForm;
 use frontend\models\forms\GetCallForm;
@@ -51,6 +52,8 @@ class PostController extends Controller
 
         if ($post){
 
+            $productShema = (new SingleProductShema($post))->make();
+
             $viewPostsIds = (new AddViewHelper())->add($post['id']);
 
             $viewPosts = (new PostsRepository())->getByIdPosts($viewPostsIds);
@@ -64,13 +67,15 @@ class PostController extends Controller
 
             $postsByPhone = GetPostHelper::getByPhone($post['phone'], $cityInfo['id']);
 
-            if ($post['phone']) $post['phoneComments'] = (new GetCommentByPhoneHelper($post['phone']))->get();
+            if ($post['phone']) $phoneComments = (new GetCommentByPhoneHelper($post['phone']))->get();
 
             return $this->render('single', [
                 'post' => $post,
                 'serviceListReview' => $serviceListReview,
                 'cityInfo' => $cityInfo,
                 'viewPosts' => $viewPosts,
+                'productShema' => $productShema,
+                'phoneComments' => $phoneComments,
                 'postsByPhone' => $postsByPhone
             ]);
 

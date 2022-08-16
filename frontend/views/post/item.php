@@ -6,6 +6,7 @@
 /* @var $this \yii\web\View */
 
 /* @var $serviceListReview array */
+/* @var $phoneComments array */
 
 use frontend\modules\user\models\ReviewForm;
 use frontend\modules\user\models\ServiceReviewForm;
@@ -855,12 +856,12 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
     </div>
 </div>
 
-<?php if ($post['phoneComments'] and $post['phoneComments']['comments']) : ?>
+<?php if ($phoneComments and $phoneComments['comments']) : ?>
 
     <div class="otzivi-block-desc">
         <div class="red-bold-text">Отзывы на этот номер</div>
 
-        <?php foreach ($post['phoneComments']['comments'] as $comment) : ?>
+        <?php foreach ($phoneComments['comments'] as $comment) : ?>
 
             <?php /* @var $comment \common\models\Comments */ ?>
             <div class="review-block">

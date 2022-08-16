@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\helpers;
+namespace frontend\helpers\shema;
 
 use frontend\repository\PostsRepository;
 use Yii;

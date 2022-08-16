@@ -8,6 +8,8 @@
 /* @var $cityInfo array */
 /* @var $this \yii\web\View */
 /* @var $id integer */
+/* @var $productShema string */
+/* @var $phoneComments array */
 
 /* @var $backUrl string */
 
@@ -68,6 +70,8 @@ $this->params['breadcrumbs'][] = array(
     'label' => $post['name'],
 );
 
+if ($productShema) echo $productShema;
+
 ?>
     <div class="container custom-container single-content">
 
@@ -76,6 +80,7 @@ $this->params['breadcrumbs'][] = array(
             'cityInfo' => $cityInfo,
             'serviceListReview' => $serviceListReview,
             'viewPosts' => $viewPosts,
+            'phoneComments' => $phoneComments,
             'price' => $price
         ]); ?>
         <?php echo \frontend\widgets\HelperWidget::widget() ?>
