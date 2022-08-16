@@ -5,6 +5,15 @@ $(document).ready(function () {
     });
 });
 
+arrowTop.onclick = function() {
+    window.scrollTo(pageXOffset, 0);
+    // после scrollTo возникнет событие "scroll", так что стрелка автоматически скроется
+};
+
+window.addEventListener('scroll', function() {
+    arrowTop.hidden = (pageYOffset < document.documentElement.clientHeight);
+});
+
 function close_text(){
     $('.text-block-wrap').remove();
     document.cookie = 'text=close; max-age=' + (3600 * 24 * 31);
@@ -812,7 +821,7 @@ function closeHelper(object){
 
         document.cookie = "helper=close; max-age=" + (3600 * 24 * 31);
     }else{
-        console.log($('#helper').removeClass('show-helper'));
+
         $('#helper').removeClass('show-helper');
     }
 

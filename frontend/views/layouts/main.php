@@ -492,6 +492,8 @@ AppAsset::register($this);
 
     <?= $content ?>
 
+    <div hidden id="arrowTop"></div>
+
 </main>
 
 

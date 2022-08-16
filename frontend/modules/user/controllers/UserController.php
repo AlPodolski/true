@@ -35,6 +35,8 @@ class UserController extends Controller
         } else {
             $model->password = '';
 
+            Yii::$app->session->setFlash('warning', 'Указана неверная почта или пароль');
+
             return $this->goHome();
         }
     }

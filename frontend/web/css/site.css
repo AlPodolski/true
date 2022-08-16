@@ -3828,6 +3828,21 @@ input.search::placeholder { color: #6d6d6d; }
 form .more-search-btn{
     display: none;
 }
+#arrowTop {
+    height: 50px;
+    width: 50px;
+    color: #ff6163;
+    position: fixed;
+    cursor: pointer;
+    right: 50px;
+    bottom: 50px;
+    background: #ff6163;
+    border-radius: 50%;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIGhlaWdodD0nMjInIGZpbGw9JyNmZmZmZmYnIHZpZXdCb3g9JzAgMCAyNDAuODIzIDI0MC44MjMnPjxwYXRoIGQ9J00xODMuMTg5IDExMS44MTZMNzQuODkyIDMuNTU1Yy00Ljc1Mi00Ljc0LTEyLjQ1MS00Ljc0LTE3LjIxNSAwLTQuNzUyIDQuNzQtNC43NTIgMTIuNDM5IDAgMTcuMTc5bDk5LjcwNyA5OS42NzEtOTkuNjk1IDk5LjY3MWMtNC43NTIgNC43NC00Ljc1MiAxMi40MzkgMCAxNy4xOTEgNC43NTIgNC43NCAxMi40NjMgNC43NCAxNy4yMTUgMGwxMDguMjk3LTEwOC4yNjFjNC42OC00LjY5MSA0LjY4LTEyLjUxMS0uMDEyLTE3LjE5eicvPjwvc3ZnPg==);
+    background-repeat: no-repeat;
+    transform: rotate(270deg);
+    background-position: center;
+}
 @media (max-width: 1199px) {
     .more-search-btn{
         display: none;
@@ -4179,9 +4194,6 @@ form .more-search-btn{
     }
     .chat-wrap {
         max-height: 360px;
-    }
-    .city svg{
-        display: none;
     }
     .event-widget svg{
         width: 20px;
