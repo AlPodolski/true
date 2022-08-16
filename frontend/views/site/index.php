@@ -43,6 +43,8 @@ if (isset($webmaster))
         'content' => $webmaster['tag']
     ]);
 
+if (isset($microdataForMainPage)) echo $microdataForMainPage;
+
 ?>
 
 <div class="container custom-container">

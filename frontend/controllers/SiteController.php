@@ -18,6 +18,7 @@ use common\models\Service;
 use common\models\User;
 use frontend\components\events\BillPayEvent;
 use frontend\components\helpers\GetAdvertisingPost;
+use frontend\helpers\CatalogProductShema;
 use frontend\helpers\MetaBuilder;
 use frontend\helpers\FavoriteHelper;
 use frontend\models\forms\PayForm;
@@ -119,11 +120,11 @@ class SiteController extends Controller
             exit();
         };
 
-        $postRepository = new PostsRepository();
+        $postRepository = new PostsRepository($cityInfo['id']);
 
         if (Yii::$app->request->isPost) {
 
-            $posts = $postRepository->getMorePostsForMainPage($cityInfo['id'], Yii::$app->request->post('page'));
+            $posts = $postRepository->getMorePostsForMainPage(Yii::$app->request->post('page'));
 
             $page = Yii::$app->request->post('page') + 1;
 
@@ -153,6 +154,8 @@ class SiteController extends Controller
 
         $topPostList = Posts::getTopList($cityInfo['id']);
 
+        $microdataForMainPage = (new CatalogProductShema($title, $des , $cityInfo['id'] ))->make();
+
         return $this->render('index', [
             'prPosts' => $data['posts'],
             'title' => $title,
@@ -162,6 +165,7 @@ class SiteController extends Controller
             'webmaster' => $webmaster,
             'pages' => $data['pages'],
             'cityInfo' => $cityInfo,
+            'microdataForMainPage' => $microdataForMainPage,
         ]);
     }
 
