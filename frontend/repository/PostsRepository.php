@@ -7,6 +7,7 @@ use frontend\components\helpers\GetOrderHelper;
 use frontend\modules\user\models\Posts;
 use yii\data\Pagination;
 use Yii;
+use yii\web\NotFoundHttpException;
 
 class PostsRepository
 {
@@ -30,14 +31,16 @@ class PostsRepository
             ->limit(Yii::$app->params['post_limit'])
             ->orderBy($this->order);
 
-
         $countQuery = clone $prPosts;
 
         $pages = new Pagination([
-            'totalCount' => $countQuery->cache(3600 * 12)->count(),
+            'totalCount' => $count = $countQuery->cache(3600 * 12)->count(),
             'forcePageParam' => false,
             'defaultPageSize' => Yii::$app->params['post_limit']
         ]);
+
+        if (Yii::$app->request->get('page') and $count < ((Yii::$app->request->get('page') - 1) * Yii::$app->params['post_limit']))
+            throw new NotFoundHttpException();
 
         $prPosts = $prPosts->offset($pages->offset)->all();
 

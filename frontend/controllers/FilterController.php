@@ -113,9 +113,12 @@ class FilterController extends Controller
             $countQuery = clone $posts;
 
             $pages = new Pagination([
-                'totalCount' => $countQuery->cache(3600 * 12)->count(),
+                'totalCount' => $count = $countQuery->cache(3600 * 12)->count(),
                 'forcePageParam' => false,
                 'defaultPageSize' => Yii::$app->params['post_limit']]);
+
+            if (Yii::$app->request->get('page') and $count < ((Yii::$app->request->get('page') - 1) * Yii::$app->params['post_limit']))
+                throw new NotFoundHttpException();
 
             $posts = $posts->offset($pages->offset);
 

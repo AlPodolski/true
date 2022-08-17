@@ -1052,6 +1052,7 @@ h1 , .big-red-text{
     width: 230px;
     box-shadow: none;
     padding: 5px;
+    border: 1px solid #f6f6f6;
 }
 .post-find-and-otzivi-count-block {
     font-family: Ubuntu;

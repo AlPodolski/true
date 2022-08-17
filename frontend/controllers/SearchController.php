@@ -159,7 +159,6 @@ class SearchController extends Controller
             ->orderBy('id DESC')
             ->limit(Yii::$app->params['post_limit']);
 
-
         $prPosts = $prPosts->offset(Yii::$app->params['post_limit'] * $page)->all();
 
         if ($prPosts) return $this->renderFile(Yii::getAlias('@frontend/views/search/more.php'), [

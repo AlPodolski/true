@@ -135,7 +135,7 @@ if (isset($microdataForMainPage)) echo $microdataForMainPage;
         'pagination' => $pages,
     ]); ?>
 
-    <?php if (Yii::$app->requestedParams['city'] == 'moskva') : ?>
+    <?php if (Yii::$app->requestedParams['city'] == 'moskva' and !Yii::$app->request->get('page')) : ?>
 
         <h2>Как найти проститутку в Москве?</h2>
         <p>Найти проститутку в Москве можно на нашем сайте, у нас представлены анкеты проверенных индивидуалок в широком
