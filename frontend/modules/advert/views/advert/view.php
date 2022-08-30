@@ -61,19 +61,6 @@ if (isset($isCabinet) and $isCabinet){
                                         <?php echo  $advert['userRelations']['username'] ?>
                                     </a>
                                 </div>
-                                <div class="created">
-                                    <?php
-
-                                    $day = time() - $advert['created_at'];
-
-                                    $day = (intdiv($day, 3600 * 24));
-
-                                    ?>
-
-                                    <?php echo $day ?> <?php echo getNumEnding($day, ['день','дня', 'дней']); ?>
-
-                                    назад
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -91,9 +78,9 @@ if (isset($isCabinet) and $isCabinet){
                 <?php endif; ?>
 
                 <div class="col-12 advert-item-text">
-                    <div class="advert-item-title">
+                    <h1 class="advert-item-title">
                         <?php echo $advert['title']; ?>
-                    </div>
+                    </h1>
                     <div class="text-ab">
 
                         <?php echo $advert['text']; ?>

@@ -17,6 +17,7 @@ if (strstr(Yii::$app->request->serverName, 'sex-key')) : ?>
     Disallow: /rost-tolstye*
     Disallow: /find*
     Disallow: /ehlitnye-prostitutki
+    Disallow: /favorite/list
     <?php echo 'Disallow: /forum' .PHP_EOL ?>
     Allow: /forum/*
     <?php if ($city != 'moskva') echo 'Disallow: /forum/*' .PHP_EOL ?>
