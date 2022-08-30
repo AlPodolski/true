@@ -7,6 +7,7 @@
 
 use frontend\modules\user\models\forms\CheckPhotoForm;
 use frontend\modules\user\models\forms\SelphiForm;
+use frontend\modules\user\models\UserService;
 
 $videoForm = new \frontend\modules\user\models\forms\VideoForm();
 
@@ -58,10 +59,7 @@ $userOsobenosti = new \frontend\modules\user\models\UserOsobenosti();
 $userOsobenosti->param_id = \yii\helpers\ArrayHelper::getColumn(\frontend\modules\user\models\UserOsobenosti::find()
     ->where(['post_id' => $post['id']])->asArray()->all(), 'param_id');
 
-$userService = new \frontend\modules\user\models\UserService();
-
-$userService->service_id = \yii\helpers\ArrayHelper::getColumn(\frontend\modules\user\models\UserService::find()
-    ->where(['post_id' => $post['id']])->asArray()->all(), 'service_id');
+$userService = UserService::find()->where(['post_id' => $post['id']])->asArray()->all();
 
 $userTime = new \frontend\modules\user\models\UserTime();
 

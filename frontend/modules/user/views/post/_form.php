@@ -66,7 +66,7 @@ foreach (\common\models\Tarif::getAll() as $item) {
 
                 <div class="col-12 main-photo">
 
-                    <p class="black-text font-weight-bold">Основное фото</p>
+                    <p class="black-text font-weight-bold">Основное фото (Используйте фото высокого качества)</p>
 
                     <?php $style = '' ?>
 
@@ -80,7 +80,7 @@ foreach (\common\models\Tarif::getAll() as $item) {
                            class=" img-label no-img-bg main-img">
 
                         <?= $form->field($avatarForm, 'avatar')
-                            ->fileInput(['maxlength' => true, 'accept' => 'image/*', 'id' => 'addpost-image'])
+                            ->fileInput(['maxlength' => true, 'accept' => '.jpg, .jpeg', 'id' => 'addpost-image'])
                             ->label(false) ?>
 
                         <div class="plus-photo-wrap d-flex items-center">
@@ -161,7 +161,7 @@ foreach (\common\models\Tarif::getAll() as $item) {
                     <label for="addpost-check-image" style="<?php echo $style ?>" id="cabinet-main-img-label"
                            class="margin-top-20 img-label no-img-bg main-img check-photo-label">
                         <?= $form->field($checkPhotoForm, 'file')
-                            ->fileInput(['maxlength' => true, 'accept' => '.png, .jpg, .jpeg', 'id' => 'addpost-check-image'])
+                            ->fileInput(['maxlength' => true, 'accept' => '.jpg, .jpeg', 'id' => 'addpost-check-image'])
                             ->label(false) ?>
 
                         <div class="plus-photo-wrap d-flex items-center">
@@ -258,7 +258,7 @@ foreach (\common\models\Tarif::getAll() as $item) {
 
                     <?= $form->field($photoForm, 'photo[]')
                         ->fileInput(['maxlength' => true,
-                            'accept' => '.png, .jpg, .jpeg',
+                            'accept' => '.jpg, .jpeg',
                             'multiple' => true,
                             'id' => 'addpost-photo',
                             'class' => 'd-none'
@@ -500,17 +500,46 @@ foreach (\common\models\Tarif::getAll() as $item) {
                     ]) ?>
                 </div>
 
-                <div class="col-12 col-sm-6">
+                <div class="col-12 col-sm-12 service-check-box d-flex flex-wrap">
 
-                    <?= $form->field($userService, 'service_id')->widget(\kartik\select2\Select2::classname(), [
-                        'data' => ArrayHelper::map(\common\models\Service::getService(), 'id', 'value'),
-                        'language' => 'de',
-                        'options' => ['placeholder' => 'Выбрать услуги ...'],
-                        'pluginOptions' => [
-                            'allowClear' => true,
-                            'multiple' => true,
-                        ],
-                    ]) ?>
+                    <?php
+
+                    $serviceList = \common\models\Service::getService();
+
+                    foreach ($serviceList as $item) : ?>
+
+                        <?php
+
+                        $checked = '';
+                        $serviceText = '';
+
+                        if ($userService) foreach ($userService as $userServiceItem) {
+
+                            if ($userServiceItem['service_id'] == $item['id']) {
+
+                                $checked = 'checked';
+                                $serviceText = $userServiceItem['service_info'];
+
+                            }
+
+                        }
+
+                        ?>
+
+                        <div class="service-check-box-item d-flex">
+                            <input type="checkbox" id="<?php echo $item['url'] ?>" class="service-check"
+                                <?= $checked ?>
+                                   name="UserService[service_id][]" value="<?php echo $item['id'] ?>">
+                            <label class="service-check-label" for="<?php echo $item['url'] ?>">
+                                <?php echo $item['value'] ?>
+                                <input type="text" placeholder="Добавить описание" value="<?= $serviceText ?>"
+                                       class="service_info_input"
+                                       name="UserService[service_info][<?php echo $item['id'] ?>]">
+                            </label>
+                        </div>
+
+                    <?php endforeach; ?>
+
                 </div>
 
                 <div class="col-12 col-sm-6">
@@ -524,6 +553,7 @@ foreach (\common\models\Tarif::getAll() as $item) {
                             'multiple' => true,
                         ],
                     ]) ?>
+
                 </div>
 
                 <div class="col-12 col-sm-6">
@@ -548,21 +578,21 @@ foreach (\common\models\Tarif::getAll() as $item) {
 
                 <?php if (Yii::$app->requestedParams['city'] == 'moskva') : ?>
                     <div class="col-12">
-                    <div class="col-12">
-                        <p class="control-label">Укажите свое местоположение на карте</p>
-                        <div id="map"
-                            <?php if ($post->x) : ?>
-                                data-x="<?php echo $post->x ?>"
-                                data-y="<?php echo $post->y ?>"
-                            <?php endif; ?>
-                             class="map" style="height: 300px">
+                        <div class="col-12">
+                            <p class="control-label">Укажите свое местоположение на карте</p>
+                            <div id="map"
+                                <?php if ($post->x) : ?>
+                                    data-x="<?php echo $post->x ?>"
+                                    data-y="<?php echo $post->y ?>"
+                                <?php endif; ?>
+                                 class="map" style="height: 300px">
+                            </div>
                         </div>
+
+                        <?= $form->field($post, 'x')->hiddenInput()->label(false) ?>
+                        <?= $form->field($post, 'y')->hiddenInput()->label(false) ?>
+
                     </div>
-
-                    <?= $form->field($post, 'x')->hiddenInput()->label(false) ?>
-                    <?= $form->field($post, 'y')->hiddenInput()->label(false) ?>
-
-                </div>
                 <?php endif; ?>
 
             </div>

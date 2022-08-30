@@ -10,6 +10,7 @@ use Yii;
  * @property int|null $post_id
  * @property int|null $service_id
  * @property int|null $city_id
+ * @property string|null $service_info
  */
 class UserService extends \yii\db\ActiveRecord
 {
@@ -28,6 +29,7 @@ class UserService extends \yii\db\ActiveRecord
     {
         return [
             [['post_id', 'service_id', 'city_id'], 'integer'],
+            [['service_info'], 'string'],
         ];
     }
 
@@ -39,6 +41,7 @@ class UserService extends \yii\db\ActiveRecord
         return [
             'post_id' => 'Post ID',
             'service_id' => 'Услуги',
+            'service_info' => 'Описание услуги',
         ];
     }
 

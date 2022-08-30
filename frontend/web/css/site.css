@@ -1048,6 +1048,50 @@ h1 , .big-red-text{
     margin-left: -15px;
     margin-top: 15px;
 }
+.service-check-box-item label{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 15px;
+    font-size: 13px;
+    padding-left: 2rem;
+    width: 100%;
+    padding-right: 20px;
+}
+.service_info_input{
+    border: 1px solid #c7c7c7;
+    padding: 4px;
+    padding-left: 6px;
+    border-radius: 5px;
+}
+.service-check{
+    display: none !important;
+}
+.service-check-label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-align: center;
+    border-radius: .2rem;
+    line-height: 1.5rem;
+    font-size: 1.3rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: #fff;
+    border: 1px solid #ff3f40;
+    color: #fff;
+}
+.service-check:checked + .service-check-label::before {
+    top: 5px;
+    content: url(/../img/check.png);
+    background: #ff3f40;
+    transition: .5s;
+}
+.service-check-box-item{
+    flex: 0 0 50%;
+}
 #sort-select {
     width: 230px;
     box-shadow: none;

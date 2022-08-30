@@ -247,10 +247,8 @@ class PostController extends Controller
                         'param_id', $city['id']);
 
                 if ($userService['service_id'])
-                    SavePostRelationHelper::save(UserService::class,
-                        $userService['service_id'],
-                        $post['id'],
-                        'service_id', $city['id']);
+                    SavePostRelationHelper::saveService($post['id'],
+                        $userService, $city['id']);
 
                 return $this->redirect('/cabinet');
 
@@ -484,10 +482,8 @@ class PostController extends Controller
                         'param_id', $city['id']);
 
                 if ($userService['service_id'])
-                    SavePostRelationHelper::save(UserService::class,
-                        $userService['service_id'],
-                        $post['id'],
-                        'service_id', $city['id']);
+                    SavePostRelationHelper::saveService($post['id'],
+                        $userService, $city['id']);
 
                 Yii::$app->session->setFlash('success', 'Данные анкеты ' . $post['name'] . ' сохранены');
 
