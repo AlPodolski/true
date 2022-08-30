@@ -14,6 +14,7 @@
 /* @var $pages \yii\data\Pagination */
 
 use frontend\modules\user\helpers\ViewCountHelper;
+use yii\bootstrap4\LinkPager;
 
 if (Yii::$app->request->get('page')) {
 
@@ -131,9 +132,15 @@ if (isset($microdataForMainPage)) echo $microdataForMainPage;
              data-reqest="<?php echo Yii::$app->request->url ?>"></div>
     </div>
 
-    <?php if ($pages) echo \yii\bootstrap4\LinkPager::widget([
-        'pagination' => $pages,
-    ]); ?>
+    <?php if ($pages) {
+
+        $pagination = LinkPager::widget([
+            'pagination' => $pages,
+        ]);
+
+        echo str_replace('http:', 'https:', $pagination);
+
+    }?>
 
     <?php if (Yii::$app->requestedParams['city'] == 'moskva' and !Yii::$app->request->get('page')) : ?>
 
