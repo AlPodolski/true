@@ -51,7 +51,7 @@ class ImportController extends Controller
     public function actionIndex()
     {
 
-        $stream = \fopen(Yii::getAlias('@app/files/import_true_13_17_2022.csv'), 'r');
+        $stream = \fopen(Yii::getAlias('@app/files/import_moskva_chkom_30_08_2022.csv'), 'r');
 
         $csv = Reader::createFromStream($stream);
         $csv->setDelimiter(';');
@@ -67,8 +67,8 @@ class ImportController extends Controller
         $serviceList = Service::find()->asArray()->all();
 
         $this->siteId = 0;
-        $this->update = 28;
-        $this->path = '/uploads/a28/';
+        $this->update = 29;
+        $this->path = '/uploads/a29/';
 
         $posts = array();
 
@@ -88,6 +88,7 @@ class ImportController extends Controller
 
             $post->city_id = 1;
             $post->pol_id = 1;
+            $post->user_id = 240;
             $post->created_at = \time();
             $post->name = $record['name'];
             $post->updated_at = $this->update;
@@ -201,28 +202,6 @@ class ImportController extends Controller
 
                 }
 
-                if (isset($record['osob']) and $record['osob']) {
-
-                    $Ar = \explode(',', $record['osob']);
-
-                    foreach ($Ar as $item) {
-
-                        $id = ArrayHelper::getValue(Osobenosti::find()->where(['value' => $item])->asArray()->one(), 'id');
-
-                        if ($id) {
-
-                            $userRayon = new UserOsobenosti();
-                            $userRayon->post_id = $post->id;
-                            $userRayon->param_id = $id;
-                            $userRayon->city_id = $city['id'];
-                            $userRayon->save();
-
-                        }
-
-                    }
-
-                }
-
                 foreach ($serviceList as $serviceItem) {
 
                     if (\rand(0, 3) == 3) {
@@ -251,9 +230,9 @@ class ImportController extends Controller
 
                 }
 
-                if (isset($record['gallm']) and $record['gallm']) {
+                if (isset($record['gallery']) and $record['gallery']) {
 
-                    $gall = \explode(',', $record['gallm']);
+                    $gall = \explode(',', $record['gallery']);
 
                     if ($gall) {
 
