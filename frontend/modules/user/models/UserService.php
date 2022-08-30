@@ -2,6 +2,7 @@
 
 namespace frontend\modules\user\models;
 
+use common\models\Service;
 use Yii;
 
 /**
@@ -48,6 +49,11 @@ class UserService extends \yii\db\ActiveRecord
     public function getPost()
     {
         return $this->hasMany(Posts::class, ['id' => 'post_id']);
+    }
+
+    public function getService()
+    {
+        return $this->hasOne(Service::class, ['id' => 'service_id']);
     }
 
 }

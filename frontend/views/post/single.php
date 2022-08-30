@@ -35,7 +35,7 @@ $des = 'Индивидуалка ' . $post['name'];
 
 if ($post['breast']) $des .= ' красавица c ' . $post['breast'] . ' размером груди ';
 
-if ($post['service']) $des .= ' ,  нравится ' . $post['service'][0]['value'];
+if ($post['service']) $des .= ' ,  нравится ' . $post['service'][0]['service']['value'];
 
 if ($post['place']) {
 

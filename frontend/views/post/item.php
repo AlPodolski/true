@@ -6,6 +6,7 @@
 /* @var $this \yii\web\View */
 
 /* @var $serviceListReview array */
+
 /* @var $phoneComments array */
 
 use frontend\modules\user\models\ReviewForm;
@@ -16,7 +17,6 @@ use yii\widgets\ActiveForm;
 $postReviewForm = new ReviewForm();
 $serviceReviewFormForm = new ServiceReviewForm();
 
-$osobenostList = $post['osobenost'];
 $strizhkaList = $post['strizhka'];
 $cvetList = $post['cvet'];
 $nacionalnostList = $post['nacionalnost'];
@@ -191,7 +191,10 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                                              ym(70919698,'reachGoal','<?php echo $post['partnerId']['partner_id'] ?>');  <?php endif; ?>
                                      <?php echo $targetPrice ?>"
                                      class="single-price cursor-pointer single-phone">
-                                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill="#fff" fill-rule="evenodd" clip-rule="evenodd"><path d="M16 22.621l-3.521-6.795c-.007.004-1.974.97-2.064 1.011-2.24 1.086-6.799-7.82-4.609-8.994l2.082-1.026-3.492-6.817-2.106 1.039c-1.639.855-2.313 2.666-2.289 4.916.075 6.948 6.809 18.071 12.309 18.045.541-.003 1.07-.113 1.58-.346.121-.055 2.102-1.029 2.11-1.033zm-2.5-13.621c.828 0 1.5.672 1.5 1.5s-.672 1.5-1.5 1.5-1.5-.672-1.5-1.5.672-1.5 1.5-1.5zm9 0c.828 0 1.5.672 1.5 1.5s-.672 1.5-1.5 1.5-1.5-.672-1.5-1.5.672-1.5 1.5-1.5zm-4.5 0c.828 0 1.5.672 1.5 1.5s-.672 1.5-1.5 1.5-1.5-.672-1.5-1.5.672-1.5 1.5-1.5z"/></svg>
+                                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill="#fff"
+                                         fill-rule="evenodd" clip-rule="evenodd">
+                                        <path d="M16 22.621l-3.521-6.795c-.007.004-1.974.97-2.064 1.011-2.24 1.086-6.799-7.82-4.609-8.994l2.082-1.026-3.492-6.817-2.106 1.039c-1.639.855-2.313 2.666-2.289 4.916.075 6.948 6.809 18.071 12.309 18.045.541-.003 1.07-.113 1.58-.346.121-.055 2.102-1.029 2.11-1.033zm-2.5-13.621c.828 0 1.5.672 1.5 1.5s-.672 1.5-1.5 1.5-1.5-.672-1.5-1.5.672-1.5 1.5-1.5zm9 0c.828 0 1.5.672 1.5 1.5s-.672 1.5-1.5 1.5-1.5-.672-1.5-1.5.672-1.5 1.5-1.5zm-4.5 0c.828 0 1.5.672 1.5 1.5s-.672 1.5-1.5 1.5-1.5-.672-1.5-1.5.672-1.5 1.5-1.5z"/>
+                                    </svg>
                                     Показать номер
                                 </div>
 
@@ -289,7 +292,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                                         </svg>
                                     </div>
                                     <a href="#review-count-<?php echo $post['id'] ?>">
-                                        <?php echo $countReview ?> <?php echo getNumEnding($countReview, ['отзыв', 'отзыва', 'отзывов']); ?>
+                                        <?php echo $countReview ?><?php echo getNumEnding($countReview, ['отзыв', 'отзыва', 'отзывов']); ?>
                                     </a>
                                 </div>
                             </div>
@@ -485,19 +488,15 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                     <?php foreach ($post['service'] as $item) : ?>
 
-                        <a class="grey-text" href="/usluga-<?php echo $item['url'] ?>">
-                            <?php echo $item['value'] ?>
+                        <a class="grey-text" href="/usluga-<?php echo $item['service']['url'] ?>">
+                            <?php echo $item['service']['value'] ?>
                         </a>
 
-                        <?php foreach ($post['serviceDesc'] as $itemDesc) : ?>
+                        <?php if ($item['service_info']) : ?>
 
-                            <?php if ($itemDesc['service_id'] == $item['id']) : ?>
+                            <span class="service_desc">(<?php echo $item['service_info']; ?>)</span>
 
-                                <span class="service_desc">(<?php echo $itemDesc['text']; ?>)</span>
-
-                            <?php endif; ?>
-
-                        <?php endforeach; ?>
+                        <?php endif; ?>
 
                         <?php if ($item != end($post['service'])) echo ', ' ?>
 
@@ -510,13 +509,15 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
         <?php if ($post['rayon']) : ?>
 
+            <?php $rayon = $post['rayon']; ?>
+
             <div class="user-service-item">
                 <span class="red-text">Район:</span>
                 <div class="grey-text">
 
-                    <?php $lastElement = array_pop($post['rayon']); ?>
+                    <?php $lastElement = array_pop($rayon); ?>
 
-                    <?php foreach ($post['rayon'] as $item) : ?>
+                    <?php foreach ($rayon as $item) : ?>
                         <a class="grey-text" href="/rayon-<?php echo $item['url'] ?>">
                             <?php echo $item['value'] ?>
                         </a>,
@@ -537,18 +538,12 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
             <div class="user-service-item">
                 <span class="red-text">Национальность:</span>
                 <div class="grey-text">
-                    <?php $lastElement = array_pop($post['nacionalnost']); ?>
 
                     <?php foreach ($post['nacionalnost'] as $item) : ?>
                         <a class="grey-text" href="/nacionalnost-<?php echo $item['url'] ?>">
                             <?php echo $item['value'] ?>
-                        </a>,
-
+                        </a>
                     <?php endforeach; ?>
-
-                    <a class="grey-text" href="/nacionalnost-<?php echo $lastElement['url'] ?>">
-                        <?php echo $lastElement['value'] ?>
-                    </a>
 
                 </div>
             </div>
@@ -561,19 +556,11 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                 <span class="red-text">Цвет волос:</span>
                 <div class="grey-text">
 
-                    <?php $lastElement = array_pop($post['cvet']); ?>
-
                     <?php foreach ($post['cvet'] as $item) : ?>
                         <a class="grey-text" href="/cvet-volos-<?php echo $item['url'] ?>">
                             <?php echo $item['value'] ?>
-                        </a>,
-
+                        </a>
                     <?php endforeach; ?>
-
-                    <a class="grey-text" href="/cvet-volos-<?php echo $lastElement['url'] ?>">
-                        <?php echo $lastElement['value'] ?>
-                    </a>
-
                 </div>
             </div>
 
@@ -585,42 +572,11 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                 <span class="red-text">Интимная стрижка:</span>
                 <div class="grey-text">
 
-                    <?php $lastElement = array_pop($post['strizhka']); ?>
-
                     <?php foreach ($post['strizhka'] as $item) : ?>
                         <a class="grey-text" href="/intimnaya-strizhka-<?php echo $item['url'] ?>">
                             <?php echo $item['value'] ?>
-                        </a>,
-
+                        </a>
                     <?php endforeach; ?>
-
-                    <a class="grey-text" href="/intimnaya-strizhka-<?php echo $lastElement['url'] ?>">
-                        <?php echo $lastElement['value'] ?>
-                    </a>
-
-                </div>
-            </div>
-
-        <?php endif; ?>
-
-        <?php if ($post['osobenost']) : ?>
-
-            <div class="user-service-item">
-                <span class="red-text">Особенности:</span>
-                <div class="grey-text">
-
-                    <?php $lastElement = array_pop($post['osobenost']); ?>
-
-                    <?php foreach ($post['osobenost'] as $item) : ?>
-                        <a class="grey-text" href="/osobenost-<?php echo $item['url'] ?>">
-                            <?php echo $item['value'] ?>
-                        </a>,
-
-                    <?php endforeach; ?>
-
-                    <a class="grey-text" href="/osobenost-<?php echo $lastElement['url'] ?>">
-                        <?php echo $lastElement['value'] ?>
-                    </a>
 
                 </div>
             </div>
@@ -822,7 +778,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
         <div class="col-12 bottom-gallery">
             <div class="red-bold-text">
-                <?php echo $countReview ?> <?php echo getNumEnding($countReview, ['отзыв', 'отзыва', 'отзывов']); ?>
+                <?php echo $countReview ?><?php echo getNumEnding($countReview, ['отзыв', 'отзыва', 'отзывов']); ?>
             </div>
         </div>
 

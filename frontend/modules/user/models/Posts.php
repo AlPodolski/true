@@ -300,15 +300,9 @@ class Posts extends \yii\db\ActiveRecord
         return $this->hasMany(Osobenosti::class, ['id' => 'param_id'])->via('userToOsobenostRelations');
     }
 
-    public function getUserToOsobenostRelations()
-    {
-        return $this->hasMany(UserOsobenosti::class, ['post_id' => 'id']);
-    }
-
     public function getService()
     {
-        return $this->hasMany(Service::class, ['id' => 'service_id'])
-            ->via('userToServiceRelations');
+        return $this->hasMany(UserService::class, ['post_id' => 'id'])->with('service');
     }
 
     public function getSites()

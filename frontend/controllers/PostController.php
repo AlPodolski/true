@@ -47,6 +47,7 @@ class PostController extends Controller
             http_response_code(502);
             exit();
         };
+        Yii::$app->cache->flush();
 
         $post = GetPostHelper::getForSingle($id, $cityInfo['id']);
 
