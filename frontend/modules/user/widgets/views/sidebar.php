@@ -250,7 +250,7 @@
                             . '' ?>
                     </div>
 
-                    <div class="col-12">
+                    <div class="col-12 text-center">
                         <?php if (\Yii::$app->requestedParams['city'] == 'moskva') : ?>
                             <!-- Yandex.Metrika informer -->
                             <a href="https://metrika.yandex.ru/stat/?id=70919698&amp;from=informer"
