@@ -4202,6 +4202,9 @@ form .more-search-btn{
 }
 
 @media (max-width: 575px) {
+    #tell-me-text{
+        text-align: center;
+    }
     .bottom-menu-wrap{
         padding-left: 30px;
     }

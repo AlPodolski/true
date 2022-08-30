@@ -202,7 +202,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                         </div>
 
-                        <div class="red-text">Скажите что звоните с сайта <?php echo Yii::$app->request->serverName ?> я
+                        <div class="red-text " id="tell-me-text">Скажите что звоните с сайта <?php echo Yii::$app->request->serverName ?> я
                             и все пойму
                         </div>
 
