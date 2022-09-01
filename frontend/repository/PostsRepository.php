@@ -2,11 +2,15 @@
 
 namespace frontend\repository;
 
+use common\models\National;
 use common\models\Pol;
 use frontend\components\helpers\GetOrderHelper;
+use frontend\models\Metro;
+use frontend\models\UserMetro;
 use frontend\modules\user\models\Posts;
 use yii\data\Pagination;
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 
 class PostsRepository
@@ -110,8 +114,45 @@ class PostsRepository
         return $count;
     }
 
-    public function getPostForMoreSingle($id, $price, $pol)
+    public function getPostForMoreSingle($id, $price, $pol, $ref)
     {
+
+        $postsIds = false;
+
+        if ($ref){
+
+            $dataRef = explode(':ref', $ref);
+
+            $cacheTime = 3600 * 12;
+
+            switch ($dataRef[0]) {
+
+                case 'metro':
+
+                    $data = UserMetro::find()
+                        ->select('post_id')
+                        ->where(['metro_id' => $dataRef[1]])
+                        ->andWhere(['city_id' => $this->cityId])
+                        ->cache($cacheTime)
+                        ->all();
+
+                    $postsIds = ArrayHelper::getColumn($data, 'post_id');
+
+                    break;
+
+                case 'nacionalnost':
+                    $data = National::find()
+                        ->select('id')
+                        ->cache($cacheTime)->one();
+
+                    $result = 'nacionalnost:'.$data->id;
+
+                    break;
+
+            }
+
+        }
+
         $post = Posts::find()->where(['not in', 'id' , $id])
             ->with('gal', 'metro', 'avatar', 'place', 'service',
                 'sites', 'rayon', 'nacionalnost',
@@ -121,23 +162,21 @@ class PostsRepository
             ->andWhere(['pol_id' => $pol])
             ->orderBy(['rand()' => SORT_DESC]);
 
+        if ($postsIds){
+            $post = $post->andWhere(['in', 'id', $postsIds]);
+        }
+
         if ($price < 3000){
-
             $post = $post->andWhere(['<=', 'price', 3000]);
-
         }
 
         if ($price >= 3000 and $price <= 6000 ){
-
             $post = $post->andWhere(['<=', 'price', 6000]);
             $post = $post->andWhere(['>=', 'price', 3000]);
-
         }
 
         if ($price >= 6000 ){
-
             $post = $post->andWhere(['>=', 'price', 6000]);
-
         }
 
         $post = $post->asArray()->one();

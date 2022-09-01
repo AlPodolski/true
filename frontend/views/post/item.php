@@ -34,6 +34,9 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
     <div class="col-12 pager <?php if (isset($first) and $first) : ?>
          first
          <?php endif; ?>"
+        <?php if (isset($refererCategory) and $refererCategory) : ?>
+         data-ref="<?php echo $refererCategory?>"
+         <?php endif; ?>
          data-price="<?php echo $post['price'] ?>"
          data-pol="<?php echo $post['pol_id'] ?>"
          data-national="<?php echo $post['nacionalnost'][0]['id'] ?>"

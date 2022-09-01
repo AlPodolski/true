@@ -99,6 +99,7 @@ $(window).scroll(function(){
     var price = $('.first').attr('data-price');
     var national = $('.first').attr('data-national');
     var pol = $('.first').attr('data-pol');
+    var ref = $('.first').attr('data-ref');
 
     var winScrollTop = $(this).scrollTop();
 
@@ -114,7 +115,7 @@ $(window).scroll(function(){
 
         });
 
-        var data = 'price=' + price + '&pol=' + pol + 'national='+ national +'&id='+id;
+        var data = 'price=' + price + '&ref=' + ref + '&pol=' + pol + 'national='+ national +'&id='+id;
 
         $.ajax({
             type: 'POST',

@@ -12,6 +12,7 @@
 /* @var $phoneComments array */
 
 /* @var $backUrl string */
+/* @var $refererCategory string|null */
 /* @var $first bool */
 
 use kartik\icons\FontAwesomeAsset;
@@ -19,7 +20,7 @@ use frontend\assets\RateAsset;
 
 \frontend\assets\GalleryAsset::register($this);
 
-$this->registerJsFile('/js/single.js?v=17', ['depends' => ['yii\web\YiiAsset']]);
+$this->registerJsFile('/js/single.js?v=18', ['depends' => ['yii\web\YiiAsset']]);
 
 
 $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
@@ -84,6 +85,7 @@ if ($productShema) echo $productShema;
             'phoneComments' => $phoneComments,
             'first' => $first,
             'backUrl' => $backUrl,
+            'refererCategory' => $refererCategory,
             'price' => $price
         ]); ?>
         <?php echo \frontend\widgets\HelperWidget::widget() ?>
@@ -116,7 +118,7 @@ if ($productShema) echo $productShema;
 
         <?php endif; ?>
 
-        <p class="big-red-text">Вас может заинтересовать</p>
+        <p class="big-red-text">Похожие анкеты</p>
     </div>
 
     <svg class="filter" version="1.1">
@@ -139,34 +141,6 @@ if ($productShema) echo $productShema;
     <div class="row">
         <div class="col-12 pager" data-page="1" data-adress="/post/more" data-single="1"
              data-reqest="<?php echo Yii::$app->request->url ?>"></div>
-    </div>
-    <div class="modal fade" id="selfy-modal" tabindex="-1" role="dialog" aria-labelledby="selfy-modal"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <?php $imgs = array(); ?>
-
-                    <?php foreach ($post['gal'] as $item) : ?>
-
-                        <?php
-
-                        if ($item['type'] == \frontend\models\Files::SELPHY_TYPE) $imgs[] = $item['file']
-
-                        ?>
-
-                    <?php endforeach; ?>
-
-                    <div data-img="<?php echo implode(',', $imgs) ?>" id="selfy-imgs"></div>
-
-                </div>
-            </div>
-        </div>
     </div>
 
 <?php

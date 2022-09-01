@@ -41,7 +41,7 @@ class PostController extends Controller
     public function actionIndex($protocol,$city, $id)
     {
 
-        $cityInfo = City::getCity(Yii::$app->controller->actionParams['city']);
+        $cityInfo = City::getCity($city);
 
         if (!$cityInfo) {
             http_response_code(502);
@@ -63,6 +63,8 @@ class PostController extends Controller
 
             $backUrl = RequestHelper::getBackUrl($protocol);
 
+            $refererCategory = RequestHelper::getRefererCategory($protocol);
+
             ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_single_view_count_key']);
 
             $postsByPhone = GetPostHelper::getByPhone($post['phone'], $cityInfo['id']);
@@ -78,6 +80,7 @@ class PostController extends Controller
                 'phoneComments' => $phoneComments,
                 'postsByPhone' => $postsByPhone,
                 'backUrl' => $backUrl,
+                'refererCategory' => $refererCategory,
                 'first' => true
             ]);
 
@@ -95,16 +98,15 @@ class PostController extends Controller
         if (Yii::$app->request->isPost){
 
             $id = \explode(',', Yii::$app->request->post('id'));
-
             $price = Yii::$app->request->post('price');
-
             $pol = Yii::$app->request->post('pol');
+            $ref = Yii::$app->request->post('ref');
 
             $cityInfo = City::getCity($city);
 
             $postRepository = new PostsRepository($cityInfo['id']);
 
-            $post = $postRepository->getPostForMoreSingle($id, $price, $pol);
+            $post = $postRepository->getPostForMoreSingle($id, $price, $pol, $ref);
 
             if ($post){
 

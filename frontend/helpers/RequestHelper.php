@@ -4,6 +4,9 @@
 namespace frontend\helpers;
 
 
+use common\models\National;
+use frontend\models\Metro;
+use phpDocumentor\Reflection\PseudoTypes\True_;
 use Yii;
 
 class RequestHelper
@@ -27,4 +30,43 @@ class RequestHelper
         return false;
 
     }
+
+    public static function getRefererCategory($protocol)
+    {
+
+        $url = str_replace($protocol.'://'.Yii::$app->request->headers['host'].'/', '',Yii::$app->request->headers['referer']);
+
+        $url = explode('-', $url);
+
+        $cacheTime = 3600 * 24 * 30;
+
+        $result = '';
+
+        switch ($url[0]) {
+
+            case 'metro':
+                $data = Metro::find()
+                    ->select('id')
+                    ->where(['url' => $url[1]])
+                    ->cache($cacheTime)->one();
+
+                $result = 'metro:'.$data->id;
+                break;
+
+            case 'nacionalnost':
+                $data = National::find()
+                    ->select('id')
+                    ->where(['url' => $url[1]])
+                    ->cache($cacheTime)->one();
+
+                $result = 'nacionalnost:'.$data->id;
+
+                break;
+
+        }
+
+        return $result;
+
+    }
+
 }
