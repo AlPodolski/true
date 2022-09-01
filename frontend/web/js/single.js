@@ -96,6 +96,9 @@ $(window).scroll(function(){
     var winHeight = $(window).height();
     var scrollToElem = targetPos - winHeight;
 
+    var price = $('.first').attr('data-price');
+    var national = $('.first').attr('data-national');
+
     var winScrollTop = $(this).scrollTop();
 
     var page = Number($('.content').attr('data-page'));
@@ -113,7 +116,7 @@ $(window).scroll(function(){
         $.ajax({
             type: 'POST',
             url: '/post/more',
-            data: 'id='+id,
+            data: 'price=' + price + 'national='+ national +'&id='+id,
             async:true,
             dataType: "html",
             cache: false,

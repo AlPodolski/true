@@ -8,6 +8,7 @@
 /* @var $serviceListReview array */
 
 /* @var $phoneComments array */
+/* @var $first bool|null */
 
 use frontend\modules\user\models\ReviewForm;
 use frontend\modules\user\models\ServiceReviewForm;
@@ -27,12 +28,18 @@ $servicePostList = $post['service'];
 
 $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
-
 ?>
 
 <div class="row">
-    <div class="col-12 pager"
-         data-single="1" <?php if ($post['id']) : ?> data-url="/post/<?php echo $post['id'] ?>" <?php endif; ?>></div>
+    <div class="col-12 pager <?php if (isset($first) and $first) : ?>
+         first
+         <?php endif; ?>"
+         data-price="<?php echo $post['price'] ?>"
+         data-national="<?php echo $post['nacionalnost'][0]['id'] ?>"
+         data-single="1" <?php if ($post['id']) : ?>
+         data-url="/post/<?php echo $post['id'] ?>" <?php endif; ?>>
+
+    </div>
 </div>
 <article class="single position-relative" data-post-id="<?php echo $post['id'] ?>">
     <div class="row">

@@ -76,7 +76,8 @@ class PostController extends Controller
                 'viewPosts' => $viewPosts,
                 'productShema' => $productShema,
                 'phoneComments' => $phoneComments,
-                'postsByPhone' => $postsByPhone
+                'postsByPhone' => $postsByPhone,
+                'first' => true
             ]);
 
         }
@@ -94,6 +95,8 @@ class PostController extends Controller
 
             $id = \explode(',', Yii::$app->request->post('id'));
 
+            $price = Yii::$app->request->post('price');
+
             $cityInfo = City::getCity($city);
 
             $post = Posts::find()->where(['not in', 'id' , $id])
@@ -102,6 +105,7 @@ class PostController extends Controller
                     'cvet', 'strizhka', 'selphiCount', 'serviceDesc', 'partnerId')
                 ->andWhere(['city_id' => $cityInfo['id']])
                 ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
+                ->andWhere(['<' , 'price', $price + 1000])
                 ->orderBy(['rand()' => SORT_DESC])
                 ->asArray()
                 ->one();

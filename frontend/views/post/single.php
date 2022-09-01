@@ -12,13 +12,14 @@
 /* @var $phoneComments array */
 
 /* @var $backUrl string */
+/* @var $first bool */
 
 use kartik\icons\FontAwesomeAsset;
 use frontend\assets\RateAsset;
 
 \frontend\assets\GalleryAsset::register($this);
 
-$this->registerJsFile('/js/single.js?v=15', ['depends' => ['yii\web\YiiAsset']]);
+$this->registerJsFile('/js/single.js?v=16', ['depends' => ['yii\web\YiiAsset']]);
 
 
 $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
@@ -81,6 +82,7 @@ if ($productShema) echo $productShema;
             'serviceListReview' => $serviceListReview,
             'viewPosts' => $viewPosts,
             'phoneComments' => $phoneComments,
+            'first' => $first,
             'price' => $price
         ]); ?>
         <?php echo \frontend\widgets\HelperWidget::widget() ?>
