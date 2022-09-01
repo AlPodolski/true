@@ -51,7 +51,7 @@ class ImportController extends Controller
     public function actionIndex()
     {
 
-        $stream = \fopen(Yii::getAlias('@app/files/import_moskva_chkom_30_08_2022.csv'), 'r');
+        $stream = \fopen(Yii::getAlias('@app/files/import_chkom_regons_31_08_2022.csv'), 'r');
 
         $csv = Reader::createFromStream($stream);
         $csv->setDelimiter(';');
@@ -67,183 +67,164 @@ class ImportController extends Controller
         $serviceList = Service::find()->asArray()->all();
 
         $this->siteId = 0;
-        $this->update = 29;
-        $this->path = '/uploads/a29/';
+        $this->update = 30;
+        $this->path = '/uploads/a30/';
 
         $posts = array();
 
         foreach ($records as $record) {
 
-            $posts[] = $record;
+            $posts[$record['city']][] = $record;
 
         }
 
-        foreach ($posts as $record){
+        foreach ($posts as $key => $value){
 
-            $post = new Posts();
+            if ($city = City::find()->where(['url' => $key])->one()){
 
-            $city['id'] = 1;
+                foreach ($value as $record){
 
-            $post->price = $record['price'] ?? 3000;
+                    $post = new Posts();
 
-            $post->city_id = 1;
-            $post->pol_id = 1;
-            $post->user_id = 240;
-            $post->created_at = \time();
-            $post->name = $record['name'];
-            $post->updated_at = $this->update;
-            $post->phone = preg_replace('/[^0-9]/', '',  $record['phone']);
-            $post->about = strip_tags ($record['anket-about']);
-            $post->check_photo_status = 0;
-            $post->status = 1;
-            $post->sort = 10000;
-            $post->age = $record['age'] ?? 19;
-            $post->rost = $record['rost'] ?? 170;
-            $post->ves = $record['weight'] ?? 53;
+                    $city['id'] = $city->id;
 
-            if (isset($record['video']) and $record['video']) {
+                    $post->price = $record['price'] ?? 3000;
 
-                $post->video = $this->path . $record['video'];
+                    $post->city_id = 1;
+                    $post->pol_id = 1;
+                    $post->created_at = \time();
+                    $post->name = $record['name'];
+                    $post->updated_at = $this->update;
+                    $post->phone = preg_replace('/[^0-9]/', '',  $record['phone']);
+                    $post->about = strip_tags ($record['anket-about']);
+                    $post->check_photo_status = 0;
+                    $post->status = 1;
+                    $post->sort = 10000;
+                    $post->age = $record['age'] ?? 19;
+                    $post->rost = $record['rost'] ?? 170;
+                    $post->ves = $record['weight'] ?? 53;
 
-            }
+                    if (isset($record['video']) and $record['video']) {
 
-            if (isset($record['grud']) and $record['grud']) $post->breast = $record['grud'];
-
-            if (isset($record['ves']) and $record['ves']) $post->ves = (int)$record['ves'];
-
-            $post->category = Posts::INDI_CATEGORY;
-
-            if (isset($record['cheked']) and $record['cheked'] == 1) $post->check_photo_status = 1;
-
-            if ($post->save()) {
-
-                if (isset($record['rayon']) and $record['rayon']) {
-
-                    $rayonId = ArrayHelper::getValue(Rayon::find()
-                        ->where(['value' => $record['rayon']])
-                        ->andWhere(['city_id' => $city['id']])
-                        ->asArray()->one(), 'id');
-
-                    if ($rayonId) {
-
-                        $userRayon = new UserRayon();
-                        $userRayon->post_id = $post->id;
-                        $userRayon->rayon_id = $rayonId;
-                        $userRayon->city_id = $city['id'];
-                        $userRayon->save();
+                        $post->video = $this->path . $record['video'];
 
                     }
 
-                }
+                    if (isset($record['grud']) and $record['grud']) $post->breast = $record['grud'];
 
-                if (isset($record['metro']) and $metro = $record['metro']) {
+                    if (isset($record['ves']) and $record['ves']) $post->ves = (int)$record['ves'];
 
-                    if ($metro) {
+                    $post->category = Posts::INDI_CATEGORY;
 
-                        $id = ArrayHelper::getValue(Metro::find()->where(['value' => $metro])->asArray()->one(), 'id');
+                    if (isset($record['cheked']) and $record['cheked'] == 1) $post->check_photo_status = 1;
 
-                        if ($id) {
+                    if ($post->save()) {
 
-                            $userRayon = new UserMetro();
-                            $userRayon->post_id = $post->id;
-                            $userRayon->metro_id = $id;
-                            $userRayon->city_id = $city['id'];
-                            $userRayon->save();
+                        if (isset($record['rayon']) and $record['rayon']) {
+
+                            $rayonId = ArrayHelper::getValue(Rayon::find()
+                                ->where(['value' => $record['rayon']])
+                                ->andWhere(['city_id' => $city['id']])
+                                ->asArray()->one(), 'id');
+
+                            if ($rayonId) {
+
+                                $userRayon = new UserRayon();
+                                $userRayon->post_id = $post->id;
+                                $userRayon->rayon_id = $rayonId;
+                                $userRayon->city_id = $city['id'];
+                                $userRayon->save();
+
+                            }
 
                         }
 
-                    }
+                        if (isset($record['metro']) and $metro = $record['metro']) {
 
-                }
+                            if ($metro) {
 
-                if (isset($record['hair']) and $record['hair']) {
+                                $id = ArrayHelper::getValue(Metro::find()->where(['value' => $metro])->asArray()->one(), 'id');
 
-                    $id = ArrayHelper::getValue(HairColor::find()->where(['value2' => $record['hair']])->asArray()->one(), 'id');
+                                if ($id) {
 
-                    if ($id) {
+                                    $userRayon = new UserMetro();
+                                    $userRayon->post_id = $post->id;
+                                    $userRayon->metro_id = $id;
+                                    $userRayon->city_id = $city['id'];
+                                    $userRayon->save();
 
-                        $userRayon = new UserHairColor();
-                        $userRayon->post_id = $post->id;
-                        $userRayon->hair_color_id = $id;
-                        $userRayon->city_id = $city['id'];
-                        $userRayon->save();
+                                }
 
-                    }
+                            }
 
-                }
+                        }
 
-                if (isset($record['ethnik']) and $record['ethnik']) {
+                        if (isset($record['hair']) and $record['hair']) {
 
-                    $id = ArrayHelper::getValue(National::find()->where(['value2' => $record['ethnik']])->asArray()->one(), 'id');
+                            $id = ArrayHelper::getValue(HairColor::find()->where(['value2' => $record['hair']])->asArray()->one(), 'id');
 
-                    if ($id) {
+                            if ($id) {
 
-                        $userRayon = new UserNational();
-                        $userRayon->post_id = $post->id;
-                        $userRayon->national_id = $id;
-                        $userRayon->city_id = $city['id'];
-                        $userRayon->save();
+                                $userRayon = new UserHairColor();
+                                $userRayon->post_id = $post->id;
+                                $userRayon->hair_color_id = $id;
+                                $userRayon->city_id = $city['id'];
+                                $userRayon->save();
 
-                    }
+                            }
 
-                }
+                        }
 
-                foreach ($placeList as $placeItem) {
+                        if (isset($record['ethnik']) and $record['ethnik']) {
 
-                    if (\rand(0, 2) == 1) {
+                            $id = ArrayHelper::getValue(National::find()->where(['value2' => $record['ethnik']])->asArray()->one(), 'id');
 
-                        $userRayon = new UserPlace();
-                        $userRayon->post_id = $post->id;
-                        $userRayon->place_id = $placeItem['id'];
-                        $userRayon->city_id = $city['id'];
-                        $userRayon->save();
+                            if ($id) {
 
-                    }
+                                $userRayon = new UserNational();
+                                $userRayon->post_id = $post->id;
+                                $userRayon->national_id = $id;
+                                $userRayon->city_id = $city['id'];
+                                $userRayon->save();
 
-                }
+                            }
 
-                foreach ($serviceList as $serviceItem) {
+                        }
 
-                    if (\rand(0, 3) == 3) {
+                        foreach ($placeList as $placeItem) {
 
-                        $userRayon = new UserService();
-                        $userRayon->post_id = $post->id;
-                        $userRayon->service_id = $serviceItem['id'];
-                        $userRayon->city_id = $city['id'];
-                        $userRayon->save();
+                            if (\rand(0, 2) == 1) {
 
-                    }
+                                $userRayon = new UserPlace();
+                                $userRayon->post_id = $post->id;
+                                $userRayon->place_id = $placeItem['id'];
+                                $userRayon->city_id = $city['id'];
+                                $userRayon->save();
 
-                }
+                            }
 
-                if (isset($record['mini']) and $record['mini']) {
+                        }
 
-                    $userPhoto = new Files();
+                        foreach ($serviceList as $serviceItem) {
 
-                    $userPhoto->related_id = $post->id;
-                    $userPhoto->file = $this->path . $record['mini'];
-                    $userPhoto->main = 1;
-                    $userPhoto->type = 0;
-                    $userPhoto->related_class = Posts::class;
+                            if (\rand(0, 3) == 3) {
 
-                    $userPhoto->save();
+                                $userRayon = new UserService();
+                                $userRayon->post_id = $post->id;
+                                $userRayon->service_id = $serviceItem['id'];
+                                $userRayon->city_id = $city['id'];
+                                $userRayon->save();
 
-                }
+                            }
 
-                if (isset($record['gallery']) and $record['gallery']) {
+                        }
 
-                    $gall = \explode(',', $record['gallery']);
-
-                    if ($gall) {
-
-                        $ava = array_shift($gall);
-
-                        if ($ava){
+                        if (isset($record['mini']) and $record['mini']) {
 
                             $userPhoto = new Files();
 
                             $userPhoto->related_id = $post->id;
-                            $userPhoto->file = $this->path . $ava;
+                            $userPhoto->file = $this->path . $record['mini'];
                             $userPhoto->main = 1;
                             $userPhoto->type = 0;
                             $userPhoto->related_class = Posts::class;
@@ -252,29 +233,60 @@ class ImportController extends Controller
 
                         }
 
-                        foreach ($gall as $gallitem) {
+                        if (isset($record['gallery']) and $record['gallery']) {
 
-                            if ($gallitem) {
+                            $gall = \explode(',', $record['gallery']);
 
-                                $userPhoto = new Files();
+                            if ($gall) {
 
-                                $userPhoto->related_id = $post->id;
-                                $userPhoto->file = $this->path . $gallitem;
-                                $userPhoto->main = 0;
-                                $userPhoto->type = 0;
-                                $userPhoto->related_class = Posts::class;
+                                $ava = array_shift($gall);
 
-                                $userPhoto->save();
+                                if ($ava){
+
+                                    $userPhoto = new Files();
+
+                                    $userPhoto->related_id = $post->id;
+                                    $userPhoto->file = $this->path . $ava;
+                                    $userPhoto->main = 1;
+                                    $userPhoto->type = 0;
+                                    $userPhoto->related_class = Posts::class;
+
+                                    $userPhoto->save();
+
+                                }
+
+                                foreach ($gall as $gallitem) {
+
+                                    if ($gallitem) {
+
+                                        $userPhoto = new Files();
+
+                                        $userPhoto->related_id = $post->id;
+                                        $userPhoto->file = $this->path . $gallitem;
+                                        $userPhoto->main = 0;
+                                        $userPhoto->type = 0;
+                                        $userPhoto->related_class = Posts::class;
+
+                                        $userPhoto->save();
+
+                                    }
+
+                                }
 
                             }
 
                         }
 
+                        exit();
+
                     }
+
 
                 }
 
             }
+
+
 
         }
 
