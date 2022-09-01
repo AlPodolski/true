@@ -115,7 +115,7 @@ $(window).scroll(function(){
 
         });
 
-        var data = 'price=' + price + '&ref=' + ref + '&pol=' + pol + 'national='+ national +'&id='+id;
+        var data = 'price=' + price + '&ref=' + ref + '&pol=' + pol + '&national='+ national +'&id='+id;
 
         $.ajax({
             type: 'POST',
