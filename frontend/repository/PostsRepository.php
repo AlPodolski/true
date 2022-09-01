@@ -110,4 +110,39 @@ class PostsRepository
         return $count;
     }
 
+    public function getPostForMoreSingle($id, $price)
+    {
+        $post = Posts::find()->where(['not in', 'id' , $id])
+            ->with('gal', 'metro', 'avatar', 'place', 'service',
+                'sites', 'rayon', 'nacionalnost',
+                'cvet', 'strizhka', 'selphiCount', 'serviceDesc', 'partnerId')
+            ->andWhere(['city_id' => $this->cityId])
+            ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
+            ->orderBy(['rand()' => SORT_DESC]);
+
+        if ($price < 3000){
+
+            $post = $post->andWhere(['<=', 'price', 3000]);
+
+        }
+
+        if ($price >= 3000 and $price <= 6000 ){
+
+            $post = $post->andWhere(['<=', 'price', 6000]);
+            $post = $post->andWhere(['>=', 'price', 3000]);
+
+        }
+
+        if ($price >= 6000 ){
+
+            $post = $post->andWhere(['>=', 'price', 6000]);
+
+        }
+
+        $post = $post->asArray()->one();
+
+        return $post;
+
+    }
+
 }

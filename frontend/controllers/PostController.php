@@ -99,16 +99,9 @@ class PostController extends Controller
 
             $cityInfo = City::getCity($city);
 
-            $post = Posts::find()->where(['not in', 'id' , $id])
-                ->with('gal', 'metro', 'avatar', 'place', 'service',
-                    'sites', 'rayon', 'nacionalnost',
-                    'cvet', 'strizhka', 'selphiCount', 'serviceDesc', 'partnerId')
-                ->andWhere(['city_id' => $cityInfo['id']])
-                ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
-                ->andWhere(['<' , 'price', $price + 1000])
-                ->orderBy(['rand()' => SORT_DESC])
-                ->asArray()
-                ->one();
+            $postRepository = new PostsRepository($cityInfo['id']);
+
+            $post = $postRepository->getPostForMoreSingle($id, $price);
 
             if ($post){
 
