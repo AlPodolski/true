@@ -110,7 +110,7 @@ class PostsRepository
         return $count;
     }
 
-    public function getPostForMoreSingle($id, $price)
+    public function getPostForMoreSingle($id, $price, $pol)
     {
         $post = Posts::find()->where(['not in', 'id' , $id])
             ->with('gal', 'metro', 'avatar', 'place', 'service',
@@ -118,6 +118,7 @@ class PostsRepository
                 'cvet', 'strizhka', 'selphiCount', 'serviceDesc', 'partnerId')
             ->andWhere(['city_id' => $this->cityId])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
+            ->andWhere(['pol_id' => $pol])
             ->orderBy(['rand()' => SORT_DESC]);
 
         if ($price < 3000){

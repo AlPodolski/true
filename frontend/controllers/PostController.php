@@ -77,6 +77,7 @@ class PostController extends Controller
                 'productShema' => $productShema,
                 'phoneComments' => $phoneComments,
                 'postsByPhone' => $postsByPhone,
+                'backUrl' => $backUrl,
                 'first' => true
             ]);
 
@@ -97,11 +98,13 @@ class PostController extends Controller
 
             $price = Yii::$app->request->post('price');
 
+            $pol = Yii::$app->request->post('pol');
+
             $cityInfo = City::getCity($city);
 
             $postRepository = new PostsRepository($cityInfo['id']);
 
-            $post = $postRepository->getPostForMoreSingle($id, $price);
+            $post = $postRepository->getPostForMoreSingle($id, $price, $pol);
 
             if ($post){
 

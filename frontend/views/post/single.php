@@ -19,7 +19,7 @@ use frontend\assets\RateAsset;
 
 \frontend\assets\GalleryAsset::register($this);
 
-$this->registerJsFile('/js/single.js?v=16', ['depends' => ['yii\web\YiiAsset']]);
+$this->registerJsFile('/js/single.js?v=17', ['depends' => ['yii\web\YiiAsset']]);
 
 
 $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
@@ -83,6 +83,7 @@ if ($productShema) echo $productShema;
             'viewPosts' => $viewPosts,
             'phoneComments' => $phoneComments,
             'first' => $first,
+            'backUrl' => $backUrl,
             'price' => $price
         ]); ?>
         <?php echo \frontend\widgets\HelperWidget::widget() ?>

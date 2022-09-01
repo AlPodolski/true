@@ -29,7 +29,7 @@ echo \frontend\components\helpers\MicroHelper::image($post);
                data-interval="false" class="carousel slide"
                data-ride="carousel">
                 <div  class="carousel-inner">
-                    <a class="active carousel-item" href="/post/<?php echo $post['id'] ?>" target="_blank">
+                    <a class="active carousel-item" href="/post/<?php echo $post['id'] ?>">
                         <?php
                         $path = Yii::getAlias('@frontend/views/includes/article-photo.php');
                         echo $this->renderFile($path, [
@@ -44,7 +44,7 @@ echo \frontend\components\helpers\MicroHelper::image($post);
 
                         if (isset($post['gallery']) and $post['gallery']){
                             foreach ($post['gallery'] as $item){
-                                echo '<a class="carousel-item" href="/post/'.$post['id'].'" target="_blank">';
+                                echo '<a class="carousel-item" href="/post/'.$post['id'].'" >';
                                 echo $this->renderFile($path, [
                                     'file' => $item['file'],
                                     'name' => $post['name'],
@@ -130,7 +130,7 @@ echo \frontend\components\helpers\MicroHelper::image($post);
                 </div>
             </div>
 
-            <a class="black-gradient" target="_blank" href="/post/<?php echo $post['id'] ?>"></a>
+            <a class="black-gradient" href="/post/<?php echo $post['id'] ?>"></a>
             <div class="bottom-info">
 
                 <div class="post-marc-block">

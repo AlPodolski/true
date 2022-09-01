@@ -35,6 +35,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
          first
          <?php endif; ?>"
          data-price="<?php echo $post['price'] ?>"
+         data-pol="<?php echo $post['pol_id'] ?>"
          data-national="<?php echo $post['nacionalnost'][0]['id'] ?>"
          data-single="1" <?php if ($post['id']) : ?>
          data-url="/post/<?php echo $post['id'] ?>" <?php endif; ?>>
