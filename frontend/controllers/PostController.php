@@ -110,7 +110,7 @@ class PostController extends Controller
 
             if ($post){
 
-                $serviceListReview = ServiceReviewHelper::getPostServiceReview($post['id']);
+                $serviceListReview = false;
 
                 $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
 

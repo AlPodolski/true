@@ -121,7 +121,7 @@ class PostsRepository
 
         if ($ref){
 
-            $dataRef = explode(':ref', $ref);
+            $dataRef = explode(':', $ref);
 
             $cacheTime = 3600 * 12;
 

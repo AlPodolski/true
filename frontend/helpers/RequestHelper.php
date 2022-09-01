@@ -34,20 +34,23 @@ class RequestHelper
     public static function getRefererCategory($protocol)
     {
 
-        $url = str_replace($protocol.'://'.Yii::$app->request->headers['host'].'/', '',Yii::$app->request->headers['referer']);
+        $url = str_replace('https://'.Yii::$app->request->headers['host'].'/', '',Yii::$app->request->headers['referer']);
 
-        $url = explode('-', $url);
+        $urlData = explode('-', $url);
 
         $cacheTime = 3600 * 24 * 30;
 
         $result = '';
 
-        switch ($url[0]) {
+        switch ($urlData[0]) {
 
             case 'metro':
+
+                $findUrl = str_replace('metro-', '', $url);
+
                 $data = Metro::find()
                     ->select('id')
-                    ->where(['url' => $url[1]])
+                    ->where(['url' => $findUrl])
                     ->cache($cacheTime)->one();
 
                 $result = 'metro:'.$data->id;
