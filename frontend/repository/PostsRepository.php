@@ -9,6 +9,7 @@ use frontend\models\Metro;
 use frontend\models\UserMetro;
 use frontend\modules\user\models\Posts;
 use frontend\modules\user\models\UserNational;
+use frontend\modules\user\models\UserPlace;
 use yii\data\Pagination;
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -153,6 +154,19 @@ class PostsRepository
                 case 'nacionalnost':
 
                     $data = UserNational::find()
+                        ->select('post_id')
+                        ->where(['national_id' => $dataRef[1]])
+                        ->andWhere(['city_id' => $this->cityId])
+                        ->cache($cacheTime)
+                        ->all();
+
+                    $postsIds = ArrayHelper::getColumn($data, 'post_id');
+
+                    break;
+
+                    case 'mesto':
+
+                    $data = UserPlace::find()
                         ->select('post_id')
                         ->where(['national_id' => $dataRef[1]])
                         ->andWhere(['city_id' => $this->cityId])

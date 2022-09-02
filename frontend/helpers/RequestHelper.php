@@ -5,6 +5,7 @@ namespace frontend\helpers;
 
 
 use common\models\National;
+use common\models\Place;
 use frontend\models\Metro;
 use phpDocumentor\Reflection\PseudoTypes\True_;
 use Yii;
@@ -82,6 +83,19 @@ class RequestHelper
                 $findUrl = str_replace('ves-', '', $url);
 
                 $result = 'ves:'.$findUrl;
+
+                break;
+
+            case 'mesto':
+
+                $findUrl = str_replace('mesto-', '', $url);
+
+                $data = Place::find()
+                    ->select('id')
+                    ->where(['url' => $findUrl])
+                    ->cache($cacheTime)->one();
+
+                $result = 'mesto:'.$data->id;
 
                 break;
 
