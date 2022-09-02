@@ -77,6 +77,14 @@ class RequestHelper
 
                 break;
 
+            case 'ves':
+
+                $findUrl = str_replace('ves-', '', $url);
+
+                $result = 'ves:'.$findUrl;
+
+                break;
+
         }
 
         return $result;

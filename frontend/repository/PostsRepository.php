@@ -183,6 +183,14 @@ class PostsRepository
 
                     break;
 
+                case 'ves':
+
+                    if ($dataRef[1] == 'tolstye') {
+                        $post = $post->andWhere(['>', 'ves', 70]);
+                    }
+
+                    break;
+
             }
 
         }
