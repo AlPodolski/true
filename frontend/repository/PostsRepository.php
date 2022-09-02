@@ -120,6 +120,15 @@ class PostsRepository
 
         $postsIds = false;
 
+        $post = Posts::find()->where(['not in', 'id' , $id])
+            ->with('gal', 'metro', 'avatar', 'place', 'service',
+                'sites', 'rayon', 'nacionalnost',
+                'cvet', 'strizhka', 'selphiCount', 'serviceDesc', 'partnerId')
+            ->andWhere(['city_id' => $this->cityId])
+            ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
+            ->andWhere(['pol_id' => $pol])
+            ->orderBy(['rand()' => SORT_DESC]);
+
         if ($ref){
 
             $dataRef = explode(':', $ref);
@@ -154,18 +163,29 @@ class PostsRepository
 
                     break;
 
+                case 'vozrast':
+
+                    switch ($dataRef[1]) {
+
+                        case '40-50':
+                        case '50-75':
+                        case '36-40':
+
+                            $post = $post->andWhere(['>', 'age', 40]);
+                            break;
+
+                        case '18-20':
+
+                            $post = $post->andWhere(['<', 'age', 21]);
+                            break;
+
+                    }
+
+                    break;
+
             }
 
         }
-
-        $post = Posts::find()->where(['not in', 'id' , $id])
-            ->with('gal', 'metro', 'avatar', 'place', 'service',
-                'sites', 'rayon', 'nacionalnost',
-                'cvet', 'strizhka', 'selphiCount', 'serviceDesc', 'partnerId')
-            ->andWhere(['city_id' => $this->cityId])
-            ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
-            ->andWhere(['pol_id' => $pol])
-            ->orderBy(['rand()' => SORT_DESC]);
 
         if ($postsIds){
             $post = $post->andWhere(['in', 'id', $postsIds]);

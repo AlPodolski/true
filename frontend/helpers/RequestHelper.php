@@ -17,9 +17,9 @@ class RequestHelper
     public static function getBackUrl($protocol)
     {
 
-        if (\strstr(Yii::$app->request->headers['referer'], Yii::$app->request->headers['host'])){
+        if (\strstr(Yii::$app->request->headers['referer'], Yii::$app->request->headers['host'])) {
 
-            $ref = \str_replace($protocol.'://', '',Yii::$app->request->headers['referer']);
+            $ref = \str_replace($protocol . '://', '', Yii::$app->request->headers['referer']);
 
             $ref = \str_replace('https://', '', $ref);
 
@@ -34,7 +34,7 @@ class RequestHelper
     public static function getRefererCategory($protocol)
     {
 
-        $url = str_replace('https://'.Yii::$app->request->headers['host'].'/', '',Yii::$app->request->headers['referer']);
+        $url = str_replace('https://' . Yii::$app->request->headers['host'] . '/', '', Yii::$app->request->headers['referer']);
 
         $urlData = explode('-', $url);
 
@@ -53,7 +53,7 @@ class RequestHelper
                     ->where(['url' => $findUrl])
                     ->cache($cacheTime)->one();
 
-                $result = 'metro:'.$data->id;
+                $result = 'metro:' . $data->id;
                 break;
 
             case 'nacionalnost':
@@ -65,7 +65,15 @@ class RequestHelper
                     ->where(['url' => $findUrl])
                     ->cache($cacheTime)->one();
 
-                $result = 'nacionalnost:'.$data->id;
+                $result = 'nacionalnost:' . $data->id;
+
+                break;
+
+            case 'vozrast':
+
+                $findUrl = str_replace('vozrast-', '', $url);
+
+                $result = 'vozrast:'.$findUrl;
 
                 break;
 
