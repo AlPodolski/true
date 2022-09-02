@@ -8,6 +8,7 @@ use frontend\components\helpers\GetOrderHelper;
 use frontend\models\Metro;
 use frontend\models\UserMetro;
 use frontend\modules\user\models\Posts;
+use frontend\modules\user\models\UserNational;
 use yii\data\Pagination;
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -141,11 +142,15 @@ class PostsRepository
                     break;
 
                 case 'nacionalnost':
-                    $data = National::find()
-                        ->select('id')
-                        ->cache($cacheTime)->one();
 
-                    $result = 'nacionalnost:'.$data->id;
+                    $data = UserNational::find()
+                        ->select('post_id')
+                        ->where(['national_id' => $dataRef[1]])
+                        ->andWhere(['city_id' => $this->cityId])
+                        ->cache($cacheTime)
+                        ->all();
+
+                    $postsIds = ArrayHelper::getColumn($data, 'post_id');
 
                     break;
 

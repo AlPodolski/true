@@ -57,9 +57,12 @@ class RequestHelper
                 break;
 
             case 'nacionalnost':
+
+                $findUrl = str_replace('nacionalnost-', '', $url);
+
                 $data = National::find()
                     ->select('id')
-                    ->where(['url' => $url[1]])
+                    ->where(['url' => $findUrl])
                     ->cache($cacheTime)->one();
 
                 $result = 'nacionalnost:'.$data->id;
