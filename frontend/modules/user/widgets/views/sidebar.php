@@ -196,7 +196,7 @@
                             </div>
                             <div class="user-menu-item-text grey-text">
                                 <a class="user-menu-item-text grey-text" href="/cabinet/pay">
-                                    Баланс
+                                    Пополнить баланс
                                 </a>
                             </div>
                         </div>
