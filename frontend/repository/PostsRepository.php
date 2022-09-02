@@ -168,7 +168,7 @@ class PostsRepository
 
                     $data = UserPlace::find()
                         ->select('post_id')
-                        ->where(['national_id' => $dataRef[1]])
+                        ->where(['place_id' => $dataRef[1]])
                         ->andWhere(['city_id' => $this->cityId])
                         ->cache($cacheTime)
                         ->all();
