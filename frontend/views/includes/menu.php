@@ -16,7 +16,7 @@
     <ul class="nav">
 
         <?php if (Yii::$app->user->isGuest) : ?>
-            <li onclick="get_user_menu()" class="nav-item small-red-text"><a class="small-red-text" >Кабинет</a></li>
+            <li onclick="get_user_menu()" class="nav-item small-red-text"><a class="small-red-text" >Войти</a></li>
         <?php else : ?>
             <li class="nav-item small-red-text"><a class="small-red-text" href="/cabinet">Кабинет</a></li>
         <?php endif; ?>
