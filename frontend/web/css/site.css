@@ -945,6 +945,10 @@ h1 , .big-red-text{
 .rating-row-wrap svg{
     margin-right: 5px;
 }
+.view-count{
+    color: #fff;
+    font-size: 13px;
+}
 .post-img img , .author-img img{
     width: 100%;
 }

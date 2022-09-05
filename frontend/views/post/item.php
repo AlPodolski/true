@@ -10,6 +10,7 @@
 /* @var $phoneComments array */
 /* @var $first bool|null */
 
+use frontend\modules\user\helpers\ViewCountHelper;
 use frontend\modules\user\models\ReviewForm;
 use frontend\modules\user\models\ServiceReviewForm;
 use frontend\widgets\PhotoWidget;
@@ -185,7 +186,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                 <div class="col-12 col-md-12 col-lg-9 single-post-info-wrap">
                     <div class="post-top-info">
                         <div class="">
-                            <h1 class="text-center"><?php echo $post['name'] ?> ID: <?php echo $post['id'] ?></h1>
+                            <h1 class="text-center"><?php echo $post['name'] ?> ID: <?php echo $post['id'] ?>, Просмотров: <?php echo ViewCountHelper::countView($post['id'] , Yii::$app->params['redis_post_single_view_count_key']) ?></h1>
 
                             <?php $targetPrice = \frontend\components\helpers\PriceTargetHelper::target($post['price']) ?>
 

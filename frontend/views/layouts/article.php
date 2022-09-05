@@ -8,6 +8,7 @@
 
 /* @var $this \yii\web\View */
 
+use frontend\modules\user\helpers\ViewCountHelper;
 use frontend\widgets\PhotoWidget;
 
 echo \frontend\components\helpers\MicroHelper::image($post);
