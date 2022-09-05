@@ -6,9 +6,16 @@ namespace console\controllers;
 use common\models\City;
 use common\models\Rayon;
 use common\models\Redirect;
+use frontend\models\Files;
+use frontend\models\UserMetro;
 use frontend\models\Webmaster;
 use frontend\modules\user\models\Posts;
+use frontend\modules\user\models\UserHairColor;
+use frontend\modules\user\models\UserIntimHair;
+use frontend\modules\user\models\UserNational;
+use frontend\modules\user\models\UserPlace;
 use frontend\modules\user\models\UserRayon;
+use frontend\modules\user\models\UserService;
 use League\Csv\Reader;
 use League\Csv\Statement;
 use Yii;
@@ -18,17 +25,36 @@ class CustController extends Controller
 {
     public function actionPrice()
     {
-        $posts = Posts::find()->where(['fake' => Posts::POST_FAKE])->all();
+        $posts = Posts::find()->where(['city_id' => ''])->all();
 
         foreach ($posts as $post){
 
-            if ($post->price > 2000) $post->express_price = $post->price - 1000;
-            $post->price_2_hour = $post->price * 2;
-            $post->price_night = $post->price * 4;
+            if ($postPhoto = Files::findAll(['related_id' => $post['id'], 'related_class' => Posts::class])){
 
-            $post->save();
+                foreach ($postPhoto as $item){
+
+                    $file = Yii::getAlias('@app/web'.$item->file);
+
+                    if(\is_file($file)) \unlink($file);
+
+                    $item->delete();
+
+                }
+
+            }
+
+            UserRayon::deleteAll(['post_id' => $post['id']]);
+            UserMetro::deleteAll(['post_id' => $post['id']]);
+            UserHairColor::deleteAll(['post_id' => $post['id']]);
+            UserIntimHair::deleteAll(['post_id' => $post['id']]);
+            UserNational::deleteAll(['post_id' => $post['id']]);
+            UserPLace::deleteAll(['post_id' => $post['id']]);
+            UserService::deleteAll(['post_id' => $post['id']]);
+
+            $post->delete();
 
         }
+
     }
 
     public function actionCust()
