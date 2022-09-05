@@ -65,6 +65,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     );
                 },
             ],
+            [
+                'attribute' => 'city_id',
+                'format' => 'raw',
+                'value' => function ($user) {
+                    /* @var $user \frontend\modules\user\models\Posts */
+                    $user->getCity();
+                    return $user->city->city;
+                },
+            ],
 
             [
                 'attribute' => 'Аватар',

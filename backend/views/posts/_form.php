@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use common\models\City;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\modules\user\models\Posts */
@@ -25,7 +27,9 @@ foreach (\common\models\Tarif::getAll() as $item){
     <div class="row">
 
         <div class="col-4">
-            <?= $form->field($model, 'city_id')->textInput() ?>
+            <?= $form->field($model, 'city_id')->dropDownList(
+                    ArrayHelper::map(City::find()->all(), 'id', 'city')
+            ) ?>
         </div>
 
         <div class="col-4">
