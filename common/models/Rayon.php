@@ -59,14 +59,14 @@ class Rayon extends \yii\db\ActiveRecord
 
     public static function getAll($city_id)
     {
-        $data = Yii::$app->cache->get('rayon_hair_list_'.$city_id);
+        $data = Yii::$app->cache->get('rayon_list_'.$city_id);
 
         if ($data === false) {
             // $data нет в кэше, вычисляем заново
             $data = Rayon::find()->where(['city_id' => $city_id])->orderBy('value ASC')->asArray()->all();
 
             // Сохраняем значение $data в кэше. Данные можно получить в следующий раз.
-            Yii::$app->cache->set('rayon_hair_list_'.$city_id, $data);
+            Yii::$app->cache->set('rayon_list_'.$city_id, $data);
         }
 
         return $data;

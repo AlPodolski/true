@@ -2,6 +2,7 @@
 
 namespace frontend\models;
 
+use frontend\modules\user\models\Posts;
 use Yii;
 
 /**
@@ -13,6 +14,7 @@ use Yii;
  * @property string|null $file путь к файлу
  * @property int|null $main является ли изображение главным 0 нет 1 да
  * @property int|null $type Тип файла
+ * @property Posts $post Тип файла
  */
 class Files extends \yii\db\ActiveRecord
 {
@@ -24,6 +26,11 @@ class Files extends \yii\db\ActiveRecord
 
     const MAIN_PHOTO = 1;
     const NOT_MAIN_PHOTO = 0;
+
+    public function getPost()
+    {
+        return $this->hasOne(Posts::class, ['id' => 'related_id']);
+    }
 
     /**
      * {@inheritdoc}

@@ -709,6 +709,26 @@ function init_yandex() {
 var load_map_status = false;
 var start_load_map_status = false;
 
+function delete_img(object){
+
+    var id = $(object).attr('data-id');
+
+    $.ajax({
+        type: 'POST',
+        url: "/cabinet/photo/delete",
+        data: 'id=' + id,
+        response: 'text',
+        dataType: "html",
+        cache: false,
+        success: function (data) {
+
+            $(object).closest('.preview-with-photo').remove();
+
+        }
+    })
+
+}
+
 $(window).scroll(function () {
 
     if (exist_jivo_block){
