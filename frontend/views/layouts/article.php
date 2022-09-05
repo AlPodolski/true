@@ -25,10 +25,10 @@ echo \frontend\components\helpers\MicroHelper::image($post);
             <?php endif ?>
 
             <div
-               id="post-<?php echo $post['id'] ?>"
-               data-interval="false" class="carousel slide"
-               data-ride="carousel">
-                <div  class="carousel-inner">
+                    id="post-<?php echo $post['id'] ?>"
+                    data-interval="false" class="carousel slide"
+                    data-ride="carousel">
+                <div class="carousel-inner">
                     <a class="active carousel-item" href="/post/<?php echo $post['id'] ?>">
                         <?php
                         $path = Yii::getAlias('@frontend/views/includes/article-photo.php');
@@ -40,19 +40,19 @@ echo \frontend\components\helpers\MicroHelper::image($post);
                     </a>
 
 
-                        <?php
+                    <?php
 
-                        if (isset($post['gallery']) and $post['gallery']){
-                            foreach ($post['gallery'] as $item){
-                                echo '<a class="carousel-item" href="/post/'.$post['id'].'" >';
-                                echo $this->renderFile($path, [
-                                    'file' => $item['file'],
-                                    'name' => $post['name'],
-                                ]);
-                                echo '</a>';
-                            }
+                    if (isset($post['gallery']) and $post['gallery']) {
+                        foreach ($post['gallery'] as $item) {
+                            echo '<a class="carousel-item" href="/post/' . $post['id'] . '" >';
+                            echo $this->renderFile($path, [
+                                'file' => $item['file'],
+                                'name' => $post['name'],
+                            ]);
+                            echo '</a>';
                         }
-                        ?>
+                    }
+                    ?>
 
                     <?php if ($post['video']) : ?>
                         <span class="carousel-item video-item">
@@ -79,8 +79,8 @@ echo \frontend\components\helpers\MicroHelper::image($post);
             </div>
 
             <div class="post-top-info">
-                <div class="row">
-                    <div class="col-6">
+                <div class="d-flex">
+                    <div class="price-metro-wrap">
                         <a class="phone-photo-count" href="/post/<?php echo $post['id'] ?>">
                             <?php echo $post['name'] ?>
                         </a>
@@ -94,38 +94,35 @@ echo \frontend\components\helpers\MicroHelper::image($post);
                             </div>
                         <?php endif; ?>
                     </div>
-                    <div class="col-6">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="row rating-row-wrap">
-                                    <div class="col-3">
-                                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                            <rect width="30" height="30" rx="10" fill="#F74952"/>
-                                            <path d="M9.233 7.834L9.678 5.608C9.76866 5.15444 10.0137 4.74633 10.3714 4.45314C10.7292 4.15995 11.1775 3.99982 11.64 4H18.36C18.8225 3.99982 19.2708 4.15995 19.6286 4.45314C19.9863 4.74633 20.2313 5.15444 20.322 5.608L20.767 7.834C20.8369 8.18279 21.0043 8.50459 21.2498 8.76198C21.4953 9.01938 21.8089 9.20178 22.154 9.288C22.967 9.49138 23.6887 9.96068 24.2044 10.6213C24.72 11.2819 25.0001 12.0959 25 12.934V20C25 21.0609 24.5786 22.0783 23.8284 22.8284C23.0783 23.5786 22.0609 24 21 24H9C7.93913 24 6.92172 23.5786 6.17157 22.8284C5.42143 22.0783 5 21.0609 5 20V12.934C4.99992 12.0959 5.27998 11.2819 5.79564 10.6213C6.31131 9.96068 7.033 9.49138 7.846 9.288C8.19111 9.20178 8.50466 9.01938 8.75019 8.76198C8.99572 8.50459 9.16315 8.18279 9.233 7.834V7.834Z"
-                                                  stroke="white" stroke-width="2" stroke-linecap="round"
-                                                  stroke-linejoin="round"/>
-                                            <path d="M15 20C17.2091 20 19 18.2091 19 16C19 13.7909 17.2091 12 15 12C12.7909 12 11 13.7909 11 16C11 18.2091 12.7909 20 15 20Z"
-                                                  stroke="white" stroke-width="2" stroke-linecap="round"
-                                                  stroke-linejoin="round"/>
-                                            <path d="M14 8H16" stroke="white" stroke-width="2" stroke-linecap="round"
-                                                  stroke-linejoin="round"/>
-                                        </svg>
-                                    </div>
-                                    <div class="col-8 white-bold-text">
-                                        +<?php echo \frontend\modules\user\models\Posts::countPhoto($post['id']) ?> фото
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="row">
-                                    <div class="col-3 rating-icon-block">
-
-                                    </div>
-                                </div>
-
+                    <div class="rating-row-wrap">
+                        <div class="article-rating d-flex">
+                            <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <rect width="30" height="30" rx="10" fill="#F74952"/>
+                                <path d="M9.233 7.834L9.678 5.608C9.76866 5.15444 10.0137 4.74633 10.3714 4.45314C10.7292 4.15995 11.1775 3.99982 11.64 4H18.36C18.8225 3.99982 19.2708 4.15995 19.6286 4.45314C19.9863 4.74633 20.2313 5.15444 20.322 5.608L20.767 7.834C20.8369 8.18279 21.0043 8.50459 21.2498 8.76198C21.4953 9.01938 21.8089 9.20178 22.154 9.288C22.967 9.49138 23.6887 9.96068 24.2044 10.6213C24.72 11.2819 25.0001 12.0959 25 12.934V20C25 21.0609 24.5786 22.0783 23.8284 22.8284C23.0783 23.5786 22.0609 24 21 24H9C7.93913 24 6.92172 23.5786 6.17157 22.8284C5.42143 22.0783 5 21.0609 5 20V12.934C4.99992 12.0959 5.27998 11.2819 5.79564 10.6213C6.31131 9.96068 7.033 9.49138 7.846 9.288C8.19111 9.20178 8.50466 9.01938 8.75019 8.76198C8.99572 8.50459 9.16315 8.18279 9.233 7.834V7.834Z"
+                                      stroke="white" stroke-width="2" stroke-linecap="round"
+                                      stroke-linejoin="round"/>
+                                <path d="M15 20C17.2091 20 19 18.2091 19 16C19 13.7909 17.2091 12 15 12C12.7909 12 11 13.7909 11 16C11 18.2091 12.7909 20 15 20Z"
+                                      stroke="white" stroke-width="2" stroke-linecap="round"
+                                      stroke-linejoin="round"/>
+                                <path d="M14 8H16" stroke="white" stroke-width="2" stroke-linecap="round"
+                                      stroke-linejoin="round"/>
+                            </svg>
+                            <div class="photo-count white-bold-text">
+                                +<?php echo \frontend\modules\user\models\Posts::countPhoto($post['id']) ?> фото
                             </div>
                         </div>
+                        <?php if ($post['check_photo_status'] == 1) : ?>
+                            <div class="check-photo d-flex white-bold-text">
+                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="30" height="30" rx="10" fill="#17CA29"></rect>
+                                    <path d="M25.5586 6.9428C25.4612 6.83162 25.342 6.74173 25.2083 6.67875C25.0746 6.61577 24.9293 6.58107 24.7816 6.5768C22.4866 6.5168 19.5826 4.0628 17.6626 3.0998C16.4766 2.5068 15.6936 2.1158 15.1056 2.0128C14.9862 1.9954 14.8649 1.99574 14.7456 2.0138C14.1576 2.1168 13.3746 2.5078 12.1896 3.1008C10.2696 4.0628 7.3656 6.5168 5.0706 6.5768C4.92277 6.58129 4.77744 6.61609 4.64361 6.67904C4.50978 6.742 4.39031 6.83178 4.2926 6.9428C4.09008 7.17194 3.98558 7.47141 4.0016 7.7768C4.4946 17.7998 8.0896 24.0028 14.3976 27.6078C14.5616 27.7008 14.7436 27.7488 14.9246 27.7488C15.1056 27.7488 15.2876 27.7008 15.4526 27.6078C21.7606 24.0028 25.3546 17.7998 25.8486 7.7768C25.8656 7.47146 25.7613 7.17176 25.5586 6.9428ZM20.5426 10.8848L15.2196 18.7398C15.0286 19.0218 14.7286 19.2088 14.4316 19.2088C14.1336 19.2088 13.8026 19.0458 13.5936 18.8368L9.8416 15.0838C9.71911 14.9608 9.65033 14.7944 9.65033 14.6208C9.65033 14.4472 9.71911 14.2808 9.8416 14.1578L10.7686 13.2288C10.8918 13.1068 11.0582 13.0383 11.2316 13.0383C11.405 13.0383 11.5714 13.1068 11.6946 13.2288L14.1346 15.6688L18.3736 9.4118C18.4717 9.26862 18.6224 9.17006 18.7929 9.13765C18.9634 9.10523 19.1398 9.1416 19.2836 9.2388L20.3686 9.9748C20.5119 10.0727 20.6107 10.2234 20.6433 10.3939C20.6759 10.5644 20.6397 10.7409 20.5426 10.8848Z"
+                                          fill="white"></path>
+                                </svg>
+                                Фото проверенно
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -159,19 +156,6 @@ echo \frontend\components\helpers\MicroHelper::image($post);
                             </svg>
                         </div>
                     <?php endif; ?>
-                    <?php if ($post['check_photo_status'] == 1) : ?>
-                        <div class="indi-marc post-marc ">
-                            <div class="position-absolute chec-title marck-title">Фото проверенно</div>
-                            <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <rect width="30" height="30" rx="10" fill="#17CA29"/>
-                                <path d="M25.5586 6.9428C25.4612 6.83162 25.342 6.74173 25.2083 6.67875C25.0746 6.61577 24.9293 6.58107 24.7816 6.5768C22.4866 6.5168 19.5826 4.0628 17.6626 3.0998C16.4766 2.5068 15.6936 2.1158 15.1056 2.0128C14.9862 1.9954 14.8649 1.99574 14.7456 2.0138C14.1576 2.1168 13.3746 2.5078 12.1896 3.1008C10.2696 4.0628 7.3656 6.5168 5.0706 6.5768C4.92277 6.58129 4.77744 6.61609 4.64361 6.67904C4.50978 6.742 4.39031 6.83178 4.2926 6.9428C4.09008 7.17194 3.98558 7.47141 4.0016 7.7768C4.4946 17.7998 8.0896 24.0028 14.3976 27.6078C14.5616 27.7008 14.7436 27.7488 14.9246 27.7488C15.1056 27.7488 15.2876 27.7008 15.4526 27.6078C21.7606 24.0028 25.3546 17.7998 25.8486 7.7768C25.8656 7.47146 25.7613 7.17176 25.5586 6.9428ZM20.5426 10.8848L15.2196 18.7398C15.0286 19.0218 14.7286 19.2088 14.4316 19.2088C14.1336 19.2088 13.8026 19.0458 13.5936 18.8368L9.8416 15.0838C9.71911 14.9608 9.65033 14.7944 9.65033 14.6208C9.65033 14.4472 9.71911 14.2808 9.8416 14.1578L10.7686 13.2288C10.8918 13.1068 11.0582 13.0383 11.2316 13.0383C11.405 13.0383 11.5714 13.1068 11.6946 13.2288L14.1346 15.6688L18.3736 9.4118C18.4717 9.26862 18.6224 9.17006 18.7929 9.13765C18.9634 9.10523 19.1398 9.1416 19.2836 9.2388L20.3686 9.9748C20.5119 10.0727 20.6107 10.2234 20.6433 10.3939C20.6759 10.5644 20.6397 10.7409 20.5426 10.8848Z"
-                                      fill="white"/>
-                            </svg>
-
-                        </div>
-                    <?php endif; ?>
-
                     <?php if ($post['video']) : ?>
 
                         <div class="indi-marc post-marc ">
@@ -196,31 +180,30 @@ echo \frontend\components\helpers\MicroHelper::image($post);
                 </div>
 
             </div>
-        </div>
+            <div class="data-wrap d-flex">
+                <?php if ($post['breast']) : ?>
+                    <div class="data-item">
+                        Возраст: <?php echo $post['age'] ?>
+                    </div>
+                <?php endif; ?>
+                <?php if ($post['breast']) : ?>
+                    <div class="data-item">
+                        Рост: <?php echo $post['rost'] ?>
+                    </div>
+                <?php endif; ?>
+                <?php if ($post['breast']) : ?>
+                    <div class="data-item">
+                        Вес: <?php echo $post['ves'] ?>
+                    </div>
+                <?php endif; ?>
+                <?php if ($post['breast']) : ?>
+                    <div class="data-item">
+                        Грудь: <?php echo $post['breast'] ?>
+                    </div>
+                <?php endif; ?>
 
-        <div class="data-wrap d-flex">
-            <?php if ($post['breast']) : ?>
-                <div class="data-item">
-                    Возраст: <?php echo $post['age'] ?>
-                </div>
-            <?php endif; ?>
-            <?php if ($post['breast']) : ?>
-                <div class="data-item">
-                    Рост: <?php echo $post['rost'] ?>
-                </div>
-            <?php endif; ?>
-            <?php if ($post['breast']) : ?>
-                <div class="data-item">
-                    Вес: <?php echo $post['ves'] ?>
-                </div>
-            <?php endif; ?>
-            <?php if ($post['breast']) : ?>
-                <div class="data-item">
-                    Грудь: <?php echo $post['breast'] ?>
-                </div>
-            <?php endif; ?>
+            </div>
         </div>
-
         <?php if ($post['phone']) : ?>
 
             <div data-id="<?php echo $post['id'] ?>"

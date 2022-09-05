@@ -926,10 +926,24 @@ h1 , .big-red-text{
     justify-content: space-between;
     font-size: 13px;
     position: absolute;
-    bottom: 60px;
+    bottom: 0px;
     z-index: 10;
     width: 100%;
     padding: 0 10px;
+}
+.rating-row-wrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.price-metro-wrap{
+    width: 50%;
+}
+.article-rating{
+    margin-bottom: 15px;
+}
+.rating-row-wrap svg{
+    margin-right: 5px;
 }
 .post-img img , .author-img img{
     width: 100%;
@@ -3900,6 +3914,9 @@ form .more-search-btn{
     filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.15));
     right: 10px;
     cursor: pointer;
+}
+article .post-address, article .post-address a{
+    margin-bottom: 0px;
 }
 @media (max-width: 1199px) {
     .more-search-btn{
