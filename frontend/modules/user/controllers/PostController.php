@@ -493,8 +493,6 @@ class PostController extends Controller
 
         }
 
-        $city = City::getCity($city);
-
         return $this->render('edit', [
             'post' => $post,
             'city' => $city,
