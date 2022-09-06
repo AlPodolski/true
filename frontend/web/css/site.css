@@ -2400,7 +2400,7 @@ h1{
 }
 .single-bottom-info .phone-photo-count{
     color: #F74952;
-    margin-top: 30px;
+    margin-top: 15px;
     margin-bottom: 15px;
 }
 .single-bottom-info .post-phone:hover {
@@ -3595,6 +3595,9 @@ input:checked + .img-label-radio:before {
     z-index: 4;
     top: 5px;
 }
+.single-post-info-wrap .check-photo svg{
+    margin-right: 10px;
+}
 #editprofileform-avatar {
     display: none;
 }
@@ -3919,8 +3922,14 @@ form .more-search-btn{
     right: 10px;
     cursor: pointer;
 }
-article .post-address, article .post-address a{
+.post .post-address, .post-address a{
     margin-bottom: 0px;
+}
+.single-bottom-info .check-photo{
+    margin-top: 15px;
+    align-content: center;
+    line-height: 1.5;
+    color: #17ca29;
 }
 @media (max-width: 1199px) {
     .more-search-btn{
