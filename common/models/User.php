@@ -1,6 +1,7 @@
 <?php
 namespace common\models;
 
+use common\components\events\UserRegister;
 use frontend\models\Files;
 use frontend\modules\user\models\Review;
 use Yii;
@@ -54,6 +55,13 @@ class User extends ActiveRecord implements IdentityInterface
 
     const REAL_USER = 1;
     const FAKE_USER = 0;
+
+    public function __construct()
+    {
+        $this->on(self::EVENT_AFTER_INSERT, [UserRegister::class, 'handle']);
+
+        parent::__construct();
+    }
 
     /**
      * {@inheritdoc}
