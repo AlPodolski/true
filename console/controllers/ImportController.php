@@ -51,7 +51,7 @@ class ImportController extends Controller
     public function actionIndex()
     {
 
-        $stream = \fopen(Yii::getAlias('@app/files/import_chkom_regons_31_08_2022.csv'), 'r');
+        $stream = \fopen(Yii::getAlias('@app/files/import_mos_dosug_07_09_2022.csv'), 'r');
 
         $csv = Reader::createFromStream($stream);
         $csv->setDelimiter(';');
@@ -68,163 +68,182 @@ class ImportController extends Controller
 
         $this->siteId = 0;
         $this->update = 30;
-        $this->path = '/uploads/a30/';
+        $this->path = '/uploads/a31/';
 
         $posts = array();
 
         foreach ($records as $record) {
 
-            $posts[$record['city']][] = $record;
+            $posts[] = $record;
 
         }
 
-        foreach ($posts as $key => $value){
+        foreach ($posts as $record) {
 
-            if ($city = City::find()->where(['url' => $key])->one()){
+            $post = new Posts();
 
-                foreach ($value as $record){
+            $city['id'] = 1;
 
-                    $post = new Posts();
+            $post->price = $record['price'] ?? 3000;
 
-                    $city['id'] = $city->id;
+            $post->city_id = 1;
+            $post->user_id = 240;
+            $post->pol_id = 1;
+            $post->created_at = \time();
+            $post->name = $record['name'];
+            $post->updated_at = $this->update;
+            $post->phone = preg_replace('/[^0-9]/', '', $record['phone']);
+            $post->about = strip_tags($record['anket-about']);
+            $post->check_photo_status = 0;
+            $post->status = 1;
+            $post->sort = 10000;
+            $post->age = $record['age'] ?? 19;
+            $post->rost = $record['rost'] ?? 170;
+            $post->ves = $record['weight'] ?? 53;
 
-                    $post->price = $record['price'] ?? 3000;
+            if (isset($record['video']) and $record['video']) {
 
-                    $post->city_id = 1;
-                    $post->pol_id = 1;
-                    $post->created_at = \time();
-                    $post->name = $record['name'];
-                    $post->updated_at = $this->update;
-                    $post->phone = preg_replace('/[^0-9]/', '',  $record['phone']);
-                    $post->about = strip_tags ($record['anket-about']);
-                    $post->check_photo_status = 0;
-                    $post->status = 1;
-                    $post->sort = 10000;
-                    $post->age = $record['age'] ?? 19;
-                    $post->rost = $record['rost'] ?? 170;
-                    $post->ves = $record['weight'] ?? 53;
+                $post->video = $this->path . $record['video'];
 
-                    if (isset($record['video']) and $record['video']) {
+            }
 
-                        $post->video = $this->path . $record['video'];
+            if (isset($record['grud']) and $record['grud']) $post->breast = $record['grud'];
+
+            if (isset($record['ves']) and $record['ves']) $post->ves = (int)$record['ves'];
+
+            $post->category = Posts::INDI_CATEGORY;
+
+            if (isset($record['cheked']) and $record['cheked'] == 1) $post->check_photo_status = 1;
+
+            if ($post->save()) {
+
+                if (isset($record['rayon']) and $record['rayon']) {
+
+                    $rayonId = ArrayHelper::getValue(Rayon::find()
+                        ->where(['value' => $record['rayon']])
+                        ->andWhere(['city_id' => $city['id']])
+                        ->asArray()->one(), 'id');
+
+                    if ($rayonId) {
+
+                        $userRayon = new UserRayon();
+                        $userRayon->post_id = $post->id;
+                        $userRayon->rayon_id = $rayonId;
+                        $userRayon->city_id = $city['id'];
+                        $userRayon->save();
 
                     }
 
-                    if (isset($record['grud']) and $record['grud']) $post->breast = $record['grud'];
+                }
 
-                    if (isset($record['ves']) and $record['ves']) $post->ves = (int)$record['ves'];
+                if (isset($record['metro']) and $metro = $record['metro']) {
 
-                    $post->category = Posts::INDI_CATEGORY;
+                    if ($metro) {
 
-                    if (isset($record['cheked']) and $record['cheked'] == 1) $post->check_photo_status = 1;
+                        $id = ArrayHelper::getValue(Metro::find()->where(['value' => $metro])->asArray()->one(), 'id');
 
-                    if ($post->save()) {
+                        if ($id) {
 
-                        if (isset($record['rayon']) and $record['rayon']) {
-
-                            $rayonId = ArrayHelper::getValue(Rayon::find()
-                                ->where(['value' => $record['rayon']])
-                                ->andWhere(['city_id' => $city['id']])
-                                ->asArray()->one(), 'id');
-
-                            if ($rayonId) {
-
-                                $userRayon = new UserRayon();
-                                $userRayon->post_id = $post->id;
-                                $userRayon->rayon_id = $rayonId;
-                                $userRayon->city_id = $city['id'];
-                                $userRayon->save();
-
-                            }
+                            $userRayon = new UserMetro();
+                            $userRayon->post_id = $post->id;
+                            $userRayon->metro_id = $id;
+                            $userRayon->city_id = $city['id'];
+                            $userRayon->save();
 
                         }
 
-                        if (isset($record['metro']) and $metro = $record['metro']) {
+                    }
 
-                            if ($metro) {
+                }
 
-                                $id = ArrayHelper::getValue(Metro::find()->where(['value' => $metro])->asArray()->one(), 'id');
+                if (isset($record['hair']) and $record['hair']) {
 
-                                if ($id) {
+                    $id = ArrayHelper::getValue(HairColor::find()->where(['value2' => $record['hair']])->asArray()->one(), 'id');
 
-                                    $userRayon = new UserMetro();
-                                    $userRayon->post_id = $post->id;
-                                    $userRayon->metro_id = $id;
-                                    $userRayon->city_id = $city['id'];
-                                    $userRayon->save();
+                    if ($id) {
 
-                                }
+                        $userRayon = new UserHairColor();
+                        $userRayon->post_id = $post->id;
+                        $userRayon->hair_color_id = $id;
+                        $userRayon->city_id = $city['id'];
+                        $userRayon->save();
 
-                            }
+                    }
 
-                        }
+                }
 
-                        if (isset($record['hair']) and $record['hair']) {
+                if (isset($record['ethnik']) and $record['ethnik']) {
 
-                            $id = ArrayHelper::getValue(HairColor::find()->where(['value2' => $record['hair']])->asArray()->one(), 'id');
+                    $id = ArrayHelper::getValue(National::find()->where(['value2' => $record['ethnik']])->asArray()->one(), 'id');
 
-                            if ($id) {
+                    if ($id) {
 
-                                $userRayon = new UserHairColor();
-                                $userRayon->post_id = $post->id;
-                                $userRayon->hair_color_id = $id;
-                                $userRayon->city_id = $city['id'];
-                                $userRayon->save();
+                        $userRayon = new UserNational();
+                        $userRayon->post_id = $post->id;
+                        $userRayon->national_id = $id;
+                        $userRayon->city_id = $city['id'];
+                        $userRayon->save();
 
-                            }
+                    }
 
-                        }
+                }
 
-                        if (isset($record['ethnik']) and $record['ethnik']) {
+                foreach ($placeList as $placeItem) {
 
-                            $id = ArrayHelper::getValue(National::find()->where(['value2' => $record['ethnik']])->asArray()->one(), 'id');
+                    if (\rand(0, 2) == 1) {
 
-                            if ($id) {
+                        $userRayon = new UserPlace();
+                        $userRayon->post_id = $post->id;
+                        $userRayon->place_id = $placeItem['id'];
+                        $userRayon->city_id = $city['id'];
+                        $userRayon->save();
 
-                                $userRayon = new UserNational();
-                                $userRayon->post_id = $post->id;
-                                $userRayon->national_id = $id;
-                                $userRayon->city_id = $city['id'];
-                                $userRayon->save();
+                    }
 
-                            }
+                }
 
-                        }
+                foreach ($serviceList as $serviceItem) {
 
-                        foreach ($placeList as $placeItem) {
+                    if (\rand(0, 3) == 3) {
 
-                            if (\rand(0, 2) == 1) {
+                        $userRayon = new UserService();
+                        $userRayon->post_id = $post->id;
+                        $userRayon->service_id = $serviceItem['id'];
+                        $userRayon->city_id = $city['id'];
+                        $userRayon->save();
 
-                                $userRayon = new UserPlace();
-                                $userRayon->post_id = $post->id;
-                                $userRayon->place_id = $placeItem['id'];
-                                $userRayon->city_id = $city['id'];
-                                $userRayon->save();
+                    }
 
-                            }
+                }
 
-                        }
+                if (isset($record['mini']) and $record['mini']) {
 
-                        foreach ($serviceList as $serviceItem) {
+                    $userPhoto = new Files();
 
-                            if (\rand(0, 3) == 3) {
+                    $userPhoto->related_id = $post->id;
+                    $userPhoto->file = $this->path . $record['mini'];
+                    $userPhoto->main = 1;
+                    $userPhoto->type = 0;
+                    $userPhoto->related_class = Posts::class;
 
-                                $userRayon = new UserService();
-                                $userRayon->post_id = $post->id;
-                                $userRayon->service_id = $serviceItem['id'];
-                                $userRayon->city_id = $city['id'];
-                                $userRayon->save();
+                    $userPhoto->save();
 
-                            }
+                }
 
-                        }
+                if (isset($record['gallery']) and $record['gallery']) {
 
-                        if (isset($record['mini']) and $record['mini']) {
+                    $gall = \explode(',', $record['gallery']);
+
+                    if ($gall) {
+
+                        $ava = array_shift($gall);
+
+                        if ($ava) {
 
                             $userPhoto = new Files();
 
                             $userPhoto->related_id = $post->id;
-                            $userPhoto->file = $this->path . $record['mini'];
+                            $userPhoto->file = $this->path . $ava;
                             $userPhoto->main = 1;
                             $userPhoto->type = 0;
                             $userPhoto->related_class = Posts::class;
@@ -233,63 +252,34 @@ class ImportController extends Controller
 
                         }
 
-                        if (isset($record['gallery']) and $record['gallery']) {
+                        foreach ($gall as $gallitem) {
 
-                            $gall = \explode(',', $record['gallery']);
+                            if ($gallitem) {
 
-                            if ($gall) {
+                                $userPhoto = new Files();
 
-                                $ava = array_shift($gall);
+                                $userPhoto->related_id = $post->id;
+                                $userPhoto->file = $this->path . $gallitem;
+                                $userPhoto->main = 0;
+                                $userPhoto->type = 0;
+                                $userPhoto->related_class = Posts::class;
 
-                                if ($ava){
-
-                                    $userPhoto = new Files();
-
-                                    $userPhoto->related_id = $post->id;
-                                    $userPhoto->file = $this->path . $ava;
-                                    $userPhoto->main = 1;
-                                    $userPhoto->type = 0;
-                                    $userPhoto->related_class = Posts::class;
-
-                                    $userPhoto->save();
-
-                                }
-
-                                foreach ($gall as $gallitem) {
-
-                                    if ($gallitem) {
-
-                                        $userPhoto = new Files();
-
-                                        $userPhoto->related_id = $post->id;
-                                        $userPhoto->file = $this->path . $gallitem;
-                                        $userPhoto->main = 0;
-                                        $userPhoto->type = 0;
-                                        $userPhoto->related_class = Posts::class;
-
-                                        $userPhoto->save();
-
-                                    }
-
-                                }
+                                $userPhoto->save();
 
                             }
 
                         }
 
-                        exit();
-
                     }
 
-
                 }
+
+                exit();
 
             }
 
 
-
         }
-
 
     }
 
@@ -314,16 +304,16 @@ class ImportController extends Controller
             $resultData[$value['city']][] = $value['phone'];
         }
 
-        foreach ($resultData as $key => $item){
+        foreach ($resultData as $key => $item) {
 
             $cityInfo = City::find()->where(['city' => $key])->one();
 
-            foreach ($item as $phoneItem){
+            foreach ($item as $phoneItem) {
 
                 $phoneAdvert = new PhonesAdvert();
 
                 $phoneAdvert->city_id = $cityInfo['id'];
-                $phoneAdvert->phone = preg_replace('/[^0-9]/', '',  $phoneItem);
+                $phoneAdvert->phone = preg_replace('/[^0-9]/', '', $phoneItem);
                 $phoneAdvert->price = $price[array_rand($price)];
                 $phoneAdvert->view = 0;
                 $phoneAdvert->last_view = 0;
@@ -699,23 +689,23 @@ class ImportController extends Controller
     public function actionDns()
     {
 
-        $cityList = array('Махачкала' , 'Оренбург' , 'Кемерово' , 'Новокузнецк' , 'Астрахань' , 'Калининград' , 'Тула' ,
-            'Белгород' , 'Тамбов' , 'Стерлитамак' , 'Люберцы' , 'Северодвинск' , 'Новочеркасск' , 'Рубцовск' , 'Майкоп' ,
-            'Батайск' , 'Дербент' , 'Первоуральск' , 'Октябрьский' , 'Железногорск' , 'Новокуйбышевск' , 'Саров' ,
-            'Ленинск-Кузнецкий' , 'Канск' , 'Каменск-Шахтинский' , 'Киселёвск' , 'Новотроицк' , 'Железногорск' ,
-            'Кинешма' , 'Кузнецк' , 'Новоуральск' , 'Озёрск' , 'Кропоткин' , 'Бор' , 'Черногорск' , 'Усолье-Сибирское' ,
-            'Выборг' , 'Чапаевск' , 'Белово' , 'Кирово-Чепецк' , 'Анжеро-Судженск' , 'Заречный' , 'Белорецк' , 'Ишим' ,
-            'Клинцы' , 'Россошь' , 'Асбест' , 'Котлас' , 'Зеленогорск' , 'Донской' , 'Ревда' , 'Будённовск' ,
-            'Полевской' , 'Лысьва' , 'Кумертау' , 'Лесосибирск' , 'Прохладный' , 'Лабинск' , 'Михайловка' , 'Ржев' ,
-            'Щёкино' , 'Сальск' , 'Павлово' , 'Мелеуз' , 'Краснотурьинск' , 'Североморск' , 'Апатиты' , 'Лиски' ,
-            'Волжск' , 'Снежинск' , 'Краснокаменск' );
+        $cityList = array('Махачкала', 'Оренбург', 'Кемерово', 'Новокузнецк', 'Астрахань', 'Калининград', 'Тула',
+            'Белгород', 'Тамбов', 'Стерлитамак', 'Люберцы', 'Северодвинск', 'Новочеркасск', 'Рубцовск', 'Майкоп',
+            'Батайск', 'Дербент', 'Первоуральск', 'Октябрьский', 'Железногорск', 'Новокуйбышевск', 'Саров',
+            'Ленинск-Кузнецкий', 'Канск', 'Каменск-Шахтинский', 'Киселёвск', 'Новотроицк', 'Железногорск',
+            'Кинешма', 'Кузнецк', 'Новоуральск', 'Озёрск', 'Кропоткин', 'Бор', 'Черногорск', 'Усолье-Сибирское',
+            'Выборг', 'Чапаевск', 'Белово', 'Кирово-Чепецк', 'Анжеро-Судженск', 'Заречный', 'Белорецк', 'Ишим',
+            'Клинцы', 'Россошь', 'Асбест', 'Котлас', 'Зеленогорск', 'Донской', 'Ревда', 'Будённовск',
+            'Полевской', 'Лысьва', 'Кумертау', 'Лесосибирск', 'Прохладный', 'Лабинск', 'Михайловка', 'Ржев',
+            'Щёкино', 'Сальск', 'Павлово', 'Мелеуз', 'Краснотурьинск', 'Североморск', 'Апатиты', 'Лиски',
+            'Волжск', 'Снежинск', 'Краснокаменск');
 
         $host = 'sex-true.com';
         $ip = '193.42.108.121';
 
         foreach ($cityList as $cityItem) {
 
-            if ($cityInfo = City::find()->where(['city' => $cityItem])->one()){
+            if ($cityInfo = City::find()->where(['city' => $cityItem])->one()) {
 
                 $city = $cityInfo['url'];
 
@@ -796,14 +786,14 @@ class ImportController extends Controller
 
         $citys = City::find()->asArray()->all();
 
-        foreach ($citys as $city){
+        foreach ($citys as $city) {
 
             $opts = array(
-                'http'=>array(
-                    'method'=>"GET",
-                    'header'=>"Accept-language: en\r\n" .
-                        "Cookie: foo=bar\r\n".
-                        'Authorization: OAuth '.$access_token,
+                'http' => array(
+                    'method' => "GET",
+                    'header' => "Accept-language: en\r\n" .
+                        "Cookie: foo=bar\r\n" .
+                        'Authorization: OAuth ' . $access_token,
                 )
             );
 
@@ -814,56 +804,54 @@ class ImportController extends Controller
             $user_id = $user_id->user_id;
 
 
-
             $content = '
                 
                 <Data>
-                    <host_url>https://'.$city['url'].'.'.$host.'</host_url>
+                    <host_url>https://' . $city['url'] . '.' . $host . '</host_url>
                 </Data>
                 
                 ';
 
 
-
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL,"https://api.webmaster.yandex.net/v4/user/{$user_id}/hosts/");
+            curl_setopt($ch, CURLOPT_URL, "https://api.webmaster.yandex.net/v4/user/{$user_id}/hosts/");
             curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS,$content);  //Post Fields
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $content);  //Post Fields
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
             $headers = [
                 'Content-type: application/xml',
-                'Authorization: OAuth '.$access_token
+                'Authorization: OAuth ' . $access_token
             ];
 
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-            $server_output = curl_exec ($ch);
+            $server_output = curl_exec($ch);
 
-            curl_close ($ch);
+            curl_close($ch);
 
-            $result=json_decode($server_output);
+            $result = json_decode($server_output);
 
 
             $content = '';
 
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL,"https://api.webmaster.yandex.net/v3/user/{$user_id}/hosts/".urlencode($result->host_id)."/verification/?verification_type=META_TAG");
+            curl_setopt($ch, CURLOPT_URL, "https://api.webmaster.yandex.net/v3/user/{$user_id}/hosts/" . urlencode($result->host_id) . "/verification/?verification_type=META_TAG");
             curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS,$content);  //Post Fields
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $content);  //Post Fields
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-            $server_output = curl_exec ($ch);
+            $server_output = curl_exec($ch);
 
-            curl_close ($ch);
+            curl_close($ch);
 
             $server_output = json_decode($server_output);
 
-            $meta2 =  $server_output->verification_uin;
+            $meta2 = $server_output->verification_uin;
 
             $meta_model = new Webmaster();
 
