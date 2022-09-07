@@ -132,6 +132,11 @@ echo \frontend\components\helpers\MicroHelper::image($post);
             <div class="bottom-info">
 
                 <div class="post-marc-block">
+
+                    <div class="tarif tarif_<?php echo $post['tarif_id'] ?>">
+                        <?php echo $post['tarif']['value'] ?>
+                    </div>
+
                     <?php if ($post['category'] == 1) : ?>
                         <div class="indi-marc post-marc position-relative">
                             <div class="position-absolute indi-title marck-title">Индивидуалка</div>

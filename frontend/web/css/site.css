@@ -1498,9 +1498,28 @@ h1 , .big-red-text{
 }
 .bottom-info{
     position: absolute;
-    right: 0px;
-    width: 45px;
-    top: 15px;
+    right: 15px;
+    top: 25px;
+}
+.post-marc-block{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+.tarif{
+    border-radius: 5px;
+    padding: 2px 5px;
+    margin-bottom: 10px;
+    color: #fff;
+}
+.tarif_4 {
+    background: #000;
+}
+.tarif_3 {
+    background: #f74952;
+}
+.tarif_2 {
+    display: none;
 }
 .rating-icon-block{
     padding-left: 18px;

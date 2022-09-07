@@ -587,7 +587,7 @@ foreach (\common\models\Tarif::getAll() as $item) {
                 <div class="col-12 col-sm-6">
                     <?= $form->field($post, 'tarif_id')
                         ->dropDownList(\yii\helpers\ArrayHelper::map($tarifList, 'id', 'value'))
-                        ->label('Выберите тариф. Чем дороже тариф тем выше выводится анкета') ?>
+                        ->label('Выберите тариф. Чем дороже тариф тем выше выводится анкета. Анкеты с VIP и Premium тарифом получают отличительный знак на карточке') ?>
                 </div>
 
                 <?php if (Yii::$app->requestedParams['city'] == 'moskva') : ?>
