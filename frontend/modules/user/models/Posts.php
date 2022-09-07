@@ -153,7 +153,7 @@ class Posts extends \yii\db\ActiveRecord
         $topAnketList = TopAnketBlock::getPostIds($cityId);
 
         if ($topAnketList) return self::find()->where(['in', 'id', $topAnketList])
-            ->with('avatar', 'metro', 'selphiCount', 'partnerId')
+            ->with('avatar', 'metro', 'selphiCount', 'partnerId', 'tarif')
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->asArray()->all();
 

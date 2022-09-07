@@ -33,7 +33,7 @@ class SearchController extends Controller
 
         $prPosts = Posts::find()
             ->asArray()
-            ->with('avatar', 'metro','gallery')
+            ->with('avatar', 'metro','gallery', 'tarif')
             ->where(['like', 'name', $model->name])
             ->orWhere(['like', 'phone', $model->name])
             ->andWhere(['city_id' => $cityInfo['id']])
@@ -151,7 +151,7 @@ class SearchController extends Controller
 
         $prPosts = Posts::find()
             ->asArray()
-            ->with('avatar', 'metro','gallery')
+            ->with('avatar', 'metro','gallery', 'tarif')
             ->where(['like', 'name', $model->name])
             ->orWhere(['like', 'phone', $model->name])
             ->andWhere(['city_id' => $cityInfo['id']])
