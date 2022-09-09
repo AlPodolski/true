@@ -25,9 +25,15 @@ class CustController extends Controller
 {
     public function actionPrice()
     {
-        $posts = Posts::find()->where(['city_id' => ''])->all();
+        $posts = Posts::find()
+            ->where(['city_id' => '1'])
+            ->andWhere(['fake' => Posts::POST_FAKE])
+            ->limit(15000)
+            ->all();
 
         foreach ($posts as $post){
+
+            dd($post);
 
             if ($postPhoto = Files::findAll(['related_id' => $post['id'], 'related_class' => Posts::class])){
 
