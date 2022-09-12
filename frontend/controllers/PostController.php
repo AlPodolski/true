@@ -67,7 +67,9 @@ class PostController extends Controller
 
             ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_single_view_count_key']);
 
-            $postsByPhone = GetPostHelper::getByPhone($post['phone'], $cityInfo['id']);
+            //$postsByPhone = GetPostHelper::getByPhone($post['phone'], $cityInfo['id']);
+
+            $postsByPhone = false;
 
             if ($post['phone']) $phoneComments = (new GetCommentByPhoneHelper($post['phone']))->get();
 

@@ -33,8 +33,6 @@ class CustController extends Controller
 
         foreach ($posts as $post){
 
-            dd($post);
-
             if ($postPhoto = Files::findAll(['related_id' => $post['id'], 'related_class' => Posts::class])){
 
                 foreach ($postPhoto as $item){
