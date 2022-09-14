@@ -7,6 +7,8 @@
 /* @var $monthCash int */
 /* @var $monthRegister int */
 /* @var $monthUserRegister int */
+/* @var $realPostCount int */
+/* @var $postOnPublication int */
 
 $this->title = 'Главная страница';
 ?>
@@ -78,6 +80,23 @@ $this->title = 'Главная страница';
                             <p>Месяц <?php echo $monthUserRegister ?></p>
 
                         <?php endif; ?>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <div class="small-box bg-info">
+                    <div class="inner">
+
+                        <p>Настоящих анкет</p>
+
+                        <?php echo $realPostCount ?>
+
+                        <p>Настоящих анкет на публикации</p>
+
+                        <?php echo $postOnPublication ?>
 
                     </div>
 

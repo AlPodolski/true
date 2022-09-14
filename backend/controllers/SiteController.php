@@ -5,6 +5,7 @@ namespace backend\controllers;
 use common\models\CashCount;
 use common\models\PostCount;
 use common\models\UserCountRegister;
+use frontend\modules\user\models\Posts;
 use Yii;
 use yii\web\Controller;
 
@@ -43,6 +44,12 @@ class SiteController extends Controller
     public function actionIndex()
     {
 
+        $postOnPublication = Posts::find()
+            ->where(['status' => Posts::POST_ON_PUPLICATION_STATUS, 'fake' => 1])->count();
+
+        $realPostCount = Posts::find()
+            ->where(['fake' => 1])->count();
+
         $registerCountWeek = PostCount::find()->limit(7)->orderBy('id DESC')->all();
 
         $registerUserCountWeek = UserCountRegister::find()
@@ -63,7 +70,10 @@ class SiteController extends Controller
             ->sum('count');
 
         return $this->render('index',
-            compact('payCountWeek', 'monthCash', 'monthRegister', 'registerCountWeek', 'monthUserRegister', 'registerUserCountWeek')
+            compact('payCountWeek', 'monthCash', 'monthRegister',
+                'registerCountWeek', 'monthUserRegister', 'registerUserCountWeek', 'postOnPublication',
+            'realPostCount'
+            )
         );
 
     }
