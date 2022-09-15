@@ -79,29 +79,6 @@ echo $form->field($postReviewForm, 'post_id')->hiddenInput(['value' => $data['po
         </div>
     </div>
 
-
-    <?php foreach ($data['post']['service'] as $item) : ?>
-
-        <div class="col-12 reting-item">
-            <div class="row">
-
-                <div class="col-6"><?php echo $item['value']?></div>
-                <div class="col-6">
-
-                    <div  class="rate"></div>
-                    <?php
-
-                        echo $form->field($serviceReviewFormForm, $item['id'])->hiddenInput(['value' => 5])->label(false);
-
-                    ?>
-
-                </div>
-
-            </div>
-        </div>
-
-    <?php endforeach; ?>
-
     <div class="col-12">
 
         <?php
