@@ -10,7 +10,7 @@
 
     <?php if (!$showCashInfo) : ?>
 
-        <div class="alert alert-danger danger-info">Не переводите деньги заранее ВАС ОБМАНУТ
+        <div class="alert alert-danger danger-info">Не переводите деньги заранее ВАС МОГУТ ОБМАНУТЬ
             <button data-type="cash" type="button" onclick="rememberClose(this)" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
