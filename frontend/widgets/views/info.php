@@ -10,8 +10,7 @@
 
     <?php if (!$showCashInfo) : ?>
 
-        <div class="alert alert-info">Не переводите деньги заранее и скажите что
-            звоните с сайта <?php echo Yii::$app->request->serverName?>
+        <div class="alert alert-danger danger-info">Не переводите деньги заранее ВАС ОБМАНУТ
             <button data-type="cash" type="button" onclick="rememberClose(this)" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
