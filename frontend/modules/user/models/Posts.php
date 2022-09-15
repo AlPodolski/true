@@ -64,6 +64,7 @@ use frontend\components\service\AddPhoneService;
  * @property City $city
  * @property National $nacionalnost
  * @property Rayon $rayon
+ * @property Tarif $tarif
  */
 class Posts extends \yii\db\ActiveRecord
 {
