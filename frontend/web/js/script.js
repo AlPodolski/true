@@ -27,14 +27,6 @@ if ($('.yandex-map').length > 0) {
 
 }
 
-var exist_jivo_block = false;
-
-if ($('.jivo-block').length > 0) {
-
-    exist_jivo_block = true;
-
-}
-
 function rememberClose(object) {
 
     var type = $(object).attr('data-type')
@@ -730,14 +722,6 @@ function delete_img(object){
 }
 
 $(window).scroll(function () {
-
-    if (exist_jivo_block){
-        $('.jivo-block').remove();
-        exist_jivo_block = false;
-        $.getScript("//code-ya.jivosite.com/widget/N3G2svN2tk", function (data, textStatus, jqxhr) {
-
-        });
-    }
 
     if (exist_map_block && !load_map_status && !start_load_map_status) {
 

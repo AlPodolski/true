@@ -1501,6 +1501,9 @@ h1 , .big-red-text{
     right: 15px;
     top: 25px;
 }
+.more-text{
+    display: none;
+}
 .post-marc-block{
     display: flex;
     flex-direction: column;
@@ -4045,6 +4048,9 @@ form .more-search-btn{
     }
 }
 @media (max-width: 992px) {
+    .more-text{
+        display: block;
+    }
     .event-bell{
         margin-left: 181px;
     }

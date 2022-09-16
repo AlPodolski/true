@@ -46,6 +46,11 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
     </div>
 </div>
+
+<?php if (isset($moreText)) : ?>
+    <div class="red-bold-text text-center more-text"><?php echo $moreText?></div>
+<?php endif; ?>
+
 <article class="single position-relative" data-post-id="<?php echo $post['id'] ?>">
     <div class="row">
         <div class="col-12 col-lg-4 col-xl-4 position-relative">

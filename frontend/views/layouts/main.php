@@ -378,6 +378,8 @@ AppAsset::register($this);
 
     <div class="container custom-container">
 
+        <?= Alert::widget() ?>
+
         <?php
             echo (new frontend\widgets\ShowInfoWidget())->run();
         ?>
@@ -395,7 +397,7 @@ AppAsset::register($this);
             'options' => ['class' => 'breadcrumb', 'style' => ''],
         ]);
         ?>
-        <?= Alert::widget() ?>
+
     </div>
 
     <?= $content ?>
@@ -530,8 +532,6 @@ AppAsset::register($this);
         </div>
     </div>
 </div>
-<?php if (Yii::$app->requestedParams['city'] == 'moskva') : ?>
-<div class="jivo-block"></div> <?php endif; ?>
 <!-- Modal -->
 <?php $this->endBody() ?>
         <!-- Yandex.Metrika counter -->

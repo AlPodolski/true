@@ -58,7 +58,7 @@ class PostsRepository
 
         $posts = Posts::find()
             ->asArray()
-            ->with('avatar', 'metro', 'partnerId', 'rayon', 'nacionalnost', 'gallery')
+            ->with('avatar', 'metro', 'partnerId', 'rayon', 'nacionalnost', 'gallery', 'tarif')
             ->where(['city_id' => $this->cityId])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->andWhere(['pol_id' => Pol::WOMAN_POL])

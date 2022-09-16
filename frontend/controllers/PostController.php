@@ -119,11 +119,14 @@ class PostController extends Controller
                 ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_listing_view_count_key']);
                 ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_single_view_count_key']);
 
+                $moreText = $post['name'];
+
                 return $this->renderFile(Yii::getAlias('@app/views/post/item.php'), [
                     'post'           => $post,
                     'cityInfo'           => $cityInfo,
                     'serviceListReview' => $serviceListReview,
-                    'price' => $price
+                    'price' => $price,
+                    'moreText' => $moreText,
                 ]);
 
             }
