@@ -5,6 +5,7 @@
 
 /* @var $checkPhotoForm \frontend\modules\user\models\forms\CheckPhotoForm */
 
+use common\models\Pol;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
@@ -459,6 +460,13 @@ foreach (\common\models\Tarif::getAll() as $item) {
                 </div>
                 <div class="col-12 col-sm-6">
                     <?= $form->field($post, 'ves')->textInput() ?>
+                </div>
+
+                <div class="col-12 col-sm-6">
+                    <?= $form->field($post, 'pol_id')
+                        ->dropDownList(ArrayHelper::map(Pol::getAll(), 'id', 'value'))
+                    ->label('Пол')
+                    ?>
                 </div>
 
                 <div class="col-12 col-sm-6">

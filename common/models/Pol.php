@@ -47,4 +47,20 @@ class Pol extends \yii\db\ActiveRecord
             'url' => 'Url',
         ];
     }
+
+    public static function getAll()
+    {
+        $data = Yii::$app->cache->get('pol_list');
+
+        if ($data === false) {
+            // $data нет в кэше, вычисляем заново
+            $data = self::find()->asArray()->all();
+
+            // Сохраняем значение $data в кэше. Данные можно получить в следующий раз.
+            Yii::$app->cache->set('pol_list', $data);
+        }
+
+        return $data;
+    }
+
 }
