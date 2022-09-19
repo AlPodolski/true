@@ -28,6 +28,7 @@ class QueryParamsHelper
         $ids = array();
 
         $query_params = array();
+
         $bread_crumbs_params = array();
 
         $stem = 0;
@@ -431,7 +432,6 @@ class QueryParamsHelper
             Yii::$app->params['result_id'] = $ids;
 
             $query_params[] = ['in', 'id', $ids];
-
 
         }
 
