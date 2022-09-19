@@ -51,7 +51,7 @@ class ImportController extends Controller
     public function actionIndex()
     {
 
-        $stream = \fopen(Yii::getAlias('@app/files/import_trans_19_10_22.csv'), 'r');
+        $stream = \fopen(Yii::getAlias('@app/files/import_men_19_09_2022.csv'), 'r');
 
         $csv = Reader::createFromStream($stream);
         $csv->setDelimiter(';');
@@ -68,7 +68,7 @@ class ImportController extends Controller
 
         $this->siteId = 0;
         $this->update = 30;
-        $this->path = '/uploads/a32/';
+        $this->path = '/uploads/a33/';
 
         $posts = array();
 
@@ -88,7 +88,7 @@ class ImportController extends Controller
 
             $post->city_id = 1;
             //$post->user_id = 240;
-            $post->pol_id = 3;
+            $post->pol_id = 2;
             $post->created_at = \time();
             $post->name = $record['name'];
             $post->updated_at = $this->update;
