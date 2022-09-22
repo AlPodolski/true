@@ -3,7 +3,6 @@
 namespace frontend\components\helpers;
 
 use frontend\modules\user\models\Posts;
-use Yii;
 
 class GetAdvertisingPost
 {

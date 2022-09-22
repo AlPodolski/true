@@ -157,6 +157,7 @@ class FilterController extends Controller
                 'topPostList' => $topPostList,
                 'pages' => $pages,
                 'more_posts' => $more_posts,
+                'checkBlock' => $checkBlock,
             ]);
 
         }
