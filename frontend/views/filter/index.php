@@ -61,27 +61,37 @@ echo \frontend\widgets\OpenGraphWidget::widget([
 
         } ?>
 
-        <?php if (is_array($posts) and $posts) : ?>
+        <?php if ($posts) foreach ($posts as $post) : ?>
 
-            <?php foreach ($posts as $post) : ?>
+            <?php if (isset($post['id'])) : ?>
 
                 <?php ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_listing_view_count_key']); ?>
 
-                <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), ['post' => $post]); ?>
+                <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), [
+                    'post' => $post,
+                ]); ?>
 
-                <?php
-                unset($post);
-                ?>
+            <?php elseif (isset($post['block'])) : ?>
 
-            <?php endforeach; ?>
+                <?php if (isset($post['block']['header'])) : ?>
 
-        <?php else : ?>
+                    <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article-promo.php'), [
+                        'post' => $post['block'],
+                        'promo' => true,
+                    ]); ?>
 
-            <div class="col-12">
-                <p>По вашему запросу ничего нет</p>
-            </div>
+                <?php else : ?>
 
-        <?php endif; ?>
+                    <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), [
+                        'post' => $post['block']['post'],
+                        'promo' => true,
+                    ]); ?>
+
+                <?php endif; ?>
+
+            <?php endif; ?>
+
+        <?php endforeach; ?>
 
         <?php if ($more_posts) : ?>
 
