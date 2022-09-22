@@ -4,6 +4,7 @@
 namespace frontend\controllers;
 
 use common\models\City;
+use frontend\components\helpers\GetAdvertisingPost;
 use frontend\helpers\MetaBuilder;
 use frontend\helpers\QueryParamsHelper;
 use frontend\modules\user\models\Posts;
@@ -143,6 +144,9 @@ class FilterController extends Controller
                 ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
                 ->cache(3600 * 24)
                 ->orderBy('RAND()')->all();
+
+            $checkBlock = GetAdvertisingPost::get($cityInfo);
+            if ($checkBlock) array_unshift($data['posts'], $checkBlock);
 
             return $this->render('index', [
                 'posts' => $posts,
