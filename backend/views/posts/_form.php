@@ -1,5 +1,6 @@
 <?php
 
+use common\models\Pol;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
@@ -62,6 +63,12 @@ foreach (\common\models\Tarif::getAll() as $item){
                 ] )
                 ->label('Фейк') ?>
 
+        </div>
+
+        <div class="col-4">
+            <?= $form->field($model, 'pol_id')
+                ->dropDownList( ArrayHelper::map(Pol::find()->all(), 'id', 'value') )
+                ->label('Пол') ?>
         </div>
 
         <div class="col-4">
