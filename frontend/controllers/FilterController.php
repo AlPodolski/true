@@ -146,7 +146,7 @@ class FilterController extends Controller
                 ->orderBy('RAND()')->all();
 
             $checkBlock = GetAdvertisingPost::get($cityInfo);
-            if ($checkBlock) array_unshift($data['posts'], $checkBlock);
+            if ($checkBlock) array_unshift($posts, $checkBlock);
 
             return $this->render('index', [
                 'posts' => $posts,
@@ -157,7 +157,6 @@ class FilterController extends Controller
                 'topPostList' => $topPostList,
                 'pages' => $pages,
                 'more_posts' => $more_posts,
-                'checkBlock' => $checkBlock,
             ]);
 
         }
