@@ -4,8 +4,11 @@
 namespace console\controllers;
 
 use common\components\service\notify\Notify;
+use common\jobs\SendMail;
+use common\models\Queue;
 use frontend\modules\chat\models\Message;
 use yii\console\Controller;
+use Yii;
 
 class NotifyController extends Controller
 {
@@ -28,7 +31,13 @@ class NotifyController extends Controller
 
             if (!\in_array($user_id['to'], $usersSendNotify)) {
 
-                Notify::send('У вас новое сообщение', $user_id['to']);
+                $jobsCount = Queue::find()->where(['channel' => 'mail'])->count() + 1;
+
+                Yii::$app->queueMail->delay($jobsCount * 10)->push(new SendMail([
+                    'text' => 'У Вас новое сообщение',
+                    'to' => $user_id['to'],
+                    'subject' => 'Новое сообщение',
+                ]));
 
                 $usersSendNotify[] = $user_id['to'];
 

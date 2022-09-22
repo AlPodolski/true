@@ -5,7 +5,9 @@ namespace common\components\helpers;
 
 
 use common\components\service\notify\Notify;
+use common\jobs\SendMail;
 use common\models\Event;
+use common\models\Queue;
 use frontend\modules\user\models\Posts;
 use Yii;
 
@@ -41,7 +43,13 @@ class AddEventHelper
 
         if (isset($notifyText) and $notifyText){
 
-            Notify::send($notifyText, $newParams->user_id);
+            $jobsCount = Queue::find()->where(['channel' => 'mail'])->count() + 1;
+
+            Yii::$app->queueMail->delay($jobsCount * 10)->push(new SendMail([
+                'text' => $notifyText,
+                'to' => $newParams->user_id,
+                'subject' => 'Уведомление с сайта sex-tut',
+            ]));
 
         }
 
