@@ -12,9 +12,9 @@ class NotifyController extends Controller
     public function actionMessage()
     {
 
-        $from_time = \time() - 3600;
+        $from_time = \time() - 900;
 
-        $to_time = \time() - 1800;
+        $to_time = \time() - 450;
 
         $user_ids = Message::find()
             ->where(['status' => 0])
