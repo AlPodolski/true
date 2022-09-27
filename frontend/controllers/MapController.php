@@ -251,6 +251,13 @@ class MapController extends Controller
 
                 $post['name'] = preg_replace('/[^ a-zа-яё\d]/ui', '', $post['name']);
 
+                if (!$post['x']){
+
+                    $post['x'] = $post['metro'][0]['x'];
+                    $post['y'] = $post['metro'][0]['y'];
+
+                }
+
                 $result[] = $post;
 
             }
