@@ -4,7 +4,7 @@ function create_img(src, link) {
 
 function create_ballon_content(item) {
     return create_img(item.avatar['file'], item.id) + "<br>"
-        + "<a href='tel:+" + item.phone + "' class='map-phone'> " + item.phone + " </a>"
+        + "<a href='tel:+" + item.phone + "' class='map-phone'> " + item.phone + " </a><br>"
         + "<a target='_blank' class='map-link' href='/post/" + item.id + "'> Подробнее </a>"
         + "<div class='small-red-text'>" + item.price + " р.</div>";
 }
