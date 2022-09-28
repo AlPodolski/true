@@ -55,4 +55,4 @@ foreach ($posts as $post) {
 
 </div>
 
-<?php $this->registerJsFile('/js/map_page.js?v=7', ['depends' => \frontend\assets\AppAsset::class]);
+<?php $this->registerJsFile('/js/map_page.js?v=8', ['depends' => \frontend\assets\AppAsset::class]);
