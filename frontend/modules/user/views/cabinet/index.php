@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="row">
 
                     <div class="col-12 d-flex head-view-wrap">
-                        <span class="black-text font-weight-bold">Мои анкеты</span>
+                        <span class="black-text font-weight-bold">Мои анкеты (<?php if ($posts) echo count($posts)?>)</span>
                         <div class="order-block">
                             <select class="metro-select" name="limit" id="sort-select" onchange="setView()">
 
