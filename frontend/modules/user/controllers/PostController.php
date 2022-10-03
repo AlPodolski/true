@@ -4,6 +4,7 @@
 namespace frontend\modules\user\controllers;
 
 use common\models\City;
+use common\models\Tarif;
 use frontend\models\Files;
 use frontend\models\UserMetro;
 use frontend\modules\chat\models\relation\UserDialog;
@@ -41,6 +42,7 @@ class PostController extends Controller
                 'class' => VerbFilter::class,
                 'actions' => [
                     'publication' => ['post'],
+                    'tarif' => ['post'],
                 ],
             ],
         ];
@@ -561,6 +563,28 @@ class PostController extends Controller
         }
 
         return Yii::$app->response->content = 'Ошибка';
+
+    }
+
+    public function actionTarif()
+    {
+        $postId = Yii::$app->request->post('id');
+        $tarifId = Yii::$app->request->post('tarif_id');
+        $userId = Yii::$app->user->id;
+
+        $post = Posts::find()->where(['id' => $postId])->andWhere(['user_id' => $userId])->one();
+        $tarif = Tarif::findOne(['id' => $tarifId]);
+
+        if ($post and $tarif){
+
+            $post->tarif_id = $tarif->id;
+            $post->save();
+
+            return true;
+
+        }
+
+        throw new NotFoundHttpException();
 
     }
 }

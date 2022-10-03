@@ -1,6 +1,7 @@
 <?php
 
 /* @var $post \frontend\modules\user\models\Posts */
+/* @var $tarifList \common\models\Tarif[] */
 
 use frontend\widgets\PhotoWidget;
 use frontend\modules\user\helpers\ViewCountHelper;
@@ -42,6 +43,8 @@ use frontend\modules\user\models\Posts;
                   data-key="<?php echo $postStatus['key'] ?>"
                   class="cursor-pointer <?php echo $postStatus['key'] ?>"><?php echo $postStatus['value'] ?></a>
         </div>
+
+
 
         <a href="/cabinet/post/edit/<?= $post['id'] ?>">
 
@@ -156,9 +159,25 @@ use frontend\modules\user\models\Posts;
                 </span>
             </div>
 
-            <a class="table-d-none" href="https://t.me/indi_tut">Посмотреть канал</a>
-
         <?php endif; ?>
+
+        <div class="tarif-wrap w-100" >
+            <select onchange="add_status_to_button(this)" class="form-control" name="tarif" id="tarif-<?php echo $post['id'] ?>">
+
+                <?php foreach ($tarifList as $tarif) : ?>
+
+                    <option
+                            <?php if ($tarif->id == $post['tarif_id']) echo 'selected' ?>
+                            value="<?php echo $tarif->id ?>"><?php echo $tarif->value ?> - <?php echo $tarif->sum ?>р.</option>
+
+                <?php endforeach; ?>
+
+            </select>
+
+            <div class="change-tarif" onclick="update_tarif(this)" data-id="<?php echo $post['id'] ?>">
+                Изменить тариф
+            </div>
+        </div>
 
     </div>
 

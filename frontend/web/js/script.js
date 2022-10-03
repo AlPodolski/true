@@ -28,10 +28,36 @@ if ($('.yandex-map').length > 0) {
 }
 
 function rememberClose(object) {
-
     var type = $(object).attr('data-type')
-
     document.cookie = type + '=1; max-age=' + (3600 * 24 * 31);
+}
+
+function add_status_to_button(object){
+    $(object).siblings('.change-tarif').addClass('change-tarif-active')
+}
+
+function update_tarif(object){
+
+    if ($(object).hasClass('change-tarif-active')){
+
+        var id = $(object).attr('data-id');
+        var tarif_id = $(object).siblings('select').val();
+
+        $.ajax({
+            type: 'POST',
+            url: "/cabinet/post/tarif", //Путь к обработчику
+            data: 'id=' + id + '&tarif_id=' +tarif_id,
+            response: 'text',
+            dataType: "html",
+            cache: false,
+            success: function (data) {
+
+                $(object).removeClass('change-tarif-active')
+
+            }
+        })
+
+    }
 
 }
 

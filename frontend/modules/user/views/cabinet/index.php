@@ -75,7 +75,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         echo $this->renderFile(
                             Yii::getAlias('@app/modules/user/views/cabinet/item.php'),
-                            compact('post')
+                            compact('post', 'tarifList')
                         );
 
                     } ?>

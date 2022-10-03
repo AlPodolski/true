@@ -2,6 +2,7 @@
 
 namespace frontend\modules\user\controllers;
 
+use common\models\Tarif;
 use common\models\User;
 use frontend\modules\user\helpers\CabinetViewHelper;
 use frontend\modules\user\models\Posts;
@@ -28,10 +29,13 @@ class CabinetController extends Controller
 
         $viewType = (new CabinetViewHelper())->get();
 
+        $tarifList = Tarif::find()->all();
+
         return $this->render('index', [
             'user'  => $user,
             'posts' => $posts,
             'viewType' => $viewType,
+            'tarifList' => $tarifList,
         ]);
 
     }

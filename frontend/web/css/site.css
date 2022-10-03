@@ -3953,6 +3953,15 @@ form .more-search-btn{
     line-height: 1.5;
     color: #17ca29;
 }
+.change-tarif{
+    text-align: center;
+    margin-top: 10px;
+    color: #b4b4b4;
+}
+.change-tarif-active{
+    color: #007bff;
+    cursor: pointer;
+}
 @media (max-width: 1199px) {
     .more-search-btn{
         display: none;
