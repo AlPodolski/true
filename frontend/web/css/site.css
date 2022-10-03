@@ -3962,6 +3962,9 @@ form .more-search-btn{
     color: #007bff;
     cursor: pointer;
 }
+.table .tarif-wrap{
+    display: none;
+}
 @media (max-width: 1199px) {
     .more-search-btn{
         display: none;
