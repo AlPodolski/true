@@ -49,6 +49,22 @@ function start_all(object){
             dataType: "html",
             cache: false,
             success: function (data) {
+
+                var result_text = '';
+
+                if (type == 'start'){
+                    result_text = 'Остановить публикацию'
+                    $(".stop" ).each(function( index ) {
+                        $(this).html(result_text);
+                    });
+                }
+                if (type == 'stop'){
+                    result_text = 'Поставить на публикацию'
+                    $(".stop" ).each(function( index ) {
+                        $(this).html(result_text);
+                    });
+                }
+
                 $(object).removeClass('change-tarif-active')
             }
         })
