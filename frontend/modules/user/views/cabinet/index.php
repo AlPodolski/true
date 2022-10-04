@@ -39,8 +39,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
                             </select>
                         </div>
+
                     </div>
 
+                    <div class="nav-posts d-flex col-12">
+                        <div class="change-tarif-active" data-type="start" onclick="start_all(this)">Включить все анкеты</div>
+                        <div class="change-tarif-active" data-type="stop" onclick="start_all(this)">Выключит все анкеты</div>
+                    </div>
 
                     <div class="col-12 col-md-4 col-lg-6 cabinet-item">
                         <div class="white-cabinet-block cabinet-nav-block d-flex items-center nav-cabinet-block">

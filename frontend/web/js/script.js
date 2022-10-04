@@ -36,12 +36,29 @@ function add_status_to_button(object){
     $(object).siblings('.change-tarif').addClass('change-tarif-active')
 }
 
+function start_all(object){
+    if ($(object).hasClass('change-tarif-active')) {
+
+        var type = $(object).attr('data-type')
+
+        $.ajax({
+            type: 'POST',
+            url: "/cabinet/post/start-all", //Путь к обработчику
+            data: 'data='+type,
+            response: 'text',
+            dataType: "html",
+            cache: false,
+            success: function (data) {
+                $(object).removeClass('change-tarif-active')
+            }
+        })
+    }
+}
+
 function update_tarif(object){
 
-    if ($(object).hasClass('change-tarif-active')){
-
         var id = $(object).attr('data-id');
-        var tarif_id = $(object).siblings('select').val();
+        var tarif_id = $(object).val();
 
         $.ajax({
             type: 'POST',
@@ -52,12 +69,10 @@ function update_tarif(object){
             cache: false,
             success: function (data) {
 
-                $(object).removeClass('change-tarif-active')
+                $(object).addClass('green-border')
 
             }
         })
-
-    }
 
 }
 

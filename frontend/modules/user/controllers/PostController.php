@@ -535,37 +535,6 @@ class PostController extends Controller
         }
     }
 
-    public function actionPublication()
-    {
-
-        if (!$post = Posts::find()->where(['id' => Yii::$app->request->post('id')])->one()) throw new NotFoundHttpException();
-
-        if ($post['user_id'] != Yii::$app->user->id) throw new ForbiddenHttpException();
-
-        switch ($post->status) {
-
-            case Posts::POST_ON_PUPLICATION_STATUS:
-
-                $post->status = Posts::POST_DONT_PUBLICATION_STATUS;
-
-                $post->save();
-
-                return Yii::$app->response->content = 'Поставить на публикацию';
-
-            case Posts::POST_DONT_PUBLICATION_STATUS:
-
-                $post->status = Posts::POST_ON_PUPLICATION_STATUS;
-
-                $post->save();
-
-                return Yii::$app->response->content = 'Остановить публикацию';
-
-        }
-
-        return Yii::$app->response->content = 'Ошибка';
-
-    }
-
     public function actionTarif()
     {
         $postId = Yii::$app->request->post('id');

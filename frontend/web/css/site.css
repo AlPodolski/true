@@ -3965,6 +3965,20 @@ form .more-search-btn{
 .table .tarif-wrap{
     display: none;
 }
+.nav-posts{
+    margin-top: 5px;
+    color: #b4b4b4;
+}
+.nav-posts div{
+    margin-right: 15px;
+}
+.green-border{
+    border: 2px solid green;
+}
+.green-border:focus{
+    border: 2px solid green;
+    box-shadow: none;
+}
 @media (max-width: 1199px) {
     .more-search-btn{
         display: none;

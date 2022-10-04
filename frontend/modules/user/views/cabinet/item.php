@@ -162,7 +162,9 @@ use frontend\modules\user\models\Posts;
         <?php endif; ?>
 
         <div class="tarif-wrap w-100" >
-            <select onchange="add_status_to_button(this)" class="form-control" name="tarif" id="tarif-<?php echo $post['id'] ?>">
+            <select onchange="update_tarif(this)"
+                     data-id="<?php echo $post['id'] ?>"
+                    class="form-control" name="tarif" id="tarif-<?php echo $post['id'] ?>">
 
                 <?php foreach ($tarifList as $tarif) : ?>
 
@@ -173,10 +175,6 @@ use frontend\modules\user\models\Posts;
                 <?php endforeach; ?>
 
             </select>
-
-            <div class="change-tarif" onclick="update_tarif(this)" data-id="<?php echo $post['id'] ?>">
-                Изменить тариф
-            </div>
         </div>
 
     </div>
