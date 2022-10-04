@@ -1628,7 +1628,7 @@ a.asc::after {
 }
 .table .name-publication-wrap {
     flex-direction: column;
-    width: 359px;
+    width: 270px;
 }
 .table .name-publication-wrap .anket-info{
     margin-left: 5px;
@@ -3963,7 +3963,7 @@ form .more-search-btn{
     cursor: pointer;
 }
 .table .tarif-wrap{
-    display: none;
+    max-width: 145px;
 }
 .nav-posts{
     margin-top: 5px;
