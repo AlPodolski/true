@@ -26,7 +26,10 @@ class CronController extends Controller
 
     public function actionSort()
     {
-        $posts = Posts::find()->where(['fake' => Posts::POST_FAKE])->all();
+        $posts = Posts::find()
+            ->where(['fake' => Posts::POST_FAKE])
+            ->andWhere(['<>', 'user_id', 240])
+            ->all();
 
         foreach ($posts as $post){
 
