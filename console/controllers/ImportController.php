@@ -51,7 +51,7 @@ class ImportController extends Controller
     public function actionIndex()
     {
 
-        $stream = \fopen(Yii::getAlias('@app/files/import_men_19_09_2022.csv'), 'r');
+        $stream = \fopen(Yii::getAlias('@app/files/import_uzbek_05_10_2022.csv'), 'r');
 
         $csv = Reader::createFromStream($stream);
         $csv->setDelimiter(';');
@@ -68,7 +68,7 @@ class ImportController extends Controller
 
         $this->siteId = 0;
         $this->update = 30;
-        $this->path = '/uploads/a33/';
+        $this->path = '/uploads/a34/';
 
         $posts = array();
 
@@ -87,13 +87,13 @@ class ImportController extends Controller
             $post->price = $record['price'] ?? 6000;
 
             $post->city_id = 1;
-            //$post->user_id = 240;
-            $post->pol_id = 2;
+            $post->user_id = 240;
+            $post->pol_id = 1;
             $post->created_at = \time();
             $post->name = $record['name'];
             $post->updated_at = $this->update;
             $post->phone = preg_replace('/[^0-9]/', '', $record['phone']);
-            $post->about = strip_tags($record['anket-about']);
+            $post->about = strip_tags($record['deskr']);
             $post->check_photo_status = 0;
             $post->status = 1;
             $post->sort = 10000;
@@ -277,7 +277,6 @@ class ImportController extends Controller
                 exit();
 
             }
-
 
         }
 
