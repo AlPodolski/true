@@ -4,6 +4,7 @@ namespace frontend\modules\user\controllers;
 
 use common\models\Tarif;
 use common\models\User;
+use frontend\modules\user\components\helpers\ViewPostCountHelper;
 use frontend\modules\user\helpers\CabinetViewHelper;
 use frontend\modules\user\models\Posts;
 use Yii;
@@ -25,9 +26,14 @@ class CabinetController extends Controller
 
         $user = User::find()->where(['id' => Yii::$app->user->id])->with('avatar', 'telegram')->one();
 
-        $posts = Posts::find()->where(['user_id' => Yii::$app->user->id])->with('avatar', 'message')->all();
+        $posts = Posts::find()
+            ->where(['user_id' => Yii::$app->user->id])
+            ->with('avatar', 'message')
+            ->all();
 
         $viewType = (new CabinetViewHelper())->get();
+
+        $statData = ViewPostCountHelper::count($posts);
 
         $tarifList = Tarif::find()->all();
 
@@ -36,6 +42,7 @@ class CabinetController extends Controller
             'posts' => $posts,
             'viewType' => $viewType,
             'tarifList' => $tarifList,
+            'statData' => $statData,
         ]);
 
     }

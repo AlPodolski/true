@@ -3,6 +3,7 @@
 /* @var $user \common\models\User */
 /* @var $posts \frontend\modules\user\models\Posts[] */
 /* @var $this \yii\web\View */
+
 /* @var $viewType string|null */
 
 use frontend\widgets\PhotoWidget;
@@ -27,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <div class="col-12 d-flex head-view-wrap">
                         <span class="black-text font-weight-bold">
-                            Мои анкеты <?php if ($posts) echo '('.count($posts).')' ?>
+                            Мои анкеты <?php if ($posts) echo '(' . count($posts) . ')' ?>
                         </span>
                         <div class="order-block">
                             <select class="metro-select" name="limit" id="sort-select" onchange="setView()">
@@ -35,7 +36,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <option value="default">Вид</option>
 
                                 <option value="default">По умолчанию</option>
-                                <option <?php if ($viewType == 'table') echo 'selected'?> value="table">Таблица</option>
+                                <option <?php if ($viewType == 'table') echo 'selected' ?> value="table">Таблица
+                                </option>
 
                             </select>
                         </div>
@@ -43,9 +45,44 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
 
                     <div class="nav-posts d-flex col-12">
-                        <div class="change-tarif-active" data-type="start" onclick="start_all(this)">Включить все анкеты</div>
-                        <div class="change-tarif-active" data-type="stop" onclick="start_all(this)">Выключит все анкеты</div>
+                        <div class="change-tarif-active" data-type="start" onclick="start_all(this)">Включить все
+                            анкеты
+                        </div>
+                        <div class="change-tarif-active" data-type="stop" onclick="start_all(this)">Выключит все
+                            анкеты
+                        </div>
                     </div>
+
+                    <?php if ($statData) : ?>
+
+                        <div class="col-12">
+                            <div class="stat-post white-cabinet-block d-flex">
+                                <div class="stat-post-item d-flex">
+                                    <img src="/img/phone-call-svgrepo-com.svg" alt="">
+                                    <div class="info d-flex">
+                                        <div class="stat-top-info">Просмотров телефона</div>
+                                        <div class="stat-bottom-info"><?php echo $statData['phone_view'] ?></div>
+                                    </div>
+                                </div>
+                                <div class="stat-post-item d-flex">
+                                    <img src="/img/1915454.svg" alt="">
+                                    <div class="info d-flex">
+                                        <div class="stat-top-info">Просмотров анкет</div>
+                                        <div class="stat-bottom-info"><?php echo $statData['post_view'] ?></div>
+                                    </div>
+                                </div>
+                                <div class="stat-post-item d-flex">
+                                    <img src="/img/pc-computer-with-monitor_icon-icons.com_56249.svg" alt="">
+                                    <div class="info d-flex">
+                                        <div class="stat-top-info">Показов на сайте</div>
+                                        <div class="stat-bottom-info"><?php echo $statData['post_show'] ?></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    <?php endif; ?>
 
                     <div class="col-12 col-md-4 col-lg-6 cabinet-item">
                         <div class="white-cabinet-block cabinet-nav-block d-flex items-center nav-cabinet-block">
