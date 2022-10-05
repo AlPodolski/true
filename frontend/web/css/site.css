@@ -3985,6 +3985,7 @@ form .more-search-btn{
 .stat-post{
     margin-bottom: 10px;
     margin-top: 20px;
+    overflow: scroll;
 }
 .stat-post-item{
     padding: 18px;
@@ -4163,6 +4164,15 @@ form .more-search-btn{
     }
 }
 @media (max-width: 769px) {
+    .table .name-publication-wrap{
+        width: auto;
+    }
+    .table .cabinet-item .nav-cabinet-block{
+        flex-wrap: wrap;
+        height: auto;
+        justify-content: center;
+        align-items: center;
+    }
     .otzivi-block-desc{
         margin-bottom: 25px;
     }
@@ -4320,6 +4330,7 @@ form .more-search-btn{
 }
 
 @media (max-width: 575px) {
+
     #tell-me-text{
         text-align: center;
     }

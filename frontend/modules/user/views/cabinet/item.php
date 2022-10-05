@@ -9,7 +9,7 @@ use frontend\modules\user\models\Posts;
 
 ?>
 
-<div class="col-6 col-md-4 col-lg-6 col-sm-6 cabinet-item">
+<div class="col-6 col-md-4 col-lg-6 col-sm-12 cabinet-item">
 
     <?php
 
