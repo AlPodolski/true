@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="container margin-top-20">
 
         <?php echo $this->renderFile(Yii::getAlias('@user-view/cabinet/info.php'), compact('user')) ?>
-        <p>Несколько дней статистика будет работать с ошибками</p>
+        <p>Несколько дней статистика будет работать с ошибками, так же могут быть ошибки в работе сайта. Мы работаем, проблема скоро будет решена </p>
         <div class="row">
 
             <?php echo \frontend\modules\user\widgets\SidebarWidget::widget(['user' => $user]) ?>
