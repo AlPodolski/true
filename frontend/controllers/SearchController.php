@@ -20,6 +20,23 @@ use yii\helpers\ArrayHelper;
 class SearchController extends Controller
 {
 
+   public function behaviors()
+    {
+        return [
+            [
+                'class' => 'yii\filters\PageCache',
+                'only' => ['name'],
+                'duration' => 3600 * 4,
+                'variations' => [
+                    Yii::$app->request->url,
+                    Yii::$app->request->get('SearchNameForm')['name'],
+                    Yii::$app->request->hostInfo,
+                ],
+            ],
+        ];
+
+    }
+
     public $layout = '@app/views/layouts/main';
 
     public function actionName($city)
