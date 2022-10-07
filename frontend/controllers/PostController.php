@@ -27,6 +27,26 @@ use yii\web\NotFoundHttpException;
 
 class PostController extends Controller
 {
+
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => 'yii\filters\PageCache',
+                'only' => ['index'],
+                'duration' => 3600,
+                'variations' => [
+                    Yii::$app->request->url,
+                    Yii::$app->request->hostInfo,
+                ],
+            ],
+        ];
+
+    }
+
     /**
      * @inheritdoc
      */
@@ -38,7 +58,7 @@ class PostController extends Controller
         return parent::beforeAction($action);
     }
 
-    public function actionIndex($protocol,$city, $id)
+    public function actionIndex($protocol, $city, $id)
     {
 
         $cityInfo = City::getCity($city);
@@ -50,7 +70,7 @@ class PostController extends Controller
 
         $post = GetPostHelper::getForSingle($id, $cityInfo['id']);
 
-        if ($post){
+        if ($post) {
 
             $productShema = (new SingleProductShema($post))->make();
 
@@ -97,7 +117,7 @@ class PostController extends Controller
 
         $this->enableCsrfValidation = false;
 
-        if (Yii::$app->request->isPost){
+        if (Yii::$app->request->isPost) {
 
             $id = \explode(',', Yii::$app->request->post('id'));
             $price = Yii::$app->request->post('price');
@@ -110,7 +130,7 @@ class PostController extends Controller
 
             $post = $postRepository->getPostForMoreSingle($id, $price, $pol, $ref);
 
-            if ($post){
+            if ($post) {
 
                 $serviceListReview = false;
 
@@ -122,8 +142,8 @@ class PostController extends Controller
                 $moreText = $post['name'];
 
                 return $this->renderFile(Yii::getAlias('@app/views/post/item.php'), [
-                    'post'           => $post,
-                    'cityInfo'           => $cityInfo,
+                    'post' => $post,
+                    'cityInfo' => $cityInfo,
                     'serviceListReview' => $serviceListReview,
                     'price' => $price,
                     'moreText' => $moreText,
@@ -131,13 +151,13 @@ class PostController extends Controller
 
             }
 
-        }else return $this->redirect('/');
+        } else return $this->redirect('/');
 
     }
 
     public function actionGet($city)
     {
-        if (Yii::$app->request->isPost){
+        if (Yii::$app->request->isPost) {
 
             $params = Yii::$app->request->post();
 
@@ -148,7 +168,7 @@ class PostController extends Controller
                     $data = Files::find()->where(['related_id' => $params['id'],
                         'type' => Files::SELPHY_TYPE,
                         'related_class' => Posts::class
-                        ])
+                    ])
                         ->select('file')
                         ->asArray()->all();
 
@@ -162,11 +182,11 @@ class PostController extends Controller
 
                 case "message":
 
-                    if (!Yii::$app->user->isGuest){
+                    if (!Yii::$app->user->isGuest) {
 
                         $userToId = Yii::$app->request->post('id');
 
-                        if ($userToId){
+                        if ($userToId) {
 
                             $userTo = User::find()
                                 ->where(['id' => $userToId])
@@ -174,7 +194,7 @@ class PostController extends Controller
                                 ->asArray()
                                 ->one();
 
-                            if ($userTo['open_message'] == User::MESSAGE_ALLOWED){
+                            if ($userTo['open_message'] == User::MESSAGE_ALLOWED) {
 
                                 $userDialogsId = ArrayHelper::getColumn(UserDialog::find()
                                     ->where(['user_id' => Yii::$app->user->id])->asArray()->all(), 'dialog_id');
@@ -194,7 +214,7 @@ class PostController extends Controller
                                     'recepient' => Yii::$app->request->post('id'),
                                 ]);
 
-                            }else{
+                            } else {
 
                                 return $this->renderFile(Yii::getAlias('@frontend/views/layouts/message.php'),
                                     [
@@ -205,8 +225,7 @@ class PostController extends Controller
                             }
 
 
-
-                        }else{
+                        } else {
 
                             return $this->renderFile(Yii::getAlias('@frontend/views/layouts/message.php'),
                                 [
@@ -216,7 +235,7 @@ class PostController extends Controller
 
                         }
 
-                    }else{
+                    } else {
 
                         return $this->renderFile(Yii::getAlias('@frontend/views/layouts/authorisation.php'));
 
@@ -224,11 +243,11 @@ class PostController extends Controller
 
                 case "comment-form":
 
-                    if(Yii::$app->user->isGuest)
+                    if (Yii::$app->user->isGuest)
                         return $this->renderFile(Yii::getAlias('@frontend/views/layouts/authorisation.php'));;
 
                     $post = Posts::find()->where(['id' => $params['id']])
-                        ->with( 'service')
+                        ->with('service')
                         ->asArray()
                         ->one();
 
@@ -262,7 +281,7 @@ class PostController extends Controller
 
             }
 
-            return $this->renderFile(Yii::getAlias('@app/views/post/'.$params['target'].'.php'), [
+            return $this->renderFile(Yii::getAlias('@app/views/post/' . $params['target'] . '.php'), [
                 'data' => $data,
             ]);
 
