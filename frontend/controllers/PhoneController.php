@@ -11,6 +11,22 @@ use Yii;
 
 class PhoneController extends Controller
 {
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => 'yii\filters\PageCache',
+                'only' => ['index'],
+                'duration' => 3600 * 25,
+                'variations' => [
+                    Yii::$app->request->post('id'),
+                ],
+            ],
+        ];
+
+    }
+
     public function actionIndex($city)
     {
 
