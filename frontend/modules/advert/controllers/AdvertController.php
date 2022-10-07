@@ -15,6 +15,23 @@ use yii\web\NotFoundHttpException;
 
 class AdvertController extends Controller
 {
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => 'yii\filters\PageCache',
+                'duration' => 3600 ,
+                'variations' => [
+                    Yii::$app->request->url,
+                    Yii::$app->request->post('page'),
+                    Yii::$app->request->hostInfo,
+                ],
+            ],
+        ];
+
+    }
+
     public function actionAd($city)
     {
 
@@ -39,6 +56,7 @@ class AdvertController extends Controller
             ->orderBy('id DESC')
             ->where(['type' => Advert::PUBLIC_TYPE, 'status' => Advert::STATUS_CHECK])
             ->with('userRelations')
+            ->cache(3600 * 24)
             ->all();
 
         $uri = Yii::$app->request->url;
@@ -62,6 +80,7 @@ class AdvertController extends Controller
             ->limit(Yii::$app->params['advert_limit'])
             ->orderBy('id DESC')
             ->where(['type' => Advert::PRIVATE_CABINET_TYPE, 'status' => Advert::STATUS_CHECK])
+            ->cache(3600 * 24)
             ->with('userRelations');
 
         $category = false;
@@ -116,6 +135,7 @@ class AdvertController extends Controller
 
         $advert = Advert::find()->where(['id' => $id])
             ->with('userRelations')
+            ->cache(3600 * 24)
             ->with('comments', 'category')
             ->asArray()->one();
 
@@ -131,6 +151,7 @@ class AdvertController extends Controller
         if ($city != 'moskva') throw new NotFoundHttpException();
 
         $advertList = Advert::find()
+            ->cache(3600 * 24)
             ->limit(Yii::$app->params['advert_limit'])
             ->orderBy('id DESC')
             ->where(['type' => Advert::PUBLIC_TYPE, 'status' => Advert::STATUS_CHECK])
