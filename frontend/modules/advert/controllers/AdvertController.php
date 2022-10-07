@@ -20,6 +20,8 @@ class AdvertController extends Controller
 
         if (Yii::$app->user->isGuest) return $this->goHome();
 
+        return false;
+
         if (AdvertHelper::add( Yii::$app->request->post(), Yii::$app->user->identity )){
 
             return $this->redirect('/advert');
