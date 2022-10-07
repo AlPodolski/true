@@ -51,7 +51,7 @@ class SignupForm extends Model
         }
 
         $emailBlockList = ['mailto.plus', 'fexbox', 'inpwa.com', 'mailbox.in.ua',
-            'rover.info', 'fexpost.com'];
+            'rover.info', 'fexpost.com', 'canyona', 'ggmail', 'ishyp', 'deitada'];
 
         foreach ($emailBlockList as $item){
 
