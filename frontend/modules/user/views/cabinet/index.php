@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="container margin-top-20">
 
         <?php echo $this->renderFile(Yii::getAlias('@user-view/cabinet/info.php'), compact('user')) ?>
-
+        <p>Несколько дней статистика будет работать с ошибками</p>
         <div class="row">
 
             <?php echo \frontend\modules\user\widgets\SidebarWidget::widget(['user' => $user]) ?>
@@ -30,6 +30,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         <span class="black-text font-weight-bold">
                             Мои анкеты <?php if ($posts) echo '(' . count($posts) . ')' ?>
                         </span>
+
+
+
                         <div class="order-block">
                             <select class="metro-select" name="limit" id="sort-select" onchange="setView()">
 
