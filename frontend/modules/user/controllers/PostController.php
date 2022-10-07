@@ -71,6 +71,11 @@ class PostController extends Controller
 
         $city = City::getCity($city);
 
+        if (Yii::$app->user->identity->status != 10){
+            Yii::$app->session->setFlash('warning', 'Нужно подтвердить почту');
+            return $this->redirect('/cabinet/faq');
+        }
+
         if ($post->load(Yii::$app->request->post())
             and $userNational->load(Yii::$app->request->post())
             and $userMetro->load(Yii::$app->request->post())
@@ -82,6 +87,8 @@ class PostController extends Controller
             and $userTime->load(Yii::$app->request->post())
             and $userService->load(Yii::$app->request->post())
         ) {
+
+
 
             $post->user_id = Yii::$app->user->id;
 
