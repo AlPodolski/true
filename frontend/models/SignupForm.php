@@ -49,6 +49,14 @@ class SignupForm extends Model
         if (!$this->validate()) {
             return false;
         }
+
+        $emailBlockList = ['mailto.plus', 'fexbox.org', 'inpwa.com'];
+
+        foreach ($emailBlockList as $item){
+
+            if (strstr($this->email, $item)) return false;
+
+        }
         
         $user = new User();
         $user->username = $this->username;
