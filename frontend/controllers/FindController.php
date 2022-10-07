@@ -19,6 +19,26 @@ use frontend\controllers\BeforeController as Controller;
 class FindController extends Controller
 {
 
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => 'yii\filters\PageCache',
+                'only' => ['index'],
+                'duration' => 3600 * 8,
+                'variations' => [
+                    Yii::$app->request->url,
+                    Yii::$app->request->get(),
+                    Yii::$app->request->hostInfo,
+                ],
+            ],
+        ];
+
+    }
+
     public function actionIndex($city)
     {
 
@@ -221,25 +241,24 @@ class FindController extends Controller
         }
 
         $posts = Posts::find()->limit(Yii::$app->params['post_limit'])->andWhere(['city_id' => $city['id']]);
-            if ($ids) $posts = $posts->andWhere(['in', 'id', $ids])->orderBy(Posts::getOrder());
+        if ($ids) $posts = $posts->andWhere(['in', 'id', $ids])->orderBy(Posts::getOrder());
 
-            $posts = $posts->andWhere(['>=' , 'age', $params['age-from']])
-            ->andWhere(['<=' , 'age', $params['age-to']])
-            ->andWhere(['>=' , 'rost', $params['rost-from']])
-            ->andWhere(['<=' , 'rost', $params['rost-to']])
-            ->andWhere(['>=' , 'ves', $params['ves-from']])
-            ->andWhere(['<=' , 'ves', $params['ves-to']])
-            ->andWhere(['>=' , 'breast', $params['grud-from']])
-            ->andWhere(['<=' , 'breast', $params['grud-to']])
-            ->andWhere(['>=' , 'price', $params['price-1-from']])
-            ->andWhere(['<=' , 'price', $params['price-1-to']])
-        ;
+        $posts = $posts->andWhere(['>=', 'age', $params['age-from']])
+            ->andWhere(['<=', 'age', $params['age-to']])
+            ->andWhere(['>=', 'rost', $params['rost-from']])
+            ->andWhere(['<=', 'rost', $params['rost-to']])
+            ->andWhere(['>=', 'ves', $params['ves-from']])
+            ->andWhere(['<=', 'ves', $params['ves-to']])
+            ->andWhere(['>=', 'breast', $params['grud-from']])
+            ->andWhere(['<=', 'breast', $params['grud-to']])
+            ->andWhere(['>=', 'price', $params['price-1-from']])
+            ->andWhere(['<=', 'price', $params['price-1-to']]);
 
         if ($params['check-photo']) $posts = $posts->andWhere(['check_photo_status' => 1]);
-        if ($params['video']) $posts = $posts->andWhere(['<>' , 'video' , '']);
+        if ($params['video']) $posts = $posts->andWhere(['<>', 'video', '']);
         if ($params['new']) $posts = $posts->orderBy('id DESC');
 
-        if (Yii::$app->request->isPost){
+        if (Yii::$app->request->isPost) {
 
             $posts->offset(Yii::$app->params['post_limit'] * Yii::$app->request->post('page'));
 
@@ -249,14 +268,14 @@ class FindController extends Controller
 
                 $page = Yii::$app->request->post('page') + 1;
 
-                echo '<div data-url="/'.Yii::$app->request->url.'/page-'.$page.'" class="col-12"></div>';
+                echo '<div data-url="/' . Yii::$app->request->url . '/page-' . $page . '" class="col-12"></div>';
 
             }
 
             if (Yii::$app->user->isGuest) $class = 'col-6 col-sm-6 col-md-4 col-lg-3';
             else $class = 'col-6 col-sm-6 col-md-4 col-lg-4';
 
-            foreach ($posts as $post){
+            foreach ($posts as $post) {
 
                 echo $this->renderFile('@app/views/layouts/article.php', [
                     'post' => $post,
@@ -270,14 +289,14 @@ class FindController extends Controller
         }
 
         $posts = $posts
-            ->with('avatar', 'metro', 'selphiCount', 'partnerId', 'city','gallery')
+            ->with('avatar', 'metro', 'selphiCount', 'partnerId', 'city', 'gallery')
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->asArray()
             ->all();
 
-        $title  = 'Поиск';
-        $des    = 'Поиск';
-        $h1     = 'Поиск по параметрам';
+        $title = 'Поиск';
+        $des = 'Поиск';
+        $h1 = 'Поиск по параметрам';
 
         return $this->render('index', [
             'posts' => $posts,
