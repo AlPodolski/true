@@ -18,8 +18,7 @@ class FilterController extends Controller
 
     /**
      * {@inheritdoc}
-     */
-/*    public function behaviors()
+     */public function behaviors()
     {
         return [
             [
@@ -34,7 +33,7 @@ class FilterController extends Controller
             ],
         ];
 
-    }*/
+    }
 
     public function actionIndex($city, $param, $page = false, $pager = false)
     {
