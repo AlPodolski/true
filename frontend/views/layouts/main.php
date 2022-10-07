@@ -43,7 +43,6 @@ AppAsset::register($this);
         <meta name="robots" content="noindex, follow">
     <?php endif; ?>
 
-    <link rel="manifest" href="/img/favicons/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/img/favicons/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
