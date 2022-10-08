@@ -52,7 +52,7 @@ if (isset($microdataForMainPage)) echo $microdataForMainPage;
 
     <?php
 
-    echo $this->renderFile(Yii::getAlias('@app/views/includes/text-on-main.php'), compact('cityInfo'));
+    //echo $this->renderFile(Yii::getAlias('@app/views/includes/text-on-main.php'), compact('cityInfo'));
 
     ?>
     <h1> <?php echo $h1 ?> </h1>

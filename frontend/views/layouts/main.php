@@ -378,7 +378,7 @@ AppAsset::register($this);
         <?= Alert::widget() ?>
 
         <?php
-            echo (new frontend\widgets\ShowInfoWidget())->run();
+            //echo (new frontend\widgets\ShowInfoWidget())->run();
         ?>
 
         <?php

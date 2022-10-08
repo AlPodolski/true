@@ -63,7 +63,7 @@ class UserController extends Controller
 
         if ( !$_POST['g-recaptcha-response'] ) {
 
-            Yii::$app->session->setFlash('warning' , 'нужно заполнить капчу');
+            //Yii::$app->session->setFlash('warning' , 'нужно заполнить капчу');
 
             Yii::$app->response->redirect(['/'], 301, false);
 
