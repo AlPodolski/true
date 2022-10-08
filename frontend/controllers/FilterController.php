@@ -16,6 +16,25 @@ use yii\web\NotFoundHttpException;
 class FilterController extends Controller
 {
 
+    /**
+     * {@inheritdoc}
+     */public function behaviors()
+    {
+        return [
+            [
+                'class' => 'yii\filters\PageCache',
+                'only' => ['index'],
+                'duration' => 3600 ,
+                'variations' => [
+                    Yii::$app->request->url,
+                    Yii::$app->request->post('page'),
+                    Yii::$app->request->hostInfo,
+                ],
+            ],
+        ];
+
+    }
+
     public function actionIndex($city, $param, $page = false, $pager = false)
     {
 
