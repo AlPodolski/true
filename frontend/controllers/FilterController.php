@@ -16,6 +16,15 @@ use yii\web\NotFoundHttpException;
 class FilterController extends Controller
 {
 
+    public function beforeAction($action)
+    {
+        if ($action->id == 'index') {
+            $this->enableCsrfValidation = false;
+        }
+
+        return parent::beforeAction($action);
+    }
+
     /**
      * {@inheritdoc}
      */public function behaviors()
