@@ -150,6 +150,8 @@ return [
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/post/publication' => 'user/publication/index',
                 '/cabinet/post/start-all' => 'user/publication/start-all',
 
+                '/auth/check' => 'auth/index',
+
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/claim/get-modal' => 'claim/get-modal',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/claim/add' => 'claim/add',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/claim/anket/add' => 'claim/claim-anket',

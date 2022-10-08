@@ -80,11 +80,9 @@ AppAsset::register($this);
 
                     <li class="top-menu-item" onclick="get_claim_modal()"><a>Обратная связь</a></li>
 
-                    <?php if (Yii::$app->user->isGuest) : ?>
-                        <li onclick="get_user_menu()" class="top-menu-item"><a class="small-red-text" >Войти</a></li>
-                    <?php else : ?>
-                        <li class="top-menu-item"><a class="small-red-text" href="/cabinet">Кабинет</a></li>
-                    <?php endif; ?>
+                    <li onclick="get_user_menu()" class="top-menu-item">
+                        <a class="small-red-text">Кабинет</a>
+                    </li>
 
                 </ul>
 

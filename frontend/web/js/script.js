@@ -947,11 +947,24 @@ $('.register-icon-close').click(function () {
 
 function get_user_menu() {
 
-    $('.login').animate({
+    $.ajax({
+        type: 'POST',
+        url: "/auth/check",
+        response: 'text',
+        dataType: "html",
+        cache: false,
+        success: function (data) {
 
-        left: '0px'
+            if (data == 'guest'){
 
-    }, 250);
+                $('.login').animate({
+                    left: '0px'
+                }, 250);
+
+            }
+
+        }
+    })
 
 }
 
