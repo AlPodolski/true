@@ -63,7 +63,6 @@ class PostsRepository
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->andWhere(['pol_id' => Pol::WOMAN_POL])
             ->orderBy($this->order)
-            ->cache(300)
             ->limit(Yii::$app->params['post_limit']);
 
         $posts->offset(Yii::$app->params['post_limit'] * $page);
