@@ -27,13 +27,14 @@ class FilterController extends Controller
 
     /**
      * {@inheritdoc}
-     */public function behaviors()
+     */
+    public function behaviors()
     {
         return [
             [
                 'class' => 'yii\filters\PageCache',
                 'only' => ['index'],
-                'duration' => 3600 ,
+                'duration' => 30,
                 'variations' => [
                     Yii::$app->request->url,
                     Yii::$app->request->post('page'),
@@ -47,13 +48,22 @@ class FilterController extends Controller
     public function actionIndex($city, $param, $page = false, $pager = false)
     {
 
+        if (Yii::$app->request->isPost and !Yii::$app->request->post('page')) exit();
+
         if ($pager) {
-
-            return $this->redirect('/'.$param.'?page='.$pager, 301);
-
+            return $this->redirect('/' . $param . '?page=' . $pager, 301);
         }
 
-        $query_params = QueryParamsHelper::getParams($param, $city);
+        $query_params = Yii::$app->cache->get('filter_'.$city.'_'.$param);
+
+        if ($query_params === false) {
+
+            $query_params = QueryParamsHelper::getParams($param, $city);
+
+            // Сохраняем значение $data в кэше. Данные можно получить в следующий раз.
+            Yii::$app->cache->set('filter_'.$city.'_'.$param, $query_params, 300);
+
+        }
 
         $posts = '';
 
@@ -64,11 +74,11 @@ class FilterController extends Controller
             exit();
         };
 
-        if (!empty($query_params)){
+        if (!empty($query_params)) {
 
             $posts = Posts::find();
 
-            foreach ($query_params as $item){
+            foreach ($query_params as $item) {
 
                 $posts->andWhere($item);
 
@@ -79,15 +89,16 @@ class FilterController extends Controller
                 ->andWhere(['city_id' => $cityInfo['id']])
                 ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
                 ->orderBy(Posts::getOrder())
+                ->cache(300)
                 ->asArray();
 
             if (\strstr($param, 'novie')) $posts = $posts->orderBy('id DESC');
 
             if ($page) $posts = $posts->offset(Yii::$app->params['post_limit'] * 1);
 
-            if (strpos($param, 'page')) $param = strstr($param, '/?page=' , true);
+            if (strpos($param, 'page')) $param = strstr($param, '/?page=', true);
 
-            if (Yii::$app->request->isPost){
+            if (Yii::$app->request->isPost) {
 
                 $posts->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
                     ->offset(Yii::$app->params['post_limit'] * Yii::$app->request->post('page'));
@@ -98,14 +109,14 @@ class FilterController extends Controller
 
                     $page = Yii::$app->request->post('page') + 1;
 
-                    echo '<div data-url="/'.$param.'?page='.$page.'" class="col-12"></div>';
+                    echo '<div data-url="/' . $param . '?page=' . $page . '" class="col-12"></div>';
 
                 }
 
                 if (Yii::$app->user->isGuest) $class = 'col-6 col-sm-6 col-md-4 col-lg-3';
                 else $class = 'col-6 col-sm-6 col-md-4 col-lg-4';
 
-                foreach ($posts as $post){
+                foreach ($posts as $post) {
 
                     echo $this->renderFile('@app/views/layouts/article.php', [
                         'post' => $post,
@@ -140,8 +151,8 @@ class FilterController extends Controller
             if (\strpos($uri, '?')) $uri = \strstr($uri, '?', true);
 
 
-            $title =  MetaBuilder::Build($uri, $city, 'Title'). ' На сайте '.Yii::$app->request->serverName;
-            $des = MetaBuilder::Build($uri, $city, 'des'). ' На сайте '.Yii::$app->request->serverName;
+            $title = MetaBuilder::Build($uri, $city, 'Title') . ' На сайте ' . Yii::$app->request->serverName;
+            $des = MetaBuilder::Build($uri, $city, 'des') . ' На сайте ' . Yii::$app->request->serverName;
             $h1 = MetaBuilder::Build($uri, $city, 'h1');
 
             $topPostList = Posts::getTopList($cityInfo['id']);
