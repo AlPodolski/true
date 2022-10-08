@@ -146,4 +146,13 @@ echo \frontend\widgets\OpenGraphWidget::widget([
         'pagination' => $pages,
     ])); ?>
 
+    <?php
+
+    $this->registerJs(
+        "getContentForFirstPage();",
+        $this::POS_READY
+    );
+
+    ?>
+
 </div>
