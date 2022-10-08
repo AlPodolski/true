@@ -89,7 +89,7 @@ class SiteController extends Controller
             [
                 'class' => 'yii\filters\PageCache',
                 'only' => ['map', 'index'],
-                'duration' => 30 ,
+                'duration' => 60 ,
                 'variations' => [
                     Yii::$app->request->url,
                     Yii::$app->request->post('page'),
