@@ -778,6 +778,38 @@ function delete_img(object){
 
 }
 
+function getContentForFirstPage(){
+
+    var target = $('.pager');
+    var accept = $(target).attr('data-accept');
+    var url = $(target).attr('data-adress');
+    var request = $(target).attr('data-reqest');
+    var page = 0;
+
+    $.ajax({
+        type: 'POST',
+        url: '' + url,
+        data: 'page=' + page + '&req=' + request,
+        async: false,
+        dataType: "html",
+        headers: {
+            "Accept": accept,
+        },
+        cache: false,
+        success: function (data) {
+
+            if (data !== '') {
+
+                $('.first-content').html(data);
+                $('.carousel').carousel();
+
+            }
+
+        }
+    })
+
+}
+
 $(window).scroll(function () {
 
     if (exist_map_block && !load_map_status && !start_load_map_status) {

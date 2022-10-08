@@ -58,8 +58,8 @@ if (isset($microdataForMainPage)) echo $microdataForMainPage;
     <h1> <?php echo $h1 ?> </h1>
     <?php echo \frontend\widgets\SortingWidget::widget() ?>
     <?php echo \frontend\widgets\LinkWidget::widget(['url' => Yii::$app->request->url]) ?>
-    <div class="row">
-        <div data-url="/" class="col-12"></div>
+    <div class="row"><div data-url="/" class="col-12"></div></div>
+    <div class="row first-content">
 
         <?php
 
@@ -161,5 +161,14 @@ if (isset($microdataForMainPage)) echo $microdataForMainPage;
 
 
 </div>
+<?php
+
+$this->registerJs(
+    "getContentForFirstPage();",
+    $this::POS_READY
+);
+
+?>
+
 
 <?php echo \frontend\widgets\HelperWidget::widget()?>
