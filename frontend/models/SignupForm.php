@@ -46,12 +46,16 @@ class SignupForm extends Model
      */
     public function signup()
     {
+
+        return false;
+
         if (!$this->validate()) {
             return false;
         }
 
         $emailBlockList = ['mailto.plus', 'fexbox', 'inpwa.com', 'mailbox.in.ua',
-            'rover.info', 'fexpost.com', 'canyona', 'ggmail', 'ishyp', 'deitada', 'lenta.ru'];
+            'rover.info', 'fexpost.com', 'canyona', 'ggmail', 'ishyp', 'deitada',
+            'lenta.ru', 'aol.com'];
 
         foreach ($emailBlockList as $item){
 
