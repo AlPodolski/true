@@ -42,6 +42,9 @@ class ClaimController extends Controller
 
     public function actionClaimAnket()
     {
+
+        return false;
+
         $claimForm = new AnketClaimForm();
 
         if ($claimForm->load(Yii::$app->request->post()) and $claimForm->validate() and $claimForm->save()){
