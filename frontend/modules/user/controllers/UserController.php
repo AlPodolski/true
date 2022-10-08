@@ -60,6 +60,34 @@ class UserController extends Controller
      */
     public function actionSignup($city)
     {
+
+        if ( !$_POST['g-recaptcha-response'] ) {
+
+            Yii::$app->session->setFlash('warning' , 'нужно заполнить капчу');
+
+            Yii::$app->response->redirect(['/'], 301, false);
+
+            return true;
+        }
+
+
+        $url = 'https://www.google.com/recaptcha/api/siteverify';
+        $key = Yii::$app->params['recaptcha-key'];
+        $query = $url.'?secret='.$key.'&response='.$_POST['g-recaptcha-response'].'&remoteip='.$_SERVER['REMOTE_ADDR'];
+
+        $data = json_decode(file_get_contents($query));
+
+        if ( $data->success == false) {
+
+            Yii::$app->session->setFlash('warning' , 'капча введена неверно');
+
+            Yii::$app->response->redirect(['/'], 301, false);
+
+            return true;
+
+
+        }
+
         $model = new SignupForm();
 
         $cityInfo = City::getCity($city);

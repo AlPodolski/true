@@ -31,6 +31,9 @@ class RegisterWidget extends Widget
 
         <?= $form->field($model, 'password')->passwordInput(['class' => 'form-input pass-input' , 'placeholder' => 'Пароль'])->label(false) ?>
 
+        <script defer src='https://www.google.com/recaptcha/api.js'></script>
+        <div class="g-recaptcha" data-sitekey="6Lcat2QiAAAAAKtCj3QUBAcxs5iJhDA28q1CMgol"></div>
+
         <div class="login-register-btns">
             <?= Html::submitButton('Регистрация', ['class' => 'in-btn', 'name' => 'signup-button']) ?>
         </div>
