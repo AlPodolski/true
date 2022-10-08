@@ -48,7 +48,7 @@ class FilterController extends Controller
     public function actionIndex($city, $param, $page = false, $pager = false)
     {
 
-        if (Yii::$app->request->isPost and !Yii::$app->request->post('page')) exit();
+        if (Yii::$app->request->isPost and !Yii::$app->request->post('req')) exit();
 
         if ($pager) {
             return $this->redirect('/' . $param . '?page=' . $pager, 301);
