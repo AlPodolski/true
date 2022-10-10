@@ -22,6 +22,9 @@ $form = ActiveForm::begin([
 <?= $form->field($data['call'], 'text')->textInput(['placeholder' => 'Введите свой комментарий'])
     ->label('Ваш комментарий') ?>
 
+    <script defer src='https://www.google.com/recaptcha/api.js'></script>
+    <div class="g-recaptcha" data-sitekey="6Lc6v2UiAAAAABk1eJQmDiW8N3FK8mDDxTSTr7bU"></div>
+
     <div class="form-group">
         <?= Html::submitButton('Отправить', ['class' => 'orange-btn d-block m-auto']) ?>
     </div>

@@ -34,6 +34,8 @@ class CallController extends Controller
     {
         $requestCall = new GetCallForm();
 
+        return true;
+
         if ($requestCall->load(Yii::$app->request->post()) and $requestCall->validate()) {
 
             $post = Posts::find()->where(['id' => $requestCall->post_id])->one();
