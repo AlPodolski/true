@@ -44,7 +44,8 @@ class BeforeController extends Controller
 
                     if ($name == 'city'){
 
-                        RedirectHelper::redirect($params[$name]);
+                        if (Yii::$app->request->isGet) RedirectHelper::redirect($params[$name]);
+
                         Yii::$app->requestedParams['actual_city'] = $params[$name];
                         $params[$name] =  preg_replace('/[0-9]+/', '', $params[$name]);
                         Yii::$app->requestedParams['city'] = $params[$name];
