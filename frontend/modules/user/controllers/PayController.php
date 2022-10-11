@@ -3,6 +3,7 @@
 
 namespace frontend\modules\user\controllers;
 use backend\models\History as HistorySearch;
+use frontend\components\helpers\CaptchaHelper;
 use frontend\modules\user\models\forms\ObmenkaPayForm;
 use frontend\modules\user\models\forms\PayForm;
 use frontend\modules\user\models\Posts;
@@ -24,6 +25,13 @@ class PayController extends Controller
     {
 
         $model = new ObmenkaPayForm();
+
+        if (!CaptchaHelper::check()){
+
+            Yii::$app->session->setFlash('warning' , 'Капча введена неверно');
+            return Yii::$app->response->redirect(['/cabinet/pay'], 301, false);
+
+        }
 
         if ($model->load(Yii::$app->request->post())){
 
