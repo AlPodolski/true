@@ -4,12 +4,22 @@
 namespace frontend\controllers;
 
 use common\models\Claim;
+use frontend\components\helpers\CaptchaHelper;
 use frontend\models\forms\AnketClaimForm;
 use Yii;
 use frontend\controllers\BeforeController as Controller;
 
 class ClaimController extends Controller
 {
+    public function beforeAction($action)
+    {
+        if ($action->id == 'get-modal') {
+            $this->enableCsrfValidation = false;
+        }
+
+        return parent::beforeAction($action);
+    }
+
     public function actionGetModal()
     {
 
@@ -22,6 +32,13 @@ class ClaimController extends Controller
 
     public function actionAdd()
     {
+
+        if (!CaptchaHelper::check()){
+
+            Yii::$app->session->setFlash('warning' , 'Капча введена неверно');
+            return Yii::$app->response->redirect(['/'], 301, false);
+
+        }
 
         $claimForm = new Claim();
 
