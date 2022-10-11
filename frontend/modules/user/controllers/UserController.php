@@ -80,11 +80,8 @@ class UserController extends Controller
         if ( $data->success == false) {
 
             Yii::$app->session->setFlash('warning' , 'капча введена неверно');
-
             Yii::$app->response->redirect(['/'], 301, false);
-
             return true;
-
 
         }
 

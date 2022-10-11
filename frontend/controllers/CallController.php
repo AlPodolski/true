@@ -3,6 +3,7 @@
 
 namespace frontend\controllers;
 
+use frontend\components\helpers\CaptchaHelper;
 use frontend\models\forms\GetCallForm;
 use frontend\models\forms\PhoneReviewForm;
 use frontend\modules\user\models\Posts;
@@ -32,9 +33,15 @@ class CallController extends Controller
 
     public function actionAdd()
     {
-        $requestCall = new GetCallForm();
 
-        return true;
+        if (!CaptchaHelper::check()){
+
+            Yii::$app->session->setFlash('warning' , 'Капча введена неверно');
+            return Yii::$app->response->redirect(['/'], 301, false);
+
+        }
+
+        $requestCall = new GetCallForm();
 
         if ($requestCall->load(Yii::$app->request->post()) and $requestCall->validate()) {
 
