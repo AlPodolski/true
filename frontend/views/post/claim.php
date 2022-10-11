@@ -18,6 +18,15 @@ $form = ActiveForm::begin([
 <?= $form->field($data['claim'], 'email')->textInput()->label('Ваша почта') ?>
 <?= $form->field($data['claim'], 'text')->textarea()->label('Комментарий') ?>
 
+<script defer src='https://www.google.com/recaptcha/api.js?onload=onloadCallbackClaimPost'></script>
+<div id="request_claim_post" class="g-recaptcha" data-sitekey="6Lc6v2UiAAAAABk1eJQmDiW8N3FK8mDDxTSTr7bU"></div>
+<script type="text/javascript">
+    var onloadCallbackClaimPost = function() {
+        grecaptcha.render('request_claim_post', {
+            'sitekey' : '6Lc6v2UiAAAAABk1eJQmDiW8N3FK8mDDxTSTr7bU'
+        });
+    };
+</script>
 <div class="form-group">
     <?= Html::submitButton('Отправить', ['class' => 'orange-btn d-block m-auto']) ?>
 </div>

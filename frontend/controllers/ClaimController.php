@@ -60,7 +60,12 @@ class ClaimController extends Controller
     public function actionClaimAnket()
     {
 
-        return false;
+        if (!CaptchaHelper::check()){
+
+            Yii::$app->session->setFlash('warning' , 'Капча введена неверно');
+            return Yii::$app->response->redirect(['/post/'.$claimForm->post_id], 301, false);
+
+        }
 
         $claimForm = new AnketClaimForm();
 
