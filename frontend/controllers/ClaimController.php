@@ -63,7 +63,7 @@ class ClaimController extends Controller
         if (!CaptchaHelper::check()){
 
             Yii::$app->session->setFlash('warning' , 'Капча введена неверно');
-            return Yii::$app->response->redirect(['/post/'.$claimForm->post_id], 301, false);
+            return Yii::$app->response->redirect(['/post/'.Yii::$app->request->post('AnketClaimForm')['post_id']], 301, false);
 
         }
 
