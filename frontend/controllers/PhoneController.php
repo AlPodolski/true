@@ -12,21 +12,6 @@ use Yii;
 class PhoneController extends Controller
 {
 
-    public function behaviors()
-    {
-        return [
-            [
-                'class' => 'yii\filters\PageCache',
-                'only' => ['index'],
-                'duration' => 3600 * 25,
-                'variations' => [
-                    Yii::$app->request->post('id'),
-                ],
-            ],
-        ];
-
-    }
-
     public function actionIndex($city)
     {
 
@@ -36,7 +21,9 @@ class PhoneController extends Controller
         $rayon = Yii::$app->request->post('rayon');
         $age = Yii::$app->request->post('age');
 
-        if ($post = Posts::findOne($postId)){
+        $post = Posts::find()->where(['id' => $postId])->cache(3600 * 24)->one();
+
+        if ($post){
 
             ViewCountHelper::addView($post->id , Yii::$app->params['redis_view_phone_count_key']);
 
