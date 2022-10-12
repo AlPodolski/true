@@ -227,6 +227,13 @@ class SiteController extends Controller
 
                 $user->cash = $user->cash + (int)$order->sum;
 
+                if ($user->status == User::STATUS_INACTIVE){
+
+                    $user->cash = $user->cash + 100;
+                    $user->status = User::STATUS_ACTIVE;
+
+                }
+
                 if ($user->save() and $order->save()) {
 
                     $transaction->commit();
