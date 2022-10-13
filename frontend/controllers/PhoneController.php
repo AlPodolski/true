@@ -12,6 +12,15 @@ use Yii;
 class PhoneController extends Controller
 {
 
+    public function beforeAction($action)
+    {
+        if ($action->id == 'pay' or $action->id == 'index') {
+            $this->enableCsrfValidation = false;
+        }
+
+        return parent::beforeAction($action);
+    }
+
     public function actionIndex($city)
     {
 
