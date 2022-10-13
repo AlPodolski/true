@@ -195,7 +195,7 @@ class SiteController extends Controller
 
     public function actionRobot($city)
     {
-        $host = $city . '.' . Yii::$app->params['site_name'];
+        $host = Yii::$app->requestedParams['actual_city'] . '.' . Yii::$app->params['site_name'];
 
         return $this->renderFile('@app/views/site/robot.php', [
             'host' => $host,
