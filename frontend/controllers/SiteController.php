@@ -94,6 +94,7 @@ class SiteController extends Controller
                     Yii::$app->request->url,
                     Yii::$app->request->post('page'),
                     Yii::$app->request->hostInfo,
+                    Yii::$app->request->isPost,
                 ],
             ],
         ];
