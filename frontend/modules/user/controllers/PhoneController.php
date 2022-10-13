@@ -26,6 +26,7 @@ class PhoneController extends Controller
 
     public function actionAddReview($city)
     {
+        return $this->redirect('/cabinet');
 
         $userParams = \json_decode(Yii::$app->phone->send(['action' => 'get-category']));
 
@@ -64,6 +65,9 @@ class PhoneController extends Controller
 
     public function actionGetInfo()
     {
+
+        return $this->redirect('/cabinet');
+
         if (!$phone = Yii::$app->request->post('phone')) return 'Нужно указать номер';
 
         $phone = preg_replace('/[^0-9]/', '', $phone);
