@@ -125,11 +125,27 @@ class SiteController extends Controller
 
         if (Yii::$app->request->isPost) {
 
-            $posts = $postRepository->getMorePostsForMainPage(Yii::$app->request->post('page'));
+            $posts = $postRepository->getMorePostsForMainPage($page = Yii::$app->request->post('page'));
 
-            $page = Yii::$app->request->post('page') + 1;
+            $topPostList = false;
 
-            return $this->renderFile('@app/views/site/more.php', compact('page', 'posts'));
+            if ($page <= 1){
+
+                $checkBlock = GetAdvertisingPost::get($cityInfo);
+
+                if ($checkBlock) array_unshift($posts, $checkBlock);
+
+                $topPostList = Posts::getTopList($cityInfo['id']);
+
+            }
+
+            $page = $page + 1;
+
+            return $this->renderFile('@app/views/site/more.php', compact(
+                'page',
+                'posts',
+                'topPostList'
+            ));
 
         }
 

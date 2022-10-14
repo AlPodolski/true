@@ -105,12 +105,33 @@ class FilterController extends Controller
 
                 $posts = $posts->all();
 
+                $topPostList = false;
+
                 if (\count($posts)) {
+
+                    if (Yii::$app->request->post('page') <= 1){
+
+                        $checkBlock = GetAdvertisingPost::get($cityInfo);
+
+                        if ($checkBlock) array_unshift($posts, $checkBlock);
+
+                        $topPostList = Posts::getTopList($cityInfo['id']);
+
+                    }
 
                     $page = Yii::$app->request->post('page') + 1;
 
                     echo '<div data-url="/' . $param . '?page=' . $page . '" class="col-12"></div>';
 
+                }
+
+                if ($topPostList) {
+                    foreach ($topPostList as $post) {
+                        echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), [
+                            'post' => $post,
+                            'advertising' => true,
+                        ]);
+                    }
                 }
 
                 if (Yii::$app->user->isGuest) $class = 'col-6 col-sm-6 col-md-4 col-lg-3';
