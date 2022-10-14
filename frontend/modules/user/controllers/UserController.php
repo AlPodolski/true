@@ -18,6 +18,16 @@ use frontend\controllers\BeforeController as Controller;
 
 class UserController extends Controller
 {
+
+    public function beforeAction($action)
+    {
+        if ($action->id == 'login' or $action->id == 'signup') {
+            $this->enableCsrfValidation = false;
+        }
+
+        return parent::beforeAction($action);
+    }
+
     /**
      * Logs in a user.
      *
