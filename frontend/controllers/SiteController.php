@@ -129,7 +129,7 @@ class SiteController extends Controller
 
             $topPostList = false;
 
-            if ($page <= 1){
+            if ($page == 0){
 
                 $checkBlock = GetAdvertisingPost::get($cityInfo);
 

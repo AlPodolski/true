@@ -109,7 +109,7 @@ class FilterController extends Controller
 
                 if (\count($posts)) {
 
-                    if (Yii::$app->request->post('page') <= 1){
+                    if (Yii::$app->request->post('page') == 0){
 
                         $checkBlock = GetAdvertisingPost::get($cityInfo);
 
