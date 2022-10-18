@@ -34,7 +34,7 @@ class FilterController extends Controller
             [
                 'class' => 'yii\filters\PageCache',
                 'only' => ['index'],
-                'duration' => 1,
+                'duration' => 60,
                 'variations' => [
                     Yii::$app->request->url,
                     Yii::$app->request->post('page'),
