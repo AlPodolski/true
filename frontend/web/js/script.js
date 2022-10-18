@@ -781,32 +781,34 @@ function delete_img(object){
 function getContentForFirstPage(){
 
     var target = $('.pager');
-    var accept = $(target).attr('data-accept');
-    var url = $(target).attr('data-adress');
-    var request = $(target).attr('data-reqest');
-    var page = 0;
+    if(target.length){
+        var accept = $(target).attr('data-accept');
+        var url = $(target).attr('data-adress');
+        var request = $(target).attr('data-reqest');
+        var page = 0;
+        $.ajax({
+            type: 'POST',
+            url: '' + url,
+            data: 'page=' + page + '&req=' + request,
+            async: false,
+            dataType: "html",
+            headers: {
+                "Accept": accept,
+            },
+            cache: false,
+            success: function (data) {
 
-    $.ajax({
-        type: 'POST',
-        url: '' + url,
-        data: 'page=' + page + '&req=' + request,
-        async: false,
-        dataType: "html",
-        headers: {
-            "Accept": accept,
-        },
-        cache: false,
-        success: function (data) {
+                if (data !== '') {
 
-            if (data !== '') {
+                    $('.first-content').html(data);
+                    $('.carousel').carousel();
 
-                $('.first-content').html(data);
-                $('.carousel').carousel();
+                }
 
             }
+        })
 
-        }
-    })
+    }
 
 }
 
