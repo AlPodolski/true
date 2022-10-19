@@ -25,6 +25,27 @@ class FilterController extends Controller
         return parent::beforeAction($action);
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => 'yii\filters\PageCache',
+                'only' => ['index'],
+                'duration' => 60,
+                'variations' => [
+                    Yii::$app->request->url,
+                    Yii::$app->request->post('page'),
+                    Yii::$app->request->hostInfo,
+                    Yii::$app->request->isPost,
+                ],
+            ],
+        ];
+
+    }
+
     public function actionIndex($city, $param, $page = false)
     {
 

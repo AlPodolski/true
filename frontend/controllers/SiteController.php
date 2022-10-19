@@ -82,6 +82,25 @@ class SiteController extends Controller
         ];
     }
 
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => 'yii\filters\PageCache',
+                'only' => ['map', 'index'],
+                'duration' => 60 ,
+                'variations' => [
+                    Yii::$app->request->url,
+                    Yii::$app->request->post('page'),
+                    Yii::$app->request->hostInfo,
+                    Yii::$app->request->isPost,
+                ],
+            ],
+        ];
+
+    }
+
     public function onAuthSuccess($client)
     {
         (new AuthHandler($client))->handle();
