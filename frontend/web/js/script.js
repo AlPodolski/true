@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $.getScript("/js/jquery-ui.min.js", function (data, textStatus, jqxhr) {
+    $.getScript("https://code.jquery.com/ui/1.13.2/jquery-ui.min.js", function (data, textStatus, jqxhr) {
         $("head").prepend('<link href="/css/jquery-ui.min.css" rel="stylesheet">');
         filter();
     });
