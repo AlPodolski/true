@@ -830,9 +830,7 @@ $(window).scroll(function () {
 
     }
     if (exist_map_block && load_map_status) {
-
         init_yandex();
-
     }
 
 
@@ -853,6 +851,8 @@ $(window).scroll(function () {
     changeURL();
 
     if (winScrollTop > (scrollToElem - 100)) {
+
+        $(target).removeClass('pager');
 
         var single = $(target).attr('data-single');
 
@@ -893,6 +893,8 @@ $(window).scroll(function () {
                         page = $(target).attr('data-page', Number(page) + 1);
 
                         $('.carousel').carousel();
+
+                        $(target).addClass('pager');
 
                     } else {
 

@@ -449,13 +449,38 @@ class QueryParamsHelper
 
     public static function getPosts($params, $city, $limit, $offset)
     {
-        $posts = Posts::find()->where(['city_id' => $city])
-            ->with('avatar', 'metro', 'partnerId', 'rayon', 'nacionalnost', 'city', 'gallery', 'tarif')
+
+        $postsIds = Yii::$app->cache->get('filter_'.$city.'_'.$params);
+
+        if ($postsIds === false) {
+
+            $postsIds = self::prepare($params, $city);
+
+            // Сохраняем значение $data в кэше. Данные можно получить в следующий раз.
+            Yii::$app->cache->set('filter_'.$city.'_'.$params, $postsIds, 300);
+
+        }
+
+        $data = Posts::find()->where(['in', 'id', $postsIds])
+            ->select(['id', 'name', 'rost', 'ves', 'age', 'breast',
+                'check_photo_status', 'tarif_id', 'price', 'phone', 'video'])
+            ->with('avatar', 'metro','gallery', 'tarif')
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->orderBy(Posts::getOrder())
+            ->asArray()
             ->limit($limit);
+            if ($offset) $data = $data->offset($offset);
+            $data = $data->all();
 
-        if ($offset) $posts = $posts->offset($offset);
+        return $data;
+
+    }
+
+    public static function prepare($params, $city)
+    {
+        $posts = Posts::find()->where(['city_id' => $city])
+            ->asArray()
+            ->select(['id']);
 
         $params = explode('/', $params);
 
@@ -738,7 +763,7 @@ class QueryParamsHelper
                     'label' => 'проститутки с отзывами',
                 );
 
-                $tempSql = ' id in (SELECT DISTINCT(`post_id`) * FROM `review` where `is_moderate` = :is_moderate) ';
+                $tempSql = ' id in (SELECT DISTINCT(`post_id`)  FROM `review` where `is_moderate` = :is_moderate) ';
 
                 $posts = $posts->andWhere($tempSql, [':is_moderate' => Review::MODARATE]);
 
@@ -750,7 +775,7 @@ class QueryParamsHelper
                     'label' => 'анкеты с селфи',
                 );
 
-                $tempSql = ' id in (SELECT DISTINCT(`related_id`) * FROM `files` where `type` = :type) ';
+                $tempSql = ' id in (SELECT DISTINCT(`related_id`) FROM `files` where `type` = :type) ';
 
                 $posts = $posts->andWhere($tempSql, [':type' => Files::SELPHY_TYPE]);
 
@@ -788,8 +813,9 @@ class QueryParamsHelper
 
         }
 
-        return $posts->all();
+        $posts = $posts->all();
 
+        return $posts;
     }
 
     private static function intersect_data($id, $ids)

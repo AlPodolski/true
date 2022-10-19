@@ -79,11 +79,9 @@ class FilterController extends Controller
 
                 $page = Yii::$app->request->post('page') + 1;
 
-                echo '<div data-url="/' . $param . '?page=' . $page . '" class="col-12"></div>';
-
             }
 
-            return $this->renderPartial('more', compact('posts', 'topPostList', 'page'));
+            return $this->renderPartial('more', compact('posts', 'topPostList', 'page', 'param'));
 
         }
 

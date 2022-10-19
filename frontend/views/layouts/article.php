@@ -187,17 +187,17 @@ echo \frontend\components\helpers\MicroHelper::image($post);
 
             </div>
             <div class="data-wrap d-flex">
-                <?php if ($post['breast']) : ?>
+                <?php if ($post['age']) : ?>
                     <div class="data-item">
                         Возраст: <?php echo $post['age'] ?>
                     </div>
                 <?php endif; ?>
-                <?php if ($post['breast']) : ?>
+                <?php if ($post['rost']) : ?>
                     <div class="data-item">
                         Рост: <?php echo $post['rost'] ?>
                     </div>
                 <?php endif; ?>
-                <?php if ($post['breast']) : ?>
+                <?php if ($post['ves']) : ?>
                     <div class="data-item">
                         Вес: <?php echo $post['ves'] ?>
                     </div>

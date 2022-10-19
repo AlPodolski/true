@@ -6,7 +6,7 @@ use frontend\modules\user\helpers\ViewCountHelper;
 /* @var $topPostList \frontend\modules\user\models\Posts */
 /* @var $page string */
 
-if ($posts and $page > 1) echo '<div data-url="/?page=' . $page . '" class="col-12"></div>';
+if ($page > 1) echo '<div data-url="/' . $param . '?page=' . $page . '" class="col-12"></div>';
 
 if ($topPostList) {
     foreach ($topPostList as $post) {
