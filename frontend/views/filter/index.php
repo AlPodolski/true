@@ -144,10 +144,10 @@ echo \frontend\widgets\OpenGraphWidget::widget([
 
     <?php
 
-    $this->registerJs(
+/*    $this->registerJs(
         "getContentForFirstPage();",
         $this::POS_READY
-    );
+    );*/
 
     ?>
 
