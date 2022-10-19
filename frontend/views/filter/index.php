@@ -64,8 +64,6 @@ echo \frontend\widgets\OpenGraphWidget::widget([
 
             <?php if (isset($post['id'])) : ?>
 
-                <?php ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_listing_view_count_key']); ?>
-
                 <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), [
                     'post' => $post,
                 ]); ?>
