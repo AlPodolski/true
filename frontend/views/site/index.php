@@ -161,10 +161,10 @@ if (isset($microdataForMainPage)) echo $microdataForMainPage;
 </div>
 <?php
 
-$this->registerJs(
+/*$this->registerJs(
     "getContentForFirstPage();",
     $this::POS_READY
-);
+);*/
 
 ?>
 
