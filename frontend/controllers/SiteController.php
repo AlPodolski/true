@@ -4,6 +4,8 @@ namespace frontend\controllers;
 
 use common\components\service\history\HistoryService;
 use common\components\service\PayCount;
+use common\jobs\AddViewJob;
+use common\jobs\SendMail;
 use common\models\City;
 use common\models\HairColor;
 use common\models\History;
@@ -83,23 +85,23 @@ class SiteController extends Controller
     }
 
 
-/*    public function behaviors()
-    {
-        return [
-            [
-                'class' => 'yii\filters\PageCache',
-                'only' => ['map', 'index'],
-                'duration' => 60 ,
-                'variations' => [
-                    Yii::$app->request->url,
-                    Yii::$app->request->post('page'),
-                    Yii::$app->request->hostInfo,
-                    Yii::$app->request->isPost,
+    /*    public function behaviors()
+        {
+            return [
+                [
+                    'class' => 'yii\filters\PageCache',
+                    'only' => ['map', 'index'],
+                    'duration' => 60 ,
+                    'variations' => [
+                        Yii::$app->request->url,
+                        Yii::$app->request->post('page'),
+                        Yii::$app->request->hostInfo,
+                        Yii::$app->request->isPost,
+                    ],
                 ],
-            ],
-        ];
+            ];
 
-    }*/
+        }*/
 
     public function onAuthSuccess($client)
     {
@@ -116,42 +118,11 @@ class SiteController extends Controller
 
         $cityInfo = City::getCity($city);
 
-        if (!$cityInfo) {
-            http_response_code(502);
-            exit();
-        };
-
         $postRepository = new PostsRepository($cityInfo['id']);
-
-        if (Yii::$app->request->isPost) {
-
-            $posts = $postRepository->getMorePostsForMainPage($page = Yii::$app->request->post('page'));
-
-            $topPostList = false;
-
-            if ($page == 0){
-
-                $checkBlock = GetAdvertisingPost::get($cityInfo);
-
-                if ($checkBlock) array_unshift($posts, $checkBlock);
-
-                $topPostList = Posts::getTopList($cityInfo['id']);
-
-            }
-
-            $page = $page + 1;
-
-            return $this->renderFile('@app/views/site/more.php', compact(
-                'page',
-                'posts',
-                'topPostList'
-            ));
-
-        }
 
         if (Yii::$app->requestedParams['actual_city'] != $city) {
             $webmaster = Webmaster::getTagByName(Yii::$app->requestedParams['actual_city']);
-        }else{
+        } else {
             $webmaster = Webmaster::getTag($cityInfo['id']);
         }
 
@@ -171,7 +142,12 @@ class SiteController extends Controller
 
         $topPostList = Posts::getTopList($cityInfo['id']);
 
-        $microdataForMainPage = (new CatalogProductShema($title, $des , $cityInfo['id'] ))->make();
+        $microdataForMainPage = (new CatalogProductShema($title, $des, $cityInfo['id']))->make();
+
+        Yii::$app->queueView->push(new AddViewJob([
+            'posts' => $data['posts'],
+            'type' => 'redis_post_listing_view_count_key',
+        ]));
 
         return $this->render('index', [
             'prPosts' => $data['posts'],
@@ -184,6 +160,42 @@ class SiteController extends Controller
             'cityInfo' => $cityInfo,
             'microdataForMainPage' => $microdataForMainPage,
         ]);
+    }
+
+    public function actionMore($city)
+    {
+
+        $cityInfo = City::getCity($city);
+
+        $postRepository = new PostsRepository($cityInfo['id']);
+
+        $posts = $postRepository->getMorePostsForMainPage($page = Yii::$app->request->post('page'));
+
+        $topPostList = false;
+
+        if ($page == 0) {
+
+            $checkBlock = GetAdvertisingPost::get($cityInfo);
+
+            if ($checkBlock) array_unshift($posts, $checkBlock);
+
+            $topPostList = Posts::getTopList($cityInfo['id']);
+
+        }
+
+        Yii::$app->queueView->push(new AddViewJob([
+            'posts' => $posts,
+            'type' => 'redis_post_listing_view_count_key',
+        ]));
+
+        $page = $page + 1;
+
+        return $this->renderFile('@app/views/site/more.php', compact(
+            'page',
+            'posts',
+            'topPostList'
+        ));
+
     }
 
     /**
@@ -244,7 +256,7 @@ class SiteController extends Controller
 
                 $user->cash = $user->cash + (int)$order->sum;
 
-                if ($user->status == User::STATUS_INACTIVE){
+                if ($user->status == User::STATUS_INACTIVE) {
 
                     $user->cash = $user->cash + 100;
                     $user->status = User::STATUS_ACTIVE;

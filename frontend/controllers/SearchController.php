@@ -3,6 +3,7 @@
 
 namespace frontend\controllers;
 
+use common\jobs\AddViewJob;
 use common\models\City;
 use common\models\Rayon;
 use frontend\helpers\MetaBuilder;
@@ -147,6 +148,13 @@ class SearchController extends Controller
         $title = 'Проститутки '.$model->name.' – путаны и индивидуалки '.$cityInfo['city2'];
         $des = 'Путаны '.$model->name.' с удовольствием выполнят все Ваши желания. Выбор анкет индивидуалок. Номера телефонов';
         $h1 = 'Проститутки '.$model->name;
+
+        if ($prPosts){
+            Yii::$app->queueView->push(new AddViewJob([
+                'posts' => $prPosts,
+                'type' => 'redis_post_listing_view_count_key',
+            ]));
+        }
 
         return $this->render('index' , [
             'prPosts' => $prPosts,

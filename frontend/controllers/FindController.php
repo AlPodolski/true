@@ -3,6 +3,7 @@
 
 namespace frontend\controllers;
 
+use common\jobs\AddViewJob;
 use common\models\City;
 use frontend\helpers\MetaBuilder;
 use frontend\models\UserMetro;
@@ -265,6 +266,11 @@ class FindController extends Controller
             $posts = $posts->all();
 
             if (\count($posts)) {
+
+                Yii::$app->queueView->push(new AddViewJob([
+                    'posts' => $prPosts,
+                    'type' => 'redis_post_listing_view_count_key',
+                ]));
 
                 $page = Yii::$app->request->post('page') + 1;
 

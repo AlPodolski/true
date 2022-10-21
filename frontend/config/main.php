@@ -32,17 +32,6 @@ return [
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
         ],
-        'authClientCollection' => [
-            'class' => 'yii\authclient\Collection',
-            'clients' => [
-                'vkontakte' => [
-                    'class' => 'frontend\components\Vk',
-                    'clientId' => '7741906',
-                    'clientSecret' => '5O2GJBLcC1EG8D1BHT2m',
-                ],
-                // etc.
-            ],
-        ],
         'session' => [
             // this is the name of the session cookie used for login on the frontend
             'name' => 'advanced-frontend',
@@ -66,7 +55,8 @@ return [
             'rules' => [
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cust' => 'site/cust',
                 'thumbs/<path:.*>' => 'site/thumb',
-                '<protocol>://<city:[a-z-0-9]+>.<domain>/' => 'site/index',
+                'GET <protocol>://<city:[a-z-0-9]+>.<domain>/' => 'site/index',
+                'POST <protocol>://<city:[a-z-0-9]+>.<domain>/' => 'site/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/find' => 'find/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/page-<pager:[0-9]+>' => 'site/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/favorite' => 'site/favorite',
@@ -179,9 +169,14 @@ return [
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/user/<id:[0-9]+>' => 'profile/index',
 
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/<param:([a-z-0-9]+/)+[a-z-0-9]+>/page-<pager:[0-9]+>' => 'filter/index',
-                '<protocol>://<city:[a-z-0-9]+>.<domain>/<param:[a-z-0-9]+>' => 'filter/index',
-                '<protocol>://<city:[a-z-0-9]+>.<domain>/<param:[a-z-0-9]+>/page-<pager:[0-9]+>' => 'filter/index',
-                '<protocol>://<city:[a-z-0-9]+>.<domain>/<param:([a-z-0-9]+/)+[a-z-0-9]+>' => 'filter/index',
+
+                'GET <protocol>://<city:[a-z-0-9]+>.<domain>/<param:[a-z-0-9]+>' => 'filter/index',
+                'GET <protocol>://<city:[a-z-0-9]+>.<domain>/<param:[a-z-0-9]+>/page-<pager:[0-9]+>' => 'filter/index',
+                'GET <protocol>://<city:[a-z-0-9]+>.<domain>/<param:([a-z-0-9]+/)+[a-z-0-9]+>' => 'filter/index',
+
+                'POST <protocol>://<city:[a-z-0-9]+>.<domain>/<param:[a-z-0-9]+>' => 'filter/more',
+                'POST <protocol>://<city:[a-z-0-9]+>.<domain>/<param:[a-z-0-9]+>/page-<pager:[0-9]+>' => 'filter/more',
+                'POST <protocol>://<city:[a-z-0-9]+>.<domain>/<param:([a-z-0-9]+/)+[a-z-0-9]+>' => 'filter/more',
 
             ],
         ],

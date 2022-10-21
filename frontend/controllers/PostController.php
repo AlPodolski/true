@@ -3,6 +3,7 @@
 
 namespace frontend\controllers;
 
+use common\jobs\AddViewJob;
 use common\models\City;
 use common\models\User;
 use frontend\components\helpers\AddViewHelper;
@@ -65,7 +66,12 @@ class PostController extends Controller
 
             $refererCategory = RequestHelper::getRefererCategory($protocol);
 
-            ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_single_view_count_key']);
+            //redis_post_single_view_count_key
+
+            Yii::$app->queueView->push(new AddViewJob([
+                'posts' => $post,
+                'type' => 'redis_post_single_view_count_key',
+            ]));
 
             //$postsByPhone = GetPostHelper::getByPhone($post['phone'], $cityInfo['id']);
 

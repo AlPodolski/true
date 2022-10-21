@@ -3,6 +3,7 @@
 
 namespace frontend\controllers;
 
+use common\jobs\AddViewJob;
 use common\models\City;
 use frontend\components\helpers\GetAdvertisingPost;
 use frontend\helpers\MetaBuilder;
@@ -28,23 +29,23 @@ class FilterController extends Controller
     /**
      * {@inheritdoc}
      */
-/*    public function behaviors()
-    {
-        return [
-            [
-                'class' => 'yii\filters\PageCache',
-                'only' => ['index'],
-                'duration' => 60,
-                'variations' => [
-                    Yii::$app->request->url,
-                    Yii::$app->request->post('page'),
-                    Yii::$app->request->hostInfo,
-                    Yii::$app->request->isPost,
+    /*    public function behaviors()
+        {
+            return [
+                [
+                    'class' => 'yii\filters\PageCache',
+                    'only' => ['index'],
+                    'duration' => 60,
+                    'variations' => [
+                        Yii::$app->request->url,
+                        Yii::$app->request->post('page'),
+                        Yii::$app->request->hostInfo,
+                        Yii::$app->request->isPost,
+                    ],
                 ],
-            ],
-        ];
+            ];
 
-    }*/
+        }*/
 
     public function actionIndex($city, $param, $page = false)
     {
@@ -55,35 +56,6 @@ class FilterController extends Controller
 
         $limit = Yii::$app->params['post_limit'];
         $offset = 0;
-
-        if (Yii::$app->request->isPost) {
-
-            $topPostList = false;
-            $page = Yii::$app->request->post('page');
-
-            if ($page) $offset = Yii::$app->params['post_limit'] * $page;
-
-            $posts = QueryParamsHelper::getPosts($param, $cityInfo['id'], $limit, $offset);
-
-            if (\count($posts)) {
-
-                if (Yii::$app->request->post('page') == 0) {
-
-                    $checkBlock = GetAdvertisingPost::get($cityInfo);
-
-                    if ($checkBlock) array_unshift($posts, $checkBlock);
-
-                    $topPostList = Posts::getTopList($cityInfo['id']);
-
-                }
-
-                $page = Yii::$app->request->post('page') + 1;
-
-            }
-
-            return $this->renderPartial('more', compact('posts', 'topPostList', 'page', 'param'));
-
-        }
 
         if ($page) $offset = Yii::$app->params['post_limit'] * $page;
 
@@ -109,6 +81,11 @@ class FilterController extends Controller
         $checkBlock = GetAdvertisingPost::get($cityInfo);
         if ($checkBlock) array_unshift($posts, $checkBlock);
 
+        Yii::$app->queueView->push(new AddViewJob([
+            'posts' => $posts,
+            'type' => 'redis_post_listing_view_count_key',
+        ]));
+
         return $this->render('index', [
             'posts' => $posts,
             'param' => $param,
@@ -118,6 +95,49 @@ class FilterController extends Controller
             'topPostList' => $topPostList,
             'more_posts' => $more_posts,
         ]);
+
+    }
+
+    public function actionMore($city, $param)
+    {
+
+        if (Yii::$app->request->isPost and !Yii::$app->request->post('req')) exit();
+
+        $cityInfo = City::getCity(Yii::$app->controller->actionParams['city']);
+
+        $limit = Yii::$app->params['post_limit'];
+        $offset = 0;
+
+        $topPostList = false;
+
+        $page = Yii::$app->request->post('page');
+
+        if ($page) $offset = Yii::$app->params['post_limit'] * $page;
+
+        $posts = QueryParamsHelper::getPosts($param, $cityInfo['id'], $limit, $offset);
+
+        if (\count($posts)) {
+
+            if (Yii::$app->request->post('page') == 0) {
+
+                $checkBlock = GetAdvertisingPost::get($cityInfo);
+
+                if ($checkBlock) array_unshift($posts, $checkBlock);
+
+                $topPostList = Posts::getTopList($cityInfo['id']);
+
+            }
+
+            $page = Yii::$app->request->post('page') + 1;
+
+            Yii::$app->queueView->push(new AddViewJob([
+                'posts' => $posts,
+                'type' => 'redis_post_listing_view_count_key',
+            ]));
+
+        }
+
+        return $this->renderPartial('more', compact('posts', 'topPostList', 'page', 'param'));
 
     }
 }

@@ -24,6 +24,10 @@ return [
             'channel' => 'mail', // Queue channel key
             'mutex' => \yii\mutex\MysqlMutex::class, // Mutex used to sync queries
         ],
+        'queueView' => [
+            'class' => \yii\queue\file\Queue::class,
+            'path' => '@console/runtime/queue'
+        ],
         'imageCache' => [
             'class' => 'frontend\components\service\image\ImageCache',
             'sourcePath' => '@frontend/web/uploads',
@@ -61,6 +65,6 @@ return [
         ],
     ],
     'bootstrap' => [
-        'queue', 'queueMail'
+        'queue', 'queueMail', 'queueView'
     ],
 ];
