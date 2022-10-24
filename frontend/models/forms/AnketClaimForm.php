@@ -12,6 +12,7 @@ class AnketClaimForm extends Model
     public $reason;
     public $text;
     public $email;
+    public $ip;
 
     public function rules()
     {
@@ -20,7 +21,24 @@ class AnketClaimForm extends Model
             [['post_id', 'reason'], 'required'],
             [['text'], 'string'],
             [['email'], 'email'],
+            [['ip'], 'validateIp'],
         ];
+    }
+
+    public function validateIp($attribute)
+    {
+        if (!$this->hasErrors()) {
+
+            $ip = AnketClaim::find()->where(['ip' => $this->ip])
+                ->andWhere(['>', 'created_at', time() - (3600 * 24)])->count();
+
+            if ($ip > 2) {
+
+                $this->addError($attribute, 'Много запросов');
+
+            }
+
+        }
     }
 
     public function save()
@@ -31,6 +49,7 @@ class AnketClaimForm extends Model
         $claim->reason_id = $this->reason;
         $claim->text = $this->text;
         $claim->email = $this->email;
+        $claim->ip = $this->ip;
 
         return $claim->save();
     }

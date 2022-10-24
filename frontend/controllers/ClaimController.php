@@ -71,6 +71,8 @@ class ClaimController extends Controller
 
         $claimForm = new AnketClaimForm();
 
+        $claimForm->ip = Yii::$app->request->userIP;
+
         if ($claimForm->load(Yii::$app->request->post()) and $claimForm->validate() and $claimForm->save()){
 
             Yii::$app->session->setFlash('success', 'Благодарим за Ваше обращение');

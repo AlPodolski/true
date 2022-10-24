@@ -16,6 +16,7 @@ use Yii;
  * @property int|null $reason_id
  * @property string|null $text
  * @property string|null $email
+ * @property string|null $ip
  * @property int|null $created_at
  * @property int|null $updated_at
  *
@@ -55,6 +56,7 @@ class AnketClaim extends \yii\db\ActiveRecord
             [['post_id', 'reason_id', 'created_at', 'updated_at'], 'integer'],
             [['text'], 'string', 'max' => 255],
             [['email'], 'email'],
+            [['ip'], 'string'],
             [['post_id'], 'exist', 'skipOnError' => true, 'targetClass' => Posts::className(), 'targetAttribute' => ['post_id' => 'id']],
             [['reason_id'], 'exist', 'skipOnError' => true, 'targetClass' => ReasonClaim::className(), 'targetAttribute' => ['reason_id' => 'id']],
         ];
