@@ -56,7 +56,7 @@ return [
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cust' => 'site/cust',
                 'thumbs/<path:.*>' => 'site/thumb',
                 'GET <protocol>://<city:[a-z-0-9]+>.<domain>/' => 'site/index',
-                'POST <protocol>://<city:[a-z-0-9]+>.<domain>/' => 'site/index',
+                'POST <protocol>://<city:[a-z-0-9]+>.<domain>/' => 'site/more',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/find' => 'find/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/page-<pager:[0-9]+>' => 'site/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/favorite' => 'site/favorite',
