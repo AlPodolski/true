@@ -5,7 +5,6 @@ namespace frontend\repository;
 use common\models\National;
 use common\models\Pol;
 use frontend\components\helpers\GetOrderHelper;
-use frontend\models\Files;
 use frontend\models\Metro;
 use frontend\models\UserMetro;
 use frontend\modules\user\models\Posts;
@@ -31,11 +30,9 @@ class PostsRepository
     public function getForMainPage(): array
     {
         $prPosts = Posts::find()->asArray()
-            ->select(['posts.id', 'tarif.value as tarif_name' , 'files.file', 'name', 'rost', 'ves', 'age', 'breast',
+            ->select(['id', 'name', 'rost', 'ves', 'age', 'breast',
                 'check_photo_status', 'tarif_id', 'price', 'phone', 'video'])
-            ->with('metro','gallery')
-            ->leftJoin('files', 'files.related_id = posts.id and files.main = :type', [':type' => Files::MAIN_PHOTO])
-            ->leftJoin('tarif', 'tarif.id = posts.tarif_id')
+            ->with('avatar', 'metro','gallery', 'tarif')
             ->where(['city_id' => $this->cityId])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->andWhere(['pol_id' => Pol::WOMAN_POL])
@@ -63,11 +60,9 @@ class PostsRepository
 
         $posts = Posts::find()
             ->asArray()
-            ->select(['posts.id', 'tarif.value as tarif_name' , 'files.file', 'name', 'rost', 'ves', 'age', 'breast',
+            ->select(['id', 'name', 'rost', 'ves', 'age', 'breast',
                 'check_photo_status', 'tarif_id', 'price', 'phone', 'video'])
-            ->with('metro','gallery')
-            ->leftJoin('files', 'files.related_id = posts.id and files.main = :type', [':type' => Files::MAIN_PHOTO])
-            ->leftJoin('tarif', 'tarif.id = posts.tarif_id')
+            ->with('avatar', 'metro','gallery', 'tarif')
             ->where(['city_id' => $this->cityId])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->andWhere(['pol_id' => Pol::WOMAN_POL])

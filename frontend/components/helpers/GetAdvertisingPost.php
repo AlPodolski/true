@@ -2,7 +2,6 @@
 
 namespace frontend\components\helpers;
 
-use frontend\models\Files;
 use frontend\modules\user\models\Posts;
 
 class GetAdvertisingPost
@@ -14,7 +13,7 @@ class GetAdvertisingPost
         else $pol_id = 1;
 
         if ($post = Posts::find()
-            ->leftJoin('files', 'files.related_id = posts.id and files.main = :type', [':type' => Files::MAIN_PHOTO])
+            ->with('avatar')
             ->where(['city_id' => $city['id']])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->andWhere(['pol_id' => $pol_id])

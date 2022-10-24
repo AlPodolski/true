@@ -461,13 +461,10 @@ class QueryParamsHelper
 
         }
 
-        $data = Posts::find()
-            ->select(['posts.id', 'tarif.value as tarif_name' , 'files.file', 'name', 'rost', 'ves', 'age', 'breast',
+        $data = Posts::find()->where(['in', 'id', $postsIds])
+            ->select(['id', 'name', 'rost', 'ves', 'age', 'breast',
                 'check_photo_status', 'tarif_id', 'price', 'phone', 'video'])
-            ->with('metro','gallery')
-            ->leftJoin('files', 'files.related_id = posts.id and files.main = :type', [':type' => Files::MAIN_PHOTO])
-            ->leftJoin('tarif', 'tarif.id = posts.tarif_id')
-            ->andWhere(['in', "posts.id", $postsIds])
+            ->with('avatar', 'metro','gallery', 'tarif')
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->orderBy(Posts::getOrder())
             ->asArray()
@@ -818,7 +815,7 @@ class QueryParamsHelper
 
         $posts = $posts->all();
 
-        return ArrayHelper::getColumn($posts, 'id');
+        return $posts;
     }
 
     private static function intersect_data($id, $ids)
