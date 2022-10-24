@@ -33,12 +33,12 @@ class ClaimController extends Controller
     public function actionAdd()
     {
 
-/*        if (!CaptchaHelper::check()){
+       if (!CaptchaHelper::check()){
 
             Yii::$app->session->setFlash('warning' , 'Капча введена неверно');
             return Yii::$app->response->redirect(['/'], 301, false);
 
-        }*/
+        }
 
         $claimForm = new Claim();
 
