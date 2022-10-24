@@ -29,6 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'author_email:email',
             'author_name',
+
             [
                 'attribute' => 'text',
                 'format' => 'text',
@@ -71,6 +72,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     }
                 },
             ],
+
+            'ip',
 
             ['class' => 'backend\components\ActionColumnExtends'],
         ],
