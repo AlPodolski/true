@@ -34,7 +34,7 @@ echo \frontend\components\helpers\MicroHelper::image($post);
                         <?php
                         $path = Yii::getAlias('@frontend/views/includes/article-photo.php');
                         echo $this->renderFile($path, [
-                            'file' => $post['avatar']['file'],
+                            'file' => $post['file'],
                             'name' => $post['name'],
                         ]);
                         ?>
@@ -133,9 +133,11 @@ echo \frontend\components\helpers\MicroHelper::image($post);
 
                 <div class="post-marc-block">
 
-                    <div class="tarif tarif_<?php echo $post['tarif_id'] ?>">
-                        <?php echo $post['tarif']['value'] ?>
-                    </div>
+                    <?php if ($post['tarif_name']) : ?>
+                        <div class="tarif tarif_<?php echo $post['tarif_id'] ?>">
+                            <?php echo $post['tarif_name'] ?>
+                        </div>
+                    <?php endif; ?>
 
                     <?php if ($post['category'] == 1) : ?>
                         <div class="indi-marc post-marc position-relative">
