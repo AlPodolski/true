@@ -59,6 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'text',
             'email',
+            'ip',
 
             [
                 'class' => 'backend\components\ActionColumnExtends',
