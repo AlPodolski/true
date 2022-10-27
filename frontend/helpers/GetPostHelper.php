@@ -23,7 +23,7 @@ class GetPostHelper
                 )
                 ->limit(1)->one();
 
-            Yii::$app->cache->set('post_cache_'.$id , $post);
+            if ($post) Yii::$app->cache->set('post_cache_'.$id , $post);
         }
 
         return $post;

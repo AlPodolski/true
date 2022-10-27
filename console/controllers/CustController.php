@@ -84,7 +84,12 @@ class CustController extends Controller
     public function actionIndex()
     {
 
-        $cloudUrl = 'https://api.cloudflare.com/client/v4/zones//dns_records?';
+        $oldIp = '';
+        $newIp = '';
+        $zone = '';
+        $token = '';
+
+        $cloudUrl = 'https://api.cloudflare.com/client/v4/zones/'.$zone.'/dns_records?';
 
         $dataRequest = 'content='.$oldIp.'&page=1&per_page=100';
 
@@ -96,7 +101,7 @@ class CustController extends Controller
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
         $headers = [
-            'X-Auth-Email: ' . 'anketa-dosug@yandex.ru',
+            'X-Auth-Email: ' . '',
             'X-Auth-Key: ' . $token,
             'Content-Type: application/json',
         ];
@@ -115,22 +120,28 @@ class CustController extends Controller
 
             $zapid = $item->id;
 
+            $content = array(
+                'type' => "A",
+                'name' => $item->name,
+                'content' => $newIp,
+                'proxied' => true,
+            );
 
             // пытаемся поставить галочку на облаке
-            $zoneindetif = "https://api.cloudflare.com/client/v4/zones//dns_records/$zapid";
+            $zoneindetif = "https://api.cloudflare.com/client/v4/zones/".$zone."/dns_records/$zapid";
 
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $zoneindetif);
-            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-            //curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($content));
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($content));
 
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
             $headers = [
-                'X-Auth-Email: ' . 'anketa-dosug@yandex.ru',
+                'X-Auth-Email: ' . '',
                 'X-Auth-Key: ' . $token,
                 'Content-Type: application/json',
             ];
