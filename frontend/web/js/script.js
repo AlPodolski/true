@@ -5,16 +5,16 @@ $(document).ready(function () {
     });
 });
 
-arrowTop.onclick = function() {
+arrowTop.onclick = function () {
     window.scrollTo(pageXOffset, 0);
     // после scrollTo возникнет событие "scroll", так что стрелка автоматически скроется
 };
 
-window.addEventListener('scroll', function() {
+window.addEventListener('scroll', function () {
     arrowTop.hidden = (pageYOffset < document.documentElement.clientHeight);
 });
 
-function close_text(){
+function close_text() {
     $('.text-block-wrap').remove();
     document.cookie = 'text=close; max-age=' + (3600 * 24 * 31);
 }
@@ -32,11 +32,11 @@ function rememberClose(object) {
     document.cookie = type + '=1; max-age=' + (3600 * 24 * 31);
 }
 
-function add_status_to_button(object){
+function add_status_to_button(object) {
     $(object).siblings('.change-tarif').addClass('change-tarif-active')
 }
 
-function start_all(object){
+function start_all(object) {
     if ($(object).hasClass('change-tarif-active')) {
 
         var type = $(object).attr('data-type')
@@ -44,7 +44,7 @@ function start_all(object){
         $.ajax({
             type: 'POST',
             url: "/cabinet/post/start-all", //Путь к обработчику
-            data: 'data='+type,
+            data: 'data=' + type,
             response: 'text',
             dataType: "html",
             cache: false,
@@ -52,15 +52,15 @@ function start_all(object){
 
                 var result_text = '';
 
-                if (type == 'start'){
+                if (type == 'start') {
                     result_text = 'Остановить публикацию'
-                    $(".stop" ).each(function( index ) {
+                    $(".stop").each(function (index) {
                         $(this).html(result_text);
                     });
                 }
-                if (type == 'stop'){
+                if (type == 'stop') {
                     result_text = 'Поставить на публикацию'
-                    $(".stop" ).each(function( index ) {
+                    $(".stop").each(function (index) {
                         $(this).html(result_text);
                     });
                 }
@@ -71,24 +71,24 @@ function start_all(object){
     }
 }
 
-function update_tarif(object){
+function update_tarif(object) {
 
-        var id = $(object).attr('data-id');
-        var tarif_id = $(object).val();
+    var id = $(object).attr('data-id');
+    var tarif_id = $(object).val();
 
-        $.ajax({
-            type: 'POST',
-            url: "/cabinet/post/tarif", //Путь к обработчику
-            data: 'id=' + id + '&tarif_id=' +tarif_id,
-            response: 'text',
-            dataType: "html",
-            cache: false,
-            success: function (data) {
+    $.ajax({
+        type: 'POST',
+        url: "/cabinet/post/tarif", //Путь к обработчику
+        data: 'id=' + id + '&tarif_id=' + tarif_id,
+        response: 'text',
+        dataType: "html",
+        cache: false,
+        success: function (data) {
 
-                $(object).addClass('green-border')
+            $(object).addClass('green-border')
 
-            }
-        })
+        }
+    })
 
 }
 
@@ -758,7 +758,7 @@ function init_yandex() {
 var load_map_status = false;
 var start_load_map_status = false;
 
-function delete_img(object){
+function delete_img(object) {
 
     var id = $(object).attr('data-id');
 
@@ -778,10 +778,10 @@ function delete_img(object){
 
 }
 
-function getContentForFirstPage(){
+function getContentForFirstPage() {
 
     var target = $('.pager');
-    if(target.length){
+    if (target.length) {
         var accept = $(target).attr('data-accept');
         var url = $(target).attr('data-adress');
         var request = $(target).attr('data-reqest');
@@ -852,8 +852,6 @@ $(window).scroll(function () {
 
     if (winScrollTop > (scrollToElem - 100)) {
 
-        $(target).removeClass('pager');
-
         var single = $(target).attr('data-single');
 
         if (single == 1) {
@@ -874,50 +872,51 @@ $(window).scroll(function () {
 
             });
 
-            $.ajax({
-                type: 'POST',
-                url: '' + url,
-                data: 'page=' + page + '&req=' + request + '&id=' + JSON.stringify(id),
-                async: false,
-                dataType: "html",
-                headers: {
-                    "Accept": accept,
-                },
-                cache: false,
-                success: function (data) {
+        }
 
-                    if (data !== '') {
+        $.ajax({
+            type: 'POST',
+            url: '' + url,
+            data: 'page=' + page + '&req=' + request + '&id=' + JSON.stringify(id),
+            async: false,
+            dataType: "html",
+            headers: {
+                "Accept": accept,
+            },
+            cache: false,
+            success: function (data) {
 
-                        $('.content').append(data);
+                if (data !== '') {
 
-                        page = $(target).attr('data-page', Number(page) + 1);
+                    $('.content').append(data);
 
-                        $('.carousel').carousel();
+                    page = $(target).attr('data-page', Number(page) + 1);
 
-                        $(target).addClass('pager');
+                    $('.carousel').carousel();
 
-                    } else {
+                    $(target).addClass('pager');
 
-                        $(target).remove();
-                        $('.dots').remove();
+                } else {
 
-                    }
+                    $(target).remove();
+                    $('.dots').remove();
 
                 }
-            })
-        }
+
+            }
+        })
 
     }
 
 });
 
-function closeHelper(object){
+function closeHelper(object) {
 
-    if (!$('#helper').hasClass('show-helper')){
+    if (!$('#helper').hasClass('show-helper')) {
         $('#helper').remove();
 
         document.cookie = "helper=close; max-age=" + (3600 * 24 * 31);
-    }else{
+    } else {
 
         $('#helper').removeClass('show-helper');
     }
@@ -991,7 +990,7 @@ function get_user_menu() {
         cache: false,
         success: function (data) {
 
-            if (data == 'guest'){
+            if (data == 'guest') {
 
                 $('.login').animate({
                     left: '0px'
@@ -1047,7 +1046,7 @@ function dopolnitaelno() {
 
 }
 
-function toggleHelper(object){
+function toggleHelper(object) {
 
     $('#helper').toggleClass('show-helper');
 
@@ -1060,7 +1059,7 @@ function more_search() {
     $('#searchForm').toggleClass('open-form');
 }
 
-function setView(){
+function setView() {
 
     if ($('#sort-select').val()) {
 
@@ -1151,7 +1150,7 @@ function filter() {
 
 $(document).ready(main);
 
-function get_modal(object){
+function get_modal(object) {
 
     var target = $(object).attr('data-target');
     var id = $(object).attr('data-id');
@@ -1159,11 +1158,11 @@ function get_modal(object){
     $.ajax({
         type: 'POST',
         url: '/post/get',
-        data: 'target='+target+'&id='+id,
-        async:false,
+        data: 'target=' + target + '&id=' + id,
+        async: false,
         dataType: "html",
         cache: false,
-        success: function (data){
+        success: function (data) {
 
             $('#info-modal .modal-body').html(data);
 
@@ -1175,9 +1174,9 @@ function get_modal(object){
 
             $('.chat-wrap').scrollTop(99999999);
 
-            if(target == 'selfy'){
+            if (target == 'selfy') {
 
-                $('.aniimated-thumbnials').each(function(i){
+                $('.aniimated-thumbnials').each(function (i) {
 
                     var singleGallery = $(this);
                     singleGallery.lightGallery();
@@ -1185,7 +1184,7 @@ function get_modal(object){
                 });
 
             }
-            if(target == 'call'){
+            if (target == 'call') {
 
                 $('#info-modal').on('shown.bs.modal', function (e) {
                     $("#getcallform-phone").mask("+7(999) 999-9999");
@@ -1193,7 +1192,7 @@ function get_modal(object){
 
             }
 
-            if(target == 'comment-form'){
+            if (target == 'comment-form') {
 
                 $('#info-modal').on('shown.bs.modal', function (e) {
 
