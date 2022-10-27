@@ -65,7 +65,7 @@ class Claim extends \yii\db\ActiveRecord
         if (!$this->hasErrors()) {
 
             $ip = Claim::find()->where(['ip' => $this->ip])
-                ->andWhere(['>', 'created_at', time() - (3600 * 24)])->count();
+                ->andWhere(['status' => 0])->count();
 
             if ($ip > 2) {
 
