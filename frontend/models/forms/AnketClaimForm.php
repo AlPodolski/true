@@ -30,7 +30,7 @@ class AnketClaimForm extends Model
         if (!$this->hasErrors()) {
 
             $ip = AnketClaim::find()->where(['ip' => $this->ip])
-                ->andWhere(['>', 'created_at', time() - (3600 * 24)])->count();
+                ->andWhere(['>', 'created_at', time() - (3600 * 24 * 4)])->count();
 
             if ($ip > 2) {
 
