@@ -52,7 +52,16 @@ class FilterController extends Controller
 
         if (Yii::$app->request->isPost and !Yii::$app->request->post('req')) exit();
 
+        $uri = Yii::$app->request->url;
+        if (\strpos($uri, '?')) $uri = \strstr($uri, '?', true);
+
         $cityInfo = City::getCity(Yii::$app->controller->actionParams['city']);
+
+        $title = MetaBuilder::Build($uri, $city, 'Title') . ' На сайте ' . Yii::$app->request->serverName;
+        $des = MetaBuilder::Build($uri, $city, 'des') . ' На сайте ' . Yii::$app->request->serverName;
+        $h1 = MetaBuilder::Build($uri, $city, 'h1');
+
+        if ($h1 == 'Проститутки') throw new NotFoundHttpException();
 
         $limit = Yii::$app->params['post_limit'];
         $offset = 0;
@@ -65,14 +74,7 @@ class FilterController extends Controller
 
         $more_posts = false;
 
-        $uri = Yii::$app->request->url;
 
-        if (\strpos($uri, '?')) $uri = \strstr($uri, '?', true);
-
-
-        $title = MetaBuilder::Build($uri, $city, 'Title') . ' На сайте ' . Yii::$app->request->serverName;
-        $des = MetaBuilder::Build($uri, $city, 'des') . ' На сайте ' . Yii::$app->request->serverName;
-        $h1 = MetaBuilder::Build($uri, $city, 'h1');
 
         $topPostList = Posts::getTopList($cityInfo['id']);
 
