@@ -28,6 +28,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="col-12 d-flex head-view-wrap">
                         <span class="black-text font-weight-bold">
                             Мои анкеты <?php if ($posts) echo '(' . count($posts) . ')' ?>
+                            <?php if ($statData) : ?>
+                            <br>
+                            Просмотров телефона <?php echo $statData['phone_view'] ?>
+                            <?php endif; ?>
                         </span>
 
 
