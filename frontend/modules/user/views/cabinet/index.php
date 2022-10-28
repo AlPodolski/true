@@ -17,6 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="container margin-top-20">
 
         <?php echo $this->renderFile(Yii::getAlias('@user-view/cabinet/info.php'), compact('user')) ?>
+        <p>Несколько дней статистика будет работать с ошибками, так же могут быть ошибки в работе сайта. Мы работаем, проблема скоро будет решена </p>
         <div class="row">
 
             <?php echo \frontend\modules\user\widgets\SidebarWidget::widget(['user' => $user]) ?>
@@ -28,10 +29,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="col-12 d-flex head-view-wrap">
                         <span class="black-text font-weight-bold">
                             Мои анкеты <?php if ($posts) echo '(' . count($posts) . ')' ?>
-                            <?php if ($statData) : ?>
-                            <br>
-                            Просмотров телефона <?php echo $statData['phone_view'] ?>
-                            <?php endif; ?>
                         </span>
 
 
@@ -58,6 +55,37 @@ $this->params['breadcrumbs'][] = $this->title;
                             анкеты
                         </div>
                     </div>
+
+                    <?php if ($statData) : ?>
+
+                        <div class="col-12">
+                            <div class="stat-post white-cabinet-block d-flex">
+                                <div class="stat-post-item d-flex">
+                                    <img src="/img/phone-call-svgrepo-com.svg" alt="">
+                                    <div class="info d-flex">
+                                        <div class="stat-top-info">Просмотров телефона</div>
+                                        <div class="stat-bottom-info"><?php echo $statData['phone_view'] ?></div>
+                                    </div>
+                                </div>
+                                <div class="stat-post-item d-flex">
+                                    <img src="/img/1915454.svg" alt="">
+                                    <div class="info d-flex">
+                                        <div class="stat-top-info">Просмотров анкет</div>
+                                        <div class="stat-bottom-info"><?php echo $statData['post_view'] ?></div>
+                                    </div>
+                                </div>
+                                <div class="stat-post-item d-flex">
+                                    <img src="/img/pc-computer-with-monitor_icon-icons.com_56249.svg" alt="">
+                                    <div class="info d-flex">
+                                        <div class="stat-top-info">Показов на сайте</div>
+                                        <div class="stat-bottom-info"><?php echo $statData['post_show'] ?></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    <?php endif; ?>
 
                     <div class="col-12 col-md-4 col-lg-6 cabinet-item">
                         <div class="white-cabinet-block cabinet-nav-block d-flex items-center nav-cabinet-block">
