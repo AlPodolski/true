@@ -872,42 +872,43 @@ $(window).scroll(function () {
 
             });
 
-        }
+            $(target).removeClass('pager');
 
-        $.ajax({
-            type: 'POST',
-            url: '' + url,
-            data: 'page=' + page + '&req=' + request + '&id=' + JSON.stringify(id),
-            async: false,
-            dataType: "html",
-            headers: {
-                "Accept": accept,
-            },
-            cache: false,
-            success: function (data) {
+            $.ajax({
+                type: 'POST',
+                url: '' + url,
+                data: 'page=' + page + '&req=' + request + '&id=' + JSON.stringify(id),
+                async: false,
+                dataType: "html",
+                headers: {
+                    "Accept": accept,
+                },
+                cache: false,
+                success: function (data) {
 
-                if (data !== '') {
+                    if (data !== '') {
 
-                    $('.content').append(data);
+                        $('.content').append(data);
 
-                    page = $(target).attr('data-page', Number(page) + 1);
+                        page = $(target).attr('data-page', Number(page) + 1);
 
-                    $('.carousel').carousel();
+                        $('.carousel').carousel();
 
-                    $(target).addClass('pager');
+                        $(target).addClass('pager');
 
-                } else {
+                    } else {
 
-                    $(target).remove();
-                    $('.dots').remove();
+                        $(target).remove();
+                        $('.dots').remove();
+
+                    }
 
                 }
+            })
 
-            }
-        })
+        }
 
     }
-
 });
 
 function closeHelper(object) {

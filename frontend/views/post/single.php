@@ -13,6 +13,7 @@
 
 /* @var $backUrl string */
 /* @var $refererCategory string|null */
+
 /* @var $first bool */
 
 use kartik\icons\FontAwesomeAsset;
@@ -139,8 +140,17 @@ if ($productShema) echo $productShema;
         <div class="dot"></div>
     </div>
     <div class="row">
-        <div class="col-12 pager" data-page="1" data-adress="/post/more" data-single="1"
-             data-reqest="<?php echo Yii::$app->request->url ?>"></div>
+        <div class="col-12 pager <?php if (isset($first) and $first) : ?>
+         first
+         <?php endif; ?>"
+            <?php if (isset($refererCategory) and $refererCategory) : ?>
+                data-ref="<?php echo $refererCategory ?>"
+            <?php endif; ?>
+             data-price="<?php echo $post['price'] ?>"
+             data-pol="<?php echo $post['pol_id'] ?>"
+             data-national="<?php echo $post['nacionalnost'][0]['id'] ?>"
+             data-single="1" <?php if ($post['id']) : ?>
+            data-url="/post/<?php echo $post['id'] ?>" <?php endif; ?>></div>
     </div>
 
 <?php
