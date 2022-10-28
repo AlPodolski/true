@@ -144,6 +144,11 @@ class SiteController extends Controller
 
         $microdataForMainPage = (new CatalogProductShema($title, $des, $cityInfo['id']))->make();
 
+        Yii::$app->queueView->push(new AddViewJob([
+            'posts' => $data['posts'],
+            'type' => 'redis_post_listing_view_count_key',
+        ]));
+
         return $this->render('index', [
             'prPosts' => $data['posts'],
             'title' => $title,

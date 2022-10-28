@@ -134,6 +134,11 @@ class FilterController extends Controller
 
         }
 
+        Yii::$app->queueView->push(new AddViewJob([
+            'posts' => $posts,
+            'type' => 'redis_post_listing_view_count_key',
+        ]));
+
         return $this->renderPartial('more', compact('posts', 'topPostList', 'page', 'param'));
 
     }
