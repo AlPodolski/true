@@ -56,37 +56,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
                     </div>
 
-                    <?php if ($statData) : ?>
-
-                        <div class="col-12">
-                            <div class="stat-post white-cabinet-block d-flex">
-                                <div class="stat-post-item d-flex">
-                                    <img src="/img/phone-call-svgrepo-com.svg" alt="">
-                                    <div class="info d-flex">
-                                        <div class="stat-top-info">Просмотров телефона</div>
-                                        <div class="stat-bottom-info"><?php echo $statData['phone_view'] ?></div>
-                                    </div>
-                                </div>
-                                <div class="stat-post-item d-flex">
-                                    <img src="/img/1915454.svg" alt="">
-                                    <div class="info d-flex">
-                                        <div class="stat-top-info">Просмотров анкет</div>
-                                        <div class="stat-bottom-info"><?php echo $statData['post_view'] ?></div>
-                                    </div>
-                                </div>
-                                <div class="stat-post-item d-flex">
-                                    <img src="/img/pc-computer-with-monitor_icon-icons.com_56249.svg" alt="">
-                                    <div class="info d-flex">
-                                        <div class="stat-top-info">Показов на сайте</div>
-                                        <div class="stat-bottom-info"><?php echo $statData['post_show'] ?></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    <?php endif; ?>
-
                     <div class="col-12 col-md-4 col-lg-6 cabinet-item">
                         <div class="white-cabinet-block cabinet-nav-block d-flex items-center nav-cabinet-block">
 

@@ -137,14 +137,6 @@ use frontend\modules\user\models\Posts;
 
         </div>
 
-
-        <div class="alert-small-text table-d-none">
-
-            Просмотров
-            анкеты(Детальной страницы): <?php echo ViewCountHelper::countView($post['id'] , Yii::$app->params['redis_post_single_view_count_key']) ?? 0 ?>
-
-        </div>
-
         <div class="alert-small-text margin-top-10 table-d-none">
             Просмотров
             телефона: <?php echo ViewCountHelper::countView($post->id, Yii::$app->params['redis_view_phone_count_key']) ?? 0 ?>
