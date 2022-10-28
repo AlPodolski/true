@@ -66,6 +66,13 @@ class PostController extends Controller
 
             $refererCategory = RequestHelper::getRefererCategory($protocol);
 
+            //redis_post_single_view_count_key
+
+            Yii::$app->queueView->push(new AddViewJob([
+                'posts' => $post,
+                'type' => 'redis_post_single_view_count_key',
+            ]));
+
             //$postsByPhone = GetPostHelper::getByPhone($post['phone'], $cityInfo['id']);
 
             $postsByPhone = false;
@@ -111,12 +118,14 @@ class PostController extends Controller
 
             if ($post) {
 
+                Yii::$app->queueView->push(new AddViewJob([
+                    'posts' => $post,
+                    'type' => 'redis_post_single_view_count_key',
+                ]));
+
                 $serviceListReview = false;
 
                 $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
-
-                ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_listing_view_count_key']);
-                ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_single_view_count_key']);
 
                 $moreText = $post['name'];
 
