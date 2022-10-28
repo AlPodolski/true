@@ -66,13 +66,6 @@ class PostController extends Controller
 
             $refererCategory = RequestHelper::getRefererCategory($protocol);
 
-            //redis_post_single_view_count_key
-
-            Yii::$app->queueView->push(new AddViewJob([
-                'posts' => $post,
-                'type' => 'redis_post_single_view_count_key',
-            ]));
-
             //$postsByPhone = GetPostHelper::getByPhone($post['phone'], $cityInfo['id']);
 
             $postsByPhone = false;
