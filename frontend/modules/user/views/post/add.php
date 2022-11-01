@@ -3,6 +3,7 @@
 /* @var $this \yii\web\View */
 /* @var $post \frontend\modules\user\models\Posts */
 /* @var $city array */
+/* @var $cityList \common\models\City[] */
 
 use yii\base\BaseObject;
 use frontend\modules\user\models\forms\CheckPhotoForm;
@@ -56,4 +57,5 @@ echo $this->renderFile(Yii::getAlias('@user-view/post/_form.php'), [
     'checkPhotoForm' => $checkPhotoForm,
     'userTime' => $userTime,
     'selphiForm' => $selphiForm,
+    'cityList' => $cityList,
 ]);

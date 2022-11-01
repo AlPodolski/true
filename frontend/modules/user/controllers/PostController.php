@@ -70,6 +70,7 @@ class PostController extends Controller
         $userTime = new UserTime();
 
         $city = City::getCity($city);
+        $cityList = City::find()->all();
 
         if (Yii::$app->user->identity->status != 10){
             Yii::$app->session->setFlash('warning', 'Нужно подтвердить почту');
@@ -88,14 +89,8 @@ class PostController extends Controller
             and $userService->load(Yii::$app->request->post())
         ) {
 
-
-
             $post->user_id = Yii::$app->user->id;
-
-            $post->city_id = $city['id'];
-
             $post->sort = time();
-
             $post->fake = Posts::POST_REAL;
 
             if (!$avatarForm->avatar = UploadedFile::getInstance($avatarForm, 'avatar')) {
@@ -265,9 +260,12 @@ class PostController extends Controller
 
         }
 
+        $post->city_id = $city->id;
+
         return $this->render('add', [
             'post' => $post,
             'city' => $city,
+            'cityList' => $cityList,
         ]);
     }
 
@@ -275,6 +273,8 @@ class PostController extends Controller
     {
 
         $city = City::getCity($city);
+
+        $cityList = City::find()->all();
 
         $post = Posts::find()->where(['id' => $id])->with('avatar', 'gal', 'selphiCount')->one();
 
@@ -505,6 +505,7 @@ class PostController extends Controller
         return $this->render('edit', [
             'post' => $post,
             'city' => $city,
+            'cityList' => $cityList,
         ]);
 
     }

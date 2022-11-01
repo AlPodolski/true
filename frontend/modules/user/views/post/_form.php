@@ -484,6 +484,18 @@ foreach (\common\models\Tarif::getAll() as $item) {
                         ->dropDownList(\yii\helpers\ArrayHelper::map(\common\models\IntimHair::getAll(), 'id', 'value')) ?>
                 </div>
 
+                <div class="col-12"></div>
+
+                <div class="col-12 col-sm-6">
+
+                    <?= $form->field($post, 'city_id')->dropDownList(
+                            ArrayHelper::map($cityList, 'id', 'city')
+                    )->label('Выбрать город') ?>
+
+                </div>
+
+                <div class="col-12"></div>
+
                 <div class="col-12 col-sm-6">
 
                     <?= $form->field($userMetro, 'metro_id')->widget(\kartik\select2\Select2::classname(), [
@@ -497,6 +509,7 @@ foreach (\common\models\Tarif::getAll() as $item) {
                     ])->label('Метро(Максимум 4)') ?>
 
                 </div>
+
                 <div class="col-12 col-sm-6">
 
                     <?= $form->field($userRayon, 'rayon_id')->widget(\kartik\select2\Select2::classname(), [

@@ -99,5 +99,6 @@ echo $this->renderFile(Yii::getAlias('@user-view/post/_form.php'), [
     'checkPhotoForm' => $checkPhotoForm,
     'userTime' => $userTime,
     'selphiForm' => $selphiForm,
+    'cityList' => $cityList,
 ]);
 
