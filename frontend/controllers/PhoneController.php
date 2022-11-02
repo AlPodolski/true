@@ -42,7 +42,7 @@ class PhoneController extends Controller
 
             }else{
 
-                if ($price < 3000){
+                if ($price <= 3000){
                     $priceRange = array('min' => $price - 500, 'max' => $price + 500);
                 }else{
                     $priceRange = array('min' => $price - 1000, 'max' => $price + 1000);
