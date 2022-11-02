@@ -48,6 +48,7 @@ class PhoneController extends Controller
                     ->andWhere(['>=', 'price', $price - 500])
                     ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
                     ->andWhere(['fake' => Posts::POST_REAL])
+                    ->andWhere(['<>', 'user_id', 240])
                     ->orderBy(['rand()' => SORT_DESC])
                     ->one();
 
