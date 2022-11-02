@@ -31,7 +31,7 @@ class PostsRepository
     {
         $prPosts = Posts::find()->asArray()
             ->select(['id', 'name', 'rost', 'ves', 'age', 'breast',
-                'check_photo_status', 'tarif_id', 'price', 'phone', 'video'])
+                'check_photo_status', 'tarif_id', 'price', 'phone', 'video', 'city_id'])
             ->with('avatar', 'metro','gallery', 'tarif')
             ->where(['city_id' => $this->cityId])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
@@ -61,7 +61,7 @@ class PostsRepository
         $posts = Posts::find()
             ->asArray()
             ->select(['id', 'name', 'rost', 'ves', 'age', 'breast',
-                'check_photo_status', 'tarif_id', 'price', 'phone', 'video'])
+                'check_photo_status', 'tarif_id', 'price', 'phone', 'video', 'city_id'])
             ->with('avatar', 'metro','gallery', 'tarif')
             ->where(['city_id' => $this->cityId])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])

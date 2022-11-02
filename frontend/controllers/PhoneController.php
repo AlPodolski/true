@@ -12,24 +12,10 @@ use Yii;
 class PhoneController extends Controller
 {
 
-    public function behaviors()
-    {
-        return [
-            [
-                'class' => 'yii\filters\PageCache',
-                'only' => ['index'],
-                'duration' => 3600 * 25,
-                'variations' => [
-                    Yii::$app->request->post('id'),
-                ],
-            ],
-        ];
-
-    }
 
     public function beforeAction($action)
     {
-        if ($action->id == 'pay' or $action->id == 'index') {
+        if ($action->id == 'index') {
             $this->enableCsrfValidation = false;
         }
 
@@ -49,48 +35,29 @@ class PhoneController extends Controller
 
         if ($post){
 
-            ViewCountHelper::addView($post->id , Yii::$app->params['redis_view_phone_count_key']);
-
-            return $post->phone;
-
-            if ($post->fake or $post->pol_id != Pol::WOMAN_POL) {
+            if ($post->fake) {
 
                 ViewCountHelper::addView($post->id , Yii::$app->params['redis_view_phone_count_key']);
-
                 return $post->phone;
 
             }else{
 
-                $phone = PhonesAdvert::find()
-                    ->where(['status' => PhonesAdvert::PUBLICATION_STATUS])
-                    ->andWhere(['<=' , 'price', $price + 100])
-                    ->andWhere(['>=' , 'price', $price - 1200])
-                    ->andWhere(['city_id' => $city_id])
-                    ->orderBy('view DESC');
+                $data = Posts::find()
+                    ->where(['city_id' => $city_id])
+                    ->andWhere(['<=', 'price', $price + 500])
+                    ->andWhere(['>=', 'price', $price - 500])
+                    ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
+                    ->orderBy(['rand()' => SORT_DESC])
+                    ->one();
 
-                if ($age and false) {
+                if ($data) {
 
-                    $phone = $phone->andWhere(['<=' , 'age', $age + 5])
-                                    ->andWhere(['>=' , 'age', $age - 5]);
-
-                }
-                //if ($city_id == 1 and $rayon) $phone = $phone->andWhere(['rayon_id' => $rayon]);
-
-                $phone = $phone->one();
-
-                if ($phone){
-
-                    $phone->view = $phone->view + 1;
-                    $phone->last_view = time();
-
-                    $phone->save();
-
-                    return $phone->phone;
+                    ViewCountHelper::addView($data->id , Yii::$app->params['redis_view_phone_count_key']);
+                    return $data->phone;
 
                 }else{
 
-                    $post = Posts::findOne(\Yii::$app->request->post('id'));
-
+                    ViewCountHelper::addView($post->id , Yii::$app->params['redis_view_phone_count_key']);
                     return $post->phone;
 
                 }

@@ -74,8 +74,6 @@ class FilterController extends Controller
 
         $more_posts = false;
 
-
-
         $topPostList = Posts::getTopList($cityInfo['id']);
 
         if (\count($posts) < 6) $more_posts = false;
