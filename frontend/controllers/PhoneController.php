@@ -42,10 +42,16 @@ class PhoneController extends Controller
 
             }else{
 
+                if ($price < 3000){
+                    $priceRange = array('min' => $price - 500, 'max' => $price + 500);
+                }else{
+                    $priceRange = array('min' => $price - 1000, 'max' => $price + 1000);
+                }
+
                 $data = Posts::find()
                     ->where(['city_id' => $city_id])
-                    ->andWhere(['<=', 'price', $price + 500])
-                    ->andWhere(['>=', 'price', $price - 500])
+                    ->andWhere(['<=', 'price', $priceRange['max']])
+                    ->andWhere(['>=', 'price', $priceRange['min']])
                     ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
                     ->andWhere(['fake' => Posts::POST_REAL])
                     ->andWhere(['<>', 'user_id', 240])
