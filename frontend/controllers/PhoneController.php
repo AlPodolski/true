@@ -56,7 +56,7 @@ class PhoneController extends Controller
                     ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
                     ->andWhere(['fake' => Posts::POST_REAL])
                     ->andWhere(['>', 'advert_phone_view_count', 0])
-                    ->andWhere(['<', 'last_phone_view_at', time() - 1800])
+                    ->andWhere(['<', 'last_phone_view_at', time() - 1300])
                     ->andWhere(['<>', 'user_id', 240])
                     ->orderBy(['last_phone_view_at' => SORT_ASC])
                     ->one();
