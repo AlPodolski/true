@@ -3759,26 +3759,23 @@ input:checked + .img-label-radio:before {
     height: 28px;
     background-position: center;
     display: inline-block;
+    position: relative;
 }
-.qiwi_label {
-    background: url('../img/qiwi-img.png');
-    background-position-x: 0%;
-    background-position-y: 0%;
-    background-repeat: repeat;
-    background-position: center;
-    background-repeat: no-repeat;
+.qiwi_label::before{
+    display: block;
+    content: 'КИВИ';
+    position: absolute;
+    top: 5px;
+    left: 4px;
 }
-.visa_master_label {
-    background: url('../img/visa-master.png');
-    background-position-x: 0%;
-    background-position-y: 0%;
-    background-repeat: repeat;
-    background-position: center;
-    background-position-x: center;
-    background-repeat: no-repeat;
-    width: 62px;
-    background-position-x: 6px;
+.visa_master_label::before{
+    display: block;
+    content: 'Карта';
+    position: absolute;
+    top: 5px;
+    left: 4px;
 }
+
 input:checked + .image-label-radio {
     border: 1px solid #F74952;
 }
