@@ -88,6 +88,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'phone',
             'price',
             'user_id',
+            'advert_phone_view_count',
             [
                 'attribute' => 'Клик по номеру',
                 'format' => 'raw',
