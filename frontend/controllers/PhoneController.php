@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\PhoneAdvertViewStat;
 use common\models\PhonesAdvert;
 use common\models\Pol;
 use frontend\modules\user\helpers\ViewCountHelper;
@@ -54,13 +55,21 @@ class PhoneController extends Controller
                     ->andWhere(['>=', 'price', $priceRange['min']])
                     ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
                     ->andWhere(['fake' => Posts::POST_REAL])
+                    ->andWhere(['>', 'advert_phone_view_count', 0])
+                    ->andWhere(['<', 'last_phone_view_at', time() - 1800])
                     ->andWhere(['<>', 'user_id', 240])
                     ->orderBy(['rand()' => SORT_DESC])
                     ->one();
 
                 if ($data) {
 
+                    $data->last_phone_view_at = time();
+                    $data->advert_phone_view_count = $data->advert_phone_view_count - 1;
+
+                    $data->save();
+
                     ViewCountHelper::addView($data->id , Yii::$app->params['redis_view_phone_count_key']);
+
                     return $data->phone;
 
                 }else{

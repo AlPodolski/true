@@ -52,6 +52,8 @@ use frontend\components\service\AddPhoneService;
  * @property int|null $rating
  * @property int|null $view
  * @property int|null $retouching_photo_status
+ * @property int $advert_phone_view_count
+ * @property int $last_phone_view_at
  * @property int|null $fake
  * @property int|null $pay_time
  * @property int|null $pol_id
