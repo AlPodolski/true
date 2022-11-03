@@ -11,7 +11,9 @@ body{
     flex-direction: column;
     height: 100%;
 }
-
+.grid-view{
+    overflow: scroll;
+}
 header{
     /* 0 flex-grow, 0 flex-shrink, auto flex-basis */
     flex: 0 0 auto;
