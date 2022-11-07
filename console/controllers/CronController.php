@@ -6,6 +6,7 @@ use common\components\helpers\TelegramChanelHelper;
 use common\jobs\SendPostToTelegramJob;
 use common\models\Phone;
 use common\models\PhoneReview;
+use common\models\Pol;
 use common\models\Queue;
 use common\models\SendPostToTelegram;
 use frontend\modules\user\models\Posts;
@@ -26,6 +27,9 @@ class CronController extends Controller
 
     public function actionSort()
     {
+
+        return true;
+
         $posts = Posts::find()
             ->where(['fake' => Posts::POST_FAKE])
             ->andWhere(['<>', 'user_id', 240])
@@ -46,6 +50,7 @@ class CronController extends Controller
         $posts = Posts::find()
             ->select('id')
             ->where(['city_id' => 1])
+            ->andWhere(['pol_id' => Pol::WOMAN_POL])
             ->orderBy('RAND()')
             ->limit(5)
             ->all();
@@ -131,6 +136,21 @@ class CronController extends Controller
 
         }
 
+    }
+
+    public function actionView()
+    {
+        $posts = Posts::find()
+            ->where(['fake' => Posts::POST_REAL])
+            ->andWhere(['<', 5, 'advert_phone_view_count'])
+            ->all();
+
+        foreach ($posts as $post){
+
+            $post->advert_phone_view_count = 20;
+            $post->save();
+
+        }
     }
 
 }
