@@ -67,7 +67,7 @@ foreach (\common\models\Tarif::getAll() as $item) {
 
                 <div class="col-12 main-photo">
 
-                    <p class="black-text font-weight-bold">Основное фото (Используйте фото высокого качества)</p>
+                    <p class="black-text font-weight-bold">Основное фото (Используйте фото высокого качества, реклама других сайтов запрещена)</p>
 
                     <?php $style = '' ?>
 
