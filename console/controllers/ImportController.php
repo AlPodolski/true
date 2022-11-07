@@ -88,8 +88,6 @@ class ImportController extends Controller
 
             $post = new Posts();
 
-            $city['id'] = 1;
-
             $post->price = $record['price'] ?? 6000;
 
             $post->city_id = 1;
