@@ -10,8 +10,8 @@
         $thumbSrc = Yii::$app->imageCache->thumbSrc($file, '500_700');
         $thumbSrcWebP = str_replace('.jpg', '.webp', $thumbSrc);
         ?>
-        <source srcset="<?php echo $thumbSrc ?>" media="(max-width: 768px)" type="image/webp">
-        <source srcset="<?php echo $thumbSrcWebP ?>" media="(max-width: 768px)" type="image/jpeg">
+        <source srcset="<?php echo $thumbSrcWebP ?>" media="(max-width: 768px)" type="image/webp" >
+        <source srcset="<?php echo $thumbSrc ?>" media="(max-width: 768px)" type="image/jpeg">
         <?php
         $thumbSrc = Yii::$app->imageCache->thumbSrc($file, '420_480');
         $thumbSrcWebP = str_replace('.jpg', '.webp', $thumbSrc);
