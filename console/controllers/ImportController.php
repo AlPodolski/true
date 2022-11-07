@@ -51,7 +51,7 @@ class ImportController extends Controller
     public function actionIndex()
     {
 
-        $stream = \fopen(Yii::getAlias('@app/files/import_03_11_2022.csv'), 'r');
+        $stream = \fopen(Yii::getAlias('@app/files/import_7_11_2022.csv'), 'r');
 
         $csv = Reader::createFromStream($stream);
         $csv->setDelimiter(';');
@@ -68,7 +68,7 @@ class ImportController extends Controller
 
         $this->siteId = 0;
         $this->update = 30;
-        $this->path = '/uploads/a35/';
+        $this->path = '/uploads/a36/';
 
         $posts = array();
 
@@ -80,7 +80,7 @@ class ImportController extends Controller
 
         foreach ($posts as $record) {
 
-            $city = City::find()->where(['city' => $record])->one();
+            $city = City::find()->where(['city' => $record['city']])->one();
 
             if (!$city) {
                 continue;
@@ -90,7 +90,7 @@ class ImportController extends Controller
 
             $post->price = $record['price'] ?? 6000;
 
-            $post->city_id = 1;
+            $post->city_id = $city['id'];
             $post->user_id = 240;
             $post->pol_id = 1;
             $post->created_at = \time();
@@ -276,9 +276,9 @@ class ImportController extends Controller
 
                 }
 
-                exit();
-
             }
+
+            exit();
 
         }
 
@@ -860,8 +860,6 @@ class ImportController extends Controller
             $meta_model->tag = $meta2;
 
             $meta_model->save();
-
-            exit();
 
         }
     }
