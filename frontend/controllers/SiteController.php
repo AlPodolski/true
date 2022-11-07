@@ -126,7 +126,7 @@ class SiteController extends Controller
             $webmaster = Webmaster::getTag($cityInfo['id']);
         }
 
-        $data = $postRepository->getForMainPage($cityInfo['id']);
+        $data = $postRepository->getForMainPage();
 
         $checkBlock = GetAdvertisingPost::get($cityInfo);
 

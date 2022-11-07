@@ -106,7 +106,7 @@ foreach (\common\models\Tarif::getAll() as $item) {
 
                 <div class="col-12 main-photo">
 
-                    <p class="black-text font-weight-bold">Проверочное фото</p>
+                    <p class="black-text font-weight-bold">Проверочное фото(Анкеты которые прошли проверку по фото выводятся выше в рамках своего тарифа)</p>
 
                     <div class="accordion accordion-custom" id="accordionExample">
                         <div class="card">
