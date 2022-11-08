@@ -719,7 +719,7 @@ class QueryParamsHelper
                         'url' => Yii::$app->params['breadcrumbs'] ? $param : '/' . $param,
                     );
 
-                    $posts = Posts::find()
+                    $posts = $posts
                         ->andWhere(['>', 'age', $ageRange[0]])
                         ->andWhere(['<', 'age', $ageRange[1]]);
 
