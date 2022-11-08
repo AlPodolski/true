@@ -10,7 +10,7 @@ class GetPostHelper
     public static function getForSingle($id, $city_id)
     {
 
-        $post = Yii::$app->cache->get('post_cache_'.$id);
+        $post = Yii::$app->cache->get('post_cache_'.$id.'_'.$city_id);
 
         if ($post === false) {
             // $data нет в кэше, вычисляем заново
@@ -23,7 +23,7 @@ class GetPostHelper
                 )
                 ->limit(1)->one();
 
-            if ($post) Yii::$app->cache->set('post_cache_'.$id , $post);
+            if ($post) Yii::$app->cache->set('post_cache_'.$id.'_'.$city_id , $post);
         }
 
         return $post;
