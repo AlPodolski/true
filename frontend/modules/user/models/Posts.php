@@ -392,6 +392,7 @@ class Posts extends \yii\db\ActiveRecord
             'price_night' => 'Цена за ночь',
             'status' => 'Статус',
             'retouching_photo_status' => 'Ретуш фото',
+            'advert_phone_view_count' => 'Д. клики',
         ];
     }
 }
