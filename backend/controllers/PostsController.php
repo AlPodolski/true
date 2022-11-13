@@ -40,6 +40,7 @@ class PostsController extends Controller
     {
         $searchModel = new PostsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->pagination = ['pageSize' => 100];
 
         return $this->render('index', [
             'searchModel' => $searchModel,
