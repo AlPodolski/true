@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use common\components\helpers\AddEventHelper;
 use common\models\PostMessage;
+use frontend\modules\advert\models\Advert;
 use Yii;
 use frontend\modules\user\models\Posts;
 use backend\models\Posts as PostsSearch;
@@ -126,6 +127,19 @@ class PostsController extends Controller
          $this->findModel($id)->delete();
 
         if (Yii::$app->request->isGet) return $this->redirect(['index']);
+    }
+
+    public function actionCheck()
+    {
+        if ($model = $this->findModel(Yii::$app->request->post('id'))){
+
+            $model->status = Posts::POST_ON_PUPLICATION_STATUS;
+
+            $model->save();
+
+            return 'Публикуется';
+
+        }
     }
 
     /**

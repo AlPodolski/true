@@ -40,7 +40,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     /* @var $user \frontend\modules\user\models\Posts */
                     switch ($user['status']) {
                         case \frontend\modules\user\models\Posts::POST_ON_MODARATION_STATUS:
-                            return  "Ожидает проверки";
+                            $data = '<div class="check-text" data-id="'.$user['id'].'" onclick="check_anket(this)">Ожидает проверки</div>';
+                            return  $data;
                         case \frontend\modules\user\models\Posts::POST_ON_PUPLICATION_STATUS:
                             return  "Публикуется";
                         case \frontend\modules\user\models\Posts::POST_DONT_PUBLICATION_STATUS:
@@ -90,7 +91,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'user_id',
             'advert_phone_view_count',
             [
-                'attribute' => 'Клик по номеру',
+                'attribute' => 'КПН',
                 'format' => 'raw',
                 'value' => function ($user) {
                     /* @var $user \frontend\modules\user\models\Posts */

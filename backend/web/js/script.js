@@ -34,6 +34,28 @@ function get_dialog(object){
     })
 }
 
+function check_anket(object){
+
+    var id = $(object).attr('data-id');
+
+    $.ajax({
+        type: 'POST',
+        url: "/posts/check", //Путь к обработчику
+        data: 'id='+id,
+        response: 'text',
+        dataType: "html",
+        cache: false,
+        success: function (data) {
+
+            $(object).text(data);
+            $(object).attr('onclick', '');
+            $(object).removeClass('check-text');
+
+        }
+    })
+
+}
+
 function check_advert(object){
 
     var id = $(object).attr('data-id');
