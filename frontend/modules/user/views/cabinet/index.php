@@ -56,6 +56,23 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
                     </div>
 
+                    <div class="nav-posts select-all d-flex col-12">
+                        <div data-type="start"
+                             onclick="set_selected_all(this)">
+                            Выделить все
+                        </div>
+                    </div>
+
+                    <div class="nav-posts post-publication-nav d-flex col-12">
+                        <div data-type="start"
+                             onclick="start_all_selected(this)">
+                            Включить все выделенные анкеты
+                        </div>
+                        <div data-type="stop" onclick="start_all_selected(this)">
+                            Выключит все выделенные анкеты
+                        </div>
+                    </div>
+
                     <?php if ($statData) : ?>
 
                         <div class="col-12">

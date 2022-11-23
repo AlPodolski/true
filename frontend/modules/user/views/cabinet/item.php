@@ -39,9 +39,13 @@ use frontend\modules\user\models\Posts;
     <div class="white-cabinet-block cabinet-nav-block d-flex items-center nav-cabinet-block">
 
         <div class="anket-info publication-info">
+
+            <input data-id="<?php echo $post['id'] ?>" onclick="check_checbox()"
+                   type="checkbox" class="checbox checbox-publication">
+
             <a data-id="<?php echo $post['id'] ?>" onclick="publication(this)"
                   data-key="<?php echo $postStatus['key'] ?>"
-                  class="cursor-pointer <?php echo $postStatus['key'] ?>"><?php echo $postStatus['value'] ?></a>
+                  class="cursor-pointer table-d-none publication-btn <?php echo $postStatus['key'] ?>"><?php echo $postStatus['value'] ?></a>
         </div>
 
 
@@ -69,7 +73,7 @@ use frontend\modules\user\models\Posts;
             <div class="anket-info">
                 <a data-id="<?php echo $post['id'] ?>" onclick="publication(this)"
                    data-key="<?php echo $postStatus['key'] ?>"
-                   class="cursor-pointer <?php echo $postStatus['key'] ?>"><?php echo $postStatus['value'] ?></a>
+                   class="cursor-pointer publication-btn <?php echo $postStatus['key'] ?>"><?php echo $postStatus['value'] ?></a>
             </div>
 
         </div>

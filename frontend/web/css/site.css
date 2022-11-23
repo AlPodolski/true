@@ -1611,7 +1611,7 @@ a.asc::after {
 .table .white-cabinet-block{
     flex-direction: row;
 }
-.table .publication-info, .table .table-d-none{
+ .table .table-d-none{
     display: none;
 }
 .table .user-name-full{
@@ -3723,6 +3723,34 @@ input:checked + .img-label-radio:before {
 .card-header{
     background: #fff;
     border:none;
+}
+.publication-info{
+    display: flex;
+    width: 100%;
+}
+.publication-info .checbox{
+    width: auto;
+}
+.table .publication-info{
+    width: auto;
+    margin-right: 15px;
+    margin-bottom: 0;
+}
+.publication-info a{
+    margin: auto;
+}
+.post-publication-nav{
+    color: #ccc;
+    margin-top: 15px!important;
+}
+.post-publication-nav-active{
+    color: #007bff!important;
+    cursor: pointer;
+}
+.select-all{
+    margin-top: 15px!important;
+    color: #007bff!important;
+    cursor: pointer;
 }
 .card{
     background: #FFFFFF;

@@ -19,6 +19,26 @@ function close_text() {
     document.cookie = 'text=close; max-age=' + (3600 * 24 * 31);
 }
 
+function check_checbox() {
+    $('.post-publication-nav').removeClass('post-publication-nav-active')
+    $(".checbox-publication").each(function () {
+        if (this.checked) {
+            $('.post-publication-nav').addClass('post-publication-nav-active')
+            return true;
+        }
+    });
+
+}
+
+function set_selected_all(){
+    $(".checbox-publication").each(function () {
+        if (this.checked) {
+            $(this).prop("checked", false );
+        }else $(this).prop("checked", true );
+    });
+    check_checbox();
+}
+
 var exist_map_block = false;
 
 if ($('.yandex-map').length > 0) {
@@ -69,6 +89,37 @@ function start_all(object) {
             }
         })
     }
+}
+
+function start_all_selected(obj) {
+
+    var key = $(obj).attr('data-type');
+
+    $( ".checbox-publication" ).each(function() {
+
+        if (this.checked){
+
+            var id = $(this).attr('data-id')
+            var object = this;
+
+            $.ajax({
+                type: 'POST',
+                data: 'id=' + id + '&key=' +key,
+                url: "/cabinet/post/publication", //Путь к обработчику
+                cache: false,
+                async: true,
+                success: function (data) {
+                    $(object).siblings().text(data);
+                    console.log($(object).closest('.cabinet-item').find('.publication-btn'));
+                    $(object).closest('.cabinet-item').find('.publication-btn').text(data);
+                    $(object).prop("checked", false );
+                }
+            })
+        }
+    });
+
+    $('.post-publication-nav').removeClass('post-publication-nav-active')
+
 }
 
 function update_tarif(object) {

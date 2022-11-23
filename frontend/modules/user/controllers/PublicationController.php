@@ -28,9 +28,33 @@ class PublicationController extends Controller
     public function actionIndex()
     {
 
-        if (!$post = Posts::find()->where(['id' => Yii::$app->request->post('id')])->one()) throw new NotFoundHttpException();
+        if (!$post = Posts::find()
+            ->where(['id' => Yii::$app->request->post('id')])
+            ->andWhere(['user_id' => Yii::$app->user->id])
+            ->one()) throw new NotFoundHttpException();
 
-        if ($post['user_id'] != Yii::$app->user->id) throw new ForbiddenHttpException();
+        if (Yii::$app->request->post('key')){
+
+            if (Yii::$app->request->post('key') == 'start'){
+
+                $post->status = Posts::POST_ON_PUPLICATION_STATUS;
+                $post->save();
+
+                return Yii::$app->response->content = 'Остановить публикацию';
+
+            }
+
+            if (Yii::$app->request->post('key') == 'stop'){
+
+                $post->status = Posts::POST_DONT_PUBLICATION_STATUS;
+                $post->save();
+
+                return Yii::$app->response->content = 'Поставить на публикацию';
+
+            }
+
+        }
+
 
         switch ($post->status) {
 
