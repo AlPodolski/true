@@ -3742,6 +3742,13 @@ input:checked + .img-label-radio:before {
 .post-publication-nav{
     color: #ccc;
     margin-top: 15px!important;
+    flex-wrap: wrap;
+}
+.grey{
+    background: #ccc;
+}
+.start-all{
+    margin-top: 10px;
 }
 .post-publication-nav-active{
     color: #007bff!important;

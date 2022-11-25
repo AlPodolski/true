@@ -195,7 +195,7 @@
                                 </a>
                             </div>
                             <div class="user-menu-item-text grey-text">
-                                <a class="user-menu-item-text grey-text" href="/cabinet/pay">
+                                <a class="user-menu-item-text grey-text" href="/cabinet/pay?sort=-created_at">
                                     Пополнить баланс
                                 </a>
                             </div>

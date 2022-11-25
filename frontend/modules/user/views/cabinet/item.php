@@ -89,7 +89,7 @@ use frontend\modules\user\models\Posts;
 
             <?php if ($post['status'] == Posts::POST_ON_PUPLICATION_STATUS or $post['status'] == Posts::POST_DONT_PUBLICATION_STATUS) : ?>
 
-                <a href="/cabinet/up/<?= $post['id'] ?>" class="edit-anket position-relative up-anket edit-block-item d-flex items-center">
+                <a onclick="up_post(this)" data-id="<?php echo $post['id'] ?>" class="edit-anket position-relative up-anket edit-block-item d-flex items-center">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(.clip0)">
                             <path d="M7.14072 8.07527V7.57527H6.64072H4.56939L12.0002 0.539654L19.4313 7.57527H17.3599H16.8599V8.07527V14.8138H7.14072V8.07527Z"

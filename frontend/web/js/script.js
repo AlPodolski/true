@@ -56,6 +56,34 @@ function add_status_to_button(object) {
     $(object).siblings('.change-tarif').addClass('change-tarif-active')
 }
 
+function up_all_selected(){
+
+    $( ".checbox-publication" ).each(function() {
+
+        if (this.checked){
+
+            var id = $(this).attr('data-id')
+            var object = this;
+
+            $.ajax({
+                type: 'POST',
+                data: 'id=' + id,
+                url: "/cabinet/up", //Путь к обработчику
+                cache: false,
+                async: false,
+                success: function (data) {
+                    $(object).siblings().text(data);
+                    $(object).closest('.cabinet-item').find('.publication-btn').text(data);
+                    $(object).prop("checked", false );
+                }
+            })
+        }
+    });
+
+    $('.post-publication-nav').removeClass('post-publication-nav-active')
+
+}
+
 function start_all(object) {
     if ($(object).hasClass('change-tarif-active')) {
 
@@ -91,9 +119,25 @@ function start_all(object) {
     }
 }
 
-function start_all_selected(obj) {
+function up_post(object){
 
-    var key = $(obj).attr('data-type');
+    var id = $(object).attr('data-id');
+
+    $.ajax({
+        type: 'POST',
+        data: 'id=' + id,
+        url: "/cabinet/up", //Путь к обработчику
+        cache: false,
+        async: true,
+        success: function (data) {
+
+            $(object).addClass('grey')
+
+        }
+    })
+}
+
+function start_all_selected() {
 
     $( ".checbox-publication" ).each(function() {
 

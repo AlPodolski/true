@@ -17,7 +17,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="container margin-top-20">
 
         <?php echo $this->renderFile(Yii::getAlias('@user-view/cabinet/info.php'), compact('user')) ?>
-        <p>Несколько дней статистика будет работать с ошибками, так же могут быть ошибки в работе сайта. Мы работаем, проблема скоро будет решена </p>
         <div class="row">
 
             <?php echo \frontend\modules\user\widgets\SidebarWidget::widget(['user' => $user]) ?>
@@ -66,10 +65,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="nav-posts post-publication-nav d-flex col-12">
                         <div data-type="start"
                              onclick="start_all_selected(this)">
-                            Включить все выделенные анкеты
+                            Включить выделенные
                         </div>
                         <div data-type="stop" onclick="start_all_selected(this)">
-                            Выключит все выделенные анкеты
+                            Выключит выделенные
+                        </div>
+                        <div data-type="stop" class="start-all" onclick="up_all_selected()">
+                            Поднять выделенные (<?php echo Yii::$app->params['up_anket_cost']?>р. анкета)
                         </div>
                     </div>
 
@@ -133,7 +135,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         </div>
                     </div>
-
 
                     <?php foreach ($posts as $post) {
 

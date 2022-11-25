@@ -34,9 +34,19 @@ class UpController extends Controller
 
     }
 
-    public function actionIndex($city, $id)
+    public function actionIndex($city)
     {
-        if ($post = Posts::find()->where(['id' => $id])->limit(1)->one()){
+
+        $id = Yii::$app->request->post('id');
+
+        $post = Posts::find()
+            ->where(['id' => $id])
+            ->andWhere(['user_id' => Yii::$app->user->id])
+            ->limit(1)->one();
+
+        $message = '';
+
+        if ($post) {
 
             if ($post->status == Posts::POST_ON_MODARATION_STATUS or $post->status == Posts::RETURNED_FOR_REVISION) exit();
 
@@ -44,7 +54,15 @@ class UpController extends Controller
 
             $user = User::findOne(Yii::$app->user->id);
 
-            if ($user['cash'] >= Yii::$app->params['up_anket_cost']){
+            if ($post->sort >= (time() - 1)) {
+
+                $message = 'Анкета уже поднята';
+
+                return $message;
+
+            }
+
+            if ($user['cash'] >= Yii::$app->params['up_anket_cost']) {
 
                 $transaction = Yii::$app->db->beginTransaction();
 
@@ -62,7 +80,9 @@ class UpController extends Controller
 
                 $post->save();
 
-                if ($upAnketModel->save() and $user->save()){
+                if ($upAnketModel->save() and $user->save()) {
+
+                    $transaction->commit();
 
                     $billPayEvent = new BillPayEvent();
 
@@ -73,33 +93,27 @@ class UpController extends Controller
 
                     $this->trigger(self::EVENT_BILL_PAY, $billPayEvent);
 
-                    $transaction->commit();
+                    $message = 'Анкета поднята';
 
-                    Yii::$app->session->setFlash('success', 'Анкета '.$post->name.' поднята');
-
-                    return $this->redirect('/cabinet');
-
-                }else{
+                } else {
 
                     $transaction->rollBack();
 
-                    Yii::$app->session->setFlash('warning', 'Ошибка');
-
-                    return $this->redirect('/cabinet');
+                    $message = 'Ошибка';
 
                 }
 
-            }else{
+            } else {
 
-                Yii::$app->session->setFlash('warning', 'Недостаточно средств');
-
-                return $this->redirect('/cabinet');
+                $message = 'Недостаточно средств';
 
             }
 
         }
 
-        return $this->redirect('/cabinet');
+        return $message;
 
     }
+
+
 }
