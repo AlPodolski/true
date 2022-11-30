@@ -73,6 +73,7 @@ class Obmenka
             'payment_id' => $orderId,
             "amount" => $sum,
             'currency' => $currency,
+            'account' => 'true-'.Yii::$app->user->id,
             "description" => $des,
             "success_url" => "https://".$city.".sex-tut.com/pay/obmenka/".\str_replace('-'.Yii::$app->params['obm-id-pref'], '',$orderId),
             "fail_url" => "https://".$city.".sex-tut.com/pay",
