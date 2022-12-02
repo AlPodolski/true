@@ -142,7 +142,7 @@ class CronController extends Controller
     {
         $posts = Posts::find()
             ->where(['fake' => Posts::POST_REAL])
-            ->andWhere(['<', 5, 'advert_phone_view_count'])
+            ->andWhere(['<', 'advert_phone_view_count', 5])
             ->all();
 
         foreach ($posts as $post){
