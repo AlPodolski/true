@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    $.getScript("https://code.jquery.com/ui/1.13.2/jquery-ui.min.js", function (data, textStatus, jqxhr) {
-        $("head").prepend('<link href="/css/jquery-ui.min.css" rel="stylesheet">');
+    $.getScript("/js/nouislider.min.js", function (data, textStatus, jqxhr) {
+        $("head").prepend('<link href="/css/nouislider.min.css" rel="stylesheet">');
         filter();
     });
 });
@@ -1180,66 +1180,119 @@ function setSort() {
 
 function filter() {
 
-    $("#slider-range-age").slider({
-        range: true,
-        min: 18,
-        max: 65,
-        values: [$("#age-from").val(), $("#age-to").val()],
-        slide: function (event, ui) {
-            $("#age-from").val(ui.values[0]);
-            $("#age-to").val(ui.values[1]);
-        }
-    });
-    $("#rost-range-age").slider({
-        range: true,
-        min: 150,
-        max: 200,
-        values: [$("#rost-from").val(), $("#rost-to").val()],
-        slide: function (event, ui) {
-            $("#rost-from").val(ui.values[0]);
-            $("#rost-to").val(ui.values[1]);
+    var slider = document.getElementById('slider-range-age');
+
+    noUiSlider.create(slider, {
+        start: [18, 65],
+        connect: true,
+        step: 1,
+        format: wNumb({
+            decimals: 0
+        }),
+        range: {
+            'min': 18,
+            'max': 65
         }
     });
 
-    $("#slider-range-ves").slider({
-        range: true,
-        min: 35,
-        max: 130,
-        values: [$("#ves-from").val(), $("#ves-to").val()],
-        slide: function (event, ui) {
-            $("#ves-from").val(ui.values[0]);
-            $("#ves-to").val(ui.values[1]);
+    slider.noUiSlider.on('update', function (values, handle) {
+        console.log(values);
+        var age_from = document.getElementById('age-from')
+        var age_to = document.getElementById('age-to')
+        age_from.value = values[0];
+        age_to.value = values[1];
+    });
+
+    var sliderAge = document.getElementById('rost-range-age');
+
+    noUiSlider.create(sliderAge, {
+        start: [150, 200],
+        connect: true,
+        step: 1,
+        format: wNumb({
+            decimals: 0
+        }),
+        range: {
+            'min': 150,
+            'max': 200
         }
     });
-    $("#slider-range-grud").slider({
-        range: true,
-        min: 0,
-        max: 9,
-        values: [$("#grud-from").val(), $("#grud-to").val()],
-        slide: function (event, ui) {
-            $("#grud-from").val(ui.values[0]);
-            $("#grud-to").val(ui.values[1]);
+
+    sliderAge.noUiSlider.on('update', function (values, handle) {
+        console.log(values);
+        var age_from = document.getElementById('rost-from')
+        var age_to = document.getElementById('rost-to')
+        age_from.value = values[0];
+        age_to.value = values[1];
+    });
+
+    var sliderVes = document.getElementById('slider-range-ves');
+
+    noUiSlider.create(sliderVes, {
+        start: [35, 130],
+        connect: true,
+        step: 1,
+        format: wNumb({
+            decimals: 0
+        }),
+        range: {
+            'min': 35,
+            'max': 130
         }
     });
-    $("#slider-range-price-1-hour").slider({
-        range: true,
-        min: 500,
-        max: 25000,
-        values: [$("#price-1-from").val(), $("#price-1-to").val()],
-        slide: function (event, ui) {
-            $("#price-1-from").val(ui.values[0]);
-            $("#price-1-to").val(ui.values[1]);
+
+    sliderVes.noUiSlider.on('update', function (values, handle) {
+        console.log(values);
+        var age_from = document.getElementById('ves-from')
+        var age_to = document.getElementById('ves-to')
+        age_from.value = values[0];
+        age_to.value = values[1];
+    });
+
+    var sliderGrud = document.getElementById('slider-range-grud');
+
+    noUiSlider.create(sliderGrud, {
+        start: [0, 9],
+        connect: true,
+        step: 1,
+        format: wNumb({
+            decimals: 0
+        }),
+        range: {
+            'min': 0,
+            'max': 9
         }
     });
-    $("#slider-range-price-2-hour").slider({
-        range: true,
-        min: 500,
-        max: 25000,
-        values: [$("#price-2-from").val(), $("#price-2-to").val()],
-        slide: function (event, ui) {
-            $("#price-2-from").val(ui.values[0]);
-            $("#price-2-to").val(ui.values[1]);
+
+    sliderGrud.noUiSlider.on('update', function (values, handle) {
+        console.log(values);
+        var age_from = document.getElementById('grud-from')
+        var age_to = document.getElementById('grud-to')
+        age_from.value = values[0];
+        age_to.value = values[1];
+    });
+
+    var sliderPrice = document.getElementById('slider-range-price-1-hour');
+
+    noUiSlider.create(sliderPrice, {
+        start: [1500, 25000],
+        connect: true,
+        step: 1,
+        format: wNumb({
+            decimals: 0
+        }),
+        range: {
+            'min': 1500,
+            'max': 25000
         }
+    });
+
+    sliderPrice.noUiSlider.on('update', function (values, handle) {
+        console.log(values);
+        var age_from = document.getElementById('price-1-from')
+        var age_to = document.getElementById('price-1-to')
+        age_from.value = values[0];
+        age_to.value = values[1];
     });
 
 }

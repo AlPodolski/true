@@ -99,6 +99,7 @@
 
         </div>
     </div>
+
     <div class="slider-item-wrap d-flex">
         <div class="slider-item-text">Рост</div>
         <div class="slider-item d-flex">

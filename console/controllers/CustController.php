@@ -64,6 +64,17 @@ class CustController extends Controller
 
     public function actionCust()
     {
+
+        $cityList = City::find()->all();
+
+        foreach ($cityList as $cityItem){
+
+            $posts = Posts::find()
+                ->where(['city_id' => $cityItem])
+                ->with('photo')->all();
+
+        }
+
         $posts = Posts::find()
             ->where(['<', 'pay_time', time() - (3600 * 24 * 7)])
             ->andWhere(['status' => Posts::POST_DONT_PUBLICATION_STATUS])

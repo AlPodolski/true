@@ -702,7 +702,7 @@ class ImportController extends Controller
             'Волжск', 'Снежинск', 'Краснокаменск');
 
         $host = 'sex-true.com';
-        $ip = '193.42.108.121';
+        $ip = '';
 
         foreach ($cityList as $cityItem) {
 
