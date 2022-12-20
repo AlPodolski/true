@@ -41,7 +41,7 @@ class Posts extends PostsModel
      */
     public function search($params)
     {
-        $query = PostsModel::find();
+        $query = PostsModel::find()->with('avatar', 'checkPhoto');
 
         if (!$params) $query = $query->orderBy('id DESC');
 

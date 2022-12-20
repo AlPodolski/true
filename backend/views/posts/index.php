@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'options' => [
             'data-pjax-push-state' => 'my_pjax',
             'data-pjax-container' => 'my_pjax',
-]
+        ]
     ]); ?>
 
     <?= GridView::widget([
@@ -42,10 +42,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     /* @var $user \frontend\modules\user\models\Posts */
                     switch ($user['status']) {
                         case \frontend\modules\user\models\Posts::POST_ON_MODARATION_STATUS:
-                            $data = '<div class="check-text start-post" data-id="'.$user['id'].'" onclick="check_anket(this)">Ожидает проверки</div>';
-                            return  $data;
+                            $data = '<div class="check-text start-post" data-id="' . $user['id'] . '" onclick="check_anket(this)">Ожидает проверки</div>';
+                            return $data;
                         case \frontend\modules\user\models\Posts::POST_ON_PUPLICATION_STATUS:
-                            return  "Публикуется";
+                            return "Публикуется";
                         case \frontend\modules\user\models\Posts::POST_DONT_PUBLICATION_STATUS:
                             return "Не публикуется";
                         case \frontend\modules\user\models\Posts::RETURNED_FOR_REVISION:
@@ -63,7 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     /* @var $user \frontend\modules\user\models\Posts */
                     $user->getCity();
                     return Html::a($user['name'],
-                        'http://'.$user->city->url.'.'.Yii::$app->params['site_name'] .'/post/'.$user['id'] ,
+                        'http://' . $user->city->url . '.' . Yii::$app->params['site_name'] . '/post/' . $user['id'],
                         ['target' => '_blank']
                     );
                 },
@@ -83,8 +83,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => function ($user) {
                     /* @var $user \frontend\modules\user\models\Posts */
-                    $file = $user->getUserAvatar();
-                    return Html::img('http://moskva.'.Yii::$app->params['site_name'] .$file,
+                    $file = $user->avatar->file;
+                    return Html::img('http://moskva.' . Yii::$app->params['site_name'] . $file,
                         ['width' => '50px', 'loading' => 'lazy']
                     );
                 },
@@ -95,8 +95,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => function ($user) {
                     /* @var $user \frontend\modules\user\models\Posts */
-                    $file = $user->getCheckPhoto();
-                    return Html::img('http://moskva.'.Yii::$app->params['site_name'] .$file,
+                    if (isset($user->checkPhoto->file))
+                    return Html::img('http://moskva.' . Yii::$app->params['site_name'] . $user->checkPhoto->file,
                         ['width' => '50px', 'loading' => 'lazy']
                     );
                 },
@@ -141,7 +141,6 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
 
     <?php \yii\widgets\Pjax::end(); ?>
-
 
 
 </div>
