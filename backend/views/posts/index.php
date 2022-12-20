@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use frontend\modules\user\models\Posts;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\Posts */
@@ -39,16 +40,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'status',
                 'format' => 'raw',
                 'value' => function ($user) {
-                    /* @var $user \frontend\modules\user\models\Posts */
+                    /* @var $user Posts */
                     switch ($user['status']) {
-                        case \frontend\modules\user\models\Posts::POST_ON_MODARATION_STATUS:
+                        case Posts::POST_ON_MODARATION_STATUS:
                             $data = '<div class="check-text start-post" data-id="' . $user['id'] . '" onclick="check_anket(this)">Ожидает проверки</div>';
                             return $data;
-                        case \frontend\modules\user\models\Posts::POST_ON_PUPLICATION_STATUS:
+                        case Posts::POST_ON_PUPLICATION_STATUS:
                             return "Публикуется";
-                        case \frontend\modules\user\models\Posts::POST_DONT_PUBLICATION_STATUS:
+                        case Posts::POST_DONT_PUBLICATION_STATUS:
                             return "Не публикуется";
-                        case \frontend\modules\user\models\Posts::RETURNED_FOR_REVISION:
+                        case Posts::RETURNED_FOR_REVISION:
                             return "Анкета на доработке";
                     }
 
@@ -60,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'name',
                 'format' => 'raw',
                 'value' => function ($user) {
-                    /* @var $user \frontend\modules\user\models\Posts */
+                    /* @var $user Posts */
                     $user->getCity();
                     return Html::a($user['name'],
                         'http://' . $user->city->url . '.' . Yii::$app->params['site_name'] . '/post/' . $user['id'],
@@ -72,7 +73,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'city_id',
                 'format' => 'raw',
                 'value' => function ($user) {
-                    /* @var $user \frontend\modules\user\models\Posts */
+                    /* @var $user Posts */
                     $user->getCity();
                     return $user->city->city;
                 },
@@ -82,7 +83,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'Аватар',
                 'format' => 'raw',
                 'value' => function ($user) {
-                    /* @var $user \frontend\modules\user\models\Posts */
+                    /* @var $user Posts */
                     $file = $user->avatar->file;
                     return Html::img('http://moskva.' . Yii::$app->params['site_name'] . $file,
                         ['width' => '50px', 'loading' => 'lazy']
@@ -94,11 +95,20 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'П. фото',
                 'format' => 'raw',
                 'value' => function ($user) {
-                    /* @var $user \frontend\modules\user\models\Posts */
-                    if (isset($user->checkPhoto->file))
-                    return Html::img('http://moskva.' . Yii::$app->params['site_name'] . $user->checkPhoto->file,
-                        ['width' => '50px', 'loading' => 'lazy']
-                    );
+                    /* @var $user Posts */
+                    if (isset($user->checkPhoto->file)){
+
+                        $result = Html::img('http://moskva.' . Yii::$app->params['site_name'] . $user->checkPhoto->file,
+                            ['width' => '50px', 'loading' => 'lazy']
+                        );
+
+                        if ($user['status'] == Posts::POST_ON_MODARATION_STATUS)
+                        $result .= Html::input('checkbox', 'check', '', ['data-id' => $user->id, 'class' => 'check-photo']);
+
+                        return $result;
+
+                    }
+
                 },
             ],
 
@@ -110,7 +120,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'КПН',
                 'format' => 'raw',
                 'value' => function ($user) {
-                    /* @var $user \frontend\modules\user\models\Posts */
+                    /* @var $user Posts */
                     return \frontend\modules\user\helpers\ViewCountHelper::countView($user->id, Yii::$app->params['redis_view_phone_count_key']);
                 },
             ],

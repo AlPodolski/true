@@ -131,9 +131,11 @@ class PostsController extends Controller
 
     public function actionCheck()
     {
+
         if ($model = $this->findModel(Yii::$app->request->post('id'))){
 
             $model->status = Posts::POST_ON_PUPLICATION_STATUS;
+            if (Yii::$app->request->post('check')) $model->check_photo_status = Posts::ANKET_CHECK;
 
             $model->save();
 

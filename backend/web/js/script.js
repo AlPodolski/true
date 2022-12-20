@@ -44,10 +44,18 @@ function check_anket(object){
 
     var id = $(object).attr('data-id');
 
+    var check_photo = $(object).closest('tr').find('.check-photo');
+
+    var check = '';
+
+    if ($(check_photo).prop('checked')){
+        check = '&check=true'
+    }
+
     $.ajax({
         type: 'POST',
         url: "/posts/check", //Путь к обработчику
-        data: 'id='+id,
+        data: 'id='+id + check ,
         response: 'text',
         dataType: "html",
         cache: false,
