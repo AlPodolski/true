@@ -34,6 +34,12 @@ function get_dialog(object){
     })
 }
 
+function start_all(){
+    $( ".start-post" ).each(function( index ) {
+        $(this).trigger('click')
+    });
+}
+
 function check_anket(object){
 
     var id = $(object).attr('data-id');

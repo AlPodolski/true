@@ -14,6 +14,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <div onclick="start_all()" class="start-all btn btn-success">Одобрить все(На странице)</div>
+
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
 
@@ -40,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     /* @var $user \frontend\modules\user\models\Posts */
                     switch ($user['status']) {
                         case \frontend\modules\user\models\Posts::POST_ON_MODARATION_STATUS:
-                            $data = '<div class="check-text" data-id="'.$user['id'].'" onclick="check_anket(this)">Ожидает проверки</div>';
+                            $data = '<div class="check-text start-post" data-id="'.$user['id'].'" onclick="check_anket(this)">Ожидает проверки</div>';
                             return  $data;
                         case \frontend\modules\user\models\Posts::POST_ON_PUPLICATION_STATUS:
                             return  "Публикуется";
