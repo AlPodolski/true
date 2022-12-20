@@ -90,6 +90,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
 
+            [
+                'attribute' => 'П. фото',
+                'format' => 'raw',
+                'value' => function ($user) {
+                    /* @var $user \frontend\modules\user\models\Posts */
+                    $file = $user->getCheckPhoto();
+                    return Html::img('http://moskva.'.Yii::$app->params['site_name'] .$file,
+                        ['width' => '50px', 'loading' => 'lazy']
+                    );
+                },
+            ],
+
             'phone',
             'price',
             'user_id',

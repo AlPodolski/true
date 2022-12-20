@@ -236,6 +236,16 @@ class Posts extends \yii\db\ActiveRecord
 
     }
 
+    public function getUserCheckPhoto(){
+
+        return ArrayHelper::getValue(Files::find()
+            ->where(['main' => 0])
+            ->andWhere(['related_id' => $this->id, 'related_class' => Posts::class])
+            ->andWhere(['type' => Files::CHECK_PHOTO_TYPE])
+            ->asArray()->one(), 'file');
+
+    }
+
     public function getSelphiCount()
     {
         return $this->hasMany(Files::class, ['related_id' => 'id'])
