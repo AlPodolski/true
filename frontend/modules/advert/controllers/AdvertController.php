@@ -5,6 +5,7 @@ namespace frontend\modules\advert\controllers;
 
 use common\models\AdvertCategory;
 use common\models\City;
+use frontend\components\helpers\CaptchaHelper;
 use frontend\helpers\MetaBuilder;
 use frontend\controllers\BeforeController as Controller;
 use frontend\modules\advert\components\helpers\AdvertHelper;
@@ -16,33 +17,17 @@ use yii\web\NotFoundHttpException;
 class AdvertController extends Controller
 {
 
-    public function behaviors()
-    {
-        return [
-            [
-                'class' => 'yii\filters\PageCache',
-                'duration' => 3600 ,
-                'variations' => [
-                    Yii::$app->request->url,
-                    Yii::$app->request->post('page'),
-                    Yii::$app->request->hostInfo,
-                ],
-            ],
-        ];
-
-    }
-
     public function actionAd($city)
     {
+        if (!CaptchaHelper::check()){
+            Yii::$app->session->setFlash('warning' , 'Капча введена неверно');
+            return Yii::$app->response->redirect(['/'], 301, false);
+        }
 
         if (Yii::$app->user->isGuest) return $this->goHome();
 
-        return false;
-
         if (AdvertHelper::add( Yii::$app->request->post(), Yii::$app->user->identity )){
-
             return $this->redirect('/advert');
-
         }
 
         return $this->redirect('/cabinet/pay');

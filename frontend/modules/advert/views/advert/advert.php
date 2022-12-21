@@ -128,7 +128,7 @@ $this->params['breadcrumbs'][] = 'Объявления';
 
                             <div class="col-12">
 
-                                <p class="name heading-anket red-text">Создать обьявление</p>
+                                <p class="name heading-anket red-text">Создать объявление</p>
 
                                 <?= $advertForm->field($modelAdvert, 'title')
                                     ->textInput(['placeholder' => 'Заголовок темы', 'id' => ''])
@@ -162,6 +162,9 @@ $this->params['breadcrumbs'][] = 'Объявления';
                                 </p>
 
                             </div>
+
+                            <script defer src='https://www.google.com/recaptcha/api.js'></script>
+                            <div class="g-recaptcha" data-sitekey="6Lc6v2UiAAAAABk1eJQmDiW8N3FK8mDDxTSTr7bU"></div>
 
                             <div class="col-12">
 
