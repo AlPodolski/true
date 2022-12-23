@@ -473,7 +473,7 @@ AppAsset::register($this);
 
                 <div class="city-wrap">
                     <ul class="city-list">
-                        <li><a class="red-link" href="https://moskva4.sex-tut.com">Москва</a></li>
+                        <li><a class="red-link" href="https://moskva6.sex-tut.com">Москва</a></li>
                         <li><a class="red-link" href="https://sankt-piterburg.sex-tut.com">Санкт-Петербург</a></li>
                         <li><a class="red-link" href="https://novosibirsk.sex-tut.com">Новосибирск</a></li>
                         <li><a class="red-link" href="https://ekaterinburg.sex-tut.com">Екатеринбург</a></li>
