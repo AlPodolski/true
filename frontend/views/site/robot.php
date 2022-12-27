@@ -4,7 +4,7 @@
 
 header('Content-Type: text/plain; charset=UTF-8');
 
-if (strstr(Yii::$app->request->serverName, 'sex-key')) : ?>
+if (strstr(Yii::$app->request->serverName, 'sex-key') or !$city) : ?>
     User-agent: *
     Disallow: /
     <?php exit() ?>
