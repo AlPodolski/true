@@ -94,6 +94,7 @@
     <url>
         <loc>https://<?php echo $host?>/post/<?php echo $postItem['id']?></loc>
         <lastmod>2022-12-26 </lastmod>
+
         <priority>0.8</priority>
     </url>
     <?php endforeach; ?>
