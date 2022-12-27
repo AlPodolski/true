@@ -361,6 +361,8 @@ class SiteController extends Controller
 
         $posts = Posts::find()->where(['city_id' => $cityInfo['id']])->asArray()->all();
 
+        $host = Yii::$app->requestedParams['actual_city'] . '.' . Yii::$app->params['site_name'];
+
         return $this->renderFile(Yii::getAlias('@frontend/views/site/map.php'), [
             'metro' => $metro,
             'rayon' => $rayon,
@@ -371,6 +373,7 @@ class SiteController extends Controller
             'intimHair' => $intimHair,
             'posts' => $posts,
             'osobenosti' => $osobenosti,
+            'host' => $host,
         ]);
 
     }
