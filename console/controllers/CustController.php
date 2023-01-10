@@ -94,72 +94,30 @@ class CustController extends Controller
 
     public function actionIndex()
     {
+        $cityList = array(
+            ['kaspijsk', 'Каспийск', 'Каспийска' , 'в Каспийска'],
+            ['mihajlovsk', 'Михайловск', 'Михайловска' , 'в Михайловске'],
+            ['murom', 'Муром', 'Мурома' , 'в Муроме'],
+            ['novocheboksarsk', 'Новочебоксарск', 'Новочебоксарска' , 'в Новочебоксарске'],
+            ['novoshahtinsk', 'Новошахтинск', 'Новошахтинска' , 'в Новошахтинске'],
+            ['hasavyurt', 'Хасавюрт', 'Хасавюрта' , 'в Хасавюрте'],
+            ['ehlista', 'Элиста', 'Элиста' , 'в Элисте'],
+            ['golicyno', 'Голицыно', 'Голицына' , 'в Голицыне'],
+            ['pushchino', 'Пущино', 'Пущина' , 'в Пущине'],
+            ['klimovsk', 'Климовск', 'Климовска' , 'в Климовске'],
+            ['staraya-kupavna', 'Старая Купавна', 'Старой Купавны' , 'в Старой Купавне'],
+        );
 
-        $oldIp = '';
-        $newIp = '';
-        $zone = '';
-        $token = '';
+        foreach ($cityList as $cityItem){
 
-        $cloudUrl = 'https://api.cloudflare.com/client/v4/zones/'.$zone.'/dns_records?';
+            $city = new City();
 
-        $dataRequest = 'content='.$oldIp.'&page=1&per_page=100';
+            $city->url = $cityItem[0];
+            $city->city = $cityItem[1];
+            $city->city2 = $cityItem[2];
+            $city->city3 = $cityItem[3];
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $cloudUrl.$dataRequest);
-        //curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($content));  //Post Fields
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-
-        $headers = [
-            'X-Auth-Email: ' . '',
-            'X-Auth-Key: ' . $token,
-            'Content-Type: application/json',
-        ];
-
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
-        $server_output = curl_exec($ch);
-
-        $object = json_decode($server_output);
-
-        curl_close($ch);
-
-        foreach ($object->result as $item){
-
-            if (!isset($item->id)) continue;
-
-            $zapid = $item->id;
-
-            $content = array(
-                'type' => "A",
-                'name' => $item->name,
-                'content' => $newIp,
-                'proxied' => true,
-            );
-
-            // пытаемся поставить галочку на облаке
-            $zoneindetif = "https://api.cloudflare.com/client/v4/zones/".$zone."/dns_records/$zapid";
-
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $zoneindetif);
-            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
-            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($content));
-
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-            $headers = [
-                'X-Auth-Email: ' . '',
-                'X-Auth-Key: ' . $token,
-                'Content-Type: application/json',
-            ];
-
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
-            $server_output = curl_exec($ch);
+            $city->save();
 
         }
 
