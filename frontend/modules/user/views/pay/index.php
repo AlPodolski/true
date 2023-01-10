@@ -51,6 +51,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     'options' => ['class' => 'form-horizontal'],
                 ]) ?>
 
+                <p>Бонус <?php echo Yii::$app->params['pay_bonus_percent']?>% при пополнении от <?php echo Yii::$app->params['start_sum_for_bonus']?></p>
+
                 <?= $form->field($model, 'sum')->textInput(['value' => 500]) ?>
 
 

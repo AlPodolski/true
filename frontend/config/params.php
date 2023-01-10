@@ -6,8 +6,10 @@ return [
     'post_limit' => 18,
     'site_name' => 'sex-tut.com',
     'min_pay' => 300,
-    'view_100_buy_price' => 20,
-    'view_1000_buy_price' => 200,
-    'up_anket_cost' => 25,
+    'view_100_buy_price' => 40,
+    'view_1000_buy_price' => 350,
+    'up_anket_cost' => 30,
     'view_post_count_for_helper' => 10,
+    'start_sum_for_bonus' => 1000,
+    'pay_bonus_percent' => 10,
 ];

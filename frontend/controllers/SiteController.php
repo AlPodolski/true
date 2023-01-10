@@ -254,7 +254,16 @@ class SiteController extends Controller
 
                 $order->status = ObmenkaOrder::FINISH;
 
-                $user->cash = $user->cash + (int)$order->sum;
+                if ($order->sum >= Yii::$app->params['start_sum_for_bonus']){
+
+                    $bonus = ($order->sum / 100) * Yii::$app->params['pay_bonus_percent'];
+                    $user->cash = (int)$bonus + (int)$order->sum;
+
+                }else{
+
+                    $user->cash = $user->cash + (int)$order->sum;
+
+                }
 
                 if ($user->status == User::STATUS_INACTIVE) {
 
@@ -265,8 +274,6 @@ class SiteController extends Controller
 
                 if ($user->save() and $order->save()) {
 
-                    $transaction->commit();
-
                     $billPayEvent = new BillPayEvent();
 
                     $billPayEvent->user_id = $user->id;
@@ -275,6 +282,8 @@ class SiteController extends Controller
                     $billPayEvent->balance = $user->cash;
 
                     $this->trigger(self::OBMENKA_PAY, $billPayEvent);
+
+                    $transaction->commit();
 
                     Yii::$app->session->setFlash('success', 'Оплата совершена успешно');
 
