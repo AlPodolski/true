@@ -94,28 +94,31 @@ class CustController extends Controller
 
     public function actionIndex()
     {
-        $cityList = array(
-            ['kaspijsk', 'Каспийск', 'Каспийска' , 'в Каспийска'],
-            ['mihajlovsk', 'Михайловск', 'Михайловска' , 'в Михайловске'],
-            ['murom', 'Муром', 'Мурома' , 'в Муроме'],
-            ['novocheboksarsk', 'Новочебоксарск', 'Новочебоксарска' , 'в Новочебоксарске'],
-            ['novoshahtinsk', 'Новошахтинск', 'Новошахтинска' , 'в Новошахтинске'],
-            ['hasavyurt', 'Хасавюрт', 'Хасавюрта' , 'в Хасавюрте'],
-            ['ehlista', 'Элиста', 'Элиста' , 'в Элисте'],
-            ['golicyno', 'Голицыно', 'Голицына' , 'в Голицыне'],
-            ['pushchino', 'Пущино', 'Пущина' , 'в Пущине'],
-            ['klimovsk', 'Климовск', 'Климовска' , 'в Климовске'],
-            ['staraya-kupavna', 'Старая Купавна', 'Старой Купавны' , 'в Старой Купавне'],
-        );
+        $stream = \fopen(Yii::getAlias('@app/files/add_city.csv'), 'r');
 
-        foreach ($cityList as $cityItem){
+        $csv = Reader::createFromStream($stream);
+        $csv->setDelimiter(';');
+        $csv->setHeaderOffset(0);
+        //build a statement
+        $stmt = (new Statement());
+
+        $records = $stmt->process($csv);
+
+        $city = array();
+
+        foreach ($records as $record) {
+            $city[] = $record;
+        }
+
+        foreach ($city as $item){
 
             $city = new City();
 
-            $city->url = $cityItem[0];
-            $city->city = $cityItem[1];
-            $city->city2 = $cityItem[2];
-            $city->city3 = $cityItem[3];
+            $city->url = $item['url'];
+            $city->city = $item['city'];
+            $city->city2 = $item['city2'];
+            $city->city3 = $item['city3'];
+            $city->country = $item['country'];
 
             $city->save();
 

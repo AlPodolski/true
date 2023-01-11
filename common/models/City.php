@@ -12,6 +12,7 @@ use Yii;
  * @property string|null $city
  * @property string|null $city2
  * @property string|null $city3
+ * @property string|null $country
  */
 class City extends \yii\db\ActiveRecord
 {
@@ -29,7 +30,7 @@ class City extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['url', 'city', 'city2', 'city3'], 'string', 'max' => 50],
+            [['url', 'city', 'city2', 'city3', 'country'], 'string', 'max' => 50],
         ];
     }
 
