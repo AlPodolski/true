@@ -238,22 +238,6 @@ class ImportController extends Controller
 
                     if ($gall) {
 
-                        $ava = array_shift($gall);
-
-                        if ($ava) {
-
-                            $userPhoto = new Files();
-
-                            $userPhoto->related_id = $post->id;
-                            $userPhoto->file = $this->path . $ava;
-                            $userPhoto->main = 1;
-                            $userPhoto->type = 0;
-                            $userPhoto->related_class = Posts::class;
-
-                            $userPhoto->save();
-
-                        }
-
                         foreach ($gall as $gallitem) {
 
                             if ($gallitem) {
@@ -690,91 +674,83 @@ class ImportController extends Controller
     public function actionDns()
     {
 
-        $cityList = array('Махачкала', 'Оренбург', 'Кемерово', 'Новокузнецк', 'Астрахань', 'Калининград', 'Тула',
-            'Белгород', 'Тамбов', 'Стерлитамак', 'Люберцы', 'Северодвинск', 'Новочеркасск', 'Рубцовск', 'Майкоп',
-            'Батайск', 'Дербент', 'Первоуральск', 'Октябрьский', 'Железногорск', 'Новокуйбышевск', 'Саров',
-            'Ленинск-Кузнецкий', 'Канск', 'Каменск-Шахтинский', 'Киселёвск', 'Новотроицк', 'Железногорск',
-            'Кинешма', 'Кузнецк', 'Новоуральск', 'Озёрск', 'Кропоткин', 'Бор', 'Черногорск', 'Усолье-Сибирское',
-            'Выборг', 'Чапаевск', 'Белово', 'Кирово-Чепецк', 'Анжеро-Судженск', 'Заречный', 'Белорецк', 'Ишим',
-            'Клинцы', 'Россошь', 'Асбест', 'Котлас', 'Зеленогорск', 'Донской', 'Ревда', 'Будённовск',
-            'Полевской', 'Лысьва', 'Кумертау', 'Лесосибирск', 'Прохладный', 'Лабинск', 'Михайловка', 'Ржев',
-            'Щёкино', 'Сальск', 'Павлово', 'Мелеуз', 'Краснотурьинск', 'Североморск', 'Апатиты', 'Лиски',
-            'Волжск', 'Снежинск', 'Краснокаменск');
 
-        $host = 'sex-true.com';
-        $ip = '';
+        $host = 'sex-tut.com';
+        $ip = Yii::$app->params['server_ip'];
+
+        $cityList = City::find()
+            ->where(['country' => 'Belarusy'])
+            ->orWhere(['country' => 'Kazahstan'])
+            ->all();
 
         foreach ($cityList as $cityItem) {
 
-            if ($cityInfo = City::find()->where(['city' => $cityItem])->one()) {
+            $city = $cityItem['url'];
 
-                $city = $cityInfo['url'];
+            $content = array(
+                'type' => "A",
+                'name' => $city,
+                'content' => $ip,
+            );
 
-                $content = array(
-                    'type' => "A",
-                    'name' => $city,
-                    'content' => $ip,
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, "https://api.cloudflare.com/client/v4/zones/cc957fd545586f6bbc644689f22e2e94/dns_records");
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($content));  //Post Fields
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
-                );
+            $headers = [
+                'X-Auth-Email: ' . Yii::$app->params['cloud_email'],
+                'X-Auth-Key: ' . Yii::$app->params['cloud_api'],
+                'Content-Type: application/json',
+            ];
 
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, "https://api.cloudflare.com/client/v4/zones/zonq/dns_records");
-                curl_setopt($ch, CURLOPT_POST, 1);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($content));  //Post Fields
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-                $headers = [
-                    'X-Auth-Email: ' . Yii::$app->params['cloud_email'],
-                    'X-Auth-Key: ' . Yii::$app->params['cloud_api'],
-                    'Content-Type: application/json',
-                ];
+            $server_output = curl_exec($ch);
 
-                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            $object = json_decode($server_output);
 
-                $server_output = curl_exec($ch);
+            if (!isset($object->result->id)) continue;
 
-                $object = json_decode($server_output);
-
-                if (!isset($object->result->id)) continue;
-
-                $zapid = $object->result->id;
+            $zapid = $object->result->id;
 
 
-                curl_close($ch);
+            curl_close($ch);
 
-                // пытаемся поставить галочку на облаке
-                $zoneindetif = "https://api.cloudflare.com/client/v4/zones/375e7fbf4f926ab5db1431f990329b80/dns_records/$zapid";
+            // пытаемся поставить галочку на облаке
+            $zoneindetif = "https://api.cloudflare.com/client/v4/zones/cc957fd545586f6bbc644689f22e2e94/dns_records/$zapid";
 
 
-                $content = array(
-                    'type' => "A",
-                    'name' => $city,
-                    'content' => $ip,
-                    'proxied' => true,
-                );
+            $content = array(
+                'type' => "A",
+                'name' => $city,
+                'content' => $ip,
+                'proxied' => true,
+            );
 
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, $zoneindetif);
-                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
-                curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($content));
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $zoneindetif);
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($content));
 
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-                $headers = [
-                    'X-Auth-Email: ' . Yii::$app->params['cloud_email'],
-                    'X-Auth-Key: ' . Yii::$app->params['cloud_api'],
-                    'Content-Type: application/json',
-                ];
+            $headers = [
+                'X-Auth-Email: ' . Yii::$app->params['cloud_email'],
+                'X-Auth-Key: ' . Yii::$app->params['cloud_api'],
+                'Content-Type: application/json',
+            ];
 
-                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-                $server_output = curl_exec($ch);
+            $server_output = curl_exec($ch);
 
-                echo $city . PHP_EOL;
-
-            }
+            echo $city . PHP_EOL;
 
         }
 

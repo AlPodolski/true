@@ -257,7 +257,7 @@ class SiteController extends Controller
                 if ($order->sum >= Yii::$app->params['start_sum_for_bonus']){
 
                     $bonus = ($order->sum / 100) * Yii::$app->params['pay_bonus_percent'];
-                    $user->cash = (int)$bonus + (int)$order->sum;
+                    $user->cash = $user->cash + (int)$bonus + (int)$order->sum;
 
                 }else{
 
