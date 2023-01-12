@@ -51,7 +51,7 @@ class ImportController extends Controller
     public function actionIndex()
     {
 
-        $stream = \fopen(Yii::getAlias('@app/files/import_7_11_2022.csv'), 'r');
+        $stream = \fopen(Yii::getAlias('@app/files/import_11_01_2022.csv'), 'r');
 
         $csv = Reader::createFromStream($stream);
         $csv->setDelimiter(';');
@@ -68,7 +68,7 @@ class ImportController extends Controller
 
         $this->siteId = 0;
         $this->update = 30;
-        $this->path = '/uploads/a36/';
+        $this->path = '/uploads/a37/';
 
         $posts = array();
 
@@ -80,7 +80,7 @@ class ImportController extends Controller
 
         foreach ($posts as $record) {
 
-            $city = City::find()->where(['city' => $record['city']])->one();
+            $city = City::find()->where(['url' => $record['url']])->one();
 
             if (!$city) {
                 continue;
