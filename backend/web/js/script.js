@@ -34,6 +34,26 @@ function get_dialog(object){
     })
 }
 
+function editPhone(object){
+    var userId = $('#user-id').val();
+    var phone = $('#phone').val();
+
+    $.ajax({
+        type: 'POST',
+        url: "/phone/update", //Путь к обработчику
+        data: 'user_id=' + userId + '&phone=' + phone ,
+        response: 'text',
+        dataType: "html",
+        cache: false,
+        success: function (data) {
+
+
+
+        }
+    })
+
+}
+
 function start_all(){
     $( ".start-post" ).each(function( index ) {
         $(this).trigger('click')
