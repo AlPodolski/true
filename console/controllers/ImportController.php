@@ -281,7 +281,7 @@ class ImportController extends Controller
 
         $price = array(2000, 3000, 4000, 5000);
 
-        $stream = \fopen(Yii::getAlias('@app/files/phones_20_06.csv'), 'r');
+        $stream = \fopen(Yii::getAlias('@app/files/import_phone_17_01_2023.csv'), 'r');
 
         $csv = Reader::createFromStream($stream);
         $csv->setDelimiter(';');
@@ -301,20 +301,14 @@ class ImportController extends Controller
 
             $cityInfo = City::find()->where(['city' => $key])->one();
 
-            foreach ($item as $phoneItem) {
+            $posts = Posts::find()
+                ->where(['city_id' => $cityInfo['id']])
+                ->andWhere(['phone' => ''])
+                ->all();
 
-                $phoneAdvert = new PhonesAdvert();
-
-                $phoneAdvert->city_id = $cityInfo['id'];
-                $phoneAdvert->phone = preg_replace('/[^0-9]/', '', $phoneItem);
-                $phoneAdvert->price = $price[array_rand($price)];
-                $phoneAdvert->view = 0;
-                $phoneAdvert->last_view = 0;
-                $phoneAdvert->status = PhonesAdvert::PUBLICATION_STATUS;
-                $phoneAdvert->created_at = time();
-
-                if ($phoneAdvert->validate()) $phoneAdvert->save();
-
+            foreach ($posts as $post) {
+                $post->phone = preg_replace('/[^0-9]/', '', $item[array_rand($item)]);
+                $post->save();
             }
 
         }
