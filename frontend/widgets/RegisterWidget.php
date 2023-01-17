@@ -16,7 +16,7 @@ class RegisterWidget extends Widget
         $model = new SignupForm();
 
         $form = ActiveForm::begin(['id' => 'form-signup',
-            'action' => 'signup',
+            'action' => '/signup',
             'options' => [
             'class' => 'login-form'
         ]]); ?>
