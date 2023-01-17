@@ -763,27 +763,31 @@ class ImportController extends Controller
         $access_token = Yii::$app->params['webmaster_token'];
         $host = 'sex-tut.com';
 
-        $citys = City::find()->asArray()->all();
+        $cityUrl = array('kaspijsk', 'mihajlovsk', 'murom', 'novocheboksarsk', 'novoshahtinsk', 'hasavyurt', 'ehlista', 'karaganda', 'aktobe', 'taraz', 'pavlodar', 'usty-kamenogorsk', 'uralysk', 'semey', 'atyrau', 'kostanay', 'kyzylorda', 'petropavlovsk', 'aktau', 'temirtau', 'turkestan', 'taldykorgan', 'kokshetau', 'ekibastuz', 'rudnyy', 'ghezkazgan', 'ghanaozen', 'balhash', 'kentau', 'kaskelen', 'satpaev', 'kulysary', 'ridder', 'schuchinsk', 'stepnogorsk', 'kapshagay', 'arys', 'sarany', 'talgar', 'gharkent', 'aksu', 'baykonur', 'ayagoz', 'shahtinsk', 'shu', 'lisakovsk', 'kandyagash', 'aksay', 'ghitikara', 'aralysk', 'esik', 'saryagash', 'tekeli', 'minsk', 'grodno', 'brest', 'baranovichi', 'borisov', 'pinsk', 'orsha', 'mozyry', 'soligorsk', 'lida', 'novopolock', 'molodechno', 'polock', 'ghlobin', 'svetlogorsk', 'rechica', 'ghodino', 'sluck', 'kobrin', 'alma-ata');
 
-        foreach ($citys as $city) {
+        foreach ($cityUrl as $url) {
 
-            $opts = array(
-                'http' => array(
-                    'method' => "GET",
-                    'header' => "Accept-language: en\r\n" .
-                        "Cookie: foo=bar\r\n" .
-                        'Authorization: OAuth ' . $access_token,
-                )
-            );
+            $city = City::find()->where(['url' => $url])->one();
 
-            $context = stream_context_create($opts);
+            if ($city){
 
-            $user_id = file_get_contents("https://api.webmaster.yandex.net/v3/user/", false, $context);
-            $user_id = json_decode($user_id);
-            $user_id = $user_id->user_id;
+                $opts = array(
+                    'http' => array(
+                        'method' => "GET",
+                        'header' => "Accept-language: en\r\n" .
+                            "Cookie: foo=bar\r\n" .
+                            'Authorization: OAuth ' . $access_token,
+                    )
+                );
+
+                $context = stream_context_create($opts);
+
+                $user_id = file_get_contents("https://api.webmaster.yandex.net/v3/user/", false, $context);
+                $user_id = json_decode($user_id);
+                $user_id = $user_id->user_id;
 
 
-            $content = '
+                $content = '
                 
                 <Data>
                     <host_url>https://' . $city['url'] . '.' . $host . '</host_url>
@@ -792,52 +796,58 @@ class ImportController extends Controller
                 ';
 
 
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "https://api.webmaster.yandex.net/v4/user/{$user_id}/hosts/");
-            curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $content);  //Post Fields
-            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, "https://api.webmaster.yandex.net/v4/user/{$user_id}/hosts/");
+                curl_setopt($ch, CURLOPT_POST, 1);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $content);  //Post Fields
+                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-            $headers = [
-                'Content-type: application/xml',
-                'Authorization: OAuth ' . $access_token
-            ];
+                $headers = [
+                    'Content-type: application/xml',
+                    'Authorization: OAuth ' . $access_token
+                ];
 
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-            $server_output = curl_exec($ch);
+                $server_output = curl_exec($ch);
 
-            curl_close($ch);
+                curl_close($ch);
 
-            $result = json_decode($server_output);
+                $result = json_decode($server_output);
 
 
-            $content = '';
+                $content = '';
 
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "https://api.webmaster.yandex.net/v3/user/{$user_id}/hosts/" . urlencode($result->host_id) . "/verification/?verification_type=META_TAG");
-            curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $content);  //Post Fields
-            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, "https://api.webmaster.yandex.net/v3/user/{$user_id}/hosts/" . urlencode($result->host_id) . "/verification/?verification_type=META_TAG");
+                curl_setopt($ch, CURLOPT_POST, 1);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $content);  //Post Fields
+                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-            $server_output = curl_exec($ch);
+                $server_output = curl_exec($ch);
 
-            curl_close($ch);
+                curl_close($ch);
 
-            $server_output = json_decode($server_output);
+                $server_output = json_decode($server_output);
 
-            $meta2 = $server_output->verification_uin;
+                $meta2 = $server_output->verification_uin;
 
-            $meta_model = new Webmaster();
+                $meta_model = new Webmaster();
 
-            $meta_model->city_id = $city['id'];
-            $meta_model->tag = $meta2;
+                $meta_model->city_id = $city['id'];
+                $meta_model->tag = $meta2;
 
-            $meta_model->save();
+                $meta_model->save();
+
+                Yii::$app->cache->flush();
+
+                dd($city);
+
+            }
 
         }
     }
