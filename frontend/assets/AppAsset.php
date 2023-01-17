@@ -15,7 +15,7 @@ class AppAsset extends AssetBundle
         'css/site.css?v=107',
     ];
     public $js = [
-        'js/script.js?v=74',
+        'js/script.js?v=75',
         'js/wNumb.min.js',
     ];
     public $depends = [

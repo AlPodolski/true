@@ -1099,7 +1099,17 @@ function get_user_menu() {
 
 }
 
+var onloadCallbackRegisterRequest = function() {
+    grecaptcha.render('register_recapcha', {
+        'sitekey' : '6Lc6v2UiAAAAABk1eJQmDiW8N3FK8mDDxTSTr7bU'
+    });
+};
+
 function get_register_btn() {
+
+    $.getScript("https://www.google.com/recaptcha/api.js?onload=onloadCallbackRegisterRequest", function (data, textStatus, jqxhr) {
+
+    });
 
     $('.register').animate({
 
