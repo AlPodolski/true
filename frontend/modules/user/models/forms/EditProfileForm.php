@@ -42,7 +42,7 @@ class EditProfileForm extends Model
             'male' => 'Пол',
             'avatar' => 'Аватар',
             'notify' => 'Получать уведомлений',
-            'open_message' => 'Получать ообщения от других пользователей',
+            'open_message' => 'Получать сообщения от других пользователей',
         ];
     }
 
