@@ -32,7 +32,7 @@ class PhoneController extends Controller
         $rayon = Yii::$app->request->post('rayon');
         $age = Yii::$app->request->post('age');
 
-        $post = Posts::find()->where(['id' => $postId])->cache(3600 * 24)->one();
+        $post = Posts::find()->where(['id' => $postId])->cache(3600)->one();
 
         if ($post){
 
