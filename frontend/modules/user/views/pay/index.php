@@ -116,6 +116,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                     return  "Покупка просмотров";
                                 case \common\models\History::POST_PUBLICATION:
                                     return  "Публикация анкеты";
+                                case \common\models\History::POST_PUBLICATION_TELEGRAM:
+                                    return  "Публикация в телеграм";
                             }
 
                             return 'Ошибка';
