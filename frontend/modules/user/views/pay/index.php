@@ -53,6 +53,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <p>Бонус <?php echo Yii::$app->params['pay_bonus_percent']?>% при пополнении от <?php echo Yii::$app->params['start_sum_for_bonus']?></p>
 
+                <p>Средства могут зачисляться с задержкой, на отправку уведомления с платежной системы нужно немного времени</p>
+
                 <?= $form->field($model, 'sum')->textInput(['value' => 500]) ?>
 
 

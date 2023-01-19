@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
 </svg>
 
                                     </span>
-                                Как подтвердить почту
+                                Как подтвердить аккаунт
                             </button>
                         </h2>
                     </div>
@@ -42,10 +42,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div id="collapseOne9" class="collapse show" aria-labelledby="headingOne"
                          data-parent="#accordionExample9">
                         <div class="card-body">
-                            Что бы подтвердить почту нужно перейти по ссылке в письме <br>
-                            Если письмо не пришло, то подтвердить почту можно через пополнение счета.
-                            При подтверждении почты через пополнение будет бонус 100р <br>
-                            Так же можно обратиться в поддержку
+                            Подтвердить аккаунт можно через пополнение <a href="/cabinet/pay">счета</a>.<br>
+                            При подтверждении аккаунта через пополнение будет бонус 100р <br>
+                            Так же можно обратиться в <a href="/cabinet/chat">Поддержку</a>
                         </div>
                     </div>
 

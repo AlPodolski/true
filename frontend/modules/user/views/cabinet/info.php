@@ -6,7 +6,7 @@
 
 <?php if (Yii::$app->user->identity['status'] == \common\models\User::STATUS_INACTIVE) : ?>
 
-    <div class="alert-success alert alert-dismissible"> Что бы получать уведомления нужно активировать почту
+    <div class="alert-success alert alert-dismissible"> Что бы получать уведомления нужно активировать аккаунт
     </div>
 
 <?php endif; ?>
