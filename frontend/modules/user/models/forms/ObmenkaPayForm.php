@@ -25,7 +25,7 @@ class ObmenkaPayForm extends Model
         return [
             [['user_id', 'sum', 'currency'], 'required'],
             [['user_id', 'sum', 'toUser', 'pay_info', 'action'], 'integer'],
-            [['sum'], 'integer', 'min' => 300],
+            [['sum'], 'integer', 'min' => $this->defineMinSum()],
             [['city'], 'string'],
             [['currency'] , 'safe'],
         ];
@@ -36,14 +36,27 @@ class ObmenkaPayForm extends Model
      */
     public function attributeLabels()
     {
-        return [
+
+        $data = [
             'user_id' => 'User ID',
-            'sum' => 'Сумма (минимум 300)',
             'created_at' => 'Created At',
             'currency' => 'Выбрать способ оплаты',
             'status' => 'Status',
+            'sum' => 'Минимум '.$this->defineMinSum(),
             'pay_info' => 'Status',
         ];
+
+        return $data;
+
+    }
+
+    private function defineMinSum(){
+
+        $pay = ObmenkaOrder::find()->where(['user_id' => Yii::$app->user->id, 'status' => ObmenkaOrder::FINISH])->count();
+
+        if ($pay > 1) return 500;
+        else return 300;
+
     }
 
     public function createPay()

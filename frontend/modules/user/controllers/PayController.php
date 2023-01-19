@@ -35,30 +35,10 @@ class PayController extends Controller
 
         if ($model->load(Yii::$app->request->post())){
 
-            if ($model->sum >= 299){
+            $model->user_id = Yii::$app->user->id;
+            $model->city = $city;
 
-                if($model->currency == 3){
-
-                    $order_id = Yii::$app->user->id.'_'.$city;
-
-                    $sign = \md5(Yii::$app->params['merchant_id'].':'.$model->sum.':'.Yii::$app->params['fk_merchant_key'].':'.$order_id);
-
-                    $email = Yii::$app->user->identity->email;
-
-                    $cassa_url = 'https://www.free-kassa.ru/merchant/cash.php?';
-
-                    $params = 'm='.Yii::$app->params['merchant_id'].
-                        '&oa='.$model->sum.
-                        '&o='.$order_id.
-                        '&email='.$email.
-                        '&s='.$sign;
-
-                    return Yii::$app->response->redirect($cassa_url.$params, 301, false);
-
-                }
-
-                $model->user_id = Yii::$app->user->id;
-                $model->city = $city;
+            if ($model->validate()){
 
                 if ($payUrl = $model->createPay() and isset($payUrl->pay_link)){
 
@@ -68,7 +48,7 @@ class PayController extends Controller
 
                 Yii::$app->session->setFlash('warning', 'Ошибка');
 
-            } else Yii::$app->session->setFlash('warning', 'Минимальная сумма 300');
+            } else Yii::$app->session->setFlash('warning', 'Ошибка');
 
         }
 
