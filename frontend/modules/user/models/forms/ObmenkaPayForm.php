@@ -54,8 +54,15 @@ class ObmenkaPayForm extends Model
 
         $pay = ObmenkaOrder::find()->where(['user_id' => Yii::$app->user->id, 'status' => ObmenkaOrder::FINISH])->count();
 
-        if ($pay > 1) return 500;
-        else return 300;
+        if ($pay > 1) {
+
+            if (Yii::$app->user->identity->getPostCount() > 9) return 700;
+
+            else return 500;
+
+        }
+
+        return 300;
 
     }
 

@@ -3,6 +3,7 @@ namespace common\models;
 
 use common\components\events\UserRegister;
 use frontend\models\Files;
+use frontend\modules\user\models\Posts;
 use frontend\modules\user\models\Review;
 use Yii;
 use yii\base\NotSupportedException;
@@ -284,5 +285,10 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->hasOne(TelegramToken::class, ['user_id' => 'id'])
             ->andWhere(['token_status' => TelegramToken::TOKEN_STATUS_ACTIVE]);
+    }
+
+    public function getPostCount()
+    {
+        return $this->hasMany(Posts::class, ['user_id' => 'id'])->count();
     }
 }
