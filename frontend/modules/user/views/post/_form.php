@@ -470,6 +470,15 @@ foreach (\common\models\Tarif::getAll() as $item) {
                 </div>
 
                 <div class="col-12 col-sm-6">
+                    <?= $form->field($post, 'category')->dropDownList(
+                        [
+                            \frontend\modules\user\models\Posts::INDI_CATEGORY => 'Инди',
+                            \frontend\modules\user\models\Posts::SALON_CATEGORY => 'Салон',
+                        ])
+                    ?>
+                </div>
+
+                <div class="col-12 col-sm-6">
                     <?= $form->field($userNational, 'national_id')
                         ->dropDownList(\yii\helpers\ArrayHelper::map(\common\models\National::getAll(), 'id', 'value')) ?>
                 </div>

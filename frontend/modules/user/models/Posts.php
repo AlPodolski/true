@@ -389,7 +389,7 @@ class Posts extends \yii\db\ActiveRecord
             'name' => 'Имя',
             'phone' => 'Телефон',
             'about' => 'О себе',
-            'category' => 'Category',
+            'category' => 'Категория',
             'selfie' => 'Selfie',
             'check_photo_status' => 'Статус проверочного фото',
             'age' => 'Возраст',
