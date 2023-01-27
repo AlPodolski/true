@@ -13,6 +13,7 @@ use frontend\modules\user\models\Review;
 use Yii;
 use yii\db\Query;
 use yii\helpers\ArrayHelper;
+use yii\web\NotFoundHttpException;
 
 class QueryParamsHelper
 {
@@ -487,6 +488,10 @@ class QueryParamsHelper
         foreach ($params as $param) {
 
             if (\strpos($param, 'metro-') !== false) {
+
+                $cityWithMetro = [161, 1];
+
+                if (!in_array($city, $cityWithMetro)) throw new NotFoundHttpException();
 
                 $data = '';
                 $data = str_replace('metro-', '', $param);
