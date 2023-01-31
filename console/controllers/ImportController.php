@@ -74,7 +74,7 @@ class ImportController extends Controller
 
         }
 
-        $cityList = City::find()->where(['url', '<>', 'moskva'])->all();
+        $cityList = City::find()->where(['<>', 'url', 'moskva'])->all();
 
         foreach ($cityList as $cityItem) {
 
@@ -96,7 +96,7 @@ class ImportController extends Controller
                 $post->created_at = \time();
                 $post->name = $record['name'];
                 $post->updated_at = $this->update;
-                $post->phone = '1';
+                $post->phone = '';
                 $post->about = strip_tags($record['deskr']);
                 $post->check_photo_status = 0;
                 $post->status = 1;
