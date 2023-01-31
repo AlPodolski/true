@@ -26,13 +26,6 @@ class PayController extends Controller
 
         $model = new ObmenkaPayForm();
 
-        if (Yii::$app->request->isPost and !CaptchaHelper::check()){
-
-            Yii::$app->session->setFlash('warning' , 'Капча введена неверно');
-            return Yii::$app->response->redirect(['/cabinet/pay'], 301, false);
-
-        }
-
         if ($model->load(Yii::$app->request->post())){
 
             $model->user_id = Yii::$app->user->id;
