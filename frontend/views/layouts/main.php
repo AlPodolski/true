@@ -473,20 +473,20 @@ AppAsset::register($this);
 
                 <div class="city-wrap">
                     <ul class="city-list">
-                        <li><a class="red-link" href="https://moskva6.sex-tut.com">Москва</a></li>
-                        <li><a class="red-link" href="https://sankt-piterburg.sex-tut.com">Санкт-Петербург</a></li>
-                        <li><a class="red-link" href="https://novosibirsk.sex-tut.com">Новосибирск</a></li>
-                        <li><a class="red-link" href="https://ekaterinburg.sex-tut.com">Екатеринбург</a></li>
-                        <li><a class="red-link" href="https://nizhniy-novgorod.sex-tut.com">Нижний Новгород</a></li>
-                        <li><a class="red-link" href="https://kazan1.sex-tut.com">Казань</a></li>
-                        <li><a class="red-link" href="https://chelyabinsk2.sex-tut.com">Челябинск</a></li>
-                        <li><a class="red-link" href="https://omsk.sex-tut.com">Омск</a></li>
-                        <li><a class="red-link" href="https://samara.sex-tut.com">Самара</a></li>
-                        <li><a class="red-link" href="https://rostov-na-dony.sex-tut.com">Ростов-на-Дону</a></li>
-                        <li><a class="red-link" href="https://ufa.sex-tut.com">Уфа</a></li>
-                        <li><a class="red-link" href="https://voronezh.sex-tut.com">Воронеж</a></li>
-                        <li><a class="red-link" href="https://perm.sex-tut.com">Пермь</a></li>
-                        <li><a class="red-link" href="https://volgograd.sex-tut.com">Волгоград</a></li>
+                        <li><a class="red-link" href="https://moskva6.sex-trust.com">Москва</a></li>
+                        <li><a class="red-link" href="https://sankt-piterburg.sex-trust.com">Санкт-Петербург</a></li>
+                        <li><a class="red-link" href="https://novosibirsk.sex-trust.com">Новосибирск</a></li>
+                        <li><a class="red-link" href="https://ekaterinburg.sex-trust.com">Екатеринбург</a></li>
+                        <li><a class="red-link" href="https://nizhniy-novgorod.sex-trust.com">Нижний Новгород</a></li>
+                        <li><a class="red-link" href="https://kazan1.sex-trust.com">Казань</a></li>
+                        <li><a class="red-link" href="https://chelyabinsk2.sex-trust.com">Челябинск</a></li>
+                        <li><a class="red-link" href="https://omsk.sex-trust.com">Омск</a></li>
+                        <li><a class="red-link" href="https://samara.sex-trust.com">Самара</a></li>
+                        <li><a class="red-link" href="https://rostov-na-dony.sex-trust.com">Ростов-на-Дону</a></li>
+                        <li><a class="red-link" href="https://ufa.sex-trust.com">Уфа</a></li>
+                        <li><a class="red-link" href="https://voronezh.sex-trust.com">Воронеж</a></li>
+                        <li><a class="red-link" href="https://perm.sex-trust.com">Пермь</a></li>
+                        <li><a class="red-link" href="https://volgograd.sex-trust.com">Волгоград</a></li>
                     </ul>
                 </div>
             </div>
