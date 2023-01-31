@@ -17,9 +17,7 @@ $this->registerJsFile('/js/yandex.js?v=3', ['depends' => [yii\web\YiiAsset::clas
 $tarifList = array();
 
 foreach (\common\models\Tarif::getAll() as $item) {
-
     $tarifList[] = array('id' => $item['id'], 'value' => $item['value'] . ' - ' . $item['sum'] . ' руб. в час');
-
 }
 
 ?>
@@ -31,6 +29,10 @@ foreach (\common\models\Tarif::getAll() as $item) {
 
 <div class="container">
     <div class="row">
+
+        <div class="col-12">
+            <p class="black-text font-weight-bold">Добавлять одинаковые анкеты на один город запрещено</p>
+        </div>
 
         <div class="col-12">
 
@@ -61,6 +63,8 @@ foreach (\common\models\Tarif::getAll() as $item) {
             </div>
 
         <?php endif; ?>
+
+
 
         <div class="col-12 col-md-4">
             <div class="row">
