@@ -96,7 +96,7 @@ class ImportController extends Controller
                 $post->created_at = \time();
                 $post->name = $record['name'];
                 $post->updated_at = $this->update;
-                $post->phone = '';
+                $post->phone = '1';
                 $post->about = strip_tags($record['deskr']);
                 $post->check_photo_status = 0;
                 $post->status = 1;
