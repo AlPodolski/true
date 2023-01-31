@@ -674,7 +674,7 @@ class ImportController extends Controller
     {
 
 
-        $host = 'sex-tut.com';
+        $host = 'sex-trust.com';
         $ip = Yii::$app->params['server_ip'];
 
         $cityList = City::find()
@@ -758,7 +758,7 @@ class ImportController extends Controller
     public function actionWebmaster()
     {
         $access_token = Yii::$app->params['webmaster_token'];
-        $host = 'sex-tut.com';
+        $host = 'sex-trust.com';
 
         $cityUrl = array('kaspijsk', 'mihajlovsk', 'murom', 'novocheboksarsk', 'novoshahtinsk', 'hasavyurt', 'ehlista', 'karaganda', 'aktobe', 'taraz', 'pavlodar', 'usty-kamenogorsk', 'uralysk', 'semey', 'atyrau', 'kostanay', 'kyzylorda', 'petropavlovsk', 'aktau', 'temirtau', 'turkestan', 'taldykorgan', 'kokshetau', 'ekibastuz', 'rudnyy', 'ghezkazgan', 'ghanaozen', 'balhash', 'kentau', 'kaskelen', 'satpaev', 'kulysary', 'ridder', 'schuchinsk', 'stepnogorsk', 'kapshagay', 'arys', 'sarany', 'talgar', 'gharkent', 'aksu', 'baykonur', 'ayagoz', 'shahtinsk', 'shu', 'lisakovsk', 'kandyagash', 'aksay', 'ghitikara', 'aralysk', 'esik', 'saryagash', 'tekeli', 'minsk', 'grodno', 'brest', 'baranovichi', 'borisov', 'pinsk', 'orsha', 'mozyry', 'soligorsk', 'lida', 'novopolock', 'molodechno', 'polock', 'ghlobin', 'svetlogorsk', 'rechica', 'ghodino', 'sluck', 'kobrin', 'alma-ata');
 

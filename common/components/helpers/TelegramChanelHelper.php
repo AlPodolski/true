@@ -50,7 +50,7 @@ class TelegramChanelHelper
 
                 $result[] = [
                     'type' => 'photo',
-                    'media' => 'https://moskva7.sex-tut.com'.Yii::$app->imageCache->thumbSrc($item, '500_700')
+                    'media' => 'https://moskva7.sex-trust.com'.Yii::$app->imageCache->thumbSrc($item, '500_700')
                 ];
 
                 $i++;
@@ -71,7 +71,7 @@ class TelegramChanelHelper
             'type' => 'photo',
             'parse_mode' => 'html',
             'caption' => self::prepareTextAboutPost($post),
-            'media' => 'https://moskva7.sex-tut.com'.Yii::$app->imageCache->thumbSrc($post->avatar->file, '500_700')
+            'media' => 'https://moskva7.sex-trust.com'.Yii::$app->imageCache->thumbSrc($post->avatar->file, '500_700')
         ]
         );
     }
@@ -94,7 +94,7 @@ class TelegramChanelHelper
 
         if ($post->phone) $result .= 'Номер: +' . $post->phone . \PHP_EOL;
 
-        $result .= '<a href="https://moskva7.sex-tut.com/post/'.$post->id.'">Подробнее</a>';
+        $result .= '<a href="https://moskva7.sex-trust.com/post/'.$post->id.'">Подробнее</a>';
 
         return $result;
     }
