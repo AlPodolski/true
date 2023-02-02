@@ -278,7 +278,7 @@ class ImportController extends Controller
 
         $price = array(2000, 3000, 4000, 5000);
 
-        $stream = \fopen(Yii::getAlias('@app/files/import_phone_17_01_2023.csv'), 'r');
+        $stream = \fopen(Yii::getAlias('@app/files/import_phone_02_02_2023.csv'), 'r');
 
         $csv = Reader::createFromStream($stream);
         $csv->setDelimiter(';');
@@ -291,21 +291,25 @@ class ImportController extends Controller
         $resultData = array();
 
         foreach ($records as $value) {
-            $resultData[$value['city']][] = $value['phone'];
+            if ($value['phone']) $resultData[$value['city']][] = $value['phone'];
         }
 
         foreach ($resultData as $key => $item) {
 
             $cityInfo = City::find()->where(['city' => $key])->one();
 
-            $posts = Posts::find()
-                ->where(['city_id' => $cityInfo['id']])
-                ->andWhere(['phone' => ''])
-                ->all();
+            if ($cityInfo){
 
-            foreach ($posts as $post) {
-                $post->phone = preg_replace('/[^0-9]/', '', $item[array_rand($item)]);
-                $post->save();
+                $posts = Posts::find()
+                    ->where(['city_id' => $cityInfo['id']])
+                    ->andWhere(['phone' => ''])
+                    ->all();
+
+                foreach ($posts as $post) {
+                    $post->phone = preg_replace('/[^0-9]/', '', $item[array_rand($item)]);
+                    $post->save();
+                }
+
             }
 
         }
