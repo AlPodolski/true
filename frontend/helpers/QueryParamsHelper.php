@@ -616,7 +616,9 @@ class QueryParamsHelper
 
                 }
 
-                $posts = $posts->andWhere($price_params);
+                if ($price_params) foreach ($price_params as $price_param) {
+                    $posts = $posts->andWhere($price_param);
+                };
 
             }
 
@@ -624,7 +626,7 @@ class QueryParamsHelper
 
                 $data = str_replace('rost-', '', $param);
 
-                $price_params = '';
+                $price_params = array();
 
                 if ($data == 'visokii') {
                     Yii::$app->params['breadcrumbs'][] = array(
@@ -648,10 +650,14 @@ class QueryParamsHelper
                         'label' => 'Низкие',
                         'url' => Yii::$app->params['breadcrumbs'] ? 'rost-nizkii' : '/rost-nizkii',
                     );
-                    $price_params[] = ['<', 'rost', 157];
+
+                    $price_params[] = ['<', 'ves', 60];
+
                 }
 
-                if ($price_params) $posts = $posts->andWhere($price_params);
+                if ($price_params) foreach ($price_params as $price_param) {
+                    $posts = $posts->andWhere($price_param);
+                };
 
             }
 
