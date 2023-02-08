@@ -51,6 +51,7 @@ class PhoneController extends Controller
 
                 $data = Posts::find()
                     ->where(['city_id' => $city_id])
+                    ->andWhere(['pol_id' => Pol::WOMAN_POL])
                     ->andWhere(['<=', 'price', $priceRange['max']])
                     ->andWhere(['>=', 'price', $priceRange['min']])
                     ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
