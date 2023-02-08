@@ -19,11 +19,11 @@ $form = ActiveForm::begin([
 <?= $form->field($data['claim'], 'text')->textarea()->label('Комментарий') ?>
 
 <script defer src='https://www.google.com/recaptcha/api.js?onload=onloadCallbackClaimPost'></script>
-<div id="request_claim_post" class="g-recaptcha" data-sitekey="6Lc6v2UiAAAAABk1eJQmDiW8N3FK8mDDxTSTr7bU"></div>
+<div id="request_claim_post" class="g-recaptcha" data-sitekey="6Lffq2EkAAAAAK4PuAXJjhnE1NOP1uUjANyEUxe_"></div>
 <script type="text/javascript">
     var onloadCallbackClaimPost = function() {
         grecaptcha.render('request_claim_post', {
-            'sitekey' : '6Lc6v2UiAAAAABk1eJQmDiW8N3FK8mDDxTSTr7bU'
+            'sitekey' : '6Lffq2EkAAAAAK4PuAXJjhnE1NOP1uUjANyEUxe_'
         });
     };
 </script>

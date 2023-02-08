@@ -23,7 +23,7 @@ $form = ActiveForm::begin([
     ->label('Ваш комментарий') ?>
 
     <script defer src='https://www.google.com/recaptcha/api.js?onload=onloadCallbackCallRequest'></script>
-    <div id="request_call_form" class="g-recaptcha" data-sitekey="6Lc6v2UiAAAAABk1eJQmDiW8N3FK8mDDxTSTr7bU"></div>
+    <div id="request_call_form" class="g-recaptcha" data-sitekey="6Lffq2EkAAAAAK4PuAXJjhnE1NOP1uUjANyEUxe_"></div>
 
     <div class="form-group">
         <?= Html::submitButton('Отправить', ['class' => 'orange-btn d-block m-auto']) ?>
@@ -32,7 +32,7 @@ $form = ActiveForm::begin([
     <script type="text/javascript">
         var onloadCallbackCallRequest = function() {
             grecaptcha.render('request_call_form', {
-                'sitekey' : '6Lc6v2UiAAAAABk1eJQmDiW8N3FK8mDDxTSTr7bU'
+                'sitekey' : '6Lffq2EkAAAAAK4PuAXJjhnE1NOP1uUjANyEUxe_'
             });
         };
     </script>

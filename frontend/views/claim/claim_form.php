@@ -14,11 +14,11 @@ $form = ActiveForm::begin([
 <?= $form->field($claimModal, 'author_name')->textInput()->label('Ваше имя') ?>
 <?= $form->field($claimModal, 'text')->textarea()->label('Ваше сообщение, если сообщение связано с анкетой укажите ссылку на анкету') ?>
 <script defer src='https://www.google.com/recaptcha/api.js?onload=onloadCallbackClaimRequest'></script>
-<div id="request_claim_form" class="g-recaptcha" data-sitekey="6Lc6v2UiAAAAABk1eJQmDiW8N3FK8mDDxTSTr7bU"></div>
+<div id="request_claim_form" class="g-recaptcha" data-sitekey="6Lffq2EkAAAAAK4PuAXJjhnE1NOP1uUjANyEUxe_"></div>
 <script type="text/javascript">
     var onloadCallbackClaimRequest = function() {
         grecaptcha.render('request_claim_form', {
-            'sitekey' : '6Lc6v2UiAAAAABk1eJQmDiW8N3FK8mDDxTSTr7bU'
+            'sitekey' : '6Lffq2EkAAAAAK4PuAXJjhnE1NOP1uUjANyEUxe_'
         });
     };
 </script>

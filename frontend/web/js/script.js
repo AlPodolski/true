@@ -1101,7 +1101,7 @@ function get_user_menu() {
 
 var onloadCallbackRegisterRequest = function() {
     grecaptcha.render('register_recapcha', {
-        'sitekey' : '6Lc6v2UiAAAAABk1eJQmDiW8N3FK8mDDxTSTr7bU'
+        'sitekey' : '6Lffq2EkAAAAAK4PuAXJjhnE1NOP1uUjANyEUxe_'
     });
 };
 
