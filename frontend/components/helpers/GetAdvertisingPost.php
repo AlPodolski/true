@@ -19,7 +19,6 @@ class GetAdvertisingPost
             ->andWhere(['pol_id' => $pol_id])
             ->andWhere(['>', 'view', 0])
             ->limit(1)
-            ->cache(60)
             ->orderBy('RAND()')
             ->one()){
 

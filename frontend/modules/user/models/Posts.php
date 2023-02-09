@@ -158,6 +158,7 @@ class Posts extends \yii\db\ActiveRecord
         if ($topAnketList) return self::find()->where(['in', 'id', $topAnketList])
             ->with('avatar', 'metro', 'selphiCount', 'partnerId', 'tarif')
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
+            ->andWhere(['city_id' => $cityId])
             ->asArray()->all();
 
         return false;
