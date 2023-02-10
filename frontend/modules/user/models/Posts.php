@@ -159,7 +159,9 @@ class Posts extends \yii\db\ActiveRecord
             ->with('avatar', 'metro', 'selphiCount', 'partnerId', 'tarif')
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->andWhere(['city_id' => $cityId])
-            ->asArray()->all();
+            ->orderBy((new GetOrderHelper())->get())
+            ->asArray()
+            ->all();
 
         return false;
     }
