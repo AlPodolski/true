@@ -135,7 +135,7 @@ class Posts extends \yii\db\ActiveRecord
             [['name'], 'string', 'max' => 60],
             [['phone'], 'string', 'max' => 20 ],
             [['x', 'y'], 'safe'],
-            [['name', 'phone', 'price'],'required'],
+            [['name', 'phone', 'price', 'city_id'],'required'],
             [['video'], 'string', 'max' => 122],
             [['about' , 'old_url'], 'string'],
             [['phone'], 'validatePhone'],
@@ -385,7 +385,7 @@ class Posts extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'city_id' => 'City ID',
+            'city_id' => 'Город',
             'user_id' => 'User ID',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',

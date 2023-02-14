@@ -516,6 +516,7 @@ foreach (\common\models\Tarif::getAll() as $item) {
                         'options' => ['placeholder' => 'Выбрать город ...'],
                         'pluginOptions' => [
                             'allowClear' => true,
+                            'required' => true,
                         ],
                     ])->label('Выбрать город') ?>
 
