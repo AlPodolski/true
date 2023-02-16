@@ -65,7 +65,12 @@ class AddCloudHelper
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-        curl_exec($ch);
+        $result = curl_exec($ch);
+
+        $result = json_decode($result);
+
+        if ($object->success) Yii::$app->session->setFlash('success', 'Днс добавлен');
+        else Yii::$app->session->setFlash('warning', 'Днс не добавлен');
 
     }
 }
