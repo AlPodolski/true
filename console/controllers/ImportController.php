@@ -278,7 +278,7 @@ class ImportController extends Controller
 
         $price = array(2000, 3000, 4000, 5000);
 
-        $stream = \fopen(Yii::getAlias('@app/files/phones_10_02_2023.csv'), 'r');
+        $stream = \fopen(Yii::getAlias('@app/files/import_phone_17_02_2023.csv'), 'r');
 
         $csv = Reader::createFromStream($stream);
         $csv->setDelimiter(';');
