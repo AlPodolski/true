@@ -212,7 +212,7 @@ class Posts extends \yii\db\ActiveRecord
 
     public function getCity(): ActiveQuery
     {
-        return $this->hasOne(City::class, ['id' => 'city_id'])->cache(3600 * 24);
+        return $this->hasOne(City::class, ['id' => 'city_id']);
     }
 
     public function getReadMessage() : ActiveQuery

@@ -68,10 +68,12 @@ use frontend\modules\user\models\Posts;
 
             <a class="user-name-full" href="/cabinet/post/edit/<?= $post['id'] ?>">
                 <?= $post['name'] ?>
+                (<?php echo $post->city->city ?>)
             </a>
 
             <div class="anket-info">
-                <a data-id="<?php echo $post['id'] ?>" onclick="publication(this)"
+                <a data-id="<?php echo $post['id'] ?>"
+                   onclick="publication(this)"
                    data-key="<?php echo $postStatus['key'] ?>"
                    class="cursor-pointer publication-btn <?php echo $postStatus['key'] ?>"><?php echo $postStatus['value'] ?></a>
             </div>

@@ -28,7 +28,7 @@ class CabinetController extends Controller
 
         $posts = Posts::find()
             ->where(['user_id' => Yii::$app->user->id])
-            ->with('avatar', 'message')
+            ->with('avatar', 'message', 'city')
             ->all();
 
         $viewType = (new CabinetViewHelper())->get();
