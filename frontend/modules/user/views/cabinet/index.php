@@ -27,9 +27,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <div class="col-12 d-flex head-view-wrap">
                         <span class="black-text font-weight-bold">
-                            Мои анкеты <?php if ($posts) echo '(' . count($posts) . ')' ?>
-                        </span>
 
+                            Мои анкеты <?php if ($posts) {
+                                echo '(' . count($posts) . ')';
+                            } ?>
+
+                        </span>
 
 
                         <div class="order-block">
@@ -71,7 +74,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             Выключит выделенные
                         </div>
                         <div data-type="stop" class="start-all" onclick="up_all_selected()">
-                            Поднять выделенные (<?php echo Yii::$app->params['up_anket_cost']?>р. анкета)
+                            Поднять выделенные (<?php echo Yii::$app->params['up_anket_cost'] ?>р. анкета)
                         </div>
                     </div>
 
@@ -105,6 +108,26 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
 
                     <?php endif; ?>
+
+                    <div class="col-12 black-text font-weight-bold">
+                        <?php if ($posts) {
+
+                            $sum = 0;
+
+                            foreach ($posts as $post) {
+
+                                if ($post->status == \frontend\modules\user\models\Posts::POST_ON_PUPLICATION_STATUS) {
+
+                                    $sum = $sum + $post->tarif->sum;
+
+                                }
+
+                            }
+
+                            if ($sum) echo 'Стоимость публикации включенных анкет в час ' . $sum . 'р.';
+
+                        } ?>
+                    </div>
 
                     <div class="col-12 col-md-4 col-lg-6 cabinet-item">
                         <div class="white-cabinet-block cabinet-nav-block d-flex items-center nav-cabinet-block">
