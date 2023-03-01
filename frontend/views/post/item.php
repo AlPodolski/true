@@ -869,7 +869,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
         <div class="col-12 bottom-gallery">
             <div class="red-bold-text">
-                <?php echo $countReview ?><?php echo getNumEnding($countReview, ['отзыв', 'отзыва', 'отзывов']); ?>
+                <?php echo $countReview ?> <?php echo getNumEnding($countReview, ['отзыв', 'отзыва', 'отзывов']); ?>
             </div>
         </div>
 
@@ -889,18 +889,10 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
     <?php endif; ?>
 
-    <div data-toggle="modal" data-target="comment-form" data-id="<?php echo $post['id'] ?>"
-         onclick="get_modal(this)" class="add-review-btn-wrap">
-        <div class="add-review-btn">
-            <div class="bg">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M19.2188 9.21875H10.7812V0.78125C10.7812 0.349766 10.4315 0 10 0C9.56852 0 9.21875 0.349766 9.21875 0.78125V9.21875H0.78125C0.349766 9.21875 0 9.56852 0 10C0 10.4315 0.349766 10.7812 0.78125 10.7812H9.21875V19.2188C9.21875 19.6502 9.56852 20 10 20C10.4315 20 10.7812 19.6502 10.7812 19.2188V10.7812H19.2188C19.6502 10.7812 20 10.4315 20 10C20 9.56852 19.6502 9.21875 19.2188 9.21875Z"
-                          fill="white"/>
-                </svg>
-                <span class="text">Отзыв</span>
-            </div>
-        </div>
-    </div>
+</div>
+
+<div class="form-comment ">
+    <?php echo $this->renderFile(Yii::getAlias('@app/views/post/comment-form.php'), compact('post')) ?>
 </div>
 
 <?php if ($phoneComments and $phoneComments['comments']) : ?>

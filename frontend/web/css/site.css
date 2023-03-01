@@ -3211,6 +3211,12 @@ select{
 }
 .reting-item{
     margin-bottom: 30px;
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+.raiting-item-text {
+    width: 70px;
 }
 .review-modal-body{
     margin-top: 30px;
@@ -4082,6 +4088,9 @@ form .more-search-btn{
 .text-green{
     color:green;
 }
+.form-comment{
+    margin-bottom: 25px;
+}
 @media (max-width: 1199px) {
     .more-search-btn{
         display: none;
@@ -4429,7 +4438,7 @@ form .more-search-btn{
         flex-grow: 0;
         margin-right: 0px;
     }
-    .review-block{
+    .review-block, .form-comment{
         padding: 0 10px;
     }
     .rating-block-close{
