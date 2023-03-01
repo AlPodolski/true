@@ -4049,6 +4049,39 @@ form .more-search-btn{
     top: -9px;
     right: -9px;
 }
+.likes-wrap {
+    z-index: 10;
+    background: #fff;
+    border-radius: 10px;
+    padding: 5px 10px;
+    top: 20px;
+    left: 10px;
+}
+.like {
+    margin-right: 10px;
+}
+.like-count {
+    margin-right: 10px;
+}
+.dislike {
+    transform: rotate(180deg);
+}
+.like.selected svg {
+    fill: green;
+}
+.dislike.selected svg {
+    fill: red;
+}
+.post-top-info .likes-wrap{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.text-red{
+    color:red;
+}
+.text-green{
+    color:green;
+}
 @media (max-width: 1199px) {
     .more-search-btn{
         display: none;
