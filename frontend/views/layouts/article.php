@@ -52,7 +52,7 @@ echo \frontend\components\helpers\MicroHelper::image($post);
             like-count
             <?php if ($post['likes'] > 0) echo 'text-green' ?>
             <?php if ($post['likes'] < 0) echo 'text-red' ?>
-"><?php echo $post['likes'] ?></div>
+"><?php if ($post['likes'] > 0) echo '+' ?> <?php echo $post['likes'] ?></div>
             <div onclick="like(this);ym(70919698,'reachGoal','like')" data-type="dislike"
                  data-id="<?php echo $post['id'] ?>"
                  class="dislike <?php if (LikeHelper::isDislike($post['id'])) echo 'selected' ?>
