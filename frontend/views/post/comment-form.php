@@ -82,6 +82,14 @@ echo $form->field($postReviewForm, 'post_id')->hiddenInput(['value' => $data['po
     <div class="col-12">
 
         <?php
+        echo $form->field($postReviewForm, 'name')
+            ->textInput(['placeholder' => 'Ваше имя', 'required' => ''])->label(false);
+        ?>
+
+    </div>
+    <div class="col-12">
+
+        <?php
 
         echo $form->field($postReviewForm, 'text')
             ->textarea(['placeholder' => 'Комментарий', 'required' => ''])->label(false);

@@ -231,9 +231,6 @@ class PostController extends Controller
 
                 case "comment-form":
 
-                    if (Yii::$app->user->isGuest)
-                        return $this->renderFile(Yii::getAlias('@frontend/views/layouts/authorisation.php'));;
-
                     $post = Posts::find()->where(['id' => $params['id']])
                         ->with('service')
                         ->asArray()

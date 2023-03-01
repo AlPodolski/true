@@ -12,23 +12,6 @@ use yii\filters\AccessControl;
 class ReviewController extends Controller
 {
 
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::class,
-                'only' => ['add'],
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'actions' => ['add'],
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-        ];
-    }
-
     public function actionAdd()
     {
 
