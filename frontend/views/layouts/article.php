@@ -19,7 +19,9 @@ echo \frontend\components\helpers\MicroHelper::image($post);
     <article class="post position-relative">
 
         <div class="likes-wrap d-flex position-absolute">
-            <div class="like <?php if (LikeHelper::isLike($post['id'])) echo 'selected' ?>" onclick="like(this)" data-type="like" data-id="<?php echo $post['id'] ?>">
+            <div class="like <?php if (LikeHelper::isLike($post['id'])) echo 'selected' ?>"
+                 onclick="like(this);ym(70919698,'reachGoal','like')"
+                 data-type="like" data-id="<?php echo $post['id'] ?>">
                 <svg fill="#000000" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve">
 <g>
     <path d="M498.323,297.032c0-7.992-1.901-15.683-5.553-22.635c12.034-9.18,19.23-23.438,19.23-38.914
@@ -51,7 +53,7 @@ echo \frontend\components\helpers\MicroHelper::image($post);
             <?php if ($post['likes'] > 0) echo 'text-green' ?>
             <?php if ($post['likes'] < 0) echo 'text-red' ?>
 "><?php echo $post['likes'] ?></div>
-            <div onclick="like(this)" data-type="dislike"
+            <div onclick="like(this);ym(70919698,'reachGoal','like')" data-type="dislike"
                  data-id="<?php echo $post['id'] ?>"
                  class="dislike <?php if (LikeHelper::isDislike($post['id'])) echo 'selected' ?>
              ">
