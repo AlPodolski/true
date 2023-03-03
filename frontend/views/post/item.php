@@ -211,7 +211,8 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
                             <div class="likes-wrap d-flex">
                                 <div class="like <?php if (LikeHelper::isLike($post['id'])) echo 'selected' ?>"
-                                     onclick="like(this);ym(70919698,'reachGoal','like')" data-type="like" data-id="<?php echo $post['id'] ?>">
+                                     onclick="like(this);ym(70919698,'reachGoal','like')" data-type="like"
+                                     data-id="<?php echo $post['id'] ?>">
                                     <svg fill="#000000" height="25px" width="25px" version="1.1" id="Capa_1"
                                          xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                          viewBox="0 0 512 512" xml:space="preserve">
@@ -869,7 +870,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
 
         <div class="col-12 bottom-gallery">
             <div class="red-bold-text">
-                <?php echo $countReview ?> <?php echo getNumEnding($countReview, ['отзыв', 'отзыва', 'отзывов']); ?>
+                <?php echo $countReview ?><?php echo getNumEnding($countReview, ['отзыв', 'отзыва', 'отзывов']); ?>
             </div>
         </div>
 
