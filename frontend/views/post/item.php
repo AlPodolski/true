@@ -70,7 +70,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                     <div id="carouselExampleControls-<?php echo $post['id'] ?>" class="carousel slide"
                          data-ride="carousel">
 
-                        <div class="carousel-inner">
+                        <div class="carousel-inner carousel-inner-post">
 
                             <?php $i = 0 ?>
 
