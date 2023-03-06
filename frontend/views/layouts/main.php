@@ -76,7 +76,7 @@ AppAsset::register($this);
                         <li itemprop="name" class="top-menu-item"><a itemprop="url" href="/pol-trans">Трансы</a></li>
 
                         <li itemprop="name" class="top-menu-item">
-                            <a class="small-red-text" rel="nofollow" itemprop="url" href="https://t.me/indi_tut">Проститутки телеграм</a>
+                            <a class="small-red-text" rel="nofollow" target="_blank" itemprop="url" href="https://t.me/indi_tut">Проститутки телеграм</a>
                         </li>
 
                         <li itemprop="name" class="top-menu-item"><a class="small-red-text" itemprop="url" href="/map">Интим
