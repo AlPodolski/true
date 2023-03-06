@@ -26,7 +26,7 @@ window.addEventListener('scroll', function () {
 
 function close_text() {
     $('.text-block-wrap').remove();
-    document.cookie = 'text=close; max-age=' + (3600 * 24 * 31);
+    document.cookie = 'tele=close; max-age=' + (3600 * 24 * 31);
 }
 
 function check_checbox() {

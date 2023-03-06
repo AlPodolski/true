@@ -50,11 +50,7 @@ if (isset($microdataForMainPage)) echo $microdataForMainPage;
 
 <div class="container custom-container">
 
-    <?php
 
-    //echo $this->renderFile(Yii::getAlias('@app/views/includes/text-on-main.php'), compact('cityInfo'));
-
-    ?>
     <h1> <?php echo $h1 ?> </h1>
     <?php echo \frontend\widgets\SortingWidget::widget() ?>
     <?php echo \frontend\widgets\LinkWidget::widget(['url' => Yii::$app->request->url]) ?>

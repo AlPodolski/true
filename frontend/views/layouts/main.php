@@ -60,6 +60,7 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 <header>
+
     <div class="top-menu-container">
         <div class="container">
             <div class="top-menu-wrap">
@@ -74,8 +75,7 @@ AppAsset::register($this);
 
                         <li itemprop="name" class="top-menu-item"><a itemprop="url" href="/pol-muzhskoj">Жиголо</a></li>
                         <li itemprop="name" class="top-menu-item"><a itemprop="url" href="/pol-trans">Трансы</a></li>
-                        <li itemprop="name" class="top-menu-item"><a rel=”nofollow” itemprop="url" href="https://t.me/indi_tut">Мы в
-                                телеграм</a></li>
+
                         <li itemprop="name" class="top-menu-item"><a class="small-red-text" itemprop="url" href="/map">Интим
                                 карта</a></li>
                         <li itemprop="name" class="top-menu-item"><a class="small-red-text" itemprop="url"
@@ -384,6 +384,12 @@ AppAsset::register($this);
 
     <div class="container custom-container">
 
+        <?php
+
+            echo $this->renderFile(Yii::getAlias('@app/views/includes/text-on-main.php'));
+
+        ?>
+
         <?= Alert::widget() ?>
 
         <?php
@@ -405,6 +411,8 @@ AppAsset::register($this);
         ?>
 
     </div>
+
+
 
     <?= $content ?>
 
