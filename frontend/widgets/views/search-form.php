@@ -13,7 +13,7 @@ $searchName = new \frontend\models\SearchNameForm();
 
     <meta itemprop="url" content="https://<?php echo \Yii::$app->params['site_addr'] ?>"/>
 
-    <form action="/search/name" method="get" itemscope="" itemtype="https://schema.org/SearchAction">
+    <form action="/search/name" method="get" itemprop="potentialAction" itemscope="" itemtype="https://schema.org/SearchAction">
 
         <meta itemprop="target"
               content="https://<?php echo \Yii::$app->params['site_addr'] ?>/search/name?name={name}"/>
