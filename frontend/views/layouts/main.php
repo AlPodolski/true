@@ -39,7 +39,7 @@ AppAsset::register($this);
     <link rel="icon" type="image/png" sizes="96x96" href="/img/favicons/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/img/favicons/favicon-16x16.png">
     <?php if ($link = \frontend\components\helpers\CanonicalHelper::getLink(Yii::$app->request->url)) : ?>
-        <link rel="canonical" href="https://<?php echo Yii::$app->request->serverName . $link ?>">
+        <link rel="canonical" href="https://<?php echo Yii::$app->params['site_addr'] . $link ?>">
         <meta name="robots" content="noindex, follow">
     <?php endif; ?>
 
