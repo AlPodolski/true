@@ -6,8 +6,10 @@ namespace frontend\helpers;
 
 use common\models\City;
 use common\models\Pol;
+use common\models\Rayon;
 use frontend\models\Files;
 use frontend\models\FilterParams;
+use frontend\models\Metro;
 use frontend\modules\user\models\Posts;
 use frontend\modules\user\models\Review;
 use Yii;
@@ -489,10 +491,12 @@ class QueryParamsHelper
 
                 $cityWithMetro = [161, 1];
 
-                if (!in_array($city, $cityWithMetro)) throw new NotFoundHttpException();
-
                 $data = '';
                 $data = str_replace('metro-', '', $param);
+                $metro = Metro::getByUrl($data, $city);
+
+                if (!in_array($city, $cityWithMetro) ) throw new NotFoundHttpException();
+                if (!$metro ) throw new NotFoundHttpException();
 
                 $tempSql = ' id in (select `post_id` from `user_metro` where `metro_id` in ';
                 $tempSql .= ' (select `id` from metro where url = :metro and city_id = :city_id))';
@@ -504,6 +508,9 @@ class QueryParamsHelper
             if (\strpos($param, 'rayon-') !== false) {
 
                 $data = str_replace('rayon-', '', $param);
+
+                $rayon = Rayon::getByUrl($data, $city);
+                if (!$rayon) throw new NotFoundHttpException();
 
                 $tempSql = ' id in (select `post_id` from `user_rayon` where `rayon_id` in ';
                 $tempSql .= ' (select `id` from rayon where url = :rayon and city_id = :city_id))';

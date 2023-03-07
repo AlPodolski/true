@@ -74,4 +74,20 @@ class Metro extends \yii\db\ActiveRecord
         return $data;
     }
 
+    public static function getByUrl($url, $cityId)
+    {
+
+        $data = Yii::$app->cache->get('metro_url_'.$url.'_'.$cityId);
+
+        if ($data === false) {
+            // $data нет в кэше, вычисляем заново
+            $data = Metro::find()->where(['url' => $url, 'city_id' => $cityId])->one();
+
+            // Сохраняем значение $data в кэше. Данные можно получить в следующий раз.
+            Yii::$app->cache->set('metro_url_'.$url.'_'.$cityId, $data);
+        }
+
+        return $data;
+    }
+
 }
