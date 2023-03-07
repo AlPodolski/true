@@ -30,7 +30,7 @@ class SearchController extends Controller
                 'duration' => 3600 * 4,
                 'variations' => [
                     Yii::$app->request->url,
-                    Yii::$app->request->get('SearchNameForm')['name'],
+                    Yii::$app->request->get('name'),
                     Yii::$app->request->hostInfo,
                 ],
             ],
@@ -43,17 +43,17 @@ class SearchController extends Controller
     public function actionName($city)
     {
 
-        $model = new SearchNameForm();
+        $name = Yii::$app->request->get('name');
 
-        if (!$model->load( Yii::$app->request->get()) or !$model->name) return $this->goHome();
+        if (!$name) return $this->goHome();
 
         $cityInfo = City::getCity($city);
 
         $prPosts = Posts::find()
             ->asArray()
             ->with('avatar', 'metro','gallery', 'tarif')
-            ->where(['like', 'name', $model->name])
-            ->orWhere(['like', 'phone', $model->name])
+            ->where(['like', 'name', $name])
+            ->orWhere(['like', 'phone', $name])
             ->andWhere(['city_id' => $cityInfo['id']])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->orderBy('id DESC')
@@ -75,7 +75,7 @@ class SearchController extends Controller
 
             if (MetroWidget::checkExistMetro()){
 
-                $metro = Metro::find()->where(['like', 'value', $model->name])
+                $metro = Metro::find()->where(['like', 'value', $name])
                     ->cache(3600 * 128)->one();
 
                 if ($metro){
@@ -114,7 +114,7 @@ class SearchController extends Controller
             if (MetroWidget::checkExistRayon()){
 
                 $rayon = Rayon::find()
-                    ->where(['like', 'value', $model->name])
+                    ->where(['like', 'value', $name])
                     ->cache(3600 * 128)
                     ->one();
 
@@ -145,9 +145,9 @@ class SearchController extends Controller
 
         }
 
-        $title = 'Проститутки '.$model->name.' – путаны и индивидуалки '.$cityInfo['city2'];
-        $des = 'Путаны '.$model->name.' с удовольствием выполнят все Ваши желания. Выбор анкет индивидуалок. Номера телефонов';
-        $h1 = 'Проститутки '.$model->name;
+        $title = 'Проститутки '.$namee.' – путаны и индивидуалки '.$cityInfo['city2'];
+        $des = 'Путаны '.$name.' с удовольствием выполнят все Ваши желания. Выбор анкет индивидуалок. Номера телефонов';
+        $h1 = 'Проститутки '.$name;
 
         if ($prPosts){
             Yii::$app->queueView->push(new AddViewJob([
@@ -168,17 +168,17 @@ class SearchController extends Controller
     {
         $page = Yii::$app->request->post('page') + 1;
 
-        $model = new SearchNameForm();
+        $name = Yii::$app->request->get('name');
 
-        if (!$model->load( Yii::$app->request->get()) or !$model->name) return $this->goHome();
+        if (!$name) return $this->goHome();
 
         $cityInfo = City::getCity($city);
 
         $prPosts = Posts::find()
             ->asArray()
             ->with('avatar', 'metro','gallery', 'tarif')
-            ->where(['like', 'name', $model->name])
-            ->orWhere(['like', 'phone', $model->name])
+            ->where(['like', 'name', $name])
+            ->orWhere(['like', 'phone', $name])
             ->andWhere(['city_id' => $cityInfo['id']])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->orderBy('id DESC')
@@ -192,7 +192,7 @@ class SearchController extends Controller
 
         if (MetroWidget::checkExistMetro()){
 
-            $metro = Metro::find()->where(['like', 'value', $model->name])
+            $metro = Metro::find()->where(['like', 'value', $name])
                 ->cache(3600 * 128)->one();
 
             if ($metro){
@@ -225,7 +225,7 @@ class SearchController extends Controller
         if (MetroWidget::checkExistRayon()){
 
             $rayon = Rayon::find()
-                ->where(['like', 'value', $model->name])
+                ->where(['like', 'value', $name])
                 ->cache(3600 * 128)
                 ->one();
 
