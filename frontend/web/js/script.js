@@ -201,19 +201,25 @@ function send_to_telegram(object) {
 
     var id = $(object).attr('data-id');
 
-    $.ajax({
-        type: 'POST',
-        url: "/cabinet/telegram/send", //Путь к обработчику
-        data: 'id=' + id,
-        response: 'text',
-        dataType: "html",
-        cache: false,
-        success: function (data) {
+    let isBoss = confirm("Опубликовать в телеграм?");
 
-            $(object).text(data).attr('onclick', '')
+    if (isBoss === true) {
 
-        }
-    })
+        $.ajax({
+            type: 'POST',
+            url: "/cabinet/telegram/send", //Путь к обработчику
+            data: 'id=' + id,
+            response: 'text',
+            dataType: "html",
+            cache: false,
+            success: function (data) {
+
+                $(object).text(data).attr('onclick', '')
+
+            }
+        })
+
+    }
 
 }
 
