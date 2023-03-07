@@ -27,7 +27,7 @@ class OpenGraphWidget extends Widget
 
         Yii::$app->view->registerMetaTag([
             'name' => 'og:url',
-            'content' => 'https://'.Yii::$app->request->serverName.Yii::$app->request->url
+            'content' => 'https://'.Yii::$app->params['site_addr'].Yii::$app->request->url
         ]);
 
         Yii::$app->view->registerMetaTag([
@@ -37,7 +37,7 @@ class OpenGraphWidget extends Widget
 
         Yii::$app->view->registerMetaTag([
             'name' => 'og:site_name',
-            'content' => Yii::$app->request->serverName
+            'content' => Yii::$app->params['site_addr']
         ]);
 
         Yii::$app->view->registerMetaTag([

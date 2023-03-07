@@ -13,7 +13,7 @@ if ($links and isset($links[0]['label'])){
             '@type' => 'ListItem',
             'position' => 1,
             'item' => [
-                '@id' => 'https://' . Yii::$app->request->serverName,
+                '@id' => 'https://' . Yii::$app->params['site_addr'],
                 'name' => 'Главная'
             ]
         ),
@@ -21,7 +21,7 @@ if ($links and isset($links[0]['label'])){
                 '@type' => 'ListItem',
                 'position' => 2,
                 'item' => [
-                    '@id' => 'https://' . Yii::$app->request->serverName.Yii::$app->request->url,
+                    '@id' => 'https://' . Yii::$app->params['site_addr'].Yii::$app->request->url,
                     'name' => $links[0]['label']
                 ]
             )

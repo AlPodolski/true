@@ -11,7 +11,7 @@ $searchName = new \frontend\models\SearchNameForm();
 
 <div class="search-wrap position-relative" itemscope itemtype="https://schema.org/WebSite">
 
-    <meta itemprop="url" content="https://<?php echo \Yii::$app->request->serverName ?>"/>
+    <meta itemprop="url" content="https://<?php echo \Yii::$app->params['site_addr'] ?>"/>
 
     <?php
 
@@ -26,7 +26,7 @@ $searchName = new \frontend\models\SearchNameForm();
 
     ?>
     <meta itemprop="target"
-          content="https://<?php echo \Yii::$app->request->serverName ?>/search/name?SearchNameForm[name]={name}"/>
+          content="https://<?php echo \Yii::$app->params['site_addr'] ?>/search/name?SearchNameForm[name]={name}"/>
 
 
     <?= $form->field($searchName, 'name')

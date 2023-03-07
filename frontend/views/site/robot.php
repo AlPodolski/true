@@ -4,7 +4,7 @@
 
 header('Content-Type: text/plain; charset=UTF-8');
 
-if (strstr(Yii::$app->request->serverName, 'sex-key') or ($city == 'sex-tut')) : ?>
+if (strstr(Yii::$app->params['site_addr'], 'sex-key') or ($city == 'sex-tut')) : ?>
 
     User-agent: *
     Disallow: /

@@ -26,7 +26,7 @@ Yii::$app->view->registerMetaTag([
 echo \frontend\widgets\OpenGraphWidget::widget([
     'des' => $des,
     'title' => $title,
-    'img' => 'https://'.Yii::$app->request->serverName.'/img/logo.png',
+    'img' => 'https://'.Yii::$app->params['site_addr'].'/img/logo.png',
 ]);
 
 ?>
