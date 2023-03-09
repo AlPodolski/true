@@ -318,7 +318,7 @@ class PostController extends Controller
             and $userService->load(Yii::$app->request->post())) {
             if ($post->save()) {
 
-                Yii::$app->cache->delete('post_cache_'.$post->id);
+                Yii::$app->cache->delete('post_cache_'.$post->id.'_'.$post->city_id);
 
                 $avatarForm->avatar = UploadedFile::getInstance($avatarForm, 'avatar');
 
