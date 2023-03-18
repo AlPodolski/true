@@ -76,7 +76,7 @@ AppAsset::register($this);
                         <li itemprop="name" class="top-menu-item"><a itemprop="url" href="/pol-trans">Трансы</a></li>
 
                         <li itemprop="name" class="top-menu-item">
-                            <a class="small-red-text" rel="nofollow" target="_blank" itemprop="url" href="https://t.me/indi_tut">Проститутки телеграм</a>
+                            <a class="small-red-text" rel="nofollow" target="_blank" itemprop="url" href="https://t.me/indi_tut">Партнеры телеграм</a>
                         </li>
 
                         <li itemprop="name" class="top-menu-item"><a class="small-red-text" itemprop="url" href="/map">Интим
@@ -264,7 +264,7 @@ AppAsset::register($this);
                             <li class="nav-item"><a href="/favorite/list">Избранное</a></li>
                             <?php if (Yii::$app->requestedParams['city'] == 'moskva') : ?>
                                 <li class="nav-item"><a href="/advert">Объявления</a></li>
-                                <li class="nav-item"><a rel=”nofollow” href="https://t.me/indi_tut">Мы в телеграм</a></li>
+                                <li class="nav-item"><a rel=”nofollow” href="https://t.me/indi_tut">Партнеры телеграм</a></li>
                             <?php endif; ?>
 
                             <li class="nav-item" onclick="get_claim_modal()"><a>Обратная связь</a></li>
