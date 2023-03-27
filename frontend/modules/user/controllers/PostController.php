@@ -101,6 +101,8 @@ class PostController extends Controller
 
             }
 
+            $transaction = Yii::$app->db->beginTransaction();
+
             if ($post->save()) {
 
                 if ($avatarForm->avatar && $avatarForm->validate()) {
@@ -118,6 +120,14 @@ class PostController extends Controller
                         $file->save();
 
                     }
+
+                }else{
+
+                    $transaction->rollBack();
+
+                    Yii::$app->session->setFlash('warning', 'Попробуйте другое фото');
+
+                    return $this->redirect('/cabinet/post/add');
 
                 }
 
@@ -253,6 +263,8 @@ class PostController extends Controller
                 if ($userService['service_id'])
                     SavePostRelationHelper::saveService($post['id'],
                         $userService, $city['id']);
+
+                $transaction->commit();
 
                 return $this->redirect('/cabinet');
 
