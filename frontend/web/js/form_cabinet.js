@@ -12,7 +12,16 @@
             }, l);
             return window.File && window.FileList && window.FileReader ? void (void 0 !== e(i.input_field) && null !== e(i.input_field) && e(i.input_field).change(function () {
                 var l = this.files;
+
+
+
                 if (l.length > 0) {
+
+                    if(l[0].size > 2097152){
+                        alert("Файл не должен быть больше 2мб");
+                        return false;
+                    };
+
                     var a = l[0], o = new FileReader;
                     o.addEventListener("load", function (l) {
                         var o = l.target;

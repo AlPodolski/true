@@ -11,7 +11,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 
 $this->registerJsFile('/js/jquery.maskedinput.js', ['depends' => [yii\web\YiiAsset::className()]]);
-$this->registerJsFile('/js/form_cabinet.js?v=2', ['depends' => [yii\web\YiiAsset::className()]]);
+$this->registerJsFile('/js/form_cabinet.js?v=3', ['depends' => [yii\web\YiiAsset::className()]]);
 $this->registerJsFile('/js/yandex.js?v=3', ['depends' => [yii\web\YiiAsset::className()]]);
 
 $tarifList = array();
@@ -70,14 +70,28 @@ foreach (\common\models\Tarif::getAll() as $item) {
 
                 <div class="col-12 main-photo">
 
-                    <p class="black-text font-weight-bold">Основное фото (Используйте фото высокого качества, реклама
-                        других сайтов запрещена)</p>
+                    <p class="black-text font-weight-bold">Основное фото (Используйте фото хорошего качества, реклама
+                        других сайтов запрещена, максимум 2мб)</p>
 
                     <?php $style = '' ?>
 
                     <?php if (isset($post['avatar']['file'])) : ?>
 
-                        <?php $style = 'background-image: url(' . $post['avatar']['file'] . ')'; ?>
+                        <?php
+
+                        $style = 'background-image: url(' . $post['avatar']['file'] . ')';
+
+                        $params = ['maxlength' => true, 'accept' => '.jpg, .jpeg', 'id' => 'addpost-image'];
+
+                        ?>
+
+                    <?php else : ?>
+
+                        <?php
+
+                        $params = ['maxlength' => true, 'accept' => '.jpg, .jpeg', 'id' => 'addpost-image', 'required' => true];
+
+                        ?>
 
                     <?php endif; ?>
 
@@ -85,7 +99,7 @@ foreach (\common\models\Tarif::getAll() as $item) {
                            class=" img-label no-img-bg main-img">
 
                         <?= $form->field($avatarForm, 'avatar')
-                            ->fileInput(['maxlength' => true, 'accept' => '.jpg, .jpeg', 'id' => 'addpost-image'])
+                            ->fileInput($params)
                             ->label(false) ?>
 
                         <div class="plus-photo-wrap d-flex items-center">
