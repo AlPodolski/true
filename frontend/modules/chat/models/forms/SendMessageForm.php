@@ -35,6 +35,16 @@ class SendMessageForm extends Model
 
         if (!empty($this->chat_id) and $this->chat_id) {
 
+            $countNotReadMessage = Message::find()
+                ->where([
+                    'from' => $this->from_id,
+                    'chat_id' => $this->chat_id,
+                    'status' => Message::MESSAGE_NOT_READ,
+                    'message' => $this->text,
+                ])->count();
+
+            if ($countNotReadMessage > 1) return false;
+
             $message = new Message();
 
             $message->message = $this->text;
