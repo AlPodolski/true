@@ -16,6 +16,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <div onclick="start_all()" class="start-all btn btn-success">Одобрить все(На странице)</div>
+    <br>
+    <br>
+    <div onclick="delete_selected()" class="start-all btn btn-danger">Удалить выделенное</div>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -34,7 +37,19 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            [
+                'attribute' => 'select',
+                'format' => 'raw',
+                'value' => function ($user) {
+
+                    /* @var $user Posts */
+
+                    $result = Html::input('checkbox', 'select', '', ['data-id' => $user->id, 'class' => 'delete-post']);
+
+                    return $result;
+
+                },
+            ],
             'id',
             [
                 'attribute' => 'status',
@@ -96,14 +111,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => function ($user) {
                     /* @var $user Posts */
-                    if (isset($user->checkPhoto->file)){
+                    if (isset($user->checkPhoto->file)) {
 
                         $result = Html::img('http://moskva.' . Yii::$app->params['site_name'] . $user->checkPhoto->file,
                             ['width' => '50px', 'loading' => 'lazy']
                         );
 
                         if ($user['status'] == Posts::POST_ON_MODARATION_STATUS)
-                        $result .= Html::input('checkbox', 'check', '', ['data-id' => $user->id, 'class' => 'check-photo']);
+                            $result .= Html::input('checkbox', 'check', '', ['data-id' => $user->id, 'class' => 'check-photo']);
 
                         return $result;
 

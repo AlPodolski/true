@@ -60,6 +60,29 @@ function start_all(){
     });
 }
 
+function delete_selected(){
+
+    $( ".delete-post" ).each(function() {
+
+        if (this.checked){
+
+            var id = $(this).attr('data-id')
+            var object = this;
+
+            $.ajax({
+                type: 'POST',
+                url: "/posts/delete?id=" + id, //Путь к обработчику
+                cache: false,
+                async: false,
+                success: function () {
+                    $(object).closest('tr').remove();
+                }
+            })
+        }
+    });
+
+}
+
 function check_anket(object){
 
     var id = $(object).attr('data-id');
