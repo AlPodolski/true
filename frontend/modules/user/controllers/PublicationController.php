@@ -30,12 +30,19 @@ class PublicationController extends Controller
 
         if (!$post = Posts::find()
             ->where(['id' => Yii::$app->request->post('id')])
+            ->with('tarif')
             ->andWhere(['user_id' => Yii::$app->user->id])
             ->one()) throw new NotFoundHttpException();
 
         if (Yii::$app->request->post('key')){
 
             if (Yii::$app->request->post('key') == 'start'){
+
+                if ($post->pay_time < time()){
+
+                    if ($post->tarif->sum > Yii::$app->user->identity->cash) return 'Недостаточно средств';
+
+                }
 
                 $post->status = Posts::POST_ON_PUPLICATION_STATUS;
                 $post->save();
@@ -67,6 +74,12 @@ class PublicationController extends Controller
                 return Yii::$app->response->content = 'Поставить на публикацию';
 
             case Posts::POST_DONT_PUBLICATION_STATUS:
+
+                if ($post->pay_time < time()){
+
+                    if ($post->tarif->sum > Yii::$app->user->identity->cash) return 'Недостаточно средств';
+
+                }
 
                 $post->status = Posts::POST_ON_PUPLICATION_STATUS;
 
