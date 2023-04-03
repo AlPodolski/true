@@ -13,6 +13,8 @@ use Yii;
  * @property string|null $city2
  * @property string|null $city3
  * @property string|null $country
+ * @property string|null $x
+ * @property string|null $y
  */
 class City extends \yii\db\ActiveRecord
 {

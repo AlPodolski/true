@@ -65,29 +65,34 @@ class CustController extends Controller
     public function actionCust()
     {
 
-        $cityList = City::find()->all();
+        $stream = \fopen(Yii::getAlias('@app/files/city_kor.csv'), 'r');
 
-        foreach ($cityList as $cityItem){
+        $csv = Reader::createFromStream($stream);
+        $csv->setDelimiter(';');
+        $csv->setHeaderOffset(0);
+        //build a statement
+        $stmt = (new Statement());
 
-            $posts = Posts::find()
-                ->where(['city_id' => $cityItem])
-                ->with('photo')->all();
+        $records = $stmt->process($csv);
+
+        $data = array();
+
+        foreach ($records as $value) {
+
+            $data[] = $value;
 
         }
 
-        $posts = Posts::find()
-            ->where(['<', 'pay_time', time() - (3600 * 24 * 7)])
-            ->andWhere(['status' => Posts::POST_DONT_PUBLICATION_STATUS])
-            ->andWhere(['fake' => Posts::POST_REAL])
-            ->with('tarif')
-            ->all();
+        foreach ($data as $item){
 
-        foreach ($posts as $post){
+            if ($city = City::find()->where(['city' => $item['city']])->one()){
 
-            $post->pay_time = time() + (3600 * 24 * 3);
-            $post->status = Posts::POST_ON_PUPLICATION_STATUS;
+                $city->x = $item['x'];
+                $city->y = $item['y'];
 
-            $post->save();
+                $city->save();
+
+            }
 
         }
     }

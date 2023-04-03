@@ -462,19 +462,24 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                         </div>
                     <?php endif; ?>
 
-                    <?php if (isset($post['metro'][0]['x']) or $post['x']) : ?>
+                    <?php if (isset($post['metro'][0]['x']) or $post['x'] or isset($cityInfo['x'])) : ?>
                         <div class="red-bold-text map-heading">Карта</div>
                         <div id="map-<?php echo $post['id'] ?>"
                              class="yandex-map map-not-exist" data-id="<?php echo $post['id'] ?>"
 
                             <?php
+
                             if ($post['x']) {
                                 $x = $post['x'];
                                 $y = $post['y'];
-                            } else {
+                            } elseif (isset($post['metro'][0]['x']) and $post['metro'][0]['x']) {
                                 $x = $post['metro'][0]['x'];
                                 $y = $post['metro'][0]['y'];
+                            } elseif (isset($cityInfo['x']) and $cityInfo['x']) {
+                                $x = $cityInfo['x'];
+                                $y = $cityInfo['y'];
                             }
+
                             ?>
 
                              data-x="<?php echo $x ?>"
