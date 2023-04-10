@@ -44,7 +44,7 @@ class PhoneController extends Controller
 
         if ($data){
 
-            $data->last_phone_view_at = time();
+            $data->last_phone_view_at = time() - 900;
 
             $data->save();
 
