@@ -4,6 +4,7 @@
 /* @var $payCountWeek \common\models\CashCount[] */
 /* @var $registerCountWeek \common\models\PostCount[] */
 /* @var $registerUserCountWeek \common\models\UserCountRegister[] */
+/* @var $ipPhoneViewCount \backend\models\IpPhoneCount[] */
 /* @var $monthCash int */
 /* @var $monthRegister int */
 /* @var $monthUserRegister int */
@@ -80,6 +81,23 @@ $this->title = 'Главная страница';
                             <p>Месяц <?php echo $monthUserRegister ?></p>
 
                         <?php endif; ?>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <div class="small-box bg-info">
+                    <div class="inner">
+
+                        <p>Просмотр телефонов через апи</p>
+
+                        <?php if ($ipPhoneViewCount) foreach ($ipPhoneViewCount as $item) {
+
+                            echo \yii\helpers\Html::tag('p', $item->date.' - '.$item->count);
+
+                        }else echo '-'?>
 
                     </div>
 

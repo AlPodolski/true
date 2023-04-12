@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\IpPhoneCount;
 use common\models\CashCount;
 use common\models\PostCount;
 use common\models\UserCountRegister;
@@ -55,6 +56,9 @@ class SiteController extends Controller
         $registerUserCountWeek = UserCountRegister::find()
             ->limit(7)->orderBy('id DESC')->all();
 
+        $ipPhoneViewCount = IpPhoneCount::find()
+            ->limit(7)->orderBy('id DESC')->all();
+
         $monthRegister = PostCount::find()
             ->andWhere(['like','date', date('m-Y')])
             ->sum('count');
@@ -72,7 +76,7 @@ class SiteController extends Controller
         return $this->render('index',
             compact('payCountWeek', 'monthCash', 'monthRegister',
                 'registerCountWeek', 'monthUserRegister', 'registerUserCountWeek', 'postOnPublication',
-            'realPostCount'
+            'realPostCount', 'ipPhoneViewCount'
             )
         );
 
