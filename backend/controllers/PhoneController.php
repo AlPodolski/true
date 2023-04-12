@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use common\models\Pol;
+use backend\models\IpPhoneCount;
 use frontend\modules\user\models\Posts;
 use yii\web\Controller;
 
@@ -30,6 +31,25 @@ class PhoneController extends Controller
 
     public function actionGet()
     {
+
+        $date = date('d-m-Y', time());
+
+        if ($count = IpPhoneCount::find()->where(['date' => $date])->one()){
+
+            $count->count = $count->count + 1;
+
+            $count->save();
+
+        }else{
+
+            $count = new IpPhoneCount();
+
+            $count->count = 1;
+            $count->date = $date;
+
+            $count->save();
+
+        }
 
         $city_id = \Yii::$app->request->post('city_id');
 
