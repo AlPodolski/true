@@ -28,11 +28,22 @@ class ApiController extends Controller
 
             $post = Posts::find()->where([
                 'status' => Posts::POST_ON_PUPLICATION_STATUS,
-                'city_id' => $cityInfo['id']
+                'city_id' => $cityInfo['id'],
+                'fake' => Posts::POST_REAL
             ])
                 ->orderBy('rand()')
                 ->with('avatar')
                 ->one();
+
+            if (!$post){
+                $post = Posts::find()->where([
+                    'status' => Posts::POST_ON_PUPLICATION_STATUS,
+                    'city_id' => $cityInfo['id']
+                ])
+                    ->orderBy('rand()')
+                    ->with('avatar')
+                    ->one();
+            }
 
             if ($post and isset($post->avatar->file)) {
 
