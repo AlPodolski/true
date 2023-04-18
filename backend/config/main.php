@@ -51,6 +51,7 @@ return [
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/chat/send' => 'chat/chat/send',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/phones-chenge' => 'phone/edit',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/phones/get' => 'phone/get',
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/api/post' => 'api/post',
             ],
         ],
 
