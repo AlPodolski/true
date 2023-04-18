@@ -26,7 +26,10 @@ class ApiController extends Controller
 
         if ($cityInfo) {
 
-            $post = Posts::find()->where(['status' => Posts::POST_ON_PUPLICATION_STATUS])
+            $post = Posts::find()->where([
+                'status' => Posts::POST_ON_PUPLICATION_STATUS,
+                'city_id' => $cityInfo['id']
+            ])
                 ->orderBy('rand()')
                 ->with('avatar')
                 ->one();
