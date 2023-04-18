@@ -42,6 +42,7 @@ class ApiController extends Controller
 
                     $result = [
                         'name' => $post->name,
+                        'age' => $post->age,
                         'url' => 'https://' . $cityInfo['url'] . '.' . Yii::$app->params['domain'] . '/post/' . $post['id'],
                         'photo' => 'https://' . $cityInfo['url'] . '.' . Yii::$app->params['domain'] . Yii::$app->imageCache->thumbSrc($file, '500_700')
                     ];
