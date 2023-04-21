@@ -15,6 +15,7 @@ use Yii;
  * @property string|null $country
  * @property string|null $x
  * @property string|null $y
+ * @property string|null $actual_city
  */
 class City extends \yii\db\ActiveRecord
 {

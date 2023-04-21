@@ -7,6 +7,10 @@ echo '<ul class="city-list">';
 
 foreach ($citys as $city){
 
+    $cityUrl = $city['url'];
+
+    if ($city['actual_city']) $cityUrl = $city['actual_city'];
+
     echo '<li> <a class="red-link" href="'.$protocol.'://'.$city['url'].'.'.$domain.'">'.$city['city'].'</a> </li>';
 
 }
