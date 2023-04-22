@@ -51,11 +51,15 @@ class ApiController extends Controller
 
                 if ($file) {
 
+                    $cityUrl = $cityInfo['url'];
+
+                    if ($cityInfo['actual_city']) $cityUrl = $cityInfo['actual_city'];
+
                     $result = [
                         'name' => $post->name,
                         'age' => $post->age,
-                        'url' => 'https://' . $cityInfo['url'] . '.' . Yii::$app->params['domain'] . '/post/' . $post['id'],
-                        'photo' => 'https://' . $cityInfo['url'] . '.' . Yii::$app->params['domain'] . Yii::$app->imageCache->thumbSrc($file, '500_700')
+                        'url' => 'https://' . $cityUrl . '.' . Yii::$app->params['domain'] . '/post/' . $post['id'],
+                        'photo' => 'https://' . $cityUrl . '.' . Yii::$app->params['domain'] . Yii::$app->imageCache->thumbSrc($file, '500_700')
                     ];
 
                     return json_encode($result);
