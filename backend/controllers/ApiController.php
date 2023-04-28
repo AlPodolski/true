@@ -74,4 +74,21 @@ class ApiController extends Controller
 
     }
 
+    public function actionCity()
+    {
+        $city = Yii::$app->request->post('city');
+
+        if ($cityInfo = City::find()->where(['id' => $city])->one()){
+
+            $result = [
+                'url' => 'https://' . $cityInfo->actual_city . '.' . Yii::$app->params['domain'],
+            ];
+
+            return json_encode($result);
+
+        }
+
+
+    }
+
 }
