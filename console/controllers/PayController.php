@@ -32,14 +32,6 @@ class PayController extends \yii\console\Controller
 
                 } else {
 
-                    $jobsCount = Queue::find()->where(['channel' => 'mail'])->count() + 1;
-
-                    Yii::$app->queueMail->delay($jobsCount * 10)->push(new SendMail([
-                        'text' => 'Анкета ' . $post->name . ' снята с публикации из за низкого баланса',
-                        'to' => $post['user_id'],
-                        'subject' => 'Остановка публикации',
-                    ]));
-
                     $post->status = Posts::POST_DONT_PUBLICATION_STATUS;
 
                 }
