@@ -22,7 +22,7 @@ class ApiController extends Controller
 
         $city = Yii::$app->request->post('city');
 
-        $cityInfo = City::find()->where(['id' => $city])->one();
+        $cityInfo = City::find()->where(['id' => $city])->cache(3600)->one();
 
         if ($cityInfo) {
 
@@ -78,7 +78,7 @@ class ApiController extends Controller
     {
         $city = Yii::$app->request->post('city');
 
-        if ($cityInfo = City::find()->where(['id' => $city])->one()){
+        if ($cityInfo = City::find()->where(['id' => $city])->cache(3600)->one()){
 
             $result = [
                 'url' => 'https://' . $cityInfo->actual_city . '.' . Yii::$app->params['domain'],
