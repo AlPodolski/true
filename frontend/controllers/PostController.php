@@ -57,7 +57,7 @@ class PostController extends Controller
 
             $viewPostsIds = (new AddViewHelper())->add($post['id']);
 
-            $viewPosts = (new PostsRepository())->getByIdPosts($viewPostsIds);
+            $viewPosts = (new PostsRepository())->getByIdPosts($viewPostsIds, 30);
 
             //$serviceListReview = ServiceReviewHelper::getPostServiceReview($id);
             $serviceListReview = false;

@@ -72,14 +72,17 @@ class PostsRepository
         return $posts;
     }
 
-    public function getByIdPosts($ids)
+    public function getByIdPosts($ids, $limit = false)
     {
         $posts = Posts::find()
             ->asArray()
             ->with('avatar', 'metro', 'rayon', 'nacionalnost')
             ->where(['in' ,'id', $ids])
-            ->orderBy($this->order)
-            ->all();
+            ->orderBy($this->order);
+
+        if ($limit) $posts = $posts->limit($limit);
+
+        $posts = $posts->all();
 
         return $posts;
     }
