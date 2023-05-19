@@ -110,6 +110,17 @@ class UserController extends Controller
         return $this->redirect(['index']);
     }
 
+    public function actionActivate()
+    {
+        $userId = Yii::$app->request->post('id');
+
+        $user = $this->findModel($userId);
+
+        $user->status = User::STATUS_ACTIVE;
+
+        $user->save();
+    }
+
     /**
      * Finds the User model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

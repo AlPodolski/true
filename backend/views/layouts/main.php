@@ -138,12 +138,6 @@ FontAwesomeAsset::register($this);
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/phones-chenge" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Сменить номер</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
                                 <a href="/phones-stat" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Номера</p>

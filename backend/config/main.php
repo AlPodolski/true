@@ -13,7 +13,7 @@ return [
     'bootstrap' => ['log'],
     'modules' => [
         'chat' => [
-            'class' => 'frontend\modules\chat\Chat',
+            'class' => 'backend\modules\chat\Chat',
         ],
     ],
     'components' => [

@@ -27,6 +27,19 @@ footer{
     flex: 0 0 auto;
 }
 
+.number{
+    margin-left: auto;
+    align-items: center;
+}
+
+.number .form-group{
+    margin-bottom: 0;
+}
+
+.number .btn{
+    margin-left: 10px;
+}
+
 body.blank {
     display: flex;
     padding: 40px 0;

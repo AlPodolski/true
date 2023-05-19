@@ -35,8 +35,8 @@ function get_dialog(object){
 }
 
 function editPhone(object){
-    var userId = $('#user-id').val();
-    var phone = $('#phone').val();
+    var phone = $(object).siblings('.phone-change').val();
+    var userId = $(object).attr('data-id');
 
     $.ajax({
         type: 'POST',
@@ -47,7 +47,26 @@ function editPhone(object){
         cache: false,
         success: function (data) {
 
+            $(object).text('Готово');
 
+        }
+    })
+
+}
+function activateUser(object){
+
+    var userId = $(object).attr('data-id');
+
+    $.ajax({
+        type: 'POST',
+        url: "/user/activate", //Путь к обработчику
+        data: 'id=' + userId ,
+        response: 'text',
+        dataType: "html",
+        cache: false,
+        success: function (data) {
+
+            $(object).text('Готово');
 
         }
     })
