@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use backend\components\helpers\AddCloudHelper;
+use common\models\City;
 use Yii;
 use common\models\Redirect;
 use backend\models\Redirect as RedirectSearch;
@@ -68,7 +69,23 @@ class RedirectController extends Controller
         $model = new Redirect();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
             AddCloudHelper::add($model->to);
+
+            $check = Yii::$app->request->post('Redirect')['check'];
+
+            if ($check){
+
+                $city = preg_replace('/[0-9]/', '', $model->to);
+
+                $cityInfo = City::find()->where(['url' => $city])->one();
+
+                $cityInfo->actual_city = $model->to;
+
+                $cityInfo->save();
+
+            }
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

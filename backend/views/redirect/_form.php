@@ -18,9 +18,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'user_agent')
         ->dropDownList([
+            \common\models\Redirect::ALL_REDIRECT => 'Редирект для всех',
             \common\models\Redirect::BOT_REDIRECT => 'Редирект для ботов',
             \common\models\Redirect::HUMAN_REDIRECT => 'Редирект для людей',
-            \common\models\Redirect::ALL_REDIRECT => 'Редирект для всех',
         ]) ?>
 
     <?= $form->field($model, 'status')
@@ -28,6 +28,13 @@ use yii\widgets\ActiveForm;
                 \common\models\Redirect::STATUS_301 => 301,
                 \common\models\Redirect::STATUS_302 => 302,
         ]) ?>
+
+    <div class="form-group">
+        <label for="check">Изменить актуальный город</label>
+        <?= $form->field($model, 'check')
+            ->checkbox()
+            ->label('Изменить актуальный город') ?>
+    </div>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

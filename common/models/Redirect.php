@@ -23,6 +23,8 @@ class Redirect extends \yii\db\ActiveRecord
     const STATUS_301 = 0;
     const STATUS_302 = 1;
 
+    public $check;
+
     /**
      * {@inheritdoc}
      */
