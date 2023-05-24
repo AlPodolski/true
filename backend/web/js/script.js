@@ -101,6 +101,13 @@ function delete_selected(){
     });
 
 }
+function select_all(){
+
+    $( ".delete-post" ).each(function( index ) {
+        $(this).trigger('click')
+    });
+
+}
 
 function check_anket(object){
 

@@ -18,6 +18,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <div onclick="start_all()" class="start-all btn btn-success">Одобрить все(На странице)</div>
     <br>
     <br>
+    <div onclick="select_all()" class="start-all btn btn-danger">Выделить все</div>
+    <br>
+    <br>
     <div onclick="delete_selected()" class="start-all btn btn-danger">Удалить выделенное</div>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
