@@ -172,7 +172,7 @@ class CronController extends Controller
             ->where(['fake' => Posts::POST_REAL])
             ->with('files')
             ->andWhere(['<', 'pay_time', $payTime])
-            ->limit(1)
+            ->limit(3000)
             ->all();
 
         foreach ($posts as $post){
