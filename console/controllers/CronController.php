@@ -229,6 +229,8 @@ class CronController extends Controller
             UserPLace::deleteAll(['post_id' => $post['id']]);
             UserService::deleteAll(['post_id' => $post['id']]);
 
+            Yii::$app->cache->delete('post_cache_'.$post->id.'_'.$post->city_id);
+
             $post->delete();
 
         }
