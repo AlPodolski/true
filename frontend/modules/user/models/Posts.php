@@ -172,6 +172,11 @@ class Posts extends \yii\db\ActiveRecord
         return $this->hasOne(Tarif::class, ['id' => 'tarif_id']);
     }
 
+    public function getFiles()
+    {
+        return $this->hasMany(Files::class, ['related_id' => 'id']);
+    }
+
     public function getAvatar() : ActiveQuery
     {
         return $this->hasOne(Files::class, ['related_id' => 'id'])

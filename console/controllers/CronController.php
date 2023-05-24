@@ -9,8 +9,16 @@ use common\models\PhoneReview;
 use common\models\Pol;
 use common\models\Queue;
 use common\models\SendPostToTelegram;
+use frontend\models\Files;
+use frontend\models\UserMetro;
 use frontend\modules\user\models\Posts;
 use frontend\modules\user\models\TopAnketBlock;
+use frontend\modules\user\models\UserHairColor;
+use frontend\modules\user\models\UserIntimHair;
+use frontend\modules\user\models\UserNational;
+use frontend\modules\user\models\UserPlace;
+use frontend\modules\user\models\UserRayon;
+use frontend\modules\user\models\UserService;
 use Yii;
 use yii\console\Controller;
 use yii\helpers\ArrayHelper;
@@ -149,6 +157,79 @@ class CronController extends Controller
 
             $post->advert_phone_view_count = 20;
             $post->save();
+
+        }
+    }
+
+    public function actionDeleteOldPost()
+    {
+
+        $payTime = time() - (3600 * 24 *30);
+
+        $webPath = Yii::getAlias('@frontend').'/web';
+
+        $posts = Posts::find()
+            ->where(['fake' => Posts::POST_REAL])
+            ->with('files')
+            ->andWhere(['<', 'pay_time', $payTime])
+            ->limit(1)
+            ->all();
+
+        foreach ($posts as $post){
+
+            if ($post['files']){
+
+                foreach ($post['files'] as $file){
+
+                    foreach (Yii::$app->components['imageCache']['sizes'] as $key => $value){
+
+                        $thumbPath = str_replace('uploads', 'thumbs', $webPath.$file->file);
+
+                        $thumbPathWebp = str_replace('.jpg', '_'.$key.'.webp', $thumbPath);
+
+                        $thumbPathJgp = str_replace('.jpg', '_'.$key.'.jpg', $thumbPath);
+
+                        if (is_file($thumbPathWebp)) {
+
+                            unlink($thumbPathWebp);
+
+                        }
+
+                        if (is_file($thumbPathJgp)) {
+
+                            unlink($thumbPathJgp);
+
+                        }
+
+                    }
+
+                    if (is_file($webPath.$file->file)){
+
+                        unlink($webPath.$file->file);
+
+                    }
+
+                    $file->delete();
+
+                }
+
+            }
+
+            if ($post->video and is_file($webPath.$post->video)){
+
+                unlink($webPath.$post->video);
+
+            }
+
+            UserRayon::deleteAll(['post_id' => $post['id']]);
+            UserMetro::deleteAll(['post_id' => $post['id']]);
+            UserHairColor::deleteAll(['post_id' => $post['id']]);
+            UserIntimHair::deleteAll(['post_id' => $post['id']]);
+            UserNational::deleteAll(['post_id' => $post['id']]);
+            UserPLace::deleteAll(['post_id' => $post['id']]);
+            UserService::deleteAll(['post_id' => $post['id']]);
+
+            $post->delete();
 
         }
     }
