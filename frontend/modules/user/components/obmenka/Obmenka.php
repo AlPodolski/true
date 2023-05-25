@@ -78,9 +78,9 @@ class Obmenka
             'currency' => $currency,
             'account' => 'true-'.Yii::$app->user->id,
             "description" => $des,
-            "success_url" => "https://".$city."sex-trust.com/pay/obmenka/".\str_replace('-'.Yii::$app->params['obm-id-pref'], '',$orderId),
-            "fail_url" => "https://".$city."sex-trust.com/pay",
-            "status_url" => "https://".$city."sex-trust.com/pay/obmenka/".\str_replace('-'.Yii::$app->params['obm-id-pref'], '',$orderId) ,
+            "success_url" => "https://".$city."sex-team.com/pay/obmenka/".\str_replace('-'.Yii::$app->params['obm-id-pref'], '',$orderId),
+            "fail_url" => "https://".$city."sex-team.com/pay",
+            "status_url" => "https://".$city."sex-team.com/pay/obmenka/".\str_replace('-'.Yii::$app->params['obm-id-pref'], '',$orderId) ,
         ];
 
         return $this->sendData($data, $this->create_pay_url);
