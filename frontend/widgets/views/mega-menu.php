@@ -16,16 +16,16 @@ use yii\helpers\Html;
     <div class="menu-heading-wrap">
         <svg class="m-right-15" width="20" height="20" viewBox="0 0 20 20" fill="none"
              xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 14.4444H0V16.6667H20V14.4444Z" fill="#F74952"></path>
-            <path d="M20 8.88892H0V11.1112H20V8.88892Z" fill="#F74952"></path>
-            <path d="M20 3.33334H0V5.55558H20V3.33334Z" fill="#F74952"></path>
+            <path d="M20 14.4444H0V16.6667H20V14.4444Z" fill="#0F2C93"></path>
+            <path d="M20 8.88892H0V11.1112H20V8.88892Z" fill="#0F2C93"></path>
+            <path d="M20 3.33334H0V5.55558H20V3.33334Z" fill="#0F2C93"></path>
         </svg>
         <span class="m-right-15 metro-search-btn ">Выбрать анкету</span>
         <svg class="m-left-25" width="19" height="10" viewBox="0 0 32 20" fill="none"
              xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(.clip0_114_4)">
                 <path d="M1.60863 3.72732L3.98258 1.19739L16.6432 14.0472L28.9869 0.892589L31.4218 3.36389L19.0781 16.5185L16.7042 19.0485L1.60863 3.72732Z"
-                      fill="#F74952"/>
+                      fill="#0F2C93"/>
             </g>
             <defs>
                 <clipPath class="clip0_114_4">

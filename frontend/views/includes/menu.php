@@ -4,7 +4,7 @@
              xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(.clip0)">
                 <path d="M32 3.77081L28.2292 0L16 12.2291L3.77081 0L0 3.77081L12.2291 16L0 28.2292L3.77081 32L16 19.7709L28.2291 32L31.9999 28.2292L19.7709 16L32 3.77081Z"
-                      fill="#F74952"/>
+                      fill="#0F2C93"/>
             </g>
             <defs>
                 <clipPath class="clip0">
