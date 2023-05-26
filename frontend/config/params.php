@@ -4,7 +4,7 @@ return [
     'bsVersion' => '4.x',
     'advert_limit' => 20,
     'post_limit' => 18,
-    'site_name' => 'sex-trust.com',
+    'site_name' => 'sex-team.com',
     'min_pay' => 300,
     'view_100_buy_price' => 40,
     'view_1000_buy_price' => 350,
