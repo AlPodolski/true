@@ -485,7 +485,7 @@ AppAsset::register($this);
 
                 <div class="city-wrap">
                     <ul class="city-list">
-                        <li><a class="red-link" href="https://moskva6.sex-team.com">Москва</a></li>
+                        <li><a class="red-link" href="https://moskva8.sex-team.com">Москва</a></li>
                         <li><a class="red-link" href="https://sankt-piterburg.sex-team.com">Санкт-Петербург</a></li>
                         <li><a class="red-link" href="https://novosibirsk.sex-team.com">Новосибирск</a></li>
                         <li><a class="red-link" href="https://ekaterinburg.sex-team.com">Екатеринбург</a></li>

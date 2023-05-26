@@ -59,7 +59,7 @@ return [
                 '129' => [129, 129],
             ],
             'text' => [
-                'text' => 'sex-true',
+                'text' => 'sex-team',
                 'fontFile' => '@frontend/web/fonts/MullerExtraBold.ttf'
             ],
         ],
