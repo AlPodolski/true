@@ -57,8 +57,8 @@ class FilterController extends Controller
 
         $cityInfo = City::getCity(Yii::$app->controller->actionParams['city']);
 
-        $title = MetaBuilder::Build($uri, $city, 'Title') . ' На сайте ' . Yii::$app->request->serverName;
-        $des = MetaBuilder::Build($uri, $city, 'des') . ' На сайте ' . Yii::$app->request->serverName;
+        $title = MetaBuilder::Build($uri, $city, 'Title');
+        $des = MetaBuilder::Build($uri, $city, 'des') ;
         $h1 = MetaBuilder::Build($uri, $city, 'h1');
 
         if ($h1 == 'Проститутки') throw new NotFoundHttpException();
