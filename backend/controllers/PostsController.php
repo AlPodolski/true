@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use common\components\helpers\AddEventHelper;
 use common\models\PostMessage;
+use common\models\User;
 use frontend\modules\advert\models\Advert;
 use Yii;
 use frontend\modules\user\models\Posts;
@@ -134,7 +135,12 @@ class PostsController extends Controller
 
         if ($model = $this->findModel(Yii::$app->request->post('id'))){
 
-            $model->status = Posts::POST_ON_PUPLICATION_STATUS;
+            $user = User::find()->where(['id' => $model->user_id])->one();
+
+            if ($user->cash >= $model->tarif->sum) $model->status = Posts::POST_ON_PUPLICATION_STATUS;
+
+            else $model->status = Posts::POST_DONT_PUBLICATION_STATUS;
+
             if (Yii::$app->request->post('check')) $model->check_photo_status = Posts::ANKET_CHECK;
 
             $model->save();
