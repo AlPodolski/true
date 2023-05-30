@@ -29,7 +29,8 @@ class ApiController extends Controller
             $post = Posts::find()->where([
                 'status' => Posts::POST_ON_PUPLICATION_STATUS,
                 'city_id' => $cityInfo['id'],
-                'fake' => Posts::POST_REAL
+                'fake' => Posts::POST_REAL,
+                'pol_id' => 1,
             ])
                 ->orderBy('rand()')
                 ->with('avatar')
