@@ -90,7 +90,7 @@ class SiteController extends Controller
         return [
             [
                 'class' => 'yii\filters\PageCache',
-                'only' => ['map', 'index', 'robot', 'map'],
+                'only' => ['map', 'robot', 'map'],
                 'duration' => 30,
                 'variations' => [
                     Yii::$app->request->url,
