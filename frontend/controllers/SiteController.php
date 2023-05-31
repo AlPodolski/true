@@ -85,23 +85,23 @@ class SiteController extends Controller
     }
 
 
-    /*    public function behaviors()
-        {
-            return [
-                [
-                    'class' => 'yii\filters\PageCache',
-                    'only' => ['map', 'index'],
-                    'duration' => 60 ,
-                    'variations' => [
-                        Yii::$app->request->url,
-                        Yii::$app->request->post('page'),
-                        Yii::$app->request->hostInfo,
-                        Yii::$app->request->isPost,
-                    ],
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => 'yii\filters\PageCache',
+                'only' => ['map', 'index', 'robot', 'map'],
+                'duration' => 30,
+                'variations' => [
+                    Yii::$app->request->url,
+                    Yii::$app->request->post('page'),
+                    Yii::$app->request->hostInfo,
+                    Yii::$app->request->isPost,
                 ],
-            ];
+            ],
+        ];
 
-        }*/
+    }
 
     public function onAuthSuccess($client)
     {
@@ -254,12 +254,12 @@ class SiteController extends Controller
 
                 $order->status = ObmenkaOrder::FINISH;
 
-                if ($order->sum >= Yii::$app->params['start_sum_for_bonus']){
+                if ($order->sum >= Yii::$app->params['start_sum_for_bonus']) {
 
                     $bonus = ($order->sum / 100) * Yii::$app->params['pay_bonus_percent'];
                     $user->cash = $user->cash + (int)$bonus + (int)$order->sum;
 
-                }else{
+                } else {
 
                     $user->cash = $user->cash + (int)$order->sum;
 
