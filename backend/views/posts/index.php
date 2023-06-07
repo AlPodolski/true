@@ -93,7 +93,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($user) {
                     /* @var $user Posts */
                     $user->getCity();
-                    return $user->city->city;
+                    return $user->city->city . ' '.$user->city->id;
                 },
             ],
 
