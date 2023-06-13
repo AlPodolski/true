@@ -2,6 +2,7 @@
 
 namespace frontend\components\helpers;
 
+use common\models\City;
 use common\models\Redirect;
 use Yii;
 
@@ -9,6 +10,31 @@ class RedirectHelper
 {
     public static function redirect($city)
     {
+
+        $host = str_replace($city .'.', '',  $_SERVER['HTTP_HOST']);
+
+        $cityName =  preg_replace('/[0-9]+/', '', $city);
+
+        $cityInfo = City::find()
+            ->where(['url' => $cityName])
+            ->cache(3600)
+            ->one();
+
+        if (isset($cityInfo->domain) and $cityInfo->domain){
+
+            Yii::$app->params['domain'] = $cityInfo->domain;
+
+            if ($host != $cityInfo->domain){
+
+                $url = 'https://'.$city.'.'.Yii::$app->params['domain'].Yii::$app->request->url;
+
+                header('Location: '.$url, true, 301);
+
+                exit();
+
+            }
+
+        }
 
         if ( $redirects = Redirect::find()->where(['from' => $city])->cache(3600)->all()){
 
