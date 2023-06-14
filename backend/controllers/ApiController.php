@@ -56,11 +56,15 @@ class ApiController extends Controller
 
                     if ($cityInfo['actual_city']) $cityUrl = $cityInfo['actual_city'];
 
+                    $domain =  Yii::$app->params['domain'] ;
+
+                    if ($cityInfo['domain']) $domain = $cityInfo['domain'];
+
                     $result = [
                         'name' => $post->name,
                         'age' => $post->age,
-                        'url' => 'https://' . $cityUrl . '.' . Yii::$app->params['domain'] . '/post/' . $post['id'],
-                        'photo' => 'https://' . $cityUrl . '.' . Yii::$app->params['domain'] . Yii::$app->imageCache->thumbSrc($file, '500_700')
+                        'url' => 'https://' . $cityUrl . '.' . $domain . '/post/' . $post['id'],
+                        'photo' => 'https://' . $cityUrl . '.' . $domain . Yii::$app->imageCache->thumbSrc($file, '500_700')
                     ];
 
                     return json_encode($result);
@@ -81,8 +85,12 @@ class ApiController extends Controller
 
         if ($cityInfo = City::find()->where(['id' => $city])->cache(3600)->one()){
 
+            $domain =  Yii::$app->params['domain'] ;
+
+            if ($cityInfo['domain']) $domain = $cityInfo['domain'];
+
             $result = [
-                'url' => 'https://' . $cityInfo->actual_city . '.' . Yii::$app->params['domain'],
+                'url' => 'https://' . $cityInfo->actual_city . '.' . $domain,
             ];
 
             return json_encode($result);
