@@ -89,8 +89,12 @@ class ApiController extends Controller
 
             if ($cityInfo['domain']) $domain = $cityInfo['domain'];
 
+            $city = $cityInfo->url;
+
+            if ($cityInfo->actual_city) $city = $cityInfo->actual_city;
+
             $result = [
-                'url' => 'https://' . $cityInfo->actual_city . '.' . $domain,
+                'url' => 'https://' . $city . '.' . $domain,
             ];
 
             return json_encode($result);
