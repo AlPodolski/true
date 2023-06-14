@@ -78,6 +78,12 @@ FontAwesomeAsset::register($this);
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a href="/city/index" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Города</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="/chat?sort=-id" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Тикеты</p>

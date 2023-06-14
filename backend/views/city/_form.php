@@ -6,6 +6,15 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model common\models\City */
 /* @var $form yii\widgets\ActiveForm */
+
+$domains = array();
+
+foreach (Yii::$app->params['domains'] as $item){
+
+    $domains[$item] = $item;
+
+}
+
 ?>
 
 <div class="city-form">
@@ -23,6 +32,9 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'country')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'actual_city')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'domain')
+        ->dropDownList($domains) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
