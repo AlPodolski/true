@@ -33,7 +33,7 @@ class City extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['url', 'city', 'city2', 'city3', 'country'], 'string', 'max' => 50],
+            [['url', 'city', 'city2', 'city3', 'country', 'domain', 'actual_city'], 'string', 'max' => 50],
         ];
     }
 
