@@ -18,7 +18,7 @@ class CitySearch extends City
     {
         return [
             [['id'], 'integer'],
-            [['url', 'city', 'city2', 'city3', 'country', 'x', 'y', 'actual_city', 'domain'], 'safe'],
+            [['url', 'city', 'city2', 'city3', 'country', 'x', 'y', 'actual_city', 'domain', 'external_domain'], 'safe'],
         ];
     }
 

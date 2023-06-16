@@ -50,6 +50,8 @@ class City extends \yii\db\ActiveRecord
             'city' => 'CurrentCity',
             'city2' => 'City2',
             'city3' => 'City3',
+            'actual_city' => 'Основа',
+            'external_domain' => 'Внешка',
         ];
     }
 
