@@ -17,7 +17,7 @@ class RedirectHelper
 
         $cityInfo = City::find()
             ->where(['url' => $cityName])
-            ->cache(3600)
+            ->cache(1)
             ->one();
 
         if (isset($cityInfo->domain) and $cityInfo->domain){
@@ -27,6 +27,65 @@ class RedirectHelper
             if ($host != $cityInfo->domain){
 
                 $url = 'https://'.$city.'.'.Yii::$app->params['domain'].Yii::$app->request->url;
+
+                header('Location: '.$url, true, 301);
+
+                exit();
+
+            }
+
+        }
+
+        if ($cityInfo['actual_city'] == $city and $cityInfo['external_domain']){
+
+            if (
+                !\strstr(Yii::$app->request->userAgent, 'yandex') and
+                !\strstr(Yii::$app->request->userAgent, 'google')
+            ){
+
+                $url = 'https://'.$cityInfo['external_domain'].'.'.Yii::$app->params['domain'].Yii::$app->request->url;
+
+                header('Location: '.$url, true, 301);
+
+                exit();
+
+            }
+
+        }
+
+        if ($cityInfo['external_domain'] == $city and $cityInfo['actual_city']){
+
+            if (
+                \strstr(Yii::$app->request->userAgent, 'yandex') or
+                \strstr(Yii::$app->request->userAgent, 'google')
+            ){
+
+                $url = 'https://'.$cityInfo['actual_domain'].'.'.Yii::$app->params['domain'].Yii::$app->request->url;
+
+                header('Location: '.$url, true, 302);
+
+                exit();
+
+            }
+
+        }
+
+        if ($cityInfo['external_domain'] and $cityInfo['actual_city'] and $city != $cityInfo['external_domain'] and $city != $cityInfo['actual_city']){
+
+            if (
+                \strstr(Yii::$app->request->userAgent, 'yandex') or
+                \strstr(Yii::$app->request->userAgent, 'google')
+            ){
+
+                $url = 'https://'.$cityInfo['actual_domain'].'.'.Yii::$app->params['domain'].Yii::$app->request->url;
+
+                header('Location: '.$url, true, 302);
+
+                exit();
+
+            }else{
+
+                $url = 'https://'.$cityInfo['external_domain'].'.'.Yii::$app->params['domain'].Yii::$app->request->url;
 
                 header('Location: '.$url, true, 301);
 

@@ -16,6 +16,8 @@ use Yii;
  * @property string|null $x
  * @property string|null $y
  * @property string|null $actual_city
+ * @property string|null $domain
+ * @property string|null $external_domain
  */
 class City extends \yii\db\ActiveRecord
 {
@@ -33,7 +35,7 @@ class City extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['url', 'city', 'city2', 'city3', 'country', 'domain', 'actual_city'], 'string', 'max' => 50],
+            [['url', 'city', 'city2', 'city3', 'country', 'domain', 'actual_city', 'external_domain'], 'string', 'max' => 50],
         ];
     }
 

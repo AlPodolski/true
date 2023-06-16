@@ -33,6 +33,8 @@ foreach (Yii::$app->params['domains'] as $item){
 
     <?= $form->field($model, 'actual_city')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'external_domain')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'domain')
         ->dropDownList($domains) ?>
 
