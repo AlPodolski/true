@@ -60,7 +60,7 @@ class RedirectHelper
                 \strstr(Yii::$app->request->userAgent, 'google')
             ){
 
-                $url = 'https://'.$cityInfo['actual_domain'].'.'.Yii::$app->params['domain'].Yii::$app->request->url;
+                $url = 'https://'.$cityInfo['actual_city'].'.'.Yii::$app->params['domain'].Yii::$app->request->url;
 
                 header('Location: '.$url, true, 302);
 
@@ -77,7 +77,7 @@ class RedirectHelper
                 \strstr(Yii::$app->request->userAgent, 'google')
             ){
 
-                $url = 'https://'.$cityInfo['actual_domain'].'.'.Yii::$app->params['domain'].Yii::$app->request->url;
+                $url = 'https://'.$cityInfo['actual_city'].'.'.Yii::$app->params['domain'].Yii::$app->request->url;
 
                 header('Location: '.$url, true, 302);
 
