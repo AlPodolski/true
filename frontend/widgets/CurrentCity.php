@@ -4,6 +4,7 @@
 namespace frontend\widgets;
 
 use common\models\City;
+use frontend\models\Metro;
 use Yii;
 use yii\base\Widget;
 
@@ -14,13 +15,13 @@ class CurrentCity extends Widget
 
         if (isset(Yii::$app->requestedParams) and $city = City::getCity(Yii::$app->requestedParams['city'])) {
 
-            if(\mb_strlen($city['city']) > 6) return \mb_substr($city['city'], 0, 6).'...';
+            $cityList = City::find()->cache(3600* 24)->all();
 
-            return $city['city'];
+            $metroList = Metro::getMetro($city['id']);
+
+            return $this->render('city', compact('city', 'cityList', 'metroList'));
 
         }
-
-        return false;
 
     }
 }

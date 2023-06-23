@@ -7,259 +7,259 @@
 /* @var $metro \frontend\models\Metro[] */
 /* @var $timeList \common\models\Time[] */
 /* @var $rostList \common\models\Rost[] */
+
 /* @var $ves \common\models\Rost[] */
 
 use yii\helpers\Html;
 
 ?>
-<div class="mega-menu-widget position-relative">
-    <div class="menu-heading-wrap">
-        <svg class="m-right-15" width="20" height="20" viewBox="0 0 20 20" fill="none"
-             xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 14.4444H0V16.6667H20V14.4444Z" fill="#0F2C93"></path>
-            <path d="M20 8.88892H0V11.1112H20V8.88892Z" fill="#0F2C93"></path>
-            <path d="M20 3.33334H0V5.55558H20V3.33334Z" fill="#0F2C93"></path>
-        </svg>
-        <span class="m-right-15 metro-search-btn ">Выбрать анкету</span>
-        <svg class="m-left-25" width="19" height="10" viewBox="0 0 32 20" fill="none"
-             xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(.clip0_114_4)">
-                <path d="M1.60863 3.72732L3.98258 1.19739L16.6432 14.0472L28.9869 0.892589L31.4218 3.36389L19.0781 16.5185L16.7042 19.0485L1.60863 3.72732Z"
-                      fill="#0F2C93"/>
-            </g>
-            <defs>
-                <clipPath class="clip0_114_4">
-                    <rect width="18" height="30" fill="white" transform="translate(1.12793 19.197) rotate(-90.6984)"/>
-                </clipPath>
-            </defs>
-        </svg>
-    </div>
-    <div class="drop-menu-list position-absolute">
-        <div class="drop-menu-list-item">
-            Поиск по параметрам
-            <svg class="m-left-25" width="10" height="15" viewBox="0 0 10 15" fill="none"
-                 xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(.clip0_114_4)">
-                    <path d="M2.24979 14.6416L1.00721 13.4744L7.25699 7.18819L0.796085 1.11916L1.99805 -0.0898235L8.45895 5.97921L9.70153 7.14642L2.24979 14.6416Z"
-                          fill="#5C5C5C"/>
-                </g>
-                <defs>
-                    <clipPath class="clip0_114_4">
-                        <rect width="8.79882" height="14.8248" fill="white"
-                              transform="translate(9.81274 14.8432) rotate(179.021)"/>
-                    </clipPath>
-                </defs>
+
+<div class="row filter__top">
+    <div class="filter__search-params filter-search-params">
+        <div class="filter-search-params__text">
+            <span>Поиск по параметрам</span>
+            <svg>
+                <use xlink:href='/svg/dest/stack/sprite.svg#arrow-nav'></use>
             </svg>
-            <div class="drop-menu-list-sub-menu">
-
-                <?php if ($hairColorList) : ?>
-
-                    <div class="sub-menu-block">
-
-                        <div class="sub-menu-block-heading">
-                            Волосы
-                        </div>
-
-                        <?php foreach ($hairColorList as $hairColorItem) {
-
-                            echo Html::a($hairColorItem['value'], '/cvet-volos-' . $hairColorItem['url'], [
-                                'class' => 'sub-menu-block-item'
-                            ]);
-
-                        } ?>
-
-                    </div>
-
-                <?php endif; ?>
-
-                <div class="sub-menu-block">
-
-                    <div class="sub-menu-block-heading">
-                        Цена:
-                    </div>
-
-                    <?php $tempData = array(
-                        array('url' => 'do-1500', 'value' => 'До 1500 руб.'),
-                        array('url' => 'ot-3000-do-6000', 'value' => 'От 3000 до 6000 руб.'),
-                        array('url' => 'ot-6000', 'value' => 'От 6000 руб.'),
-                    ); ?>
-
-                    <?php
-
-                    echo Html::a('Дешевые(до 3000)', '/deshevye-prostitutki' , [
-                        'class' => 'sub-menu-block-item'
-                    ]);
-
-                    foreach ($tempData as $hairColorItem) {
-
-                        echo Html::a($hairColorItem['value'], '/cena-' . $hairColorItem['url'], [
-                            'class' => 'sub-menu-block-item'
-                        ]);
-
-                    } ?>
-
+        </div>
+        <div class="filter__close" data-filter-btn>
+            <svg>
+                <use xlink:href='/svg/dest/stack/sprite.svg#close-icon'></use>
+            </svg>
+        </div>
+        <div class="filter-search-params__drop">
+            <div class="filter-search-params__drop-mob">
+                <div class="filter-search-params__drop-mob-close" data-params-btn>
+                    <svg>
+                        <use xlink:href='/svg/dest/stack/sprite.svg#close-icon'></use>
+                    </svg>
                 </div>
-
-                <?php if ($placeList) : ?>
-
-                    <div class="sub-menu-block">
-
-                        <div class="sub-menu-block-heading">
-                            Место встречи:
-                        </div>
-
-                        <?php foreach ($placeList as $hairColorItem) {
-
-                            echo Html::a($hairColorItem['value'], '/mesto-' . $hairColorItem['url'], [
-                                'class' => 'sub-menu-block-item'
-                            ]);
-
-                        } ?>
-
-                    </div>
-
-                <?php endif; ?>
-
-                <div class="sub-menu-block">
-
-                    <div class="sub-menu-block-heading">
-                        Возраст
-                    </div>
-
-                    <a class="sub-menu-block-item" href="/vozrast-18-20">От 18 до 20 лет</a>
-                    <a class="sub-menu-block-item" href="/vozrast-21-25">От 21 до 25 лет</a>
-                    <a class="sub-menu-block-item" href="/vozrast-26-30">От 26 до 30 лет</a>
-                    <a class="sub-menu-block-item" href="/vozrast-31-35">От 31 до 35 лет</a>
-                    <a class="sub-menu-block-item" href="/vozrast-36-40">От 36 до 40 лет</a>
-                    <a class="sub-menu-block-item" href="/vozrast-40-50">От 40 до 50 лет</a>
-                    <a class="sub-menu-block-item" href="/vozrast-50-75">От 50 до 75 лет</a>
-
+                <div class="filter-search-params__drop-mob-title">
+                    Каталог
                 </div>
+            </div>
+            <div class="filter-search-params__left">
+                <div class="filter-search-params__title">
+                    Поиск по акетам
+                    <svg>
+                        <use xlink:href='/svg/dest/stack/sprite.svg#arrow-nav'></use>
+                    </svg>
+                </div>
+                <ul class="filter-search-params__main-list">
+                    <li data-params-tab-title class="active">
+                        Параметры
+                        <svg>
+                            <use xlink:href='/svg/dest/stack/sprite.svg#arrow-nav'></use>
+                        </svg>
+                    </li>
+                    <?php if ($metro) : ?>
+                        <li data-params-tab-title>
+                            <a href="/metro">Метро</a>
+                        </li>
+                    <?php endif; ?>
 
-                <?php if ($timeList) : ?>
+                    <li data-params-tab-title>
+                        <?php if ($rayon) : ?>
+                            <a href="/rayon">Район</a>
+                        <?php endif; ?>
 
-                    <div class="sub-menu-block big-sub-menu-block">
+                    </li>
+                    <li data-params-tab-title>
+                        <a href="/usluga">Услуги</a>
+                    </li>
 
-                        <div class="sub-menu-block-heading">
-                            Время:
-                        </div>
+                    <li data-params-tab-title>
+                        <a href="/deshevye-prostitutki">Дешевые</a>
+                    </li>
+                    <li data-params-tab-title>
+                        <a href="/favorite/list">Избранное</a>
+                    </li>
+                    <li data-params-tab-title>
+                        <a href="/elitnye-prostitutki">Элитные</a>
+                    </li>
+                    <li data-params-tab-title>
+                        <a href="/phone">Телефоны</a>
+                    </li>
+                    <li data-params-tab-title>
+                        <a href="/mesto-viezd">На выезд</a>
+                    </li>
+                    <li data-params-tab-title>
+                        <a href="/novie">Новые анкеты</a>
+                    </li>
+                    <li data-params-tab-title>
+                        <a href="/salon">Интим салоны</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="filter-search-params__right">
+                <div class="filter-search-params__tab active" data-params-tab-content>
+                    <div class="filter-search-params__right-top">
+                        <ul class="filter-search-params__list">
+                            <li class="filter-search-params__item">
+                                <div class="filter-search-params__item-title">Волосы</div>
+                                <ul class="filter-search-params__item-list">
 
-                        <?php foreach ($timeList as $item) {
+                                    <?php foreach ($hairColorList as $hairColorItem) {
 
-                            echo Html::a($item['value'], '/vremya-' . $item['url'], [
-                                'class' => 'sub-menu-block-item'
-                            ]);
+                                        echo '<li>';
 
-                        } ?>
+                                        echo Html::a($hairColorItem['value'], '/cvet-volos-' . $hairColorItem['url'], [
+                                            'class' => 'sub-menu-block-item'
+                                        ]);
 
+                                        echo '</li>';
+
+                                    } ?>
+
+                                </ul>
+                            </li>
+                            <li class="filter-search-params__item">
+                                <div class="filter-search-params__item-title">Цена</div>
+                                <ul class="filter-search-params__item-list">
+
+                                    <?php $tempData = array(
+                                        array('url' => 'do-1500', 'value' => 'До 1500 руб.'),
+                                        array('url' => 'ot-3000-do-6000', 'value' => 'От 3000 до 6000 руб.'),
+                                        array('url' => 'ot-6000', 'value' => 'От 6000 руб.'),
+                                    ); ?>
+
+                                    <?php
+
+                                    echo Html::a('Дешевые(до 3000)', '/deshevye-prostitutki', [
+                                        'class' => 'sub-menu-block-item'
+                                    ]);
+
+                                    foreach ($tempData as $hairColorItem) {
+
+                                        echo '<li>';
+
+                                        echo Html::a($hairColorItem['value'], '/cena-' . $hairColorItem['url']);
+
+                                        echo '</li>';
+
+                                    } ?>
+
+                                </ul>
+                            </li>
+                            <li class="filter-search-params__item">
+                                <div class="filter-search-params__item-title">Место встречи:</div>
+                                <ul class="filter-search-params__item-list">
+                                    <?php foreach ($placeList as $hairColorItem) {
+
+                                        echo '<li>';
+
+                                        echo Html::a($hairColorItem['value'], '/mesto-' . $hairColorItem['url'], [
+                                            'class' => 'sub-menu-block-item'
+                                        ]);
+
+                                        echo '</li>';
+
+                                    } ?>
+
+                                </ul>
+                            </li>
+                            <li class="filter-search-params__item">
+                                <div class="filter-search-params__item-title">Возраст</div>
+                                <ul class="filter-search-params__item-list">
+                                    <li><a class="sub-menu-block-item" href="/vozrast-18-20">От 18 до 20 лет</a></li>
+                                    <li><a class="sub-menu-block-item" href="/vozrast-21-25">От 21 до 25 лет</a></li>
+                                    <li><a class="sub-menu-block-item" href="/vozrast-26-30">От 26 до 30 лет</a></li>
+                                    <li><a class="sub-menu-block-item" href="/vozrast-31-35">От 31 до 35 лет</a></li>
+                                    <li><a class="sub-menu-block-item" href="/vozrast-36-40">От 36 до 40 лет</a></li>
+                                    <li><a class="sub-menu-block-item" href="/vozrast-40-50">От 40 до 50 лет</a></li>
+                                    <li><a class="sub-menu-block-item" href="/vozrast-50-75">От 50 до 75 лет</a></li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
+                    <div class="filter-search-params__right-bottom">
+                        <ul class="filter-search-params__list filter-search-params__list--horz">
+                            <li class="filter-search-params__item">
+                                <div class="filter-search-params__item-title">
+                                    Время:
+                                </div>
+                                <ul class="filter-search-params__item-list">
 
-                <?php endif; ?>
+                                    <?php foreach ($timeList as $item) {
 
-                <?php if ($rostList) : ?>
+                                        echo '<li>';
 
-                    <div class="sub-menu-block big-sub-menu-block">
+                                        echo Html::a($item['value'], '/vremya-' . $item['url'], [
+                                            'class' => 'sub-menu-block-item'
+                                        ]);
 
-                        <div class="sub-menu-block-heading">
-                            Рост:
-                        </div>
+                                        echo '</li>';
 
-                        <?php foreach ($rostList as $item) {
+                                    } ?>
 
-                            echo Html::a($item['value'], '/rost-' . $item['url'], [
-                                'class' => 'sub-menu-block-item'
-                            ]);
+                                </ul>
+                            </li>
+                            <li class="filter-search-params__item">
+                                <div class="filter-search-params__item-title">
+                                    Рост:
+                                </div>
+                                <ul class="filter-search-params__item-list">
 
-                        } ?>
+                                    <?php foreach ($rostList as $item) {
 
+                                        echo '<li>';
+
+                                        echo Html::a($item['value'], '/rost-' . $item['url'], [
+                                            'class' => 'sub-menu-block-item'
+                                        ]);
+
+                                        echo '</li>';
+
+                                    } ?>
+
+                                </ul>
+                            </li>
+                            <li class="filter-search-params__item">
+                                <div class="filter-search-params__item-title">
+                                    Вес:
+                                </div>
+                                <ul class="filter-search-params__item-list">
+                                    <?php foreach ($ves as $item) {
+
+                                        echo '<li>';
+
+                                        echo Html::a($item['value'], '/ves-' . $item['url'], [
+                                            'class' => 'sub-menu-block-item'
+                                        ]);
+
+                                        echo '</li>';
+
+                                    } ?>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="filter-search-params__list filter-search-params__list--str">
+                            <li class="filter-search-params__item">
+                                <div class="filter-search-params__item-title">
+                                    Национальность:
+                                </div>
+                                <ul class="filter-search-params__item-list">
+
+                                    <?php foreach ($nationalList as $hairColorItem) {
+
+                                        echo '<li>';
+
+                                        echo Html::a($hairColorItem['value'], '/nacionalnost-' . $hairColorItem['url'], [
+                                            'class' => 'sub-menu-block-item'
+                                        ]);
+
+                                        echo '</li>';
+
+                                    } ?>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
-
-                <?php endif; ?>
-
-                <?php if ($ves) : ?>
-
-                    <div class="sub-menu-block big-sub-menu-block">
-
-                        <div class="sub-menu-block-heading">
-                            Вес:
-                        </div>
-
-                        <?php foreach ($ves as $item) {
-
-                            echo Html::a($item['value'], '/ves-' . $item['url'], [
-                                'class' => 'sub-menu-block-item'
-                            ]);
-
-                        } ?>
-
-                    </div>
-
-                <?php endif; ?>
-
-                <?php if ($nationalList) : ?>
-
-                    <div class="sub-menu-block big-sub-menu-block">
-
-                        <div class="sub-menu-block-heading">
-                            Национальность:
-                        </div>
-
-                        <?php foreach ($nationalList as $hairColorItem) {
-
-                            echo Html::a($hairColorItem['value'], '/nacionalnost-' . $hairColorItem['url'], [
-                                'class' => 'sub-menu-block-item'
-                            ]);
-
-                        } ?>
-
-                    </div>
-
-                <?php endif; ?>
-
+                </div>
             </div>
         </div>
-        <?php if ($metro) : ?>
-            <div class="drop-menu-list-item">
-                <a href="/metro" >Метро</a>
-            </div>
-        <?php endif; ?>
-        <?php if ($rayon) : ?>
-            <div class="drop-menu-list-item">
-                <a href="/rayon">Район</a>
-            </div>
-        <?php endif; ?>
-        <div class="drop-menu-list-item">
-            <a href="/usluga" >Услуги</a>
-        </div>
-        <div class="drop-menu-list-item">
-            <a href="/proverennye">Проверенные</a>
-        </div>
-        <div class="drop-menu-list-item">
-            <a href="/deshevye-prostitutki">Дешевые</a>
-        </div>
-        <div class="drop-menu-list-item">
-            <a href="/favorite/list">Избранное</a>
-        </div>
-        <div class="drop-menu-list-item">
-            <a href="/elitnye-prostitutki">Элитные</a>
-        </div>
-        <div class="drop-menu-list-item">
-            <a href="/phone">Телефоны</a>
-        </div>
-        <div class="drop-menu-list-item">
-            <a href="/video">С Видео</a>
-        </div>
-        <div class="drop-menu-list-item">
-            <a href="/mesto-viezd">На выезд</a>
-        </div>
-        <div class="drop-menu-list-item">
-           <a class="small-red-text" href="/novie">Новые анкеты</a>
-        </div>
-        <?php if (Yii::$app->requestedParams['city'] == 'moskva') : ?>
-            <div class="drop-menu-list-item">
-                <a class="small-red-text" href="/salon">Интим салоны</a>
-            </div>
-        <?php endif; ?>
-
     </div>
+
+    <?php echo \frontend\widgets\FilterWidget::widget(['dataGet' => Yii::$app->request->get()]); ?>
+
 </div>
