@@ -4,12 +4,27 @@
 
 ?>
 
-<div class="popular-btn-block">
+<?php if ($links) : ?>
 
-<?php foreach ($links as $link) { ?>
+    <div class="row">
+        <div class="filter__fast filter-fast" data-simplebar data-simplebar-auto-hide="false">
+            <div class="filter-fast__title">
+                Быстрый поиск:
+            </div>
+            <ul class="filter-fast__list">
 
-    <?php echo \yii\helpers\Html::a($link['text'], $link['link'], ['class' => 'popular-btn' ])?>
+                <?php foreach ($links as $link) { ?>
 
-<?php } ?>
+                    <?php echo '<li>'; ?>
 
-</div>
+                    <?php echo \yii\helpers\Html::a($link['text'], $link['link']) ?>
+
+                    <?php echo '</li>' ?>
+
+                <?php } ?>
+
+            </ul>
+        </div>
+    </div>
+
+<?php endif; ?>
