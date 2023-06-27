@@ -30,7 +30,7 @@ class PostsRepository
     public function getForMainPage(): array
     {
         $prPosts = Posts::find()->asArray()
-            ->with('avatar', 'metro','gallery', 'tarif')
+            ->with('avatar', 'metro','gallery', 'tarif', 'place')
             ->where(['city_id' => $this->cityId])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->andWhere(['pol_id' => Pol::WOMAN_POL])

@@ -55,7 +55,7 @@ class SiteController extends Controller
 
     public function beforeAction($action)
     {
-        if ($action->id == 'pay' or $action->id == 'index') {
+        if ($action->id == 'pay' or $action->id == 'index' or $action->id == 'more') {
             $this->enableCsrfValidation = false;
         }
 

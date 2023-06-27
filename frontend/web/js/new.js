@@ -1,8 +1,72 @@
 $(document).ready(function () {
-    $(".custom-select__item").on("click", function () {
+    $(".header__top .custom-select__item").on("click", function () {
         var href = $(this).attr('data-value');
         window.location.href = href;
     });
+
+    function init_yandex() {
+        $(".yandex-map").each(function (index) {
+
+            var object = this;
+
+            var x = $(object).attr('data-x');
+            var y = $(object).attr('data-y');
+
+            ymaps.ready(function () {
+
+                if ($(object).hasClass('map-not-exist')) {
+
+                    $(object).removeClass('map-not-exist');
+
+                    $('.map').each(init(object, x, y));
+
+                }
+
+            })
+        });
+    }
+
+});
+
+function init(map_name, x, y) {
+
+    var myMap = new ymaps.Map(map_name, {
+        center: [x, y],
+        zoom: 13,
+    });
+
+    // Все виды меток
+    // https://tech.yandex.ru/maps/doc/jsapi/2.1/ref/reference/option.presetStorage-docpage/
+
+
+    // Собственное изображение для метки с контентом
+    var placemark4 = new ymaps.Placemark([x, y], {
+        // hintContent: 'Собственный значок метки с контентом',
+    }, {
+        // Опции.
+
+        // Необходимо указать данный тип макета.
+        iconLayout: 'default#image',
+
+        // Своё изображение иконки метки.
+        iconImageHref: '/img/map.svg',
+        // Размеры метки.
+        iconImageSize: [131, 62],
+        // Смещение левого верхнего угла иконки относительно
+        // её "ножки" (точки привязки).
+        iconImageOffset: [-72, -62],
+    });
+
+    myMap.geoObjects.add(placemark4);
+}
+
+$(document).ready(function () {
+
+    $(".filter-sort__form .custom-select__item").on("click", function () {
+        document.cookie = 'sort=' + $(this).attr('data-value');
+        window.location.href = location.pathname;
+    });
+
 });
 
 function get_user_menu() {
@@ -25,6 +89,36 @@ function get_user_menu() {
 
         }
     })
+
+}
+
+function getPhone(object) {
+
+    var id = $(object).attr('data-id');
+    var price = $(object).attr('data-price');
+    var city = $(object).attr('data-city');
+    var rayon = $(object).attr('data-rayon');
+    var age = $(object).attr('data-age');
+
+    if (typeof $(object).attr('data-num') !== typeof undefined) {
+
+        window.location.href = 'tel:+' + $(object).attr('data-num');
+
+    } else {
+
+        $.ajax({
+            type: 'POST',
+            url: "/phone/get", //Путь к обработчику
+            data: 'id=' + id + '&price=' + price + '&city_id=' + city + '&rayon=' + rayon + '&age=' + age,
+            cache: false,
+            success: function (data) {
+                $(object).attr('data-num', data);
+                $(object).text(data);
+                window.location.href = 'tel:+' + data;
+            }
+        })
+
+    }
 
 }
 
@@ -57,6 +151,136 @@ function close_modal(object){
     document.querySelector(".wrapper").classList.toggle("lock");
 
 }
+
+function setSort() {
+
+    if ($('#sort-select').val()) {
+
+        document.cookie = 'sort=' + $('#sort-select').val();
+
+    }
+
+    window.location.href = location.pathname;
+
+}
+
+function inView($elem) {
+    var $window = $(window);
+
+    var docViewTop = $window.scrollTop();
+    var docViewBottom = docViewTop + $window.height();
+
+    var elemTop = $elem.offset().top;
+    var elemBottom = elemTop + $elem.height();
+
+    return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+}
+
+var changeURL = debounce(function () {
+    $('[data-url]').each(function () {
+        if (inView($(this))) {
+
+            if (window.location.pathname + window.location.search != $(this).attr('data-url') && $(this).attr('data-url').length > 0) {
+
+                window.history.pushState('', document.title, $(this).attr('data-url'));
+                yaCounter70919698.hit($(this).attr('data-url'));
+
+            }
+        }
+    });
+}, 1);
+
+function debounce(func, wait, immediate) {
+    var timeout;
+    return function () {
+        var context = this, args = arguments;
+        var later = function () {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+}
+
+$(window).scroll(function () {
+
+    var target = $('.pager');
+    var targetPos = target.offset().top;
+    var winHeight = $(window).height();
+    var scrollToElem = targetPos - winHeight;
+
+    var winScrollTop = $(this).scrollTop();
+
+    var page = $(target).attr('data-page');
+
+    var url = $(target).attr('data-adress');
+    var request = $(target).attr('data-reqest');
+
+    var accept = $(target).attr('data-accept');
+
+    changeURL();
+
+    if (winScrollTop > (scrollToElem - 100)) {
+
+        var single = $(target).attr('data-single');
+
+        if (single == 1) {
+
+            $('[data-post-id]').each(function () {
+
+                id = id + $(this).attr('data-post-id') + ',';
+
+            });
+
+        } else {
+
+            var id = [];
+
+            $('[data-post-id]').each(function () {
+
+                id.push($(this).attr('data-post-id'));
+
+            });
+
+            $(target).removeClass('pager');
+
+            $.ajax({
+                type: 'POST',
+                url: '' + url,
+                data: 'page=' + page + '&req=' + request + '&id=' + JSON.stringify(id),
+                async: false,
+                dataType: "html",
+                headers: {
+                    "Accept": accept,
+                },
+                cache: false,
+                success: function (data) {
+
+                    if (data !== '') {
+
+                        $('.content-post').append(data);
+
+                        page = $(target).attr('data-page', Number(page) + 1);
+
+                        $(target).addClass('pager');
+
+                    } else {
+
+                        $(target).remove();
+                        $('.dots').remove();
+
+                    }
+
+                }
+            })
+
+        }
+
+    }
+});
 
 
 $('.login-icon-close').click(function () {

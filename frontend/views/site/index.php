@@ -32,9 +32,9 @@ Yii::$app->view->registerMetaTag([
 ]);
 
 echo \frontend\widgets\OpenGraphWidget::widget([
-        'des' => $des,
-        'title' => $title,
-        'img' => 'https://'.Yii::$app->params['site_addr'].'/img/logo.png',
+    'des' => $des,
+    'title' => $title,
+    'img' => 'https://' . Yii::$app->params['site_addr'] . '/img/logo.png',
 ]);
 
 if (isset($webmaster))
@@ -48,121 +48,112 @@ if (isset($microdataForMainPage)) echo $microdataForMainPage;
 
 ?>
 
-<div class="container custom-container">
+<div class="filter__catalog">
+    <div class="container">
+        <div class="row filter__bottom">
+            <div class="filter-sort__left">
+                <h1 class="filter-sort__title"> <?php echo $h1 ?> </h1>
+                <div class="filter-sort__btn" data-filter-btn>
+                    <svg>
+                        <use xlink:href='/svg/dest/stack/sprite.svg#filter'></use>
+                    </svg>
+                    Фильтр
+                </div>
+            </div>
 
+            <?php echo \frontend\widgets\SortingWidget::widget() ?>
 
-    <h1> <?php echo $h1 ?> </h1>
-    <?php echo \frontend\widgets\SortingWidget::widget() ?>
-    <?php echo \frontend\widgets\LinkWidget::widget(['url' => Yii::$app->request->url]) ?>
-    <div class="row"><div data-url="/" class="col-12"></div></div>
-    <div class="row first-content">
+        </div>
+    </div>
+</div>
+<div class="catalog">
+    <div class="container">
 
-        <?php
+        <div class="row">
+            <div data-url="/" class="col-12"></div>
+        </div>
 
-        if ($topPostList) {
-            foreach ($topPostList as $post) {
-                echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), [
-                    'post' => $post,
-                    'advertising' => true,
-                ]);
+        <div class="row catalog__items first-content">
+
+            <?php
+
+            if ($topPostList) {
+                foreach ($topPostList as $post) {
+                    echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), [
+                        'post' => $post,
+                        'advertising' => true,
+                    ]);
+                }
             }
-        }
 
-        ?>
+            ?>
 
-        <?php foreach ($prPosts as $post) : ?>
+            <?php foreach ($prPosts as $post) : ?>
 
-            <?php if (isset($post['id'])) : ?>
-
-                <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), [
-                    'post' => $post,
-                ]); ?>
-
-            <?php elseif (isset($post['block'])) : ?>
-
-                <?php if (isset($post['block']['header'])) : ?>
-
-                    <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article-promo.php'), [
-                        'post' => $post['block'],
-                        'promo' => true,
-                    ]); ?>
-
-                <?php else : ?>
+                <?php if (isset($post['id'])) : ?>
 
                     <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), [
-                        'post' => $post['block']['post'],
-                        'promo' => true,
+                        'post' => $post,
                     ]); ?>
+
+                <?php elseif (isset($post['block'])) : ?>
+
+                    <?php if (isset($post['block']['header'])) : ?>
+
+                        <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article-promo.php'), [
+                            'post' => $post['block'],
+                            'promo' => true,
+                        ]); ?>
+
+                    <?php else : ?>
+
+                        <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), [
+                            'post' => $post['block']['post'],
+                            'promo' => true,
+                        ]); ?>
+
+                    <?php endif; ?>
 
                 <?php endif; ?>
 
-            <?php endif; ?>
+            <?php endforeach; ?>
 
-        <?php endforeach; ?>
+        </div>
+
+        <div class="row content-post catalog__items"></div>
+
+        <div class="row">
+            <div class="col-12 pager" data-page="<?php echo Yii::$app->request->get('page') ?? 1 ?>"
+                 data-adress="<?php echo Yii::$app->request->url ?>"
+                 data-reqest="<?php echo Yii::$app->request->url ?>"></div>
+        </div>
+
+        <?php if ($pages) {
+
+            $pagination = LinkPager::widget([
+                'pagination' => $pages,
+            ]);
+
+            echo str_replace('http:', 'https:', $pagination);
+
+        }?>
+
+        <?php if (Yii::$app->requestedParams['city'] == 'moskva' and !Yii::$app->request->get('page')) : ?>
+
+            <h2>Как найти проститутку в Москве?</h2>
+            <p>Найти проститутку в Москве можно на нашем сайте, у нас представлены анкеты проверенных индивидуалок в широком
+                спектре цен. Смотрите анкеты и звоните по номерам шлюх</p>
+
+            <h2>Как вызвать индивидуалку в Москве?</h2>
+            <p>Для того что бы вызвать индивидуалку нужно найти инкету со стикером "индивидуалка" и позвонить по номеру в анкете</p>
+
+            <h2>Где найти проститутку в Москве?</h2>
+            <p>В основном девушки размещают свой рекламу в интернете но могут и стоять на улицах</p>
+
+            <h2>Когда звонить проститутке в Москве?</h2>
+            <p>У каждой девушки свой график работы</p>
+
+        <?php endif; ?>
 
     </div>
-
-    <div class="row content"></div>
-    <svg class="filter" version="1.1">
-        <defs>
-            <filter id="gooeyness">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
-                <feColorMatrix in="blur"  values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10"
-                               result="gooeyness"/>
-                <feComposite in="SourceGraphic" in2="gooeyness" operator="atop"/>
-            </filter>
-        </defs>
-    </svg>
-    <div class="dots">
-        <div class="dot mainDot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-    </div>
-    <div class="row">
-        <div class="col-12 pager" data-page="<?php echo Yii::$app->request->get('page') ?? 1 ?>"
-             data-adress="<?php echo Yii::$app->request->url ?>"
-             data-reqest="<?php echo Yii::$app->request->url ?>"></div>
-    </div>
-
-    <?php if ($pages) {
-
-        $pagination = LinkPager::widget([
-            'pagination' => $pages,
-        ]);
-
-        echo str_replace('http:', 'https:', $pagination);
-
-    }?>
-
-    <?php if (Yii::$app->requestedParams['city'] == 'moskva' and !Yii::$app->request->get('page')) : ?>
-
-        <h2>Как найти проститутку в Москве?</h2>
-        <p>Найти проститутку в Москве можно на нашем сайте, у нас представлены анкеты проверенных индивидуалок в широком
-            спектре цен. Смотрите анкеты и звоните по номерам шлюх</p>
-
-        <h2>Как вызвать индивидуалку в Москве?</h2>
-        <p>Для того что бы вызвать индивидуалку нужно найти инкету со стикером "индивидуалка" и позвонить по номеру в анкете</p>
-
-        <h2>Где найти проститутку в Москве?</h2>
-        <p>В основном девушки размещают свой рекламу в интернете но могут и стоять на улицах</p>
-
-        <h2>Когда звонить проститутке в Москве?</h2>
-        <p>У каждой девушки свой график работы</p>
-
-    <?php endif; ?>
-
-
 </div>
-<?php
-
-/*$this->registerJs(
-    "getContentForFirstPage();",
-    $this::POS_READY
-);*/
-
-?>
-
-
-<?php echo \frontend\widgets\HelperWidget::widget()?>

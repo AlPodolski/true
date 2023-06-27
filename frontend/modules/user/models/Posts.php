@@ -61,6 +61,9 @@ use frontend\components\service\AddPhoneService;
  * @property int|null $sort
  * @property int|null $x
  * @property int|null $y
+ * @property int|null $exit_night_price
+ * @property int|null $exit_two_hour_price
+ * @property int|null $exit_hour_price
  * @property Files[] $gallery
  * @property Files $avatar
  * @property integer $tarif_id
@@ -132,7 +135,8 @@ class Posts extends \yii\db\ActiveRecord
         return [
             [['city_id', 'user_id', 'created_at', 'updated_at', 'category', 'check_photo_status', 'price', 'age',
                 'rost', 'ves', 'breast', 'status', 'view', 'retouching_photo_status', 'fake', 'pay_time', 'pol_id',
-                'sort', 'tarif_id', 'price_night', 'price_2_hour', 'express_price'], 'integer'],
+                'sort', 'tarif_id', 'price_night', 'price_2_hour',
+                'express_price', 'exit_hour_price', 'exit_two_hour_price', 'exit_night_price'], 'integer'],
             [['name'], 'string', 'max' => 60],
             [['phone'], 'string', 'max' => 20 ],
             [['x', 'y'], 'safe'],

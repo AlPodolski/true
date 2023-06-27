@@ -19,13 +19,9 @@
 use kartik\icons\FontAwesomeAsset;
 use frontend\assets\RateAsset;
 
-\frontend\assets\GalleryAsset::register($this);
-
-$this->registerJsFile('/js/single.js?v=22', ['depends' => ['yii\web\YiiAsset']]);
-$this->registerJsFile('https://api-maps.yandex.ru/2.1/?lang=ru_RU', ['depends' => ['yii\web\YiiAsset']]);
-
-
 $price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
+
+$this->registerJsFile('https://api-maps.yandex.ru/2.1/?lang=ru_RU', ['depends' => ['yii\web\YiiAsset']]);
 
 $title = 'Проститутка ' . $post['name'] . ' из ' . $cityInfo['city2'];
 
@@ -77,7 +73,9 @@ $this->params['breadcrumbs'][] = array(
 if ($productShema) echo $productShema;
 
 ?>
-    <div class="container custom-container single-content">
+
+<div class="single">
+    <div class="container">
 
         <?php echo $this->renderFile(Yii::getAlias('@app/views/post/item.php'), [
             'post' => $post,
@@ -90,71 +88,465 @@ if ($productShema) echo $productShema;
             'refererCategory' => $refererCategory,
             'price' => $price
         ]); ?>
-        <?php echo \frontend\widgets\HelperWidget::widget() ?>
 
-        <?php if ($postsByPhone) : ?>
-
-            <div class="red-bold-text text-center">Анкеты с этим номером</div>
-
-            <div class="view-posts d-flex">
-                <?php foreach ($postsByPhone as $post) : ?>
-                    <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), [
-                        'post' => $post,
-                    ]); ?>
-                <?php endforeach; ?>
+        <div class="profile__about-sim profile__about-block  profile__tab" id="profileServices">
+            <ul class="profile__about-sim-tabs">
+                <li class="profile__about-sim-tabs-item active" id="rec">
+                    Рекомендации
+                </li>
+                <li class="profile__about-sim-tabs-item" id="view">
+                    Просмотренные анкеты
+                </li>
+            </ul>
+            <div class="profile__about-sim-items active row" id="rec">
+                <div class="catalog__item catalog-item">
+                    <div class="catalog-item__header" style="background-image: url(images/catalog-item.png)">
+                        <img class="catalog-item__status" src="images/status_1.svg" alt="">
+                        <div class="catalog-item__content">
+                            <div class="catalog-item__content-top">
+                                <div class="catalog-item__title">
+                                    <div class="catalog-item__name">
+                                        Марина, 23
+                                    </div>
+                                    <div class="catalog-item__icons">
+                                        <img src="images/icons/verify.svg" alt="">
+                                        <img src="images/icons/video.svg" alt="">
+                                        <img src="images/icons/car.svg" alt="">
+                                    </div>
+                                </div>
+                                <div class="catalog-item__rating">
+                                    4.3
+                                </div>
+                            </div>
+                            <div class="catalog-item__content-bottom">
+                                <div class="catalog-item__address">
+                                    м. Авиамоторная
+                                </div>
+                                <div class="catalog-item__price">
+                                    1 500р/час
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="catalog-item__body">
+                        <div class="catalog-item__characters catalog-item-characters">
+                            <ul class="catalog-item-characters__list">
+                                <li class="catalog-item-characters__item">
+                                    <div class="catalog-item-characters__cur">
+                                        180
+                                    </div>
+                                    <div class="catalog-item-characters__name">
+                                        рост
+                                    </div>
+                                </li>
+                                <li class="catalog-item-characters__item">
+                                    <div class="catalog-item-characters__cur">
+                                        50
+                                    </div>
+                                    <div class="catalog-item-characters__name">
+                                        вес
+                                    </div>
+                                </li>
+                                <li class="catalog-item-characters__item">
+                                    <div class="catalog-item-characters__cur">
+                                        4
+                                    </div>
+                                    <div class="catalog-item-characters__name">
+                                        грудь
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="catalog-item__tags">
+                            <ul class="catalog-item-tags__list">
+                                <li class="catalog-item-tags__item">
+                                    <a href="#" class="catalog-item-tags__link">
+                                        #с выездом
+                                    </a>
+                                </li>
+                                <li class="catalog-item-tags__item">
+                                    <a href="#" class="catalog-item-tags__link">
+                                        #блондинка
+                                    </a>
+                                </li>
+                                <li class="catalog-item-tags__item">
+                                    <a href="#" class="catalog-item-tags__link">
+                                        #блондинка
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="catalog-item__footer">
+                        <div class="catalog-item__phone">
+                                <span class="catalog-item-phone__text active">
+                                    Показать номер
+                                </span>
+                            <span class="catalog-item-phone__phone">
+                                    <a href="#">+7 (777) 777 77 77</a>
+                                </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="catalog__item catalog-item">
+                    <div class="catalog-item__header" style="background-image: url(images/catalog-item.png)">
+                        <img class="catalog-item__status" src="images/status_1.svg" alt="">
+                        <div class="catalog-item__content">
+                            <div class="catalog-item__content-top">
+                                <div class="catalog-item__title">
+                                    <div class="catalog-item__name">
+                                        Марина, 23
+                                    </div>
+                                    <div class="catalog-item__icons">
+                                        <img src="images/icons/verify.svg" alt="">
+                                        <img src="images/icons/video.svg" alt="">
+                                        <img src="images/icons/car.svg" alt="">
+                                    </div>
+                                </div>
+                                <div class="catalog-item__rating">
+                                    4.3
+                                </div>
+                            </div>
+                            <div class="catalog-item__content-bottom">
+                                <div class="catalog-item__address">
+                                    м. Авиамоторная
+                                </div>
+                                <div class="catalog-item__price">
+                                    1 500р/час
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="catalog-item__body">
+                        <div class="catalog-item__characters catalog-item-characters">
+                            <ul class="catalog-item-characters__list">
+                                <li class="catalog-item-characters__item">
+                                    <div class="catalog-item-characters__cur">
+                                        180
+                                    </div>
+                                    <div class="catalog-item-characters__name">
+                                        рост
+                                    </div>
+                                </li>
+                                <li class="catalog-item-characters__item">
+                                    <div class="catalog-item-characters__cur">
+                                        50
+                                    </div>
+                                    <div class="catalog-item-characters__name">
+                                        вес
+                                    </div>
+                                </li>
+                                <li class="catalog-item-characters__item">
+                                    <div class="catalog-item-characters__cur">
+                                        4
+                                    </div>
+                                    <div class="catalog-item-characters__name">
+                                        грудь
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="catalog-item__tags">
+                            <ul class="catalog-item-tags__list">
+                                <li class="catalog-item-tags__item">
+                                    <a href="#" class="catalog-item-tags__link">
+                                        #с выездом
+                                    </a>
+                                </li>
+                                <li class="catalog-item-tags__item">
+                                    <a href="#" class="catalog-item-tags__link">
+                                        #блондинка
+                                    </a>
+                                </li>
+                                <li class="catalog-item-tags__item">
+                                    <a href="#" class="catalog-item-tags__link">
+                                        #блондинка
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="catalog-item__footer">
+                        <div class="catalog-item__phone">
+                                <span class="catalog-item-phone__text active">
+                                    Показать номер
+                                </span>
+                            <span class="catalog-item-phone__phone">
+                                    <a href="#">+7 (777) 777 77 77</a>
+                                </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="catalog__item catalog-item">
+                    <div class="catalog-item__header" style="background-image: url(images/catalog-item.png)">
+                        <img class="catalog-item__status" src="images/status_1.svg" alt="">
+                        <div class="catalog-item__content">
+                            <div class="catalog-item__content-top">
+                                <div class="catalog-item__title">
+                                    <div class="catalog-item__name">
+                                        Марина, 23
+                                    </div>
+                                    <div class="catalog-item__icons">
+                                        <img src="images/icons/verify.svg" alt="">
+                                        <img src="images/icons/video.svg" alt="">
+                                        <img src="images/icons/car.svg" alt="">
+                                    </div>
+                                </div>
+                                <div class="catalog-item__rating">
+                                    4.3
+                                </div>
+                            </div>
+                            <div class="catalog-item__content-bottom">
+                                <div class="catalog-item__address">
+                                    м. Авиамоторная
+                                </div>
+                                <div class="catalog-item__price">
+                                    1 500р/час
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="catalog-item__body">
+                        <div class="catalog-item__characters catalog-item-characters">
+                            <ul class="catalog-item-characters__list">
+                                <li class="catalog-item-characters__item">
+                                    <div class="catalog-item-characters__cur">
+                                        180
+                                    </div>
+                                    <div class="catalog-item-characters__name">
+                                        рост
+                                    </div>
+                                </li>
+                                <li class="catalog-item-characters__item">
+                                    <div class="catalog-item-characters__cur">
+                                        50
+                                    </div>
+                                    <div class="catalog-item-characters__name">
+                                        вес
+                                    </div>
+                                </li>
+                                <li class="catalog-item-characters__item">
+                                    <div class="catalog-item-characters__cur">
+                                        4
+                                    </div>
+                                    <div class="catalog-item-characters__name">
+                                        грудь
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="catalog-item__tags">
+                            <ul class="catalog-item-tags__list">
+                                <li class="catalog-item-tags__item">
+                                    <a href="#" class="catalog-item-tags__link">
+                                        #с выездом
+                                    </a>
+                                </li>
+                                <li class="catalog-item-tags__item">
+                                    <a href="#" class="catalog-item-tags__link">
+                                        #блондинка
+                                    </a>
+                                </li>
+                                <li class="catalog-item-tags__item">
+                                    <a href="#" class="catalog-item-tags__link">
+                                        #блондинка
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="catalog-item__footer">
+                        <div class="catalog-item__phone">
+                                <span class="catalog-item-phone__text active">
+                                    Показать номер
+                                </span>
+                            <span class="catalog-item-phone__phone">
+                                    <a href="#">+7 (777) 777 77 77</a>
+                                </span>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-        <?php endif; ?>
-
-        <?php if ($viewPosts) : ?>
-
-            <div class="red-bold-text text-center">Просмотренные анкеты</div>
-
-            <div class="view-posts d-flex">
-                <?php foreach ($viewPosts as $viewPost) : ?>
-                    <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), [
-                        'post' => $viewPost,
-                    ]); ?>
-                <?php endforeach; ?>
+            <div class="profile__about-sim-items row" id="view">
+                <div class="catalog__item catalog-item">
+                    <div class="catalog-item__header" style="background-image: url(images/catalog-item.png)">
+                        <img class="catalog-item__status" src="images/status_1.svg" alt="">
+                        <div class="catalog-item__content">
+                            <div class="catalog-item__content-top">
+                                <div class="catalog-item__title">
+                                    <div class="catalog-item__name">
+                                        Марина, 23
+                                    </div>
+                                    <div class="catalog-item__icons">
+                                        <img src="images/icons/verify.svg" alt="">
+                                        <img src="images/icons/video.svg" alt="">
+                                        <img src="images/icons/car.svg" alt="">
+                                    </div>
+                                </div>
+                                <div class="catalog-item__rating">
+                                    4.3
+                                </div>
+                            </div>
+                            <div class="catalog-item__content-bottom">
+                                <div class="catalog-item__address">
+                                    м. Авиамоторная
+                                </div>
+                                <div class="catalog-item__price">
+                                    1 500р/час
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="catalog-item__body">
+                        <div class="catalog-item__characters catalog-item-characters">
+                            <ul class="catalog-item-characters__list">
+                                <li class="catalog-item-characters__item">
+                                    <div class="catalog-item-characters__cur">
+                                        180
+                                    </div>
+                                    <div class="catalog-item-characters__name">
+                                        рост
+                                    </div>
+                                </li>
+                                <li class="catalog-item-characters__item">
+                                    <div class="catalog-item-characters__cur">
+                                        50
+                                    </div>
+                                    <div class="catalog-item-characters__name">
+                                        вес
+                                    </div>
+                                </li>
+                                <li class="catalog-item-characters__item">
+                                    <div class="catalog-item-characters__cur">
+                                        4
+                                    </div>
+                                    <div class="catalog-item-characters__name">
+                                        грудь
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="catalog-item__tags">
+                            <ul class="catalog-item-tags__list">
+                                <li class="catalog-item-tags__item">
+                                    <a href="#" class="catalog-item-tags__link">
+                                        #с выездом
+                                    </a>
+                                </li>
+                                <li class="catalog-item-tags__item">
+                                    <a href="#" class="catalog-item-tags__link">
+                                        #блондинка
+                                    </a>
+                                </li>
+                                <li class="catalog-item-tags__item">
+                                    <a href="#" class="catalog-item-tags__link">
+                                        #блондинка
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="catalog-item__footer">
+                        <div class="catalog-item__phone">
+                                <span class="catalog-item-phone__text active">
+                                    Показать номер
+                                </span>
+                            <span class="catalog-item-phone__phone">
+                                    <a href="#">+7 (777) 777 77 77</a>
+                                </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="catalog__item catalog-item">
+                    <div class="catalog-item__header" style="background-image: url(images/catalog-item.png)">
+                        <img class="catalog-item__status" src="images/status_1.svg" alt="">
+                        <div class="catalog-item__content">
+                            <div class="catalog-item__content-top">
+                                <div class="catalog-item__title">
+                                    <div class="catalog-item__name">
+                                        Марина, 23
+                                    </div>
+                                    <div class="catalog-item__icons">
+                                        <img src="images/icons/verify.svg" alt="">
+                                        <img src="images/icons/video.svg" alt="">
+                                        <img src="images/icons/car.svg" alt="">
+                                    </div>
+                                </div>
+                                <div class="catalog-item__rating">
+                                    4.3
+                                </div>
+                            </div>
+                            <div class="catalog-item__content-bottom">
+                                <div class="catalog-item__address">
+                                    м. Авиамоторная
+                                </div>
+                                <div class="catalog-item__price">
+                                    1 500р/час
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="catalog-item__body">
+                        <div class="catalog-item__characters catalog-item-characters">
+                            <ul class="catalog-item-characters__list">
+                                <li class="catalog-item-characters__item">
+                                    <div class="catalog-item-characters__cur">
+                                        180
+                                    </div>
+                                    <div class="catalog-item-characters__name">
+                                        рост
+                                    </div>
+                                </li>
+                                <li class="catalog-item-characters__item">
+                                    <div class="catalog-item-characters__cur">
+                                        50
+                                    </div>
+                                    <div class="catalog-item-characters__name">
+                                        вес
+                                    </div>
+                                </li>
+                                <li class="catalog-item-characters__item">
+                                    <div class="catalog-item-characters__cur">
+                                        4
+                                    </div>
+                                    <div class="catalog-item-characters__name">
+                                        грудь
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="catalog-item__tags">
+                            <ul class="catalog-item-tags__list">
+                                <li class="catalog-item-tags__item">
+                                    <a href="#" class="catalog-item-tags__link">
+                                        #с выездом
+                                    </a>
+                                </li>
+                                <li class="catalog-item-tags__item">
+                                    <a href="#" class="catalog-item-tags__link">
+                                        #блондинка
+                                    </a>
+                                </li>
+                                <li class="catalog-item-tags__item">
+                                    <a href="#" class="catalog-item-tags__link">
+                                        #блондинка
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="catalog-item__footer">
+                        <div class="catalog-item__phone">
+                                <span class="catalog-item-phone__text active">
+                                    Показать номер
+                                </span>
+                            <span class="catalog-item-phone__phone">
+                                    <a href="#">+7 (777) 777 77 77</a>
+                                </span>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-        <?php endif; ?>
-
-        <p class="big-red-text">Похожие анкеты</p>
+        </div>
     </div>
-
-    <svg class="filter" version="1.1">
-        <defs>
-            <filter id="gooeyness">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
-                <feColorMatrix in="blur" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10"
-                               result="gooeyness"/>
-                <feComposite in="SourceGraphic" in2="gooeyness" operator="atop"/>
-            </filter>
-        </defs>
-    </svg>
-    <div class="dots">
-        <div class="dot mainDot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-    </div>
-    <div class="row">
-        <div class="col-12 pager <?php if (isset($first) and $first) : ?>
-         first
-         <?php endif; ?>"
-            <?php if (isset($refererCategory) and $refererCategory) : ?>
-                data-ref="<?php echo $refererCategory ?>"
-            <?php endif; ?>
-             data-price="<?php echo $post['price'] ?>"
-             data-pol="<?php echo $post['pol_id'] ?>"
-             data-national="<?php echo $post['nacionalnost'][0]['id'] ?>"
-             data-single="1" <?php if ($post['id']) : ?>
-            data-url="/post/<?php echo $post['id'] ?>" <?php endif; ?>></div>
-    </div>
-
-<?php
-
-
-?>
+</div>
