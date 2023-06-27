@@ -6,6 +6,7 @@
 /* @var $this \yii\web\View */
 
 /* @var $serviceListReview array */
+/* @var $serviceList \common\models\Service[] */
 
 /* @var $phoneComments array */
 
@@ -24,7 +25,6 @@ $strizhkaList = $post['strizhka'];
 $cvetList = $post['cvet'];
 $nacionalnostList = $post['nacionalnost'];
 $rayonList = $post['rayon'];
-$serviceList = $post['service'];
 $placeList = $post['place'];
 $servicePostList = $post['service'];
 
@@ -301,55 +301,77 @@ if ($post['check_photo_status']) $photoTitle = 'Проверенная прос�
                     </li>
                 </ul>
             </div>
+
+
             <div class="profile__about-services-lists">
+
                 <div class="profile__about-services-lists-item">
                     <div class="profile__about-services-lists-title">
                         Секс
                     </div>
                     <ul class="profile__about-services-list">
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_simp">
-                            Классический
-                        </li>
+                        <?php foreach ($serviceList as $serviceItem) : ?>
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_stop">
-                            Анальный
-                        </li>
+                            <?php $statusClass = 'profile__about-services-list-item_stop' ?>
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_money">
-                            Групповой
-                        </li>
+                            <?php if ($serviceItem->type == 'sex') : ?>
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_stop">
-                            Лесбийский
-                        </li>
+                                <?php foreach ($post['service'] as $postServiceItem) {
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_stop">
-                            Семейной паре
-                        </li>
+                                    if ($postServiceItem['service_id'] == $serviceItem->id) {
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_stop">
-                            Секс-игрушки
-                        </li>
+                                        $statusClass = 'profile__about-services-list-item_onprice';
+
+                                        break;
+
+                                    }
+
+                                } ?>
+
+                                <li class="profile__about-services-list-item <?php echo $statusClass ?>">
+                                    <a href="/service-<?php echo $serviceItem->url ?>"><?php echo $serviceItem->value ?></a>
+                                </li>
+
+                            <?php endif; ?>
+
+                        <?php endforeach; ?>
+
                     </ul>
                 </div>
+
                 <div class="profile__about-services-lists-item">
                     <div class="profile__about-services-lists-title">
                         Окончание
                     </div>
                     <ul class="profile__about-services-list">
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_onprice">
-                            На грудь
-                        </li>
+                        <?php foreach ($serviceList as $serviceItem) : ?>
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_stop">
-                            На лицо
-                        </li>
+                            <?php $statusClass = 'profile__about-services-list-item_stop' ?>
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_money">
-                            В рот
-                        </li>
+                            <?php if ($serviceItem->type == 'cum') : ?>
+
+                                <?php foreach ($post['service'] as $postServiceItem) {
+
+                                    if ($postServiceItem['service_id'] == $serviceItem->id) {
+
+                                        $statusClass = 'profile__about-services-list-item_onprice';
+
+                                        break;
+
+                                    }
+
+                                } ?>
+
+                                <li class="profile__about-services-list-item <?php echo $statusClass ?>">
+                                    <a href="/service-<?php echo $serviceItem->url ?>"><?php echo $serviceItem->value ?></a>
+                                </li>
+
+                            <?php endif; ?>
+
+                        <?php endforeach; ?>
+
                     </ul>
                 </div>
                 <div class="profile__about-services-lists-item">
@@ -358,29 +380,31 @@ if ($post['check_photo_status']) $photoTitle = 'Проверенная прос�
                     </div>
                     <ul class="profile__about-services-list">
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_onprice">
-                            Госпожа
-                        </li>
+                        <?php foreach ($serviceList as $serviceItem) : ?>
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_stop">
-                            Игры
-                        </li>
+                            <?php $statusClass = 'profile__about-services-list-item_stop' ?>
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_onprice">
-                            Легкая доминация
-                        </li>
+                            <?php if ($serviceItem->type == 'bdsm') : ?>
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_onprice">
-                            Рабыня
-                        </li>
+                                <?php foreach ($post['service'] as $postServiceItem) {
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_stop">
-                            Фетиш
-                        </li>
+                                    if ($postServiceItem['service_id'] == $serviceItem->id) {
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_stop">
-                            Трамплинг
-                        </li>
+                                        $statusClass = 'profile__about-services-list-item_onprice';
+
+                                        break;
+
+                                    }
+
+                                } ?>
+
+                                <li class="profile__about-services-list-item <?php echo $statusClass ?>">
+                                    <a href="/service-<?php echo $serviceItem->url ?>"><?php echo $serviceItem->value ?></a>
+                                </li>
+
+                            <?php endif; ?>
+
+                        <?php endforeach; ?>
                     </ul>
                 </div>
                 <div class="profile__about-services-lists-item">
@@ -389,122 +413,66 @@ if ($post['check_photo_status']) $photoTitle = 'Проверенная прос�
                     </div>
                     <ul class="profile__about-services-list">
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_onprice">
-                            Классический
-                        </li>
+                        <?php foreach ($serviceList as $serviceItem) : ?>
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_stop">
-                            Профессиональный
-                        </li>
+                            <?php $statusClass = 'profile__about-services-list-item_stop' ?>
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_onprice">
-                            Расслабляющий
-                        </li>
+                            <?php if ($serviceItem->type == 'mass') : ?>
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_onprice">
-                            Тайский
-                        </li>
+                                <?php foreach ($post['service'] as $postServiceItem) {
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_stop">
-                            Урологический
-                        </li>
+                                    if ($postServiceItem['service_id'] == $serviceItem->id) {
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_onprice">
-                            Расслабляющий
-                        </li>
+                                        $statusClass = 'profile__about-services-list-item_onprice';
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_stop">
-                            Ветка сакуры
-                        </li>
+                                        break;
+
+                                    }
+
+                                } ?>
+
+                                <li class="profile__about-services-list-item <?php echo $statusClass ?>">
+                                    <a href="/service-<?php echo $serviceItem->url ?>"><?php echo $serviceItem->value ?></a>
+                                </li>
+
+                            <?php endif; ?>
+
+                        <?php endforeach; ?>
+
                     </ul>
                 </div>
                 <div class="profile__about-services-lists-item">
                     <div class="profile__about-services-lists-title">
-                        Экстрим
+                        Минет
                     </div>
                     <ul class="profile__about-services-list">
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_onprice">
-                            Страпон
-                        </li>
+                        <?php foreach ($serviceList as $serviceItem) : ?>
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_stop">
-                            Анилингус делаю
-                        </li>
+                            <?php $statusClass = 'profile__about-services-list-item_stop' ?>
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_money">
-                            Золотой дождь выдача
-                        </li>
+                            <?php if ($serviceItem->type == 'minet') : ?>
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_onprice">
-                            Золотой дождь прием
-                        </li>
+                                <?php foreach ($post['service'] as $postServiceItem) {
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_stop">
-                            Золотой дождь прием
-                        </li>
+                                    if ($postServiceItem['service_id'] == $serviceItem->id) {
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_onsimp">
-                            Копро выдача
-                        </li>
+                                        $statusClass = 'profile__about-services-list-item_onprice';
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_stop">
-                            Фистинг Вам
-                        </li>
+                                        break;
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_onsimp">
-                            Фистинг Вам
-                        </li>
-                    </ul>
-                </div>
-                <div class="profile__about-services-lists-item">
-                    <div class="profile__about-services-lists-title">
-                        Стриптиз
-                    </div>
-                    <ul class="profile__about-services-list">
+                                    }
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_onprice">
-                            Профи
-                        </li>
+                                } ?>
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_stop">
-                            Не профи
-                        </li>
+                                <li class="profile__about-services-list-item <?php echo $statusClass ?>">
+                                    <a href="/service-<?php echo $serviceItem->url ?>"><?php echo $serviceItem->value ?></a>
+                                </li>
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_onprice">
-                            Лесби откровенное
-                        </li>
+                            <?php endif; ?>
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_onprice">
-                            Лесби-шоу легкое
-                        </li>
-                    </ul>
-                </div>
-                <div class="profile__about-services-lists-item">
-                    <div class="profile__about-services-lists-title">
-                        Стриптиз
-                    </div>
-                    <ul class="profile__about-services-list">
+                        <?php endforeach; ?>
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_onprice">
-                            Минет
-                        </li>
-
-                        <li class="profile__about-services-list-item profile__about-services-list-item_stop">
-                            В презервативе
-                        </li>
-
-                        <li class="profile__about-services-list-item profile__about-services-list-item_onprice">
-                            Глубокий
-                        </li>
-
-                        <li class="profile__about-services-list-item profile__about-services-list-item_onprice">
-                            Лесби-шоу легкое
-                        </li>
-
-                        <li class="profile__about-services-list-item profile__about-services-list-item_stop">
-                            Куннилингус
-                        </li>
                     </ul>
                 </div>
                 <div class="profile__about-services-lists-item">
@@ -513,24 +481,37 @@ if ($post['check_photo_status']) $photoTitle = 'Проверенная прос�
                     </div>
                     <ul class="profile__about-services-list">
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_stop">
-                            Ролевые игры
-                        </li>
+                        <?php foreach ($serviceList as $serviceItem) : ?>
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_on-simp">
-                            Эскорт
-                        </li>
+                            <?php $statusClass = 'profile__about-services-list-item_stop' ?>
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_stop">
-                            GFE
-                        </li>
+                            <?php if ($serviceItem->type == 'other') : ?>
 
-                        <li class="profile__about-services-list-item profile__about-services-list-item_onsimp">
-                            Целуюсь
-                        </li>
+                                <?php foreach ($post['service'] as $postServiceItem) {
+
+                                    if ($postServiceItem['service_id'] == $serviceItem->id) {
+
+                                        $statusClass = 'profile__about-services-list-item_onprice';
+
+                                        break;
+
+                                    }
+
+                                } ?>
+
+                                <li class="profile__about-services-list-item <?php echo $statusClass ?>">
+                                    <a href="/service-<?php echo $serviceItem->url ?>"><?php echo $serviceItem->value ?></a>
+                                </li>
+
+                            <?php endif; ?>
+
+                        <?php endforeach; ?>
+
                     </ul>
                 </div>
             </div>
+
+
         </div>
     </div>
 </div>

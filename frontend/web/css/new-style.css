@@ -3122,6 +3122,10 @@ textarea.form-control {
     margin-bottom: 13px
 }
 
+.profile__about-services-list-item a{
+    color: #000;
+}
+
 .profile__about-services-list-item_simp {
     background-image: url(../images/icons/simp.svg)
 }
@@ -3132,6 +3136,10 @@ textarea.form-control {
 
 .profile__about-services-list-item_stop {
     background-image: url(../images/icons/stop.svg);
+    color: #bab9b9
+}
+
+.profile__about-services-list-item_stop a{
     color: #bab9b9
 }
 
@@ -3181,9 +3189,9 @@ textarea.form-control {
 }
 
 .profile__about-services-lists {
-    -webkit-column-count: 5;
-    -moz-column-count: 5;
-    column-count: 5;
+    -webkit-column-count: 4;
+    -moz-column-count: 4;
+    column-count: 4;
     -webkit-column-gap: 15px;
     -moz-column-gap: 15px;
     column-gap: 15px;

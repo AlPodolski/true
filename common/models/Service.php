@@ -14,6 +14,7 @@ use Yii;
  * @property string|null $value
  * @property string|null $url
  * @property string|null $value2
+ * @property string|null $type
  */
 class Service extends \yii\db\ActiveRecord
 {
@@ -31,7 +32,7 @@ class Service extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['value', 'url', 'value2'], 'string', 'max' => 50],
+            [['value', 'url', 'value2', 'type'], 'string', 'max' => 50],
         ];
     }
 

@@ -86,6 +86,7 @@ if ($productShema) echo $productShema;
             'first' => $first,
             'backUrl' => $backUrl,
             'refererCategory' => $refererCategory,
+            'serviceList' => $serviceList,
             'price' => $price
         ]); ?>
 

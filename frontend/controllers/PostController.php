@@ -5,6 +5,7 @@ namespace frontend\controllers;
 
 use common\jobs\AddViewJob;
 use common\models\City;
+use common\models\Service;
 use common\models\User;
 use frontend\components\helpers\AddViewHelper;
 use frontend\helpers\GetCommentByPhoneHelper;
@@ -81,6 +82,8 @@ class PostController extends Controller
 
             if ($post['phone']) $phoneComments = (new GetCommentByPhoneHelper($post['phone']))->get();
 
+            $serviceList = Service::find()->cache(3600 * 24)->all();
+
             return $this->render('single', [
                 'post' => $post,
                 'serviceListReview' => $serviceListReview,
@@ -91,6 +94,7 @@ class PostController extends Controller
                 'postsByPhone' => $postsByPhone,
                 'backUrl' => $backUrl,
                 'refererCategory' => $refererCategory,
+                'serviceList' => $serviceList,
                 'first' => true
             ]);
 
