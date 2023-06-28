@@ -178,18 +178,6 @@ AppAsset::register($this);
         </div>
 
     </div>
-    <div class="modal-video">
-        <div class="modal-video__header">
-            <div class="modal-video__close">
-                <svg>
-                    <use xlink:href='/svg/dest/stack/sprite.svg#close'></use>
-                </svg>
-            </div>
-        </div>
-        <div class="modal-video__body">
-            <video src="" controls></video>
-        </div>
-    </div>
 
     <div class="claim__modal-bg modal">
 

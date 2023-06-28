@@ -16,12 +16,7 @@ echo \frontend\components\helpers\MicroHelper::image($post);
 
 <div class="catalog__item catalog-item <?php echo isset($countPost) ? 'post-num-' . $countPost : ""; ?>"
      data-post-id="<?php echo $post['id'] ?>">
-    <a href="/post/<?php echo $post['id'] ?>" class="catalog-item__header">
-        <?php if ((isset($advertising) and $advertising) or (isset($promo) and $promo)) : ?>
-            <div class="check-label rek-block">
-                Реклама
-            </div>
-        <?php endif ?>
+    <div data-link="/post/<?php echo $post['id'] ?>" class="catalog-item__header" onclick="openSingle(this)">
         <?php
         $path = Yii::getAlias('@frontend/views/includes/article-photo.php');
         echo $this->renderFile($path, [
@@ -84,7 +79,8 @@ echo \frontend\components\helpers\MicroHelper::image($post);
                 </div>
             </div>
         </div>
-    </a>
+
+    </div>
     <div class="catalog-item__body">
         <div class="catalog-item__characters catalog-item-characters">
             <ul class="catalog-item-characters__list">

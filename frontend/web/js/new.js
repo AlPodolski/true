@@ -28,6 +28,11 @@ $(document).ready(function () {
 
 });
 
+function openSingle(object){
+    var href = $(object).attr('data-link');
+    window.location.href = href;
+}
+
 function init(map_name, x, y) {
 
     var myMap = new ymaps.Map(map_name, {
