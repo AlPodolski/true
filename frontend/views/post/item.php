@@ -17,6 +17,7 @@ use frontend\modules\user\models\ReviewForm;
 use frontend\modules\user\models\ServiceReviewForm;
 use frontend\widgets\PhotoWidget;
 use frontend\helpers\LikeHelper;
+use yii\helpers\Html;
 
 $postReviewForm = new ReviewForm();
 $serviceReviewFormForm = new ServiceReviewForm();
@@ -29,7 +30,6 @@ $placeList = $post['place'];
 $servicePostList = $post['service'];
 
 $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
-
 
 $photoTitle = 'Проститутка ' . $post['name'];
 
@@ -549,18 +549,27 @@ if ($post['check_photo_status']) $photoTitle = 'Проверенная прос�
     </div>
 <?php endif; ?>
 <div class="single__block single-block single-block__reviews single-block__reviews">
+
     <div class="single-block__title">
         Отзывы
     </div>
+
     <div class="single-block-reviews__add">
-        <div class="single-block-reviews__add-text">
-            К этой анкете ещё нет ни одного отзыва. Вы можете быть первым
-            <img src="/images/icons/emoji.svg" alt="">
-        </div>
+
+        <?php if (!$post['review']) : ?>
+
+            <div class="single-block-reviews__add-text">
+                К этой анкете ещё нет ни одного отзыва. Вы можете быть первым
+                <img src="/images/icons/emoji.svg" alt="">
+            </div>
+
+        <?php endif; ?>
+
         <button class="single-block-reviews__add-btn profile__modal-toggle">
             <span>Оставить отзыв</span>
         </button>
     </div>
+
     <?php if ($post['review']) : ?>
 
         <?php foreach ($post['review'] as $review) : ?>
@@ -614,10 +623,11 @@ if ($post['check_photo_status']) $photoTitle = 'Проверенная прос�
                                     <div class="rating-stars__item">
                                         <input type="radio"><input type="radio">
                                     </div>
-                                    <div class="rating-stars__progress" style="width: <?php echo $review['total_marc'] * 10?>%;"></div>
+                                    <div class="rating-stars__progress"
+                                         style="width: <?php echo $review['total_marc'] * 10 ?>%;"></div>
                                 </div>
                                 <div class="rating-stars__value">
-                                    <?php echo $review['total_marc']/2 ?>
+                                    <?php echo $review['total_marc'] / 2 ?>
                                 </div>
                             </div>
                         </div>
@@ -636,3 +646,50 @@ if ($post['check_photo_status']) $photoTitle = 'Проверенная прос�
 
 </div>
 
+<div class="profile__modal-bg">
+    <div class="profile__modal">
+        <div class="profile__modal-header">
+            <div class="profile__modal-title">
+                Добавить отзыв
+            </div>
+            <div class="profile__modal-close profile__modal-toggle">
+                <svg>
+                    <use xlink:href='/svg/dest/stack/sprite.svg#close'></use>
+                </svg>
+            </div>
+        </div>
+        <div class="profile__modal-text">
+            Оцените по 5 балльной шкале качество выполненной работы и оставить отзыв.
+        </div>
+        <form action="/review/add" method="post" class="profile__modal-form">
+            <?php echo Html::hiddenInput(\Yii::$app->getRequest()->csrfParam, \Yii::$app->getRequest()->getCsrfToken(), []); ?>
+            <input type="hidden" value="<?php echo $post['id'] ?>" name="post_id">
+            <div class="profile__modal-rating-stars rating-stars-set">
+
+                <input class="rating-stars-set__item" checked id="ratingSetItem1" type="radio" value="1"
+                       name="reviewRating">
+                <label for="ratingSetItem1">A</label>
+                <input class="rating-stars-set__item" id="ratingSetItem2" type="radio" value="2"
+                       name="reviewRating">
+                <label for="ratingSetItem2">A</label>
+                <input class="rating-stars-set__item" id="ratingSetItem3" type="radio" value="3"
+                       name="reviewRating">
+                <label for="ratingSetItem3">A</label>
+                <input class="rating-stars-set__item" id="ratingSetItem4" type="radio" value="4"
+                       name="reviewRating">
+                <label for="ratingSetItem4">A</label>
+                <input class="rating-stars-set__item"  id="ratingSetItem5" type="radio" value="5"
+                       name="reviewRating">
+                <label for="ratingSetItem5">A</label>
+            </div>
+
+            <input type="text" name="name" required placeholder="Ваше имя" class="profile__modal-form-input">
+
+            <textarea class="profile__modal-form-textarea" required name="text" placeholder="Комментарий"></textarea>
+            <div class="profile__modal-form-captcha"></div>
+            <button class="profile__modal-form-btn btn">
+                Опубликовать
+            </button>
+        </form>
+    </div>
+</div>

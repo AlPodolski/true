@@ -191,48 +191,6 @@ AppAsset::register($this);
         </div>
     </div>
 
-    <div class="profile__modal-bg">
-        <div class="profile__modal">
-            <div class="profile__modal-header">
-                <div class="profile__modal-title">
-                    Добавить отзыв
-                </div>
-                <div class="profile__modal-close profile__modal-toggle">
-                    <svg>
-                        <use xlink:href='/svg/dest/stack/sprite.svg#close'></use>
-                    </svg>
-                </div>
-            </div>
-            <div class="profile__modal-text">
-                Оцените по 5 балльной шкале качество выполненной работы и оставить отзыв.
-            </div>
-            <form action="#" class="profile__modal-form">
-                <div class="profile__modal-rating-stars rating-stars-set">
-                    <input class="rating-stars-set__item" id="ratingSetItem1" type="radio" value="1"
-                           name="reviewRating">
-                    <label for="ratingSetItem1">A</label>
-                    <input class="rating-stars-set__item" id="ratingSetItem2" type="radio" value="2"
-                           name="reviewRating">
-                    <label for="ratingSetItem2">A</label>
-                    <input class="rating-stars-set__item" id="ratingSetItem3" type="radio" value="3"
-                           name="reviewRating">
-                    <label for="ratingSetItem3">A</label>
-                    <input class="rating-stars-set__item" id="ratingSetItem4" type="radio" value="4"
-                           name="reviewRating">
-                    <label for="ratingSetItem4">A</label>
-                    <input class="rating-stars-set__item" id="ratingSetItem5" type="radio" value="5"
-                           name="reviewRating">
-                    <label for="ratingSetItem5">A</label>
-                </div>
-                <textarea class="profile__modal-form-textarea" name="message" placeholder="Комментарий"></textarea>
-                <div class="profile__modal-form-captcha"></div>
-                <button class="profile__modal-form-btn btn">
-                    Опубликовать
-                </button>
-            </form>
-        </div>
-    </div>
-
     <div class="claim__modal-bg modal">
 
     </div>

@@ -3428,6 +3428,13 @@ textarea.form-control {
     line-height: 141.4%;
 }
 
+.profile__modal-form-input{
+    margin-top: 30px;
+    border: 1px solid #eee;
+    padding: 9px;
+    border-radius: 5px;
+}
+
 @media (max-width: 1200px) {
     .header .row:first-child {
         -webkit-box-pack: justify;

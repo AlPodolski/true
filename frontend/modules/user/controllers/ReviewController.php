@@ -19,11 +19,16 @@ class ReviewController extends Controller
 
             $postReviewForm = new ReviewForm();
 
+            $data = Yii::$app->request->post();
+
             $postReviewForm->author_id = Yii::$app->user->id;
+            $postReviewForm->name = $data['name'];
+            $postReviewForm->total = $data['reviewRating'] * 2;
+            $postReviewForm->post_id = $data['post_id'];
+            $postReviewForm->text = $data['text'];
 
             if (
-                $postReviewForm->load(Yii::$app->request->post())
-                and $postReviewForm->validate()
+                $postReviewForm->validate()
                 and $reviewParams = $postReviewForm->save()
             )
             {
