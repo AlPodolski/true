@@ -561,53 +561,78 @@ if ($post['check_photo_status']) $photoTitle = 'Проверенная прос�
             <span>Оставить отзыв</span>
         </button>
     </div>
-    <div class="single-block-reviews__review single-block-reviews-review">
-        <div class="single-block-reviews-review__top">
-            <div class="single-block-reviews-review__top-left">
-                <div class="single-block-reviews-review__avatar">
-                    <img src="/images/avatar.png" alt="">
+    <?php if ($post['review']) : ?>
+
+        <?php foreach ($post['review'] as $review) : ?>
+
+            <div class="single-block-reviews__review single-block-reviews-review">
+                <div class="single-block-reviews-review__top">
+                    <div class="single-block-reviews-review__top-left">
+                        <div class="single-block-reviews-review__avatar">
+
+                            <?php if (isset($review['author']['avatar']['file']) and $review['author']['avatar']['file']) : ?>
+                                <?php echo PhotoWidget::widget([
+                                    'path' => $review['author']['avatar']['file'],
+                                    'size' => '59',
+                                    'options' => [
+                                        'class' => 'img user-img',
+                                        'loading' => 'lazy',
+                                        'alt' => $review['author']['username'],
+                                    ],
+                                ]); ?>
+                            <?php else : ?>
+
+                                <div class="no-photo">
+                                    <?php
+
+                                    echo $review['name'][0] . $review['name'][1] ?? $review['author']['username'][0] . $review['author']['username'][1];
+
+                                    ?>
+                                </div>
+
+                            <?php endif; ?>
+
+                        </div>
+                        <div class="single-block-reviews-review__info">
+                            <div class="single-block-reviews-review__name">
+                                <?php echo $review['name'] ?? $review['author']['username'] ?>
+                            </div>
+                            <div class="single-block-reviews-review__rating rating-stars rating-stars">
+                                <div class="rating-stars__body">
+                                    <div class="rating-stars__item">
+                                        <input type="radio"><input type="radio">
+                                    </div>
+                                    <div class="rating-stars__item">
+                                        <input type="radio"><input type="radio">
+                                    </div>
+                                    <div class="rating-stars__item">
+                                        <input type="radio"><input type="radio">
+                                    </div>
+                                    <div class="rating-stars__item">
+                                        <input type="radio"><input type="radio">
+                                    </div>
+                                    <div class="rating-stars__item">
+                                        <input type="radio"><input type="radio">
+                                    </div>
+                                    <div class="rating-stars__progress" style="width: <?php echo $review['total_marc'] * 10?>%;"></div>
+                                </div>
+                                <div class="rating-stars__value">
+                                    <?php echo $review['total_marc']/2 ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="single-block-reviews-review__top-right">
+                    </div>
                 </div>
-                <div class="single-block-reviews-review__info">
-                    <div class="single-block-reviews-review__name">
-                        nickname
-                        <img src="/images/icons/verify-none.svg" alt="">
-                    </div>
-                    <div class="single-block-reviews-review__rating rating-stars rating-stars">
-                        <div class="rating-stars__body">
-                            <div class="rating-stars__item">
-                                <input type="radio"><input type="radio">
-                            </div>
-                            <div class="rating-stars__item">
-                                <input type="radio"><input type="radio">
-                            </div>
-                            <div class="rating-stars__item">
-                                <input type="radio"><input type="radio">
-                            </div>
-                            <div class="rating-stars__item">
-                                <input type="radio"><input type="radio">
-                            </div>
-                            <div class="rating-stars__item">
-                                <input type="radio"><input type="radio">
-                            </div>
-                            <div class="rating-stars__progress" style="width: 37%;"></div>
-                        </div>
-                        <div class="rating-stars__value">
-                            2.5
-                        </div>
-                    </div>
+                <div class="single-block-reviews-review__text">
+                    <?php echo $review->text ?>
                 </div>
             </div>
-            <div class="single-block-reviews-review__top-right">
-                <div class="single-block-reviews-review__date">2 дня назад</div>
-            </div>
-        </div>
-        <div class="single-block-reviews-review__text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-            ullamco
-            laboris nisi ut aliquip ex ea commodo consequat.
-        </div>
-    </div>
+
+        <?php endforeach; ?>
+
+    <?php endif; ?>
+
 </div>
 

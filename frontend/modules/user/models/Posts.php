@@ -71,6 +71,7 @@ use frontend\components\service\AddPhoneService;
  * @property National $nacionalnost
  * @property Rayon $rayon
  * @property Tarif $tarif
+ * @property Review $review
  */
 class Posts extends \yii\db\ActiveRecord
 {
@@ -169,6 +170,13 @@ class Posts extends \yii\db\ActiveRecord
             ->all();
 
         return false;
+    }
+
+    public function getReview(): ActiveQuery
+    {
+        return $this->hasMany(Review::class, ['post_id' => 'id'])
+            ->with('author')
+            ->andWhere(['is_moderate' => Review::MODARATE]);
     }
 
     public function getTarif()
