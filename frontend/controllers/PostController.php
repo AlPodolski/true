@@ -62,6 +62,8 @@ class PostController extends Controller
 
             $viewPosts = (new PostsRepository())->getByIdPosts($viewPostsIds, 30);
 
+            $recomendPost = GetPostHelper::getRecomend($cityInfo['id']);
+
             //$serviceListReview = ServiceReviewHelper::getPostServiceReview($id);
             $serviceListReview = false;
 
@@ -95,6 +97,7 @@ class PostController extends Controller
                 'backUrl' => $backUrl,
                 'refererCategory' => $refererCategory,
                 'serviceList' => $serviceList,
+                'recomendPost' => $recomendPost,
                 'first' => true
             ]);
 

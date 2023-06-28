@@ -2,6 +2,7 @@
 
 namespace frontend\helpers;
 
+use common\models\Pol;
 use frontend\modules\user\models\Posts;
 use Yii;
 
@@ -41,6 +42,20 @@ class GetPostHelper
             ->andWhere(['city_id' => $cityId])
             ->andWhere(['like', 'phone', $phone])
             ->cache(3600 * 24)
+            ->all();
+
+        return $posts;
+    }
+
+    public static function getRecomend($cityId)
+    {
+        $posts = Posts::find()->asArray()
+            ->with('avatar', 'metro','gallery', 'tarif', 'place')
+            ->where(['city_id' => $cityId])
+            ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
+            ->andWhere(['pol_id' => Pol::WOMAN_POL])
+            ->limit(3)
+            ->orderBy(['rand()' => SORT_DESC])
             ->all();
 
         return $posts;
