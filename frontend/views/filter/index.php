@@ -34,61 +34,83 @@ echo \frontend\widgets\OpenGraphWidget::widget([
     'img' => 'https://' . Yii::$app->params['site_addr'] . '/img/logo.png',
 ]);
 
-
 ?>
-<div class="container custom-container">
 
-    <h1> <?php echo $h1 ?> </h1>
-    <?php echo \frontend\widgets\SortingWidget::widget() ?>
-    <?php echo \frontend\widgets\LinkWidget::widget(['url' => Yii::$app->request->url]) ?>
-    <?php echo \frontend\widgets\HelperWidget::widget()?>
-    <div class="row"><?php echo '<div data-url="/' . $param . '" class="col-12"></div>'; ?></div>
-    <div class="row first-content">
+<div class="filter__catalog">
+    <div class="container">
+        <div class="row filter__bottom">
+            <div class="filter-sort__left">
+                <h1 class="filter-sort__title"> <?php echo $h1 ?> </h1>
+                <div class="filter-sort__btn" data-filter-btn>
+                    <svg>
+                        <use xlink:href='/svg/dest/stack/sprite.svg#filter'></use>
+                    </svg>
+                    Фильтр
+                </div>
+            </div>
 
-        <?php if ($topPostList) {
+            <?php echo \frontend\widgets\SortingWidget::widget() ?>
 
-            foreach ($topPostList as $post) {
+        </div>
+    </div>
+</div>
+<div class="catalog">
+    <div class="container">
 
-                echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), [
-                    'post' => $post,
-                    'advertising' => true,
-                ]);
+        <div class="row">
+            <div data-url="<?php echo Yii::$app->request->url ?>" class="col-12"></div>
+        </div>
 
-            }
+        <div class="row catalog__items first-content">
 
-            unset($post);
+            <?php if ($topPostList) {
 
-        } ?>
+                foreach ($topPostList as $post) {
 
-        <?php if ($posts) foreach ($posts as $post) : ?>
+                    echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), [
+                        'post' => $post,
+                        'advertising' => true,
+                    ]);
 
-            <?php if (isset($post['id'])) : ?>
+                }
 
-                <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), [
-                    'post' => $post,
-                ]); ?>
+                unset($post);
 
-            <?php elseif (isset($post['block'])) : ?>
+            } ?>
 
-                <?php if (isset($post['block']['header'])) : ?>
+            <?php if ($posts) foreach ($posts as $post) : ?>
 
-                    <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article-promo.php'), [
-                        'post' => $post['block'],
-                        'promo' => true,
-                    ]); ?>
-
-                <?php else : ?>
+                <?php if (isset($post['id'])) : ?>
 
                     <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), [
-                        'post' => $post['block']['post'],
-                        'promo' => true,
+                        'post' => $post,
                     ]); ?>
+
+                <?php elseif (isset($post['block'])) : ?>
+
+                    <?php if (isset($post['block']['header'])) : ?>
+
+                        <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article-promo.php'), [
+                            'post' => $post['block'],
+                            'promo' => true,
+                        ]); ?>
+
+                    <?php else : ?>
+
+                        <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), [
+                            'post' => $post['block']['post'],
+                            'promo' => true,
+                        ]); ?>
+
+                    <?php endif; ?>
 
                 <?php endif; ?>
 
-            <?php endif; ?>
+            <?php endforeach; ?>
 
-        <?php endforeach; ?>
+        </div>
+
+        <div class="row content-post catalog__items"></div>
 
         <?php if ($more_posts) : ?>
 
@@ -96,57 +118,35 @@ echo \frontend\widgets\OpenGraphWidget::widget([
                 <p>Рекомендуем посмотреть:</p>
             </div>
 
-            <?php foreach ($more_posts as $post) : ?>
+            <div class="row catalog__items">
 
-                <?php ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_listing_view_count_key']); ?>
+                <?php foreach ($more_posts as $post) : ?>
 
-                <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), ['post' => $post]); ?>
+                    <?php ViewCountHelper::addView($post['id'], Yii::$app->params['redis_post_listing_view_count_key']); ?>
 
-            <?php endforeach; ?>
+                    <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), ['post' => $post]); ?>
 
-            <?php echo \frontend\widgets\MegaMenuWidget::widget([
-                'city' => Yii::$app->requestedParams['city'],
-                'bottom_menu' => true
-            ]) ?>
+                <?php endforeach; ?>
+
+            </div>
 
         <?php endif; ?>
 
-    </div>
-    <?php if ($posts and count($posts) > 6) : ?>
-        <div class="row content"></div>
-        <svg class="filter" version="1.1">
-            <defs>
-                <filter id="gooeyness">
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
-                    <feColorMatrix in="blur"  values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10"
-                                   result="gooeyness"/>
-                    <feComposite in="SourceGraphic" in2="gooeyness" operator="atop"/>
-                </filter>
-            </defs>
-        </svg>
-        <div class="dots">
-            <div class="dot mainDot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-        </div>
         <div class="row">
             <div class="col-12 pager" data-page="<?php echo Yii::$app->request->get('page') ?? 1 ?>"
                  data-adress="<?php echo Yii::$app->request->url ?>"
                  data-reqest="<?php echo Yii::$app->request->url ?>"></div>
         </div>
-    <?php endif; ?>
 
-    <?php  ?>
+        <?php if ($pages) {
 
-    <?php
+            $pagination = LinkPager::widget([
+                'pagination' => $pages,
+            ]);
 
-/*    $this->registerJs(
-        "getContentForFirstPage();",
-        $this::POS_READY
-    );*/
+            echo str_replace('http:', 'https:', $pagination);
 
-    ?>
+        } ?>
 
+    </div>
 </div>

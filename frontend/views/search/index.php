@@ -16,46 +16,62 @@ Yii::$app->view->registerMetaTag([
 
 ?>
 
-<div class="container custom-container">
-    <h1 class="margin-top-20"> <?php echo $h1 ?> </h1>
-    <div class="row">
+<div class="filter__catalog">
+    <div class="container">
+        <div class="row filter__bottom">
+            <div class="filter-sort__left">
+                <h1 class="filter-sort__title"> <?php echo $h1 ?> </h1>
+                <div class="filter-sort__btn" data-filter-btn>
+                    <svg>
+                        <use xlink:href='/svg/dest/stack/sprite.svg#filter'></use>
+                    </svg>
+                    Фильтр
+                </div>
+            </div>
 
-        <?php if ($prPosts) : foreach ($prPosts as $post) : ?>
+            <?php echo \frontend\widgets\SortingWidget::widget() ?>
 
-            <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), ['post' => $post]); ?>
+        </div>
+    </div>
+</div>
+<div class="catalog">
+    <div class="container">
 
-        <?php endforeach; ?>
+        <div class="row catalog__items first-content">
 
-        <?php else : ?>
+            <?php if ($prPosts) : foreach ($prPosts as $post) : ?>
 
-        <div class="col-12">
-            <p class="alert alert-info">По вашему запросу ничего не найдено попробуйте поискать другое имя</p>
+                <?php echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), ['post' => $post]); ?>
+
+            <?php endforeach; ?>
+
+            <?php else : ?>
+
+                <div class="col-12">
+                    <p class="alert alert-info">По вашему запросу ничего не найдено попробуйте поискать другое имя</p>
+                </div>
+
+            <?php endif; ?>
+
         </div>
 
-        <?php endif; ?>
+        <div class="row content-post catalog__items"></div>
 
-    </div>
-    <div class="row content"></div>
-    <svg class="filter" version="1.1">
-        <defs>
-            <filter id="gooeyness">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
-                <feColorMatrix in="blur"  values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10"
-                               result="gooeyness"/>
-                <feComposite in="SourceGraphic" in2="gooeyness" operator="atop"/>
-            </filter>
-        </defs>
-    </svg>
-    <div class="dots">
-        <div class="dot mainDot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-    </div>
-    <div class="row">
-        <div class="col-12 pager" data-page="<?php echo Yii::$app->request->get('page') ?? 1 ?>"
-             data-adress="<?php echo Yii::$app->request->url ?>"
-             data-reqest="<?php echo Yii::$app->request->url ?>"></div>
+        <div class="row">
+            <div class="col-12 pager" data-page="<?php echo Yii::$app->request->get('page') ?? 1 ?>"
+                 data-adress="<?php echo Yii::$app->request->url ?>"
+                 data-reqest="<?php echo Yii::$app->request->url ?>"></div>
+        </div>
+
+        <?php if ($pages) {
+
+            $pagination = LinkPager::widget([
+                'pagination' => $pages,
+            ]);
+
+            echo str_replace('http:', 'https:', $pagination);
+
+        }?>
+
     </div>
 </div>
