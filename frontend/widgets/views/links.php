@@ -17,7 +17,7 @@
 
                     <?php echo '<li>'; ?>
 
-                    <?php echo \yii\helpers\Html::a($link['text'], $link['link']) ?>
+                    <?php echo \yii\helpers\Html::a('#'.$link['text'], $link['link']) ?>
 
                     <?php echo '</li>' ?>
 

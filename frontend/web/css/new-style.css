@@ -3430,6 +3430,20 @@ textarea.form-control {
 .catalog-item__address a{
     color: #fff;
 }
+
+.data-list {
+    column-count: 6;
+}
+
+.red-link {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #0F2C93;
+    display: block;
+}
+
 .profile__modal-form-input{
     margin-top: 30px;
     border: 1px solid #eee;
@@ -3438,6 +3452,7 @@ textarea.form-control {
 }
 
 @media (max-width: 1200px) {
+
     .header .row:first-child {
         -webkit-box-pack: justify;
         -ms-flex-pack: justify;
@@ -3763,6 +3778,9 @@ textarea.form-control {
 }
 
 @media (max-width: 992px) {
+    .data-list {
+        column-count: 5;
+    }
     .filter-search-params__drop {
         top: 0;
         left: 0;
@@ -3979,6 +3997,9 @@ textarea.form-control {
 }
 
 @media (max-width: 786px) {
+    .data-list {
+        column-count: 3;
+    }
     .catalog__items {
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
@@ -4215,6 +4236,9 @@ textarea.form-control {
 }
 
 @media (max-width: 576px) {
+    .data-list {
+        column-count: 2;
+    }
     .filter-sort__form {
         min-width: initial;
         margin-left: auto;
@@ -4379,6 +4403,9 @@ textarea.form-control {
 }
 
 @media (max-width: 360px) {
+    .data-list {
+        column-count: 1;
+    }
     .filter-sort__btn {
         font-size: 0
     }

@@ -161,7 +161,7 @@
 
                     <input class="lower" type="range" step="1" min="500" max="25000" value="<?php echo $priceFrom ?>"
                            name="price-1-from">
-                    <input class="upper" type="range" step="1" min="500" max="25000" value="<?php echo $priceFrom ?>"
+                    <input class="upper" type="range" step="1" min="500" max="25000" value="<?php echo $priceTo ?>"
                            name="price-1-to">
                 </div>
                 <div class="filter-form__range-values">
