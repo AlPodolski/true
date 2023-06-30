@@ -72,13 +72,7 @@ use yii\helpers\Html;
                         <a href="/deshevye-prostitutki">Дешевые</a>
                     </li>
                     <li data-params-tab-title>
-                        <a href="/favorite/list">Избранное</a>
-                    </li>
-                    <li data-params-tab-title>
                         <a href="/elitnye-prostitutki">Элитные</a>
-                    </li>
-                    <li data-params-tab-title>
-                        <a href="/phone">Телефоны</a>
                     </li>
                     <li data-params-tab-title>
                         <a href="/mesto-viezd">На выезд</a>
