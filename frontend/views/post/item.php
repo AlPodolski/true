@@ -205,22 +205,72 @@ if ($post['check_photo_status']) $photoTitle = 'Проверенная прос�
                         <div class="single-block-about-list__cur">
                             <div class="single-block-about__tags single-block-about-tags tags">
                                 <ul class="single-block-about-tags__list tags__list">
-                                    <li class="single-block-about-tags__item tags__item">
-                                        <a href="#" class="single-block-about-tags__link tags__link">#с
-                                            выездом</a>
-                                    </li>
-                                    <li class="single-block-about-tags__item tags__item">
-                                        <a href="#"
-                                           class="single-block-about-tags__link tags__link">#блондинка</a>
-                                    </li>
-                                    <li class="single-block-about-tags__item tags__item">
-                                        <a href="#" class="single-block-about-tags__link tags__link">#с
-                                            выездом</a>
-                                    </li>
-                                    <li class="single-block-about-tags__item tags__item">
-                                        <a href="#"
-                                           class="single-block-about-tags__link tags__link">#блондинка</a>
-                                    </li>
+
+                                    <?php if ($post['place']) : ?>
+
+                                        <?php foreach ($post['place'] as $item) : ?>
+
+                                            <li class="single-block-about-tags__item tags__item">
+                                                <a href="/mesto-<?php echo $item['url'] ?>"
+                                                   class="single-block-about-tags__link tags__link">#<?php echo $item['value'] ?></a>
+                                            </li>
+
+                                        <?php endforeach; ?>
+
+
+                                    <?php endif; ?>
+
+                                    <?php if ($post['strizhka']) : ?>
+
+                                        <?php foreach ($post['strizhka'] as $item) : ?>
+
+                                            <li class="single-block-about-tags__item tags__item">
+                                                <a href="/intimnaya-strizhka-<?php echo $item['url'] ?>"
+                                                   class="single-block-about-tags__link tags__link">#<?php echo $item['value'] ?></a>
+                                            </li>
+
+                                        <?php endforeach; ?>
+
+                                    <?php endif; ?>
+
+
+                                    <?php if ($post['rayon']) : ?>
+
+                                        <?php $rayon = $post['rayon']; ?>
+
+                                        <?php foreach ($rayon as $item) : ?>
+
+                                            <li class="single-block-about-tags__item tags__item">
+                                                <a href="/rayon-<?php echo $item['url'] ?>"
+                                                   class="single-block-about-tags__link tags__link">#<?php echo $item['value'] ?></a>
+                                            </li>
+
+                                        <?php endforeach; ?>
+
+                                    <?php endif; ?>
+
+                                    <?php if ($post['nacionalnost']) : ?>
+
+                                        <?php foreach ($post['nacionalnost'] as $item) : ?>
+                                            <li class="single-block-about-tags__item tags__item">
+                                                <a href="/nacionalnost-<?php echo $item['url'] ?>"
+                                                   class="single-block-about-tags__link tags__link">#<?php echo $item['value'] ?></a>
+                                            </li>
+                                        <?php endforeach; ?>
+
+                                    <?php endif; ?>
+
+                                    <?php if ($post['cvet']) : ?>
+
+                                        <?php foreach ($post['cvet'] as $item) : ?>
+                                            <li class="single-block-about-tags__item tags__item">
+                                                <a href="/cvet-volos-<?php echo $item['url'] ?>"
+                                                   class="single-block-about-tags__link tags__link">#<?php echo $item['value'] ?></a>
+                                            </li>
+                                        <?php endforeach; ?>
+
+                                    <?php endif; ?>
+
                                 </ul>
                             </div>
                         </div>
@@ -230,7 +280,7 @@ if ($post['check_photo_status']) $photoTitle = 'Проверенная прос�
                             Описание:
                         </div>
                         <div class="single-block-about-list__cur single-block-about__descr">
-                            <?php $post['about'] ?>
+                            <?php echo $post['about'] ?>
                         </div>
                     </li>
                 </ul>
@@ -678,7 +728,7 @@ if ($post['check_photo_status']) $photoTitle = 'Проверенная прос�
                 <input class="rating-stars-set__item" id="ratingSetItem4" type="radio" value="4"
                        name="reviewRating">
                 <label for="ratingSetItem4">A</label>
-                <input class="rating-stars-set__item"  id="ratingSetItem5" type="radio" value="5"
+                <input class="rating-stars-set__item" id="ratingSetItem5" type="radio" value="5"
                        name="reviewRating">
                 <label for="ratingSetItem5">A</label>
             </div>
