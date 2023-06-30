@@ -284,7 +284,11 @@ if ($post['check_photo_status']) $photoTitle = 'Проверенная прос�
                         </div>
                     </li>
                 </ul>
-                <img src="/images/status_1.svg" alt="" class="single-block-about__status">
+
+                <div class="single-block-about__status tarif_<?php echo $post['tarif_id'] ?>">
+
+                </div>
+
             </div>
             <div class="row">
                 <ul class="single-block-about-price__list">

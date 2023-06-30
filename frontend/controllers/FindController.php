@@ -20,24 +20,11 @@ use frontend\controllers\BeforeController as Controller;
 class FindController extends Controller
 {
 
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
+    public function beforeAction($action)
     {
-        return [
-            [
-                'class' => 'yii\filters\PageCache',
-                'only' => ['index'],
-                'duration' => 3600 * 8,
-                'variations' => [
-                    Yii::$app->request->url,
-                    Yii::$app->request->get(),
-                    Yii::$app->request->hostInfo,
-                ],
-            ],
-        ];
+        $this->enableCsrfValidation = false;
 
+        return parent::beforeAction($action);
     }
 
     public function actionIndex($city)
@@ -268,7 +255,7 @@ class FindController extends Controller
             if (\count($posts)) {
 
                 Yii::$app->queueView->push(new AddViewJob([
-                    'posts' => $prPosts,
+                    'posts' => $posts,
                     'type' => 'redis_post_listing_view_count_key',
                 ]));
 
