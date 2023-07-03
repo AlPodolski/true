@@ -6,10 +6,10 @@
 
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
-use frontend\assets\AppAsset;
+use frontend\assets\CabinetAsset;
 use common\widgets\Alert;
 
-AppAsset::register($this);
+CabinetAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -54,10 +54,6 @@ AppAsset::register($this);
         <div class="container">
             <div class="top-menu-wrap">
 
-                <?php echo \frontend\widgets\MegaMenuWidget::widget([
-                    'city' => Yii::$app->requestedParams['city']
-                ]) ?>
-
                 <ul class="top-menu" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
 
                     <?php if (Yii::$app->requestedParams['city'] == 'moskva') : ?>
@@ -94,34 +90,6 @@ AppAsset::register($this);
     <div class="container">
         <div class="main-nav d-flex">
 
-            <div class="city">
-                <svg width="8" height="12" viewBox="0 0 6 8" fill="none"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path d="M3.00001 0C1.34584 0 0 1.19473 0 2.66318C0 3.104 0.124154 3.54109 0.360176 3.92877L2.83595 7.90369C2.86891 7.95668 2.93172 7.98951 3.00001 7.98951C3.0683 7.98951 3.13111 7.95668 3.16407 7.90369L5.64076 3.92745C5.87587 3.54109 6.00002 3.10399 6.00002 2.66316C6.00002 1.19473 4.65418 0 3.00001 0ZM3.00001 3.99476C2.17292 3.99476 1.50001 3.3974 1.50001 2.66318C1.50001 1.92895 2.17292 1.3316 3.00001 1.3316C3.8271 1.3316 4.50001 1.92895 4.50001 2.66318C4.50001 3.3974 3.8271 3.99476 3.00001 3.99476Z"
-                          fill="#0F2C93"/>
-                </svg>
-                <span class="city-name" data-toggle="modal" data-target="#cityModal">
-                            <?php echo \frontend\widgets\CurrentCity::widget() ?>
-                        </span>
-            </div>
-
-            <?php if (\frontend\widgets\MetroWidget::checkExistMetro()) : ?>
-
-                <div class="metro-search-btn-wrap-top" data-type="metro"
-                     onclick="get_data(this)">
-                    <div class="metro-search-btn">
-                        <svg width="11" height="11" viewBox="0 0 11 11" fill="none"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5.50011 1.34985C2.46255 1.34985 0 3.83578 0 6.90235C0 8.56513 0.717582 9.64956 0.717582 9.64956L10.2803 9.65002C10.2803 9.65002 11 8.46486 11 6.90224C11 3.83578 8.53745 1.34985 5.50011 1.34985ZM9.87695 8.97359L1.14069 8.96978C1.14069 8.96978 0.675168 8.0882 0.675168 6.88483C0.675168 4.1971 2.84359 2.0181 5.51856 2.0181C8.19341 2.0181 10.3619 4.19698 10.3619 6.88483C10.3621 8.1018 9.87695 8.97359 9.87695 8.97359Z"
-                                  fill="#0F2C93"/>
-                            <path d="M7.05446 2.8243L6.98542 2.82419L5.51833 5.69898L3.99845 2.79964L1.91751 8.03737H1.37973V8.45805H4.3259V8.03737H3.74132L4.3259 6.40042L5.51833 8.45805L6.66409 6.40042L7.24855 8.03737H6.66409V8.45805H9.58674V8.03737H9.08042L7.05446 2.8243Z"
-                                  fill="#0F2C93"/>
-                        </svg>
-                        Выбрать метро
-                    </div>
-                </div>
-
-            <?php endif; ?>
 
             <div class="logo">
                 <?php
@@ -151,8 +119,6 @@ AppAsset::register($this);
                     </svg>
                 </a>
             </div>
-
-            <?php echo \frontend\widgets\SearchFormWidget::widget()?>
 
             <?php echo \frontend\widgets\EventWidget::widget(['user_id' => Yii::$app->user->id]) ?>
 

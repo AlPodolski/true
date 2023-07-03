@@ -13,6 +13,8 @@ use frontend\controllers\BeforeController as Controller;
 class CabinetController extends Controller
 {
 
+    public $layout = '@frontend/views/layouts/main-old.php';
+
     public function behaviors()
     {
         return [
