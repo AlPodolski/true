@@ -33,7 +33,7 @@
         <?php if ($metroList) : ?>
 
             <select class="header-location__select header-location__select--metro"
-                    data-custom-select name="city" id="">
+                    data-custom-select name="city" >
 
                 <?php foreach ($metroList as $metroItem) : ?>
 

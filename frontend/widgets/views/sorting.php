@@ -6,7 +6,7 @@
 
 <form class="filter-sort__form">
     <select class="filter-sort__input"
-            name="limit" id="sort-select" onchange="setSort()"
+            id="sort-select" onchange="setSort()"
             data-custom-select name="sort">
         <option <?php if ($sort == 'default') echo 'selected'?> value="default">Сортировать</option>
 
