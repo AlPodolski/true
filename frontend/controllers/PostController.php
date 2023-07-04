@@ -43,8 +43,6 @@ class PostController extends Controller
     public function actionIndex($protocol, $city, $id)
     {
 
-        Yii::$app->cache->flush();
-
         $cityInfo = City::getCity($city);
 
         if (!$cityInfo) {
