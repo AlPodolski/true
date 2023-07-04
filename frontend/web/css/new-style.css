@@ -246,6 +246,7 @@
     display: block;
     overflow: hidden;
     margin: 0;
+    max-height: 400px;
     padding: 0
 }
 
