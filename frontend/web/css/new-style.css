@@ -1873,6 +1873,8 @@ input[type=range]::-webkit-slider-thumb::before {
     margin-bottom: 15px;
     position: relative;
     background: #fff;
+    display: flex;
+    flex-direction: column;
     border: 1px solid #dcdcdc
 }
 
@@ -2031,6 +2033,7 @@ input[type=range]::-webkit-slider-thumb::before {
 
 .catalog-item__body {
     padding: 20px 5px 16px;
+    margin-top: auto;
     background-color: #fff
 }
 
