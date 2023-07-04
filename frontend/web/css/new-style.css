@@ -2436,6 +2436,10 @@ input[type=range]::-webkit-slider-thumb::before {
     object-fit: cover
 }
 
+.single-block-about-video video{
+    max-width: 100%;
+}
+
 .single-block-about-video__item svg {
     position: absolute;
     width: 32px;
