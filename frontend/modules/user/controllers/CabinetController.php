@@ -8,12 +8,10 @@ use frontend\modules\user\components\helpers\ViewPostCountHelper;
 use frontend\modules\user\helpers\CabinetViewHelper;
 use frontend\modules\user\models\Posts;
 use Yii;
-use frontend\controllers\BeforeController as Controller;
+use frontend\modules\user\controllers\CabinetBeforeController as Controller;
 
 class CabinetController extends Controller
 {
-
-    public $layout = '@frontend/views/layouts/main-old.php';
 
     public function behaviors()
     {

@@ -6,7 +6,7 @@ namespace frontend\modules\user\controllers;
 use frontend\modules\user\models\ReviewForm;
 use frontend\modules\user\models\ServiceReviewForm;
 use Yii;
-use frontend\controllers\BeforeController as Controller;
+use frontend\modules\user\controllers\CabinetBeforeController as Controller;
 use yii\filters\AccessControl;
 
 class ReviewController extends Controller

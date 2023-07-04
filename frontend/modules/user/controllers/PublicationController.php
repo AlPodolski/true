@@ -2,7 +2,7 @@
 
 namespace frontend\modules\user\controllers;
 
-use frontend\controllers\BeforeController as Controller;
+use frontend\modules\user\controllers\CabinetBeforeController as Controller;
 use frontend\modules\user\models\Posts;
 use yii\filters\VerbFilter;
 use yii\web\ForbiddenHttpException;

@@ -24,7 +24,7 @@ use frontend\modules\user\models\UserRayon;
 use frontend\modules\user\models\UserService;
 use frontend\modules\user\models\UserTime;
 use yii\base\BaseObject;
-use frontend\controllers\BeforeController as Controller;
+use frontend\modules\user\controllers\CabinetBeforeController as Controller;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;

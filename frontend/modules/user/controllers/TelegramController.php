@@ -10,7 +10,7 @@ use common\components\helpers\TelegramHelper;
 use frontend\modules\user\models\forms\CheckTelegramForm;
 use frontend\modules\user\models\Posts;
 use Yii;
-use frontend\controllers\BeforeController as Controller;
+use frontend\modules\user\controllers\CabinetBeforeController as Controller;
 use yii\filters\VerbFilter;
 use common\jobs\SendPostToTelegramJob;
 

@@ -59,6 +59,8 @@ class AdvertController extends Controller
     }
     public function actionCabinetAdvert($city){
 
+        $this->layout = '@frontend/views/layouts/main-old.php';
+
         if (Yii::$app->user->isGuest) return $this->goHome();
 
         $advertList = Advert::find()

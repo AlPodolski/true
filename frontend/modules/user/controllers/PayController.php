@@ -8,7 +8,7 @@ use frontend\modules\user\models\forms\ObmenkaPayForm;
 use frontend\modules\user\models\forms\PayForm;
 use frontend\modules\user\models\Posts;
 use Yii;
-use frontend\controllers\BeforeController as Controller;
+use frontend\modules\user\controllers\CabinetBeforeController as Controller;
 use yii\web\NotFoundHttpException;
 
 class PayController extends Controller

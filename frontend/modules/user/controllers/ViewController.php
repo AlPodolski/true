@@ -6,7 +6,7 @@ namespace frontend\modules\user\controllers;
 use frontend\modules\user\helpers\ViewCountHelper;
 use frontend\modules\user\models\forms\BuyViewForm;
 use Yii;
-use frontend\controllers\BeforeController as Controller;
+use frontend\modules\user\controllers\CabinetBeforeController as Controller;
 use yii\filters\VerbFilter;
 
 class ViewController extends Controller

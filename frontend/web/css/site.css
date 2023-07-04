@@ -578,6 +578,7 @@ body{
     align-items: center;
     height: 49px;
     justify-content: flex-end;
+    margin-left: auto;
 }
 .footer{
     margin-top: 35px;
@@ -653,7 +654,7 @@ body{
     line-height: 12px;
 }
 .main-nav .logo{
-    text-align: right;
+    text-align: center;
 }
 .top-menu .top-menu-item a{
     font-family: Ubuntu;

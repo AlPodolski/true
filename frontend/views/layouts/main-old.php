@@ -335,14 +335,6 @@ CabinetAsset::register($this);
         or Yii::$app->controller->id == 'search'
         or (Yii::$app->controller->id == 'post' and !strpos(Yii::$app->request->url, 'edit'))) : ?>
 
-        <div class="container">
-
-            <div class="filter-block">
-                <?php echo \frontend\widgets\FilterWidget::widget(['dataGet' => Yii::$app->request->get()]); ?>
-            </div>
-
-        </div>
-
     <?php endif; ?>
 
     <div class="container custom-container">

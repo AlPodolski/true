@@ -6,7 +6,7 @@ namespace frontend\modules\user\controllers;
 use frontend\modules\user\models\forms\AddPhoneReviewForm;
 use Yii;
 use yii\filters\VerbFilter;
-use frontend\controllers\BeforeController as Controller;
+use frontend\modules\user\controllers\CabinetBeforeController as Controller;
 
 class PhoneController extends Controller
 {
