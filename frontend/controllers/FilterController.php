@@ -19,7 +19,7 @@ class FilterController extends Controller
 
     public function beforeAction($action)
     {
-        if ($action->id == 'index') {
+        if ($action->id == 'index' or $action->id == 'more') {
             $this->enableCsrfValidation = false;
         }
 
