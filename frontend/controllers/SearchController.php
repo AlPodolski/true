@@ -51,7 +51,7 @@ class SearchController extends Controller
 
         $prPosts = Posts::find()
             ->asArray()
-            ->with('avatar', 'metro','gallery', 'tarif')
+            ->with('avatar', 'metro','gallery', 'tarif', 'place', 'nacionalnost', 'cvet', 'strizhka')
             ->where(['like', 'name', $name])
             ->orWhere(['like', 'phone', $name])
             ->andWhere(['city_id' => $cityInfo['id']])

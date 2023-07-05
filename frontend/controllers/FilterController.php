@@ -77,7 +77,7 @@ class FilterController extends Controller
         $topPostList = Posts::getTopList($cityInfo['id']);
 
         if (\count($posts) < 6) $more_posts = Posts::find()->limit(Yii::$app->params['post_limit'])
-            ->with('avatar', 'metro', 'selphiCount', 'partnerId')
+            ->with('avatar', 'metro', 'selphiCount', 'partnerId', 'place', 'nacionalnost', 'cvet', 'strizhka')
             ->andWhere(['city_id' => $cityInfo['id']])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->orderBy('RAND()')->all();

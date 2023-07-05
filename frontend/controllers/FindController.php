@@ -240,7 +240,9 @@ class FindController extends Controller
             ->andWhere(['>=', 'breast', $params['grud-from']])
             ->andWhere(['<=', 'breast', $params['grud-to']])
             ->andWhere(['>=', 'price', $params['price-1-from']])
-            ->andWhere(['<=', 'price', $params['price-1-to']]);
+            ->andWhere(['<=', 'price', $params['price-1-to']])
+            ->with('avatar', 'metro', 'selphiCount', 'partnerId', 'city', 'gallery',
+                'place', 'nacionalnost', 'cvet', 'strizhka');
 
         if ($params['check-photo']) $posts = $posts->andWhere(['check_photo_status' => 1]);
         if ($params['video']) $posts = $posts->andWhere(['<>', 'video', '']);
@@ -282,7 +284,6 @@ class FindController extends Controller
         }
 
         $posts = $posts
-            ->with('avatar', 'metro', 'selphiCount', 'partnerId', 'city', 'gallery')
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->asArray()
             ->all();

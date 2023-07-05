@@ -465,7 +465,7 @@ class QueryParamsHelper
         }
 
         $data = Posts::find()->where(['in', 'id', $postsIds])
-            ->with('avatar', 'metro','gallery', 'tarif')
+            ->with('avatar', 'metro','gallery', 'tarif', 'place', 'nacionalnost', 'cvet', 'strizhka')
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->orderBy(Posts::getOrder())
             ->asArray()

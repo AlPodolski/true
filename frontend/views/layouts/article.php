@@ -110,7 +110,80 @@ echo \frontend\components\helpers\MicroHelper::image($post);
                 </li>
             </ul>
         </div>
+
+        <div class="catalog-item__tags">
+            <ul class="catalog-item-tags__list">
+
+                <?php if ($post['place']) : ?>
+
+                    <?php foreach ($post['place'] as $item) : ?>
+
+                        <li class="catalog-item-tags__item">
+                            <a href="/mesto-<?php echo $item['url'] ?>"
+                               class="catalog-item-tags__link">#<?php echo $item['value'] ?></a>
+                        </li>
+
+                    <?php endforeach; ?>
+
+
+                <?php endif; ?>
+
+                <?php if ($post['strizhka']) : ?>
+
+                    <?php foreach ($post['strizhka'] as $item) : ?>
+
+                        <li class="catalog-item-tags__item">
+                            <a href="/intimnaya-strizhka-<?php echo $item['url'] ?>"
+                               class="catalog-item-tags__link">#<?php echo $item['value'] ?></a>
+                        </li>
+
+                    <?php endforeach; ?>
+
+                <?php endif; ?>
+
+
+                <?php if ($post['rayon']) : ?>
+
+                    <?php $rayon = $post['rayon']; ?>
+
+                    <?php foreach ($rayon as $item) : ?>
+
+                        <li class="catalog-item-tags__item">
+                            <a href="/rayon-<?php echo $item['url'] ?>"
+                               class="catalog-item-tags__link">#<?php echo $item['value'] ?></a>
+                        </li>
+
+                    <?php endforeach; ?>
+
+                <?php endif; ?>
+
+                <?php if ($post['nacionalnost']) : ?>
+
+                    <?php foreach ($post['nacionalnost'] as $item) : ?>
+                        <li class="catalog-item-tags__item">
+                            <a href="/nacionalnost-<?php echo $item['url'] ?>"
+                               class="catalog-item-tags__link">#<?php echo $item['value'] ?></a>
+                        </li>
+                    <?php endforeach; ?>
+
+                <?php endif; ?>
+
+                <?php if ($post['cvet']) : ?>
+
+                    <?php foreach ($post['cvet'] as $item) : ?>
+                        <li class="catalog-item-tags__item">
+                            <a href="/cvet-volos-<?php echo $item['url'] ?>"
+                               class="catalog-item-tags__link">#<?php echo $item['value'] ?></a>
+                        </li>
+                    <?php endforeach; ?>
+
+                <?php endif; ?>
+
+            </ul>
+        </div>
+
     </div>
+
     <div class="catalog-item__footer">
 
         <?php if ($post['phone']) : ?>
