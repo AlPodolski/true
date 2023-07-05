@@ -286,6 +286,14 @@ AppAsset::register($this);
 
     </noscript>
     <!-- /Yandex.Metrika counter -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TEVW282QTC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-TEVW282QTC');
+    </script>
     </body>
 
     </html>
