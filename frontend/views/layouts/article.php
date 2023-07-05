@@ -31,9 +31,9 @@ echo \frontend\components\helpers\MicroHelper::image($post);
         <div class="catalog-item__content">
             <div class="catalog-item__content-top">
                 <div class="catalog-item__title">
-                    <div class="catalog-item__name">
+                    <a class="catalog-item__name" href="/post/<?php echo $post['id'] ?>">
                         <?php echo $post['name'] ?>, <?php echo $post['age'] ?>
-                    </div>
+                    </a>
                     <div class="catalog-item__icons">
 
                         <?php if ($post['check_photo_status']) : ?>

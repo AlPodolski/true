@@ -1943,6 +1943,7 @@ input[type=range]::-webkit-slider-thumb::before {
     font-weight: 500;
     font-size: 24px;
     line-height: 141.4%;
+    text-decoration: none;
     color: #fff
 }
 
