@@ -576,7 +576,7 @@ if ($post['check_photo_status']) $photoTitle = 'Проверенная прос�
         </div>
         <div class="single-block-map__map">
 
-            <div id="map-<?php echo $post['id'] ?>"
+            <div id="map"
                  class="yandex-map map-not-exist" data-id="<?php echo $post['id'] ?>"
 
                 <?php
