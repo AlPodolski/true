@@ -40,7 +40,7 @@ class PayController extends Controller
             if ( $data->success == false) {
 
                 Yii::$app->session->setFlash('warning' , 'Капча введена неверно');
-                Yii::$app->response->redirect(['/'], 301, false);
+                Yii::$app->response->redirect(['/cabinet/pay?sort=-created_at'], 301, false);
                 return true;
 
             }
