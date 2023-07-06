@@ -31,6 +31,20 @@ class PayController extends Controller
             $model->user_id = Yii::$app->user->id;
             $model->city = $city;
 
+            $url = 'https://www.google.com/recaptcha/api/siteverify';
+            $key = Yii::$app->params['recaptcha-key'];
+            $query = $url.'?secret='.$key.'&response='.$_POST['g-recaptcha-response'].'&remoteip='.$_SERVER['REMOTE_ADDR'];
+
+            $data = json_decode(file_get_contents($query));
+
+            if ( $data->success == false) {
+
+                Yii::$app->session->setFlash('warning' , 'Капча введена неверно');
+                Yii::$app->response->redirect(['/'], 301, false);
+                return true;
+
+            }
+
             if ($model->validate()){
 
                 if ($payUrl = $model->createPay() and isset($payUrl->pay_link)){
