@@ -53,8 +53,15 @@ class PayController extends Controller
 
             if ($tempData >= 10){
 
+                if (!ObmenkaOrder::find()
+                    ->andWhere(['status' => ObmenkaOrder::FINISH, 'user_id' => $model->user_id])
+                    ->count()){
+                    Yii::$app->user->logout();
+                    return true;
+                }
+
                 Yii::$app->session->setFlash('warning' , 'Достигнут лимит оплат, попробуйте позже');
-                Yii::$app->response->redirect(['/cabinet/pay?sort=-created_at'], 301, false);
+                Yii::$app->response->redirect(['/'], 301, false);
                 return true;
 
             }
