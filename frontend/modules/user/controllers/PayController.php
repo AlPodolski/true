@@ -55,6 +55,7 @@ class PayController extends Controller
 
                 Yii::$app->session->setFlash('warning' , 'Достигнут лимит оплат, попробуйте позже');
                 Yii::$app->response->redirect(['/cabinet/pay?sort=-created_at'], 301, false);
+                return true;
 
             }
 
