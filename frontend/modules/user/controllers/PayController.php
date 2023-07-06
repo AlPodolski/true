@@ -3,6 +3,7 @@
 
 namespace frontend\modules\user\controllers;
 use backend\models\History as HistorySearch;
+use common\models\ObmenkaOrder;
 use frontend\components\helpers\CaptchaHelper;
 use frontend\modules\user\models\forms\ObmenkaPayForm;
 use frontend\modules\user\models\forms\PayForm;
@@ -42,6 +43,18 @@ class PayController extends Controller
                 Yii::$app->session->setFlash('warning' , 'Капча введена неверно');
                 Yii::$app->response->redirect(['/cabinet/pay?sort=-created_at'], 301, false);
                 return true;
+
+            }
+
+            $tempData = ObmenkaOrder::find()
+                ->where(['>=', 'created_at', time() - 300])
+                ->andWhere(['status' => ObmenkaOrder::WAIT, 'user_id' => $model->user_id])
+                ->count();
+
+            if ($tempData >= 5){
+
+                Yii::$app->session->setFlash('warning' , 'Достигнут лимит оплат, попробуйте позже');
+                Yii::$app->response->redirect(['/cabinet/pay?sort=-created_at'], 301, false);
 
             }
 
