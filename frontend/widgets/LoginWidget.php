@@ -42,6 +42,8 @@ class LoginWidget extends Widget
             ]) ?>
         </div>
 
+        <div id="register_recapcha" class="g-recaptcha" data-sitekey="6Lffq2EkAAAAAK4PuAXJjhnE1NOP1uUjANyEUxe_"></div>
+
         <div class="login-register-btns">
             <?= Html::submitButton('Войти', ['class' => 'in-btn', 'name' => 'login-button']) ?>
             <a href="#" class="register-btn" onclick="get_register_btn()">Регистрация</a>

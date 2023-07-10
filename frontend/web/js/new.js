@@ -92,6 +92,10 @@ function get_user_menu() {
 
             if (data == 'guest') {
 
+                $.getScript("https://www.google.com/recaptcha/api.js?onload=onloadCallbackRegisterRequest", function (data, textStatus, jqxhr) {
+
+                });
+
                 $('.login').animate({
                     left: '0px'
                 }, 250);
