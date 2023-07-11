@@ -29,8 +29,7 @@ return [
         ],
         'user' => [
             'identityClass' => 'common\models\User',
-            'enableAutoLogin' => false,
-            'absoluteAuthTimeout' => 2700,
+            'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
         ],
         'session' => [
