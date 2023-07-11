@@ -5,6 +5,7 @@ namespace backend\controllers;
 use backend\models\IpPhoneCount;
 use common\models\CashCount;
 use common\models\PostCount;
+use common\models\Spisaniya;
 use common\models\UserCountRegister;
 use frontend\modules\user\models\Posts;
 use Yii;
@@ -68,15 +69,20 @@ class SiteController extends Controller
             ->sum('count');
 
         $payCountWeek = CashCount::find()->limit(7)->orderBy('id DESC')->all();
+        $spisaniyaCountWeek = Spisaniya::find()->limit(7)->orderBy('id DESC')->all();
 
         $monthCash = CashCount::find()
+            ->andWhere(['like','date', date('m-Y')])
+            ->sum('count');
+
+        $monthCashSpis = Spisaniya::find()
             ->andWhere(['like','date', date('m-Y')])
             ->sum('count');
 
         return $this->render('index',
             compact('payCountWeek', 'monthCash', 'monthRegister',
                 'registerCountWeek', 'monthUserRegister', 'registerUserCountWeek', 'postOnPublication',
-            'realPostCount', 'ipPhoneViewCount'
+            'realPostCount', 'ipPhoneViewCount', 'spisaniyaCountWeek', 'monthCashSpis'
             )
         );
 

@@ -18,6 +18,7 @@ $this->title = 'Главная страница';
     <div class="body-content">
 
         <div class="row">
+
             <div class="col-12 col-md-4">
                 <div class="small-box bg-info">
                     <div class="inner">
@@ -33,6 +34,29 @@ $this->title = 'Главная страница';
                         <?php if ($monthCash) : ?>
 
                             <p>Месяц <?php echo $monthCash ?></p>
+
+                        <?php endif; ?>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <div class="small-box bg-info">
+                    <div class="inner">
+
+                        <p>Списания</p>
+
+                        <?php if ($spisaniyaCountWeek) foreach ($spisaniyaCountWeek as $item) {
+
+                            echo \yii\helpers\Html::tag('p', $item->date.' - '.$item->count);
+
+                        }else echo '-'?>
+
+                        <?php if ($monthCashSpis) : ?>
+
+                            <p>Месяц <?php echo $monthCashSpis ?></p>
 
                         <?php endif; ?>
 
