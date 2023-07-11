@@ -7,6 +7,7 @@ use common\jobs\SendMail;
 use common\jobs\SendPostToTelegramJob;
 use common\models\History;
 use common\models\Queue;
+use common\models\Spisaniya;
 use frontend\modules\user\models\Posts;
 use Yii;
 
@@ -21,6 +22,8 @@ class PayController extends \yii\console\Controller
             ->with('tarif')
             ->all();
 
+        $sum = 0;
+
         foreach ($posts as $post) {
 
             if ($post['tarif']['sum'] > 0) {
@@ -28,6 +31,8 @@ class PayController extends \yii\console\Controller
                 if (Yii::$app->pay->pay($post['tarif']['sum'], $post['user_id'], History::POST_PUBLICATION, $post['id'])) {
 
                     $post->pay_time = \time() + 3600;
+
+                    $sum = $sum + $post['tarif']['sum'];
 
 
                 } else {
@@ -41,5 +46,8 @@ class PayController extends \yii\console\Controller
             }
 
         }
+
+        if ($sum) Spisaniya::add($sum);
+
     }
 }
