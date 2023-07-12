@@ -116,8 +116,6 @@ class SiteController extends Controller
     public function actionIndex($city, $page = false, $pager = false)
     {
 
-        Yii::$app->cache->flush();
-
         $cityInfo = City::getCity($city);
 
         $postRepository = new PostsRepository($cityInfo['id']);
