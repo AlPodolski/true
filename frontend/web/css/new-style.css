@@ -2179,6 +2179,7 @@ input[type=range]::-webkit-slider-thumb::before {
 .metro-list ul{
     list-style: none;
     column-count: 4;
+    padding: 0;
 }
 
 .metro-list ul a{

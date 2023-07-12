@@ -7,6 +7,7 @@ use common\models\HairColor;
 use common\models\National;
 use common\models\Place;
 use common\models\Rayon;
+use common\models\Service;
 use common\models\Time;
 use common\models\Ves;
 use frontend\models\Metro;
@@ -33,6 +34,7 @@ class MegaMenuWidget extends Widget
         $placeList = Place::getPlace();
         $timeList = Time::getTime();
         $rostList = Rost::getData();
+        $service = Service::getService();
         $ves = Ves::getData();
 
         if ($this->bottom_menu) return $this->render('bottom-menu' , [
@@ -51,6 +53,7 @@ class MegaMenuWidget extends Widget
             'nationalList' => $nationalList,
             'placeList' => $placeList,
             'metro' => $metro,
+            'service' => $service,
             'rayon' => $rayon,
             'timeList' => $timeList,
             'rostList' => $rostList,

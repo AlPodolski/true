@@ -74,8 +74,11 @@ use yii\helpers\Html;
 
                     <?php endif; ?>
 
-                    <li>
-                        <a href="/usluga">Услуги</a>
+                    <li data-params-tab-title>
+                        <a >Услуги</a>
+                        <svg>
+                            <use xlink:href='/svg/dest/stack/sprite.svg#arrow-nav'></use>
+                        </svg>
                     </li>
 
                     <li>
@@ -316,6 +319,32 @@ use yii\helpers\Html;
                     </div>
 
                 <?php endif; ?>
+
+
+                <?php if ($service) : ?>
+
+                    <div class="filter-search-params__tab metro-list custom-scrollbar" data-params-tab-content>
+
+                        <ul class="">
+
+                            <?php foreach ($service as $hairColorItem) {
+
+                                echo '<li>';
+
+                                echo Html::a($hairColorItem['value'], '/usluga-' . $hairColorItem['url'], [
+                                    'class' => 'sub-menu-block-item'
+                                ]);
+
+                                echo '</li>';
+
+                            } ?>
+
+                        </ul>
+
+                    </div>
+
+                <?php endif; ?>
+
 
             </div>
         </div>
