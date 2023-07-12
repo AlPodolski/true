@@ -86,7 +86,7 @@ echo \frontend\components\helpers\MicroHelper::image($post);
             <ul class="catalog-item-characters__list">
                 <li class="catalog-item-characters__item">
                     <div class="catalog-item-characters__cur">
-                        <?php echo $post['rost'] ?>
+                        <?php echo $post['rost'] ?? '∞' ?>
                     </div>
                     <div class="catalog-item-characters__name">
                         рост
@@ -94,7 +94,7 @@ echo \frontend\components\helpers\MicroHelper::image($post);
                 </li>
                 <li class="catalog-item-characters__item">
                     <div class="catalog-item-characters__cur">
-                        <?php echo $post['ves'] ?>
+                        <?php echo $post['ves'] ?? '∞' ?>
                     </div>
                     <div class="catalog-item-characters__name">
                         вес
@@ -102,7 +102,7 @@ echo \frontend\components\helpers\MicroHelper::image($post);
                 </li>
                 <li class="catalog-item-characters__item">
                     <div class="catalog-item-characters__cur">
-                        <?php echo $post['breast'] ?>
+                        <?php echo $post['breast'] ?? '∞' ?>
                     </div>
                     <div class="catalog-item-characters__name">
                         грудь

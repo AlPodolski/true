@@ -54,33 +54,43 @@ use yii\helpers\Html;
                     </li>
                     <?php if ($metro) : ?>
                         <li data-params-tab-title>
-                            <a href="/metro">Метро</a>
+                            Метро
+                            <svg>
+                                <use xlink:href='/svg/dest/stack/sprite.svg#arrow-nav'></use>
+                            </svg>
                         </li>
                     <?php endif; ?>
 
-                    <li data-params-tab-title>
-                        <?php if ($rayon) : ?>
-                            <a href="/rayon">Район</a>
-                        <?php endif; ?>
+                    <?php if ($rayon) : ?>
 
-                    </li>
-                    <li data-params-tab-title>
+                        <li data-params-tab-title>
+
+                            Район
+                            <svg>
+                                <use xlink:href='/svg/dest/stack/sprite.svg#arrow-nav'></use>
+                            </svg>
+
+                        </li>
+
+                    <?php endif; ?>
+
+                    <li>
                         <a href="/usluga">Услуги</a>
                     </li>
 
-                    <li data-params-tab-title>
+                    <li>
                         <a href="/deshevye-prostitutki">Дешевые</a>
                     </li>
-                    <li data-params-tab-title>
+                    <li>
                         <a href="/elitnye-prostitutki">Элитные</a>
                     </li>
-                    <li data-params-tab-title>
+                    <li>
                         <a href="/mesto-viezd">На выезд</a>
                     </li>
-                    <li data-params-tab-title>
+                    <li>
                         <a href="/novie">Новые анкеты</a>
                     </li>
-                    <li data-params-tab-title>
+                    <li>
                         <a href="/salon">Интим салоны</a>
                     </li>
                 </ul>
@@ -258,6 +268,55 @@ use yii\helpers\Html;
                         </ul>
                     </div>
                 </div>
+
+                <?php if ($metro) : ?>
+
+                    <div class="filter-search-params__tab metro-list custom-scrollbar" data-params-tab-content>
+
+                        <ul class="">
+
+                            <?php foreach ($metro as $hairColorItem) {
+
+                                echo '<li>';
+
+                                echo Html::a($hairColorItem['value'], '/metro-' . $hairColorItem['url'], [
+                                    'class' => 'sub-menu-block-item'
+                                ]);
+
+                                echo '</li>';
+
+                            } ?>
+
+                        </ul>
+
+                    </div>
+
+                <?php endif; ?>
+
+                <?php if ($rayon) : ?>
+
+                    <div class="filter-search-params__tab metro-list custom-scrollbar" data-params-tab-content>
+
+                        <ul class="">
+
+                            <?php foreach ($rayon as $hairColorItem) {
+
+                                echo '<li>';
+
+                                echo Html::a($hairColorItem['value'], '/rayon-' . $hairColorItem['url'], [
+                                    'class' => 'sub-menu-block-item'
+                                ]);
+
+                                echo '</li>';
+
+                            } ?>
+
+                        </ul>
+
+                    </div>
+
+                <?php endif; ?>
+
             </div>
         </div>
     </div>
