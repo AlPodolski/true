@@ -184,15 +184,15 @@ if ($post['check_photo_status']) $photoTitle = 'Проверенная прос�
                         <div class="single-block-about-list__cur">
                             <ul class="single-block-about__params single-block-about-params">
                                 <li class="single-block-about-params__item">
-                                    <div class="single-block-about-params__cur"><?php echo $post['rost'] ?></div>
+                                    <div class="single-block-about-params__cur"><?php echo $post['rost'] ?? '∞' ?></div>
                                     <div class="single-block-about-params__name">рост</div>
                                 </li>
                                 <li class="single-block-about-params__item">
-                                    <div class="single-block-about-params__cur"><?php echo $post['ves'] ?></div>
+                                    <div class="single-block-about-params__cur"><?php echo $post['ves'] ?? '∞' ?></div>
                                     <div class="single-block-about-params__name">вес</div>
                                 </li>
                                 <li class="single-block-about-params__item">
-                                    <div class="single-block-about-params__cur"><?php echo $post['breast'] ?></div>
+                                    <div class="single-block-about-params__cur"><?php echo $post['breast'] ?? '∞' ?></div>
                                     <div class="single-block-about-params__name">грудь</div>
                                 </li>
                             </ul>
@@ -384,7 +384,7 @@ if ($post['check_photo_status']) $photoTitle = 'Проверенная прос�
                                 } ?>
 
                                 <li class="profile__about-services-list-item <?php echo $statusClass ?>">
-                                    <a href="/service-<?php echo $serviceItem->url ?>"><?php echo $serviceItem->value ?></a>
+                                    <a href="/usluga-<?php echo $serviceItem->url ?>"><?php echo $serviceItem->value ?></a>
                                 </li>
 
                             <?php endif; ?>
@@ -419,7 +419,7 @@ if ($post['check_photo_status']) $photoTitle = 'Проверенная прос�
                                 } ?>
 
                                 <li class="profile__about-services-list-item <?php echo $statusClass ?>">
-                                    <a href="/service-<?php echo $serviceItem->url ?>"><?php echo $serviceItem->value ?></a>
+                                    <a href="/usluga-<?php echo $serviceItem->url ?>"><?php echo $serviceItem->value ?></a>
                                 </li>
 
                             <?php endif; ?>
@@ -453,7 +453,7 @@ if ($post['check_photo_status']) $photoTitle = 'Проверенная прос�
                                 } ?>
 
                                 <li class="profile__about-services-list-item <?php echo $statusClass ?>">
-                                    <a href="/service-<?php echo $serviceItem->url ?>"><?php echo $serviceItem->value ?></a>
+                                    <a href="/usluga-<?php echo $serviceItem->url ?>"><?php echo $serviceItem->value ?></a>
                                 </li>
 
                             <?php endif; ?>
@@ -486,7 +486,7 @@ if ($post['check_photo_status']) $photoTitle = 'Проверенная прос�
                                 } ?>
 
                                 <li class="profile__about-services-list-item <?php echo $statusClass ?>">
-                                    <a href="/service-<?php echo $serviceItem->url ?>"><?php echo $serviceItem->value ?></a>
+                                    <a href="/usluga-<?php echo $serviceItem->url ?>"><?php echo $serviceItem->value ?></a>
                                 </li>
 
                             <?php endif; ?>
@@ -520,7 +520,7 @@ if ($post['check_photo_status']) $photoTitle = 'Проверенная прос�
                                 } ?>
 
                                 <li class="profile__about-services-list-item <?php echo $statusClass ?>">
-                                    <a href="/service-<?php echo $serviceItem->url ?>"><?php echo $serviceItem->value ?></a>
+                                    <a href="/usluga-<?php echo $serviceItem->url ?>"><?php echo $serviceItem->value ?></a>
                                 </li>
 
                             <?php endif; ?>
@@ -554,7 +554,7 @@ if ($post['check_photo_status']) $photoTitle = 'Проверенная прос�
                                 } ?>
 
                                 <li class="profile__about-services-list-item <?php echo $statusClass ?>">
-                                    <a href="/service-<?php echo $serviceItem->url ?>"><?php echo $serviceItem->value ?></a>
+                                    <a href="/usluga-<?php echo $serviceItem->url ?>"><?php echo $serviceItem->value ?></a>
                                 </li>
 
                             <?php endif; ?>
