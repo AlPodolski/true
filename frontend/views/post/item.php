@@ -60,9 +60,11 @@ if ($post['check_photo_status']) $photoTitle = 'Проверенная прос�
                     ]); ?>
 
                 </div>
-                <div class="single-block-about__slider-item">
 
-                    <?php foreach ($post['gal'] as $item) : ?>
+
+                <?php foreach ($post['gal'] as $item) : ?>
+
+                    <div class="single-block-about__slider-item">
 
                         <?php if ($item['type'] != \frontend\models\Files::SELPHY_TYPE) : ?>
 
@@ -86,9 +88,10 @@ if ($post['check_photo_status']) $photoTitle = 'Проверенная прос�
 
                         <?php endif; ?>
 
-                    <?php endforeach; ?>
+                    </div>
 
-                </div>
+                <?php endforeach; ?>
+
             </div>
             <div class="single-block-about__video single-block-about-video">
                 <?php if ($post['video']) : ?>
