@@ -58,11 +58,11 @@ class ObmenkaPayForm extends Model
 
             if (Yii::$app->user->identity->getPostCount() > 9) return 700;
 
-            else return 500;
+            else return 600;
 
         }
 
-        return 300;
+        return 500;
 
     }
 
