@@ -12,4 +12,5 @@ return [
     'view_post_count_for_helper' => 10,
     'start_sum_for_bonus' => 1000,
     'pay_bonus_percent' => 10,
+    'usdt_curst' => 92,
 ];

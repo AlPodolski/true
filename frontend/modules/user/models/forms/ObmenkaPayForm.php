@@ -75,7 +75,7 @@ class ObmenkaPayForm extends Model
 
             $sum = $order->sum;
 
-            if ($currency['value'] == 'usdt_trc20') $sum = $order->sum / 92;
+            if ($currency['value'] == 'usdt_trc20') $sum = $order->sum / Yii::$app->params['usdt_curst'];
 
             if ($payUrl = $obmenka->getPayUrl($order->id.'-'.Yii::$app->params['obm-id-pref'], $sum, $this->city, $currency['value'])){
 

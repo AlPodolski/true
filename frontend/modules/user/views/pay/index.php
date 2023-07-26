@@ -75,6 +75,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         ])
                 ?>
 
+                <p>USDT TRC20, КУРС <?php echo Yii::$app->params['usdt_curst']; ?></p>
+
+
                 <script defer src='https://www.google.com/recaptcha/api.js'></script>
 
                 <div id="register_recapcha" class="g-recaptcha" data-sitekey="6Lffq2EkAAAAAK4PuAXJjhnE1NOP1uUjANyEUxe_"></div>
