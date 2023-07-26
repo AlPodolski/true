@@ -75,7 +75,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ])
                 ?>
 
-                <p>USDT TRC20, КУРС <?php echo Yii::$app->params['usdt_curst']; ?></p>
+                <p>USDT TRC20, КУРС 1 USDT : <?php echo Yii::$app->params['usdt_curst']; ?> руб.</p>
 
 
                 <script defer src='https://www.google.com/recaptcha/api.js'></script>
