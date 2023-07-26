@@ -248,22 +248,20 @@ class SiteController extends Controller
 
             $data = $obmenka->getOrderInfo($id . '-' . Yii::$app->params['obm-id-pref']);
 
-            if (isset($data->amount) and ($data->status == 'FINISHED' or $data->status == 'PAYED_RECALC')) {
+            if (isset($data->amount) and $data->status == 'FINISHED') {
 
                 $transaction = Yii::$app->db->beginTransaction();
 
                 $order->status = ObmenkaOrder::FINISH;
 
-                $sum = (int)$data->accrual_amount;
+                if ($order->sum >= Yii::$app->params['start_sum_for_bonus']) {
 
-                if ($sum >= Yii::$app->params['start_sum_for_bonus']) {
-
-                    $bonus = ($sum / 100) * Yii::$app->params['pay_bonus_percent'];
-                    $user->cash = $user->cash + (int)$bonus + $sum;
+                    $bonus = ($order->sum / 100) * Yii::$app->params['pay_bonus_percent'];
+                    $user->cash = $user->cash + (int)$bonus + (int)$order->sum;
 
                 } else {
 
-                    $user->cash = $user->cash + $sum;
+                    $user->cash = $user->cash + (int)$order->sum;
 
                 }
 
@@ -279,7 +277,7 @@ class SiteController extends Controller
                     $billPayEvent = new BillPayEvent();
 
                     $billPayEvent->user_id = $user->id;
-                    $billPayEvent->sum = $sum;
+                    $billPayEvent->sum = (int)$order->sum;
                     $billPayEvent->type = History::BALANCE_REPLENISHMENT;
                     $billPayEvent->balance = $user->cash;
 
