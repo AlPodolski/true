@@ -3823,6 +3823,13 @@ input:checked + .img-label-radio:before {
     top: 5px;
     left: 4px;
 }
+.usdt_label::before{
+    display: block;
+    content: 'USDT';
+    position: absolute;
+    top: 5px;
+    left: 4px;
+}
 
 input:checked + .image-label-radio {
     border: 1px solid #0F2C93;
