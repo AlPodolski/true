@@ -81,7 +81,7 @@ class ObmenkaPayForm extends Model
 
                 $order->link = $payUrl;
 
-                $payUrl->save();
+                //$payUrl->save();
 
                 return $payUrl;
 
