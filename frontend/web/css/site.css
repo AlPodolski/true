@@ -3846,6 +3846,10 @@ input:checked + .img-label-radio:before {
     left: 4px;
 }
 
+.yandex_label{
+    width: 74px;
+}
+
 input:checked + .image-label-radio {
     border: 1px solid #0F2C93;
 }
