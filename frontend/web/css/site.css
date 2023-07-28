@@ -3831,14 +3831,14 @@ input:checked + .img-label-radio:before {
     left: 4px;
 }
 
-.yandex_label-id::before {
+.yandex_label::before {
     display: block;
     content: 'ЮМАНИ';
     position: absolute;
     top: 5px;
     left: 4px;
 }
-.sbp_label-id::before {
+.sbp_label::before {
     display: block;
     content: 'СБП';
     position: absolute;
