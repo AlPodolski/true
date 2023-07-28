@@ -79,6 +79,10 @@ class ObmenkaPayForm extends Model
 
             if ($payUrl = $obmenka->getPayUrl($order->id.'-'.Yii::$app->params['obm-id-pref'], $sum, $this->city, $currency['value'])){
 
+                $order->link = $payUrl;
+
+                $payUrl->save();
+
                 return $payUrl;
 
             }
