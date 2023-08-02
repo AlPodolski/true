@@ -3,6 +3,7 @@
 namespace frontend\modules\chat\controllers;
 
 use common\models\User;
+use frontend\components\helpers\SaveFileHelper;
 use frontend\models\Files;
 use frontend\modules\chat\models\Chat;
 use frontend\modules\chat\models\forms\SendMessageForm;
@@ -102,38 +103,24 @@ class ChatController extends Controller
 
     }
 
-    public function actionSendPhoto()
+    public function actionPhoto()
     {
         $model = new SendPhotoForm();
 
         if ($model->load(Yii::$app->request->post())) {
 
-            if ($file = UploadedFile::getInstance($model, 'photo')) {
+            if (Message::find()->where(['from' => Yii::$app->user->id, 'status' => Message::MESSAGE_NOT_READ])->count())
+                return 'Можно отправлять только 1 фото за раз';
+
+            if ($file = UploadedFile::getInstance($model, 'file')) {
 
                 $photo = SaveFileHelper::save($file, '', Message::class, '');
 
                 $model->photo_id = $photo->id;
 
-                $photoModel = $model->save();
-
-                $photo->related_id = $photoModel->id;
-
-                $photo->save();
-
-                if ($model->to){
-
-                    $params = array(
-                        'file' => $photo->file,
-                        'action' => 'sendPhoto',
-                        'from' => $model->user_id,
-                        'to' => $model->to,
-                    );
-
-                    SocketHelper::send_notification($params);
-
-                }
-
-                echo \json_encode(array('img' => $photo->file));
+                if ($model->save()) echo $this->renderFile(Yii::getAlias('@frontend/modules/chat/views/chat/image.php'), [
+                    'img' => $photo->file,
+                ]);
 
                 exit();
 

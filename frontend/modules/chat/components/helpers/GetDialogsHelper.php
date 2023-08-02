@@ -16,7 +16,7 @@ class GetDialogsHelper
 
     public static function getDialog($dialog_id){
 
-        return $dialogList = UserDialog::find()->where(['dialog_id' => $dialog_id])->with('message')->asArray()->one();
+        return $dialogList = UserDialog::find()->where(['dialog_id' => $dialog_id])->with('message')->one();
 
     }
 

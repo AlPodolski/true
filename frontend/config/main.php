@@ -122,6 +122,7 @@ return [
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/chat' => 'chat/chat/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/chat/get' => 'chat/chat/get',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/chat/send' => 'chat/chat/send',
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/chat/send/photo' => 'chat/chat/photo',
 
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/phone/get-info' => 'user/phone/get-info',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/phone/add-review' => 'user/phone/add-review',

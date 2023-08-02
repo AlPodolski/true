@@ -16,6 +16,8 @@ use Yii;
  * @property int|null $status Отражает состояние сообщения, прочитано или нет
  * @property int $id
  * @property integer $to
+ * @property string $class
+ * @property integer $related_id
  */
 class Message extends \yii\db\ActiveRecord
 {

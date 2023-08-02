@@ -643,6 +643,45 @@ function get_comments_forum(object) {
 
 }
 
+function send_photo(){
+
+    var formData = new FormData($("#send-message-photo-form")[0]);
+
+    var tmp = this;
+
+    $.ajax({
+        url: '/cabinet/chat/send/photo',
+        type: 'POST',
+        data: formData,
+        datatype: 'json',
+        // async: false,
+        beforeSend: function () {
+            $(this).siblings('label').text('Загрузка');
+        },
+        success: function (data) {
+
+            $('.chat').prepend(data);
+
+            $(tmp).closest('.new-anket').find('.photo-list').attr('src', data);
+
+            $('.chat-wrap').scrollTop($('.chat-wrap').height() + 99999999);
+
+        },
+
+        complete: function () {
+            // success alerts
+        },
+
+        error: function (data) {
+            alert("There may a error on uploading. Try again later");
+        },
+        cache: false,
+        contentType: false,
+        processData: false
+    });
+
+}
+
 function getPhone(object) {
 
     var id = $(object).attr('data-id');
