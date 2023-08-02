@@ -14,6 +14,10 @@ body{
 .grid-view{
     overflow: scroll;
 }
+.post-text img{
+    max-width: 250px;
+    margin-top: 10px;
+}
 header{
     /* 0 flex-grow, 0 flex-shrink, auto flex-basis */
     flex: 0 0 auto;
