@@ -48,6 +48,23 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <div class="pay-form-wrap">
 
+                <?php if ($validOrders) : ?>
+
+                    <p> Перед созданием новых платежей попробуйте оплатить уже имеющийся </p>
+
+                    <?php foreach ($validOrders as $validOrder) : ?>
+
+                        <?php if ($validOrder->link) : ?>
+
+                            <p> Счёт № <?php echo $validOrder->id ?>, сумма <?php echo $validOrder->sum ?> р. <a
+                                        href="<?php echo $validOrder->link ?>">Оплатить</a></p>
+
+                        <?php endif; ?>
+
+                    <?php endforeach; ?>
+
+                <?php endif; ?>
+
                 <?php $form = ActiveForm::begin([
                     'id' => 'login-form',
                     'options' => ['class' => 'form-horizontal'],
@@ -93,23 +110,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
 
                 <?php ActiveForm::end() ?>
-
-                <?php if ($validOrders) : ?>
-
-                    <p> Перед созданием новых платежей попробуйте оплатить уже имеющийся </p>
-
-                    <?php foreach ($validOrders as $validOrder) : ?>
-
-                        <?php if ($validOrder->link) : ?>
-
-                            <p> Счёт № <?php echo $validOrder->id ?>, сумма <?php echo $validOrder->sum ?> <a
-                                        href="<?php echo $validOrder->link ?>">Оплатить</a></p>
-
-                        <?php endif; ?>
-
-                    <?php endforeach; ?>
-
-                <?php endif; ?>
 
             </div>
 
