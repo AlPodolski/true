@@ -87,6 +87,7 @@ class PayController extends Controller
 
         $validOrders = ObmenkaOrder::find()
             ->where(['user_id' => Yii::$app->user->id])
+            ->andWhere(['status' => ObmenkaOrder::WAIT])
             ->andWhere(['>', 'created_at',  time() - 600])
             ->all();
 
