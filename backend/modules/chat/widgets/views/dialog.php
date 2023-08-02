@@ -72,7 +72,7 @@ $photoModel = new \frontend\modules\chat\models\forms\SendPhotoForm();
                                         $messagePhoto = \frontend\models\Files::find()
                                             ->where(['id' => $item['related_id']])->asArray()->one();
 
-                                        echo \yii\helpers\Html::img($messagePhoto['file']);
+                                        echo \yii\helpers\Html::img('http://moskva.' . Yii::$app->params['site_name'].$messagePhoto['file']);
 
                                     }
 
