@@ -67,6 +67,19 @@ $photoModel = new \frontend\modules\chat\models\forms\SendPhotoForm();
 
                                 <div class="post-text">
 
+                                    <?php if ($item['class'] == \frontend\models\Files::class) {
+
+                                        $messagePhoto = \frontend\models\Files::find()
+                                            ->where(['id' => $item['related_id']])->asArray()->one();
+
+                                        echo \yii\helpers\Html::img($messagePhoto['file']);
+
+                                    }
+
+                                    else {
+
+                                        ?>
+
                                         <span class="message-wrap">
 
                                             <?php echo $item['message'] ?>
@@ -78,6 +91,8 @@ $photoModel = new \frontend\modules\chat\models\forms\SendPhotoForm();
                                             </span>
 
                                         </span>
+
+                                    <?php } ?>
 
                                 </div>
 
