@@ -63,6 +63,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <?php endforeach; ?>
 
+                    <hr>
+
                 <?php endif; ?>
 
                 <?php $form = ActiveForm::begin([
