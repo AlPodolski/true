@@ -85,10 +85,16 @@ class PayController extends Controller
         $params['History']['user_id'] = Yii::$app->user->id;
         $dataProvider = $searchModel->search($params);
 
+        $validOrders = ObmenkaOrder::find()
+            ->where(['user_id' => Yii::$app->user->id])
+            ->andWhere(['>', 'created_at',  time() - 600])
+            ->all();
+
         return $this->render('index', [
             'model' => $model,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'validOrders' => $validOrders,
         ]);
     }
 

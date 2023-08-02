@@ -5,6 +5,8 @@
 /* @var $searchModel backend\models\History */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
+/* @var $validOrders \common\models\ObmenkaOrder[] */
+
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\grid\GridView;
@@ -51,9 +53,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     'options' => ['class' => 'form-horizontal'],
                 ]) ?>
 
-                <p>Бонус <?php echo Yii::$app->params['pay_bonus_percent']?>% при пополнении от <?php echo Yii::$app->params['start_sum_for_bonus']?></p>
+                <p>Бонус <?php echo Yii::$app->params['pay_bonus_percent'] ?>% при пополнении
+                    от <?php echo Yii::$app->params['start_sum_for_bonus'] ?></p>
 
-                <p>Средства могут зачисляться с задержкой, на отправку уведомления с платежной системы нужно немного времени</p>
+                <p>Средства могут зачисляться с задержкой, на отправку уведомления с платежной системы нужно немного
+                    времени</p>
 
                 <?= $form->field($model, 'sum')->textInput(['value' => 700]) ?>
 
@@ -61,12 +65,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'currency')
                     ->radioList(ArrayHelper::map(\common\models\ObmenkaCurrency::find()->all(), 'id', 'name'),
                         [
-                            'item' => function($index, $label, $name, $checked, $value) {
+                            'item' => function ($index, $label, $name, $checked, $value) {
                                 $chec = '';
                                 $return = '<span>';
                                 if ($index == 0) $chec = 'checked';
-                                $return .= '<input '.$chec.' id="'.mb_strtolower($label).'_label-id" type="radio" name="' . $name . '" value="' . $value . '" tabindex="'.$index.'">';
-                                $return .= '<label for="'.mb_strtolower($label).'_label-id" class="modal-radio '.mb_strtolower($label).'_label image-label-radio">';
+                                $return .= '<input ' . $chec . ' id="' . mb_strtolower($label) . '_label-id" type="radio" name="' . $name . '" value="' . $value . '" tabindex="' . $index . '">';
+                                $return .= '<label for="' . mb_strtolower($label) . '_label-id" class="modal-radio ' . mb_strtolower($label) . '_label image-label-radio">';
                                 $return .= '</label>';
                                 $return .= '</span>';
 
@@ -75,18 +79,37 @@ $this->params['breadcrumbs'][] = $this->title;
                         ])
                 ?>
 
-                <p>USDT TRC20, При  оплате  USDT курс конвертации 1 USDT = <?php echo Yii::$app->params['usdt_curst']; ?> руб.</p>
+                <p>USDT TRC20, При оплате USDT курс конвертации 1 USDT = <?php echo Yii::$app->params['usdt_curst']; ?>
+                    руб.</p>
 
 
                 <script defer src='https://www.google.com/recaptcha/api.js'></script>
 
-                <div id="register_recapcha" class="g-recaptcha" data-sitekey="6Lffq2EkAAAAAK4PuAXJjhnE1NOP1uUjANyEUxe_"></div>
+                <div id="register_recapcha" class="g-recaptcha"
+                     data-sitekey="6Lffq2EkAAAAAK4PuAXJjhnE1NOP1uUjANyEUxe_"></div>
 
                 <div class="form-group">
                     <?= Html::submitButton('Отправить', ['class' => 'orange-btn d-block']) ?>
                 </div>
 
                 <?php ActiveForm::end() ?>
+
+                <?php if ($validOrders) : ?>
+
+                    <p> Перед созданием новых платежей попробуйте оплатить уже имеющийся </p>
+
+                    <?php foreach ($validOrders as $validOrder) : ?>
+
+                        <?php if ($validOrder->link) : ?>
+
+                            <p> Счёт № <?php echo $validOrder->id ?>, сумма <?php echo $validOrder->sum ?> <a
+                                        href="<?php echo $validOrder->link ?>">Оплатить</a></p>
+
+                        <?php endif; ?>
+
+                    <?php endforeach; ?>
+
+                <?php endif; ?>
 
             </div>
 
@@ -113,15 +136,15 @@ $this->params['breadcrumbs'][] = $this->title;
                             /* @var $history \common\models\History */
                             switch ($history['type']) {
                                 case \common\models\History::BALANCE_REPLENISHMENT:
-                                    return  "Пополнение баланса";
+                                    return "Пополнение баланса";
                                 case \common\models\History::UP_ANKET:
-                                    return  "Поднятие анкеты";
+                                    return "Поднятие анкеты";
                                 case \common\models\History::BUY_VIEW:
-                                    return  "Покупка просмотров";
+                                    return "Покупка просмотров";
                                 case \common\models\History::POST_PUBLICATION:
-                                    return  "Публикация анкеты";
+                                    return "Публикация анкеты";
                                 case \common\models\History::POST_PUBLICATION_TELEGRAM:
-                                    return  "Публикация в телеграм";
+                                    return "Публикация в телеграм";
                             }
 
                             return 'Ошибка';
