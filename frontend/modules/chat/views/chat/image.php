@@ -7,7 +7,8 @@
             <div class="post-text">
 
                 <?php
-                    echo \yii\helpers\Html::img($img);
+                    if (strpos($img, '.pdf')) echo \yii\helpers\Html::a('Смотреть', $img);
+                    else  echo \yii\helpers\Html::img( $img);
                 ?>
 
             </div>

@@ -19,27 +19,25 @@ class SaveFileHelper
 
         $model->related_id = $relatedId;
 
-        if (\getimagesize($file->tempName)){
+        $type = \explode('/', $file->type);
 
-            $type = \explode('/', $file->type);
+        if ($type[1] != 'jpeg' and $type[1] != 'jpg' and $type[1] != 'pdf') exit();
 
-            $model->file = 'photo-'.$id.'-'.\md5($file->name).\time().'.'.$type[1];
+        $model->file = 'file-' . $id . '-' . \md5($file->name) . \time() . '.' . $type[1];
 
-            $dir_hash = DirHelprer::generateDirNameHash($model->file).'/';
+        $dir_hash = DirHelprer::generateDirNameHash($model->file) . '/';
 
-            $dir = Yii::$app->params['photo_path'].$dir_hash;
+        $dir = Yii::$app->params['photo_path'] . $dir_hash;
 
-            $save_dir = DirHelprer::prepareDir(Yii::getAlias('@frontend').'/web/'.$dir);
+        $save_dir = DirHelprer::prepareDir(Yii::getAlias('@frontend') . '/web/' . $dir);
 
-            $file->saveAs($save_dir.$model->file);
+        $file->saveAs($save_dir . $model->file);
 
-            $model->file = $dir.$model->file;
+        $model->file = $dir . $model->file;
 
-            $model->save();
+        $model->save();
 
-            return $model;
-
-        }
+        return $model;
 
     }
 }

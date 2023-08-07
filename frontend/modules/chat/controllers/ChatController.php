@@ -109,8 +109,9 @@ class ChatController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
 
-            if (Message::find()->where(['from' => Yii::$app->user->id, 'status' => Message::MESSAGE_NOT_READ, 'class' => Files::class])->count())
-                return 'Можно отправлять только 1 фото за раз';
+            /*if (Message::find()->where(['from' => Yii::$app->user->id,
+                'status' => Message::MESSAGE_NOT_READ, 'class' => Files::class])->count())
+                return 'Можно отправлять только 1 фото за раз';*/
 
             if ($file = UploadedFile::getInstance($model, 'file')) {
 
@@ -123,7 +124,6 @@ class ChatController extends Controller
                 ]);
 
                 exit();
-
 
             }
 

@@ -72,7 +72,11 @@ $photoModel = new \frontend\modules\chat\models\forms\SendPhotoForm();
                                         $messagePhoto = \frontend\models\Files::find()
                                             ->where(['id' => $item['related_id']])->asArray()->one();
 
-                                        echo \yii\helpers\Html::img('http://moskva.' . Yii::$app->params['site_name'].$messagePhoto['file']);
+                                        $file = 'http://moskva.' . Yii::$app->params['site_name'].$messagePhoto['file'];
+
+                                        if (strpos($messagePhoto['file'], '.pdf'))
+                                            echo \yii\helpers\Html::a('Смотреть', $file);
+                                        else  echo \yii\helpers\Html::img( $file);
 
                                     }
 
