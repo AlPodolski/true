@@ -4,6 +4,7 @@ namespace console\controllers;
 
 use common\components\helpers\TelegramChanelHelper;
 use common\jobs\SendPostToTelegramJob;
+use common\models\History;
 use common\models\Phone;
 use common\models\PhoneReview;
 use common\models\Pol;
@@ -235,6 +236,11 @@ class CronController extends Controller
             $post->delete();
 
         }
+    }
+
+    public function actionCleanHistory()
+    {
+        History::deleteAll(['<', 'created_at', time() - (3600 * 24 *7)]);
     }
 
 }
