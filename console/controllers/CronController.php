@@ -240,7 +240,7 @@ class CronController extends Controller
 
     public function actionCleanHistory()
     {
-        History::deleteAll(['<', 'created_at', time() - (3600 * 24 *7)]);
+        History::deleteAll(['<', 'created_at', time() - (3600 * 24 *14)]);
     }
 
 }
