@@ -101,6 +101,7 @@ class PublicationController extends Controller
         switch ($type) {
             case 'start':
                 $posts = Posts::find()->where(['status' => Posts::POST_DONT_PUBLICATION_STATUS])
+                    ->with('tarif')
                     ->andWhere(['user_id' => Yii::$app->user->id])->all();
                 break;
             case 'stop':
@@ -113,6 +114,13 @@ class PublicationController extends Controller
 
             switch ($type) {
                 case 'start':
+
+                    if ($post->pay_time < time()){
+
+                        if ($post->tarif->sum > Yii::$app->user->identity->cash) return 'Недостаточно средств';
+
+                    }
+
                     $post->status = Posts::POST_ON_PUPLICATION_STATUS;
                     break;
                 case 'stop':
