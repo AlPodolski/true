@@ -39,7 +39,7 @@ class History extends HistoryModel
      */
     public function search($params)
     {
-        $query = HistoryModel::find();
+        $query = HistoryModel::find()->cache(120);
 
         // add conditions that should always apply here
 
