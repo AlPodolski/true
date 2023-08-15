@@ -28,6 +28,7 @@ class CabinetController extends Controller
 
         $posts = Posts::find()
             ->where(['user_id' => Yii::$app->user->id])
+            ->cache(30)
             ->with('avatar', 'message', 'city')
             ->all();
 
