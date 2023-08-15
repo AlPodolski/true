@@ -34,11 +34,11 @@ class PublicationController extends Controller
             ->andWhere(['user_id' => Yii::$app->user->id])
             ->one()) throw new NotFoundHttpException();
 
-        if (Yii::$app->request->post('key')){
+        if (Yii::$app->request->post('key')) {
 
-            if (Yii::$app->request->post('key') == 'start'){
+            if (Yii::$app->request->post('key') == 'start') {
 
-                if ($post->pay_time < time()){
+                if ($post->pay_time < time()) {
 
                     if ($post->tarif->sum > Yii::$app->user->identity->cash) return 'Недостаточно средств';
 
@@ -51,7 +51,7 @@ class PublicationController extends Controller
 
             }
 
-            if (Yii::$app->request->post('key') == 'stop'){
+            if (Yii::$app->request->post('key') == 'stop') {
 
                 $post->status = Posts::POST_DONT_PUBLICATION_STATUS;
                 $post->save();
@@ -75,7 +75,7 @@ class PublicationController extends Controller
 
             case Posts::POST_DONT_PUBLICATION_STATUS:
 
-                if ($post->pay_time < time()){
+                if ($post->pay_time < time()) {
 
                     if ($post->tarif->sum > Yii::$app->user->identity->cash) return 'Недостаточно средств';
 
@@ -96,41 +96,53 @@ class PublicationController extends Controller
     public function actionStartAll()
     {
 
+        if (Yii::$app->user->isGuest) return false;
+
         $type = Yii::$app->request->post('data');
 
-        switch ($type) {
-            case 'start':
-                $posts = Posts::find()->where(['status' => Posts::POST_DONT_PUBLICATION_STATUS])
-                    ->with('tarif')
-                    ->andWhere(['user_id' => Yii::$app->user->id])->all();
-                break;
-            case 'stop':
-                $posts = Posts::find()->where(['status' => Posts::POST_ON_PUPLICATION_STATUS])
-                    ->andWhere(['user_id' => Yii::$app->user->id])->all();
-                break;
-        }
+        $data = Yii::$app->cache->get('rate_limit_' . Yii::$app->user->id);
 
-        if ($posts) foreach ($posts as $post) {
+        if ($data === false) {
 
             switch ($type) {
                 case 'start':
-
-                    if ($post->pay_time < time()){
-
-                        if ($post->tarif->sum > Yii::$app->user->identity->cash) return 'Недостаточно средств';
-
-                    }
-
-                    $post->status = Posts::POST_ON_PUPLICATION_STATUS;
+                    $posts = Posts::find()->where(['status' => Posts::POST_DONT_PUBLICATION_STATUS])
+                        ->with('tarif')
+                        ->andWhere(['user_id' => Yii::$app->user->id])->all();
                     break;
                 case 'stop':
-                    $post->status = Posts::POST_DONT_PUBLICATION_STATUS;
+                    $posts = Posts::find()->where(['status' => Posts::POST_ON_PUPLICATION_STATUS])
+                        ->andWhere(['user_id' => Yii::$app->user->id])->all();
                     break;
             }
 
-            $post->save();
+            if ($posts) foreach ($posts as $post) {
+
+                switch ($type) {
+                    case 'start':
+
+                        if ($post->pay_time < time()) {
+
+                            if ($post->tarif->sum > Yii::$app->user->identity->cash) return 'Недостаточно средств';
+
+                        }
+
+                        $post->status = Posts::POST_ON_PUPLICATION_STATUS;
+                        break;
+                    case 'stop':
+                        $post->status = Posts::POST_DONT_PUBLICATION_STATUS;
+                        break;
+                }
+
+                $post->save();
+
+            }
+
+            // Сохраняем значение $data в кэше. Данные можно получить в следующий раз.
+            Yii::$app->cache->set('rate_limit_' . Yii::$app->user->id, 1, 60);
 
         }
+
     }
 
 }
