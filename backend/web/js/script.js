@@ -48,6 +48,7 @@ function editPhone(object){
         success: function (data) {
 
             $(object).text('Готово');
+            $('#sendmessageform-text').text('Готово');
 
         }
     })

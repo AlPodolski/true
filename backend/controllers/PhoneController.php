@@ -26,6 +26,8 @@ class PhoneController extends Controller
         $phone = \Yii::$app->request->post('phone');
         $userId = \Yii::$app->request->post('user_id');
 
+        $phone = preg_replace('/[^0-9]/', '', $phone);
+
         Posts::updateAll(['phone' => $phone], ['user_id' => $userId]);
     }
 
