@@ -18,7 +18,7 @@ $photoModel = new \frontend\modules\chat\models\forms\SendPhotoForm();
 ?>
 
 <div class="page-block chat-block " data-to="<?php echo $userTo['id'] ?>">
-    <div class="dialog-name red-text text-center"><?php echo($userTo['username']); ?></div>
+    <div class="dialog-name red-text text-center"><?php echo($userTo['username']); ?> <?php echo $userTo['id'] ?></div>
     <div class="actions-wrap d-flex">
         <?php if ($userTo['status'] == \common\models\User::STATUS_INACTIVE) : ?>
             <div onclick="activateUser(this)" data-id="<?php echo $userTo['id'] ?>" class="btn btn-success">Активировать</div>
