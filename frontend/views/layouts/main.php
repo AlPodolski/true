@@ -69,9 +69,6 @@ AppAsset::register($this);
                                         <a href="/pol-muzhskoj" class="header-tags__link">Жигало </a>
                                     </li>
                                     <li class="header-tags__item">
-                                        <a href="/pol-trans" class="header-tags__link">Трансы </a>
-                                    </li>
-                                    <li class="header-tags__item">
                                         <a href="/proverennye" class="header-tags__link">Проверенные </a>
                                     </li>
                                 </ul>
