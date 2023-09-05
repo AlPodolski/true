@@ -168,6 +168,11 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
+    <br>
+
+    <div onclick="start_all()" class="start-all btn btn-success">Одобрить все(На странице)</div>
+
+
     <?php \yii\widgets\Pjax::end(); ?>
 
 
