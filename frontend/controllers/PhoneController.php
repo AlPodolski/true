@@ -53,7 +53,7 @@ class PhoneController extends Controller
                     $data = $data->andWhere(['<=', 'price', 4999])
                         ->andWhere(['>=', 'price', 3000]);
                 } else {
-                    $data = $data->where(['>=', 'price', 5000]);
+                    $data = $data->andWhere(['>=', 'price', 5000]);
                 }
 
                 $data = $data->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
