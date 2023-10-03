@@ -34,31 +34,29 @@ class PhoneController extends Controller
 
         $post = Posts::find()->where(['id' => $postId])->cache(3600)->one();
 
-        if ($post){
+        if ($post) {
 
             if ($post->fake) {
 
-                ViewCountHelper::addView($post->id , Yii::$app->params['redis_view_phone_count_key']);
+                ViewCountHelper::addView($post->id, Yii::$app->params['redis_view_phone_count_key']);
                 return $post->phone;
 
-            }else{
-
-                if ($price <= 3000){
-                    $priceRange = array('min' => $price - 500, 'max' => $price + 500);
-                }
-                elseif($price > 3000 and $price <= 5000){
-                    $priceRange = array('min' => $price - 1000, 'max' => $price + 1000);
-                }
-                else{
-                    $priceRange = array('min' => $price - 2001, 'max' => $price + 2001);
-                }
+            } else {
 
                 $data = Posts::find()
                     ->where(['city_id' => $city_id])
-                    ->andWhere(['pol_id' => Pol::WOMAN_POL])
-                    ->andWhere(['<=', 'price', $priceRange['max']])
-                    ->andWhere(['>=', 'price', $priceRange['min']])
-                    ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
+                    ->andWhere(['pol_id' => Pol::WOMAN_POL]);
+
+                if ($price <= 2999) {
+                    $data = $data->where(['<=', 'price', 2999]);
+                } elseif ($price > 3000 and $price <= 5000) {
+                    $data = $data->andWhere(['<=', 'price', 4999])
+                        ->andWhere(['>=', 'price', 3000]);
+                } else {
+                    $data = $data->where(['>=', 'price', 5000]);
+                }
+
+                $data = $data->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
                     ->andWhere(['fake' => Posts::POST_REAL])
                     ->andWhere(['>', 'advert_phone_view_count', 0])
                     ->andWhere(['<', 'last_phone_view_at', time() - 1100])
@@ -73,13 +71,13 @@ class PhoneController extends Controller
 
                     $data->save();
 
-                    ViewCountHelper::addView($data->id , Yii::$app->params['redis_view_phone_count_key']);
+                    ViewCountHelper::addView($data->id, Yii::$app->params['redis_view_phone_count_key']);
 
                     return $data->phone;
 
-                }else{
+                } else {
 
-                    ViewCountHelper::addView($post->id , Yii::$app->params['redis_view_phone_count_key']);
+                    ViewCountHelper::addView($post->id, Yii::$app->params['redis_view_phone_count_key']);
                     return $post->phone;
 
                 }
