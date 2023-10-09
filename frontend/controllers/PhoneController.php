@@ -49,7 +49,7 @@ class PhoneController extends Controller
 
                 if ($price <= 2999) {
                     $data = $data->andWhere(['<=', 'price', 2999]);
-                } elseif ($price > 3000 and $price <= 5000) {
+                } elseif ($price > 3000 and $price <= 4999) {
                     $data = $data->andWhere(['<=', 'price', 4999])
                         ->andWhere(['>=', 'price', 3000]);
                 } else {
