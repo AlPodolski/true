@@ -50,7 +50,7 @@ class TelegramChanelHelper
 
                 $result[] = [
                     'type' => 'photo',
-                    'media' => 'https://moskva8.sex-team.com'.Yii::$app->imageCache->thumbSrc($item, '500_700')
+                    'media' => 'https://moskva8.intim-price.com'.Yii::$app->imageCache->thumbSrc($item, '500_700')
                 ];
 
                 $i++;
