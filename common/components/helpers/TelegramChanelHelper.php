@@ -71,7 +71,7 @@ class TelegramChanelHelper
             'type' => 'photo',
             'parse_mode' => 'html',
             'caption' => self::prepareTextAboutPost($post),
-            'media' => 'https://moskva8.sex-team.com'.Yii::$app->imageCache->thumbSrc($post->avatar->file, '500_700')
+            'media' => 'https://moskva8.intim-price.com'.Yii::$app->imageCache->thumbSrc($post->avatar->file, '500_700')
         ]
         );
     }
@@ -94,7 +94,7 @@ class TelegramChanelHelper
 
         if ($post->phone) $result .= 'Номер: +' . $post->phone . \PHP_EOL;
 
-        $result .= '<a href="https://moskva8.sex-team.com/post/'.$post->id.'">Подробнее</a>';
+        $result .= '<a href="https://moskva8.intim-price.com/post/'.$post->id.'">Подробнее</a>';
 
         return $result;
     }
