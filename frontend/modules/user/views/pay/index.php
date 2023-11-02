@@ -7,6 +7,8 @@
 
 /* @var $validOrders \common\models\ObmenkaOrder[] */
 
+/* @var $orders \common\models\ObmenkaOrder[] */
+
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\grid\GridView;
@@ -118,10 +120,47 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
 
         <div class="col-12">
+            <h1 class="margin-top-20">Пополнения</h1>
+        </div>
+
+        <div class="col-12 margin-top-20 table-history-pay">
+            <table class="table table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th>Ид операции</th>
+                    <th>Сумма</th>
+                    <th>Статус</th>
+                    <th>Дата создания</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($orders as $item) : ?>
+                    <tr class="filters">
+                        <td><?= $item->id ?></td>
+                        <td><?= $item->sum ?></td>
+                        <td>
+                            <?php
+
+                            if ($item->status == \common\models\ObmenkaOrder::WAIT) echo 'Ожидает оплаты';
+                            if ($item->status == \common\models\ObmenkaOrder::FINISH) echo 'Оплачен';
+
+                            ?>
+                        </td>
+                        <td>
+                            <?= date('Y-m-d H:i:s', $item->created_at) ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-12">
             <h1 class="margin-top-20">История денежных операций</h1>
         </div>
 
         <div class="col-12 margin-top-20 table-history-pay">
+
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,

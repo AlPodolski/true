@@ -91,11 +91,18 @@ class PayController extends Controller
             ->andWhere(['>', 'created_at',  time() - 600])
             ->all();
 
+        $orders = ObmenkaOrder::find()
+            ->where(['user_id' => Yii::$app->user->id])
+            ->orderBy('id DESC')
+            ->limit(30)
+            ->all();
+
         return $this->render('index', [
             'model' => $model,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'validOrders' => $validOrders,
+            'orders' => $orders,
         ]);
     }
 
