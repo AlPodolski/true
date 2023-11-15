@@ -236,6 +236,10 @@ function send_message(object){
 
 }
 
+function setFastMessage(object){
+    $('#sendmessageform-text').val($(object).attr('data-text'))
+}
+
 function delete_item(object){
 
     var deleteUrl = $(object).attr('delete-url');

@@ -671,18 +671,15 @@ class ImportController extends Controller
     public function actionDns()
     {
 
+        $host = '4-dosug.com';
 
-        $host = 'sex-trust.com';
-        $ip = Yii::$app->params['server_ip'];
+        $ip = '	185.197.160.135';
 
-        $cityList = City::find()
-            ->where(['country' => 'Belarusy'])
-            ->orWhere(['country' => 'Kazahstan'])
-            ->all();
+        $cityList = array('abakan', 'abinsk', 'achinsk', 'achit', 'admin', 'ahtubinsk', 'akademgorodok', 'aldan', 'aleksandrov', 'aleksin', 'almetevsk', 'alyshta', 'amursk', 'amurzet', 'anadyir', 'anapa', 'angarsk', 'aniva', 'anopino', 'anzhero-sudzhensk', 'apatityi', 'apsheronsk', 'aramil', 'arhangelsk', 'armavir', 'armyansk', 'arsenev', 'artyom', 'arzamas', 'asbest', 'ashitkovo', 'astana', 'astrahan', 'atkarsk', 'aznakaevo', 'azov', 'balakovo', 'balashixa', 'balaxna', 'balesino', 'barabash', 'barnaul', 'bataisk', 'belaya-kalitva', 'belebei', 'belgorod', 'belogorsk', 'belokiryxa', 'beloomyt', 'belorechensk', 'beloreck', 'belovo', 'beloyarskiy', 'berdsk', 'berezniki', 'beryozovskiy', 'beslan', 'birobidzhan2', 'birobidzhan', 'biysk', 'blagodarnyiy', 'blagoveschensk', 'bobruysk', 'bodaybo', 'bogoroditsk', 'bogorodsk', 'boguchar', 'bolshoy-kamen', 'bor', 'borisoglebsk', 'borovichi', 'borovsk', 'borzya', 'bratsk', 'bronnitsyi', 'bryansk', 'budyonnovsk', 'buzuluk', 'bygylma', 'celina', 'chapaevsk', 'chat', 'chebarkul', 'cheboksary', 'chehov', 'chelyabinsk', 'cheremhovo', 'cherepovec', 'cherkessk', 'chernogolovka', 'chernogorsk', 'chernomorskoe', 'chernuska', 'chernyahovsk', 'chita', 'chusovoi', 'dalnegorsk', 'dalnerechensk', 'danilov', 'derbent', 'desnogorsk', 'dimitrovgrad2', 'dimitrovgrad', 'dinskaya', 'dmitrov', 'dobryanka', 'dolgoprudnyiy', 'domodedovo', 'donetsk', 'donskoy', 'dyatkovo', 'dybna', 'dzerzhinsk', 'dzerzhinskiy', 'dzhankoy', 'dzhubga', 'efremov', 'egorevsk', 'ekaterinburg', 'elabyga', 'elec', 'electrostal', 'electrougli', 'elisovo', 'elnya', 'engels', 'essentuki', 'evpatoriya', 'eysk', 'feodosiya', 'fokino', 'fryazevo', 'fryazino', 'furmanov', 'gagarin', 'gatchina', 'gelendzhik', 'georgievsk', 'glasov', 'gomel', 'gorbatov', 'gorki-leninskie', 'gorno-altaisk', 'goroxovec', 'goryachiy-klyuch', 'groznyiy', 'grysi', 'gulkevich', 'gus-hrustalnyiy', 'habarovsk', 'hantimansiysk', 'himki', 'horol', 'hotkovo', 'igrim', 'ilskiy', 'im', 'inza', 'irbit', 'irkutsk', 'ishim', 'iskitim', 'istra', 'ivanovo1', 'ivanovo', 'ivanteevka', 'izhevsk', 'izobilnyiy', 'joshkar-ola', 'kachkanar', 'kalach-na-donu', 'kaliningrad', 'kalininsk', 'kaluga', 'kalyazin', 'kamensk-shahtinskiy', 'kamensk-uralskiy', 'kamyishin', 'kanash', 'kanevskaya', 'kansk', 'karabash', 'karachaevsk', 'kargat', 'kartali', 'kashira', 'kasimov', 'kazan', 'kemerovo', 'kerch2', 'kerch', 'kineshma', 'kingisepp', 'kirensk', 'kirgach', 'kirov1', 'kirov', 'kirovo-chepetsk', 'kirovsk', 'kiselyovsk', 'kislovodsk', 'kizil', 'kizlyar', 'klin', 'klintsi', 'kogalim', 'kokoshkino', 'kolchugino2', 'kolchugino', 'kolomna', 'kolpino', 'komsomolsk-na-amure', 'konakovo', 'kondopoga', 'kondrovo', 'kopeysk', 'korablino', 'korenovsk', 'korolyov', 'korsakov2', 'korsakov', 'kostroma', 'kotelniki', 'kotlas', 'kovrov', 'krasniy-sulin', 'krasnoarmeysk', 'krasnodar', 'krasnoe-selo', 'krasnogorsk', 'krasnogvardeysk', 'krasnokamensk', 'krasnoperekopsk', 'krasnoturinsk', 'krasnoufimsk', 'krasnoyarsk', 'krichev', 'krimsk', 'kropotkin', 'kstovo', 'kubinka', 'kulebaki', 'kuloy', 'kumertau', 'kungur', 'kurgan', 'kurilsk', 'kursk', 'kushchevskaya', 'kuznetsk', 'labinsk', 'labitnangi', 'leningradskaya', 'leninogorsk', 'leninsk-kuznetskiy', 'lensk', 'lermontov', 'lesnoy', 'lesosibirsk', 'likino-dulyovo', 'lipetsk', 'liski', 'lisva', 'litkarino', 'lobachev', 'lobnya', 'lodeynoepole', 'loknya', 'losino-petrovskiy', 'luberci', 'luga', 'luhovitsi', 'luza', 'lyubertsi', 'magadan', 'magnitogorsk', 'mahachkala', 'makarov', 'maloyaroslavets', 'mama', 'maykop', 'mayskiy', 'megdurechensk', 'megion', 'meleuz', 'miass', 'mihaylovka', 'millerovo', 'mineralnie-vodi', 'minusinsk', 'mirniy', 'mitishchi', 'mogga', 'mogilev', 'mogocha', 'monchegorsk', 'morozovsk', 'morshansk', 'moskovskiy', 'mozdok', 'msk', 'mtsensk', 'muravlenko', 'murmansk', 'naberezhnye-chelny', 'nadim', 'nahodka', 'nalchik', 'narofominsk', 'neftecamsk1', 'neftecamsk', 'nefteugansk', 'nekrasovskoe', 'nerungri', 'nevinomssk', 'nijegorodskaya', 'nijneudinsk', 'nijnikamsk', 'nikolaevsknaamure1', 'nikolaevsknaamure', 'nizhnevartovsk', 'nizhniy-novgorod', 'nizhniy-tagil2', 'nizhniy-tagil', 'noginsk', 'nogliki', 'norilsk', 'novachara', 'noviyoskol', 'noviyurengoy', 'novoaleksandrovsk', 'novocherkassk', 'novodvinsk', 'novokubansk', 'novokuybisjevsk', 'novokuzneck', 'novokuznetsk', 'novomosskovsk', 'novorossiysk', 'novosibirsk', 'novotitarovskaya', 'novotroick', 'novouralsk', 'novouzenzk2', 'novouzenzk', 'novurengoy', 'noyabrsk', 'nurlat', 'nyagan', 'obninsk', 'odincovo', 'oha', 'oktyabrskiy', 'olenegorsk', 'omsk', 'opochka', 'orehovozuevo', 'orel1', 'orel', 'orenburg', 'orsk', 'ozersk', 'ozery', 'palasovka', 'pangodi', 'pavlofedorovka', 'pavlovo', 'pavlovsk', 'pavlovskiy', 'pavlovskiyposad', 'pechora', 'penza', 'perevoz', 'perm', 'pervomayskoe', 'pervouralsk', 'pestovo', 'petrodvorec', 'petropavlovskkamchatskiy', 'petrovskzabaykalskiy', 'petrozavodsk', 'pikalevo', 'pitkyantra', 'pityah', 'podolsk', 'pokrov', 'polevskoy', 'polisaevo', 'polyarniezori', 'poronaysk', 'prohladniy', 'prokopievsk', 'proletarsk', 'protvino', 'pskov2', 'pskov', 'pstrogojsk', 'pugachev', 'pushkino', 'pyatigorsk', 'radujniy', 'raichinsk', 'ramenskoe', 'redkino', 'reftinskiy', 'reutov', 'revda', 'ribinsk', 'ribnoe', 'rjev', 'roschino', 'rossosh', 'rostov', 'rostov-na-dony', 'rostovvelikiy', 'rtischevo1', 'rtischevo', 'rubzovo', 'rusa', 'ryazan', 'sajanogorsk', 'salavat', 'salehard', 'salsk', 'samara1', 'samara', 'sankt-piterburg', 'saraktash', 'saransk', 'saratov', 'sarov', 'satka', 'segezha', 'sengilej', 'sergach', 'sergiev-posad', 'serpuhov', 'sertolovo', 'sevastopol', 'severobajkalsk', 'severodvinsk', 'severomorsk', 'seversk', 'severskaja', 'shadrinsk', 'shahti', 'sharya', 'shatura', 'shekino', 'shelehov', 'shelkovo', 'shimanovsk', 'shushenskoe', 'sibaj', 'simferopol', 'slavjansk-na-kubani', 'smolensk', 'snezhinsk', 'snezhnogorsk', 'sochi', 'solikamsk', 'solnechnodolsk', 'solnechnogorsk', 'sorochinsk', 'sortavala', 'sosenskij', 'sosnovyj-bor', 'sovetsk', 'sovetskaja-gavan', 'sovetskij', 'spassk-rjazanskij', 'starica', 'staryj-oskol', 'stavropol', 'sterlitamak', 'strezhevoj', 'strunino', 'stupino1', 'stupino', 'sudak', 'suhinichi', 'suhoj-log', 'surgut', 'surovikino', 'svirsk', 'svobodnyj', 'syktyvkar1', 'syktyvkar', 'syzran', 'taganrog', 'talica', 'talnah', 'taman', 'tambov', 'tashtagol', 'tayshet', 'teikovo', 'tihoretsk', 'tihvin', 'tinda', 'tobolsk', 'tolyati', 'tolyatti2', 'tolyatti', 'tomsk', 'troick', 'tryohgorniy', 'tuapce', 'tula', 'tumen', 'tutaev', 'tver', 'ubileyniy', 'ufa', 'uhta', 'ujnosahalinsk', 'ujnouralsk1', 'ujnouralsk', 'ujur', 'ulan-ude', 'ulyanovsk', 'unecha', 'uray', 'uren', 'urga', 'usinsk', 'usolesibirskoe', 'ussuriyks', 'ustilimsk', 'ustkut', 'ustlabinsk', 'uva', 'uvarovo', 'uzlovaya', 'valuyki', 'vanev', 'vanino', 'vatytinki', 'velikie-luki', 'velikiy-novgorod', 'velsk', 'verhniy-ufaley', 'veshenskaya', 'vidnoe', 'vilyuchinsk', 'vitebsk', 'vladikavkaz', 'vladimir', 'vladivostok', 'volgodansk', 'volgograd', 'vologda', 'volokolamsk', 'volsk', 'volzhsk', 'volzhskiy', 'vorkuta', 'voronezh', 'voskresensk', 'votkinsk', 'vyasniki', 'vyazma', 'vyiborg', 'vyichegodskiy', 'vyishniy-volochyok', 'yakutsk2', 'yakutsk', 'yalta', 'yarcevo', 'yaroslavl', 'yarovoe', 'zabaykalsk', 'zapolyarnyiy', 'zaraysk', 'zarechnyiy', 'zavodoukovsk', 'zelenodolsk', 'zelenogorsk', 'zelenograd', 'zelenokumsk', 'zernograd', 'zeya', 'zheleznodorozhnyiy', 'zheleznogorsk', 'zheleznogorsk-ilimskiy', 'zheleznovodsk', 'zhigulyovsk', 'zhukovka', 'zhukovskiy', 'zima', 'zlatoust', 'zlyinka', 'zvenigorod', 'zverevo');
 
         foreach ($cityList as $cityItem) {
 
-            $city = $cityItem['url'];
+            $city = $cityItem;
 
             $content = array(
                 'type' => "A",
@@ -691,7 +688,7 @@ class ImportController extends Controller
             );
 
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "https://api.cloudflare.com/client/v4/zones/cc957fd545586f6bbc644689f22e2e94/dns_records");
+            curl_setopt($ch, CURLOPT_URL, "https://api.cloudflare.com/client/v4/zones/5117157d67a9cdbd9992cbd32fe318b9/dns_records");
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($content));  //Post Fields
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -699,8 +696,8 @@ class ImportController extends Controller
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
             $headers = [
-                'X-Auth-Email: ' . Yii::$app->params['cloud_email'],
-                'X-Auth-Key: ' . Yii::$app->params['cloud_api'],
+                'X-Auth-Email: ' . 'aprutic@gmail.com',
+                'X-Auth-Key: ' . 'f716ab864dd1d40dab325c43b64e185bfd517',
                 'Content-Type: application/json',
             ];
 
@@ -714,11 +711,10 @@ class ImportController extends Controller
 
             $zapid = $object->result->id;
 
-
             curl_close($ch);
 
             // пытаемся поставить галочку на облаке
-            $zoneindetif = "https://api.cloudflare.com/client/v4/zones/cc957fd545586f6bbc644689f22e2e94/dns_records/$zapid";
+            $zoneindetif = "https://api.cloudflare.com/client/v4/zones/5117157d67a9cdbd9992cbd32fe318b9/dns_records/$zapid";
 
 
             $content = array(
@@ -734,15 +730,7 @@ class ImportController extends Controller
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($content));
-
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-            $headers = [
-                'X-Auth-Email: ' . Yii::$app->params['cloud_email'],
-                'X-Auth-Key: ' . Yii::$app->params['cloud_api'],
-                'Content-Type: application/json',
-            ];
-
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
             $server_output = curl_exec($ch);
@@ -755,14 +743,15 @@ class ImportController extends Controller
 
     public function actionWebmaster()
     {
-        $access_token = Yii::$app->params['webmaster_token'];
-        $host = 'sex-trust.com';
+        $access_token = 'y0_AgAAAABNB5owAAOcKgAAAADj-ZoaFQ2AImXXTSSKrpFrlxvoUYxeHN8';
+        $host = 'intim-boxx.com';
 
-        $cityUrl = array('kaspijsk', 'mihajlovsk', 'murom', 'novocheboksarsk', 'novoshahtinsk', 'hasavyurt', 'ehlista', 'karaganda', 'aktobe', 'taraz', 'pavlodar', 'usty-kamenogorsk', 'uralysk', 'semey', 'atyrau', 'kostanay', 'kyzylorda', 'petropavlovsk', 'aktau', 'temirtau', 'turkestan', 'taldykorgan', 'kokshetau', 'ekibastuz', 'rudnyy', 'ghezkazgan', 'ghanaozen', 'balhash', 'kentau', 'kaskelen', 'satpaev', 'kulysary', 'ridder', 'schuchinsk', 'stepnogorsk', 'kapshagay', 'arys', 'sarany', 'talgar', 'gharkent', 'aksu', 'baykonur', 'ayagoz', 'shahtinsk', 'shu', 'lisakovsk', 'kandyagash', 'aksay', 'ghitikara', 'aralysk', 'esik', 'saryagash', 'tekeli', 'minsk', 'grodno', 'brest', 'baranovichi', 'borisov', 'pinsk', 'orsha', 'mozyry', 'soligorsk', 'lida', 'novopolock', 'molodechno', 'polock', 'ghlobin', 'svetlogorsk', 'rechica', 'ghodino', 'sluck', 'kobrin', 'alma-ata');
+        $cityList = City::find()->all();
 
-        foreach ($cityUrl as $url) {
 
-            $city = City::find()->where(['url' => $url])->one();
+        foreach ($cityList as $url) {
+
+            $city = $url;
 
             if ($city) {
 
@@ -815,7 +804,7 @@ class ImportController extends Controller
                 $content = '';
 
                 $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, "https://api.webmaster.yandex.net/v3/user/{$user_id}/hosts/" . urlencode($result->host_id) . "/verification/?verification_type=META_TAG");
+                curl_setopt($ch, CURLOPT_URL, "https://api.webmaster.yandex.net/v3/user/{$user_id}/hosts/" . urlencode($result->host_id) . "/verification/?verification_type=HTML_FILE");
                 curl_setopt($ch, CURLOPT_POST, 1);
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $content);  //Post Fields
                 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
@@ -829,16 +818,16 @@ class ImportController extends Controller
 
                 $server_output = json_decode($server_output);
 
-                $meta2 = $server_output->verification_uin;
+                //$meta2 = $server_output->verification_uin;
 
-                $meta_model = new Webmaster();
+                //$meta_model = new Webmaster();
 
-                $meta_model->city_id = $city['id'];
-                $meta_model->tag = $meta2;
+                //$meta_model->city_id = $city['id'];
+                //$meta_model->tag = $meta2;
 
-                $meta_model->save();
+                //$meta_model->save();
 
-                Yii::$app->cache->flush();
+                //Yii::$app->cache->flush();
 
                 dd($city);
 
