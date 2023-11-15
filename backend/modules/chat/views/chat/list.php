@@ -3,7 +3,7 @@
 /* @var $user_id integer */
 
 use frontend\widgets\UserSideBarWidget;
-use frontend\modules\chat\widgets\MessageListWidget;
+use backend\modules\chat\widgets\MessageListWidget;
 
 $this->registerJsFile('/files/js/prev.js', ['depends' => [\frontend\assets\AppAsset::className()]]);
 
