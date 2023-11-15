@@ -30,7 +30,7 @@
 
             <?php foreach ($dialogs as $dialog) : ?>
 
-                <?php if ($dialog->lastMessage['created_at'] >= (time() - (3600 * 24 * 30))) : ?>
+                <?php if ($dialog->lastMessage['created_at'] >= (time() - (3600 * 24 * 14))) : ?>
 
                     <?php echo $this->renderFile(Yii::getAlias('@frontend/modules/chat/widgets/views/dialog_list_item.php'), [
                         'dialog' => $dialog,
