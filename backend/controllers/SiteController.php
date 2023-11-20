@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use backend\models\IpPhoneCount;
 use common\models\CashCount;
+use common\models\CityBlock;
 use common\models\PostCount;
 use common\models\Spisaniya;
 use common\models\UserCountRegister;
@@ -79,10 +80,12 @@ class SiteController extends Controller
             ->andWhere(['like','date', date('m-Y')])
             ->sum('count');
 
+        $blockData = CityBlock::find()->orderBy('id desc')->limit(20)->all();
+
         return $this->render('index',
             compact('payCountWeek', 'monthCash', 'monthRegister',
                 'registerCountWeek', 'monthUserRegister', 'registerUserCountWeek', 'postOnPublication',
-            'realPostCount', 'ipPhoneViewCount', 'spisaniyaCountWeek', 'monthCashSpis'
+            'realPostCount', 'ipPhoneViewCount', 'spisaniyaCountWeek', 'monthCashSpis', 'blockData'
             )
         );
 

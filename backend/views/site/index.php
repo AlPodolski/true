@@ -3,6 +3,7 @@
 /* @var $this yii\web\View */
 /* @var $payCountWeek \common\models\CashCount[] */
 /* @var $registerCountWeek \common\models\PostCount[] */
+/* @var $blockData \common\models\CityBlock */
 /* @var $registerUserCountWeek \common\models\UserCountRegister[] */
 /* @var $ipPhoneViewCount \backend\models\IpPhoneCount[] */
 /* @var $monthCash int */
@@ -27,9 +28,9 @@ $this->title = 'Главная страница';
 
                         <?php if ($payCountWeek) foreach ($payCountWeek as $item) {
 
-                            echo \yii\helpers\Html::tag('p', $item->date.' - '.$item->count);
+                            echo \yii\helpers\Html::tag('p', $item->date . ' - ' . $item->count);
 
-                        }else echo '-'?>
+                        } else echo '-' ?>
 
                         <?php if ($monthCash) : ?>
 
@@ -50,9 +51,9 @@ $this->title = 'Главная страница';
 
                         <?php if ($spisaniyaCountWeek) foreach ($spisaniyaCountWeek as $item) {
 
-                            echo \yii\helpers\Html::tag('p', $item->date.' - '.$item->count);
+                            echo \yii\helpers\Html::tag('p', $item->date . ' - ' . $item->count);
 
-                        }else echo '-'?>
+                        } else echo '-' ?>
 
                         <?php if ($monthCashSpis) : ?>
 
@@ -73,9 +74,9 @@ $this->title = 'Главная страница';
 
                         <?php if ($registerCountWeek) foreach ($registerCountWeek as $item) {
 
-                            echo \yii\helpers\Html::tag('p', $item->date.' - '.$item->count);
+                            echo \yii\helpers\Html::tag('p', $item->date . ' - ' . $item->count);
 
-                        }else echo '-'?>
+                        } else echo '-' ?>
 
                         <?php if ($monthRegister) : ?>
 
@@ -96,9 +97,9 @@ $this->title = 'Главная страница';
 
                         <?php if ($registerUserCountWeek) foreach ($registerUserCountWeek as $item) {
 
-                            echo \yii\helpers\Html::tag('p', $item->date.' - '.$item->count);
+                            echo \yii\helpers\Html::tag('p', $item->date . ' - ' . $item->count);
 
-                        }else echo '-'?>
+                        } else echo '-' ?>
 
                         <?php if ($monthUserRegister) : ?>
 
@@ -119,9 +120,9 @@ $this->title = 'Главная страница';
 
                         <?php if ($ipPhoneViewCount) foreach ($ipPhoneViewCount as $item) {
 
-                            echo \yii\helpers\Html::tag('p', $item->date.' - '.$item->count);
+                            echo \yii\helpers\Html::tag('p', $item->date . ' - ' . $item->count);
 
-                        }else echo '-'?>
+                        } else echo '-' ?>
 
                     </div>
 
@@ -144,6 +145,55 @@ $this->title = 'Главная страница';
 
                 </div>
             </div>
+
+            <div class="col-12">
+
+                <?php if ($blockData) : ?>
+
+                <h2>Блокировки</h2>
+
+                    <table class="table table-striped">
+
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Старый урл</th>
+                            <th scope="col">Новый урл</th>
+                            <th scope="col">Ид города</th>
+                            <th scope="col">Дата обнаружения</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <?php foreach ($blockData as $item) : ?>
+                            <tr>
+                                <th scope="row"><?php echo $item->id ?> </th>
+                                <td>
+                                    <?php echo $item->old_city ?>
+                                </td>
+                                <td>
+                                    <?php echo $item->new_city ?>
+                                </td>
+                                <td>
+                                    <?php echo $item->city_id ?>
+                                </td>
+
+                                <td>
+                                    <?php echo date('Y-m-d H:i:s', $item->created_at )  ?>
+                                </td>
+
+                            </tr>
+
+                        <?php endforeach; ?>
+
+                        </tbody>
+
+                    </table>
+
+                <?php endif; ?>
+
+            </div>
+
         </div>
 
     </div>
