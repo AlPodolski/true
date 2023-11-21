@@ -6,8 +6,11 @@ use Yii;
 
 class AddCloudHelper
 {
-    public static function add($city)
+    public static function add($city, $zone = false)
     {
+
+        if (!$zone) $zone = Yii::$app->params['cloud_zone'];
+
         $content = array(
             'type' => "A",
             'name' => $city,
@@ -15,7 +18,7 @@ class AddCloudHelper
         );
 
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, "https://api.cloudflare.com/client/v4/zones/".Yii::$app->params['cloud_zone']."/dns_records");
+        curl_setopt($ch, CURLOPT_URL, "https://api.cloudflare.com/client/v4/zones/".$zone."/dns_records");
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($content));  //Post Fields
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -40,7 +43,7 @@ class AddCloudHelper
         curl_close($ch);
 
         // пытаемся поставить галочку на облаке
-        $zoneindetif = "https://api.cloudflare.com/client/v4/zones/".Yii::$app->params['cloud_zone']."/dns_records/$zapid";
+        $zoneindetif = "https://api.cloudflare.com/client/v4/zones/".$zone."/dns_records/$zapid";
 
 
         $content = array(
@@ -69,8 +72,7 @@ class AddCloudHelper
 
         $result = json_decode($result);
 
-        if ($object->success) Yii::$app->session->setFlash('success', 'Днс добавлен');
-        else Yii::$app->session->setFlash('warning', 'Днс не добавлен');
+        return $object->success;
 
     }
 }

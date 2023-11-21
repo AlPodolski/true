@@ -161,11 +161,13 @@ $this->title = 'Главная страница';
                             <th scope="col">Новый урл</th>
                             <th scope="col">Ид города</th>
                             <th scope="col">Дата обнаружения</th>
+                            <th scope="col">Статус</th>
                         </tr>
                         </thead>
                         <tbody>
 
                         <?php foreach ($blockData as $item) : ?>
+
                             <tr>
                                 <th scope="row"><?php echo $item->id ?> </th>
                                 <td>
@@ -180,6 +182,19 @@ $this->title = 'Главная страница';
 
                                 <td>
                                     <?php echo date('Y-m-d H:i:s', $item->created_at )  ?>
+                                </td>
+
+                                <td>
+                                    <?php if ($item->check->actual_city and $item->check->actual_city == $item->new_city ) : ?>
+
+                                        Проверенно
+
+                                    <?php else : ?>
+
+                                        <div onclick="checkCity(this)" data-id="<?php echo $item->check->id ?>"
+                                             data-new="<?php echo $item->new_city ?>" class="check-city">Проверить</div>
+
+                                    <?php endif; ?>
                                 </td>
 
                             </tr>

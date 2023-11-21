@@ -2,6 +2,8 @@
 
 namespace backend\controllers;
 
+use backend\components\helpers\AddCloudHelper;
+use common\models\CloudInfo;
 use Yii;
 use common\models\City;
 use backend\models\CitySearch;
@@ -124,5 +126,23 @@ class CityController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionCheck()
+    {
+
+        $id = Yii::$app->request->post('id');
+        $newCity = Yii::$app->request->post('new');
+
+        $city = City::find()->where(['id' => $id])->one();
+
+        $city->actual_city = $newCity;
+
+        $city->save();
+
+        $cloudInfo = CloudInfo::find()->where(['domain' => $city->domain ])->one();
+
+        $result = AddCloudHelper::add($newCity, $cloudInfo->zone);
+
     }
 }

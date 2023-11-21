@@ -18,9 +18,14 @@ class CityBlock extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'city_block';
+    }
+
+    public function getCheck()
+    {
+        return $this->hasOne(City::class, ['id' => 'city_id']);
     }
 
     /**

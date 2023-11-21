@@ -80,7 +80,11 @@ class SiteController extends Controller
             ->andWhere(['like','date', date('m-Y')])
             ->sum('count');
 
-        $blockData = CityBlock::find()->orderBy('id desc')->limit(20)->all();
+        $blockData = CityBlock::find()
+            ->orderBy('id desc')
+            ->with('check')
+            ->limit(20)
+            ->all();
 
         return $this->render('index',
             compact('payCountWeek', 'monthCash', 'monthRegister',

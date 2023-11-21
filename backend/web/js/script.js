@@ -204,6 +204,27 @@ function remove_review(object){
 
 }
 
+function checkCity(object){
+
+    var id = $(object).attr('data-id')
+    var newCity = $(object).attr('data-new')
+
+    $.ajax({
+        type: 'POST',
+        url: "/city/check", //Путь к обработчику
+        data: 'id=' + id + '&new='+ newCity,
+        response: 'text',
+        dataType: "html",
+        cache: false,
+        success: function (data) {
+
+            $(object).html('Проверенно');
+
+        }
+    })
+
+}
+
 function send_message(object){
 
     var dialog_id = $(object).attr('data-dialog-id');
