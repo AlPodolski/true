@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?php if ($validOrders) : ?>
 
-                    <p> Перед созданием новых платежей попробуйте оплатить уже имеющийся </p>
+                    <p>Просим производить оплату с ПЕРВОГО РАЗА это ВАЖНО</p>
 
                     <?php foreach ($validOrders as $validOrder) : ?>
 
