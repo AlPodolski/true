@@ -50,9 +50,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <div class="pay-form-wrap">
 
-                <?php if ($validOrders) : ?>
+                <p> <strong>ВАЖНО. Просим производить оплату с ПЕРВОГО РАЗА. Сумма перевода должна точно совпадать с суммой указаной на сайте платежной системы, включая копейки</strong> </p>
 
-                    <p>Просим производить оплату с ПЕРВОГО РАЗА это ВАЖНО</p>
+                <hr>
+
+                <?php if ($validOrders) : ?>
 
                     <?php foreach ($validOrders as $validOrder) : ?>
 
