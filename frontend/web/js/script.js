@@ -4,7 +4,7 @@ $(document).ready(function () {
         filter();
     });
 
-    if (exist_map_block && !load_map_status ) {
+    if (exist_map_block && !load_map_status) {
 
         ymaps.ready(function () {
             load_map_status = true;
@@ -40,13 +40,27 @@ function check_checbox() {
 
 }
 
-function set_selected_all(){
+function set_selected_all() {
     $(".checbox-publication").each(function () {
         if (this.checked) {
-            $(this).prop("checked", false );
-        }else $(this).prop("checked", true );
+            $(this).prop("checked", false);
+        } else $(this).prop("checked", true);
     });
     check_checbox();
+}
+
+function get_phone_modal() {
+
+    $(".checbox-publication").each(function () {
+
+        if (this.checked) {
+
+            $('#phoneModal').modal('toggle');
+
+            return false;
+        }
+    });
+
 }
 
 var exist_map_block = false;
@@ -66,11 +80,11 @@ function add_status_to_button(object) {
     $(object).siblings('.change-tarif').addClass('change-tarif-active')
 }
 
-function up_all_selected(){
+function up_all_selected() {
 
-    $( ".checbox-publication" ).each(function() {
+    $(".checbox-publication").each(function () {
 
-        if (this.checked){
+        if (this.checked) {
 
             var id = $(this).attr('data-id')
             var object = this;
@@ -84,7 +98,7 @@ function up_all_selected(){
                 success: function (data) {
                     $(object).siblings().text(data);
                     $(object).closest('.cabinet-item').find('.publication-btn').text(data);
-                    $(object).prop("checked", false );
+                    $(object).prop("checked", false);
                 }
             })
         }
@@ -129,7 +143,7 @@ function start_all(object) {
     }
 }
 
-function up_post(object){
+function up_post(object) {
 
     var id = $(object).attr('data-id');
 
@@ -149,24 +163,23 @@ function up_post(object){
 
 function start_all_selected() {
 
-    $( ".checbox-publication" ).each(function() {
+    $(".checbox-publication").each(function () {
 
-        if (this.checked){
+        if (this.checked) {
 
             var id = $(this).attr('data-id')
             var object = this;
 
             $.ajax({
                 type: 'POST',
-                data: 'id=' + id + '&key=' +key,
+                data: 'id=' + id + '&key=' + key,
                 url: "/cabinet/post/publication", //Путь к обработчику
                 cache: false,
                 async: true,
                 success: function (data) {
                     $(object).siblings().text(data);
-                    console.log($(object).closest('.cabinet-item').find('.publication-btn'));
                     $(object).closest('.cabinet-item').find('.publication-btn').text(data);
-                    $(object).prop("checked", false );
+                    $(object).prop("checked", false);
                 }
             })
         }
@@ -643,7 +656,7 @@ function get_comments_forum(object) {
 
 }
 
-function send_photo(){
+function send_photo() {
 
     var formData = new FormData($("#send-message-photo-form")[0]);
 
@@ -962,24 +975,24 @@ function getContentForFirstPage() {
 
 }
 
-function like(object){
+function like(object) {
 
     var type = $(object).attr('data-type');
     var id = $(object).attr('data-id');
 
-    if (!$(object).hasClass('selected')){
+    if (!$(object).hasClass('selected')) {
 
         $.ajax({
             type: 'POST',
             url: '/like',
-            data: 'id=' +id + '&type=' + type,
-            async:false,
+            data: 'id=' + id + '&type=' + type,
+            async: false,
             dataType: "html",
             cache: false,
             headers: {
                 'X-CSRF-TOKEN': $('meta[name = "csrf-token"]').attr('content')
             },
-            success: function (data){
+            success: function (data) {
 
                 $(object).siblings('.like-count').html(data)
 
@@ -989,12 +1002,12 @@ function like(object){
 
     }
 
-    if (type == 'like'){
+    if (type == 'like') {
 
         $(object).siblings('.dislike').removeClass('selected')
         $(object).addClass('selected')
 
-    }else{
+    } else {
 
         $(object).siblings('.like').removeClass('selected')
         $(object).addClass('selected')
@@ -1179,9 +1192,9 @@ function get_user_menu() {
 
 }
 
-var onloadCallbackRegisterRequest = function() {
+var onloadCallbackRegisterRequest = function () {
     grecaptcha.render('register_recapcha', {
-        'sitekey' : '6Lffq2EkAAAAAK4PuAXJjhnE1NOP1uUjANyEUxe_'
+        'sitekey': '6Lffq2EkAAAAAK4PuAXJjhnE1NOP1uUjANyEUxe_'
     });
 };
 
@@ -1456,3 +1469,53 @@ function get_modal(object) {
         },
     })
 }
+
+function updatePhone(object) {
+
+    var phone = $('#posts-phone-update').val();
+
+    if (phone.length) {
+
+        var ids = [];
+
+        $(".checbox-publication").each(function () {
+
+            if (this.checked) {
+
+                var id = $(this).attr('data-id')
+                var object = this;
+
+                ids.push(id);
+
+                $(object).prop("checked", false);
+            }
+        });
+
+        if (ids.length) {
+
+            var data = JSON.stringify(ids);
+
+            $.ajax({
+                type: 'POST',
+                data: 'data=' + data + '&phone='+ phone,
+                url: "/cabinet/phone/update", //Путь к обработчику
+                cache: false,
+                async: true,
+                success: function (data) {
+
+                    $('.post-publication-nav').removeClass('post-publication-nav-active')
+
+                }
+            })
+
+        }
+
+        $('#phoneModal').modal('toggle');
+
+    }
+
+}
+
+$(document).ready(function () {
+    $("#posts-phone-update").mask("+7(999)99-99-999");
+});

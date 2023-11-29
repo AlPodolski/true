@@ -3846,6 +3846,21 @@ input:checked + .img-label-radio:before {
     left: 4px;
 }
 
+.phone-heading{
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.phone-modal-body, .phone-modal-body .btn {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.phone-modal-body .btn{
+    max-width: 150px;
+}
+
 .yandex_label{
     width: 74px;
 }

@@ -12,11 +12,6 @@ use yii\widgets\ActiveForm;
         <div class="profile__modal-title">
             Обратная связь
         </div>
-        <div onclick="close_modal(this)" class="profile__modal-close profile__modal-toggle">
-            <svg>
-                <use xlink:href='/svg/dest/stack/sprite.svg#close'></use>
-            </svg>
-        </div>
     </div>
     <?php
 

@@ -108,6 +108,8 @@ return [
 
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/telegram/send' => 'user/telegram/send-post',
 
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/phone/update' => 'user/phone/update',
+
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/pay' => 'site/pay',
 
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/pay/obmenka/<id:[0-9]+>' => 'site/obmenka-pay',
