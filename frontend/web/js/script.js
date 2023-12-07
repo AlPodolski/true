@@ -61,6 +61,8 @@ function get_phone_modal() {
         }
     });
 
+    alert("Нужно выделить анкеты");
+
 }
 
 var exist_map_block = false;
