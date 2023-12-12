@@ -161,10 +161,14 @@ class Posts extends \yii\db\ActiveRecord
 
         $topAnketList = TopAnketBlock::getPostIds($cityId);
 
-        if ($topAnketList) return self::find()->where(['in', 'id', $topAnketList])
-            ->with('avatar', 'metro', 'selphiCount', 'partnerId', 'tarif' , 'place', 'nacionalnost', 'cvet', 'strizhka')
+        if ($topAnketList) return self::find()->where(['in', 'posts.id', $topAnketList])
+            ->with('metro')
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->andWhere(['city_id' => $cityId])
+            ->select('posts.* , files.file as photo')
+            ->rightJoin('files', '`files`.related_id = `posts`.id')
+            ->andWhere(['files.main' => 1])
+            ->andWhere(['files.related_class' => Posts::class])
             ->orderBy((new GetOrderHelper())->get())
             ->asArray()
             ->all();
@@ -275,7 +279,10 @@ class Posts extends \yii\db\ActiveRecord
     }
     public function getMetro()
     {
-        return $this->hasMany(Metro::class, ['id' => 'metro_id'])->via('userToMetroRelations');
+        return $this->hasMany(Metro::class, ['id' => 'metro_id'])
+            ->via('userToMetroRelations')
+            ->cache(3600)
+            ;
     }
 
     public function getPlace()

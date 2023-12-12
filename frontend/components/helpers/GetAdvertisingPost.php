@@ -13,11 +13,15 @@ class GetAdvertisingPost
         else $pol_id = 1;
 
         if ($post = Posts::find()
-            ->with('avatar')
             ->where(['city_id' => $city['id']])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->andWhere(['pol_id' => $pol_id])
             ->andWhere(['>', 'view', 0])
+            ->with('metro')
+            ->select('posts.* , files.file as photo')
+            ->rightJoin('files', '`files`.related_id = `posts`.id')
+            ->andWhere(['files.main' => 1])
+            ->andWhere(['files.related_class' => Posts::class])
             ->limit(1)
             ->orderBy('RAND()')
             ->one()){

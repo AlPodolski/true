@@ -22,7 +22,7 @@ $searchName = new \frontend\models\SearchNameForm();
 
         <input class="header-search__input"
                type="search"
-               placeholder="Поиск : имя | номер | метро | район"
+               placeholder="Поиск : имя | метро | район"
                name="name"
                itemprop="query-input">
 

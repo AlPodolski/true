@@ -464,9 +464,13 @@ class QueryParamsHelper
 
         }
 
-        $data = Posts::find()->where(['in', 'id', $postsIds])
-            ->with('avatar', 'metro','gallery', 'tarif', 'place', 'nacionalnost', 'cvet', 'strizhka')
+        $data = Posts::find()->where(['in', 'posts.id', $postsIds])
+            ->with('metro')
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
+            ->select('posts.* , files.file as photo')
+            ->rightJoin('files', '`files`.related_id = `posts`.id')
+            ->andWhere(['files.main' => 1])
+            ->andWhere(['files.related_class' => Posts::class])
             ->orderBy(Posts::getOrder())
             ->asArray()
             ->limit($limit);

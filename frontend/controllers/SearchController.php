@@ -51,9 +51,12 @@ class SearchController extends Controller
 
         $prPosts = Posts::find()
             ->asArray()
-            ->with('avatar', 'metro','gallery', 'tarif', 'place', 'nacionalnost', 'cvet', 'strizhka')
+            ->with('metro')
+            ->select('posts.* , files.file as photo')
+            ->leftJoin('files', '`files`.related_id = `posts`.id')
+            ->andWhere(['files.main' => 1])
+            ->andWhere(['files.related_class' => Posts::class])
             ->where(['like', 'name', $name])
-            ->orWhere(['like', 'phone', $name])
             ->andWhere(['city_id' => $cityInfo['id']])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->orderBy('id DESC')
@@ -145,16 +148,9 @@ class SearchController extends Controller
 
         }
 
-        $title = 'Проститутки '.$namee.' – путаны и индивидуалки '.$cityInfo['city2'];
+        $title = 'Проститутки '.$name.' – путаны и индивидуалки '.$cityInfo['city2'];
         $des = 'Путаны '.$name.' с удовольствием выполнят все Ваши желания. Выбор анкет индивидуалок. Номера телефонов';
         $h1 = 'Проститутки '.$name;
-
-        if ($prPosts){
-            Yii::$app->queueView->push(new AddViewJob([
-                'posts' => $prPosts,
-                'type' => 'redis_post_listing_view_count_key',
-            ]));
-        }
 
         return $this->render('index' , [
             'prPosts' => $prPosts,

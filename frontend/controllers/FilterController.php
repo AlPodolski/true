@@ -77,18 +77,18 @@ class FilterController extends Controller
         $topPostList = Posts::getTopList($cityInfo['id']);
 
         if (\count($posts) < 6) $more_posts = Posts::find()->limit(Yii::$app->params['post_limit'])
-            ->with('avatar', 'metro', 'selphiCount', 'partnerId', 'place', 'nacionalnost', 'cvet', 'strizhka')
+            ->with('metro')
+            ->select('posts.* , files.file as photo')
+            ->leftJoin('files', '`files`.related_id = `posts`.id')
+            ->andWhere(['files.main' => 1])
+            ->andWhere(['files.related_class' => Posts::class])
             ->andWhere(['city_id' => $cityInfo['id']])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
+            ->asArray()
             ->orderBy('RAND()')->all();
 
         $checkBlock = GetAdvertisingPost::get($cityInfo);
         if ($checkBlock) array_unshift($posts, $checkBlock);
-
-        Yii::$app->queueView->push(new AddViewJob([
-            'posts' => $posts,
-            'type' => 'redis_post_listing_view_count_key',
-        ]));
 
         return $this->render('index', [
             'posts' => $posts,
@@ -135,11 +135,6 @@ class FilterController extends Controller
             $page = Yii::$app->request->post('page') + 1;
 
         }
-
-        Yii::$app->queueView->push(new AddViewJob([
-            'posts' => $posts,
-            'type' => 'redis_post_listing_view_count_key',
-        ]));
 
         return $this->renderPartial('more', compact('posts', 'topPostList', 'page', 'param'));
 

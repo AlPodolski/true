@@ -29,13 +29,17 @@ class PostsRepository
 
     public function getForMainPage(): array
     {
-        $prPosts = Posts::find()->asArray()
-            ->with('avatar', 'metro', 'gallery', 'tarif',
-                'place', 'nacionalnost', 'cvet', 'strizhka')
+        $prPosts = Posts::find()
+            ->with('metro')
             ->where(['city_id' => $this->cityId])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->andWhere(['pol_id' => Pol::WOMAN_POL])
+            ->select('posts.* , files.file as photo')
+            ->leftJoin('files', '`files`.related_id = `posts`.id')
+            ->andWhere(['files.main' => 1])
+            ->andWhere(['files.related_class' => Posts::class])
             ->limit(Yii::$app->params['post_limit'])
+            ->asArray()
             ->orderBy($this->order);
 
         $countQuery = clone $prPosts;
@@ -58,13 +62,17 @@ class PostsRepository
     {
 
         $posts = Posts::find()
-            ->asArray()
-            ->with('avatar', 'metro','gallery', 'tarif', 'place', 'nacionalnost', 'cvet', 'strizhka')
+            ->select('posts.*, files.file as photo')
+            ->with('metro')
             ->where(['city_id' => $this->cityId])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->andWhere(['pol_id' => Pol::WOMAN_POL])
-            ->orderBy($this->order)
-            ->limit(Yii::$app->params['post_limit']);
+            ->leftJoin('files', '`files`.related_id = `posts`.id')
+            ->andWhere(['files.main' => 1])
+            ->andWhere(['files.related_class' => Posts::class])
+            ->limit(Yii::$app->params['post_limit'])
+            ->asArray()
+            ->orderBy($this->order);
 
         $posts->offset(Yii::$app->params['post_limit'] * $page);
 
@@ -126,9 +134,7 @@ class PostsRepository
         $postsIds = false;
 
         $post = Posts::find()->where(['not in', 'id' , $id])
-            ->with('gal', 'metro', 'avatar', 'place', 'service',
-                'sites', 'rayon', 'nacionalnost',
-                'cvet', 'strizhka', 'selphiCount', 'serviceDesc', 'partnerId')
+            ->with('avatar', 'metro')
             ->andWhere(['city_id' => $this->cityId])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->andWhere(['pol_id' => $pol])

@@ -99,33 +99,66 @@ class CustController extends Controller
 
     public function actionIndex()
     {
-        $stream = \fopen(Yii::getAlias('@app/files/add_city.csv'), 'r');
 
-        $csv = Reader::createFromStream($stream);
-        $csv->setDelimiter(';');
-        $csv->setHeaderOffset(0);
-        //build a statement
-        $stmt = (new Statement());
+        $oldIp = '185.197.162.110';
+        $newIp = '185.197.160.22';
+        $zone = '436e67f7d3f0e614b1626f0e0a7f5654';
+        $token = 'df732c943d439bdb9f69a39bd36a64f689db1';
 
-        $records = $stmt->process($csv);
+        $cloudUrl = 'https://api.cloudflare.com/client/v4/zones/'.$zone.'/dns_records?';
 
-        $city = array();
+        $dataRequest = 'content='.$oldIp.'&page=1&per_page=100';
 
-        foreach ($records as $record) {
-            $city[] = $record;
-        }
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $cloudUrl.$dataRequest);
+        //curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($content));  //Post Fields
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
-        foreach ($city as $item){
+        $headers = [
+            'X-Auth-Email: ' . 'rino.kim@yandex.ru',
+            'X-Auth-Key: ' . $token,
+            'Content-Type: application/json',
+        ];
 
-            $city = new City();
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-            $city->url = $item['url'];
-            $city->city = $item['city'];
-            $city->city2 = $item['city2'];
-            $city->city3 = $item['city3'];
-            $city->country = $item['country'];
+        $server_output = curl_exec($ch);
 
-            $city->save();
+        $object = json_decode($server_output);
+
+        curl_close($ch);
+
+        foreach ($object->result as $item){
+
+            if (!isset($item->id)) continue;
+
+            $zapid = $item->id;
+
+            $content = array(
+                'type' => "A",
+                'name' => $item->name,
+                'content' => $newIp,
+                'proxied' => true,
+            );
+
+            // пытаемся поставить галочку на облаке
+            $zoneindetif = "https://api.cloudflare.com/client/v4/zones/".$zone."/dns_records/$zapid";
+
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $zoneindetif);
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($content));
+
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+            $server_output = curl_exec($ch);
 
         }
 

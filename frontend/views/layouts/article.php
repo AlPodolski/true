@@ -25,7 +25,7 @@ echo \frontend\components\helpers\MicroHelper::image($post);
         <?php
         $path = Yii::getAlias('@frontend/views/includes/article-photo.php');
         echo $this->renderFile($path, [
-            'file' => $post['avatar']['file'],
+            'file' => $post['photo'],
             'name' => $post['name'],
         ]);
         ?>
