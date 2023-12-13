@@ -56,6 +56,7 @@ class GetPostHelper
             ->andWhere(['pol_id' => Pol::WOMAN_POL])
             ->limit(3)
             ->orderBy(['rand()' => SORT_DESC])
+            ->cache(300)
             ->all();
 
         return $posts;

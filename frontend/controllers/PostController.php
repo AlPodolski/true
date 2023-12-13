@@ -96,8 +96,6 @@ class PostController extends Controller
 
             $postsByPhone = false;
 
-            if ($post['phone']) $phoneComments = (new GetCommentByPhoneHelper($post['phone']))->get();
-
             $serviceList = Service::find()->cache(3600 * 24)->all();
 
             return $this->render('single', [
@@ -105,7 +103,6 @@ class PostController extends Controller
                 'serviceListReview' => $serviceListReview,
                 'cityInfo' => $cityInfo,
                 'productShema' => $productShema,
-                'phoneComments' => $phoneComments,
                 'postsByPhone' => $postsByPhone,
                 'backUrl' => $backUrl,
                 'refererCategory' => $refererCategory,
