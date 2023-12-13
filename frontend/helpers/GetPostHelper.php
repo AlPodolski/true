@@ -50,7 +50,7 @@ class GetPostHelper
     public static function getRecomend($cityId)
     {
         $posts = Posts::find()->asArray()
-            ->with('avatar', 'metro','gallery', 'tarif', 'place', 'nacionalnost', 'cvet', 'strizhka')
+            ->with('avatar', 'metro')
             ->where(['city_id' => $cityId])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->andWhere(['pol_id' => Pol::WOMAN_POL])
