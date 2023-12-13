@@ -79,7 +79,6 @@ if ($productShema) echo $productShema;
             'post' => $post,
             'cityInfo' => $cityInfo,
             'serviceListReview' => $serviceListReview,
-            'viewPosts' => $viewPosts,
             'phoneComments' => $phoneComments,
             'first' => $first,
             'backUrl' => $backUrl,
@@ -93,11 +92,6 @@ if ($productShema) echo $productShema;
                 <li class="profile__about-sim-tabs-item active" id="rec">
                     Рекомендации
                 </li>
-                <?php if ($viewPosts) : ?>
-                    <li class="profile__about-sim-tabs-item" id="view">
-                        Просмотренные анкеты
-                    </li>
-                <?php endif; ?>
             </ul>
             <?php if ($recomendPost) ?>
             <div class="profile__about-sim-items active row" id="rec">
@@ -107,15 +101,6 @@ if ($productShema) echo $productShema;
                     ]);
                 ?>
             </div>
-            <?php if ($viewPosts) : ?>
-                <div class="profile__about-sim-items row" id="view">
-                    <?php foreach ($viewPosts as $viewPostItem)
-                        echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), [
-                            'post' => $viewPostItem,
-                        ]);
-                    ?>
-                </div>
-            <?php endif; ?>
         </div>
     </div>
 </div>

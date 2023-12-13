@@ -43,6 +43,8 @@ class PostController extends Controller
             ],
         ];
 
+        return [];
+
     }
 
     /**
@@ -74,8 +76,6 @@ class PostController extends Controller
 
             $viewPostsIds = (new AddViewHelper())->add($post['id']);
 
-            $viewPosts = (new PostsRepository())->getByIdPosts($viewPostsIds, 30);
-
             $recomendPost = GetPostHelper::getRecomend($cityInfo['id']);
 
             //$serviceListReview = ServiceReviewHelper::getPostServiceReview($id);
@@ -104,7 +104,6 @@ class PostController extends Controller
                 'post' => $post,
                 'serviceListReview' => $serviceListReview,
                 'cityInfo' => $cityInfo,
-                'viewPosts' => $viewPosts,
                 'productShema' => $productShema,
                 'phoneComments' => $phoneComments,
                 'postsByPhone' => $postsByPhone,
