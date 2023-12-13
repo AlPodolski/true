@@ -37,6 +37,9 @@ class PostController extends Controller
                 'class' => 'yii\filters\PageCache',
                 'only' => ['index'],
                 'duration' => 3600 * 2,
+                'variations' => [
+                    Yii::$app->request->url
+                ],
             ],
         ];
 
