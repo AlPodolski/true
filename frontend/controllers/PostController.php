@@ -29,6 +29,19 @@ use yii\web\NotFoundHttpException;
 
 class PostController extends Controller
 {
+
+    public function behaviors()
+    {
+        if (Yii::$app->user->isGuest) return [
+            [
+                'class' => 'yii\filters\PageCache',
+                'only' => ['index'],
+                'duration' => 3600 * 2,
+            ],
+        ];
+
+    }
+
     /**
      * @inheritdoc
      */
