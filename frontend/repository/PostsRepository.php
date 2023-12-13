@@ -30,14 +30,10 @@ class PostsRepository
     public function getForMainPage(): array
     {
         $prPosts = Posts::find()
-            ->with('metro')
+            ->with('metro', 'avatar')
             ->where(['city_id' => $this->cityId])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->andWhere(['pol_id' => Pol::WOMAN_POL])
-            ->select('posts.* , files.file as photo')
-            ->leftJoin('files', '`files`.related_id = `posts`.id')
-            ->andWhere(['files.main' => 1])
-            ->andWhere(['files.related_class' => Posts::class])
             ->limit(Yii::$app->params['post_limit'])
             ->asArray()
             ->orderBy($this->order);
@@ -62,14 +58,10 @@ class PostsRepository
     {
 
         $posts = Posts::find()
-            ->select('posts.*, files.file as photo')
-            ->with('metro')
+            ->with('metro', 'avatar')
             ->where(['city_id' => $this->cityId])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->andWhere(['pol_id' => Pol::WOMAN_POL])
-            ->leftJoin('files', '`files`.related_id = `posts`.id')
-            ->andWhere(['files.main' => 1])
-            ->andWhere(['files.related_class' => Posts::class])
             ->limit(Yii::$app->params['post_limit'])
             ->asArray()
             ->orderBy($this->order);

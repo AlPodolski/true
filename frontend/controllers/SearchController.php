@@ -51,11 +51,7 @@ class SearchController extends Controller
 
         $prPosts = Posts::find()
             ->asArray()
-            ->with('metro')
-            ->select('posts.* , files.file as photo')
-            ->leftJoin('files', '`files`.related_id = `posts`.id')
-            ->andWhere(['files.main' => 1])
-            ->andWhere(['files.related_class' => Posts::class])
+            ->with('metro', 'avatar')
             ->where(['like', 'name', $name])
             ->andWhere(['city_id' => $cityInfo['id']])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])

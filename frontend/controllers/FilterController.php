@@ -77,11 +77,7 @@ class FilterController extends Controller
         $topPostList = Posts::getTopList($cityInfo['id']);
 
         if (\count($posts) < 6) $more_posts = Posts::find()->limit(Yii::$app->params['post_limit'])
-            ->with('metro')
-            ->select('posts.* , files.file as photo')
-            ->leftJoin('files', '`files`.related_id = `posts`.id')
-            ->andWhere(['files.main' => 1])
-            ->andWhere(['files.related_class' => Posts::class])
+            ->with('metro', 'avatar')
             ->andWhere(['city_id' => $cityInfo['id']])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->asArray()
