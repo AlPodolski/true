@@ -241,6 +241,10 @@ class FindController extends Controller
             ->andWhere(['<=', 'breast', $params['grud-to']])
             ->andWhere(['>=', 'price', $params['price-1-from']])
             ->andWhere(['<=', 'price', $params['price-1-to']])
+            ->select('posts.* , files.file as photo')
+            ->leftJoin('files', '`files`.related_id = `posts`.id')
+            ->andWhere(['files.main' => 1])
+            ->andWhere(['files.related_class' => Posts::class])
             ->with('metro');
 
         if ($params['check-photo']) $posts = $posts->andWhere(['check_photo_status' => 1]);

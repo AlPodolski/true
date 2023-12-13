@@ -20,7 +20,7 @@ class GetPostHelper
                 ->andWhere(['city_id' => $city_id])
                 ->with('gal', 'metro', 'avatar', 'place', 'service',
                     'rayon', 'nacionalnost', 'review',
-                    'cvet', 'strizhka', 'selphiCount', 'partnerId'
+                    'cvet', 'strizhka', 'selphiCount'
                 )
                 ->limit(1)->one();
 
