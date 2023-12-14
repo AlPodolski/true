@@ -312,7 +312,7 @@ class Posts extends \yii\db\ActiveRecord
 
     public function getCvet()
     {
-        return $this->hasMany(HairColor::class, ['id' => 'hair_color_id'])->via('userToCvetRelations');
+        return $this->hasOne(HairColor::class, ['id' => 'hair_color_id']);
     }
 
     public function getUserToCvetRelations()

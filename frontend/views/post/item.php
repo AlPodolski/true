@@ -263,12 +263,10 @@ if ($post['check_photo_status']) $photoTitle = 'Проверенная прос�
 
                                     <?php if ($post['cvet']) : ?>
 
-                                        <?php foreach ($post['cvet'] as $item) : ?>
-                                            <li class="single-block-about-tags__item tags__item">
-                                                <a href="/cvet-volos-<?php echo $item['url'] ?>"
-                                                   class="single-block-about-tags__link tags__link">#<?php echo $item['value'] ?></a>
-                                            </li>
-                                        <?php endforeach; ?>
+                                        <li class="single-block-about-tags__item tags__item">
+                                            <a href="/cvet-volos-<?php echo $post['cvet']['url'] ?>"
+                                               class="single-block-about-tags__link tags__link">#<?php echo $post['cvet']['value'] ?></a>
+                                        </li>
 
                                     <?php endif; ?>
 
