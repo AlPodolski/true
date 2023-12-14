@@ -546,8 +546,7 @@ class QueryParamsHelper
 
                 $data = str_replace('intimnaya-strizhka-', '', $param);
 
-                $tempSql = ' id in (select `post_id` from `user_intim_hair` where `color_id` in ';
-                $tempSql .= ' (select `id` from intim_hair where url = :intim_hair))';
+                $tempSql = ' intim_hair_id in (select `id` from intim_hair where url = :intim_hair) ';
 
                 $posts = $posts->andWhere($tempSql, [':intim_hair' => $data]);
 

@@ -225,14 +225,10 @@ if ($post['check_photo_status']) $photoTitle = 'Проверенная прос�
 
                                     <?php if ($post['strizhka']) : ?>
 
-                                        <?php foreach ($post['strizhka'] as $item) : ?>
-
-                                            <li class="single-block-about-tags__item tags__item">
-                                                <a href="/intimnaya-strizhka-<?php echo $item['url'] ?>"
-                                                   class="single-block-about-tags__link tags__link">#<?php echo $item['value'] ?></a>
-                                            </li>
-
-                                        <?php endforeach; ?>
+                                        <li class="single-block-about-tags__item tags__item">
+                                            <a href="/intimnaya-strizhka-<?php echo $post['strizhka']['url'] ?>"
+                                               class="single-block-about-tags__link tags__link">#<?php echo $post['strizhka']['value'] ?></a>
+                                        </li>
 
                                     <?php endif; ?>
 

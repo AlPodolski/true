@@ -140,7 +140,7 @@ class Posts extends \yii\db\ActiveRecord
                 'rost', 'ves', 'breast', 'status', 'view', 'retouching_photo_status', 'fake', 'pay_time', 'pol_id',
                 'sort', 'tarif_id', 'price_night', 'price_2_hour',
                 'express_price', 'exit_hour_price', 'exit_two_hour_price', 'exit_night_price', 'national_id',
-                'hair_color_id'], 'integer'],
+                'hair_color_id', 'intim_hair_id'], 'integer'],
             [['name'], 'string', 'max' => 60],
             [['phone'], 'string', 'max' => 20 ],
             [['x', 'y'], 'safe'],
@@ -315,19 +315,9 @@ class Posts extends \yii\db\ActiveRecord
         return $this->hasOne(HairColor::class, ['id' => 'hair_color_id']);
     }
 
-    public function getUserToCvetRelations()
-    {
-        return $this->hasMany(UserHairColor::class, ['post_id' => 'id']);
-    }
-
     public function getStrizhka()
     {
-        return $this->hasMany(IntimHair::class, ['id' => 'color_id'])->via('userToStrizhkaRelations');
-    }
-
-    public function getUserToStrizhkaRelations()
-    {
-        return $this->hasMany(UserIntimHair::class, ['post_id' => 'id']);
+        return $this->hasOne(IntimHair::class, ['id' => 'intim_hair_id']);
     }
 
     public function getOsobenost()
@@ -420,6 +410,7 @@ class Posts extends \yii\db\ActiveRecord
             'status' => 'Статус',
             'national_id' => 'Национальность',
             'hair_color_id' => 'Цвет волос',
+            'intim_hair_id' => 'Интимная стрижка',
             'retouching_photo_status' => 'Ретуш фото',
             'advert_phone_view_count' => 'Д. клики',
         ];

@@ -64,7 +64,7 @@ class CustController extends Controller
 
     public function actionCust()
     {
-        $postsNational = UserHairColor::find()->all();
+        $postsNational = UserIntimHair::find()->all();
 
         foreach ($postsNational as $item) {
 
