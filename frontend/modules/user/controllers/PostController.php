@@ -59,7 +59,6 @@ class PostController extends Controller
 
         $checkPhotoForm = new CheckPhotoForm();
 
-        $userNational = new \frontend\modules\user\models\UserNational();
         $userMetro = new \frontend\models\UserMetro();
         $userPlace = new \frontend\modules\user\models\UserPlace();
         $userHairColor = new \frontend\modules\user\models\UserHairColor();
@@ -78,7 +77,6 @@ class PostController extends Controller
         }
 
         if ($post->load(Yii::$app->request->post())
-            and $userNational->load(Yii::$app->request->post())
             and $userMetro->load(Yii::$app->request->post())
             and $userPlace->load(Yii::$app->request->post())
             and $userHairColor->load(Yii::$app->request->post())
@@ -319,7 +317,6 @@ class PostController extends Controller
         $userTime = new UserTime();
 
         if ($post->load(Yii::$app->request->post())
-            and $userNational->load(Yii::$app->request->post())
             and $userMetro->load(Yii::$app->request->post())
             and $userPlace->load(Yii::$app->request->post())
             and $userHairColor->load(Yii::$app->request->post())

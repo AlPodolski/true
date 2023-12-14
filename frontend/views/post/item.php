@@ -254,12 +254,10 @@ if ($post['check_photo_status']) $photoTitle = 'Проверенная прос�
 
                                     <?php if ($post['nacionalnost']) : ?>
 
-                                        <?php foreach ($post['nacionalnost'] as $item) : ?>
-                                            <li class="single-block-about-tags__item tags__item">
-                                                <a href="/nacionalnost-<?php echo $item['url'] ?>"
-                                                   class="single-block-about-tags__link tags__link">#<?php echo $item['value'] ?></a>
-                                            </li>
-                                        <?php endforeach; ?>
+                                        <li class="single-block-about-tags__item tags__item">
+                                            <a href="/nacionalnost-<?php echo $post['nacionalnost']['url'] ?>"
+                                               class="single-block-about-tags__link tags__link">#<?php echo $post['nacionalnost']['value'] ?></a>
+                                        </li>
 
                                     <?php endif; ?>
 

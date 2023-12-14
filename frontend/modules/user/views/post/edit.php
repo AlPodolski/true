@@ -29,8 +29,6 @@ $selphiForm = new SelphiForm();
 
 $selphiForm->photo = $post['selphiCount'];
 
-$userNational = \frontend\modules\user\models\UserNational::findOne(['post_id' => $post['id']]) ?? new \frontend\modules\user\models\UserNational() ;
-
 $userMetro =  new \frontend\models\UserMetro();
 
 $userMetro->metro_id = \yii\helpers\ArrayHelper::getColumn(\frontend\models\UserMetro::find()
@@ -88,7 +86,6 @@ echo $this->renderFile(Yii::getAlias('@user-view/post/_form.php'), [
     'videoForm' => $videoForm,
     'avatarForm' => $avatarForm,
     'photoForm' => $photoForm,
-    'userNational' => $userNational,
     'userMetro' => $userMetro,
     'userPlace' => $userPlace,
     'userHairColor' => $userHairColor,

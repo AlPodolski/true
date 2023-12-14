@@ -559,8 +559,7 @@ class QueryParamsHelper
                 $data = '';
                 $data = str_replace('nacionalnost-', '', $param);
 
-                $tempSql = ' id in (select `post_id` from `user_national` where `national_id` in ';
-                $tempSql .= ' (select `id` from national where url = :national))';
+                $tempSql = ' national_id in (select `id` from national where url = :national) ';
 
                 $posts = $posts->andWhere($tempSql, [':national' => $data]);
 

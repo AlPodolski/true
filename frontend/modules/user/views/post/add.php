@@ -46,7 +46,6 @@ echo $this->renderFile(Yii::getAlias('@user-view/post/_form.php'), [
     'videoForm' => $videoForm,
     'avatarForm' => $avatarForm,
     'photoForm' => $photoForm,
-    'userNational' => $userNational,
     'userMetro' => $userMetro,
     'userPlace' => $userPlace,
     'userHairColor' => $userHairColor,

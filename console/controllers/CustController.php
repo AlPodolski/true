@@ -32,15 +32,15 @@ class CustController extends Controller
             ->limit(15000)
             ->all();
 
-        foreach ($posts as $post){
+        foreach ($posts as $post) {
 
-            if ($postPhoto = Files::findAll(['related_id' => $post['id'], 'related_class' => Posts::class])){
+            if ($postPhoto = Files::findAll(['related_id' => $post['id'], 'related_class' => Posts::class])) {
 
-                foreach ($postPhoto as $item){
+                foreach ($postPhoto as $item) {
 
-                    $file = Yii::getAlias('@app/web'.$item->file);
+                    $file = Yii::getAlias('@app/web' . $item->file);
 
-                    if(\is_file($file)) \unlink($file);
+                    if (\is_file($file)) \unlink($file);
 
                     $item->delete();
 
@@ -64,33 +64,15 @@ class CustController extends Controller
 
     public function actionCust()
     {
+        $postsNational = UserNational::find()->all();
 
-        $stream = \fopen(Yii::getAlias('@app/files/city_kor.csv'), 'r');
+        foreach ($postsNational as $item) {
 
-        $csv = Reader::createFromStream($stream);
-        $csv->setDelimiter(';');
-        $csv->setHeaderOffset(0);
-        //build a statement
-        $stmt = (new Statement());
+            if ($post = Posts::find()->where(['id' => $item->post_id])->one()) {
 
-        $records = $stmt->process($csv);
+                $post->national_id = $item->national_id;
 
-        $data = array();
-
-        foreach ($records as $value) {
-
-            $data[] = $value;
-
-        }
-
-        foreach ($data as $item){
-
-            if ($city = City::find()->where(['city' => $item['city']])->one()){
-
-                $city->x = $item['x'];
-                $city->y = $item['y'];
-
-                $city->save();
+                $post->save();
 
             }
 
@@ -105,12 +87,12 @@ class CustController extends Controller
         $zone = '436e67f7d3f0e614b1626f0e0a7f5654';
         $token = 'df732c943d439bdb9f69a39bd36a64f689db1';
 
-        $cloudUrl = 'https://api.cloudflare.com/client/v4/zones/'.$zone.'/dns_records?';
+        $cloudUrl = 'https://api.cloudflare.com/client/v4/zones/' . $zone . '/dns_records?';
 
-        $dataRequest = 'content='.$oldIp.'&page=1&per_page=100';
+        $dataRequest = 'content=' . $oldIp . '&page=1&per_page=100';
 
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $cloudUrl.$dataRequest);
+        curl_setopt($ch, CURLOPT_URL, $cloudUrl . $dataRequest);
         //curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($content));  //Post Fields
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
@@ -130,7 +112,7 @@ class CustController extends Controller
 
         curl_close($ch);
 
-        foreach ($object->result as $item){
+        foreach ($object->result as $item) {
 
             if (!isset($item->id)) continue;
 
@@ -144,7 +126,7 @@ class CustController extends Controller
             );
 
             // пытаемся поставить галочку на облаке
-            $zoneindetif = "https://api.cloudflare.com/client/v4/zones/".$zone."/dns_records/$zapid";
+            $zoneindetif = "https://api.cloudflare.com/client/v4/zones/" . $zone . "/dns_records/$zapid";
 
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $zoneindetif);
