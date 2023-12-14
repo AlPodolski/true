@@ -74,14 +74,9 @@ class PostController extends Controller
 
             $productShema = (new SingleProductShema($post))->make();
 
-            $viewPostsIds = (new AddViewHelper())->add($post['id']);
-
             $recomendPost = GetPostHelper::getRecomend($cityInfo['id']);
 
-            //$serviceListReview = ServiceReviewHelper::getPostServiceReview($id);
             $serviceListReview = false;
-
-            $backUrl = RequestHelper::getBackUrl($protocol);
 
             $refererCategory = RequestHelper::getRefererCategory($protocol);
 
@@ -91,8 +86,6 @@ class PostController extends Controller
                 'posts' => $post,
                 'type' => 'redis_post_single_view_count_key',
             ]));
-
-            //$postsByPhone = GetPostHelper::getByPhone($post['phone'], $cityInfo['id']);
 
             $postsByPhone = false;
 
@@ -104,7 +97,6 @@ class PostController extends Controller
                 'cityInfo' => $cityInfo,
                 'productShema' => $productShema,
                 'postsByPhone' => $postsByPhone,
-                'backUrl' => $backUrl,
                 'refererCategory' => $refererCategory,
                 'serviceList' => $serviceList,
                 'recomendPost' => $recomendPost,

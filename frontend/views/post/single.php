@@ -17,8 +17,6 @@
 
 /* @var $first bool */
 
-$price = \frontend\helpers\PostPriceHelper::getMinAndMaxPrice($post['sites']);
-
 $this->registerJsFile('https://api-maps.yandex.ru/2.1/?lang=ru_RU', ['depends' => ['yii\web\YiiAsset']]);
 
 $title = 'Проститутка ' . $post['name'] . ' из ' . $cityInfo['city2'];
@@ -84,7 +82,6 @@ if ($productShema) echo $productShema;
             'backUrl' => $backUrl,
             'refererCategory' => $refererCategory,
             'serviceList' => $serviceList,
-            'price' => $price
         ]); ?>
 
         <div class="profile__about-sim profile__about-block  profile__tab" id="profileServices">
