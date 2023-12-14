@@ -536,8 +536,7 @@ class QueryParamsHelper
 
                 $data = str_replace('cvet-volos-', '', $param);
 
-                $tempSql = ' id in (select `post_id` from `user_hair_color` where `hair_color_id` in ';
-                $tempSql .= ' (select `id` from hair_color where url = :hair_color))';
+                $tempSql = ' hair_color_id in (select `id` from hair_color where url = :hair_color)';
 
                 $posts = $posts->andWhere($tempSql, [':hair_color' => $data]);
 
