@@ -70,7 +70,7 @@ class CustController extends Controller
 
             if ($post = Posts::find()->where(['id' => $item->post_id])->one()) {
 
-                $post->hair_color_id = $item->hair_color_id;
+                $post->intim_hair_id = $item->color_id;
 
                 $post->save();
 
