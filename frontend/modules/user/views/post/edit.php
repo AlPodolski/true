@@ -40,9 +40,6 @@ $userPlace = new \frontend\modules\user\models\UserPlace();
 $userPlace->place_id = \yii\helpers\ArrayHelper::getColumn(\frontend\modules\user\models\UserPlace::find()
     ->where(['post_id' => $post['id']])->asArray()->all(), 'place_id');
 
-
-$userHairColor = \frontend\modules\user\models\UserHairColor::findOne(['post_id' => $post['id']]) ?? new \frontend\modules\user\models\UserHairColor();
-
 $userIntimHair = \frontend\modules\user\models\UserIntimHair::findOne(['post_id' => $post['id']]) ?? new \frontend\modules\user\models\UserIntimHair;
 
 
@@ -88,7 +85,6 @@ echo $this->renderFile(Yii::getAlias('@user-view/post/_form.php'), [
     'photoForm' => $photoForm,
     'userMetro' => $userMetro,
     'userPlace' => $userPlace,
-    'userHairColor' => $userHairColor,
     'userIntimHair' => $userIntimHair,
     'userRayon' => $userRayon,
     'userOsobenosti' => $userOsobenosti,

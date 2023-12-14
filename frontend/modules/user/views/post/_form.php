@@ -511,7 +511,7 @@ foreach (\common\models\Tarif::getAll() as $item) {
                 </div>
 
                 <div class="col-12 col-sm-6">
-                    <?= $form->field($userHairColor, 'hair_color_id')
+                    <?= $form->field($post, 'hair_color_id')
                         ->dropDownList(\yii\helpers\ArrayHelper::map(\common\models\HairColor::getAll(), 'id', 'value')) ?>
                 </div>
 

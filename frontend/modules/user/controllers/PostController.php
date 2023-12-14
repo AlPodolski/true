@@ -15,9 +15,7 @@ use frontend\modules\user\models\forms\PhotoForm;
 use frontend\modules\user\models\forms\SelphiForm;
 use frontend\modules\user\models\forms\VideoForm;
 use frontend\modules\user\models\Posts;
-use frontend\modules\user\models\UserHairColor;
 use frontend\modules\user\models\UserIntimHair;
-use frontend\modules\user\models\UserNational;
 use frontend\modules\user\models\UserOsobenosti;
 use frontend\modules\user\models\UserPlace;
 use frontend\modules\user\models\UserRayon;
@@ -61,7 +59,6 @@ class PostController extends Controller
 
         $userMetro = new \frontend\models\UserMetro();
         $userPlace = new \frontend\modules\user\models\UserPlace();
-        $userHairColor = new \frontend\modules\user\models\UserHairColor();
         $userIntimHair = new \frontend\modules\user\models\UserIntimHair();
         $userRayon = new \frontend\modules\user\models\UserRayon();
         $userOsobenosti = new \frontend\modules\user\models\UserOsobenosti();
@@ -79,7 +76,6 @@ class PostController extends Controller
         if ($post->load(Yii::$app->request->post())
             and $userMetro->load(Yii::$app->request->post())
             and $userPlace->load(Yii::$app->request->post())
-            and $userHairColor->load(Yii::$app->request->post())
             and $userIntimHair->load(Yii::$app->request->post())
             and $userRayon->load(Yii::$app->request->post())
             and $userOsobenosti->load(Yii::$app->request->post())
@@ -203,13 +199,6 @@ class PostController extends Controller
 
                 }
 
-                if ($userNational['national_id'])
-                    SavePostRelationHelper::save(UserNational::class,
-                        $userNational->national_id,
-                        $post['id'],
-                        'national_id', $city['id']
-                    );
-
                 if ($userMetro['metro_id']){
 
                     $userMetro->validate();
@@ -227,12 +216,6 @@ class PostController extends Controller
                         $userPlace['place_id'],
                         $post['id'],
                         'place_id', $city['id']);
-
-                if ($userHairColor['hair_color_id'])
-                    SavePostRelationHelper::save(UserHairColor::class,
-                        $userHairColor['hair_color_id'],
-                        $post['id'],
-                        'hair_color_id', $city['id']);
 
                 if ($userIntimHair['color_id'])
                     SavePostRelationHelper::save(UserIntimHair::class,
@@ -306,10 +289,8 @@ class PostController extends Controller
 
         $checkPhotoForm = new CheckPhotoForm();
 
-        $userNational = new UserNational();
         $userMetro = new UserMetro();
         $userPlace = new UserPlace();
-        $userHairColor = new UserHairColor();
         $userIntimHair = new UserIntimHair();
         $userRayon = new UserRayon();
         $userOsobenosti = new UserOsobenosti();
@@ -319,7 +300,6 @@ class PostController extends Controller
         if ($post->load(Yii::$app->request->post())
             and $userMetro->load(Yii::$app->request->post())
             and $userPlace->load(Yii::$app->request->post())
-            and $userHairColor->load(Yii::$app->request->post())
             and $userIntimHair->load(Yii::$app->request->post())
             and $userRayon->load(Yii::$app->request->post())
             and $userOsobenosti->load(Yii::$app->request->post())
@@ -447,13 +427,6 @@ class PostController extends Controller
 
                 }
 
-                if ($userNational['national_id'])
-                    SavePostRelationHelper::save(UserNational::class,
-                        $userNational->national_id,
-                        $post['id'],
-                        'national_id', $city['id']
-                    );
-
                 if ($userMetro['metro_id']){
                     $userMetro->validate();
                     SavePostRelationHelper::save(UserMetro::class,
@@ -468,12 +441,6 @@ class PostController extends Controller
                         $userPlace['place_id'],
                         $post['id'],
                         'place_id', $city['id']);
-
-                if ($userHairColor['hair_color_id'])
-                    SavePostRelationHelper::save(UserHairColor::class,
-                        $userHairColor['hair_color_id'],
-                        $post['id'],
-                        'hair_color_id', $city['id']);
 
                 if ($userIntimHair['color_id'])
                     SavePostRelationHelper::save(UserIntimHair::class,
@@ -541,9 +508,7 @@ class PostController extends Controller
 
            UserRayon::deleteAll(['post_id' => $post['id']]);
            UserMetro::deleteAll(['post_id' => $post['id']]);
-           UserHairColor::deleteAll(['post_id' => $post['id']]);
            UserIntimHair::deleteAll(['post_id' => $post['id']]);
-           UserNational::deleteAll(['post_id' => $post['id']]);
            UserPLace::deleteAll(['post_id' => $post['id']]);
            UserService::deleteAll(['post_id' => $post['id']]);
 

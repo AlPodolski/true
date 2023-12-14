@@ -65,6 +65,7 @@ use frontend\components\service\AddPhoneService;
  * @property int|null $exit_two_hour_price
  * @property int|null $exit_hour_price
  * @property int|null $national_id
+ * @property int|null $hair_color_id
  * @property Files[] $gallery
  * @property Files $avatar
  * @property integer $tarif_id
@@ -138,7 +139,8 @@ class Posts extends \yii\db\ActiveRecord
             [['city_id', 'user_id', 'created_at', 'updated_at', 'category', 'check_photo_status', 'price', 'age',
                 'rost', 'ves', 'breast', 'status', 'view', 'retouching_photo_status', 'fake', 'pay_time', 'pol_id',
                 'sort', 'tarif_id', 'price_night', 'price_2_hour',
-                'express_price', 'exit_hour_price', 'exit_two_hour_price', 'exit_night_price', 'national_id'], 'integer'],
+                'express_price', 'exit_hour_price', 'exit_two_hour_price', 'exit_night_price', 'national_id',
+                'hair_color_id'], 'integer'],
             [['name'], 'string', 'max' => 60],
             [['phone'], 'string', 'max' => 20 ],
             [['x', 'y'], 'safe'],
@@ -417,6 +419,7 @@ class Posts extends \yii\db\ActiveRecord
             'price_night' => 'Цена за ночь',
             'status' => 'Статус',
             'national_id' => 'Национальность',
+            'hair_color_id' => 'Цвет волос',
             'retouching_photo_status' => 'Ретуш фото',
             'advert_phone_view_count' => 'Д. клики',
         ];
