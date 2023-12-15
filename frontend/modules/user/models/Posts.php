@@ -65,7 +65,7 @@ use frontend\components\service\AddPhoneService;
  * @property int|null $exit_two_hour_price
  * @property int|null $exit_hour_price
  * @property int|null $national_id
- * @property int|null $hair_color_id
+ * @property int|null $intim_hair_id
  * @property Files[] $gallery
  * @property Files $avatar
  * @property integer $tarif_id
@@ -143,7 +143,7 @@ class Posts extends \yii\db\ActiveRecord
                 'hair_color_id', 'intim_hair_id'], 'integer'],
             [['name'], 'string', 'max' => 60],
             [['phone'], 'string', 'max' => 20 ],
-            [['x', 'y'], 'safe'],
+            [['x', 'y', 'rayon_id'], 'safe'],
             [['name', 'phone', 'price', 'city_id'],'required'],
             [['video'], 'string', 'max' => 122],
             [['about' , 'old_url'], 'string'],
@@ -297,12 +297,7 @@ class Posts extends \yii\db\ActiveRecord
 
     public function getRayon()
     {
-        return $this->hasMany(Rayon::class, ['id' => 'rayon_id'])->via('userToRayonRelations');
-    }
-
-    public function getUserToRayonRelations()
-    {
-        return $this->hasMany(UserRayon::class, ['post_id' => 'id']);
+        return $this->hasOne(Rayon::class, ['id' => 'rayon_id']);
     }
 
     public function getNacionalnost(): ActiveQuery
@@ -411,6 +406,7 @@ class Posts extends \yii\db\ActiveRecord
             'national_id' => 'Национальность',
             'hair_color_id' => 'Цвет волос',
             'intim_hair_id' => 'Интимная стрижка',
+            'rayon_id' => 'Район',
             'retouching_photo_status' => 'Ретуш фото',
             'advert_phone_view_count' => 'Д. клики',
         ];

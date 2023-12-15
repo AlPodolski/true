@@ -40,12 +40,6 @@ $userPlace = new \frontend\modules\user\models\UserPlace();
 $userPlace->place_id = \yii\helpers\ArrayHelper::getColumn(\frontend\modules\user\models\UserPlace::find()
     ->where(['post_id' => $post['id']])->asArray()->all(), 'place_id');
 
-$userRayon = new \frontend\modules\user\models\UserRayon();
-
-$userRayon->rayon_id = \yii\helpers\ArrayHelper::getColumn(\frontend\modules\user\models\UserRayon::find()
-    ->where(['post_id' => $post['id']])->asArray()->all(), 'rayon_id');
-
-
 $userOsobenosti = new \frontend\modules\user\models\UserOsobenosti();
 
 $userOsobenosti->param_id = \yii\helpers\ArrayHelper::getColumn(\frontend\modules\user\models\UserOsobenosti::find()
@@ -82,7 +76,6 @@ echo $this->renderFile(Yii::getAlias('@user-view/post/_form.php'), [
     'photoForm' => $photoForm,
     'userMetro' => $userMetro,
     'userPlace' => $userPlace,
-    'userRayon' => $userRayon,
     'userOsobenosti' => $userOsobenosti,
     'userService' => $userService,
     'checkPhotoForm' => $checkPhotoForm,

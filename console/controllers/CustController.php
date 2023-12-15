@@ -64,13 +64,13 @@ class CustController extends Controller
 
     public function actionCust()
     {
-        $postsNational = UserIntimHair::find()->all();
+        $postsNational = UserRayon::find()->all();
 
         foreach ($postsNational as $item) {
 
             if ($post = Posts::find()->where(['id' => $item->post_id])->one()) {
 
-                $post->intim_hair_id = $item->color_id;
+                $post->rayon_id = $item->rayon_id;
 
                 $post->save();
 

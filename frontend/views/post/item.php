@@ -147,7 +147,7 @@ if ($post['check_photo_status']) $photoTitle = 'Проверенная прос�
                                  data-city="<?php echo $post['city_id'] ?>"
                                  data-price="<?php echo $post['price'] ?>"
                                  data-age="<?php echo $post['age'] ?>"
-                                 data-rayon="<?php echo $post['rayon'][0]['id'] ?>"
+                                 data-rayon="<?php echo $post['rayon']['id'] ?>"
 
                                 <?php $targetPrice = \frontend\components\helpers\PriceTargetHelper::target($post['price']) ?>
                                  onclick="getPhone(this);ym(70919698,'reachGoal','call'); <?php if ($post['partnerId']) : ?>
@@ -237,14 +237,10 @@ if ($post['check_photo_status']) $photoTitle = 'Проверенная прос�
 
                                         <?php $rayon = $post['rayon']; ?>
 
-                                        <?php foreach ($rayon as $item) : ?>
-
-                                            <li class="single-block-about-tags__item tags__item">
-                                                <a href="/rayon-<?php echo $item['url'] ?>"
-                                                   class="single-block-about-tags__link tags__link">#<?php echo $item['value'] ?></a>
-                                            </li>
-
-                                        <?php endforeach; ?>
+                                        <li class="single-block-about-tags__item tags__item">
+                                            <a href="/rayon-<?php echo $rayon['url'] ?>"
+                                               class="single-block-about-tags__link tags__link">#<?php echo $rayon['value'] ?></a>
+                                        </li>
 
                                     <?php endif; ?>
 

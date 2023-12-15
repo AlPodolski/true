@@ -514,8 +514,7 @@ class QueryParamsHelper
                 $rayon = Rayon::getByUrl($data, $city);
                 if (!$rayon) throw new NotFoundHttpException();
 
-                $tempSql = ' id in (select `post_id` from `user_rayon` where `rayon_id` in ';
-                $tempSql .= ' (select `id` from rayon where url = :rayon and city_id = :city_id))';
+                $tempSql = ' rayon_id in (select `id` from rayon where url = :rayon and city_id = :city_id) ';
 
                 $posts = $posts->andWhere($tempSql, [':rayon' => $data, ':city_id' => $city]);
 

@@ -17,7 +17,6 @@ use frontend\modules\user\models\forms\VideoForm;
 use frontend\modules\user\models\Posts;
 use frontend\modules\user\models\UserOsobenosti;
 use frontend\modules\user\models\UserPlace;
-use frontend\modules\user\models\UserRayon;
 use frontend\modules\user\models\UserService;
 use frontend\modules\user\models\UserTime;
 use yii\base\BaseObject;
@@ -58,7 +57,6 @@ class PostController extends Controller
 
         $userMetro = new \frontend\models\UserMetro();
         $userPlace = new \frontend\modules\user\models\UserPlace();
-        $userRayon = new \frontend\modules\user\models\UserRayon();
         $userOsobenosti = new \frontend\modules\user\models\UserOsobenosti();
         $userService = new \frontend\modules\user\models\UserService();
         $userTime = new UserTime();
@@ -74,7 +72,6 @@ class PostController extends Controller
         if ($post->load(Yii::$app->request->post())
             and $userMetro->load(Yii::$app->request->post())
             and $userPlace->load(Yii::$app->request->post())
-            and $userRayon->load(Yii::$app->request->post())
             and $userOsobenosti->load(Yii::$app->request->post())
             and $userTime->load(Yii::$app->request->post())
             and $userService->load(Yii::$app->request->post())
@@ -214,12 +211,6 @@ class PostController extends Controller
                         $post['id'],
                         'place_id', $city['id']);
 
-                if ($userRayon['rayon_id'])
-                    SavePostRelationHelper::save(UserRayon::class,
-                        $userRayon['rayon_id'],
-                        $post['id'],
-                        'rayon_id', $city['id']);
-
                 if ($userOsobenosti['param_id'])
                     SavePostRelationHelper::save(UserOsobenosti::class,
                         $userOsobenosti['param_id'],
@@ -282,7 +273,6 @@ class PostController extends Controller
 
         $userMetro = new UserMetro();
         $userPlace = new UserPlace();
-        $userRayon = new UserRayon();
         $userOsobenosti = new UserOsobenosti();
         $userService = new UserService();
         $userTime = new UserTime();
@@ -290,7 +280,6 @@ class PostController extends Controller
         if ($post->load(Yii::$app->request->post())
             and $userMetro->load(Yii::$app->request->post())
             and $userPlace->load(Yii::$app->request->post())
-            and $userRayon->load(Yii::$app->request->post())
             and $userOsobenosti->load(Yii::$app->request->post())
             and $userTime->load(Yii::$app->request->post())
             and $userService->load(Yii::$app->request->post())) {
@@ -431,12 +420,6 @@ class PostController extends Controller
                         $post['id'],
                         'place_id', $city['id']);
 
-                if ($userRayon['rayon_id'])
-                    SavePostRelationHelper::save(UserRayon::class,
-                        $userRayon['rayon_id'],
-                        $post['id'],
-                        'rayon_id', $city['id']);
-
                 if ($userOsobenosti['param_id'])
                     SavePostRelationHelper::save(UserOsobenosti::class,
                         $userOsobenosti['param_id'],
@@ -489,7 +472,6 @@ class PostController extends Controller
 
            }
 
-           UserRayon::deleteAll(['post_id' => $post['id']]);
            UserMetro::deleteAll(['post_id' => $post['id']]);
            UserPLace::deleteAll(['post_id' => $post['id']]);
            UserService::deleteAll(['post_id' => $post['id']]);

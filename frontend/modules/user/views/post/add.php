@@ -15,7 +15,6 @@ $photoForm = new \frontend\modules\user\models\forms\PhotoForm();
 $userNational = new \frontend\modules\user\models\UserNational();
 $userMetro = new \frontend\models\UserMetro();
 $userPlace = new \frontend\modules\user\models\UserPlace();
-$userRayon = new \frontend\modules\user\models\UserRayon();
 $userOsobenosti = new \frontend\modules\user\models\UserOsobenosti();
 $userService = new \frontend\modules\user\models\UserService();
 $checkPhotoForm = new CheckPhotoForm();
@@ -46,7 +45,6 @@ echo $this->renderFile(Yii::getAlias('@user-view/post/_form.php'), [
     'photoForm' => $photoForm,
     'userMetro' => $userMetro,
     'userPlace' => $userPlace,
-    'userRayon' => $userRayon,
     'userOsobenosti' => $userOsobenosti,
     'userService' => $userService,
     'checkPhotoForm' => $checkPhotoForm,

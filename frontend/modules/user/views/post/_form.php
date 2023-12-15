@@ -553,7 +553,7 @@ foreach (\common\models\Tarif::getAll() as $item) {
 
                 <div class="col-12 col-sm-6">
 
-                    <?= $form->field($userRayon, 'rayon_id')->widget(\kartik\select2\Select2::classname(), [
+                    <?= $form->field($post, 'rayon_id')->widget(\kartik\select2\Select2::classname(), [
                         'data' => ArrayHelper::map(\common\models\Rayon::getAll($city['id']), 'id', 'value'),
                         'language' => 'ru',
                         'options' => ['placeholder' => 'Выбрать район ...'],
