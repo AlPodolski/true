@@ -92,7 +92,7 @@ class PayController extends Controller
             ->all();
 
         $orders = ObmenkaOrder::find()
-            ->where(['user_id' => Yii::$app->user->id])
+            ->where(['user_id' => Yii::$app->user->id, 'status' => ObmenkaOrder::FINISH])
             ->orderBy('id DESC')
             ->limit(30)
             ->all();
