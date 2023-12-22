@@ -256,7 +256,7 @@ class SiteController extends Controller
 
                 $sum = $data->accrual_amount;
 
-                if ($data->currency == 'usdt_trc20') $sum = $sum * Yii::$app->params['usdt_curst'];
+                if ($data->currency == 'USDT_TRC20') $sum = $sum * Yii::$app->params['usdt_curst'];
 
                 $sum = (int)$sum;
 
