@@ -133,6 +133,40 @@ $this->title = 'Главная страница';
                 <div class="small-box bg-info">
                     <div class="inner">
 
+                        <p>Просмотр телефонов</p>
+
+                        <?php if ($totalPhoneView) foreach ($totalPhoneView as $item) {
+
+                            echo \yii\helpers\Html::tag('p', $item->date . ' - ' . $item->count);
+
+                        } else echo '-' ?>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <div class="small-box bg-info">
+                    <div class="inner">
+
+                        <p>Просмотр телефонов реальных пользователей</p>
+
+                        <?php if ($userPhoneView) foreach ($userPhoneView as $item) {
+
+                            echo \yii\helpers\Html::tag('p', $item->date . ' - ' . $item->count);
+
+                        } else echo '-' ?>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <div class="small-box bg-info">
+                    <div class="inner">
+
                         <p>Настоящих анкет</p>
 
                         <?php echo $realPostCount ?>

@@ -5,7 +5,9 @@ namespace backend\controllers;
 use backend\models\IpPhoneCount;
 use common\models\CashCount;
 use common\models\CityBlock;
+use common\models\PhoneView;
 use common\models\PostCount;
+use common\models\RealUserPhoneView;
 use common\models\Spisaniya;
 use common\models\UserCountRegister;
 use frontend\modules\user\models\Posts;
@@ -58,6 +60,16 @@ class SiteController extends Controller
         $registerUserCountWeek = UserCountRegister::find()
             ->limit(7)->orderBy('id DESC')->all();
 
+        $totalPhoneView = PhoneView::find()
+            ->limit(7)
+            ->orderBy('id DESC')
+            ->all();
+
+        $userPhoneView = RealUserPhoneView::find()
+            ->limit(7)
+            ->orderBy('id DESC')
+            ->all();
+
         $ipPhoneViewCount = IpPhoneCount::find()
             ->limit(7)->orderBy('id DESC')->all();
 
@@ -89,7 +101,8 @@ class SiteController extends Controller
         return $this->render('index',
             compact('payCountWeek', 'monthCash', 'monthRegister',
                 'registerCountWeek', 'monthUserRegister', 'registerUserCountWeek', 'postOnPublication',
-            'realPostCount', 'ipPhoneViewCount', 'spisaniyaCountWeek', 'monthCashSpis', 'blockData'
+            'realPostCount', 'ipPhoneViewCount', 'spisaniyaCountWeek', 'monthCashSpis', 'blockData',
+                'totalPhoneView', 'userPhoneView'
             )
         );
 
