@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\models\PhoneAdvertViewStat;
 use common\models\PhonesAdvert;
+use common\models\PhoneView;
 use common\models\Pol;
 use common\models\RealUserPhoneView;
 use frontend\modules\user\helpers\ViewCountHelper;
@@ -34,6 +35,8 @@ class PhoneController extends Controller
         $age = Yii::$app->request->post('age');
 
         $post = Posts::find()->where(['id' => $postId])->cache(3600)->one();
+
+        PhoneView::addView();
 
         if ($post) {
 
