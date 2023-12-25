@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use common\models\PhoneAdvertViewStat;
 use common\models\PhonesAdvert;
 use common\models\Pol;
+use common\models\RealUserPhoneView;
 use frontend\modules\user\helpers\ViewCountHelper;
 use frontend\modules\user\models\Posts;
 use yii\web\Controller;
@@ -39,6 +40,7 @@ class PhoneController extends Controller
             if ($post->fake) {
 
                 ViewCountHelper::addView($post->id, Yii::$app->params['redis_view_phone_count_key']);
+                RealUserPhoneView::addView();
                 return $post->phone;
 
             } else {
@@ -72,6 +74,7 @@ class PhoneController extends Controller
                     $data->save();
 
                     ViewCountHelper::addView($data->id, Yii::$app->params['redis_view_phone_count_key']);
+                    RealUserPhoneView::addView();
 
                     return $data->phone;
 
