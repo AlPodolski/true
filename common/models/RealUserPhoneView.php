@@ -50,7 +50,7 @@ class RealUserPhoneView extends \yii\db\ActiveRecord
 
         if ($count = self::find()->where(['date' => $date])->one()){
 
-            $count->count = $count->count + $event->sum;
+            $count->count = $count->count + 1;
 
             $count->save();
 
