@@ -63,6 +63,8 @@ class PhoneController extends Controller
                     ->andWhere(['>', 'advert_phone_view_count', 0])
                     ->andWhere(['<', 'last_phone_view_at', time() - 1100])
                     ->andWhere(['<>', 'user_id', 240])
+                    ->andWhere(['<>', 'user_id', 241])
+                    ->andWhere(['<>', 'user_id', 22040])
                     ->orderBy(['last_phone_view_at' => SORT_ASC])
                     ->one();
 
