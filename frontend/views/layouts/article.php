@@ -135,14 +135,10 @@ echo \frontend\components\helpers\MicroHelper::image($post);
 
                 <?php if ($post['strizhka']) : ?>
 
-                    <?php foreach ($post['strizhka'] as $item) : ?>
-
                         <li class="catalog-item-tags__item">
-                            <a href="/intimnaya-strizhka-<?php echo $item['url'] ?>"
-                               class="catalog-item-tags__link">#<?php echo $item['value'] ?></a>
+                            <a href="/intimnaya-strizhka-<?php echo $post['strizhka']['url'] ?>"
+                               class="catalog-item-tags__link">#<?php echo $post['strizhka']['value'] ?></a>
                         </li>
-
-                    <?php endforeach; ?>
 
                 <?php endif; ?>
 

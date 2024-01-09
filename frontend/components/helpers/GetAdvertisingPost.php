@@ -17,7 +17,7 @@ class GetAdvertisingPost
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->andWhere(['pol_id' => $pol_id])
             ->andWhere(['>', 'view', 0])
-            ->with('metro')
+            ->with('metro', 'avatar' , 'place', 'strizhka')
             ->limit(1)
             ->orderBy('RAND()')
             ->one()){

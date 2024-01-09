@@ -165,7 +165,7 @@ class Posts extends \yii\db\ActiveRecord
         $topAnketList = TopAnketBlock::getPostIds($cityId);
 
         if ($topAnketList) return self::find()->where(['in', 'id', $topAnketList])
-            ->with('metro', 'avatar')
+            ->with('metro', 'avatar', 'place', 'strizhka')
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->andWhere(['city_id' => $cityId])
             ->orderBy((new GetOrderHelper())->get())
