@@ -182,6 +182,46 @@ $this->title = 'Главная страница';
 
             <div class="col-12">
 
+                <?php if ($blockDomains) : ?>
+
+                <h2>Блокировки доменов</h2>
+
+                    <table class="table table-striped">
+
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Домен</th>
+                            <th scope="col">Дата обнаружения</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <?php foreach ($blockDomains as $item) : ?>
+
+                            <tr>
+                                <th scope="row"><?php echo $item->id ?> </th>
+                                <td>
+                                    <?php echo $item->domain ?>
+                                </td>
+                                <td>
+                                    <?php echo date('Y-m-d H', $item->created_at)  ?>
+                                </td>
+
+                            </tr>
+
+                        <?php endforeach; ?>
+
+                        </tbody>
+
+                    </table>
+
+                <?php endif; ?>
+
+            </div>
+
+            <div class="col-12">
+
                 <?php if ($blockData) : ?>
 
                 <h2>Блокировки</h2>

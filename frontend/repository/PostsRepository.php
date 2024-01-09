@@ -77,7 +77,7 @@ class PostsRepository
     {
         $posts = Posts::find()
             ->asArray()
-            ->with('avatar', 'metro', 'rayon', 'nacionalnost', 'place', 'nacionalnost', 'cvet', 'strizhka')
+            ->with('avatar', 'metro', 'rayon', 'place', 'nacionalnost', 'cvet', 'strizhka')
             ->where(['in' ,'id', $ids])
             ->orderBy($this->order);
 

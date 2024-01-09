@@ -2,6 +2,7 @@
 
 namespace console\controllers;
 
+use common\models\BlockDomain;
 use common\models\City;
 use common\models\CityBlock;
 use Yii;
@@ -41,7 +42,26 @@ class RknController extends \yii\console\Controller
 
             }
 
+            if (isset($blockDomains['domain'])) {
+
+                foreach ($blockDomains['domain'] as $blockDomain) {
+
+                    $this->addBlockDomain($blockDomain);
+
+                }
+
+            }
+
         }
+
+    }
+
+    private function addBlockDomain($domain){
+
+        $blockDomain = new BlockDomain();
+        $blockDomain->domain = $domain;
+        $blockDomain->created_at = time();
+        $blockDomain->save();
 
     }
 

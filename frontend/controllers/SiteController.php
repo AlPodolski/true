@@ -214,7 +214,8 @@ class SiteController extends Controller
     public function actionListFavorite($city)
     {
 
-        $posts = Posts::find()->where(['in', 'id', FavoriteHelper::getFavorite()])->with('avatar', 'metro', 'selphiCount', 'partnerId')
+        $posts = Posts::find()->where(['in', 'id', FavoriteHelper::getFavorite()])
+            ->with('avatar', 'metro', 'selphiCount', 'partnerId')
             ->all();
 
         return $this->render('favorite', [

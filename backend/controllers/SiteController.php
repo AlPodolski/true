@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use backend\models\IpPhoneCount;
+use common\models\BlockDomain;
 use common\models\CashCount;
 use common\models\CityBlock;
 use common\models\PhoneView;
@@ -98,11 +99,13 @@ class SiteController extends Controller
             ->limit(20)
             ->all();
 
+        $blockDomains = BlockDomain::find()->all();
+
         return $this->render('index',
             compact('payCountWeek', 'monthCash', 'monthRegister',
                 'registerCountWeek', 'monthUserRegister', 'registerUserCountWeek', 'postOnPublication',
             'realPostCount', 'ipPhoneViewCount', 'spisaniyaCountWeek', 'monthCashSpis', 'blockData',
-                'totalPhoneView', 'userPhoneView'
+                'totalPhoneView', 'userPhoneView', 'blockDomains'
             )
         );
 
