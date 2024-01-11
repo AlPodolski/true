@@ -9,6 +9,7 @@ use frontend\components\helpers\GetAdvertisingPost;
 use frontend\helpers\MetaBuilder;
 use frontend\helpers\QueryParamsHelper;
 use frontend\modules\user\models\Posts;
+use frontend\repository\PostsRepository;
 use Yii;
 use yii\data\Pagination;
 use frontend\controllers\BeforeController as Controller;
@@ -17,6 +18,8 @@ use yii\web\NotFoundHttpException;
 class FilterController extends Controller
 {
 
+    private $postsRepository;
+
     public function beforeAction($action)
     {
         if ($action->id == 'index' or $action->id == 'more') {
@@ -24,6 +27,14 @@ class FilterController extends Controller
         }
 
         return parent::beforeAction($action);
+    }
+
+    public function __construct($id, $module, $config = [])
+    {
+
+        $this->postsRepository = new PostsRepository();
+
+        parent::__construct($id, $module, $config);
     }
 
     /**
@@ -68,7 +79,7 @@ class FilterController extends Controller
 
         if ($page) $offset = Yii::$app->params['post_limit'] * $page;
 
-        $posts = QueryParamsHelper::getPosts($param, $cityInfo['id'], $limit, $offset);
+        $posts = $this->postsRepository->getPostForFilter($param, $cityInfo['id'], $limit, $offset);
 
         if (strpos($param, 'page')) $param = strstr($param, '/?page=', true);
 
@@ -76,12 +87,7 @@ class FilterController extends Controller
 
         $topPostList = Posts::getTopList($cityInfo['id']);
 
-        if (\count($posts) < 6) $more_posts = Posts::find()->limit(Yii::$app->params['post_limit'])
-            ->with('metro', 'avatar')
-            ->andWhere(['city_id' => $cityInfo['id']])
-            ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
-            ->asArray()
-            ->orderBy('RAND()')->all();
+        if (\count($posts) < 6) $more_posts = $this->postsRepository->getMorePost($cityInfo['id']);
 
         $checkBlock = GetAdvertisingPost::get($cityInfo);
         if ($checkBlock) array_unshift($posts, $checkBlock);
