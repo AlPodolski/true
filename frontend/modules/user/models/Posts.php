@@ -286,12 +286,13 @@ class Posts extends \yii\db\ActiveRecord
 
     public function getPlace()
     {
-        return $this->hasMany(Place::class, ['id' => 'place_id'])->via('userToPlaceRelations');
+        return $this->hasMany(Place::class, ['id' => 'place_id'])
+            ->via('userToPlaceRelations')->cache(3600);
     }
 
     public function getUserToPlaceRelations()
     {
-        return $this->hasMany(UserPlace::class, ['post_id' => 'id']);
+        return $this->hasMany(UserPlace::class, ['post_id' => 'id'])->cache(3600);
     }
 
 
@@ -302,7 +303,7 @@ class Posts extends \yii\db\ActiveRecord
 
     public function getNacionalnost(): ActiveQuery
     {
-        return $this->hasOne(National::class, ['id' => 'national_id']);
+        return $this->hasOne(National::class, ['id' => 'national_id'])->cache(3600);
     }
 
     public function getCvet()
@@ -312,7 +313,7 @@ class Posts extends \yii\db\ActiveRecord
 
     public function getStrizhka()
     {
-        return $this->hasOne(IntimHair::class, ['id' => 'intim_hair_id']);
+        return $this->hasOne(IntimHair::class, ['id' => 'intim_hair_id'])->cache(3600);
     }
 
     public function getOsobenost()
@@ -322,7 +323,7 @@ class Posts extends \yii\db\ActiveRecord
 
     public function getService()
     {
-        return $this->hasMany(UserService::class, ['post_id' => 'id'])->with('service');
+        return $this->hasMany(UserService::class, ['post_id' => 'id'])->with('service')->cache(3600);
     }
 
     public function getUserToServiceRelations()

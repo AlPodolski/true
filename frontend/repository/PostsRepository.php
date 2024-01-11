@@ -21,6 +21,8 @@ class PostsRepository
     private $order;
     private $cityId;
 
+    private $relation = array('metro', 'avatar', 'place', 'strizhka', 'service', 'nacionalnost');
+
     public function __construct($cityId = false)
     {
         $this->order = (new GetOrderHelper())->get();
@@ -30,7 +32,7 @@ class PostsRepository
     public function getForMainPage(): array
     {
         $prPosts = Posts::find()
-            ->with('metro', 'avatar', 'place', 'strizhka')
+            ->with($this->relation)
             ->where(['city_id' => $this->cityId])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->andWhere(['pol_id' => Pol::WOMAN_POL])
@@ -58,7 +60,7 @@ class PostsRepository
     {
 
         $posts = Posts::find()
-            ->with('metro', 'avatar', 'place', 'strizhka')
+            ->with($this->relation)
             ->where(['city_id' => $this->cityId])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->andWhere(['pol_id' => Pol::WOMAN_POL])
@@ -126,7 +128,7 @@ class PostsRepository
         $postsIds = false;
 
         $post = Posts::find()->where(['not in', 'id' , $id])
-            ->with('avatar', 'metro')
+            ->with($this->relation)
             ->andWhere(['city_id' => $this->cityId])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->andWhere(['pol_id' => $pol])

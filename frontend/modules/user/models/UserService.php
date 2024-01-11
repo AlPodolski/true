@@ -53,7 +53,7 @@ class UserService extends \yii\db\ActiveRecord
 
     public function getService()
     {
-        return $this->hasOne(Service::class, ['id' => 'service_id']);
+        return $this->hasOne(Service::class, ['id' => 'service_id'])->cache(3600);
     }
 
 }

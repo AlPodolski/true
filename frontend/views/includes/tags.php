@@ -1,0 +1,110 @@
+<?php /* @var $post \frontend\modules\user\models\Posts */ ?>
+
+<div class="catalog-item__tags">
+    <ul class="catalog-item-tags__list">
+
+        <?php if ($post['nacionalnost']) : ?>
+
+            <li class="catalog-item-tags__item">
+                <a href="/nacionalnost-<?php echo $post['nacionalnost']['url'] ?>"
+                   class="catalog-item-tags__link">#<?php echo $post['nacionalnost']['value'] ?></a>
+            </li>
+
+        <?php endif; ?>
+
+        <?php if ($post['service']) : ?>
+
+            <?php foreach ($post['service'] as $item) : ?>
+
+                <?php if ($item['id'] == 20) : ?>
+
+                    <li class="catalog-item-tags__item">
+                        <a href="/usluga-analnyj-seks"
+                           class="catalog-item-tags__link">#Анал</a>
+                    </li>
+
+                <?php endif; ?>
+
+                <?php if ($item['id'] == 12) : ?>
+
+                    <li class="catalog-item-tags__item">
+                        <a href="/usluga-kunilingus"
+                           class="catalog-item-tags__link">#Куни</a>
+                    </li>
+
+                <?php endif; ?>
+
+                <?php if ($item['id'] == 22) : ?>
+
+                    <li class="catalog-item-tags__item">
+                        <a href="/usluga-minet-bez-rezinki"
+                           class="catalog-item-tags__link">#МБР</a>
+                    </li>
+
+                <?php endif; ?>
+
+                <?php if ($item['id'] == 7) : ?>
+
+                    <li class="catalog-item-tags__item">
+                        <a href="/usluga-minet-v-mashine"
+                           class="catalog-item-tags__link">#Минет в машине</a>
+                    </li>
+
+                <?php endif; ?>
+
+            <?php endforeach; ?>
+
+        <?php endif; ?>
+
+        <?php if ($post['place']) : ?>
+
+            <?php foreach ($post['place'] as $item) : ?>
+
+                <li class="catalog-item-tags__item">
+                    <a href="/mesto-<?php echo $item['url'] ?>"
+                       class="catalog-item-tags__link">#<?php echo $item['value'] ?></a>
+                </li>
+
+            <?php endforeach; ?>
+
+
+        <?php endif; ?>
+
+        <?php if ($post['strizhka']) : ?>
+
+            <li class="catalog-item-tags__item">
+                <a href="/intimnaya-strizhka-<?php echo $post['strizhka']['url'] ?>"
+                   class="catalog-item-tags__link">#<?php echo $post['strizhka']['value'] ?></a>
+            </li>
+
+        <?php endif; ?>
+
+
+        <?php if ($post['rayon']) : ?>
+
+            <?php $rayon = $post['rayon']; ?>
+
+            <?php foreach ($rayon as $item) : ?>
+
+                <li class="catalog-item-tags__item">
+                    <a href="/rayon-<?php echo $item['url'] ?>"
+                       class="catalog-item-tags__link">#<?php echo $item['value'] ?></a>
+                </li>
+
+            <?php endforeach; ?>
+
+        <?php endif; ?>
+
+        <?php if ($post['cvet']) : ?>
+
+            <?php foreach ($post['cvet'] as $item) : ?>
+                <li class="catalog-item-tags__item">
+                    <a href="/cvet-volos-<?php echo $item['url'] ?>"
+                       class="catalog-item-tags__link">#<?php echo $item['value'] ?></a>
+                </li>
+            <?php endforeach; ?>
+
+        <?php endif; ?>
+
+    </ul>
+</div>
