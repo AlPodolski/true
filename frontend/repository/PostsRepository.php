@@ -246,6 +246,7 @@ class PostsRepository
             ->with($this->relation)
             ->limit($limit)
             ->orderBy($this->order)
+            ->asArray()
             ->offset($offset);
 
         $params = explode('/', $params);
