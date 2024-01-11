@@ -342,9 +342,9 @@ class PostsRepository
                 $data = str_replace('vremya-', '', $param);
 
                 $tempSql = ' id in (select `post_id` from `user_time` where `param_id` in ';
-                $tempSql .= ' (select `id` from time where url = :time))';
+                $tempSql .= ' (select `id` from time where url = :time) and `city_id` = :city_id)';
 
-                $posts = $posts->andWhere($tempSql, [':time' => $data]);
+                $posts = $posts->andWhere($tempSql, [':time' => $data, ':city_id' => $city]);
 
             }
 
