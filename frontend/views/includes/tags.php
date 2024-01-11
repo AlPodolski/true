@@ -3,7 +3,7 @@
 <div class="catalog-item__tags">
     <ul class="catalog-item-tags__list">
 
-        <?php if ($post['nacionalnost']) : ?>
+        <?php if (isset($post['nacionalnost']) and $post['nacionalnost']) : ?>
 
             <li class="catalog-item-tags__item">
                 <a href="/nacionalnost-<?php echo $post['nacionalnost']['url'] ?>"
@@ -12,7 +12,7 @@
 
         <?php endif; ?>
 
-        <?php if ($post['service']) : ?>
+        <?php if (isset($post['service']) and $post['service']) : ?>
 
             <?php foreach ($post['service'] as $item) : ?>
 
@@ -56,7 +56,7 @@
 
         <?php endif; ?>
 
-        <?php if ($post['place']) : ?>
+        <?php if (isset($post['place']) and $post['place']) : ?>
 
             <?php foreach ($post['place'] as $item) : ?>
 
@@ -70,7 +70,7 @@
 
         <?php endif; ?>
 
-        <?php if ($post['strizhka']) : ?>
+        <?php if (isset($post['strizhka']) and $post['strizhka']) : ?>
 
             <li class="catalog-item-tags__item">
                 <a href="/intimnaya-strizhka-<?php echo $post['strizhka']['url'] ?>"
@@ -80,29 +80,24 @@
         <?php endif; ?>
 
 
-        <?php if ($post['rayon']) : ?>
+        <?php if (isset($post['rayon']) and $post['rayon']) : ?>
 
             <?php $rayon = $post['rayon']; ?>
 
-            <?php foreach ($rayon as $item) : ?>
+            <li class="catalog-item-tags__item">
+                <a href="/rayon-<?php echo $rayon['url'] ?>"
+                   class="catalog-item-tags__link">#<?php echo $rayon['value'] ?></a>
+            </li>
 
-                <li class="catalog-item-tags__item">
-                    <a href="/rayon-<?php echo $item['url'] ?>"
-                       class="catalog-item-tags__link">#<?php echo $item['value'] ?></a>
-                </li>
-
-            <?php endforeach; ?>
 
         <?php endif; ?>
 
-        <?php if ($post['cvet']) : ?>
+        <?php if (isset($post['cvet']) and $post['cvet']) : ?>
 
-            <?php foreach ($post['cvet'] as $item) : ?>
-                <li class="catalog-item-tags__item">
-                    <a href="/cvet-volos-<?php echo $item['url'] ?>"
-                       class="catalog-item-tags__link">#<?php echo $item['value'] ?></a>
-                </li>
-            <?php endforeach; ?>
+            <li class="catalog-item-tags__item">
+                <a href="/cvet-volos-<?php echo $post['cvet']['url'] ?>"
+                   class="catalog-item-tags__link">#<?php echo $post['cvet']['value'] ?></a>
+            </li>
 
         <?php endif; ?>
 
