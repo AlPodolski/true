@@ -16,7 +16,7 @@
 
             <?php foreach ($post['service'] as $item) : ?>
 
-                <?php if ($item['id'] == 20) : ?>
+                <?php if ($item['service_id'] == 20) : ?>
 
                     <li class="catalog-item-tags__item">
                         <a href="/usluga-analnyj-seks"
@@ -25,7 +25,7 @@
 
                 <?php endif; ?>
 
-                <?php if ($item['id'] == 12) : ?>
+                <?php if ($item['service_id'] == 12) : ?>
 
                     <li class="catalog-item-tags__item">
                         <a href="/usluga-kunilingus"
@@ -34,7 +34,7 @@
 
                 <?php endif; ?>
 
-                <?php if ($item['id'] == 22) : ?>
+                <?php if ($item['service_id'] == 22) : ?>
 
                     <li class="catalog-item-tags__item">
                         <a href="/usluga-minet-bez-rezinki"
@@ -43,7 +43,7 @@
 
                 <?php endif; ?>
 
-                <?php if ($item['id'] == 7) : ?>
+                <?php if ($item['service_id'] == 7) : ?>
 
                     <li class="catalog-item-tags__item">
                         <a href="/usluga-minet-v-mashine"
