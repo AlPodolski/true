@@ -331,9 +331,9 @@ class PostsRepository
                 $data = str_replace('mesto-', '', $param);
 
                 $tempSql = ' id in (select `post_id` from `user_place` where `place_id` in ';
-                $tempSql .= ' (select `id` from place where url = :place))';
+                $tempSql .= ' (select `id` from place where url = :place) and `city_id` = :city_id)';
 
-                $posts = $posts->andWhere($tempSql, [':place' => $data]);
+                $posts = $posts->andWhere($tempSql, [':place' => $data, 'city_id' => $city]);
 
             }
 
