@@ -79,27 +79,5 @@
 
         <?php endif; ?>
 
-
-        <?php if (isset($post['rayon']) and $post['rayon']) : ?>
-
-            <?php $rayon = $post['rayon']; ?>
-
-            <li class="catalog-item-tags__item">
-                <a href="/rayon-<?php echo $rayon['url'] ?>"
-                   class="catalog-item-tags__link">#<?php echo $rayon['value'] ?></a>
-            </li>
-
-
-        <?php endif; ?>
-
-        <?php if (isset($post['cvet']) and $post['cvet']) : ?>
-
-            <li class="catalog-item-tags__item">
-                <a href="/cvet-volos-<?php echo $post['cvet']['url'] ?>"
-                   class="catalog-item-tags__link">#<?php echo $post['cvet']['value'] ?></a>
-            </li>
-
-        <?php endif; ?>
-
     </ul>
 </div>
