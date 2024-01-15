@@ -174,7 +174,7 @@ class SearchController extends Controller
             ->orWhere(['like', 'phone', $name])
             ->andWhere(['city_id' => $cityInfo['id']])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
-            ->orderBy('id DESC')
+            ->orderBy((new GetOrderHelper())->get())
             ->limit(Yii::$app->params['post_limit']);
 
         $prPosts = $prPosts->offset(Yii::$app->params['post_limit'] * $page)->all();
