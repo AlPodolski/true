@@ -37,6 +37,7 @@ $(document).ready(function () {
 $(document).ready(function () {
     $('.catalog-item-gallery').each(function(){
         $(this).slick();
+        $(this).addClass('slick-active');
     });
 });
 
@@ -289,7 +290,11 @@ $(window).scroll(function () {
                         $(target).addClass('pager');
 
                         $('.catalog-item-gallery').each(function(){
-                            $(this).slick();
+                            if (!this.hasClass('slick-active')){
+                                $(this).slick();
+                                $(this).addClass('slick-active');
+                            }
+
                         });
 
                     } else {
