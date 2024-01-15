@@ -290,7 +290,7 @@ $(window).scroll(function () {
                         $(target).addClass('pager');
 
                         $('.catalog-item-gallery').each(function(){
-                            if (!this.hasClass('slick-active')){
+                            if (!$(this).hasClass('slick-active')){
                                 $(this).slick();
                                 $(this).addClass('slick-active');
                             }
