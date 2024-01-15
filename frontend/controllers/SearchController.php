@@ -6,6 +6,7 @@ namespace frontend\controllers;
 use common\jobs\AddViewJob;
 use common\models\City;
 use common\models\Rayon;
+use frontend\components\helpers\GetOrderHelper;
 use frontend\helpers\MetaBuilder;
 use frontend\models\Metro;
 use frontend\models\SearchNameForm;
@@ -55,7 +56,7 @@ class SearchController extends Controller
             ->where(['like', 'name', $name])
             ->andWhere(['city_id' => $cityInfo['id']])
             ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
-            ->orderBy('id DESC')
+            ->orderBy((new GetOrderHelper())->get())
             ->limit(Yii::$app->params['post_limit']);
 
         $countQuery = clone $prPosts;
