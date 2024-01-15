@@ -207,6 +207,15 @@ class Posts extends \yii\db\ActiveRecord
             ->andWhere(['main' => Files::NOT_MAIN_PHOTO]);
     }
 
+    public function getGalleryForListing()
+    {
+        return $this->hasMany(Files::class, ['related_id' => 'id'])
+            ->andWhere(['related_class' => self::class])
+            ->andWhere(['in', 'type', [Files::DEFAULT_TYPE, Files::SELPHY_TYPE]])
+            ->andWhere(['main' => Files::NOT_MAIN_PHOTO])
+            ->cache(3600);
+    }
+
     public function getCheckPhoto() : ActiveQuery
     {
         return $this->hasOne(Files::class, ['related_id' => 'id'])->andWhere(['related_class' => self::class])

@@ -14,21 +14,43 @@ echo \frontend\components\helpers\MicroHelper::image($post);
 
 ?>
 
-<div class="catalog__item catalog-item <?php echo isset($countPost) ? 'post-num-' . $countPost : ""; ?>"
+<div data-link="/post/<?php echo $post['id'] ?>" class="catalog__item catalog-item <?php echo isset($countPost) ? 'post-num-' . $countPost : ""; ?>"
      data-post-id="<?php echo $post['id'] ?>">
-    <div data-link="/post/<?php echo $post['id'] ?>" class="catalog-item__header" onclick="openSingle(this)">
+    <div class="catalog-item__header">
         <?php if ((isset($advertising) and $advertising) or (isset($promo) and $promo)) : ?>
             <div class="check-label rek-block">
                 Реклама
             </div>
         <?php endif ?>
-        <?php
-        $path = Yii::getAlias('@frontend/views/includes/article-photo.php');
-        echo $this->renderFile($path, [
-            'file' => $post['avatar']['file'],
-            'name' => $post['name'],
-        ]);
-        ?>
+        <div class="catalog-item-gallery">
+            <?php
+            $path = Yii::getAlias('@frontend/views/includes/article-photo.php');
+
+            echo $this->renderFile($path, [
+                'file' => $post['avatar']['file'],
+                'name' => $post['name'],
+                'cssClass' => 'listing-slick',
+                'onClick' => 'openSingle(this)',
+            ]);
+
+            if ($post['galleryForListing']) {
+
+                foreach ($post['galleryForListing'] as $item) {
+
+                    echo $this->renderFile($path, [
+                        'file' => $item['file'],
+                        'name' => $post['name'],
+                        'cssClass' => 'listing-slick',
+                        'onClick' => 'openSingle(this)',
+                    ]);
+
+                }
+
+            }
+
+            ?>
+        </div>
+
 
         <div class="tarif tarif_<?php echo $post['tarif_id'] ?>">
         </div>

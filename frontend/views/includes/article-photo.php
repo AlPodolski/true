@@ -2,9 +2,10 @@
 /* @var $file string */
 /* @var $name string */
 /* @var $cssClass string */
+/* @var $onClick string */
 ?>
 
-<picture>
+<picture class="<?php echo $cssClass ?> " onclick="<?php echo $onClick ?>">
     <?php if (file_exists(Yii::getAlias('@webroot') . $file) and $file) : ?>
         <?php
         $thumbSrc = Yii::$app->imageCache->thumbSrc($file, '500_700');

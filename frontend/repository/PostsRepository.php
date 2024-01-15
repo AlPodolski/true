@@ -24,7 +24,7 @@ class PostsRepository
     private $order;
     private $cityId;
 
-    private $relation = array('metro', 'avatar', 'place', 'strizhka', 'service', 'nacionalnost');
+    private $relation = array('metro', 'avatar', 'place', 'strizhka', 'service', 'nacionalnost', 'galleryForListing');
 
     public function __construct($cityId = false)
     {

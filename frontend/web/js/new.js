@@ -34,8 +34,14 @@ $(document).ready(function () {
 
 });
 
+$(document).ready(function () {
+    $('.catalog-item-gallery').each(function(){
+        $(this).slick();
+    });
+});
+
 function openSingle(object){
-    var href = $(object).attr('data-link');
+    var href = $(object).closest('.catalog__item').attr('data-link');
     window.location.href = href;
 }
 
@@ -281,6 +287,10 @@ $(window).scroll(function () {
                         page = $(target).attr('data-page', Number(page) + 1);
 
                         $(target).addClass('pager');
+
+                        $('.catalog-item-gallery').each(function(){
+                            $(this).slick();
+                        });
 
                     } else {
 
