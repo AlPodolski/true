@@ -36,7 +36,7 @@ class RedirectHelper
 
         }
 
-        if ($cityInfo['actual_city'] != $city and !$cityInfo['external_domain']){
+        if ($cityInfo['actual_city'] and $cityInfo['actual_city'] != $city and !$cityInfo['external_domain']){
 
             $url = 'https://'.$cityInfo['actual_city'].'.'.$cityInfo['domain'].Yii::$app->request->url;
 
