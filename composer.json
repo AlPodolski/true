@@ -31,7 +31,8 @@
         "yiisoft/yii2-redis": "~2.0.0",
         "aki/yii2-bot-telegram": "*",
         "irazasyed/telegram-bot-sdk": "^2.0",
-        "yiisoft/yii2-queue": "^2.3"
+        "yiisoft/yii2-queue": "^2.3",
+        "guzzlehttp/guzzle": "^6.5"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
