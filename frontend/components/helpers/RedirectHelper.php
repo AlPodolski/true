@@ -17,6 +17,7 @@ class RedirectHelper
 
         $cityInfo = City::find()
             ->where(['url' => $cityName])
+            ->cache(3600)
             ->one();
 
         if (isset($cityInfo->domain) and $cityInfo->domain){
