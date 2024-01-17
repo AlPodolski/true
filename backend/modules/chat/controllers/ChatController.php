@@ -11,8 +11,8 @@ use backend\modules\chat\models\Message;
 use backend\modules\chat\models\relation\UserDialog;
 use Yii;
 use yii\helpers\ArrayHelper;
-use frontend\controllers\BeforeController as Controller;
 use yii\web\UploadedFile;
+use yii\web\Controller;
 
 class ChatController extends Controller
 {

@@ -17,22 +17,31 @@ class RedirectHelper
 
         $cityInfo = City::find()
             ->where(['url' => $cityName])
-            ->cache(3600)
             ->one();
 
         if (isset($cityInfo->domain) and $cityInfo->domain){
 
             Yii::$app->params['domain'] = $cityInfo->domain;
 
-            if ($host != $cityInfo->domain){
+            if ($host != $cityInfo['domain']){
 
-                $url = 'https://'.$city.'.'.Yii::$app->params['domain'].Yii::$app->request->url;
+                $url = 'https://'.$city.'.'.$cityInfo['domain'].Yii::$app->request->url;
 
                 header('Location: '.$url, true, 301);
 
                 exit();
 
             }
+
+        }
+
+        if ($cityInfo['actual_city'] != $city and !$cityInfo['external_domain']){
+
+            $url = 'https://'.$cityInfo['actual_city'].'.'.$cityInfo['domain'].Yii::$app->request->url;
+
+            header('Location: '.$url, true, 301);
+
+            exit();
 
         }
 
@@ -43,7 +52,7 @@ class RedirectHelper
                 !\strstr(Yii::$app->request->userAgent, 'google')
             ){
 
-                $url = 'https://'.$cityInfo['external_domain'].'.'.Yii::$app->params['domain'].Yii::$app->request->url;
+                $url = 'https://'.$cityInfo['external_domain'].'.'.$cityInfo['domain'].Yii::$app->request->url;
 
                 header('Location: '.$url, true, 301);
 
@@ -60,7 +69,7 @@ class RedirectHelper
                 \strstr(Yii::$app->request->userAgent, 'google')
             ){
 
-                $url = 'https://'.$cityInfo['actual_city'].'.'.Yii::$app->params['domain'].Yii::$app->request->url;
+                $url = 'https://'.$cityInfo['actual_city'].'.'.$cityInfo['domain'].Yii::$app->request->url;
 
                 header('Location: '.$url, true, 302);
 
@@ -77,7 +86,7 @@ class RedirectHelper
                 \strstr(Yii::$app->request->userAgent, 'google')
             ){
 
-                $url = 'https://'.$cityInfo['actual_city'].'.'.Yii::$app->params['domain'].Yii::$app->request->url;
+                $url = 'https://'.$cityInfo['actual_city'].'.'.$cityInfo['domain'].Yii::$app->request->url;
 
                 header('Location: '.$url, true, 302);
 
@@ -85,7 +94,7 @@ class RedirectHelper
 
             }else{
 
-                $url = 'https://'.$cityInfo['external_domain'].'.'.Yii::$app->params['domain'].Yii::$app->request->url;
+                $url = 'https://'.$cityInfo['external_domain'].'.'.$cityInfo['domain'].Yii::$app->request->url;
 
                 header('Location: '.$url, true, 301);
 
