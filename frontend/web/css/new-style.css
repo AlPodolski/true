@@ -1601,10 +1601,10 @@ input[type=range]::-webkit-slider-thumb::before {
 
 .filter-search-params__drop {
     background-color: #133a67;
+    z-index: 12;
     border: 1px solid #637f96;
     color: #fff;
     position: absolute;
-    z-index: 2;
     display: none;
     margin-top: -20px;
     padding: 20px 27px 27px 5.3%;
