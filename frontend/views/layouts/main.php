@@ -170,6 +170,7 @@ AppAsset::register($this);
                 </div>
             </div>
             <main>
+                <?php echo \frontend\widgets\Alert::widget() ?>
                 <?= $content ?>
             </main>
         </div>

@@ -1617,6 +1617,14 @@ input[type=range]::-webkit-slider-thumb::before {
     margin-left: -4.8%
 }
 
+.alert-item{
+    background: #133a67;
+    color: #fff;
+    padding: 15px 15px;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
 .filter-search-params__drop.active {
     display: -webkit-box;
     display: -ms-flexbox;
