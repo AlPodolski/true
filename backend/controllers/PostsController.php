@@ -3,7 +3,9 @@
 namespace backend\controllers;
 
 use common\components\helpers\AddEventHelper;
+use common\models\History;
 use common\models\PostMessage;
+use common\models\Spisaniya;
 use common\models\User;
 use frontend\modules\advert\models\Advert;
 use Yii;
@@ -135,9 +137,17 @@ class PostsController extends Controller
 
         if ($model = $this->findModel(Yii::$app->request->post('id'))){
 
-            $user = User::find()->where(['id' => $model->user_id])->one();
+            if (Yii::$app->pay->pay($model['tarif']['sum'], $model['user_id'], History::POST_PUBLICATION, $model['id'])) {
 
-            if ($user->cash >= $model->tarif->sum) $model->status = Posts::POST_ON_PUPLICATION_STATUS;
+                $model->pay_time = \time() + 3600;
+
+                $model->status = Posts::POST_ON_PUPLICATION_STATUS;
+
+                $sum = $model['tarif']['sum'];
+
+                Spisaniya::add($sum);
+
+            }
 
             else $model->status = Posts::POST_DONT_PUBLICATION_STATUS;
 
@@ -148,10 +158,11 @@ class PostsController extends Controller
             return 'Публикуется';
 
         }
+
     }
 
     /**
-     * Finds the Posts model based on its primary key value.
+     *о Finds the Posts model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
      * @return Posts the loaded model
@@ -159,7 +170,7 @@ class PostsController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Posts::find()->where(['id' => $id])->with('allPhoto', 'checkPhoto')->one()) !== null) {
+        if (($model = Posts::find()->where(['id' => $id])->with('allPhoto', 'checkPhoto', 'tarif')->one()) !== null) {
             return $model;
         }
 
