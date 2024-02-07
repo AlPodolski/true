@@ -168,23 +168,15 @@ class RknController extends \yii\console\Controller
     private function getData()
     {
 
-        $result = Yii::$app->cache->get('rkn');
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "https://reestr.rublacklist.net/api/v3/domains/");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
-        if ($result === false) {
+        $server_output = curl_exec($ch);
 
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "https://reestr.rublacklist.net/api/v3/domains/");
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-
-            $server_output = curl_exec($ch);
-
-            $result = json_decode($server_output);
-            // Сохраняем значение $data в кэше. Данные можно получить в следующий раз.
-            Yii::$app->cache->set('rkn', $result, 3600);
-
-        }
+        $result = json_decode($server_output);
 
         return $result;
 
