@@ -17,13 +17,31 @@ use frontend\modules\user\models\UserNational;
 use frontend\modules\user\models\UserPlace;
 use frontend\modules\user\models\UserRayon;
 use frontend\modules\user\models\UserService;
+use GuzzleHttp\Client;
 use League\Csv\Reader;
 use League\Csv\Statement;
 use Yii;
 use yii\console\Controller;
+use GuzzleHttp\Exception\ClientException;
 
 class CustController extends Controller
 {
+
+    private $client;
+    private $access_token = 'y0_AgAAAAA1RTqTAAOcKgAAAADuqTDbsC3FerCmQgGkW-uOepsxIMfhnSE';
+
+    protected $user_id;
+
+    public function __construct($id, $module, $config = [])
+    {
+
+        $this->client = new Client();
+
+        $this->getUser();
+
+        parent::__construct($id, $module, $config);
+    }
+
     public function actionPrice()
     {
         $posts = Posts::find()
@@ -82,67 +100,108 @@ class CustController extends Controller
     public function actionIndex()
     {
 
-        $oldIp = '185.197.162.110';
-        $newIp = '185.197.160.22';
-        $zone = '436e67f7d3f0e614b1626f0e0a7f5654';
-        $token = 'df732c943d439bdb9f69a39bd36a64f689db1';
+        $client = new Client();
 
-        $cloudUrl = 'https://api.cloudflare.com/client/v4/zones/' . $zone . '/dns_records?';
+        $this->getUser();
 
-        $dataRequest = 'content=' . $oldIp . '&page=1&per_page=100';
+        $response = $client->request('GET', 'https://api.webmaster.yandex.net/v4/user/'.$this->user_id.'/hosts', [
+            'headers' => [
+                'Authorization' => 'OAuth ' . $this->access_token,
+            ]
+        ]);
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $cloudUrl . $dataRequest);
-        //curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($content));  //Post Fields
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $body = json_decode($response->getBody());
 
-        $headers = [
-            'X-Auth-Email: ' . 'rino.kim@yandex.ru',
-            'X-Auth-Key: ' . $token,
-            'Content-Type: application/json',
-        ];
+        foreach ($body->hosts as $item){
 
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            if (strpos($item->host_id,'.intim-boxx.com')){
 
-        $server_output = curl_exec($ch);
+                $newHost = str_replace('.intim-boxx.com', '.proctitytki.com', $item->ascii_host_url);
 
-        $object = json_decode($server_output);
+                $id = $this->addHost($newHost);
 
-        curl_close($ch);
+                $this->startVarification($id);
 
-        foreach ($object->result as $item) {
+                echo $newHost.PHP_EOL;
 
-            if (!isset($item->id)) continue;
-
-            $zapid = $item->id;
-
-            $content = array(
-                'type' => "A",
-                'name' => $item->name,
-                'content' => $newIp,
-                'proxied' => true,
-            );
-
-            // пытаемся поставить галочку на облаке
-            $zoneindetif = "https://api.cloudflare.com/client/v4/zones/" . $zone . "/dns_records/$zapid";
-
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $zoneindetif);
-            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
-            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($content));
-
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
-            $server_output = curl_exec($ch);
+            }
 
         }
 
     }
+
+    private function addWebmaster(City $city, $code){
+
+        $webmaster = new Webmaster();
+
+        $webmaster->tag = $code;
+
+        if (!$city->actual_city) $webmaster->city_id = $city->id;
+        else $webmaster->city_name = $city->actual_city;
+
+        $webmaster->save();
+
+    }
+
+    private function addHost($host){
+
+        $host = array('host_url' => $host);
+
+        $response = $this->client->request('POST', 'https://api.webmaster.yandex.net/v4/user/'.$this->user_id.'/hosts', [
+            'json' => $host,
+            'headers' => [
+                'Authorization' => 'OAuth ' . $this->access_token,
+                'Content-Type' => 'application/json',
+            ],
+        ]);
+
+        $body = $response->getBody();
+
+        $body = json_decode($body, true);
+
+        return $body['host_id'];
+
+    }
+
+    private function getUser(){
+
+        $response = $this->client->request('GET', 'https://api.webmaster.yandex.net/v4/user', [
+            'headers' => [
+                'Authorization' => 'OAuth ' . $this->access_token
+            ]
+        ]);
+
+        $body = $response->getBody();
+
+        $body = json_decode($body, true);
+
+        $this->user_id = $body['user_id'];
+
+    }
+
+    private function startVarification($host){
+
+        $response = $this->client->request('POST', 'https://api.webmaster.yandex.net/v4/user/'.$this->user_id.'/hosts/'.$host.'/verification?verification_type=HTML_FILE', [
+            'headers' => [
+                'Authorization' => 'OAuth ' . $this->access_token
+            ]
+        ]);
+
+        $body = $response->getBody();
+
+        $body = json_decode($body, true);
+
+        return $body['verification_uin'];
+
+    }
+
+    private function getHost(City $city){
+
+        if ($city->actual_city) $host = 'https:'.$city->actual_city.'.'.$city->domain.':443';
+        else $host = 'https:'.$city->url.'.'.$city->domain.':443';
+
+        return $host;
+
+    }
+
 }

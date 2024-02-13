@@ -883,6 +883,7 @@ function send_comment(object) {
         },
         success: function (data) {
             $(object).closest('.comment-wall-form').siblings('.comments-list').append(data);
+            $('#addcommentform-text').val('');
         },
 
         complete: function () {

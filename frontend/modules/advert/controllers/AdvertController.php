@@ -27,7 +27,7 @@ class AdvertController extends Controller
         if (Yii::$app->user->isGuest) return $this->goHome();
 
         if (AdvertHelper::add( Yii::$app->request->post(), Yii::$app->user->identity )){
-            return $this->redirect('/advert');
+            return $this->redirect('/cabinet/advert');
         }
 
         return $this->redirect('/cabinet/pay');
@@ -117,6 +117,8 @@ class AdvertController extends Controller
     }
     public function actionCabinetAdvertView($city, $id)
     {
+
+        $this->layout = '@frontend/views/layouts/main-old.php';
 
         if (Yii::$app->user->isGuest) return $this->goHome();
 

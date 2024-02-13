@@ -14,6 +14,9 @@ body {
 .wrap > .container {
     padding: 70px 15px 20px;
 }
+.comment-item .no-img{
+    max-width: 60px;
+}
 .send-to-telegram{
     margin-top: 10px;
     margin-bottom: 0;
