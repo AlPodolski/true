@@ -28,16 +28,16 @@ class CustController extends Controller
 {
 
     private $client;
-    private $access_token = 'y0_AgAAAAA1RTqTAAOcKgAAAADuqTDbsC3FerCmQgGkW-uOepsxIMfhnSE';
+    private $access_token = 'y0_AgAAAABgCZP4AAOcKgAAAAD63OXZAACU8AejhKhG8qC2iRpK3-mUBdbSPw';
 
     protected $user_id;
 
     public function __construct($id, $module, $config = [])
     {
 
-        $this->client = new Client();
+        /*$this->client = new Client();
 
-        $this->getUser();
+        $this->getUser();*/
 
         parent::__construct($id, $module, $config);
     }
@@ -104,7 +104,7 @@ class CustController extends Controller
 
         $this->getUser();
 
-        $response = $client->request('GET', 'https://api.webmaster.yandex.net/v4/user/'.$this->user_id.'/hosts', [
+        $response = $client->request('GET', 'https://api.webmaster.yandex.net/v4/user/' . $this->user_id . '/hosts', [
             'headers' => [
                 'Authorization' => 'OAuth ' . $this->access_token,
             ]
@@ -112,9 +112,9 @@ class CustController extends Controller
 
         $body = json_decode($response->getBody());
 
-        foreach ($body->hosts as $item){
+        foreach ($body->hosts as $item) {
 
-            if (strpos($item->host_id,'.intim-boxx.com')){
+            if (strpos($item->host_id, '.intim-boxx.com')) {
 
                 $newHost = str_replace('.intim-boxx.com', '.proctitytki.com', $item->ascii_host_url);
 
@@ -122,7 +122,7 @@ class CustController extends Controller
 
                 $this->startVarification($id);
 
-                echo $newHost.PHP_EOL;
+                echo $newHost . PHP_EOL;
 
             }
 
@@ -130,7 +130,77 @@ class CustController extends Controller
 
     }
 
-    private function addWebmaster(City $city, $code){
+    public function actionCloud()
+    {
+
+        $oldIp = '185.197.162.32';
+        $newIp = '193.42.110.8';
+        $zone = 'c368cf24050ec041b4d84802993c23f1';
+        $token = 'f716ab864dd1d40dab325c43b64e185bfd517';
+
+        $cloudUrl = 'https://api.cloudflare.com/client/v4/zones/' . $zone . '/dns_records?';
+
+        $dataRequest = 'content=' . $oldIp . '&page=1&per_page=1000';
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $cloudUrl . $dataRequest);
+        //curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($content));  //Post Fields
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+
+        $headers = [
+            'X-Auth-Email: ' . 'aprutic@gmail.com',
+            'X-Auth-Key: ' . $token,
+            'Content-Type: application/json',
+        ];
+
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+        $server_output = curl_exec($ch);
+
+        $object = json_decode($server_output);
+
+        curl_close($ch);
+
+        foreach ($object->result as $item) {
+
+            if (!isset($item->id)) continue;
+
+            $zapid = $item->id;
+
+            $content = array(
+                'type' => "A",
+                'name' => $item->name,
+                'content' => $newIp,
+                'proxied' => true,
+            );
+
+            // пытаемся поставить галочку на облаке
+            $zoneindetif = "https://api.cloudflare.com/client/v4/zones/" . $zone . "/dns_records/$zapid";
+
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $zoneindetif);
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($content));
+
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+            $server_output = curl_exec($ch);
+
+        }
+    }
+
+
+    private
+    function addWebmaster(City $city, $code)
+    {
 
         $webmaster = new Webmaster();
 
@@ -143,11 +213,13 @@ class CustController extends Controller
 
     }
 
-    private function addHost($host){
+    private
+    function addHost($host)
+    {
 
         $host = array('host_url' => $host);
 
-        $response = $this->client->request('POST', 'https://api.webmaster.yandex.net/v4/user/'.$this->user_id.'/hosts', [
+        $response = $this->client->request('POST', 'https://api.webmaster.yandex.net/v4/user/' . $this->user_id . '/hosts', [
             'json' => $host,
             'headers' => [
                 'Authorization' => 'OAuth ' . $this->access_token,
@@ -163,7 +235,9 @@ class CustController extends Controller
 
     }
 
-    private function getUser(){
+    private
+    function getUser()
+    {
 
         $response = $this->client->request('GET', 'https://api.webmaster.yandex.net/v4/user', [
             'headers' => [
@@ -179,9 +253,11 @@ class CustController extends Controller
 
     }
 
-    private function startVarification($host){
+    private
+    function startVarification($host)
+    {
 
-        $response = $this->client->request('POST', 'https://api.webmaster.yandex.net/v4/user/'.$this->user_id.'/hosts/'.$host.'/verification?verification_type=HTML_FILE', [
+        $response = $this->client->request('POST', 'https://api.webmaster.yandex.net/v4/user/' . $this->user_id . '/hosts/' . $host . '/verification?verification_type=HTML_FILE', [
             'headers' => [
                 'Authorization' => 'OAuth ' . $this->access_token
             ]
@@ -195,10 +271,12 @@ class CustController extends Controller
 
     }
 
-    private function getHost(City $city){
+    private
+    function getHost(City $city)
+    {
 
-        if ($city->actual_city) $host = 'https:'.$city->actual_city.'.'.$city->domain.':443';
-        else $host = 'https:'.$city->url.'.'.$city->domain.':443';
+        if ($city->actual_city) $host = 'https:' . $city->actual_city . '.' . $city->domain . ':443';
+        else $host = 'https:' . $city->url . '.' . $city->domain . ':443';
 
         return $host;
 

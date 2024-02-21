@@ -127,7 +127,7 @@ class UserController extends Controller
         $model->city_id = $cityInfo['id'];
 
         if ($model->load(Yii::$app->request->post()) && $user = $model->signup() and Yii::$app->user->login($user)) {
-            Yii::$app->session->setFlash('success', 'Благодарим за регистрацию, для получения бонуса на счет и активации аккаунта перейдите по ссылке в письме ');
+            Yii::$app->session->setFlash('success', 'Благодарим за регистрацию, для активации пополните счет или напишите в поддержку ');
             return $this->redirect('/cabinet');
         }
 
