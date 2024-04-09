@@ -28,7 +28,7 @@ class CustController extends Controller
 {
 
     private $client;
-    private $access_token = 'y0_AgAAAABgCZP4AAOcKgAAAAD63OXZAACU8AejhKhG8qC2iRpK3-mUBdbSPw';
+    private $access_token = 'y0_AgAAAABNB5owAAOcKgAAAADj-ZoaFQ2AImXXTSSKrpFrlxvoUYxeHN8';
 
     protected $user_id;
 

@@ -3,6 +3,8 @@
 namespace backend\controllers;
 
 use backend\components\helpers\AddCloudHelper;
+use common\components\service\webmaster\Webmaster;
+use common\components\service\webmaster\WebmasterService;
 use common\models\CloudInfo;
 use Yii;
 use common\models\City;
@@ -143,6 +145,8 @@ class CityController extends Controller
         $cloudInfo = CloudInfo::find()->where(['domain' => $city->domain ])->one();
 
         $result = AddCloudHelper::add($newCity, $cloudInfo->zone);
+
+        if ($city) (new WebmasterService())->add($city);
 
     }
 }
