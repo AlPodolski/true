@@ -3,6 +3,7 @@
 
 namespace frontend\modules\user\components\obmenka;
 
+use common\models\City;
 use Yii;
 use yii\base\Exception;
 
@@ -69,8 +70,7 @@ class Obmenka
     private function createPay($orderId, $sum, $city, $currency, $des)
     {
 
-        if ($city == 'sex-tut') $city = '';
-        else $city = $city.'.';
+        $siteUrl = $this->makeSiteUrl($city);
 
         $data = [
             'payment_id' => $orderId,
@@ -78,12 +78,23 @@ class Obmenka
             'currency' => $currency,
             'account' => 'true-'.Yii::$app->user->id,
             "description" => $des,
-            "success_url" => "https://".Yii::$app->params['site_addr']."/pay/obmenka/".\str_replace('-'.Yii::$app->params['obm-id-pref'], '',$orderId),
-            "fail_url" => "https://".Yii::$app->params['site_addr']."/pay",
-            "status_url" => "https://".Yii::$app->params['site_addr']."/pay/obmenka/".\str_replace('-'.Yii::$app->params['obm-id-pref'], '',$orderId) ,
+            "success_url" => $siteUrl."/pay/obmenka/".\str_replace('-'.Yii::$app->params['obm-id-pref'], '',$orderId),
+            "fail_url" => $siteUrl."/pay",
+            "status_url" => $siteUrl."/pay/obmenka/".\str_replace('-'.Yii::$app->params['obm-id-pref'], '',$orderId) ,
         ];
 
         return $this->sendData($data, $this->create_pay_url);
+
+    }
+
+    private function makeSiteUrl($city){
+
+        $cityInfo = City::find()->where(['url' => $city])->one();
+
+        if ($cityInfo->actual_city) $result = 'https://'.$cityInfo->actual_city.'.'.$cityInfo->domain;
+        else $result = 'https://'.$city.'.'.$cityInfo->domain;
+
+        return $result;
 
     }
 
