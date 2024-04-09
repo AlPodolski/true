@@ -24,7 +24,7 @@
 
                 ?>
 
-                <option value="https://<?php echo $city . '.' . $domain ?>"><?php echo $cityItem->city ?></option>
+                <option <?php if ($currentCity == $cityItem->url) echo 'selected' ?> value="https://<?php echo $city . '.' . $domain ?>"><?php echo $cityItem->city ?></option>
 
             <?php endforeach; ?>
 

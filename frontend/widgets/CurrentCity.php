@@ -19,7 +19,9 @@ class CurrentCity extends Widget
 
             $metroList = Metro::getMetro($city['id']);
 
-            return $this->render('city', compact('city', 'cityList', 'metroList'));
+            $currentCity = Yii::$app->requestedParams['city'];
+
+            return $this->render('city', compact('city', 'cityList', 'metroList', 'currentCity'));
 
         }
 
