@@ -82,7 +82,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <p>Средства могут зачисляться с задержкой, на отправку уведомления с платежной системы нужно немного
                     времени</p>
 
-                <?= $form->field($model, 'sum')->textInput(['value' => 700]) ?>
+                <?= $form->field($model, 'sum')->textInput(['value' => 2000]) ?>
 
 
                 <?= $form->field($model, 'currency')
