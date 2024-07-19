@@ -243,6 +243,7 @@ class PostsRepository
     {
         $posts = Posts::find()
             ->where(['city_id' => $city])
+            ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
             ->with($this->relation)
             ->limit($limit)
             ->orderBy($this->order)
