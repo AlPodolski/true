@@ -81,6 +81,7 @@ class ReviewController extends Controller
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Review::find(),
+            'pagination' => [ 'pageSize' => 200, ],
         ]);
 
         return $this->render('index', [
