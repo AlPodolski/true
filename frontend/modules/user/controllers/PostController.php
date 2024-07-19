@@ -200,7 +200,7 @@ class PostController extends Controller
                     SavePostRelationHelper::save(UserMetro::class,
                         $userMetro['metro_id'],
                         $post['id'],
-                        'metro_id', $city['id']);
+                        'metro_id', $post['city_id']);
 
                 }
 
@@ -209,23 +209,23 @@ class PostController extends Controller
                     SavePostRelationHelper::save(UserPlace::class,
                         $userPlace['place_id'],
                         $post['id'],
-                        'place_id', $city['id']);
+                        'place_id', $post['city_id']);
 
                 if ($userOsobenosti['param_id'])
                     SavePostRelationHelper::save(UserOsobenosti::class,
                         $userOsobenosti['param_id'],
                         $post['id'],
-                        'param_id', $city['id']);
+                        'param_id', $post['city_id']);
 
                 if ($userTime['param_id'])
                     SavePostRelationHelper::save(UserTime::class,
                         $userTime['param_id'],
                         $post['id'],
-                        'param_id', $city['id']);
+                        'param_id', $post['city_id']);
 
                 if ($userService['service_id'])
                     SavePostRelationHelper::saveService($post['id'],
-                        $userService, $city['id']);
+                        $userService, $post['city_id']);
 
                 $transaction->commit();
 
@@ -410,7 +410,7 @@ class PostController extends Controller
                     SavePostRelationHelper::save(UserMetro::class,
                         $userMetro['metro_id'],
                         $post['id'],
-                        'metro_id', $city['id']);
+                        'metro_id', $post['city_id']);
                 }
 
 
@@ -418,23 +418,23 @@ class PostController extends Controller
                     SavePostRelationHelper::save(UserPlace::class,
                         $userPlace['place_id'],
                         $post['id'],
-                        'place_id', $city['id']);
+                        'place_id', $post['city_id']);
 
                 if ($userOsobenosti['param_id'])
                     SavePostRelationHelper::save(UserOsobenosti::class,
                         $userOsobenosti['param_id'],
                         $post['id'],
-                        'param_id', $city['id']);
+                        'param_id', $post['city_id']);
 
                 if ($userTime['param_id'])
                     SavePostRelationHelper::save(UserTime::class,
                         $userTime['param_id'],
                         $post['id'],
-                        'param_id', $city['id']);
+                        'param_id', $post['city_id']);
 
                 if ($userService['service_id'])
                     SavePostRelationHelper::saveService($post['id'],
-                        $userService, $city['id']);
+                        $userService, $post['city_id']);
 
                 Yii::$app->session->setFlash('success', 'Данные анкеты ' . $post['name'] . ' сохранены');
 
