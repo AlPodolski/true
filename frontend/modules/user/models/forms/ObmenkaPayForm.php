@@ -52,17 +52,7 @@ class ObmenkaPayForm extends Model
 
     private function defineMinSum(){
 
-        $pay = ObmenkaOrder::find()->where(['user_id' => Yii::$app->user->id, 'status' => ObmenkaOrder::FINISH])->count();
-
-        if ($pay > 1) {
-
-            if (Yii::$app->user->identity->getPostCount() > 9) return 700;
-
-            else return 600;
-
-        }
-
-        return 500;
+        return 2000;
 
     }
 
