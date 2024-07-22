@@ -18,7 +18,7 @@ class WebmasterService
         $webmasterCode = new \frontend\models\Webmaster();
 
         $webmasterCode->tag = $code;
-        $webmasterCode->city_name = $code;
+        $webmasterCode->city_name = $city->actual_city;
 
         $webmasterCode->save();
 

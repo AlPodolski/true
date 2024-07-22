@@ -22,17 +22,22 @@ class Webmaster
     public function addSite($host)
     {
         try {
-            $response = $this->client->request('PUT', 'https://api.webmaster.yandex.net/v4/user/' . $this->user_id . '/hosts/' . $host, [
+
+            $host = array('host_url' => $host);
+
+            $response = $this->client->request('POST', 'https://api.webmaster.yandex.net/v4/user/' . $this->user_id . '/hosts', [
+                'json' => $host,
                 'headers' => [
                     'Authorization' => 'OAuth ' . $this->access_token,
-                ]
+                    'Content-Type' => 'application/json',
+                ],
             ]);
 
             $body = $response->getBody();
 
-            $data = json_decode($body, true);
+            $body = json_decode($body, true);
 
-            return $data['host_id'];
+            return $body['host_id'];
 
         } catch (Exception $e) {
             // Handle error
