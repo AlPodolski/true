@@ -98,7 +98,7 @@ class RknController extends \yii\console\Controller
 
             $newCityBlock = new CityBlock();
 
-            $newCityBlock->old_city = $blockCityItem;
+            $newCityBlock->old_city = $blockCityItem.$cityInfo->domain;
             $newCityBlock->new_city = $newCityUrl;
             $newCityBlock->city_id = $cityInfo->id;
             $newCityBlock->created_at = time();
