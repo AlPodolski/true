@@ -80,7 +80,6 @@ if ($productShema) echo $productShema;
             'phoneComments' => $phoneComments,
             'first' => $first,
             'backUrl' => $backUrl,
-            'refererCategory' => $refererCategory,
             'serviceList' => $serviceList,
         ]); ?>
 

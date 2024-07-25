@@ -140,8 +140,6 @@ class SiteController extends Controller
         $des = MetaBuilder::Build($uri, $city, 'des');
         $h1 = MetaBuilder::Build($uri, $city, 'h1');
 
-        $topPostList = Posts::getTopList($cityInfo['id']);
-
         $microdataForMainPage = (new CatalogProductShema($title, $des, $cityInfo['id']))->make();
 
         Yii::$app->queueView->push(new AddViewJob([
@@ -154,7 +152,6 @@ class SiteController extends Controller
             'title' => $title,
             'des' => $des,
             'h1' => $h1,
-            'topPostList' => $topPostList,
             'webmaster' => $webmaster,
             'pages' => $data['pages'],
             'cityInfo' => $cityInfo,

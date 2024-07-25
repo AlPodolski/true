@@ -78,8 +78,6 @@ class PostController extends Controller
 
             $serviceListReview = false;
 
-            $refererCategory = RequestHelper::getRefererCategory($protocol);
-
             //redis_post_single_view_count_key
 
             Yii::$app->queueView->push(new AddViewJob([
@@ -87,7 +85,6 @@ class PostController extends Controller
                 'type' => 'redis_post_single_view_count_key',
             ]));
 
-            $postsByPhone = false;
 
             $serviceList = Service::find()->cache(3600 * 24)->all();
 
@@ -96,8 +93,6 @@ class PostController extends Controller
                 'serviceListReview' => $serviceListReview,
                 'cityInfo' => $cityInfo,
                 'productShema' => $productShema,
-                'postsByPhone' => $postsByPhone,
-                'refererCategory' => $refererCategory,
                 'serviceList' => $serviceList,
                 'recomendPost' => $recomendPost,
                 'first' => true

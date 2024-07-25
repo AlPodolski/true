@@ -165,7 +165,7 @@ AppAsset::register($this);
                         'city' => Yii::$app->requestedParams['city']
                     ]) ?>
 
-                    <?php echo \frontend\widgets\LinkWidget::widget(['url' => Yii::$app->request->url]) ?>
+                    <?php if (Yii::$app->controller->id == 'filter') echo \frontend\widgets\LinkWidget::widget(['url' => Yii::$app->request->url]) ?>
 
                 </div>
             </div>
