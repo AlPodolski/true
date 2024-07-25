@@ -300,7 +300,7 @@ class PostsRepository
 
                 $data = str_replace('cvet-volos-', '', $param);
 
-                $tempSql = ' hair_color_id in (select `id` from hair_color where url = :hair_color)';
+                $tempSql = ' hair_color_id = (select `id` from hair_color where url = :hair_color)';
 
                 $posts = $posts->andWhere($tempSql, [':hair_color' => $data]);
 
@@ -321,7 +321,7 @@ class PostsRepository
                 $data = '';
                 $data = str_replace('nacionalnost-', '', $param);
 
-                $tempSql = ' national_id in (select `id` from national where url = :national) ';
+                $tempSql = ' national_id = (select `id` from national where url = :national) ';
 
                 $posts = $posts->andWhere($tempSql, [':national' => $data]);
 
