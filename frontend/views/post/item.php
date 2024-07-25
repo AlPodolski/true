@@ -29,8 +29,6 @@ $rayonList = $post['rayon'];
 $placeList = $post['place'];
 $servicePostList = $post['service'];
 
-$countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
-
 $photoTitle = 'Проститутка ' . $post['name'];
 
 if ($post['check_photo_status']) $photoTitle = 'Проверенная проститутка ' . $post['name'];
