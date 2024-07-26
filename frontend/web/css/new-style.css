@@ -1901,6 +1901,8 @@ input[type=range]::-webkit-slider-thumb::before {
     background-position: center top;
     color: #fff;
     display: block;
+    max-height: 400px;
+    overflow: hidden;
     position: relative
 }
 
@@ -4219,6 +4221,9 @@ textarea.form-control {
 }
 
 @media (max-width: 768px) {
+    .header__col--location{
+        display: none;
+    }
     .container {
         padding: 0 5px
     }

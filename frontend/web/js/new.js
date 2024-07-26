@@ -2690,7 +2690,10 @@ function get_register_btn() {
 }), !function (e) {
     "use strict";
     "function" == typeof define && define.amd ? define(["jquery"], e) : "undefined" != typeof exports ? module.exports = e(require("jquery")) : e(jQuery)
-}(function (c) {
+
+}
+
+(function (c) {
     "use strict";
     var n, r = window.Slick || {};
     n = 0, (r = function (e, t) {
@@ -3213,6 +3216,7 @@ function get_register_btn() {
         return t
     }
 });
+
 var SimpleBar = function () {
     "use strict";
     var s = function (e, t) {
