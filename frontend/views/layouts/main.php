@@ -45,18 +45,6 @@ AppAsset::register($this);
         <meta name="theme-color" content="#ffffff">
         <meta name="HandheldFriendly" content="True">
         <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-TEVW282QTC"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-
-            function gtag() {
-                dataLayer.push(arguments);
-            }
-
-            gtag('js', new Date());
-
-            gtag('config', 'G-TEVW282QTC');
-        </script>
     </head>
     <body>
     <?php $this->beginBody() ?>
