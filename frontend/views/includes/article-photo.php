@@ -20,7 +20,10 @@
         ?>
         <source srcset="<?= $thumbSrcWebP ?>" type="image/webp">
         <source srcset="<?= $thumbSrc ?>" type="image/jpeg">
+
         <img src="<?= $thumbSrc ?>"
+             height="420px"
+             width="480px"
             <?php if ($lazy) : ?>
                 loading="lazy"
             <?php endif; ?>

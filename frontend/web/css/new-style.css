@@ -305,6 +305,8 @@ img{
 }
 
 .slick-slide img {
+    width: 100%;
+    object-fit: scale-down;
     display: block
 }
 
@@ -4221,6 +4223,9 @@ textarea.form-control {
 }
 
 @media (max-width: 768px) {
+    .filter__bottom{
+        margin-bottom: 20px;
+    }
     .header__col--location{
         display: none;
     }
