@@ -77,12 +77,18 @@ if (isset($microdataForMainPage)) echo $microdataForMainPage;
 
             <?php
 
+            $i = 0;
+
             if ($topPostList) {
                 foreach ($topPostList as $post) {
                     echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), [
                         'post' => $post,
                         'advertising' => true,
+                        'i' => $i,
                     ]);
+
+                    $i++;
+
                 }
             }
 

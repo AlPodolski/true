@@ -1,6 +1,7 @@
 <?php
 
 /* @var $post array */
+/* @var $i integer */
 /* @var $countPost integer */
 /* @var $advertising bool | null */
 
@@ -26,9 +27,13 @@ echo \frontend\components\helpers\MicroHelper::image($post);
             <?php
             $path = Yii::getAlias('@frontend/views/includes/article-photo.php');
 
+            if ($i == 0) $lazy = false;
+            else $lazy = true;
+
             echo $this->renderFile($path, [
                 'file' => $post['avatar']['file'],
                 'name' => $post['name'],
+                'lazy' => $lazy,
                 'cssClass' => 'listing-slick',
                 'onClick' => 'openSingle(this)',
             ]);

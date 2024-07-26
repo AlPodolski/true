@@ -450,6 +450,7 @@ img{
     font-family: Rubik;
     font-weight: 400;
     font-style: normal;
+    font-display:swap;
     src: url(../fonts/Rubik/Rubik-Regular.ttf) format("truetype")
 }
 
@@ -457,12 +458,14 @@ img{
     font-family: Rubik;
     font-weight: 300;
     font-style: normal;
+    font-display:swap;
     src: url(../fonts/Rubik/Rubik-Light.ttf) format("truetype")
 }
 
 @font-face {
     font-family: Rubik;
     font-weight: 500;
+    font-display:swap;
     font-style: normal;
     src: url(../fonts/Rubik/Rubik-Medium.ttf) format("truetype")
 }
@@ -471,6 +474,7 @@ img{
     font-family: Icons;
     font-weight: 400;
     font-style: normal;
+    font-display:swap;
     src: url(../fonts/Icons/icons.ttf) format("truetype")
 }
 

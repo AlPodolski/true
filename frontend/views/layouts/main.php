@@ -36,6 +36,10 @@ AppAsset::register($this);
             <meta name="robots" content="noindex, follow">
         <?php endif; ?>
 
+        <link rel="preload" as="font" href="/fonts/Rubik/Rubik-Regular.ttf" crossorigin>
+        <link rel="preload" as="font" href="/fonts/Rubik/Rubik-Medium.ttf" crossorigin>
+        <link rel="preload" as="font" href="/fonts/Rubik/Rubik-Light.ttf" crossorigin>
+
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="/img/favicons/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">

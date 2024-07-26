@@ -3,6 +3,7 @@
 /* @var $name string */
 /* @var $cssClass string */
 /* @var $onClick string */
+/* @var $lazy bool */
 ?>
 
 <picture class="<?php echo $cssClass ?> " onclick="<?php echo $onClick ?>">
@@ -11,7 +12,7 @@
         $thumbSrc = Yii::$app->imageCache->thumbSrc($file, '500_700');
         $thumbSrcWebP = str_replace('.jpg', '.webp', $thumbSrc);
         ?>
-        <source srcset="<?php echo $thumbSrcWebP ?>" media="(max-width: 768px)" type="image/webp" >
+        <source srcset="<?php echo $thumbSrcWebP ?>" media="(max-width: 768px)" type="image/webp">
         <source srcset="<?php echo $thumbSrc ?>" media="(max-width: 768px)" type="image/jpeg">
         <?php
         $thumbSrc = Yii::$app->imageCache->thumbSrc($file, '420_480');
@@ -19,6 +20,10 @@
         ?>
         <source srcset="<?= $thumbSrcWebP ?>" type="image/webp">
         <source srcset="<?= $thumbSrc ?>" type="image/jpeg">
-        <img src="<?= $thumbSrc ?>" loading="lazy" alt="Проститутка <?php echo $name ?>">
+        <img src="<?= $thumbSrc ?>"
+            <?php if ($lazy) : ?>
+                loading="lazy"
+            <?php endif; ?>
+             alt="Проститутка <?php echo $name ?>">
     <?php endif; ?>
 </picture>
