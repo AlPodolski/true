@@ -44,7 +44,6 @@ AppAsset::register($this);
         <meta name="msapplication-TileImage" content="/img/favicons/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
         <meta name="HandheldFriendly" content="True">
-        <!-- Google tag (gtag.js) -->
     </head>
     <body>
     <?php $this->beginBody() ?>
@@ -275,15 +274,6 @@ AppAsset::register($this);
     <noscript>
 
     </noscript>
-    <!-- /Yandex.Metrika counter -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TEVW282QTC"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-TEVW282QTC');
-    </script>
     </body>
 
     </html>
