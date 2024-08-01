@@ -67,7 +67,7 @@ class PostsRepository
         if ($posts === false) {
             // $data нет в кэше, вычисляем заново
             $posts = Posts::find()
-                ->where($this->cityId)
+                ->where(['city_id' => $this->cityId])
                 ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
                 ->with('avatar')
                 ->limit(12)
