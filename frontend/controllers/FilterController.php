@@ -90,12 +90,15 @@ class FilterController extends Controller
         $checkBlock = GetAdvertisingPost::get($cityInfo);
         if ($checkBlock) array_unshift($posts, $checkBlock);
 
+        $postsWithVideo = $this->postsRepository->getPostWithVideo();
+
         return $this->render('index', [
             'posts' => $posts,
             'param' => $param,
             'title' => $title,
             'des' => $des,
             'h1' => $h1,
+            'postsWithVideo' => $postsWithVideo,
             'more_posts' => $more_posts,
         ]);
 

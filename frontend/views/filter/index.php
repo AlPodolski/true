@@ -8,6 +8,7 @@
 /* @var $des string */
 /* @var $h1 string */
 /* @var $param string */
+/* @var $postsWithVideo \frontend\modules\user\models\Posts[] */
 
 /* @var $pages \yii\data\Pagination */
 
@@ -60,6 +61,27 @@ echo \frontend\widgets\OpenGraphWidget::widget([
         <div class="row">
             <div data-url="<?php echo Yii::$app->request->url ?>" class="col-12"></div>
         </div>
+
+        <?php if ($postsWithVideo) : ?>
+
+            <div class="popular-list d-flex">
+
+                <?php foreach ($postsWithVideo as $item) : ?>
+                    <?php $thumbSrc = Yii::$app->imageCache->thumbSrc($item->avatar->file, '77'); ?>
+                    <a data-video
+                       href="<?php echo $item->video ?>"
+                       data-link="/post/<?php echo $item->id ?>"
+                       data-img="<?php echo $thumbSrc ?>"
+                       class="popular-list-item">
+
+                        <img src="<?php echo $thumbSrc ?>" alt="">
+                    </a>
+
+                <?php endforeach; ?>
+
+            </div>
+
+        <?php endif; ?>
 
         <div class="row catalog__items first-content">
 
