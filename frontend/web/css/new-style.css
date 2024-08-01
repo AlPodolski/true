@@ -721,13 +721,14 @@ img.video-img{
 }
 .video-link{
     position: absolute;
-    top: 50px;
+    top: 24px;
     color: #fff;
     font-weight: bold;
     font-size: 12px;
     z-index: 6;
     display: flex;
     left: 30px;
+    align-items: center;
 }
 .modal-video__close svg {
     width: 33px;
