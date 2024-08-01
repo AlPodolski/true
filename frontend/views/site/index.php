@@ -10,6 +10,7 @@
 /* @var $h1 string */
 /* @var $topPostList array */
 /* @var $cityInfo array */
+/* @var $postsWithVideo \frontend\modules\user\models\Posts[] */
 
 /* @var $pages \yii\data\Pagination */
 
@@ -52,7 +53,7 @@ if (isset($microdataForMainPage)) echo $microdataForMainPage;
     <div class="container">
         <div class="row filter__bottom">
             <div class="filter-sort__left">
-                <h1 class="filter-sort__title"> <?php echo $h1 ?> </h1>
+                <h1 class="filter-sort__title"> <?php echo $h1 ?> Проститутки москвы</h1>
                 <div class="filter-sort__btn" data-filter-btn>
                     <svg>
                         <use xlink:href='/svg/dest/stack/sprite.svg#filter'></use>
@@ -72,6 +73,27 @@ if (isset($microdataForMainPage)) echo $microdataForMainPage;
         <div class="row">
             <div data-url="/" class="col-12"></div>
         </div>
+
+        <?php if ($postsWithVideo) : ?>
+
+            <div class="popular-list d-flex">
+
+                <?php foreach ($postsWithVideo as $item) : ?>
+                    <?php $thumbSrc = Yii::$app->imageCache->thumbSrc($item->avatar->file, '77'); ?>
+                    <a data-video
+                       href="<?php echo $item->video ?>"
+                       data-link="/post/<?php echo $item->id ?>"
+                       data-img="<?php echo $thumbSrc ?>"
+                       class="popular-list-item">
+
+                        <img src="<?php echo $thumbSrc ?>" alt="">
+                    </a>
+
+                <?php endforeach; ?>
+
+            </div>
+
+        <?php endif; ?>
 
         <div class="row catalog__items first-content">
 
@@ -125,7 +147,21 @@ if (isset($microdataForMainPage)) echo $microdataForMainPage;
             <?php endforeach; ?>
 
         </div>
-
+        <div class="modal-video">
+            <div class="modal-video__header">
+                <div class="modal-video__close">
+                    <svg>
+                        <use xlink:href='svg/dest/stack/sprite.svg#close'></use>
+                    </svg>
+                </div>
+            </div>
+            <div class="modal-video__body">
+                <a class="video-link" href="">
+                    <img class="video-img" src="" alt="">
+                    Просмотреть профиль</a>
+                <video src="" controls></video>
+            </div>
+        </div>
         <div class="row content-post catalog__items"></div>
 
         <div class="row">
@@ -142,16 +178,18 @@ if (isset($microdataForMainPage)) echo $microdataForMainPage;
 
             echo str_replace('http:', 'https:', $pagination);
 
-        }?>
+        } ?>
 
         <?php if (Yii::$app->requestedParams['city'] == 'moskva' and !Yii::$app->request->get('page')) : ?>
 
             <h2>Как найти проститутку в Москве?</h2>
-            <p>Найти проститутку в Москве можно на нашем сайте, у нас представлены анкеты проверенных индивидуалок в широком
+            <p>Найти проститутку в Москве можно на нашем сайте, у нас представлены анкеты проверенных индивидуалок в
+                широком
                 спектре цен. Смотрите анкеты и звоните по номерам шлюх</p>
 
             <h2>Как вызвать индивидуалку в Москве?</h2>
-            <p>Для того что бы вызвать индивидуалку нужно найти инкету со стикером "индивидуалка" и позвонить по номеру в анкете</p>
+            <p>Для того что бы вызвать индивидуалку нужно найти инкету со стикером "индивидуалка" и позвонить по номеру
+                в анкете</p>
 
             <h2>Где найти проститутку в Москве?</h2>
             <p>В основном девушки размещают свой рекламу в интернете но могут и стоять на улицах</p>

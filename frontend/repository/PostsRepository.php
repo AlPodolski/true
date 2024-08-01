@@ -59,6 +59,27 @@ class PostsRepository
         return array('posts' => $prPosts, 'pages' => $pages);
     }
 
+    public function getPostWithVideo()
+    {
+
+        $posts = Yii::$app->cache->get('video_posts_'.$this->cityId);
+
+        if ($posts === false) {
+            // $data нет в кэше, вычисляем заново
+            $posts = Posts::find()
+                ->where($this->cityId)
+                ->with('avatar')
+                ->limit(12)
+                ->orderBy('id DESC')
+                ->andWhere(['<>', 'video', ''])->all();
+
+            // Сохраняем значение $data в кэше. Данные можно получить в следующий раз.
+            Yii::$app->cache->set('video_posts_'.$this->cityId, $posts);
+        }
+
+        return $posts;
+    }
+
     public function getMorePostsForMainPage($page)
     {
 

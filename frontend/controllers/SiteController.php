@@ -128,6 +128,8 @@ class SiteController extends Controller
 
         $data = $postRepository->getForMainPage();
 
+        $postsWithVideo = $postRepository->getPostWithVideo();
+
         $checkBlock = GetAdvertisingPost::get($cityInfo);
 
         if ($checkBlock) array_unshift($data['posts'], $checkBlock);
@@ -155,6 +157,7 @@ class SiteController extends Controller
             'webmaster' => $webmaster,
             'pages' => $data['pages'],
             'cityInfo' => $cityInfo,
+            'postsWithVideo' => $postsWithVideo,
             'microdataForMainPage' => $microdataForMainPage,
         ]);
     }
