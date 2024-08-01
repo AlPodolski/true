@@ -31,9 +31,6 @@ class FilterController extends Controller
 
     public function __construct($id, $module, $config = [])
     {
-
-        $this->postsRepository = new PostsRepository();
-
         parent::__construct($id, $module, $config);
     }
 
@@ -68,6 +65,8 @@ class FilterController extends Controller
 
         $cityInfo = City::getCity(Yii::$app->controller->actionParams['city']);
 
+        $this->postsRepository = new PostsRepository($cityInfo['id']);
+
         $title = MetaBuilder::Build($uri, $city, 'Title');
         $des = MetaBuilder::Build($uri, $city, 'des') ;
         $h1 = MetaBuilder::Build($uri, $city, 'h1');
@@ -80,6 +79,8 @@ class FilterController extends Controller
         if ($page) $offset = Yii::$app->params['post_limit'] * $page;
 
         $posts = $this->postsRepository->getPostForFilter($param, $cityInfo['id'], $limit, $offset);
+
+        $postsWithVideo = $this->postsRepository->getPostWithVideo();
 
         if (strpos($param, 'page')) $param = strstr($param, '/?page=', true);
 
@@ -96,6 +97,7 @@ class FilterController extends Controller
             'title' => $title,
             'des' => $des,
             'h1' => $h1,
+            'postsWithVideo' => $postsWithVideo,
             'more_posts' => $more_posts,
         ]);
 
