@@ -53,7 +53,7 @@ if (isset($microdataForMainPage)) echo $microdataForMainPage;
     <div class="container">
         <div class="row filter__bottom">
             <div class="filter-sort__left">
-                <h1 class="filter-sort__title"> <?php echo $h1 ?> Проститутки москвы</h1>
+                <h1 class="filter-sort__title"> <?php echo $h1 ?></h1>
                 <div class="filter-sort__btn" data-filter-btn>
                     <svg>
                         <use xlink:href='/svg/dest/stack/sprite.svg#filter'></use>
