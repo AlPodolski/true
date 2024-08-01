@@ -68,6 +68,7 @@ class PostsRepository
             // $data нет в кэше, вычисляем заново
             $posts = Posts::find()
                 ->where($this->cityId)
+                ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
                 ->with('avatar')
                 ->limit(12)
                 ->orderBy('id DESC')
