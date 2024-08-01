@@ -75,7 +75,7 @@ class PostsRepository
                 ->andWhere(['<>', 'video', ''])->all();
 
             // Сохраняем значение $data в кэше. Данные можно получить в следующий раз.
-            Yii::$app->cache->set('video_posts_'.$this->cityId, $posts);
+            Yii::$app->cache->set('video_posts_'.$this->cityId, $posts, 1800);
         }
 
         return $posts;
