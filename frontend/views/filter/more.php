@@ -8,15 +8,6 @@ use frontend\modules\user\helpers\ViewCountHelper;
 
 if ($page > 1) echo '<div data-url="/' . $param . '?page=' . $page . '" class="col-12"></div>';
 
-if ($topPostList) {
-    foreach ($topPostList as $post) {
-        echo $this->renderFile(Yii::getAlias('@app/views/layouts/article.php'), [
-            'post' => $post,
-            'advertising' => true,
-        ]);
-    }
-}
-
 foreach ($posts as $post) {
 
     echo $this->renderFile('@app/views/layouts/article.php', [

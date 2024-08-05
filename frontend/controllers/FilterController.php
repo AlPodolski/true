@@ -68,7 +68,7 @@ class FilterController extends Controller
         $this->postsRepository = new PostsRepository($cityInfo['id']);
 
         $title = MetaBuilder::Build($uri, $city, 'Title');
-        $des = MetaBuilder::Build($uri, $city, 'des') ;
+        $des = MetaBuilder::Build($uri, $city, 'des');
         $h1 = MetaBuilder::Build($uri, $city, 'h1');
 
         if ($h1 == 'Проститутки') throw new NotFoundHttpException();
@@ -116,8 +116,6 @@ class FilterController extends Controller
         $limit = Yii::$app->params['post_limit'];
         $offset = 0;
 
-        $topPostList = false;
-
         $page = Yii::$app->request->post('page');
 
         if ($page) $offset = Yii::$app->params['post_limit'] * $page;
@@ -126,21 +124,15 @@ class FilterController extends Controller
 
         if (\count($posts)) {
 
-            if (Yii::$app->request->post('page') == 0) {
-
-                $checkBlock = GetAdvertisingPost::get($cityInfo);
-
-                if ($checkBlock) array_unshift($posts, $checkBlock);
-
-                $topPostList = Posts::getTopList($cityInfo['id']);
-
-            }
-
             $page = Yii::$app->request->post('page') + 1;
 
         }
 
-        return $this->renderPartial('more', compact('posts', 'topPostList', 'page', 'param'));
+        return $this->renderPartial('more', [
+            'posts' => $posts['posts'],
+            'page' => $page,
+            'param' => $param,
+        ]);
 
     }
 }
