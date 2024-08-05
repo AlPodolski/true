@@ -332,7 +332,7 @@ class PostsRepository
 
                 $data = str_replace('intimnaya-strizhka-', '', $param);
 
-                $tempSql = ' intim_hair_id in (select `id` from intim_hair where url = :intim_hair) ';
+                $tempSql = ' intim_hair_id = (select `id` from intim_hair where url = :intim_hair) ';
 
                 $posts = $posts->andWhere($tempSql, [':intim_hair' => $data]);
 
