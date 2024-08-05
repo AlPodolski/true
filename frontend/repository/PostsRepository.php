@@ -311,7 +311,7 @@ class PostsRepository
 
                 $data = str_replace('usluga-', '', $param);
 
-                $tempSql = ' id in (select `post_id` from `user_service` where `service_id` in ';
+                $tempSql = ' id in (select `post_id` from `user_service` where `service_id` = ';
                 $tempSql .= ' (select `id` from service where url = :service))';
 
                 $posts = $posts->andWhere($tempSql, [':service' => $data]);
