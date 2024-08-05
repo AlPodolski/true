@@ -110,6 +110,8 @@ class FilterController extends Controller
 
         $cityInfo = City::getCity(Yii::$app->controller->actionParams['city']);
 
+        $this->postsRepository = new PostsRepository($cityInfo['id']);
+
         $limit = Yii::$app->params['post_limit'];
         $offset = 0;
 
@@ -119,7 +121,7 @@ class FilterController extends Controller
 
         if ($page) $offset = Yii::$app->params['post_limit'] * $page;
 
-        $posts = QueryParamsHelper::getPosts($param, $cityInfo['id'], $limit, $offset);
+        $posts = $this->postsRepository->getPostForFilter($param, $cityInfo['id'], $limit, $offset);
 
         if (\count($posts)) {
 
