@@ -3764,6 +3764,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 $('.video-link').attr('href', t.getAttribute("data-link"))
                 $('.video-img').attr('src', t.getAttribute("data-img"))
                 e.preventDefault(), T.getAttribute("src") != t.getAttribute("href") && (T.src = t.getAttribute("href"))
+                T.play();
             })
         })
     }

@@ -15,7 +15,7 @@ class AppAsset extends AssetBundle
         'css/new-style.css?v=20',
     ];
     public $js = [
-        'js/new.js?v=7',
+        'js/new.js?v=8',
         'js/wNumb.min.js',
     ];
     public $depends = [
