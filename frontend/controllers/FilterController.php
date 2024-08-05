@@ -78,7 +78,7 @@ class FilterController extends Controller
 
         if ($page) $offset = Yii::$app->params['post_limit'] * $page;
 
-        $posts = $this->postsRepository->getPostForFilter($param, $cityInfo['id'], $limit, $offset);
+        $data = $this->postsRepository->getPostForFilter($param, $cityInfo['id'], $limit, $offset);
 
         $postsWithVideo = $this->postsRepository->getPostWithVideo();
 
@@ -86,14 +86,15 @@ class FilterController extends Controller
 
         $more_posts = false;
 
-        if (\count($posts) < 6) $more_posts = $this->postsRepository->getMorePost($cityInfo['id']);
+        if (\count($data['posts']) < 6) $more_posts = $this->postsRepository->getMorePost($cityInfo['id']);
 
         $checkBlock = GetAdvertisingPost::get($cityInfo);
-        if ($checkBlock) array_unshift($posts, $checkBlock);
+        if ($checkBlock) array_unshift($data['posts'], $checkBlock);
 
         return $this->render('index', [
-            'posts' => $posts,
+            'posts' => $data['posts'],
             'param' => $param,
+            'pages' => $data['pages'],
             'title' => $title,
             'des' => $des,
             'h1' => $h1,

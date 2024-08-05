@@ -614,9 +614,19 @@ class PostsRepository
 
         }
 
+        $countQuery = clone $posts;
+
         $posts = $posts->all();
 
-        return $posts;
+        $pages = new Pagination([
+            'totalCount' => $count = $countQuery->cache(3600 * 12)->count(),
+            'forcePageParam' => false,
+            'defaultPageSize' => Yii::$app->params['post_limit']
+        ]);
+
+        $result = array('posts' => $posts, 'pages' => $pages);
+
+        return $result;
     }
 
     public function getMorePost($cityId): array

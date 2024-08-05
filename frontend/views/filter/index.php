@@ -13,6 +13,7 @@
 /* @var $pages \yii\data\Pagination */
 
 use frontend\modules\user\helpers\ViewCountHelper;
+use yii\bootstrap4\LinkPager;
 
 if (Yii::$app->request->get('page')) {
 
