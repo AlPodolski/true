@@ -10,10 +10,13 @@ class AvatarForm extends Model
 {
     public $avatar;
 
+    public $post_id;
+
     public function rules()
     {
         return [
             [['avatar'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg'],
+            [['post_id'], 'integer'],
         ];
     }
 

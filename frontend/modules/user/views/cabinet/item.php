@@ -1,11 +1,13 @@
 <?php
 
 /* @var $post \frontend\modules\user\models\Posts */
+
 /* @var $tarifList \common\models\Tarif[] */
 
 use frontend\widgets\PhotoWidget;
 use frontend\modules\user\helpers\ViewCountHelper;
 use frontend\modules\user\models\Posts;
+use yii\widgets\ActiveForm;
 
 ?>
 
@@ -44,25 +46,60 @@ use frontend\modules\user\models\Posts;
                    type="checkbox" class="checbox checbox-publication">
 
             <a data-id="<?php echo $post['id'] ?>" onclick="publication(this)"
-                  data-key="<?php echo $postStatus['key'] ?>"
-                  class="cursor-pointer table-d-none publication-btn <?php echo $postStatus['key'] ?>"><?php echo $postStatus['value'] ?></a>
+               data-key="<?php echo $postStatus['key'] ?>"
+               class="cursor-pointer table-d-none publication-btn <?php echo $postStatus['key'] ?>"><?php echo $postStatus['value'] ?></a>
         </div>
-
 
 
         <a href="/cabinet/post/edit/<?= $post['id'] ?>">
 
-            <?php echo PhotoWidget::widget([
-                'path' => $post['avatar']['file'],
-                'size' => '100_100',
-                'options' => [
-                    'class' => 'img user-img cabinet-img',
-                    'loading' => 'lazy',
-                    'alt' => $post['name'],
-                ],
-            ]); ?>
+            <?php if (file_exists(Yii::getAlias('@webroot') . $post['avatar']['file']) and $post['avatar']['file']) : ?>
+
+                <img src="<?php echo $thumbSrc = Yii::$app->imageCache->thumbSrc($post['avatar']['file'], '100_100'); ?>"
+                     class="img user-img cabinet-img img-<?php echo $post['id'] ?>" alt="">
+
+            <?php endif; ?>
 
         </a>
+
+        <div class="update-photo ">
+
+
+            <?php
+
+            $photoModel = new \frontend\modules\user\models\forms\AvatarForm();
+
+            $form = ActiveForm::begin(['action' => '/user/photo/add',
+                'options' => ['enctype' => 'multipart/form-data',
+                    'id' => 'under-avatar-form-'.$post['id'],]]);
+
+            ?>
+
+            <div class="img-label-wrap">
+
+                <?php echo $form->field($photoModel, 'post_id')
+                    ->hiddenInput(['value' => $post['id']])
+                    ->label(false) ?>
+
+                <label class="avatar-label" for="under-avatar-form-input-<?php echo $post['id']?>">
+
+                    <div class="alert-small-text">Обновить фото</div>
+
+                    <?= $form->field($photoModel, 'avatar')
+                        ->fileInput(['maxlength' => true,
+                            'accept' => 'image/*', 'id' => 'under-avatar-form-input-'.$post['id'],
+                            'onChange' => 'update_photo(this)',
+                            'class' => 'd-none',
+                            'data-id' => $post['id'],
+                        ])
+                        ->label(false) ?>
+
+                </label>
+            </div>
+
+            <?php ActiveForm::end(); ?>
+
+        </div>
 
         <div class="name-publication-wrap d-flex">
 
@@ -91,7 +128,8 @@ use frontend\modules\user\models\Posts;
 
             <?php if ($post['status'] == Posts::POST_ON_PUPLICATION_STATUS or $post['status'] == Posts::POST_DONT_PUBLICATION_STATUS) : ?>
 
-                <a onclick="up_post(this)" data-id="<?php echo $post['id'] ?>" class="edit-anket position-relative up-anket edit-block-item d-flex items-center">
+                <a onclick="up_post(this)" data-id="<?php echo $post['id'] ?>"
+                   class="edit-anket position-relative up-anket edit-block-item d-flex items-center">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(.clip0)">
                             <path d="M7.14072 8.07527V7.57527H6.64072H4.56939L12.0002 0.539654L19.4313 7.57527H17.3599H16.8599V8.07527V14.8138H7.14072V8.07527Z"
@@ -147,7 +185,8 @@ use frontend\modules\user\models\Posts;
         <div class="alert-small-text table-d-none">
 
             Просмотров
-            анкеты(Детальной страницы): <?php echo ViewCountHelper::countView($post['id'] , Yii::$app->params['redis_post_single_view_count_key']) ?? 0 ?>
+            анкеты(Детальной
+            страницы): <?php echo ViewCountHelper::countView($post['id'], Yii::$app->params['redis_post_single_view_count_key']) ?? 0 ?>
 
         </div>
 
@@ -167,16 +206,17 @@ use frontend\modules\user\models\Posts;
 
         <?php endif; ?>
 
-        <div class="tarif-wrap w-100" >
+        <div class="tarif-wrap w-100">
             <select onchange="update_tarif(this)"
-                     data-id="<?php echo $post['id'] ?>"
+                    data-id="<?php echo $post['id'] ?>"
                     class="form-control" name="tarif" id="tarif-<?php echo $post['id'] ?>">
 
                 <?php foreach ($tarifList as $tarif) : ?>
 
                     <option
-                            <?php if ($tarif->id == $post['tarif_id']) echo 'selected' ?>
-                            value="<?php echo $tarif->id ?>"><?php echo $tarif->value ?> - <?php echo $tarif->sum ?>р.</option>
+                        <?php if ($tarif->id == $post['tarif_id']) echo 'selected' ?>
+                            value="<?php echo $tarif->id ?>"><?php echo $tarif->value ?> - <?php echo $tarif->sum ?>р.
+                    </option>
 
                 <?php endforeach; ?>
 

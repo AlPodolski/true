@@ -15,6 +15,43 @@ $(document).ready(function () {
 
 });
 
+function update_photo(object) {
+
+    var id = $(object).attr('data-id');
+
+    var formData = new FormData($("#under-avatar-form-"+id)[0]);
+
+    $.ajax({
+        url: '/cabinet/post/update-photo',
+        type: 'POST',
+        data: formData,
+        datatype: 'json',
+        // async: false,
+        beforeSend: function () {
+
+        },
+        success: function (data) {
+
+            console.log( id) ;
+
+            $('.img-'+id).attr('src', data);
+
+        },
+
+        complete: function () {
+            // success alerts
+        },
+
+        error: function (data) {
+            alert("There may a error on uploading. Try again later");
+        },
+        cache: false,
+        contentType: false,
+        processData: false
+    });
+
+}
+
 arrowTop.onclick = function () {
     window.scrollTo(pageXOffset, 0);
     // после scrollTo возникнет событие "scroll", так что стрелка автоматически скроется

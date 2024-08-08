@@ -39,6 +39,7 @@ class PostController extends Controller
                 'actions' => [
                     'publication' => ['post'],
                     'tarif' => ['post'],
+                    'update-photo' => ['post'],
                 ],
             ],
         ];
@@ -64,7 +65,7 @@ class PostController extends Controller
         $city = City::getCity($city);
         $cityList = City::find()->all();
 
-        if (Yii::$app->user->identity->status != 10){
+        if (Yii::$app->user->identity->status != 10) {
             Yii::$app->session->setFlash('warning', 'Нужно подтвердить почту');
             return $this->redirect('/cabinet/faq');
         }
@@ -109,7 +110,7 @@ class PostController extends Controller
 
                     }
 
-                }else{
+                } else {
 
                     $transaction->rollBack();
 
@@ -193,7 +194,7 @@ class PostController extends Controller
 
                 }
 
-                if ($userMetro['metro_id']){
+                if ($userMetro['metro_id']) {
 
                     $userMetro->validate();
 
@@ -285,7 +286,7 @@ class PostController extends Controller
             and $userService->load(Yii::$app->request->post())) {
             if ($post->save()) {
 
-                Yii::$app->cache->delete('post_cache_'.$post->id.'_'.$post->city_id);
+                Yii::$app->cache->delete('post_cache_' . $post->id . '_' . $post->city_id);
 
                 $avatarForm->avatar = UploadedFile::getInstance($avatarForm, 'avatar');
 
@@ -405,7 +406,7 @@ class PostController extends Controller
 
                 }
 
-                if ($userMetro['metro_id']){
+                if ($userMetro['metro_id']) {
                     $userMetro->validate();
                     SavePostRelationHelper::save(UserMetro::class,
                         $userMetro['metro_id'],
@@ -456,25 +457,25 @@ class PostController extends Controller
     {
         $id = Yii::$app->request->post('id');
 
-        if ($post = Posts::findOne(['id' => $id, 'user_id' => Yii::$app->user->id])){
+        if ($post = Posts::findOne(['id' => $id, 'user_id' => Yii::$app->user->id])) {
 
-           if ($postPhoto = Files::findAll(['related_id' => $post['id'], 'related_class' => Posts::class])){
+            if ($postPhoto = Files::findAll(['related_id' => $post['id'], 'related_class' => Posts::class])) {
 
-               foreach ($postPhoto as $item){
+                foreach ($postPhoto as $item) {
 
-                   $file = Yii::getAlias('@app/web'.$item->file);
+                    $file = Yii::getAlias('@app/web' . $item->file);
 
-                   if(\is_file($file)) \unlink($file);
+                    if (\is_file($file)) \unlink($file);
 
-                   $item->delete();
+                    $item->delete();
 
-               }
+                }
 
-           }
+            }
 
-           UserMetro::deleteAll(['post_id' => $post['id']]);
-           UserPLace::deleteAll(['post_id' => $post['id']]);
-           UserService::deleteAll(['post_id' => $post['id']]);
+            UserMetro::deleteAll(['post_id' => $post['id']]);
+            UserPLace::deleteAll(['post_id' => $post['id']]);
+            UserService::deleteAll(['post_id' => $post['id']]);
 
             $post->delete();
 
@@ -490,7 +491,7 @@ class PostController extends Controller
         $post = Posts::find()->where(['id' => $postId])->andWhere(['user_id' => $userId])->one();
         $tarif = Tarif::findOne(['id' => $tarifId]);
 
-        if ($post and $tarif){
+        if ($post and $tarif) {
 
             $post->tarif_id = $tarif->id;
             $post->save();
@@ -501,5 +502,34 @@ class PostController extends Controller
 
         throw new NotFoundHttpException();
 
+    }
+
+    public function actionUpdatePhoto()
+    {
+        $model = new AvatarForm();
+
+        $data = Yii::$app->request->post('AvatarForm');
+
+        if ($data and $model->avatar = UploadedFile::getInstance($model, 'avatar')) {
+
+            $post = Posts::find()->where(['id' => $data['post_id'], 'user_id' => Yii::$app->user->id])->with('avatar')->one();
+
+            if ($post) {
+
+                $file = Yii::getAlias('@app/web' . $post->avatar->file);
+
+                if (\is_file($file)) \unlink($file);
+
+                $tempFile = $model->upload();
+
+                $post->avatar->file = $tempFile;
+
+                $post->avatar->save();
+
+                return Yii::$app->imageCache->thumbSrc($tempFile, '100_100');
+
+            }
+
+        }
     }
 }

@@ -17,6 +17,15 @@ body {
 .comment-item .no-img{
     max-width: 60px;
 }
+.update-photo {
+    margin-top: 5px;
+}
+.update-photo .form-group{
+    margin: 0;
+}
+.update-photo label{
+    margin: 0;
+}
 .send-to-telegram{
     margin-top: 10px;
     margin-bottom: 0;
