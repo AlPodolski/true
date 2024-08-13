@@ -4,6 +4,7 @@
 namespace frontend\modules\user\components\obmenka;
 
 use common\models\City;
+use common\models\ObmenkaOrder;
 use Yii;
 use yii\base\Exception;
 
@@ -83,7 +84,26 @@ class Obmenka
             "status_url" => $siteUrl."/pay/obmenka/".\str_replace('-'.Yii::$app->params['obm-id-pref'], '',$orderId) ,
         ];
 
-        return $this->sendData($data, $this->create_pay_url);
+        $result = $this->sendData($data, $this->create_pay_url);
+
+        $tempResult = \json_decode($result);
+
+        $orderIdInTable = \str_replace('-'.Yii::$app->params['obm-id-pref'], '',$orderId);
+
+        if (isset($tempResult->tracking))
+            $this->addTracking($orderIdInTable, $tempResult->tracking);
+
+        return $result;
+
+    }
+
+    private function addTracking($orderId, $trackingId){
+
+        $order = ObmenkaOrder::find()->where(['id' => $orderId])->one();
+
+        $order->tracking_id = $trackingId;
+
+        $order->save();
 
     }
 

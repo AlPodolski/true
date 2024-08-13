@@ -30,6 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'user_id',
             'sum',
+            'tracking_id',
             [
                 'attribute' => 'created_at',
                 'format' => 'raw',

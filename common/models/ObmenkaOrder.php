@@ -17,6 +17,7 @@ use yii\behaviors\TimestampBehavior;
  * @property int|null $user_to
  * @property int|null $pay_info
  * @property string $link
+ * @property string $tracking_id
  */
 class ObmenkaOrder extends \yii\db\ActiveRecord
 {
