@@ -18,7 +18,7 @@ class ObmenkaOrder extends ObmenkaOrderModel
     {
         return [
             [['id', 'user_id', 'sum', 'created_at', 'status', 'pay_info', 'user_to'], 'integer'],
-            [['tracking'], 'safe'],
+            [['tracking_id'], 'safe'],
         ];
     }
 
@@ -65,6 +65,7 @@ class ObmenkaOrder extends ObmenkaOrderModel
             'status' => $this->status,
             'pay_info' => $this->pay_info,
             'user_to' => $this->user_to,
+            'tracking_id' => trim($this->tracking_id),
         ]);
 
         $query->andFilterWhere(['like', 'tracking', $this->tracking]);

@@ -58,6 +58,7 @@ class ObmenkaOrder extends \yii\db\ActiveRecord
         return [
             [['user_id', 'sum', 'created_at', 'status', 'user_to', 'pay_info'], 'integer'],
             [['tracking'], 'string', 'max' => 40],
+            [['tracking_id'], 'string', 'max' => 40],
         ];
     }
 
@@ -70,7 +71,7 @@ class ObmenkaOrder extends \yii\db\ActiveRecord
             'id' => 'ID',
             'user_id' => 'User ID',
             'sum' => 'Sum',
-            'tracking' => 'Tracking',
+            'tracking_id' => 'Tracking',
             'created_at' => 'Created At',
             'status' => 'Status',
         ];
