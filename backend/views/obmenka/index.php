@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\ObmenkaOrder */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -27,7 +28,17 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            [
+                'attribute' => 'id',
+                'format' => 'raw',
+                'value' => function ($item) {
+
+                    /* @var $item \common\models\ObmenkaOrder */
+
+                    return '<div onclick="copyDataText(this)" data-text="'.$item->id.'-true"> '. $item->id .'</div>';
+
+                },
+            ],
             'user_id',
             'sum',
             'tracking_id',
@@ -38,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     /* @var $item \common\models\ObmenkaOrder */
 
-                    return $item->created_at ? date('Y-m-d H:i',$item->created_at) : '-';
+                    return $item->created_at ? date('Y-m-d H:i', $item->created_at) : '-';
 
                 },
             ],

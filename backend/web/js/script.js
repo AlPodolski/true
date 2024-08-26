@@ -34,6 +34,15 @@ function get_dialog(object){
     })
 }
 
+function copyDataText(object){
+    var content = $(object).attr('data-text');
+    var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val(content).select();
+    document.execCommand("copy");
+    $temp.remove();
+}
+
 function editPhone(object){
     var phone = $(object).siblings('.phone-change').val();
     var userId = $(object).attr('data-id');
