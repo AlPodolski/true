@@ -24,6 +24,22 @@ $this->title = 'Главная страница';
                 <div class="small-box bg-info">
                     <div class="inner">
 
+                        <p>Сайты</p>
+
+                        <?php if ($sites) foreach ($sites as $item) {
+
+                            echo \yii\helpers\Html::tag('p', $item->domain);
+
+                        } ?>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="small-box bg-info">
+                    <div class="inner">
+
                         <p>Пополнения</p>
 
                         <?php if ($payCountWeek) foreach ($payCountWeek as $item) {
