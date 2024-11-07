@@ -3815,47 +3815,13 @@ input:checked + .img-label-radio:before {
     border: 1px solid #EEEEEE;
     box-sizing: border-box;
     border-radius: 6px;
-    width: 54px;
-    height: 28px;
+    width: 80px;
+    height: 30px;
     background-position: center;
     display: inline-block;
     position: relative;
-}
-.qiwi_label::before{
-    display: block;
-    content: 'КИВИ';
-    position: absolute;
-    top: 5px;
-    left: 4px;
-}
-.visa_master_label::before{
-    display: block;
-    content: 'Карта';
-    position: absolute;
-    top: 5px;
-    left: 4px;
-}
-.usdt_label::before{
-    display: block;
-    content: 'USDT';
-    position: absolute;
-    top: 5px;
-    left: 4px;
-}
-
-.yandex_label::before {
-    display: block;
-    content: 'ЮМАНИ';
-    position: absolute;
-    top: 5px;
-    left: 4px;
-}
-.sbp_label::before {
-    display: block;
-    content: 'СБП';
-    position: absolute;
-    top: 5px;
-    left: 4px;
+    text-align: center;
+    line-height: 28px;
 }
 
 .phone-heading{

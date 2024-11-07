@@ -69,6 +69,22 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 },
             ],
+            [
+                'attribute' => 'payment_system',
+                'format' => 'raw',
+                'value' => function ($item) {
+
+                    /* @var $item \common\models\ObmenkaOrder */
+
+                    switch ($item->payment_system) {
+                        case \common\models\ObmenkaOrder::OBMENKA_PAY_SYSTEM:
+                            return 'Обменка';
+                        case \common\models\ObmenkaOrder::BETA_PAY_SYSTEM:
+                            return 'Бета';
+                    }
+
+                },
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

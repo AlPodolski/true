@@ -94,6 +94,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 if ($index == 0) $chec = 'checked';
                                 $return .= '<input ' . $chec . ' id="' . mb_strtolower($label) . '_label-id" type="radio" name="' . $name . '" value="' . $value . '" tabindex="' . $index . '">';
                                 $return .= '<label for="' . mb_strtolower($label) . '_label-id" class="modal-radio ' . mb_strtolower($label) . '_label image-label-radio">';
+                                $return .= $label;
                                 $return .= '</label>';
                                 $return .= '</span>';
 

@@ -6,6 +6,7 @@ namespace frontend\modules\user\models\forms;
 use common\models\ObmenkaCurrency;
 use common\models\ObmenkaOrder;
 use frontend\modules\user\components\obmenka\Obmenka;
+use frontend\modules\user\components\obmenka\PayService;
 use Yii;
 use yii\base\Model;
 
@@ -59,17 +60,19 @@ class ObmenkaPayForm extends Model
     public function createPay()
     {
 
-        if ($order = $this->createOrder() and $currency = ObmenkaCurrency::findOne($this->currency)){
+        $currency = ObmenkaCurrency::findOne($this->currency);
 
-            $obmenka = new Obmenka();
+        if ($order = $this->createOrder($currency->payment_system) ){
+
+            $payService = new PayService($currency->payment_system);
 
             $sum = $order->sum;
 
             if ($currency['value'] == 'usdt_trc20') $sum = $order->sum / Yii::$app->params['usdt_curst'];
 
-            if ($payUrl = $obmenka->getPayUrl($order->id.'-'.Yii::$app->params['obm-id-pref'], $sum, $this->city, $currency['value'])){
+            if ($payUrl = $payService->getPayUrl($order->id.'-'.Yii::$app->params['obm-id-pref'], $sum, $this->city, $currency['value'])){
 
-                $order->link = $payUrl->pay_link;
+                $order->link = $payUrl;
 
                 $order->save();
 
@@ -83,7 +86,7 @@ class ObmenkaPayForm extends Model
 
     }
 
-    private function createOrder(){
+    private function createOrder($payment_system){
 
         $order = new ObmenkaOrder();
 
@@ -92,6 +95,9 @@ class ObmenkaPayForm extends Model
         $order->status = ObmenkaOrder::WAIT;
         $order->pay_info = $this->pay_info;
         $order->user_to = $this->toUser;
+        $order->payment_system = $payment_system;
+
+        dd($order);
 
         if ($order->save()) return $order;
 

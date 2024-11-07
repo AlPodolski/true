@@ -18,9 +18,14 @@ use yii\behaviors\TimestampBehavior;
  * @property int|null $pay_info
  * @property string $link
  * @property string $tracking_id
+ * @property int $payment_system
  */
 class ObmenkaOrder extends \yii\db\ActiveRecord
 {
+
+    const OBMENKA_PAY_SYSTEM = 1;
+
+    const BETA_PAY_SYSTEM = 2;
 
     public function behaviors()
     {

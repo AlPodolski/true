@@ -67,6 +67,7 @@ return [
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/city/search' => 'city/index',
 
                 'POST <protocol>://<city:[a-z-0-9]+>.<domain>/search/name' => 'search/more',
+                'POST <protocol>://<city:[a-z-0-9]+>.<domain>/beta/pay/success' => 'beta/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/search/name' => 'search/name',
 
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/review/add' => 'user/review/add',

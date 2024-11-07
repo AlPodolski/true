@@ -68,9 +68,9 @@ class PayController extends Controller
 
             if ($model->validate()){
 
-                if ($payUrl = $model->createPay() and isset($payUrl->pay_link)){
+                if ($payUrl = $model->createPay()){
 
-                    return $this->redirect($payUrl->pay_link);
+                    return $this->redirect($payUrl);
 
                 }
 
