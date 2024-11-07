@@ -65,6 +65,8 @@ class BetaController extends \yii\web\Controller
 
             }
 
+            $order->status = ObmenkaOrder::FINISH;
+
             if ($user->save() and $order->save()) {
 
                 $billPayEvent = new BillPayEvent();
