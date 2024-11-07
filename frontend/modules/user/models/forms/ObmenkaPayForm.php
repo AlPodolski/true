@@ -97,8 +97,6 @@ class ObmenkaPayForm extends Model
         $order->user_to = $this->toUser;
         $order->payment_system = $payment_system;
 
-        dd($order);
-
         if ($order->save()) return $order;
 
         return false;
