@@ -43,7 +43,7 @@ class BetaController extends \yii\web\Controller
 
         $order = ObmenkaOrder::find()->where(['id' => $orderId])->andWhere(['status' => ObmenkaOrder::WAIT])->one();
 
-        if ($order and $status == 'success') {
+        if ($order and ($status == 'success' or $status == 'partial_payment')) {
 
             $user = User::findOne($order['user_id']);
 
