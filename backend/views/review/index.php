@@ -45,15 +45,28 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'author',
             [
+                'attribute' => 'author',
+                'format' => 'raw',
+                'value' => function ($review) {
+
+                    /* @var $review \frontend\modules\user\models\Review */
+
+                    if (mb_strlen($review->author) > 122) return Html::encode(mb_substr($review->author, 0, 122) . '...');
+
+                    return Html::encode($review->author);
+
+                },
+            ],
+            [
                 'attribute' => 'text',
                 'format' => 'raw',
                 'value' => function ($review) {
 
                     /* @var $review \frontend\modules\user\models\Review */
 
-                    if (mb_strlen($review->text) > 122) return mb_substr($review->text, 0, 122) . '...';
+                    if (mb_strlen($review->text) > 122) return Html::encode(mb_substr($review->text, 0, 122) . '...');
 
-                    return $review->text;
+                    return Html::encode($review->text);
 
                 },
             ],
