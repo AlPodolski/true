@@ -193,6 +193,25 @@ function check_review(object){
     })
 
 }
+function pay(object){
+
+    var id = $(object).attr('data-id')
+
+    $.ajax({
+        type: 'POST',
+        url: "/pay/check", //Путь к обработчику
+        data: 'id=' + id,
+        response: 'text',
+        dataType: "html",
+        cache: false,
+        success: function (data) {
+
+            $(object).text('Готово');
+
+        }
+    })
+
+}
 function remove_review(object){
 
     var id = $(object).attr('data-id')

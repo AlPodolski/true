@@ -8,7 +8,7 @@ use yii\base\Component;
 
 class PayCount extends Component
 {
-    public function handle(BillPayEvent $event)
+    public static function handle(BillPayEvent $event)
     {
 
         $date = date('d-m-Y', time());

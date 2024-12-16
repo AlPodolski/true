@@ -64,7 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         case \common\models\ObmenkaOrder::FINISH:
                             return 'Оплачен';
                         case \common\models\ObmenkaOrder::WAIT:
-                            return 'Ожидает оплаты';
+                            return '<div class="btn btn-success" data-id="'.$item->id.'" onclick="pay(this)">Оплатить</div>';
                     }
 
                 },
