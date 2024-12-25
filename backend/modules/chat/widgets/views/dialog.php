@@ -127,6 +127,7 @@ $photoModel = new \frontend\modules\chat\models\forms\SendPhotoForm();
     <div onclick="setFastMessage(this)" class="fast-message-item" data-text="Отправили запрос в платежную систему">Отправили запрос</div>
     <div onclick="setFastMessage(this)" class="fast-message-item" data-text="Нужен чек с финальным статусом">Ф. чек</div>
     <div onclick="setFastMessage(this)" class="fast-message-item" data-text="Еще идет проверка оплаты">Проверка</div>
+    <div onclick="setFastMessage(this)" class="fast-message-item" data-text="нужна выписка по карте в формате пдф с этим платежом">Выписка</div>
 </div>
 
 <div class="comment-wall-form page-block comment-wall-form-<?php echo $item['id'] ?>">
