@@ -1115,7 +1115,6 @@ h1 , .big-red-text{
     color: #fff;
 }
 .service-check:checked + .service-check-label::before {
-    top: 5px;
     content: url(/../img/check.png);
     background: #ff3f40;
     transition: .5s;
@@ -3822,6 +3821,14 @@ input:checked + .img-label-radio:before {
     position: relative;
     text-align: center;
     line-height: 28px;
+}
+
+.add-more-label{
+    position: relative;
+    padding-left: 30px;
+    display: flex;
+    align-items: center;
+    height: 23px;
 }
 
 .phone-heading{

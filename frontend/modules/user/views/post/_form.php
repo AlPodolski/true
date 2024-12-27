@@ -75,7 +75,7 @@ foreach (\common\models\Tarif::getAll() as $item) {
 
                     <?php $style = '' ?>
 
-                    <?php if (isset($post['avatar']['file'])) : ?>
+                    <?php if (isset($post['avatar']['file']) and !isset($add_more)) : ?>
 
                         <?php
 
@@ -172,7 +172,7 @@ foreach (\common\models\Tarif::getAll() as $item) {
 
                     <?php $style = '' ?>
 
-                    <?php if (isset($post['checkPhoto']['file'])) : ?>
+                    <?php if (isset($post['checkPhoto']['file']) and !isset($add_more)) : ?>
 
                         <?php $style = 'background-image: url(' . $post['checkPhoto']['file'] . ')'; ?>
 
@@ -209,7 +209,7 @@ foreach (\common\models\Tarif::getAll() as $item) {
 
                         <div class="col-12">
 
-                            <?php if (isset($photoForm->photo) and $photoForm->photo) : ?>
+                            <?php if (isset($photoForm->photo) and $photoForm->photo and !isset($add_more)) : ?>
 
                                 <div class="gallery-wrap d-flex items-center ">
 
@@ -306,7 +306,7 @@ foreach (\common\models\Tarif::getAll() as $item) {
 
                         <div class="col-12">
 
-                            <?php if (isset($selphiForm->photo) and $selphiForm->photo) : ?>
+                            <?php if (isset($selphiForm->photo) and $selphiForm->photo and !isset($add_more)) : ?>
 
                                 <div class="gallery-wrap d-flex items-center ">
 
@@ -404,7 +404,7 @@ foreach (\common\models\Tarif::getAll() as $item) {
 
                         <div class="col-12">
 
-                            <?php if ($post['video']) : ?>
+                            <?php if ($post['video'] and !isset($add_more)) : ?>
 
                                 <div class="gallery-wrap d-flex items-center" id="preview">
 
@@ -670,6 +670,15 @@ foreach (\common\models\Tarif::getAll() as $item) {
 
                     </div>
                 <?php endif; ?>
+
+                <?php if ($add_more) : ?>
+
+
+                    <input class="service-check" id="add-more" type="checkbox" name="add-more" value="apple">
+                    <label for="add-more" class="service-check-label add-more-label">Добавить еще анкету</label>
+
+                <?php endif; ?>
+
 
             </div>
 

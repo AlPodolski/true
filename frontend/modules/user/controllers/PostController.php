@@ -65,6 +65,8 @@ class PostController extends Controller
         $city = City::getCity($city);
         $cityList = City::find()->all();
 
+        $post->city_id = $city->id;
+
         if (Yii::$app->user->identity->status != 10) {
             Yii::$app->session->setFlash('warning', 'Нужно подтвердить почту');
             return $this->redirect('/cabinet/faq');
@@ -230,18 +232,30 @@ class PostController extends Controller
 
                 $transaction->commit();
 
+                if (isset($_POST['add-more'])){
+
+                    return $this->render('add',
+                        [
+                            'post' => $post,
+                            'city' => $city,
+                            'cityList' => $cityList,
+                            'add_more' => true,
+                        ]
+                    );
+
+                }
+
                 return $this->redirect('/cabinet');
 
             }
 
         }
 
-        $post->city_id = $city->id;
-
         return $this->render('add', [
             'post' => $post,
             'city' => $city,
             'cityList' => $cityList,
+            'add_more' => true,
         ]);
     }
 

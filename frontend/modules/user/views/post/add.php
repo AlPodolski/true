@@ -5,6 +5,7 @@
 /* @var $city array */
 /* @var $cityList \common\models\City[] */
 
+use frontend\modules\user\models\UserService;
 use yii\base\BaseObject;
 use frontend\modules\user\models\forms\CheckPhotoForm;
 
@@ -24,6 +25,33 @@ $this->title = 'Добавить анкету';
 
 $this->params['breadcrumbs'][] = ['label' => 'Кабинет', 'url' => '/cabinet'];
 $this->params['breadcrumbs'][] = $this->title;
+
+if (isset($add_more)){
+
+    $userMetro =  new \frontend\models\UserMetro();
+
+    $userMetro->metro_id = \yii\helpers\ArrayHelper::getColumn(\frontend\models\UserMetro::find()
+        ->where(['post_id' => $post['id']])->asArray()->all(), 'metro_id');
+
+
+    $userPlace = new \frontend\modules\user\models\UserPlace();
+
+    $userPlace->place_id = \yii\helpers\ArrayHelper::getColumn(\frontend\modules\user\models\UserPlace::find()
+        ->where(['post_id' => $post['id']])->asArray()->all(), 'place_id');
+
+    $userOsobenosti = new \frontend\modules\user\models\UserOsobenosti();
+
+    $userOsobenosti->param_id = \yii\helpers\ArrayHelper::getColumn(\frontend\modules\user\models\UserOsobenosti::find()
+        ->where(['post_id' => $post['id']])->asArray()->all(), 'param_id');
+
+    $userService = UserService::find()->where(['post_id' => $post['id']])->asArray()->all();
+
+    $userTime = new \frontend\modules\user\models\UserTime();
+
+    $userTime->param_id = \yii\helpers\ArrayHelper::getColumn(\frontend\modules\user\models\UserTime::find()
+        ->where(['post_id' => $post['id']])->asArray()->all(), 'param_id');
+
+}
 
 ?>
     <div class="container">
@@ -51,4 +79,5 @@ echo $this->renderFile(Yii::getAlias('@user-view/post/_form.php'), [
     'userTime' => $userTime,
     'selphiForm' => $selphiForm,
     'cityList' => $cityList,
+    'add_more' => $add_more,
 ]);
