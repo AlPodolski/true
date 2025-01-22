@@ -11,6 +11,6 @@ return [
     'up_anket_cost' => 70,
     'view_post_count_for_helper' => 10,
     'start_sum_for_bonus' => 2000,
-    'pay_bonus_percent' => 10,
+    'pay_bonus_percent' => 15,
     'usdt_curst' => 92,
 ];
