@@ -103,6 +103,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         ])
                 ?>
 
+                <p><strong>ВАЖНО, просим не использоват МТС банк</strong></p>
+                <hr>
+
                 <p>USDT TRC20, При оплате USDT курс конвертации 1 USDT = <?php echo Yii::$app->params['usdt_curst']; ?>
                     руб.</p>
 
