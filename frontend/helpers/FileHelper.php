@@ -46,11 +46,11 @@ class FileHelper
 
     public static function regenerateImg($img, $width , $save_path){
 
-        return Image::resize ($img, $width, 9999)->save($save_path, ['quality' => 85]);
+        return Image::resize ($img, $width, 9999)->save($save_path, ['quality' => 100]);
 
     }
 
-    public static function prepareImage( $file, $save_dir, $file_name,  $max_with = 1024){
+    public static function prepareImage( $file, $save_dir, $file_name,  $max_with = 2000){
 
         $size = \getimagesize($file);
 
