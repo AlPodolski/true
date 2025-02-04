@@ -21,7 +21,7 @@ class RegisterWidget extends Widget
             'class' => 'login-form'
         ]]); ?>
 
-        <div class="login-text">Регистрация + Бонус</div>
+        <div class="login-text">Регистрация</div>
 
         <?= $form->field($model, 'username')->textInput(['autofocus' => false, 'class' => 'form-input user-input' , 'placeholder' => 'Имя'])->label(false) ?>
 
