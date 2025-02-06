@@ -126,13 +126,13 @@ class UserController extends Controller
 
         $redis = Yii::$app->redis;
 
-        $redis->INCR("{$ip}:register");
+        $redis->INCR("register:$ip");
 
-        $redis->expire("{$ip}:register", 3600 * 2);
+        $redis->expire("register:$ip", 3600 * 2);
 
-        if ($redis->GET ("{$ip}:register") > 3) {
+        if ($redis->GET ("register:$ip") > 3) {
 
-            $this->goHome();;
+            return $this->goHome();
 
         }
 
