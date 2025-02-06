@@ -13,6 +13,7 @@ use frontend\models\SignupForm;
 use frontend\models\VerifyEmailForm;
 use Yii;
 use yii\base\InvalidArgumentException;
+use yii\redis\Connection;
 use yii\web\BadRequestHttpException;
 use frontend\modules\user\controllers\CabinetBeforeController as Controller;
 
@@ -62,7 +63,6 @@ class UserController extends Controller
             return true;
 
         }
-
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
@@ -117,6 +117,22 @@ class UserController extends Controller
             Yii::$app->session->setFlash('warning' , 'Капча введена неверно');
             Yii::$app->response->redirect(['/'], 301, false);
             return true;
+
+        }
+
+        /* @var $redis Connection */
+
+        $ip = $_SERVER['REMOTE_ADDR'];
+
+        $redis = Yii::$app->redis;
+
+        $redis->INCR("{$ip}:register");
+
+        $redis->expire("{$ip}:register", 3600 * 2);
+
+        if ($redis->GET ("{$ip}:register") > 3) {
+
+            $this->goHome();;
 
         }
 
