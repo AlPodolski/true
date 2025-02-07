@@ -517,6 +517,35 @@ class PostController extends Controller
         throw new NotFoundHttpException();
 
     }
+    public function actionTarifAll()
+    {
+        $postId = Yii::$app->request->post('ids');
+
+        $tarifId = Yii::$app->request->post('tarif');
+
+        $userId = Yii::$app->user->id;
+
+        $posts = Posts::find()->where(['in', 'id', $postId])
+            ->andWhere(['user_id' => $userId])->all();
+
+        $tarif = Tarif::findOne(['id' => $tarifId]);
+
+        if ($posts){
+
+            foreach ($posts as $post){
+
+                $post->tarif_id = $tarif->id;
+                $post->save();
+
+            }
+
+            return true;
+
+        }
+
+        throw new NotFoundHttpException();
+
+    }
 
     public function actionUpdatePhoto()
     {

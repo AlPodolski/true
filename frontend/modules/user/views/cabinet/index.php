@@ -16,18 +16,18 @@ $this->title = 'Кабинет';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
-    <div class="container margin-top-20">
+<div class="container margin-top-20">
 
-        <?php echo $this->renderFile(Yii::getAlias('@user-view/cabinet/info.php'), compact('user')) ?>
-        <div class="row">
+    <?php echo $this->renderFile(Yii::getAlias('@user-view/cabinet/info.php'), compact('user')) ?>
+    <div class="row">
 
-            <?php echo \frontend\modules\user\widgets\SidebarWidget::widget(['user' => $user]) ?>
+        <?php echo \frontend\modules\user\widgets\SidebarWidget::widget(['user' => $user]) ?>
 
-            <div class="col-12 col-md-12 col-lg-6 col-xl-7 <?php echo $viewType ?>">
+        <div class="col-12 col-md-12 col-lg-6 col-xl-7 <?php echo $viewType ?>">
 
-                <div class="row">
+            <div class="row">
 
-                    <div class="col-12 d-flex head-view-wrap">
+                <div class="col-12 d-flex head-view-wrap">
                         <span class="black-text font-weight-bold">
 
                             Мои анкеты <?php if ($posts) {
@@ -37,112 +37,128 @@ $this->params['breadcrumbs'][] = $this->title;
                         </span>
 
 
-                        <div class="order-block">
-                            <select class="metro-select" name="limit" id="sort-select" onchange="setView()">
+                    <div class="order-block">
+                        <select class="metro-select" name="limit" id="sort-select" onchange="setView()">
 
-                                <option value="default">Вид</option>
+                            <option value="default">Вид</option>
 
-                                <option value="default">По умолчанию</option>
-                                <option <?php if ($viewType == 'table') echo 'selected' ?> value="table">Таблица
-                                </option>
+                            <option value="default">По умолчанию</option>
+                            <option <?php if ($viewType == 'table') echo 'selected' ?> value="table">Таблица
+                            </option>
 
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="nav-posts d-flex col-12">
+                    <div class="change-tarif-active" data-type="start" onclick="start_all(this)">Включить все
+                        анкеты
+                    </div>
+                    <div class="change-tarif-active" data-type="stop" onclick="start_all(this)">Выключит все
+                        анкеты
+                    </div>
+                </div>
+
+                <div class="nav-posts select-all d-flex col-12">
+                    <div data-type="start"
+                         onclick="set_selected_all(this)">
+                        Выделить все
+                    </div>
+                </div>
+
+                <div class="nav-posts post-publication-nav d-flex col-12">
+
+                    <div data-type="start"
+                         onclick="get_phone_modal(this)">
+                        Сменить номер
+                    </div>
+
+                    <div data-type="start"
+                         onclick="start_all_selected(this)">
+                        Включить выделенные
+                    </div>
+
+                    <div data-type="stop" onclick="start_all_selected(this)">
+                        Выключит выделенные
+                    </div>
+                    <div data-type="stop" class="start-all" onclick="up_all_selected()">
+                        Поднять выделенные (<?php echo Yii::$app->params['up_anket_cost'] ?>р. анкета)
+                    </div>
+
+                    <div class="w-100">
+                        <div class="update_tarif-wrap">
+                            <label for="update_tarif">Сменить тариф на выбранных анкетах</label>
+                            <select name="update_tarif" class="update_tarif form-control" id="update_tarif" disabled>
+                                <?php foreach ($tarifList as $tarif) : ?>
+                                    <?php /* @var $tarif \common\models\Tarif */ ?>
+                                    <option value="<?php echo $tarif->id ?>"><?php echo $tarif->value ?>
+                                        - <?php echo $tarif->sum ?> р/час
+                                    </option>
+
+                                <?php endforeach; ?>
                             </select>
                         </div>
-
                     </div>
 
-                    <div class="nav-posts d-flex col-12">
-                        <div class="change-tarif-active" data-type="start" onclick="start_all(this)">Включить все
-                            анкеты
-                        </div>
-                        <div class="change-tarif-active" data-type="stop" onclick="start_all(this)">Выключит все
-                            анкеты
-                        </div>
-                    </div>
+                </div>
 
-                    <div class="nav-posts select-all d-flex col-12">
-                        <div data-type="start"
-                             onclick="set_selected_all(this)">
-                            Выделить все
-                        </div>
-                    </div>
+                <?php if ($statData) : ?>
 
-                    <div class="nav-posts post-publication-nav d-flex col-12">
-
-                        <div data-type="start"
-                             onclick="get_phone_modal(this)">
-                            Сменить номер
-                        </div>
-
-                        <div data-type="start"
-                             onclick="start_all_selected(this)">
-                            Включить выделенные
-                        </div>
-
-                        <div data-type="stop" onclick="start_all_selected(this)">
-                            Выключит выделенные
-                        </div>
-                        <div data-type="stop" class="start-all" onclick="up_all_selected()">
-                            Поднять выделенные (<?php echo Yii::$app->params['up_anket_cost'] ?>р. анкета)
-                        </div>
-                    </div>
-
-                    <?php if ($statData) : ?>
-
-                        <div class="col-12">
-                            <div class="stat-post white-cabinet-block d-flex">
-                                <div class="stat-post-item d-flex">
-                                    <img src="/img/phone-call-svgrepo-com.svg" alt="">
-                                    <div class="info d-flex">
-                                        <div class="stat-top-info">Просмотров телефона</div>
-                                        <div class="stat-bottom-info"><?php echo $statData['phone_view'] ?></div>
-                                    </div>
-                                </div>
-                                <div class="stat-post-item d-flex">
-                                    <img src="/img/1915454.svg" alt="">
-                                    <div class="info d-flex">
-                                        <div class="stat-top-info">Просмотров анкет</div>
-                                        <div class="stat-bottom-info"><?php echo $statData['post_view'] ?></div>
-                                    </div>
-                                </div>
-                                <div class="stat-post-item d-flex">
-                                    <img src="/img/pc-computer-with-monitor_icon-icons.com_56249.svg" alt="">
-                                    <div class="info d-flex">
-                                        <div class="stat-top-info">Показов на сайте</div>
-                                        <div class="stat-bottom-info"><?php echo $statData['post_show'] ?></div>
-                                    </div>
+                    <div class="col-12">
+                        <div class="stat-post white-cabinet-block d-flex">
+                            <div class="stat-post-item d-flex">
+                                <img src="/img/phone-call-svgrepo-com.svg" alt="">
+                                <div class="info d-flex">
+                                    <div class="stat-top-info">Просмотров телефона</div>
+                                    <div class="stat-bottom-info"><?php echo $statData['phone_view'] ?></div>
                                 </div>
                             </div>
-
+                            <div class="stat-post-item d-flex">
+                                <img src="/img/1915454.svg" alt="">
+                                <div class="info d-flex">
+                                    <div class="stat-top-info">Просмотров анкет</div>
+                                    <div class="stat-bottom-info"><?php echo $statData['post_view'] ?></div>
+                                </div>
+                            </div>
+                            <div class="stat-post-item d-flex">
+                                <img src="/img/pc-computer-with-monitor_icon-icons.com_56249.svg" alt="">
+                                <div class="info d-flex">
+                                    <div class="stat-top-info">Показов на сайте</div>
+                                    <div class="stat-bottom-info"><?php echo $statData['post_show'] ?></div>
+                                </div>
+                            </div>
                         </div>
 
-                    <?php endif; ?>
+                    </div>
 
-                    <div class="col-12 black-text font-weight-bold">
-                        <?php if ($posts) {
+                <?php endif; ?>
 
-                            $sum = 0;
+                <div class="col-12 black-text font-weight-bold">
+                    <?php if ($posts) {
 
-                            foreach ($posts as $post) {
+                        $sum = 0;
 
-                                if ($post->status == \frontend\modules\user\models\Posts::POST_ON_PUPLICATION_STATUS) {
+                        foreach ($posts as $post) {
 
-                                    $sum = $sum + $post->tarif->sum;
+                            if ($post->status == \frontend\modules\user\models\Posts::POST_ON_PUPLICATION_STATUS) {
 
-                                }
+                                $sum = $sum + $post->tarif->sum;
 
                             }
 
-                            if ($sum) echo 'Стоимость публикации включенных анкет в час ' . $sum . 'р.';
+                        }
 
-                        } ?>
-                    </div>
+                        if ($sum) echo 'Стоимость публикации включенных анкет в час ' . $sum . 'р.';
 
-                    <div class="col-12 col-md-4 col-lg-6 cabinet-item">
-                        <div class="white-cabinet-block cabinet-nav-block d-flex items-center nav-cabinet-block">
+                    } ?>
+                </div>
 
-                            <div class="plus-wrap d-flex items-center">
-                                <a href="/cabinet/post/add">
+                <div class="col-12 col-md-4 col-lg-6 cabinet-item">
+                    <div class="white-cabinet-block cabinet-nav-block d-flex items-center nav-cabinet-block">
+
+                        <div class="plus-wrap d-flex items-center">
+                            <a href="/cabinet/post/add">
                                 <span class="plus d-flex items-center">
                                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -150,39 +166,39 @@ $this->params['breadcrumbs'][] = $this->title;
                                               fill="white"/>
                                     </svg>
                                 </span>
-                                </a>
-                            </div>
-
-                            <div class="red-text add-anket text-center margin-top-20">
-                                <a class="red-text" href="/cabinet/post/add">
-                                    Добавить <br> анкету
-                                </a>
-                            </div>
-
-                            <div class="text-center add-anket-table">
-                                <a class="red-text" href="/cabinet/post/add">
-                                    Добавить анкету
-                                </a>
-                            </div>
-
+                            </a>
                         </div>
+
+                        <div class="red-text add-anket text-center margin-top-20">
+                            <a class="red-text" href="/cabinet/post/add">
+                                Добавить <br> анкету
+                            </a>
+                        </div>
+
+                        <div class="text-center add-anket-table">
+                            <a class="red-text" href="/cabinet/post/add">
+                                Добавить анкету
+                            </a>
+                        </div>
+
                     </div>
-
-                    <?php foreach ($posts as $post) {
-
-                        echo $this->renderFile(
-                            Yii::getAlias('@app/modules/user/views/cabinet/item.php'),
-                            compact('post', 'tarifList')
-                        );
-
-                    } ?>
-
                 </div>
+
+                <?php foreach ($posts as $post) {
+
+                    echo $this->renderFile(
+                        Yii::getAlias('@app/modules/user/views/cabinet/item.php'),
+                        compact('post', 'tarifList')
+                    );
+
+                } ?>
 
             </div>
 
         </div>
+
     </div>
+</div>
 
 <div class="modal fade" id="phoneModal" tabindex="-1" role="dialog" aria-labelledby="phoneModal" aria-hidden="true">
     <div class="modal-dialog" role="document">

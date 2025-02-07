@@ -67,15 +67,58 @@ function close_text() {
 }
 
 function check_checbox() {
-    $('.post-publication-nav').removeClass('post-publication-nav-active')
+    $('.post-publication-nav').removeClass('post-publication-nav-active');
+    let isChecked = $(".checbox-publication:checked").length > 0;
+    // Делаем select активным или неактивным
+    $("#update_tarif").prop("disabled", !isChecked);
     $(".checbox-publication").each(function () {
         if (this.checked) {
             $('.post-publication-nav').addClass('post-publication-nav-active')
+
             return true;
         }
     });
 
 }
+
+$("#update_tarif").change(function () {
+
+    let selectedTarif = $(this).val(); // Получаем выбранное значение из select
+    let selectedIds = []; // Массив для ID отмеченных чекбоксов
+
+    $(".checbox-publication:checked").each(function () {
+        let postId = $(this).data("id");
+        selectedIds.push($(this).data("id")); // Собираем data-id чекбоксов
+        $("select[data-id='" + postId + "']").val(selectedTarif);
+        $(this).prop("checked", !$(this).prop("checked"));
+        check_checbox()
+    });
+
+    if (selectedIds.length === 0) {
+        alert("Выберите хотя бы один элемент!");
+        return;
+    }
+
+    // Отправка POST-запроса
+    $.ajax({
+        url: '/cabinet/post/tarif-all', // Укажи свой обработчик на сервере
+        type: "POST",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name = "csrf-token"]').attr('content')
+        },
+        data: {
+            tarif: selectedTarif,
+            _csrf: yii.getCsrfToken(),
+            ids: selectedIds
+        },
+        success: function (response) {
+            alert("Тарифы успешно изменены  " + response);
+        },
+        error: function () {
+            alert("Ошибка при отправке запроса.");
+        }
+    });
+});
 
 function set_selected_all() {
     $(".checbox-publication").each(function () {

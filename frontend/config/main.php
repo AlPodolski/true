@@ -105,6 +105,7 @@ return [
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet' => 'user/cabinet/index',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/post/add' => 'user/post/add',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/post/tarif' => 'user/post/tarif',
+                '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/post/tarif-all' => 'user/post/tarif-all',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/post/update-photo' => 'user/post/update-photo',
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/pay' => 'user/pay/obmenka-pay',
 

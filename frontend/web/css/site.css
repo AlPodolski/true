@@ -1114,6 +1114,13 @@ h1 , .big-red-text{
     border: 1px solid #ff3f40;
     color: #fff;
 }
+.update_tarif-wrap{
+    margin-top: 20px;
+}
+#update_tarif{
+    max-width: 220px;
+    margin: 0;
+}
 .service-check:checked + .service-check-label::before {
     content: url(/../img/check.png);
     background: #ff3f40;
