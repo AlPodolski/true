@@ -61,6 +61,9 @@ class FilterController extends Controller
         if (Yii::$app->request->isPost and !Yii::$app->request->post('req')) exit();
 
         $uri = Yii::$app->request->url;
+
+        if (\strpos($uri, '%2F')) throw new NotFoundHttpException();
+
         if (\strpos($uri, '?')) $uri = \strstr($uri, '?', true);
 
         $cityInfo = City::getCity(Yii::$app->controller->actionParams['city']);
