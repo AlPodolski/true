@@ -131,17 +131,21 @@ function set_selected_all() {
 
 function get_phone_modal() {
 
+    var check = false;
+
     $(".checbox-publication").each(function () {
 
         if (this.checked) {
 
             $('#phoneModal').modal('toggle');
 
+            check = true;
+
             return false;
         }
     });
 
-    alert("Нужно выделить анкеты");
+    if (!check) alert("Нужно выделить анкеты");
 
 }
 

@@ -15,7 +15,7 @@ class CabinetAsset extends AssetBundle
         'css/site.css?v=27',
     ];
     public $js = [
-        'js/script.js?v=85',
+        'js/script.js?v=86',
         'js/wNumb.min.js',
     ];
     public $depends = [
