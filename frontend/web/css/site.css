@@ -1121,6 +1121,15 @@ h1 , .big-red-text{
     max-width: 220px;
     margin: 0;
 }
+#photoModal .phone-modal-body {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    text-align: center;
+}
+.cabinet-listing-file {
+    display: none;
+}
 .service-check:checked + .service-check-label::before {
     content: url(/../img/check.png);
     background: #ff3f40;

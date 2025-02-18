@@ -12,10 +12,10 @@ class CabinetAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css?v=27',
+        'css/site.css?v=28',
     ];
     public $js = [
-        'js/script.js?v=86',
+        'js/script.js?v=87',
         'js/wNumb.min.js',
     ];
     public $depends = [

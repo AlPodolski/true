@@ -13,6 +13,7 @@ use frontend\modules\user\models\forms\AvatarForm;
 use frontend\modules\user\models\forms\CheckPhotoForm;
 use frontend\modules\user\models\forms\PhotoForm;
 use frontend\modules\user\models\forms\SelphiForm;
+use frontend\modules\user\models\forms\UpdateAllAvatarForm;
 use frontend\modules\user\models\forms\VideoForm;
 use frontend\modules\user\models\Posts;
 use frontend\modules\user\models\UserOsobenosti;
@@ -572,6 +573,43 @@ class PostController extends Controller
                 return Yii::$app->imageCache->thumbSrc($tempFile, '100_100');
 
             }
+
+        }
+    }
+    public function actionUpdatePhotoAll()
+    {
+        $model = new UpdateAllAvatarForm();
+
+        $data = Yii::$app->request->post('UpdateAllAvatarForm');
+
+        if ($data and $model->photo = UploadedFile::getInstance($model, 'photo')) {
+
+            $ids = explode(',', $data['ids']);
+
+            $posts = Posts::find()->where(['user_id' => Yii::$app->user->id])
+                ->andWhere(['in', 'id', $ids])
+                ->with('avatar')
+                ->all();
+
+            $tempFile = $model->upload();
+
+            foreach ($posts as $post){
+
+                $file = Yii::getAlias('@app/web' . $post->avatar->file);
+
+                if (\is_file($file)) \unlink($file);
+
+                if ($post->avatar->file){
+
+                    $post->avatar->file = $tempFile;
+
+                    $post->avatar->save();
+
+                }
+
+            }
+
+            return Yii::$app->imageCache->thumbSrc($tempFile, '100_100');
 
         }
     }

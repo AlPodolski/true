@@ -52,6 +52,51 @@ function update_photo(object) {
 
 }
 
+function updateAvatars(object){
+
+    let selectedIds = []; // Массив для ID отмеченных чекбоксов
+
+    $(".checbox-publication:checked").each(function () {
+        selectedIds.push($(this).data("id")); // Собираем data-id чекбоксов
+    });
+
+    var formData = new FormData($("#all-avatar-form")[0]);
+
+    formData.append('UpdateAllAvatarForm[ids]', selectedIds);
+
+    $.ajax({
+        url: '/cabinet/post/update-photo-all', // ваш URL для обработки
+        dataType: 'text',
+        cache: false,
+        contentType: false,
+        processData: false,
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name = "csrf-token"]').attr('content')
+        },
+        data: formData,
+        type: 'post',
+        success: function(response){
+
+            $(".checbox-publication:checked").each(function () {
+
+                $('.img-'+$(this).data("id")).attr('src', response);
+
+                $(this).prop("checked", !$(this).prop("checked"));
+
+            });
+
+            $('.post-publication-nav').removeClass('post-publication-nav-active')
+
+            $('#photoModal').modal('toggle');
+
+        },
+        error: function(response){
+            alert('Ошибка');
+        }
+    });
+
+}
+
 arrowTop.onclick = function () {
     window.scrollTo(pageXOffset, 0);
     // после scrollTo возникнет событие "scroll", так что стрелка автоматически скроется
@@ -138,6 +183,26 @@ function get_phone_modal() {
         if (this.checked) {
 
             $('#phoneModal').modal('toggle');
+
+            check = true;
+
+            return false;
+        }
+    });
+
+    if (!check) alert("Нужно выделить анкеты");
+
+}
+
+function get_photo_modal() {
+
+    var check = false;
+
+    $(".checbox-publication").each(function () {
+
+        if (this.checked) {
+
+            $('#photoModal').modal('toggle');
 
             check = true;
 
