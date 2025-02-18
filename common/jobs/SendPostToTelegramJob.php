@@ -16,7 +16,7 @@ class SendPostToTelegramJob extends BaseObject implements JobInterface
     public function execute($queue)
     {
 
-        $post = Posts::find()->with('gallery', 'avatar', 'metro')
+        $post = Posts::find()->with('gallery', 'avatar', 'metro', 'city')
             ->where(['id' => $this->postId])
             ->limit(1)
             ->one();

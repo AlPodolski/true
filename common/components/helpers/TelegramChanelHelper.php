@@ -22,6 +22,13 @@ class TelegramChanelHelper
         ]);
     }
 
+    public static function getDomain(Posts $post): string
+    {
+        if ($post->city->actual_city) return 'https://'.$post->city->actual_city.'.'.$post->city->domain;
+
+        return 'https://'.$post->city->url.'.'.$post->city->domain;
+    }
+
     public static function preparePostInfo(Posts $post)
     {
 
@@ -50,7 +57,7 @@ class TelegramChanelHelper
 
                 $result[] = [
                     'type' => 'photo',
-                    'media' => 'https://moskva8.intim-price.com'.Yii::$app->imageCache->thumbSrc($item, '500_700')
+                    'media' => self::getDomain($post).Yii::$app->imageCache->thumbSrc($item, '500_700')
                 ];
 
                 $i++;
@@ -71,7 +78,7 @@ class TelegramChanelHelper
             'type' => 'photo',
             'parse_mode' => 'html',
             'caption' => self::prepareTextAboutPost($post),
-            'media' => 'https://moskva8.intim-price.com'.Yii::$app->imageCache->thumbSrc($post->avatar->file, '500_700')
+            'media' => self::getDomain($post).Yii::$app->imageCache->thumbSrc($post->avatar->file, '500_700')
         ]
         );
     }
@@ -94,7 +101,7 @@ class TelegramChanelHelper
 
         if ($post->phone) $result .= 'Номер: +' . $post->phone . \PHP_EOL;
 
-        $result .= '<a href="https://moskva8.intim-price.com/post/'.$post->id.'">Подробнее</a>';
+        $result .= '<a href="'.self::getDomain($post).'/post/'.$post->id.'">Подробнее</a>';
 
         return $result;
     }
