@@ -205,6 +205,9 @@ class FindController extends Controller
         if ($params['video']) $posts = $posts->andWhere(['<>', 'video', '']);
         if ($params['new']) $posts = $posts->orderBy('id DESC');
 
+        $posts = $posts
+            ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS]);
+
         if (Yii::$app->request->isPost) {
 
             $posts->offset(Yii::$app->params['post_limit'] * Yii::$app->request->post('page'));
@@ -234,9 +237,6 @@ class FindController extends Controller
             exit();
 
         }
-
-        $posts = $posts
-            ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS]);
 
         $countQuery = clone $posts;
 

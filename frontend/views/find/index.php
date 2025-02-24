@@ -61,16 +61,6 @@ Yii::$app->view->registerMetaTag([
 
         </div>
 
-        <?php if ($pages) {
-
-            $pagination = LinkPager::widget([
-                'pagination' => $pages,
-            ]);
-
-            echo str_replace('http:', 'https:', $pagination);
-
-        } ?>
-
         <?php if ($posts and count($posts) > 6) : ?>
 
         <div class="row content-post catalog__items"></div>
@@ -83,6 +73,16 @@ Yii::$app->view->registerMetaTag([
         </div>
 
         <?php endif; ?>
+
+        <?php if ($pages) {
+
+            $pagination = LinkPager::widget([
+                'pagination' => $pages,
+            ]);
+
+            echo str_replace('http:', 'https:', $pagination);
+
+        } ?>
 
     </div>
 </div>
