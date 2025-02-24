@@ -20,25 +20,14 @@ use frontend\controllers\BeforeController as Controller;
 class FindController extends Controller
 {
 
-    public function beforeAction($action)
-    {
-        $this->enableCsrfValidation = false;
-
-        return parent::beforeAction($action);
-    }
-
     public function actionIndex($city)
     {
-
-        $this->enableCsrfValidation = false;
 
         $params = Yii::$app->request->get();
 
         $city = City::getCity($city);
 
         $ids = array();
-
-        $filter = false;
 
         if ($params['metro']) {
 
@@ -164,38 +153,6 @@ class FindController extends Controller
 
         }
 
-        if ($params['naci']) {
-
-            $filter = true;
-
-            $id = UserNational::find()->where(['national_id' => $params['naci']])
-                ->andWhere(['city_id' => $city['id']])
-                ->select('post_id')->asArray()->all();
-
-            if ($id) {
-
-                $result = ArrayHelper::getColumn($id, 'post_id');
-
-                if (!empty($ids)) {
-
-                    $ids = array_intersect($ids, $result);
-
-                } else {
-
-                    $ids = $result;
-
-                }
-
-            }
-
-            if (empty($result)) {
-                $ids = [
-                    '0' => 0
-                ];
-            }
-
-        }
-
         if ($params['hair']) {
 
             $filter = true;
@@ -233,8 +190,6 @@ class FindController extends Controller
 
         $posts = $posts->andWhere(['>=', 'age', $params['age-from']])
             ->andWhere(['<=', 'age', $params['age-to']])
-            ->andWhere(['>=', 'rost', $params['rost-from']])
-            ->andWhere(['<=', 'rost', $params['rost-to']])
             ->andWhere(['>=', 'ves', $params['ves-from']])
             ->andWhere(['<=', 'ves', $params['ves-to']])
             ->andWhere(['>=', 'breast', $params['grud-from']])
@@ -242,6 +197,8 @@ class FindController extends Controller
             ->andWhere(['>=', 'price', $params['price-1-from']])
             ->andWhere(['<=', 'price', $params['price-1-to']])
             ->with('metro', 'avatar', 'galleryForListing');
+
+        if ($params['national_id']) $posts = $posts->andWhere(['national_id' => $params['national_id']]);
 
         if ($params['check-photo']) $posts = $posts->andWhere(['check_photo_status' => 1]);
         if ($params['video']) $posts = $posts->andWhere(['<>', 'video', '']);

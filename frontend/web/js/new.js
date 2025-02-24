@@ -1,3 +1,106 @@
+var slider = document.getElementById('age');
+
+noUiSlider.create(slider, {
+    start: [
+        document.getElementById('age-from').getAttribute('data-value'),
+        document.getElementById('age-to').getAttribute('data-value')
+    ],
+    connect: true,
+    step: 1,
+    format: wNumb({
+        decimals: 0
+    }),
+    range: {
+        'min': 18,
+        'max': 80
+    }
+});
+
+slider.noUiSlider.on('update', function (values, handle) {
+    var age_from = document.getElementById('age-from')
+    var age_to = document.getElementById('age-to')
+    age_from.value = values[0];
+    age_to.value = values[1];
+});
+
+var sliderVes = document.getElementById('ves');
+
+noUiSlider.create(sliderVes, {
+    start: [
+        document.getElementById('ves-from').getAttribute('data-value'),
+        document.getElementById('ves-to').getAttribute('data-value')
+    ],
+    connect: true,
+    step: 1,
+    format: wNumb({
+        decimals: 0
+    }),
+    range: {
+        'min': 40,
+        'max': 100
+    }
+});
+
+sliderVes.noUiSlider.on('update', function (values, handle) {
+    console.log(values);
+    var from = document.getElementById('ves-from')
+    var to = document.getElementById('ves-to')
+    from.value = values[0];
+    to.value = values[1];
+});
+
+var sliderGrud = document.getElementById('grud');
+
+noUiSlider.create(sliderGrud, {
+    start: [
+        document.getElementById('grud-from').getAttribute('data-value'),
+        document.getElementById('grud-to').getAttribute('data-value')
+    ],
+    connect: true,
+    step: 1,
+    format: wNumb({
+        decimals: 0
+    }),
+    range: {
+        'min': 0,
+        'max': 8
+    }
+});
+
+sliderGrud.noUiSlider.on('update', function (values, handle) {
+    console.log(values);
+    var from = document.getElementById('grud-from')
+    var to = document.getElementById('grud-to')
+    from.value = values[0];
+    to.value = values[1];
+});
+
+
+var sliderPrice = document.getElementById('price');
+
+noUiSlider.create(sliderPrice, {
+    start: [
+        document.getElementById('price-1-from').getAttribute('data-value'),
+        document.getElementById('price-1-to').getAttribute('data-value')
+    ],
+    connect: true,
+    step: 100,
+    format: wNumb({
+        decimals: 0
+    }),
+    range: {
+        'min': 1500,
+        'max': 50000
+    }
+});
+
+sliderPrice.noUiSlider.on('update', function (values, handle) {
+    var from = document.getElementById('price-1-from')
+    var to = document.getElementById('price-1-to')
+    from.value = values[0];
+    to.value = values[1];
+});
+
 $(document).ready(function () {
     $(".header__top .custom-select__item").on("click", function () {
         var href = $(this).attr('data-value');
@@ -44,6 +147,10 @@ $(document).ready(function () {
 function openSingle(object){
     var href = $(object).closest('.catalog__item').attr('data-link');
     window.location.href = href;
+}
+
+function openFilter() {
+    $('#filter').toggleClass('open');
 }
 
 function init(map_name, x, y) {

@@ -149,6 +149,7 @@ AppAsset::register($this);
                     </div>
                 </div>
             </header>
+            <?php echo \frontend\widgets\FilterWidget::widget(['dataGet' => Yii::$app->request->get()]); ?>
             <div class="filter">
                 <div class="container">
 

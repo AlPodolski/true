@@ -52,19 +52,10 @@ class PhoneController extends Controller
                     ->where(['city_id' => $city_id])
                     ->andWhere(['pol_id' => Pol::WOMAN_POL]);
 
-                if ($price <= 2999) {
-                    $data = $data->andWhere(['<=', 'price', 2999]);
-                } elseif ($price > 3000 and $price <= 4999) {
-                    $data = $data->andWhere(['<=', 'price', 4999])
-                        ->andWhere(['>=', 'price', 3000]);
-                } else {
-                    $data = $data->andWhere(['>=', 'price', 5000]);
-                }
-
                 $data = $data->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
                     ->andWhere(['fake' => Posts::POST_REAL])
                     ->andWhere(['>', 'advert_phone_view_count', 0])
-                    ->andWhere(['<', 'last_phone_view_at', time() - 1100])
+                    ->andWhere(['<', 'last_phone_view_at', time() - 400])
                     ->andWhere(['<>', 'user_id', 240])
                     ->andWhere(['<>', 'user_id', 241])
                     ->andWhere(['<>', 'user_id', 22040])

@@ -16,17 +16,6 @@ use yii\helpers\Html;
 
 <div class="row filter__top">
     <div class="filter__search-params filter-search-params">
-        <div class="filter-search-params__text">
-            <span>Поиск по параметрам</span>
-            <svg>
-                <use xlink:href='/svg/dest/stack/sprite.svg#arrow-nav'></use>
-            </svg>
-        </div>
-        <div class="filter__close" data-filter-btn>
-            <svg>
-                <use xlink:href='/svg/dest/stack/sprite.svg#close-icon'></use>
-            </svg>
-        </div>
         <div class="filter-search-params__drop">
             <div class="filter-search-params__drop-mob">
                 <div class="filter-search-params__drop-mob-close" data-params-btn>
@@ -349,7 +338,4 @@ use yii\helpers\Html;
             </div>
         </div>
     </div>
-
-    <?php echo \frontend\widgets\FilterWidget::widget(['dataGet' => Yii::$app->request->get()]); ?>
-
 </div>

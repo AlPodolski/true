@@ -54,12 +54,6 @@ if (isset($microdataForMainPage)) echo $microdataForMainPage;
         <div class="row filter__bottom">
             <div class="filter-sort__left">
                 <h1 class="filter-sort__title"> <?php echo $h1 ?></h1>
-                <div class="filter-sort__btn" data-filter-btn>
-                    <svg>
-                        <use xlink:href='/svg/dest/stack/sprite.svg#filter'></use>
-                    </svg>
-                    Фильтр
-                </div>
             </div>
 
             <?php echo \frontend\widgets\SortingWidget::widget() ?>
@@ -67,6 +61,7 @@ if (isset($microdataForMainPage)) echo $microdataForMainPage;
         </div>
     </div>
 </div>
+
 <div class="catalog">
     <div class="container">
 

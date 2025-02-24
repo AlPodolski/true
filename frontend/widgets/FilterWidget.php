@@ -34,20 +34,12 @@ class FilterWidget extends Widget
 
         }
 
-        $service = Service::getService();
-        $place = Place::getPlace();
-        $naci = National::getAll();
-        $hair = HairColor::getAll();
-        $intimHair = IntimHair::getAll();
+        $national = National::getAll();
 
         return $this->render('filter', [
             'metro' => $metro,
             'rayon' => $rayon,
-            'service' => $service,
-            'place' => $place,
-            'naci' => $naci,
-            'hair' => $hair,
-            'intimHair' => $intimHair,
+            'national' => $national,
             'dataGet' => $this->dataGet,
         ]);
     }
