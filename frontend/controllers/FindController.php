@@ -14,6 +14,7 @@ use frontend\modules\user\models\UserPlace;
 use frontend\modules\user\models\UserRayon;
 use frontend\modules\user\models\UserService;
 use Yii;
+use yii\data\Pagination;
 use yii\helpers\ArrayHelper;
 use frontend\controllers\BeforeController as Controller;
 
@@ -235,9 +236,17 @@ class FindController extends Controller
         }
 
         $posts = $posts
-            ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS])
-            ->asArray()
-            ->all();
+            ->andWhere(['status' => Posts::POST_ON_PUPLICATION_STATUS]);
+
+        $countQuery = clone $posts;
+
+        $pages = new Pagination([
+            'totalCount' => $count = $countQuery->cache(3600 * 12)->count(),
+            'forcePageParam' => false,
+            'defaultPageSize' => Yii::$app->params['post_limit']
+        ]);
+
+        $posts = $posts->asArray()->all();
 
         $title = 'Поиск';
         $des = 'Поиск';
@@ -250,6 +259,7 @@ class FindController extends Controller
             'title' => $title,
             'des' => $des,
             'h1' => $h1,
+            'pages' => $pages,
         ]);
 
     }

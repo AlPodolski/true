@@ -7,6 +7,10 @@
 /* @var $h1 string */
 /* @var $param string */
 
+/* @var $pages \yii\data\Pagination */
+
+use yii\bootstrap4\LinkPager;
+
 $this->title = $title;
 
 Yii::$app->view->registerMetaTag([
@@ -56,6 +60,16 @@ Yii::$app->view->registerMetaTag([
             <?php endif; ?>
 
         </div>
+
+        <?php if ($pages) {
+
+            $pagination = LinkPager::widget([
+                'pagination' => $pages,
+            ]);
+
+            echo str_replace('http:', 'https:', $pagination);
+
+        } ?>
 
         <?php if ($posts and count($posts) > 6) : ?>
 

@@ -384,6 +384,7 @@ $(window).scroll(function () {
                 dataType: "html",
                 headers: {
                     "Accept": accept,
+                    "X-CSRF-Token": $('meta[name="csrf-token"]').attr('content'),
                 },
                 cache: false,
                 success: function (data) {
