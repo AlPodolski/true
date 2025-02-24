@@ -13,7 +13,7 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/nouislider.min.css',
-        'css/new-style.css?v=21',
+        'css/new-style.css?v=22',
     ];
     public $js = [
         'js/wNumb.min.js',

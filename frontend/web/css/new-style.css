@@ -3709,7 +3709,7 @@ textarea.form-control {
         padding: 20px;
         transition: left 0.3s ease;
         flex-direction: column;
-        z-index: 10;
+        z-index: 12;
         overflow-x: auto;
     }
     .close-panel{
