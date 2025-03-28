@@ -514,6 +514,7 @@ function init_yandex_map(object) {
 
 }
 
+
 function init(map_name, x, y) {
 
     console.log(map_name);
