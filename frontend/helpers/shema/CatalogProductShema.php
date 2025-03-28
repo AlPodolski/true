@@ -19,7 +19,7 @@ class CatalogProductShema
     {
         $this->title = $title;
         $this->des = $des;
-        $this->img = 'https://.'.\Yii::$app->params['site_addr'].'/thumbs/a15/480x672_78249_1024.jpg';
+        $this->img = 'https://.'.$_SERVER['HTTP_HOST'].'/thumbs/a15/480x672_78249_1024.jpg';
         $this->city = $city;
 
         $this->postRepository = new PostsRepository($this->city);

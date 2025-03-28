@@ -29,7 +29,7 @@ CabinetAsset::register($this);
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
     <?php if ($link = \frontend\components\helpers\CanonicalHelper::getLink(Yii::$app->request->url)) : ?>
-        <link rel="canonical" href="https://<?php echo Yii::$app->params['site_addr'] . $link ?>">
+        <link rel="canonical" href="https://<?php echo $_SERVER['HTTP_HOST'] . $link ?>">
         <meta name="robots" content="noindex, follow">
     <?php endif; ?>
 

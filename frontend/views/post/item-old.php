@@ -212,7 +212,7 @@ $countReview = \frontend\modules\user\models\Posts::countReview($post['id']);
                         </div>
 
                         <div class="red-text " id="tell-me-text">НИКОГДА НЕ ПЕРЕВОДИТЕ ДЕНЬГИ ДО ВСТРЕЧИ <br> Скажите
-                            что звоните с сайта <?php echo Yii::$app->params['site_addr'] ?> я
+                            что звоните с сайта <?php echo $_SERVER['HTTP_HOST'] ?> я
                             и все пойму
                         </div>
 

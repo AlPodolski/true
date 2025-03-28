@@ -66,7 +66,7 @@ Yii::$app->view->registerMetaTag([
 echo \frontend\widgets\OpenGraphWidget::widget([
     'des' => $des,
     'title' => $title,
-    'img' => 'https://' . Yii::$app->params['site_addr'] . $post['avatar']['file'],
+    'img' => 'https://' . $_SERVER['HTTP_HOST'] . $post['avatar']['file'],
 ]);
 
 

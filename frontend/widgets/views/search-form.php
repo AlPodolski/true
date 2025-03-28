@@ -11,14 +11,14 @@ $searchName = new \frontend\models\SearchNameForm();
 
 <div class="header__col header__col--search" itemscope itemtype="https://schema.org/WebSite">
 
-    <meta itemprop="url" content="https://<?php echo \Yii::$app->params['site_addr'] ?>">
+    <meta itemprop="url" content="https://<?php echo $_SERVER['HTTP_HOST'] ?>">
 
     <form class="header__search header-search" action="/search/name"
           method="get" itemprop="potentialAction"
           itemscope="" itemtype="https://schema.org/SearchAction">
 
         <meta itemprop="target"
-              content="https://<?php echo \Yii::$app->params['site_addr'] ?>/search/name?name={name}">
+              content="https://<?php echo $_SERVER['HTTP_HOST'] ?>/search/name?name={name}">
 
         <input class="header-search__input"
                type="search"
