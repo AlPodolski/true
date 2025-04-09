@@ -1,0 +1,37 @@
+.login-form{
+    max-width: 360px;
+    margin: auto;
+}
+.login-form .form-input{
+    border-radius: 8px;
+    max-width: 330px;
+    border: 1px solid #dadae8;
+    padding: 10px;
+    margin-bottom: 5px;
+    color: #000;
+}
+header{
+    padding-top: 15px;
+    background-color: #133a67;
+    padding: 10px 0 10px;
+}
+header img{
+    display: block;
+    margin: auto;
+}
+.in-btn{
+    background: #133a67;
+    border-radius: 8px;
+}
+.form-group {
+    margin-bottom: 20px;
+}
+.login-register-btns{
+    margin-top: 10px;
+}
+.register-btn{
+    color: #000;
+}
+.in-with-text{
+    color: #000;
+}
