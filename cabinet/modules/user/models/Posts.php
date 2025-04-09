@@ -195,7 +195,7 @@ class Posts extends \yii\db\ActiveRecord
     public function getAvatar() : ActiveQuery
     {
         return $this->hasOne(Files::class, ['related_id' => 'id'])
-            ->andWhere(['related_class' => self::class])
+            ->andWhere(['related_class' => 'frontend\modules\user\models\Posts'])
             ->andWhere(['main' => Files::MAIN_PHOTO]);
     }
 
@@ -273,7 +273,7 @@ class Posts extends \yii\db\ActiveRecord
 
         return ArrayHelper::getValue(Files::find()
             ->where(['main' => 0])
-            ->andWhere(['related_id' => $this->id, 'related_class' => Posts::class])
+            ->andWhere(['related_id' => $this->id, 'related_class' => 'frontend\modules\user\models\Posts'])
             ->andWhere(['type' => Files::CHECK_PHOTO_TYPE])
             ->asArray()->one(), 'file');
 
