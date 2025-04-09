@@ -119,35 +119,6 @@ CabinetAsset::register($this);
                     </svg>
                 </a>
             </div>
-
-            <?php echo \frontend\widgets\EventWidget::widget(['user_id' => Yii::$app->user->id]) ?>
-
-            <div class="user-btn-wrap">
-                <?php if (Yii::$app->user->isGuest) : ?>
-                    <div class="user-btn" onclick="get_user_menu()">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path d="M9 10.1387C3.59167 10.1387 0.613125 12.6972 0.613125 17.3431C0.613125 17.7059 0.907207 18 1.27005 18H16.7299C17.0928 18 17.3868 17.7059 17.3868 17.3431C17.3869 12.6974 14.4083 10.1387 9 10.1387ZM1.95089 16.6861C2.20929 13.2125 4.57752 11.4526 9 11.4526C13.4225 11.4526 15.7907 13.2125 16.0494 16.6861H1.95089Z"
-                                  fill="#5C5C5C"/>
-                            <path d="M9 0C6.51569 0 4.64235 1.91102 4.64235 4.44505C4.64235 7.05329 6.59718 9.17497 9 9.17497C11.4028 9.17497 13.3577 7.05329 13.3577 4.44526C13.3577 1.91102 11.4843 0 9 0ZM9 7.86132C7.32154 7.86132 5.95621 6.3289 5.95621 4.44526C5.95621 2.63081 7.23635 1.31386 9 1.31386C10.7354 1.31386 12.0438 2.65992 12.0438 4.44526C12.0438 6.3289 10.6785 7.86132 9 7.86132Z"
-                                  fill="#5C5C5C"/>
-                        </svg>
-                    </div>
-                <?php else : ?>
-                    <div class="user-btn">
-                        <a href="/cabinet">
-                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9 10.1387C3.59167 10.1387 0.613125 12.6972 0.613125 17.3431C0.613125 17.7059 0.907207 18 1.27005 18H16.7299C17.0928 18 17.3868 17.7059 17.3868 17.3431C17.3869 12.6974 14.4083 10.1387 9 10.1387ZM1.95089 16.6861C2.20929 13.2125 4.57752 11.4526 9 11.4526C13.4225 11.4526 15.7907 13.2125 16.0494 16.6861H1.95089Z"
-                                      fill="#5C5C5C"/>
-                                <path d="M9 0C6.51569 0 4.64235 1.91102 4.64235 4.44505C4.64235 7.05329 6.59718 9.17497 9 9.17497C11.4028 9.17497 13.3577 7.05329 13.3577 4.44526C13.3577 1.91102 11.4843 0 9 0ZM9 7.86132C7.32154 7.86132 5.95621 6.3289 5.95621 4.44526C5.95621 2.63081 7.23635 1.31386 9 1.31386C10.7354 1.31386 12.0438 2.65992 12.0438 4.44526C12.0438 6.3289 10.6785 7.86132 9 7.86132Z"
-                                      fill="#5C5C5C"/>
-                            </svg>
-                        </a>
-                    </div>
-                <?php endif; ?>
-            </div>
-
             <div class="mobil-menu">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                      xmlns="http://www.w3.org/2000/svg">
@@ -245,86 +216,6 @@ CabinetAsset::register($this);
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="login">
-        <div class="login-icon-close ">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(.clip0)">
-                    <path d="M32 3.77081L28.2292 0L16 12.2291L3.77081 0L0 3.77081L12.2291 16L0 28.2292L3.77081 32L16 19.7709L28.2291 32L31.9999 28.2292L19.7709 16L32 3.77081Z"
-                          fill="white"/>
-                </g>
-                <defs>
-                    <clipPath class="clip0">
-                        <rect width="32" height="32" fill="white"/>
-                    </clipPath>
-                </defs>
-            </svg>
-        </div>
-        <div class="color-boll first-color-boll">
-
-        </div>
-        <div class="color-boll second-color-boll">
-
-        </div>
-        <div class="color-boll color-boll-3">
-
-        </div>
-        <div class="color-boll color-boll-4">
-
-        </div>
-        <div class="color-boll color-boll-5">
-        </div>
-        <div class="color-boll color-boll-6">
-        </div>
-        <div class="color-boll color-boll-7">
-        </div>
-        <div class="login-form-wrap">
-            <?php
-
-            echo (new frontend\widgets\LoginWidget)->run();
-
-            ?>
-        </div>
-    </div>
-    <div class="register">
-        <div class="register-icon-close">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(.clip0)">
-                    <path d="M32 3.77081L28.2292 0L16 12.2291L3.77081 0L0 3.77081L12.2291 16L0 28.2292L3.77081 32L16 19.7709L28.2291 32L31.9999 28.2292L19.7709 16L32 3.77081Z"
-                          fill="white"/>
-                </g>
-                <defs>
-                    <clipPath class="clip0">
-                        <rect width="32" height="32" fill="white"/>
-                    </clipPath>
-                </defs>
-            </svg>
-        </div>
-        <div class="color-boll first-color-boll">
-
-        </div>
-        <div class="color-boll second-color-boll">
-
-        </div>
-        <div class="color-boll color-boll-3">
-
-        </div>
-        <div class="color-boll color-boll-4">
-
-        </div>
-        <div class="color-boll color-boll-5">
-        </div>
-        <div class="color-boll color-boll-6">
-        </div>
-        <div class="color-boll color-boll-7">
-        </div>
-        <div class="login-form-wrap">
-            <?php
-
-            echo (new frontend\widgets\RegisterWidget)->run();
-
-            ?>
         </div>
     </div>
 </header>

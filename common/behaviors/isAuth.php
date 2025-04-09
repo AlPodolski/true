@@ -20,7 +20,7 @@ class isAuth extends Behavior
 
             Yii::$app->session->setFlash('warning', 'Требуется авторизация');
 
-             header("Location: /");
+             header("Location: /login");
 
              exit();
 

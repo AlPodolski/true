@@ -68,8 +68,7 @@ AppAsset::register($this);
                                 <ul class="header-cab-menu">
                                     <li class="header-cab-menu__item">
                                         <a <?php if (Yii::$app->user->isGuest) : ?>
-                                            href="#"
-                                            onclick="get_user_menu()"
+                                            href="/login"
                                         <?php else : ?>
                                             href="/cabinet"
                                         <?php endif; ?>

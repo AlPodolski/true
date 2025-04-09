@@ -96,8 +96,13 @@ return [
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/advert' => 'advert/advert/public-advert',
 
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/comment' => 'comment/index',
-                '<protocol>://<city:[a-z-0-9]+>.<domain>/signup' => 'user/user/signup',
-                '<protocol>://<city:[a-z-0-9]+>.<domain>/login' => 'user/user/login',
+
+                'GET <protocol>://<city:[a-z-0-9]+>.<domain>/signup' => 'user/user/signup-page',
+                'POST <protocol>://<city:[a-z-0-9]+>.<domain>/signup' => 'user/user/signup',
+
+                'GET <protocol>://<city:[a-z-0-9]+>.<domain>/login' => 'user/user/login-page',
+                'POST <protocol>://<city:[a-z-0-9]+>.<domain>/login' => 'user/user/login',
+
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/logout' => 'user/user/logout',
 
                 '<protocol>://<city:[a-z-0-9]+>.<domain>/cabinet/faq' => 'user/cabinet/faq',
