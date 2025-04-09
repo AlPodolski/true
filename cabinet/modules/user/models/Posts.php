@@ -264,7 +264,7 @@ class Posts extends \yii\db\ActiveRecord
 
         return ArrayHelper::getValue(Files::find()
             ->where(['main' => 1])
-            ->andWhere(['related_id' => $this->id, 'related_class' => Posts::class])
+            ->andWhere(['related_id' => $this->id, 'related_class' => 'frontend\modules\user\models\Posts'])
             ->asArray()->one(), 'file');
 
     }
