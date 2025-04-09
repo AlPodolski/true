@@ -42,6 +42,8 @@ $this->title = 'Авторизация';
     <div id="register_recapcha" class="g-recaptcha"
          data-sitekey="6Lffq2EkAAAAAK4PuAXJjhnE1NOP1uUjANyEUxe_"></div>
 
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallbackRegisterRequest" ></script>
+
     <div class="login-register-btns">
         <?= Html::submitButton('Войти', ['class' => 'in-btn', 'name' => 'login-button']) ?>
         <a href="/signup" class="register-btn">Регистрация</a>
