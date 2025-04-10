@@ -35,7 +35,7 @@ class UserController extends Controller
 
             Yii::$app->session->setFlash('warning', 'нужно заполнить капчу');
 
-            Yii::$app->response->redirect(['/'], 301, false);
+            Yii::$app->response->redirect(['/login'], 301, false);
 
             return true;
         }
@@ -50,7 +50,7 @@ class UserController extends Controller
         if ($data->success == false) {
 
             Yii::$app->session->setFlash('warning', 'Капча введена неверно');
-            Yii::$app->response->redirect(['/'], 301, false);
+            Yii::$app->response->redirect(['/login'], 301, false);
             return true;
 
         }
@@ -63,7 +63,7 @@ class UserController extends Controller
 
             Yii::$app->session->setFlash('warning', 'Указана неверная почта или пароль');
 
-            return $this->goHome();
+            return $this->redirect('/');
         }
     }
 
@@ -146,7 +146,9 @@ class UserController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $user = $model->signup() and Yii::$app->user->login($user)) {
             Yii::$app->session->setFlash('success', 'Благодарим за регистрацию, для активации пополните счет или напишите в поддержку ');
-            return $this->redirect('/cabinet');
+            return $this->redirect('/');
+        }else{
+            Yii::$app->session->setFlash('formErrors', $model->getErrors());
         }
 
         return $this->redirect('/signup');
