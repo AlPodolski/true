@@ -540,7 +540,7 @@ foreach (\common\models\Tarif::getAll() as $item) {
                 <div class="col-12 col-sm-6">
 
                     <?= $form->field($userMetro, 'metro_id')->widget(\kartik\select2\Select2::classname(), [
-                        'data' => ArrayHelper::map(\frontend\models\Metro::getMetro($city['id']), 'id', 'value'),
+                        'data' => ArrayHelper::map(\frontend\models\Metro::getMetro(1), 'id', 'value'),
                         'language' => 'ru',
                         'options' => ['placeholder' => 'Выбрать метро ...'],
                         'pluginOptions' => [
@@ -554,7 +554,7 @@ foreach (\common\models\Tarif::getAll() as $item) {
                 <div class="col-12 col-sm-6">
 
                     <?= $form->field($post, 'rayon_id')->widget(\kartik\select2\Select2::classname(), [
-                        'data' => ArrayHelper::map(\common\models\Rayon::getAll($city['id']), 'id', 'value'),
+                        'data' => ArrayHelper::map(\common\models\Rayon::getAll(1), 'id', 'value'),
                         'language' => 'ru',
                         'options' => ['placeholder' => 'Выбрать район ...'],
                         'pluginOptions' => [

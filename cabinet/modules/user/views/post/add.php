@@ -64,7 +64,7 @@ if (isset($add_more)){
 <?php
 
 
-echo $this->renderFile(Yii::getAlias('@user-view/post/_form.php'), [
+echo $this->renderFile(Yii::getAlias('@cabinet/modules/user/views/post/_form.php'), [
     'post' => $post,
     'city' => $city,
     'videoForm' => $videoForm,
