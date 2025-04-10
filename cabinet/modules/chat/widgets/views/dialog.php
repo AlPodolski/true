@@ -52,9 +52,9 @@ $photoModel = new \cabinet\modules\chat\models\forms\SendPhotoForm();
 
                                 <div class="post-text">
 
-                                    <?php if ($item['class'] == \cabinet\models\Files::class) {
+                                    <?php if ($item['class'] == \frontend\models\Files::class) {
 
-                                        $messagePhoto = \cabinet\models\Files::find()
+                                        $messagePhoto = \frontend\models\Files::find()
                                             ->where(['id' => $item['related_id']])->asArray()->one();
 
                                         if (strpos($messagePhoto['file'], '.pdf'))
