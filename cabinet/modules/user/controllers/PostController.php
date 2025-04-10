@@ -57,10 +57,10 @@ class PostController extends Controller
 
         $checkPhotoForm = new CheckPhotoForm();
 
-        $userMetro = new \cabinet\models\UserMetro();
-        $userPlace = new \cabinet\modules\user\models\UserPlace();
-        $userOsobenosti = new \cabinet\modules\user\models\UserOsobenosti();
-        $userService = new \cabinet\modules\user\models\UserService();
+        $userMetro = new \frontend\models\UserMetro();
+        $userPlace = new \frontend\modules\user\models\UserPlace();
+        $userOsobenosti = new \frontend\modules\user\models\UserOsobenosti();
+        $userService = new \frontend\modules\user\models\UserService();
         $userTime = new UserTime();
 
         $city = City::getCity($city);
@@ -246,7 +246,7 @@ class PostController extends Controller
 
                 }
 
-                return $this->redirect('/cabinet');
+                return $this->redirect('/');
 
             }
 

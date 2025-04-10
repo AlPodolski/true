@@ -1,19 +1,19 @@
 <?php
 
 /* @var $this \yii\web\View */
-/* @var $post \cabinet\modules\user\models\Posts */
+/* @var $post \frontend\modules\user\models\Posts */
 
 /* @var $city array */
 
-use cabinet\modules\user\models\forms\CheckPhotoForm;
-use cabinet\modules\user\models\forms\SelphiForm;
-use cabinet\modules\user\models\UserService;
+use frontend\modules\user\models\forms\CheckPhotoForm;
+use frontend\modules\user\models\forms\SelphiForm;
+use frontend\modules\user\models\UserService;
 
-$videoForm = new \cabinet\modules\user\models\forms\VideoForm();
+$videoForm = new \frontend\modules\user\models\forms\VideoForm();
 
 $videoForm->video = $post['video'];
 
-$avatarForm = new \cabinet\modules\user\models\forms\AvatarForm();
+$avatarForm = new \frontend\modules\user\models\forms\AvatarForm();
 
 $avatarForm->avatar = $post['avatar']['file'];
 
@@ -21,7 +21,7 @@ $checkPhotoForm = new CheckPhotoForm();
 
 $checkPhotoForm->file = $post['checkPhoto']['file'];
 
-$photoForm = new \cabinet\modules\user\models\forms\PhotoForm();
+$photoForm = new \frontend\modules\user\models\forms\PhotoForm();
 
 $photoForm->photo = $post['gal'];
 
@@ -29,27 +29,27 @@ $selphiForm = new SelphiForm();
 
 $selphiForm->photo = $post['selphiCount'];
 
-$userMetro =  new \cabinet\models\UserMetro();
+$userMetro =  new \frontend\models\UserMetro();
 
-$userMetro->metro_id = \yii\helpers\ArrayHelper::getColumn(\cabinet\models\UserMetro::find()
+$userMetro->metro_id = \yii\helpers\ArrayHelper::getColumn(\frontend\models\UserMetro::find()
     ->where(['post_id' => $post['id']])->asArray()->all(), 'metro_id');
 
 
-$userPlace = new \cabinet\modules\user\models\UserPlace();
+$userPlace = new \frontend\modules\user\models\UserPlace();
 
-$userPlace->place_id = \yii\helpers\ArrayHelper::getColumn(\cabinet\modules\user\models\UserPlace::find()
+$userPlace->place_id = \yii\helpers\ArrayHelper::getColumn(\frontend\modules\user\models\UserPlace::find()
     ->where(['post_id' => $post['id']])->asArray()->all(), 'place_id');
 
-$userOsobenosti = new \cabinet\modules\user\models\UserOsobenosti();
+$userOsobenosti = new \frontend\modules\user\models\UserOsobenosti();
 
-$userOsobenosti->param_id = \yii\helpers\ArrayHelper::getColumn(\cabinet\modules\user\models\UserOsobenosti::find()
+$userOsobenosti->param_id = \yii\helpers\ArrayHelper::getColumn(\frontend\modules\user\models\UserOsobenosti::find()
     ->where(['post_id' => $post['id']])->asArray()->all(), 'param_id');
 
 $userService = UserService::find()->where(['post_id' => $post['id']])->asArray()->all();
 
-$userTime = new \cabinet\modules\user\models\UserTime();
+$userTime = new \frontend\modules\user\models\UserTime();
 
-$userTime->param_id = \yii\helpers\ArrayHelper::getColumn(\cabinet\modules\user\models\UserTime::find()
+$userTime->param_id = \yii\helpers\ArrayHelper::getColumn(\frontend\modules\user\models\UserTime::find()
     ->where(['post_id' => $post['id']])->asArray()->all(), 'param_id');
 
 $this->title = 'Редактировать анкету';

@@ -5,21 +5,21 @@
 /* @var $city array */
 /* @var $cityList \common\models\City[] */
 
-use cabinet\modules\user\models\UserService;
+use frontend\modules\user\models\UserService;
 use yii\base\BaseObject;
-use cabinet\modules\user\models\forms\CheckPhotoForm;
+use frontend\modules\user\models\forms\CheckPhotoForm;
 
-$videoForm = new \cabinet\modules\user\models\forms\VideoForm();
-$selphiForm = new \cabinet\modules\user\models\forms\SelphiForm();
-$avatarForm = new \cabinet\modules\user\models\forms\AvatarForm();
-$photoForm = new \cabinet\modules\user\models\forms\PhotoForm();
-$userNational = new \cabinet\modules\user\models\UserNational();
-$userMetro = new \cabinet\models\UserMetro();
-$userPlace = new \cabinet\modules\user\models\UserPlace();
-$userOsobenosti = new \cabinet\modules\user\models\UserOsobenosti();
-$userService = new \cabinet\modules\user\models\UserService();
+$videoForm = new \frontend\modules\user\models\forms\VideoForm();
+$selphiForm = new \frontend\modules\user\models\forms\SelphiForm();
+$avatarForm = new \frontend\modules\user\models\forms\AvatarForm();
+$photoForm = new \frontend\modules\user\models\forms\PhotoForm();
+$userNational = new \frontend\modules\user\models\UserNational();
+$userMetro = new \frontend\models\UserMetro();
+$userPlace = new \frontend\modules\user\models\UserPlace();
+$userOsobenosti = new \frontend\modules\user\models\UserOsobenosti();
+$userService = new \frontend\modules\user\models\UserService();
 $checkPhotoForm = new CheckPhotoForm();
-$userTime = new \cabinet\modules\user\models\UserTime();
+$userTime = new \frontend\modules\user\models\UserTime();
 
 $this->title = 'Добавить анкету';
 
@@ -27,27 +27,27 @@ $this->params['breadcrumbs'][] = $this->title;
 
 if (isset($add_more)){
 
-    $userMetro =  new \cabinet\models\UserMetro();
+    $userMetro =  new \frontend\models\UserMetro();
 
-    $userMetro->metro_id = \yii\helpers\ArrayHelper::getColumn(\cabinet\models\UserMetro::find()
+    $userMetro->metro_id = \yii\helpers\ArrayHelper::getColumn(\frontend\models\UserMetro::find()
         ->where(['post_id' => $post['id']])->asArray()->all(), 'metro_id');
 
 
-    $userPlace = new \cabinet\modules\user\models\UserPlace();
+    $userPlace = new \frontend\modules\user\models\UserPlace();
 
-    $userPlace->place_id = \yii\helpers\ArrayHelper::getColumn(\cabinet\modules\user\models\UserPlace::find()
+    $userPlace->place_id = \yii\helpers\ArrayHelper::getColumn(\frontend\modules\user\models\UserPlace::find()
         ->where(['post_id' => $post['id']])->asArray()->all(), 'place_id');
 
-    $userOsobenosti = new \cabinet\modules\user\models\UserOsobenosti();
+    $userOsobenosti = new \frontend\modules\user\models\UserOsobenosti();
 
-    $userOsobenosti->param_id = \yii\helpers\ArrayHelper::getColumn(\cabinet\modules\user\models\UserOsobenosti::find()
+    $userOsobenosti->param_id = \yii\helpers\ArrayHelper::getColumn(\frontend\modules\user\models\UserOsobenosti::find()
         ->where(['post_id' => $post['id']])->asArray()->all(), 'param_id');
 
     $userService = UserService::find()->where(['post_id' => $post['id']])->asArray()->all();
 
-    $userTime = new \cabinet\modules\user\models\UserTime();
+    $userTime = new \frontend\modules\user\models\UserTime();
 
-    $userTime->param_id = \yii\helpers\ArrayHelper::getColumn(\cabinet\modules\user\models\UserTime::find()
+    $userTime->param_id = \yii\helpers\ArrayHelper::getColumn(\frontend\modules\user\models\UserTime::find()
         ->where(['post_id' => $post['id']])->asArray()->all(), 'param_id');
 
 }

@@ -1,9 +1,9 @@
 <?php
 
-/* @var $post \cabinet\modules\user\models\Posts */
+/* @var $post \frontend\modules\user\models\Posts */
 /* @var $city array */
 
-/* @var $checkPhotoForm \cabinet\modules\user\models\forms\CheckPhotoForm */
+/* @var $checkPhotoForm \frontend\modules\user\models\forms\CheckPhotoForm */
 
 use common\models\Pol;
 use yii\helpers\Html;
@@ -499,8 +499,8 @@ foreach (\common\models\Tarif::getAll() as $item) {
                 <div class="col-12 col-sm-6">
                     <?= $form->field($post, 'category')->dropDownList(
                         [
-                            \cabinet\modules\user\models\Posts::INDI_CATEGORY => 'Инди',
-                            \cabinet\modules\user\models\Posts::SALON_CATEGORY => 'Салон',
+                            \frontend\modules\user\models\Posts::INDI_CATEGORY => 'Инди',
+                            \frontend\modules\user\models\Posts::SALON_CATEGORY => 'Салон',
                         ])
                     ?>
                 </div>
@@ -540,7 +540,7 @@ foreach (\common\models\Tarif::getAll() as $item) {
                 <div class="col-12 col-sm-6">
 
                     <?= $form->field($userMetro, 'metro_id')->widget(\kartik\select2\Select2::classname(), [
-                        'data' => ArrayHelper::map(\cabinet\models\Metro::getMetro($city['id']), 'id', 'value'),
+                        'data' => ArrayHelper::map(\frontend\models\Metro::getMetro($city['id']), 'id', 'value'),
                         'language' => 'ru',
                         'options' => ['placeholder' => 'Выбрать метро ...'],
                         'pluginOptions' => [
@@ -697,7 +697,7 @@ foreach (\common\models\Tarif::getAll() as $item) {
 
         <div class="col-12 col-md-4">
 
-            <?php $buyViewForm = new \cabinet\modules\user\models\forms\BuyViewForm();
+            <?php $buyViewForm = new \frontend\modules\user\models\forms\BuyViewForm();
 
             if (isset($post['name']) and $post['name']) : ?>
 
