@@ -115,7 +115,7 @@ class ChatController extends Controller
 
             if ($file = UploadedFile::getInstance($model, 'file')) {
 
-                $photo = SaveFileHelper::save($file, '', Message::class, '');
+                $photo = SaveFileHelper::save($file, '', \frontend\modules\chat\models\Message::class, '');
 
                 $model->photo_id = $photo->id;
 
