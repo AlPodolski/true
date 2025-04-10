@@ -273,7 +273,7 @@ class PostController extends Controller
 
             Yii::$app->session->addFlash('warning', 'Отказано в доступе');
 
-            return $this->redirect('/cabinet');
+            return $this->redirect('/');
 
         }
 
@@ -454,7 +454,7 @@ class PostController extends Controller
 
                 Yii::$app->session->setFlash('success', 'Данные анкеты ' . $post['name'] . ' сохранены');
 
-                return $this->redirect('/cabinet');
+                return $this->redirect('/');
 
             }
 
