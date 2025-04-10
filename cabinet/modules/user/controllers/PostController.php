@@ -256,7 +256,7 @@ class PostController extends Controller
             'post' => $post,
             'city' => $city,
             'cityList' => $cityList,
-            'add_more' => true,
+            'add_more' => false,
         ]);
     }
 
