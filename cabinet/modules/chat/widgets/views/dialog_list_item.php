@@ -46,7 +46,7 @@ use cabinet\modules\chat\components\helpers\GetDialogsHelper;
 
                                         <?php if (isset($dialog['lastMessage']['class'])) : ?>
 
-                                            <?php if ($dialog['lastMessage']['class'] == \cabinet\models\Files::class) : ?>
+                                            <?php if ($dialog['lastMessage']['class'] == \frontend\models\Files::class) : ?>
 
                                                 <svg version="1.1" width="23px" height="23px" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                                      viewBox="0 0 477.875 477.875" style="enable-background:new 0 0 477.875 477.875;" xml:space="preserve">
