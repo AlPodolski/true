@@ -106,7 +106,7 @@ class UserController extends Controller
 
             Yii::$app->session->setFlash('warning' , 'нужно заполнить капчу');
 
-            Yii::$app->response->redirect(['/'], 301, false);
+            Yii::$app->response->redirect(['/signup'], 301, false);
 
             return true;
         }
@@ -121,7 +121,7 @@ class UserController extends Controller
         if ( $data->success == false) {
 
             Yii::$app->session->setFlash('warning' , 'Капча введена неверно');
-            Yii::$app->response->redirect(['/'], 301, false);
+            Yii::$app->response->redirect(['/signup'], 301, false);
             return true;
 
         }
@@ -136,24 +136,21 @@ class UserController extends Controller
 
         $redis->expire("register:$ip", 3600 * 2);
 
-        if ($redis->GET ("register:$ip") > 3) {
+        if ($redis->GET ("register:$ip") > 10) {
 
-            return $this->goHome();
+            return $this->redirect('/signup');
 
         }
 
         $model = new SignupForm();
-
-        $cityInfo = City::getCity($city);
-
-        $model->city_id = $cityInfo['id'];
 
         if ($model->load(Yii::$app->request->post()) && $user = $model->signup() and Yii::$app->user->login($user)) {
             Yii::$app->session->setFlash('success', 'Благодарим за регистрацию, для активации пополните счет или напишите в поддержку ');
             return $this->redirect('/cabinet');
         }
 
-        return $this->goHome();
+        return $this->redirect('/signup');
+
     }
 
     /**
