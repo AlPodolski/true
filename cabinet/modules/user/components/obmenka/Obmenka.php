@@ -111,12 +111,9 @@ class Obmenka
 
     }
 
-    private function makeSiteUrl($city){
+    private function makeSiteUrl(){
 
-        $cityInfo = City::find()->where(['url' => $city])->one();
-
-        if ($cityInfo->actual_city) $result = 'https://'.$cityInfo->actual_city.'.'.$cityInfo->domain;
-        else $result = 'https://'.$city.'.'.$cityInfo->domain;
+        $result = 'https://'.$_SERVER['HTTP_HOST'];
 
         return $result;
 

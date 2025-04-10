@@ -43,7 +43,7 @@ class BetaApi
         array $options = []
     ): array {
 
-        $siteUrl = $this->makeSiteUrl($city);
+        $siteUrl = $this->makeSiteUrl();
 
         $options['amount'] = $amount;
         $options['currency'] = 'RUB';
@@ -63,12 +63,9 @@ class BetaApi
 
     }
 
-    private function makeSiteUrl($city){
+    private function makeSiteUrl(){
 
-        $cityInfo = City::find()->where(['url' => $city])->one();
-
-        if ($cityInfo->actual_city) $result = 'https://'.$cityInfo->actual_city.'.'.$cityInfo->domain;
-        else $result = 'https://'.$city.'.'.$cityInfo->domain;
+        $result = 'https://'.$_SERVER['HTTP_HOST'];
 
         return $result;
 
