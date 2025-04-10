@@ -14,7 +14,6 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/nouislider.min.css',
         'css/new-style.css?v=22',
-        'css/style.css?v=1',
     ];
     public $js = [
         'js/wNumb.min.js',

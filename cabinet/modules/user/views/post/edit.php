@@ -54,7 +54,6 @@ $userTime->param_id = \yii\helpers\ArrayHelper::getColumn(\cabinet\modules\user\
 
 $this->title = 'Редактировать анкету';
 
-$this->params['breadcrumbs'][] = ['label' => 'Кабинет', 'url' => '/cabinet'];
 $this->params['breadcrumbs'][] = $this->title.' '.$post['name'];
 
 ?>

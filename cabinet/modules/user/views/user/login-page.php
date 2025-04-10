@@ -21,7 +21,7 @@ $this->title = 'Авторизация';
         ]]); ?>
 
     <h1>Войти в кабинет</h1>
-
+    <link href="/css/site.css?v=28" rel="stylesheet">
     <?= $form->field($login, 'email')
         ->textInput(['autofocus' => false, 'placeholder' => 'Email', 'class' => 'form-input email-input'])
         ->label(false) ?>

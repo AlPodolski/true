@@ -9,7 +9,6 @@ $this->registerJsFile('/files/js/prev.js', ['depends' => [\cabinet\assets\AppAss
 
 $this->title = 'Диалоги';
 
-$this->params['breadcrumbs'][] = ['label' => 'Кабинет', 'url' => '/cabinet'];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>

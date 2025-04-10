@@ -13,7 +13,7 @@ $form = ActiveForm::begin(['id' => 'form-signup',
     'options' => [
         'class' => 'login-form'
     ]]); ?>
-
+    <link href="/css/site.css?v=28" rel="stylesheet">
     <h1>Регистрация</h1>
 
 <?= $form->field($model, 'username')->textInput(['autofocus' => false, 'class' => 'form-input user-input' , 'placeholder' => 'Имя'])->label(false) ?>

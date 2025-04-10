@@ -10,7 +10,6 @@ use cabinet\widgets\PhotoWidget;
 
 $this->title = 'Настройки пользователя';
 
-$this->params['breadcrumbs'][] = ['label' => 'Кабинет', 'url' => '/cabinet'];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>

@@ -16,7 +16,6 @@ MaskedInputAsset::register($this);
 
 $this->title = 'Добавить отзыв';
 
-$this->params['breadcrumbs'][] = ['label' => 'Кабинет', 'url' => '/cabinet'];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>

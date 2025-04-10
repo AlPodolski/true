@@ -5,7 +5,6 @@
 
 $this->title = 'Обратный звонок';
 
-$this->params['breadcrumbs'][] = ['label' => 'Кабинет', 'url' => '/cabinet'];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
