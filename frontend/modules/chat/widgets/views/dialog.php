@@ -134,7 +134,7 @@ $photoModel = new \frontend\modules\chat\models\forms\SendPhotoForm();
 </svg>
     </label>
 
-    <?php $params = ['maxlength' => true, 'accept' => '.jpg, .jpeg, .pdf', 'required' => true, 'onchange' => 'send_photo()']; ?>
+    <?php $params = ['maxlength' => true, 'accept' => '.jpg, .jpeg, .pdf, .png', 'required' => true, 'onchange' => 'send_photo()']; ?>
 
     <?= $form->field($sendPhotoForm, 'file')
         ->fileInput($params)

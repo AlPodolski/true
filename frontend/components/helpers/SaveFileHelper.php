@@ -21,7 +21,7 @@ class SaveFileHelper
 
         $type = \explode('/', $file->type);
 
-        if ($type[1] != 'jpeg' and $type[1] != 'jpg' and $type[1] != 'pdf') exit();
+        if ($type[1] != 'jpeg' and $type[1] != 'jpg' and $type[1] != 'pdf' and $type[1] != 'png') exit();
 
         $model->file = 'file-' . $id . '-' . \md5($file->name) . \time() . '.' . $type[1];
 
