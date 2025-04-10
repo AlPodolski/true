@@ -36,7 +36,7 @@ class SendPhotoForm extends Model
         $message->to = $this->to;
         $message->created_at = \time();
         $message->status = 0;
-        $message->class = Files::class;
+        $message->class = \frontend\models\Files::class;
         $message->related_id = $this->photo_id;
 
         if (!empty($this->chat_id) ) {
