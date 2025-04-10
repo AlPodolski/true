@@ -12,7 +12,7 @@ class VideoForm extends Model
     public function rules()
     {
         return [
-            [['video'], 'file', 'skipOnEmpty' => false],
+            [['video'], 'file', 'skipOnEmpty' => true],
         ];
     }
 

@@ -12,7 +12,7 @@ class SelphiForm extends Model
     public function rules()
     {
         return [
-            [['photo'], 'file', 'skipOnEmpty' => false, 'extensions' => 'jpg, jpeg', 'maxFiles' => 15],
+            [['photo'], 'file', 'skipOnEmpty' => true, 'extensions' => 'jpg, jpeg', 'maxFiles' => 15],
         ];
     }
 
